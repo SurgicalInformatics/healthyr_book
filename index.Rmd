@@ -11,16 +11,33 @@ link-citations: yes
 github-repo: SurgicalInformatics/healthyr_book/
 description: "A HealthyR texbook for our 2.5-day quickstart training course."
 colorlinks: yes
-cover-image: images/cover.png
+cover-image: images/healthyr_book_cover.png
 ---
 
 # Preface {-}
 
-
 `r knitr::include_graphics('images/cover.png')`
+
+## Installation
+
+```{block, type="healthyr"}
+* Download R 
+```
+
+https://www.r-project.org/
+
+```{block, type="healthyr"}
+* Install RStudio
+```
+
+https://www.rstudio.com/products/rstudio/
 
 ```{block, type="healthyr"}
 
+* Install packages (copy these lines into the Console in RStudio):
+```
+
+```{r, eval = FALSE}
 install.packages("tidyverse")
 
 install.packages("gapminder")
@@ -37,10 +54,17 @@ install.packages("pROC")
 
 install.packages("survminer")
 
-
 ```
 
 ```{block, type="warning"}
+When working with data, don't copy or type code directly into the Console. We will only be using the Console for viewing output, warnings, and errors (and installing packages as in the previous section). All code should be in a script and executed (=Run) using Control+Enter (line or section) or Control+Shift+Enter (whole script). Make sure you are always working in a project (the right-top corner of your RStudio interface should say "HealthyR").
+```
+
+`r knitr::include_graphics("images/rstudio_vs_r.png")`
+
+## Datasets
+
+```{block, type="healthyr"}
 
 Files:
 

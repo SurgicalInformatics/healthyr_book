@@ -5,7 +5,7 @@ The `boot::melanoma` dataset was introduced in module 7.
 
 In the previous session, we used logistic regression to calculate the odds ratios of different factors to death from melanoma at any point during the study period.
 
-```{r, include=TRUE, messages = FALSE}
+```{r, include=TRUE, message = FALSE}
 
 library(tidyverse)
 library(broom)

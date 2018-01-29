@@ -3,7 +3,7 @@
 ## Data
 We are now changing to a new dataset: melanoma. Click on mydata in your Environment and have a look at the values - you'll see that categorical variables are coded as numbers, rather than text. You will need to recode these numbers into proper factors. 
 
-```{r}
+```{r, message = FALSE}
 
 rm(list=ls())
 library(tidyverse)

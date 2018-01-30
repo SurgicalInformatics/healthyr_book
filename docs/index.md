@@ -1,7 +1,7 @@
 --- 
 title: "HealthyR: R for healthcare data analysis"
 author: "Riinu ots and Ewen Harrison"
-date: "2018-01-29"
+date: "2018-01-30"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -16,7 +16,11 @@ cover-image: images/healthyr_book_cover.png
 
 # Preface {-}
 
-<img src="images/cover.png" width="3625" />
+<img src="images/cover.jpg" width="3625" />
+
+Version 0.3.
+
+Contributors: Riinu Ots, Ewen Harrison, Tom Drake, Peter Hall, Kenneth McLean.
 
 This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 United States License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/us/
 

@@ -1,4 +1,4 @@
-# (PART\*) Part I: Always plot your data first {-}
+# (PART) Always plot your data first {-}
 # Your first R plots
 
 ```{r setup, include=FALSE}

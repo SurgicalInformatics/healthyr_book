@@ -1,4 +1,4 @@
-# (PART \*) Part II: Medical Statistics {-}
+# (PART) Medical Statistics {-}
 
 # Tests for continuous outcome variables
 

@@ -1,7 +1,7 @@
 --- 
 title: "HealthyR: R for healthcare data analysis"
-author: "Riinu ots and Ewen Harrison"
-date: "2018-01-30"
+author: "Riinu Ots and Ewen Harrison"
+date: "2018-02-06"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book

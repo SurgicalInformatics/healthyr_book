@@ -332,7 +332,7 @@ You can use the "Import Dataset" button in the Environment tab to get the code f
 
 ##Adding columns to dataframes
 
-If we wanted to add in a new column or variable to our data, we can simply can use the dollar sign '$' to create a new variable inside a pre-existing piece of data:
+If we wanted to add in a new column or variable to our data, we can simply use the dollar sign '$' to create a new variable inside a pre-existing piece of data:
 
 ```{r}
 

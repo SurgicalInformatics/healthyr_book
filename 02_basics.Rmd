@@ -478,7 +478,7 @@ For combining dataframes based on shared variables we use the Joins: `left_join(
 ```{r, message = FALSE}
 
 first_data  = select(mydata, year, cause, deaths_millions)
-second_data = select(mydata, year, cause, deaths) %>% slice(1:6)
+second_data = select(mydata, year, cause, deaths_millions) %>% slice(1:6)
 
 #change the order of rows in first_data to demosntrate the join does not rely on the ordering of rows:
 first_data = arrange(first_data, deaths_millions)

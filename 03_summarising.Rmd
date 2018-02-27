@@ -12,7 +12,7 @@ load("global_burden_disease_long.rda")
 
 ```
 
-We were already using this longer dataset in Session1, but with `colour=cause` to hide the fact that the total deaths in each year was made up of 12 lines groups of data (as the black lines on the bars indicate):
+We were already using this longer dataset in Session1, but with `colour=cause` to hide the fact that the total deaths in each year was made up of 12 groups of data (as the black lines on the bars indicate):
 
 ```{r, fig.width=6, fig.height=4}
 

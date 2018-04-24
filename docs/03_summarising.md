@@ -16,7 +16,7 @@ We were already using this longer dataset in Session1, but with `colour=cause` t
 
 ```r
 mydata %>% 
-	ggplot(aes(x=year, y=deaths_millions, fill=cause))+ 
+	ggplot(aes(x = year, y = deaths_millions, fill = cause))+ 
 	geom_col(colour = "black")
 ```
 
@@ -170,6 +170,10 @@ mydata %>%
 
 
 ## Wide vs long: `spread()` and `gather()`
+
+
+<img src="images/wide_long.png" width="700px" />
+
 
 
 ### Wide format
@@ -354,7 +358,7 @@ mydata %>%
 	geom_col()
 ```
 
-![](03_summarising_files/figure-epub3/unnamed-chunk-18-1.png)<!-- -->
+![](03_summarising_files/figure-epub3/unnamed-chunk-19-1.png)<!-- -->
 
 ```r
 mydata %>% 
@@ -362,11 +366,11 @@ mydata %>%
 	geom_col()
 ```
 
-![](03_summarising_files/figure-epub3/unnamed-chunk-18-2.png)<!-- -->
+![](03_summarising_files/figure-epub3/unnamed-chunk-19-2.png)<!-- -->
 
 What about these?
 
-![](03_summarising_files/figure-epub3/unnamed-chunk-19-1.png)![](03_summarising_files/figure-epub3/unnamed-chunk-19-2.png)
+![](03_summarising_files/figure-epub3/unnamed-chunk-20-1.png)![](03_summarising_files/figure-epub3/unnamed-chunk-20-2.png)
 
 These illustrate why it might sometimes be useful to use numbers as factors - on the second one we have used `fill=factor(year)` as the fill, so each year gets a distinct colour, rather than a gradual palette.
 
@@ -413,7 +417,7 @@ mydata %>%
 	geom_col()
 ```
 
-![](03_summarising_files/figure-epub3/unnamed-chunk-21-1.png)<!-- -->
+![](03_summarising_files/figure-epub3/unnamed-chunk-22-1.png)<!-- -->
 
 ### `fct_recode()` - rename levels
 

@@ -451,7 +451,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="exercise-14" class="section level3">
 <h3><span class="header-section-number">2.13.2</span> Exercise</h3>
 <p>Try adding a new variable called <code>death_over_10m</code> which indicates whether there were more than 10 million deaths for a cause. The new variable should take the form ‘Yes’ or ‘No’.</p>
-<p>Then make it a factor.</p>
+<p>Then make it into a factor.</p>
 <p>Then use <code>summary()</code> to find out about it!</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata =<span class="st"> </span>mydata <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">death_over_10m =</span> <span class="kw">ifelse</span>(deaths <span class="op">&gt;=</span><span class="st"> </span><span class="dv">10000000</span>, <span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>)) <span class="co">#Using ifelse</span>

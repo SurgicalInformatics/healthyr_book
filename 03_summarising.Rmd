@@ -17,7 +17,7 @@ We were already using this longer dataset in Session1, but with `colour=cause` t
 ```{r, fig.width=6, fig.height=4}
 
 mydata %>% 
-	ggplot(aes(x=year, y=deaths_millions, fill=cause))+ 
+	ggplot(aes(x = year, y = deaths_millions, fill = cause))+ 
 	geom_col(colour = "black")
 
 
@@ -140,6 +140,12 @@ mydata %>%
 
 
 ## Wide vs long: `spread()` and `gather()`
+
+
+```{r, out.width = "700px", echo = FALSE}
+knitr::include_graphics("images/wide_long.png")
+```
+
 
 
 ### Wide format

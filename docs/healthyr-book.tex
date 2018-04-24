@@ -1371,7 +1371,7 @@ Try adding a new variable called \texttt{death\_over\_10m} which
 indicates whether there were more than 10 million deaths for a cause.
 The new variable should take the form `Yes' or `No'.
 
-Then make it a factor.
+Then make it into a factor.
 
 Then use \texttt{summary()} to find out about it!
 
@@ -1566,7 +1566,7 @@ indicate):
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }
-\StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{year, }\DataTypeTok{y=}\NormalTok{deaths_millions, }\DataTypeTok{fill=}\NormalTok{cause))}\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ year, }\DataTypeTok{y =}\NormalTok{ deaths_millions, }\DataTypeTok{fill =}\NormalTok{ cause))}\OperatorTok{+}\StringTok{ }
 \StringTok{    }\KeywordTok{geom_col}\NormalTok{(}\DataTypeTok{colour =} \StringTok{"black"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -1771,6 +1771,8 @@ use \texttt{mutate()} to add total death per year to each row.
 
 \section{\texorpdfstring{Wide vs long: \texttt{spread()} and
 \texttt{gather()}}{Wide vs long: spread() and gather()}}\label{wide-vs-long-spread-and-gather}
+
+\includegraphics[width=700px]{images/wide_long}
 
 \subsection{Wide format}\label{wide-format}
 
@@ -2004,7 +2006,7 @@ Explain how and why these two plots are different.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-18-1.pdf}
+\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-19-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2014,12 +2016,12 @@ Explain how and why these two plots are different.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-18-2.pdf}
+\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-19-2.pdf}
 
 What about these?
 
-\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-19-1.pdf}
-\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-19-2.pdf}
+\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-20-1.pdf}
+\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-20-2.pdf}
 
 These illustrate why it might sometimes be useful to use numbers as
 factors - on the second one we have used \texttt{fill=factor(year)} as
@@ -2076,7 +2078,7 @@ that we can then reorder it for the plot:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-21-1.pdf}
+\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-22-1.pdf}
 
 \subsection{\texorpdfstring{\texttt{fct\_recode()} - rename
 levels}{fct\_recode() - rename levels}}\label{fct_recode---rename-levels}

@@ -406,7 +406,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="kw">load</span>(<span class="st">&quot;global_burden_disease_long.rda&quot;</span>)</code></pre></div>
 <p>We were already using this longer dataset in Session1, but with <code>colour=cause</code> to hide the fact that the total deaths in each year was made up of 12 groups of data (as the black lines on the bars indicate):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>deaths_millions, <span class="dt">fill=</span>cause))<span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> deaths_millions, <span class="dt">fill =</span> cause))<span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_col</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>)</code></pre></div>
 <p><img src="03_summarising_files/figure-html/unnamed-chunk-2-1.png" width="576" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>

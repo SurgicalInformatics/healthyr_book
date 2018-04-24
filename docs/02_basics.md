@@ -589,7 +589,7 @@ mydata %>%
 
 Try adding a new variable called `death_over_10m` which indicates whether there were more than 10 million deaths for a cause. The new variable should take the form 'Yes' or 'No'. 
 
-Then make it a factor.
+Then make it into a factor.
 
 Then use `summary()` to find out about it!
 

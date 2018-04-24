@@ -467,11 +467,11 @@ mydata %>%
 
 ```
 ## # A tibble: 3 x 3
-##    year      avg     med
-##   <int>    <dbl>   <dbl>
-## 1  1997 53.59827 52.7590
-## 2  2002 53.32523 51.2355
-## 3  2007 54.80604 52.9265
+##    year   avg   med
+##   <int> <dbl> <dbl>
+## 1  1997  53.6  52.8
+## 2  2002  53.3  51.2
+## 3  2007  54.8  52.9
 ```
 
 
@@ -574,13 +574,13 @@ mydata %>%
 ```
 ## # A tibble: 5 x 11
 ## # Groups:   continent [5]
-##   continent  estimate estimate1 estimate2  statistic     p.value
-##      <fctr>     <dbl>     <dbl>     <dbl>      <dbl>       <dbl>
-## 1    Africa -1.207769  53.59827  54.80604 -0.6571949 0.512540467
-## 2  Americas -2.457640  71.15048  73.60812 -1.8607703 0.068964167
-## 3      Asia -2.707970  68.02052  70.72848 -1.3702336 0.175402726
-## 4    Europe -2.143433  75.50517  77.64860 -2.7281613 0.008417968
-## 5   Oceania -2.529500  78.19000  80.71950 -3.0780337 0.096472711
-## # ... with 5 more variables: parameter <dbl>, conf.low <dbl>,
-## #   conf.high <dbl>, method <fctr>, alternative <fctr>
+##   continent estimate estimate1 estimate2 statistic p.value parameter
+##   <fct>        <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>
+## 1 Africa       -1.21      53.6      54.8    -0.657 0.513      102   
+## 2 Americas     -2.46      71.2      73.6    -1.86  0.0690      47.6 
+## 3 Asia         -2.71      68.0      70.7    -1.37  0.175       64.0 
+## 4 Europe       -2.14      75.5      77.6    -2.73  0.00842     57.9 
+## 5 Oceania      -2.53      78.2      80.7    -3.08  0.0965       1.91
+## # ... with 4 more variables: conf.low <dbl>, conf.high <dbl>,
+## #   method <fct>, alternative <fct>
 ```

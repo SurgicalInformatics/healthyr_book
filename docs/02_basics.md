@@ -13,24 +13,14 @@ RStudio has a built in Help tab. To use the Help tab, move your cursor to someth
 
 In the first session we loaded some data that we then plotted. When we import data, R remembers the data and stores it in the Environment tab.
 
-It's good practice to clear the environment before starting new work, as it's best to use fresh up to date data - otherwise we could accidentally use data which has nothing to do with our work.
+It's good practice to Restart R before starting new work, as it's best to use fresh up to date data - otherwise we could accidentally use data which has nothing to do with our work. Restarting R only takes a second!
 
-Try clearing and loading in the data again.
+* Restart R (Control+Shift+F10 or select it from Session -> Restart R).
 
-To clear data we can simply run the following code:
-
-
-
-```r
-rm(list=ls())
-```
-
-We can also manually clear the environment in RStudio by clicking the brush symbol underneath the Environment tab.
-
-Sometimes just clearing the Environment tab is not enough - especially if you are working with lots of different packages or other people's scripts. You should also:
+RStudio has a default option that is not best practise any more, you should do this (once only):
 
 * Go to Tools -> Global Options -> General and set "Save .RData on exit" to Never. This does not mean you can't or shouldn't save your work in .RData files. But it is best to do it consciously and load exactly what you need to load, rather than letting R always save and load everything for you, as this could also include broken data or objects.
-* Restart R (Control+Shift+F10 or select it from Session -> Restart R).
+
 
 
 ##Working with Objects
@@ -92,18 +82,13 @@ e <- 7
 
 ##Loading data
 
-Lets clear the environment again
-
-
-```r
-rm(list=ls())
-```
+Before we load a new dataset, we should clear or experiments from the previous section: Restart R by pressing Control+Shift+F10 or Select Section -> Restart R from the menu above.
 
 Now the environment is clear, lets load in the data:
 
 
 ```r
-library(tidyverse)#Tidyverse is the package which contains some of the code we want to use
+library(tidyverse) #Tidyverse is the package which contains some of the code we want to use
 
 mydata = read_csv("global_burden_disease_short.csv")
 ```
@@ -116,7 +101,7 @@ Answer these question about your data:
 
 1. At present, how many variables are there?
 
-2. How many deaths were there from communicable diseases in 1990? Hint: clicking on columns when Viewing a dataset orders it.
+2. How many deaths were there from communicable diseases in 1990? Hint: clicking on columns when Viewing a dataframe orders it.
 
 
 
@@ -239,15 +224,15 @@ new_data_selection = mydata %>%
 # by moving cause into a new filter on a new line:
 
 new_data_selection = mydata %>% 
-  filter( year == 1990 | year == 2013) %>% 
-  filter( cause == "Communicable diseases" )
+  filter(year == 1990 | year == 2013) %>% 
+  filter(cause == "Communicable diseases")
 ```
 
 
 
 ##Types of variables
 
-Like many other types of statistical software, R needs to know what is the variable type of each column. The main types are:
+Like many other types of statistical software, R needs to know the variable type of each column. The main types are:
 
 ### Characters
 
@@ -258,8 +243,10 @@ Like many other types of statistical software, R needs to know what is the varia
 **Factors** are fussy characters. Factors are fussy because they have something called levels. Levels are all the unique values this variable could take - e.g. like when we looked at `mydata$cause %>% unique()`.
 Using factors rather than just characters can be useful because:
 
-* The values factor levels can take is fixed. For example, if the levels of your column called `sex` are "Male" and "Female" and you try to add a new patient where sex is called just "F" you will get a warning from R. If `sex` was a character column rather than a factor R would have no problem with this and you would end up with "Male", "Female", and "F" in your your column.
+
+* The values factor levels can take is fixed. For example, if the levels of your column called `sex` are "Male" and "Female" and you try to add a new patient where sex is called just "F" you will get a warning from R. If `sex` was a character column rather than a factor R would have no problem with this and you would end up with "Male", "Female", and "F" in your column.
 * Levels have an order. When we plotted the different causes of death in the last session, R ordered them alphabetically (because `cause` was a character rather than a factor). But if you want to use a non-alphabetical order, e.g. "Communicable diseases"-"Non-communicable diseases"-"Injuries", we need make `cause` into a factor. Making a character column into a factor enables us to define and change the order of the levels. Furthermore, there are useful tools such as `fct_inorder` or `fct_infreq` that can order factor levels for us.
+
 
 These can be huge benefits, especially as a lot of medical data analyses include comparing different risks to a reference level. Nevertheless, the fussiness of factors can sometimes be unhelpful or even frustrating. For example, if you really did want to add a new level to your `gender` column (e.g., "Prefer not to say") you will either have to convert the column to a character, add it, and convert it back to a factor, or use `fct_expand` to add the level and then add your new line.
 
@@ -270,7 +257,7 @@ Temporarily type `fct_inorder` anywhere in your script, then press F1. Read the 
 
 ### Numbers
 
-Self-explanatory! These are numbers. In R, we specify these using the `as.numeric()` function. Numbers without decimal places are sometimes called integers. Click on the blue arrow in front of `mydata` in the Environment tab and see that `year` is an `int` whereas `deaths` is a `num`.
+Self-explanatory! These are numbers. In R, we specify these using the `as.numeric()` function. Numbers without decimal places are sometimes called integers. Click on the blue arrow in front of `mydata` in the Environment tab and see that `year` is an `int` (integer) whereas `deaths` is a `num` (numeric).
 
 
 
@@ -331,7 +318,7 @@ You can use the "Import Dataset" button in the Environment tab to get the code f
 
 ##Adding columns to dataframes
 
-If we wanted to add in a new column or variable to our data, we can simply can use the dollar sign '$' to create a new variable inside a pre-existing piece of data:
+If we wanted to add in a new column or variable to our data, we can simply use the dollar sign '$' to create a new variable inside a pre-existing piece of data:
 
 
 ```r
@@ -388,7 +375,9 @@ Round the new column `deaths_millions` to no decimals:
 ##  [1] 16 27  4 15 30  5 15 32  5 14 34  5 12 36  5 12 38  5
 ```
 
-How would you round it to 2 decimals? Hint: use F1 to investigate `round()`. What do `ceiling()` and `floor()` do?
+* How would you round it to 2 decimals? Hint: use F1 to investigate `round()`. 
+
+* What do `ceiling()` and `floor()` do? Hint: sometimes you want to round a number up or down.
 
 ##The combine function: c()
 
@@ -499,7 +488,7 @@ For combining dataframes based on shared variables we use the Joins: `left_join(
 
 ```r
 first_data  = select(mydata, year, cause, deaths_millions)
-second_data = select(mydata, year, cause, deaths) %>% slice(1:6)
+second_data = select(mydata, year, cause, deaths_millions) %>% slice(1:6)
 
 #change the order of rows in first_data to demosntrate the join does not rely on the ordering of rows:
 first_data = arrange(first_data, deaths_millions)
@@ -516,7 +505,7 @@ Those who have used R before, or those who come across older scripts will have s
 
 ### Exercise
 
-Investigate the four new dataframes (`combined_`) using the Environment tab and discuss how the different joins (left, right, inner, full) work.
+Investigate the four new dataframes called `combined_` using the Environment tab and discuss how the different joins (left, right, inner, full) work.
 
 
 ##The `summary()` Function
@@ -586,7 +575,7 @@ mydata %>%
   summary()
 ```
 
-This is because the pipe tries to send data into the first place of the function (first argument), but `lm()` wants the formula (`deaths ~ year`) first, then the dataframe. We can bypass this using `data = .` to tell the pipe where to send mydata:
+This is because the pipe tries to send data into the first place of the function (first argument), but `lm()` wants the formula (`deaths ~ year`) first, then the dataframe. We can bypass this using `data = .` to tell the pipe where to put mydata:
 
 
 ```r
@@ -598,7 +587,7 @@ mydata %>%
 
 ###Exercise
 
-Try adding a new variable called `death_over_10m` which indicates whether there were 10 million deaths or more for each cause. The new variable should take the form 'Yes' or 'No'. 
+Try adding a new variable called `death_over_10m` which indicates whether there were more than 10 million deaths for a cause. The new variable should take the form 'Yes' or 'No'. 
 
 Then make it a factor.
 
@@ -653,18 +642,18 @@ Hint: Use the functions `paste0()`, `seq()` and `rep()`
 
 ```
 ## # A tibble: 10 x 3
-##    patient_id   age    sex
-##         <chr> <dbl>  <chr>
-##  1       ID11    15   Male
-##  2       ID12    20   Male
-##  3       ID13    25   Male
-##  4       ID14    30   Male
-##  5       ID15    35   Male
-##  6       ID16    40 Female
-##  7       ID17    45 Female
-##  8       ID18    50 Female
-##  9       ID19    55 Female
-## 10       ID20    60 Female
+##    patient_id   age sex   
+##    <chr>      <dbl> <chr> 
+##  1 ID11        15.0 Male  
+##  2 ID12        20.0 Male  
+##  3 ID13        25.0 Male  
+##  4 ID14        30.0 Male  
+##  5 ID15        35.0 Male  
+##  6 ID16        40.0 Female
+##  7 ID17        45.0 Female
+##  8 ID18        50.0 Female
+##  9 ID19        55.0 Female
+## 10 ID20        60.0 Female
 ```
 
 
@@ -713,12 +702,6 @@ mydata$deaths_millions = round(mydata$deaths_millions)
 
 # or
 mydata$deaths_millions = mydata$deaths_millions %>% round()
-
-# or even (load magrittr to get the superpower pipe - %<>%)
-
-library(magrittr)
-
-mydata$deaths_millions %<>% round()
 ```
 
 **2.11.1**

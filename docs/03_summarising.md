@@ -11,7 +11,7 @@ source("1_source_theme.R")
 load("global_burden_disease_long.rda")
 ```
 
-We were already using this longer dataset in Session1, but with `colour=cause` to hide the fact that the total deaths in each year was made up of 12 lines groups of data (as the black lines on the bars indicate):
+We were already using this longer dataset in Session1, but with `colour=cause` to hide the fact that the total deaths in each year was made up of 12 groups of data (as the black lines on the bars indicate):
 
 
 ```r
@@ -47,7 +47,8 @@ mydata %>%
 
 Most of the functions introduced in this session come from the tidyverse family (http://tidyverse.org/), rather than Base R. Including `library(tidyverse)` in your script loads a list of packages: ggplot2, dplyr, tidry, forcats, etc.
 
-<img src="images/library_vs_package.png" width="1491" />
+
+<img src="images/library_vs_package.png" width="400px" />
 
 
 ```r
@@ -186,13 +187,13 @@ alldata %>%
 ## # A tibble: 6 x 4
 ## # Groups:   year [6]
 ##    year `Communicable diseases` Injuries `Non-communicable diseases`
-## * <int>                   <chr>    <chr>                       <chr>
-## 1  1990                  34.02%    9.11%                      56.87%
-## 2  1995                  30.91%    9.28%                      59.81%
-## 3  2000                  28.93%    9.35%                      61.72%
-## 4  2005                  26.53%    9.23%                      64.24%
-## 5  2010                  23.17%    9.26%                      67.57%
-## 6  2013                  21.53%    8.73%                      69.75%
+## * <int> <chr>                   <chr>    <chr>                      
+## 1  1990 34.02%                  9.11%    56.87%                     
+## 2  1995 30.91%                  9.28%    59.81%                     
+## 3  2000 28.93%                  9.35%    61.72%                     
+## 4  2005 26.53%                  9.23%    64.24%                     
+## 5  2010 23.17%                  9.26%    67.57%                     
+## 6  2013 21.53%                  8.73%    69.75%
 ```
 
 ### Exercise
@@ -239,14 +240,14 @@ result_spread
 
 ```
 ## # A tibble: 6 x 3
-##    year Female  Male
-## * <int>  <chr> <chr>
-## 1  1990    47%   53%
-## 2  1995    47%   53%
-## 3  2000    46%   54%
-## 4  2005    46%   54%
-## 5  2010    46%   54%
-## 6  2013    45%   55%
+##    year Female Male 
+## * <int> <chr>  <chr>
+## 1  1990 47%    53%  
+## 2  1995 47%    53%  
+## 3  2000 46%    54%  
+## 4  2005 46%    54%  
+## 5  2010 46%    54%  
+## 6  2013 45%    55%
 ```
 
 And save it into a csv file using `write_csv()`:
@@ -275,20 +276,20 @@ result_spread %>%
 
 ```
 ## # A tibble: 12 x 3
-##     year    sex percentage
-##    <int>  <chr>      <chr>
-##  1  1990 Female        47%
-##  2  1995 Female        47%
-##  3  2000 Female        46%
-##  4  2005 Female        46%
-##  5  2010 Female        46%
-##  6  2013 Female        45%
-##  7  1990   Male        53%
-##  8  1995   Male        53%
-##  9  2000   Male        54%
-## 10  2005   Male        54%
-## 11  2010   Male        54%
-## 12  2013   Male        55%
+##     year sex    percentage
+##    <int> <chr>  <chr>     
+##  1  1990 Female 47%       
+##  2  1995 Female 47%       
+##  3  2000 Female 46%       
+##  4  2005 Female 46%       
+##  5  2010 Female 46%       
+##  6  2013 Female 45%       
+##  7  1990 Male   53%       
+##  8  1995 Male   53%       
+##  9  2000 Male   54%       
+## 10  2005 Male   54%       
+## 11  2010 Male   54%       
+## 12  2013 Male   55%
 ```
 
 
@@ -353,7 +354,7 @@ mydata %>%
 	geom_col()
 ```
 
-![](03_summarising_files/figure-epub3/unnamed-chunk-17-1.png)<!-- -->
+![](03_summarising_files/figure-epub3/unnamed-chunk-18-1.png)<!-- -->
 
 ```r
 mydata %>% 
@@ -361,11 +362,11 @@ mydata %>%
 	geom_col()
 ```
 
-![](03_summarising_files/figure-epub3/unnamed-chunk-17-2.png)<!-- -->
+![](03_summarising_files/figure-epub3/unnamed-chunk-18-2.png)<!-- -->
 
 What about these?
 
-![](03_summarising_files/figure-epub3/unnamed-chunk-18-1.png)![](03_summarising_files/figure-epub3/unnamed-chunk-18-2.png)
+![](03_summarising_files/figure-epub3/unnamed-chunk-19-1.png)![](03_summarising_files/figure-epub3/unnamed-chunk-19-2.png)
 
 These illustrate why it might sometimes be useful to use numbers as factors - on the second one we have used `fill=factor(year)` as the fill, so each year gets a distinct colour, rather than a gradual palette.
 
@@ -412,7 +413,7 @@ mydata %>%
 	geom_col()
 ```
 
-![](03_summarising_files/figure-epub3/unnamed-chunk-20-1.png)<!-- -->
+![](03_summarising_files/figure-epub3/unnamed-chunk-21-1.png)<!-- -->
 
 ### `fct_recode()` - rename levels
 
@@ -502,10 +503,10 @@ First, create a new script called "2_long_exercise.R". Then Restart your R sessi
 
 ```
 ## # A tibble: 2 x 3
-##      sex Developed Developing
-## * <fctr>     <dbl>      <dbl>
-## 1 Female  5.517136   16.83571
-## 2   Male  5.702191   19.41365
+##   sex    Developed Developing
+## * <fct>      <dbl>      <dbl>
+## 1 Female      5.52       16.8
+## 2 Male        5.70       19.4
 ```
 
 
@@ -539,14 +540,14 @@ alldata %>%
 ```
 ## # A tibble: 6 x 4
 ## # Groups:   year [6]
-##    year `Communicable diseases`   Injuries `Non-communicable diseases`
-## * <int>                   <chr>      <chr>                       <chr>
-## 1  1990            16.1 (34.0%) 4.3 (9.1%)                27.0 (56.9%)
-## 2  1995            15.4 (30.9%) 4.6 (9.3%)                29.9 (59.8%)
-## 3  2000            14.8 (28.9%) 4.8 (9.4%)                31.5 (61.7%)
-## 4  2005            13.9 (26.5%) 4.8 (9.2%)                33.6 (64.2%)
-## 5  2010            12.4 (23.2%) 5.0 (9.3%)                36.3 (67.6%)
-## 6  2013            11.8 (21.5%) 4.8 (8.7%)                38.3 (69.7%)
+##    year `Communicable diseases` Injuries   `Non-communicable diseases`
+## * <int> <chr>                   <chr>      <chr>                      
+## 1  1990 16.1 (34.0%)            4.3 (9.1%) 27.0 (56.9%)               
+## 2  1995 15.4 (30.9%)            4.6 (9.3%) 29.9 (59.8%)               
+## 3  2000 14.8 (28.9%)            4.8 (9.4%) 31.5 (61.7%)               
+## 4  2005 13.9 (26.5%)            4.8 (9.2%) 33.6 (64.2%)               
+## 5  2010 12.4 (23.2%)            5.0 (9.3%) 36.3 (67.6%)               
+## 6  2013 11.8 (21.5%)            4.8 (8.7%) 38.3 (69.7%)
 ```
 
 

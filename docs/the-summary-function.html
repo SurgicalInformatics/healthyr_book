@@ -26,7 +26,7 @@
 <meta name="author" content="Riinu Ots and Ewen Harrison">
 
 
-<meta name="date" content="2018-02-06">
+<meta name="date" content="2018-04-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -104,9 +104,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">R for healthcare data analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li><a href="index.html#section"></a><ul>
 <li class="chapter" data-level="0.1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>0.1</b> Installation</a></li>
-<li class="chapter" data-level="0.2" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>0.2</b> Datasets</a></li>
 </ul></li>
 <li class="part"><span><b>I Always plot your data first</b></span></li>
 <li class="chapter" data-level="1" data-path="your-first-r-plots.html"><a href="your-first-r-plots.html"><i class="fa fa-check"></i><b>1</b> Your first R plots</a><ul>
@@ -444,14 +443,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">lm</span>(deaths <span class="op">~</span><span class="st"> </span>year) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summary</span>()</code></pre></div>
-<p>This is because the pipe tries to send data into the first place of the function (first argument), but <code>lm()</code> wants the formula (<code>deaths ~ year</code>) first, then the dataframe. We can bypass this using <code>data = .</code> to tell the pipe where to send mydata:</p>
+<p>This is because the pipe tries to send data into the first place of the function (first argument), but <code>lm()</code> wants the formula (<code>deaths ~ year</code>) first, then the dataframe. We can bypass this using <code>data = .</code> to tell the pipe where to put mydata:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">lm</span>(deaths <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> .) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summary</span>()</code></pre></div>
 </div>
 <div id="exercise-14" class="section level3">
 <h3><span class="header-section-number">2.13.2</span> Exercise</h3>
-<p>Try adding a new variable called <code>death_over_10m</code> which indicates whether there were 10 million deaths or more for each cause. The new variable should take the form ‘Yes’ or ‘No’.</p>
+<p>Try adding a new variable called <code>death_over_10m</code> which indicates whether there were more than 10 million deaths for a cause. The new variable should take the form ‘Yes’ or ‘No’.</p>
 <p>Then make it a factor.</p>
 <p>Then use <code>summary()</code> to find out about it!</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata =<span class="st"> </span>mydata <span class="op">%&gt;%</span><span class="st"> </span>

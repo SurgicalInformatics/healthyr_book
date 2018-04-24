@@ -26,7 +26,7 @@
 <meta name="author" content="Riinu Ots and Ewen Harrison">
 
 
-<meta name="date" content="2018-02-06">
+<meta name="date" content="2018-04-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -104,9 +104,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">R for healthcare data analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li><a href="index.html#section"></a><ul>
 <li class="chapter" data-level="0.1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>0.1</b> Installation</a></li>
-<li class="chapter" data-level="0.2" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>0.2</b> Datasets</a></li>
 </ul></li>
 <li class="part"><span><b>I Always plot your data first</b></span></li>
 <li class="chapter" data-level="1" data-path="your-first-r-plots.html"><a href="your-first-r-plots.html"><i class="fa fa-check"></i><b>1</b> Your first R plots</a><ul>
@@ -402,7 +401,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="types-of-variables" class="section level2">
 <h2><span class="header-section-number">2.6</span> Types of variables</h2>
-<p>Like many other types of statistical software, R needs to know what is the variable type of each column. The main types are:</p>
+<p>Like many other types of statistical software, R needs to know the variable type of each column. The main types are:</p>
 <div id="characters" class="section level3">
 <h3><span class="header-section-number">2.6.1</span> Characters</h3>
 <p><strong>Characters</strong> (sometimes referred to as <em>strings</em> or <em>character strings</em>) in R are letters, words, or even whole sentences (an example of this may be free text comments). We can specify these using the <code>as.character()</code> function. Characters are displayed in-between <code>&quot;&quot;</code> (or <code>''</code>).</p>
@@ -411,7 +410,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">2.6.2</span> Factors</h3>
 <p><strong>Factors</strong> are fussy characters. Factors are fussy because they have something called levels. Levels are all the unique values this variable could take - e.g. like when we looked at <code>mydata$cause %&gt;% unique()</code>. Using factors rather than just characters can be useful because:</p>
 <ul>
-<li>The values factor levels can take is fixed. For example, if the levels of your column called <code>sex</code> are “Male” and “Female” and you try to add a new patient where sex is called just “F” you will get a warning from R. If <code>sex</code> was a character column rather than a factor R would have no problem with this and you would end up with “Male”, “Female”, and “F” in your your column.</li>
+<li>The values factor levels can take is fixed. For example, if the levels of your column called <code>sex</code> are “Male” and “Female” and you try to add a new patient where sex is called just “F” you will get a warning from R. If <code>sex</code> was a character column rather than a factor R would have no problem with this and you would end up with “Male”, “Female”, and “F” in your column.</li>
 <li>Levels have an order. When we plotted the different causes of death in the last session, R ordered them alphabetically (because <code>cause</code> was a character rather than a factor). But if you want to use a non-alphabetical order, e.g. “Communicable diseases”-“Non-communicable diseases”-“Injuries”, we need make <code>cause</code> into a factor. Making a character column into a factor enables us to define and change the order of the levels. Furthermore, there are useful tools such as <code>fct_inorder</code> or <code>fct_infreq</code> that can order factor levels for us.</li>
 </ul>
 <p>These can be huge benefits, especially as a lot of medical data analyses include comparing different risks to a reference level. Nevertheless, the fussiness of factors can sometimes be unhelpful or even frustrating. For example, if you really did want to add a new level to your <code>gender</code> column (e.g., “Prefer not to say”) you will either have to convert the column to a character, add it, and convert it back to a factor, or use <code>fct_expand</code> to add the level and then add your new line.</p>
@@ -422,7 +421,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="numbers" class="section level3">
 <h3><span class="header-section-number">2.6.3</span> Numbers</h3>
-<p>Self-explanatory! These are numbers. In R, we specify these using the <code>as.numeric()</code> function. Numbers without decimal places are sometimes called integers. Click on the blue arrow in front of <code>mydata</code> in the Environment tab and see that <code>year</code> is an <code>int</code> whereas <code>deaths</code> is a <code>num</code>.</p>
+<p>Self-explanatory! These are numbers. In R, we specify these using the <code>as.numeric()</code> function. Numbers without decimal places are sometimes called integers. Click on the blue arrow in front of <code>mydata</code> in the Environment tab and see that <code>year</code> is an <code>int</code> (integer) whereas <code>deaths</code> is a <code>num</code> (numeric).</p>
 </div>
 <div id="specifying-variable-types" class="section level3">
 <h3><span class="header-section-number">2.6.4</span> Specifying variable types</h3>

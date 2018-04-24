@@ -26,7 +26,7 @@
 <meta name="author" content="Riinu Ots and Ewen Harrison">
 
 
-<meta name="date" content="2018-02-06">
+<meta name="date" content="2018-04-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -104,9 +104,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">R for healthcare data analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li><a href="index.html#section"></a><ul>
 <li class="chapter" data-level="0.1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>0.1</b> Installation</a></li>
-<li class="chapter" data-level="0.2" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>0.2</b> Datasets</a></li>
 </ul></li>
 <li class="part"><span><b>I Always plot your data first</b></span></li>
 <li class="chapter" data-level="1" data-path="your-first-r-plots.html"><a href="your-first-r-plots.html"><i class="fa fa-check"></i><b>1</b> Your first R plots</a><ul>
@@ -422,18 +421,18 @@ newdata      =<span class="st"> </span><span class="kw">data_frame</span>(
 <p>Create a new dataframe called <code>my_dataframe</code> that looks like this:</p>
 <p>Hint: Use the functions <code>paste0()</code>, <code>seq()</code> and <code>rep()</code></p>
 <pre><code>## # A tibble: 10 x 3
-##    patient_id   age    sex
-##         &lt;chr&gt; &lt;dbl&gt;  &lt;chr&gt;
-##  1       ID11    15   Male
-##  2       ID12    20   Male
-##  3       ID13    25   Male
-##  4       ID14    30   Male
-##  5       ID15    35   Male
-##  6       ID16    40 Female
-##  7       ID17    45 Female
-##  8       ID18    50 Female
-##  9       ID19    55 Female
-## 10       ID20    60 Female</code></pre>
+##    patient_id   age sex   
+##    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; 
+##  1 ID11        15.0 Male  
+##  2 ID12        20.0 Male  
+##  3 ID13        25.0 Male  
+##  4 ID14        30.0 Male  
+##  5 ID15        35.0 Male  
+##  6 ID16        40.0 Female
+##  7 ID17        45.0 Female
+##  8 ID18        50.0 Female
+##  9 ID19        55.0 Female
+## 10 ID20        60.0 Female</code></pre>
 </div>
 </div>
             </section>

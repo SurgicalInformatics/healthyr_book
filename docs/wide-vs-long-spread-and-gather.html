@@ -26,7 +26,7 @@
 <meta name="author" content="Riinu Ots and Ewen Harrison">
 
 
-<meta name="date" content="2018-02-06">
+<meta name="date" content="2018-04-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -104,9 +104,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">R for healthcare data analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li><a href="index.html#section"></a><ul>
 <li class="chapter" data-level="0.1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>0.1</b> Installation</a></li>
-<li class="chapter" data-level="0.2" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>0.2</b> Datasets</a></li>
 </ul></li>
 <li class="part"><span><b>I Always plot your data first</b></span></li>
 <li class="chapter" data-level="1" data-path="your-first-r-plots.html"><a href="your-first-r-plots.html"><i class="fa fa-check"></i><b>1</b> Your first R plots</a><ul>
@@ -412,13 +411,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <pre><code>## # A tibble: 6 x 4
 ## # Groups:   year [6]
 ##    year `Communicable diseases` Injuries `Non-communicable diseases`
-## * &lt;int&gt;                   &lt;chr&gt;    &lt;chr&gt;                       &lt;chr&gt;
-## 1  1990                  34.02%    9.11%                      56.87%
-## 2  1995                  30.91%    9.28%                      59.81%
-## 3  2000                  28.93%    9.35%                      61.72%
-## 4  2005                  26.53%    9.23%                      64.24%
-## 5  2010                  23.17%    9.26%                      67.57%
-## 6  2013                  21.53%    8.73%                      69.75%</code></pre>
+## * &lt;int&gt; &lt;chr&gt;                   &lt;chr&gt;    &lt;chr&gt;                      
+## 1  1990 34.02%                  9.11%    56.87%                     
+## 2  1995 30.91%                  9.28%    59.81%                     
+## 3  2000 28.93%                  9.35%    61.72%                     
+## 4  2005 26.53%                  9.23%    64.24%                     
+## 5  2010 23.17%                  9.26%    67.57%                     
+## 6  2013 21.53%                  8.73%    69.75%</code></pre>
 </div>
 <div id="exercise-19" class="section level3">
 <h3><span class="header-section-number">3.6.2</span> Exercise</h3>
@@ -452,14 +451,14 @@ alldata =<span class="st"> </span><span class="kw">full_join</span>(summary_data
 
 result_spread</code></pre></div>
 <pre><code>## # A tibble: 6 x 3
-##    year Female  Male
-## * &lt;int&gt;  &lt;chr&gt; &lt;chr&gt;
-## 1  1990    47%   53%
-## 2  1995    47%   53%
-## 3  2000    46%   54%
-## 4  2005    46%   54%
-## 5  2010    46%   54%
-## 6  2013    45%   55%</code></pre>
+##    year Female Male 
+## * &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;
+## 1  1990 47%    53%  
+## 2  1995 47%    53%  
+## 3  2000 46%    54%  
+## 4  2005 46%    54%  
+## 5  2010 46%    54%  
+## 6  2013 45%    55%</code></pre>
 <p>And save it into a csv file using <code>write_csv()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_csv</span>(result_spread, <span class="st">&quot;gbd_genders_summarised.csv&quot;</span>)</code></pre></div>
 <p>You can open a csv file with Excel and copy the table into Word or PowerPoint for presenting.</p>
@@ -475,20 +474,20 @@ result_spread</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result_spread <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">gather</span>(sex, percentage, <span class="op">-</span>year)</code></pre></div>
 <pre><code>## # A tibble: 12 x 3
-##     year    sex percentage
-##    &lt;int&gt;  &lt;chr&gt;      &lt;chr&gt;
-##  1  1990 Female        47%
-##  2  1995 Female        47%
-##  3  2000 Female        46%
-##  4  2005 Female        46%
-##  5  2010 Female        46%
-##  6  2013 Female        45%
-##  7  1990   Male        53%
-##  8  1995   Male        53%
-##  9  2000   Male        54%
-## 10  2005   Male        54%
-## 11  2010   Male        54%
-## 12  2013   Male        55%</code></pre>
+##     year sex    percentage
+##    &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     
+##  1  1990 Female 47%       
+##  2  1995 Female 47%       
+##  3  2000 Female 46%       
+##  4  2005 Female 46%       
+##  5  2010 Female 46%       
+##  6  2013 Female 45%       
+##  7  1990 Male   53%       
+##  8  1995 Male   53%       
+##  9  2000 Male   54%       
+## 10  2005 Male   54%       
+## 11  2010 Male   54%       
+## 12  2013 Male   55%</code></pre>
 </div>
 <div id="exercise-20" class="section level3">
 <h3><span class="header-section-number">3.6.4</span> Exercise</h3>

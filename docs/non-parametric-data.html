@@ -26,7 +26,7 @@
 <meta name="author" content="Riinu Ots and Ewen Harrison">
 
 
-<meta name="date" content="2018-02-06">
+<meta name="date" content="2018-04-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -104,9 +104,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">R for healthcare data analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li><a href="index.html#section"></a><ul>
 <li class="chapter" data-level="0.1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>0.1</b> Installation</a></li>
-<li class="chapter" data-level="0.2" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>0.2</b> Datasets</a></li>
 </ul></li>
 <li class="part"><span><b>I Always plot your data first</b></span></li>
 <li class="chapter" data-level="1" data-path="your-first-r-plots.html"><a href="your-first-r-plots.html"><i class="fa fa-check"></i><b>1</b> Your first R plots</a><ul>
@@ -424,11 +423,11 @@ mydata <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avg =</span> <span class="kw">mean</span>(lifeExp), <span class="dt">med =</span> <span class="kw">median</span>(lifeExp))</code></pre></div>
 <pre><code>## # A tibble: 3 x 3
-##    year      avg     med
-##   &lt;int&gt;    &lt;dbl&gt;   &lt;dbl&gt;
-## 1  1997 53.59827 52.7590
-## 2  2002 53.32523 51.2355
-## 3  2007 54.80604 52.9265</code></pre>
+##    year   avg   med
+##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  1997  53.6  52.8
+## 2  2002  53.3  51.2
+## 3  2007  54.8  52.9</code></pre>
 </div>
 <div id="exercise-non-parametric-testing" class="section level3">
 <h3><span class="header-section-number">6.6.2</span> Exercise: Non-parametric testing</h3>

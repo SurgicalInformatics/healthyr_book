@@ -26,7 +26,7 @@
 <meta name="author" content="Riinu Ots and Ewen Harrison">
 
 
-<meta name="date" content="2018-02-06">
+<meta name="date" content="2018-04-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -104,9 +104,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">R for healthcare data analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li><a href="index.html#section"></a><ul>
 <li class="chapter" data-level="0.1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>0.1</b> Installation</a></li>
-<li class="chapter" data-level="0.2" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>0.2</b> Datasets</a></li>
 </ul></li>
 <li class="part"><span><b>I Always plot your data first</b></span></li>
 <li class="chapter" data-level="1" data-path="your-first-r-plots.html"><a href="your-first-r-plots.html"><i class="fa fa-check"></i><b>1</b> Your first R plots</a><ul>
@@ -423,14 +422,14 @@ alldata <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">spread</span>(cause, total_percentage)</code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ## # Groups:   year [6]
-##    year `Communicable diseases`   Injuries `Non-communicable diseases`
-## * &lt;int&gt;                   &lt;chr&gt;      &lt;chr&gt;                       &lt;chr&gt;
-## 1  1990            16.1 (34.0%) 4.3 (9.1%)                27.0 (56.9%)
-## 2  1995            15.4 (30.9%) 4.6 (9.3%)                29.9 (59.8%)
-## 3  2000            14.8 (28.9%) 4.8 (9.4%)                31.5 (61.7%)
-## 4  2005            13.9 (26.5%) 4.8 (9.2%)                33.6 (64.2%)
-## 5  2010            12.4 (23.2%) 5.0 (9.3%)                36.3 (67.6%)
-## 6  2013            11.8 (21.5%) 4.8 (8.7%)                38.3 (69.7%)</code></pre>
+##    year `Communicable diseases` Injuries   `Non-communicable diseases`
+## * &lt;int&gt; &lt;chr&gt;                   &lt;chr&gt;      &lt;chr&gt;                      
+## 1  1990 16.1 (34.0%)            4.3 (9.1%) 27.0 (56.9%)               
+## 2  1995 15.4 (30.9%)            4.6 (9.3%) 29.9 (59.8%)               
+## 3  2000 14.8 (28.9%)            4.8 (9.4%) 31.5 (61.7%)               
+## 4  2005 13.9 (26.5%)            4.8 (9.2%) 33.6 (64.2%)               
+## 5  2010 12.4 (23.2%)            5.0 (9.3%) 36.3 (67.6%)               
+## 6  2013 11.8 (21.5%)            4.8 (8.7%) 38.3 (69.7%)</code></pre>
 </div>
             </section>
 

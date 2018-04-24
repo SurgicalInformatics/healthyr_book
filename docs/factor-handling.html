@@ -26,7 +26,7 @@
 <meta name="author" content="Riinu Ots and Ewen Harrison">
 
 
-<meta name="date" content="2018-02-06">
+<meta name="date" content="2018-04-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -104,9 +104,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">R for healthcare data analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li><a href="index.html#section"></a><ul>
 <li class="chapter" data-level="0.1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>0.1</b> Installation</a></li>
-<li class="chapter" data-level="0.2" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>0.2</b> Datasets</a></li>
 </ul></li>
 <li class="part"><span><b>I Always plot your data first</b></span></li>
 <li class="chapter" data-level="1" data-path="your-first-r-plots.html"><a href="your-first-r-plots.html"><i class="fa fa-check"></i><b>1</b> Your first R plots</a><ul>
@@ -409,13 +408,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st">                                   </span>
 <span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>deaths_millions, <span class="dt">fill=</span>cause))<span class="op">+</span><span class="st">  </span>
 <span class="st">    </span><span class="kw">geom_col</span>()</code></pre></div>
-<p><img src="03_summarising_files/figure-html/unnamed-chunk-17-1.png" width="480" /></p>
+<p><img src="03_summarising_files/figure-html/unnamed-chunk-18-1.png" width="480" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(year), <span class="dt">y=</span>deaths_millions, <span class="dt">fill=</span>cause, <span class="dt">colour=</span>cause))<span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_col</span>()</code></pre></div>
-<p><img src="03_summarising_files/figure-html/unnamed-chunk-17-2.png" width="480" /></p>
+<p><img src="03_summarising_files/figure-html/unnamed-chunk-18-2.png" width="480" /></p>
 <p>What about these?</p>
-<p><img src="03_summarising_files/figure-html/unnamed-chunk-18-1.png" width="336" /><img src="03_summarising_files/figure-html/unnamed-chunk-18-2.png" width="336" /></p>
+<p><img src="03_summarising_files/figure-html/unnamed-chunk-19-1.png" width="336" /><img src="03_summarising_files/figure-html/unnamed-chunk-19-2.png" width="336" /></p>
 <p>These illustrate why it might sometimes be useful to use numbers as factors - on the second one we have used <code>fill=factor(year)</code> as the fill, so each year gets a distinct colour, rather than a gradual palette.</p>
 </div>
 <div id="fct_collapse---grouping-levels-together" class="section level3">
@@ -443,7 +442,7 @@ mydata<span class="op">$</span>cause <span class="op">%&gt;%</span><span class="
 mydata <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year.factor, <span class="dt">y=</span>deaths_millions, <span class="dt">fill=</span>cause))<span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_col</span>()</code></pre></div>
-<p><img src="03_summarising_files/figure-html/unnamed-chunk-20-1.png" width="480" /></p>
+<p><img src="03_summarising_files/figure-html/unnamed-chunk-21-1.png" width="480" /></p>
 </div>
 <div id="fct_recode---rename-levels" class="section level3">
 <h3><span class="header-section-number">3.8.4</span> <code>fct_recode()</code> - rename levels</h3>

@@ -13,26 +13,14 @@ RStudio has a built in Help tab. To use the Help tab, move your cursor to someth
 
 In the first session we loaded some data that we then plotted. When we import data, R remembers the data and stores it in the Environment tab.
 
-It's good practice to clear the environment before starting new work, as it's best to use fresh up to date data - otherwise we could accidentally use data which has nothing to do with our work.
+It's good practice to Restart R before starting new work, as it's best to use fresh up to date data - otherwise we could accidentally use data which has nothing to do with our work. Restarting R only takes a second!
 
-Try clearing and loading in the data again.
+* Restart R (Control+Shift+F10 or select it from Session -> Restart R).
 
-To clear data we can simply run the following code:
-
-
-```{r, message=F}
-
-rm(list=ls())
-
-
-```
-
-We can also manually clear the environment in RStudio by clicking the brush symbol underneath the Environment tab.
-
-Sometimes just clearing the Environment tab is not enough - especially if you are working with lots of different packages or other people's scripts. You should also:
+RStudio has a default option that is not best practise any more, you should do this (once only):
 
 * Go to Tools -> Global Options -> General and set "Save .RData on exit" to Never. This does not mean you can't or shouldn't save your work in .RData files. But it is best to do it consciously and load exactly what you need to load, rather than letting R always save and load everything for you, as this could also include broken data or objects.
-* Restart R (Control+Shift+F10 or select it from Session -> Restart R).
+
 
 
 ##Working with Objects
@@ -93,19 +81,13 @@ e <- 7
 
 ##Loading data
 
-Lets clear the environment again
-
-```{r, message=F}
-
-rm(list=ls())
-
-```
+Before we load a new dataset, we should clear or experiments from the previous section: Restart R by pressing Control+Shift+F10 or Select Section -> Restart R from the menu above.
 
 Now the environment is clear, lets load in the data:
 
 ```{r, message=F}
 
-library(tidyverse)#Tidyverse is the package which contains some of the code we want to use
+library(tidyverse) #Tidyverse is the package which contains some of the code we want to use
 
 mydata = read_csv("global_burden_disease_short.csv")
 
@@ -119,7 +101,7 @@ Answer these question about your data:
 
 1. At present, how many variables are there?
 
-2. How many deaths were there from communicable diseases in 1990? Hint: clicking on columns when Viewing a dataset orders it.
+2. How many deaths were there from communicable diseases in 1990? Hint: clicking on columns when Viewing a dataframe orders it.
 
 
 
@@ -244,8 +226,8 @@ new_data_selection = mydata %>%
 # by moving cause into a new filter on a new line:
 
 new_data_selection = mydata %>% 
-  filter( year == 1990 | year == 2013) %>% 
-  filter( cause == "Communicable diseases" )
+  filter(year == 1990 | year == 2013) %>% 
+  filter(cause == "Communicable diseases")
 
 
 ```
@@ -279,7 +261,7 @@ Temporarily type `fct_inorder` anywhere in your script, then press F1. Read the 
 
 ### Numbers
 
-Self-explanatory! These are numbers. In R, we specify these using the `as.numeric()` function. Numbers without decimal places are sometimes called integers. Click on the blue arrow in front of `mydata` in the Environment tab and see that `year` is an `int` whereas `deaths` is a `num`.
+Self-explanatory! These are numbers. In R, we specify these using the `as.numeric()` function. Numbers without decimal places are sometimes called integers. Click on the blue arrow in front of `mydata` in the Environment tab and see that `year` is an `int` (integer) whereas `deaths` is a `num` (numeric).
 
 
 
@@ -400,7 +382,9 @@ mydata$deaths_millions
 
 ```
 
-How would you round it to 2 decimals? Hint: use F1 to investigate `round()`. What do `ceiling()` and `floor()` do?
+* How would you round it to 2 decimals? Hint: use F1 to investigate `round()`. 
+
+* What do `ceiling()` and `floor()` do? Hint: sometimes you want to round a number up or down.
 
 ##The combine function: c()
 
@@ -499,7 +483,7 @@ Those who have used R before, or those who come across older scripts will have s
 
 ### Exercise
 
-Investigate the four new dataframes (`combined_`) using the Environment tab and discuss how the different joins (left, right, inner, full) work.
+Investigate the four new dataframes called `combined_` using the Environment tab and discuss how the different joins (left, right, inner, full) work.
 
 
 ##The `summary()` Function
@@ -535,7 +519,7 @@ mydata %>%
 
 ```
 
-This is because the pipe tries to send data into the first place of the function (first argument), but `lm()` wants the formula (`deaths ~ year`) first, then the dataframe. We can bypass this using `data = .` to tell the pipe where to send mydata:
+This is because the pipe tries to send data into the first place of the function (first argument), but `lm()` wants the formula (`deaths ~ year`) first, then the dataframe. We can bypass this using `data = .` to tell the pipe where to put mydata:
 
 ```{r, eval = FALSE}
 mydata %>% 
@@ -547,7 +531,7 @@ mydata %>%
 
 ###Exercise
 
-Try adding a new variable called `death_over_10m` which indicates whether there were 10 million deaths or more for each cause. The new variable should take the form 'Yes' or 'No'. 
+Try adding a new variable called `death_over_10m` which indicates whether there were more than 10 million deaths for a cause. The new variable should take the form 'Yes' or 'No'. 
 
 Then make it a factor.
 
@@ -652,11 +636,6 @@ mydata$deaths_millions = round(mydata$deaths_millions)
 # or
 mydata$deaths_millions = mydata$deaths_millions %>% round()
 
-# or even (load magrittr to get the superpower pipe - %<>%)
-
-library(magrittr)
-
-mydata$deaths_millions %<>% round()
 
 ```
 

@@ -172,7 +172,7 @@ Both `geom_bar()` and `geom_col()` create barplots. If you:
 * Your dataset is already summarised - use geom_col()
     + For example, in the GBD dataset we use here, each line already includes a summarised value (`deaths_millions`)
 
-If you have used R before, you might have come across `geom_bar(stat = "identity")` which is the same as `geom_col()`.
+If you have used R before you might have come across `geom_bar(stat = "identity")` which is the same as `geom_col()`.
 
 
 ## Solutions
@@ -199,5 +199,5 @@ On a barplot, the colour aesthetic outlines the fill. In a later session we will
 
 **1.5.3:**
 
-Words in quotes are generally something are setting to a constant value (e.g. make all outlines black, rather than colour them based on the cause they are representing). Unquoted words are generally variables (or functions). If the word "function" just threw you, Google "Jesse Maegan: What the h*ck is a function"
+Words in quotes are generally something set to a constant value (e.g. make all outlines black, rather than colour them based on the cause they are representing). Unquoted words are generally variables (or functions). If the word "function" just threw you, Google "Jesse Maegan: What the h*ck is a function"
 

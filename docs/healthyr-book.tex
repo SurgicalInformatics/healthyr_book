@@ -128,7 +128,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-02-06}
+  \date{2018-04-24}
 
 \usepackage[utf8]{inputenc}
 \usepackage{booktabs}
@@ -236,10 +236,8 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\chapter*{Preface}\label{preface}
-\addcontentsline{toc}{chapter}{Preface}
-
-\includegraphics[width=50.35in]{images/cover}
+\chapter*{}\label{section}
+\addcontentsline{toc}{chapter}{}
 
 Version 0.3.
 
@@ -311,23 +309,7 @@ always working in a project (the right-top corner of your RStudio
 interface should say ``HealthyR'').
 \end{warning}
 
-\includegraphics[width=10in]{images/rstudio_vs_r}
-
-\section{Datasets}\label{datasets}
-
-\begin{healthyr}
-Files:
-
-gbp.rda
-
-gbp.csv
-
-melaoma\_factored
-\end{healthyr}
-
-\begin{error}
-These will include common errors.
-\end{error}
+\includegraphics[width=400px]{images/rstudio_vs_r}
 
 \part{Always plot your data
 first}\label{part-always-plot-your-data-first}
@@ -553,7 +535,7 @@ you:
   \end{itemize}
 \end{itemize}
 
-If you have used R before, you might have come across
+If you have used R before you might have come across
 \texttt{geom\_bar(stat\ =\ "identity")} which is the same as
 \texttt{geom\_col()}.
 
@@ -583,7 +565,7 @@ aesthetic to define.
 
 \textbf{1.5.3:}
 
-Words in quotes are generally something are setting to a constant value
+Words in quotes are generally something set to a constant value
 (e.g.~make all outlines black, rather than colour them based on the
 cause they are representing). Unquoted words are generally variables (or
 functions). If the word ``function'' just threw you, Google ``Jesse
@@ -619,26 +601,19 @@ canvas}\label{starting-with-a-blank-canvas}
 In the first session we loaded some data that we then plotted. When we
 import data, R remembers the data and stores it in the Environment tab.
 
-It's good practice to clear the environment before starting new work, as
-it's best to use fresh up to date data - otherwise we could accidentally
-use data which has nothing to do with our work.
+It's good practice to Restart R before starting new work, as it's best
+to use fresh up to date data - otherwise we could accidentally use data
+which has nothing to do with our work. Restarting R only takes a second!
 
-Try clearing and loading in the data again.
+\begin{itemize}
+\tightlist
+\item
+  Restart R (Control+Shift+F10 or select it from Session -\textgreater{}
+  Restart R).
+\end{itemize}
 
-To clear data we can simply run the following code:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list=}\KeywordTok{ls}\NormalTok{())}
-\end{Highlighting}
-\end{Shaded}
-
-We can also manually clear the environment in RStudio by clicking the
-brush symbol underneath the Environment tab.
-
-Sometimes just clearing the Environment tab is not enough - especially
-if you are working with lots of different packages or other people's
-scripts. You should also:
+RStudio has a default option that is not best practise any more, you
+should do this (once only):
 
 \begin{itemize}
 \tightlist
@@ -649,9 +624,6 @@ scripts. You should also:
   consciously and load exactly what you need to load, rather than
   letting R always save and load everything for you, as this could also
   include broken data or objects.
-\item
-  Restart R (Control+Shift+F10 or select it from Session -\textgreater{}
-  Restart R).
 \end{itemize}
 
 \section{Working with Objects}\label{working-with-objects}
@@ -728,19 +700,15 @@ Create 3 new variables, \texttt{d}, \texttt{e}, \texttt{f} with values
 
 \section{Loading data}\label{loading-data}
 
-Lets clear the environment again
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list=}\KeywordTok{ls}\NormalTok{())}
-\end{Highlighting}
-\end{Shaded}
+Before we load a new dataset, we should clear or experiments from the
+previous section: Restart R by pressing Control+Shift+F10 or Select
+Section -\textgreater{} Restart R from the menu above.
 
 Now the environment is clear, lets load in the data:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tidyverse)}\CommentTok{#Tidyverse is the package which contains some of the code we want to use}
+\KeywordTok{library}\NormalTok{(tidyverse) }\CommentTok{#Tidyverse is the package which contains some of the code we want to use}
 
 \NormalTok{mydata =}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"global_burden_disease_short.csv"}\NormalTok{)}
 \end{Highlighting}
@@ -759,7 +727,7 @@ Answer these question about your data:
   At present, how many variables are there?
 \item
   How many deaths were there from communicable diseases in 1990? Hint:
-  clicking on columns when Viewing a dataset orders it.
+  clicking on columns when Viewing a dataframe orders it.
 \end{enumerate}
 
 \subsection{Other ways to investigate
@@ -919,15 +887,15 @@ and cause is ``Communicable diseases'':
 \CommentTok{# by moving cause into a new filter on a new line:}
 
 \NormalTok{new_data_selection =}\StringTok{ }\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{( year }\OperatorTok{==}\StringTok{ }\DecValTok{1990} \OperatorTok{|}\StringTok{ }\NormalTok{year }\OperatorTok{==}\StringTok{ }\DecValTok{2013}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{( cause }\OperatorTok{==}\StringTok{ "Communicable diseases"}\NormalTok{ )}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{==}\StringTok{ }\DecValTok{1990} \OperatorTok{|}\StringTok{ }\NormalTok{year }\OperatorTok{==}\StringTok{ }\DecValTok{2013}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(cause }\OperatorTok{==}\StringTok{ "Communicable diseases"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \section{Types of variables}\label{types-of-variables}
 
-Like many other types of statistical software, R needs to know what is
-the variable type of each column. The main types are:
+Like many other types of statistical software, R needs to know the
+variable type of each column. The main types are:
 
 \subsection{Characters}\label{characters}
 
@@ -954,7 +922,7 @@ rather than just characters can be useful because:
   try to add a new patient where sex is called just ``F'' you will get a
   warning from R. If \texttt{sex} was a character column rather than a
   factor R would have no problem with this and you would end up with
-  ``Male'', ``Female'', and ``F'' in your your column.
+  ``Male'', ``Female'', and ``F'' in your column.
 \item
   Levels have an order. When we plotted the different causes of death in
   the last session, R ordered them alphabetically (because
@@ -989,7 +957,8 @@ Self-explanatory! These are numbers. In R, we specify these using the
 \texttt{as.numeric()} function. Numbers without decimal places are
 sometimes called integers. Click on the blue arrow in front of
 \texttt{mydata} in the Environment tab and see that \texttt{year} is an
-\texttt{int} whereas \texttt{deaths} is a \texttt{num}.
+\texttt{int} (integer) whereas \texttt{deaths} is a \texttt{num}
+(numeric).
 
 \subsection{Specifying variable types}\label{specifying-variable-types}
 
@@ -1062,7 +1031,7 @@ the code for importing data from Excel, SPSS, SAS, or Stata.
 dataframes}\label{adding-columns-to-dataframes}
 
 If we wanted to add in a new column or variable to our data, we can
-simply can use the dollar sign `\$' to create a new variable inside a
+simply use the dollar sign `\$' to create a new variable inside a
 pre-existing piece of data:
 
 \begin{Shaded}
@@ -1133,8 +1102,14 @@ Round the new column \texttt{deaths\_millions} to no decimals:
 ##  [1] 16 27  4 15 30  5 15 32  5 14 34  5 12 36  5 12 38  5
 \end{verbatim}
 
-How would you round it to 2 decimals? Hint: use F1 to investigate
-\texttt{round()}. What do \texttt{ceiling()} and \texttt{floor()} do?
+\begin{itemize}
+\item
+  How would you round it to 2 decimals? Hint: use F1 to investigate
+  \texttt{round()}.
+\item
+  What do \texttt{ceiling()} and \texttt{floor()} do? Hint: sometimes
+  you want to round a number up or down.
+\end{itemize}
 
 \section{The combine function: c()}\label{the-combine-function-c}
 
@@ -1270,7 +1245,7 @@ dataset in \texttt{second\_data}:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{first_data  =}\StringTok{ }\KeywordTok{select}\NormalTok{(mydata, year, cause, deaths_millions)}
-\NormalTok{second_data =}\StringTok{ }\KeywordTok{select}\NormalTok{(mydata, year, cause, deaths) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{)}
+\NormalTok{second_data =}\StringTok{ }\KeywordTok{select}\NormalTok{(mydata, year, cause, deaths_millions) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{)}
 
 \CommentTok{#change the order of rows in first_data to demosntrate the join does not rely on the ordering of rows:}
 \NormalTok{first_data =}\StringTok{ }\KeywordTok{arrange}\NormalTok{(first_data, deaths_millions)}
@@ -1296,7 +1271,7 @@ clearly at the front, you would have had to use the
 
 \subsection{Exercise}\label{exercise-13}
 
-Investigate the four new dataframes (\texttt{combined\_}) using the
+Investigate the four new dataframes called \texttt{combined\_} using the
 Environment tab and discuss how the different joins (left, right, inner,
 full) work.
 
@@ -1379,7 +1354,7 @@ here:
 This is because the pipe tries to send data into the first place of the
 function (first argument), but \texttt{lm()} wants the formula
 (\texttt{deaths\ \textasciitilde{}\ year}) first, then the dataframe. We
-can bypass this using \texttt{data\ =\ .} to tell the pipe where to send
+can bypass this using \texttt{data\ =\ .} to tell the pipe where to put
 mydata:
 
 \begin{Shaded}
@@ -1393,7 +1368,7 @@ mydata:
 \subsection{Exercise}\label{exercise-14}
 
 Try adding a new variable called \texttt{death\_over\_10m} which
-indicates whether there were 10 million deaths or more for each cause.
+indicates whether there were more than 10 million deaths for a cause.
 The new variable should take the form `Yes' or `No'.
 
 Then make it a factor.
@@ -1457,18 +1432,18 @@ Hint: Use the functions \texttt{paste0()}, \texttt{seq()} and
 
 \begin{verbatim}
 ## # A tibble: 10 x 3
-##    patient_id   age    sex
-##         <chr> <dbl>  <chr>
-##  1       ID11    15   Male
-##  2       ID12    20   Male
-##  3       ID13    25   Male
-##  4       ID14    30   Male
-##  5       ID15    35   Male
-##  6       ID16    40 Female
-##  7       ID17    45 Female
-##  8       ID18    50 Female
-##  9       ID19    55 Female
-## 10       ID20    60 Female
+##    patient_id   age sex   
+##    <chr>      <dbl> <chr> 
+##  1 ID11        15.0 Male  
+##  2 ID12        20.0 Male  
+##  3 ID13        25.0 Male  
+##  4 ID14        30.0 Male  
+##  5 ID15        35.0 Male  
+##  6 ID16        40.0 Female
+##  7 ID17        45.0 Female
+##  8 ID18        50.0 Female
+##  9 ID19        55.0 Female
+## 10 ID20        60.0 Female
 \end{verbatim}
 
 \section{Solutions}\label{solutions-1}
@@ -1520,12 +1495,6 @@ Hint: Use the functions \texttt{paste0()}, \texttt{seq()} and
 
 \CommentTok{# or}
 \NormalTok{mydata}\OperatorTok{$}\NormalTok{deaths_millions =}\StringTok{ }\NormalTok{mydata}\OperatorTok{$}\NormalTok{deaths_millions }\OperatorTok{%>%}\StringTok{ }\KeywordTok{round}\NormalTok{()}
-
-\CommentTok{# or even (load magrittr to get the superpower pipe - %<>%)}
-
-\KeywordTok{library}\NormalTok{(magrittr)}
-
-\NormalTok{mydata}\OperatorTok{$}\NormalTok{deaths_millions }\OperatorTok{%<>%}\StringTok{ }\KeywordTok{round}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1591,8 +1560,8 @@ will learn how to summarise it ourselves.
 
 We were already using this longer dataset in Session1, but with
 \texttt{colour=cause} to hide the fact that the total deaths in each
-year was made up of 12 lines groups of data (as the black lines on the
-bars indicate):
+year was made up of 12 groups of data (as the black lines on the bars
+indicate):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1635,7 +1604,7 @@ family (\url{http://tidyverse.org/}), rather than Base R. Including
 \texttt{library(tidyverse)} in your script loads a list of packages:
 ggplot2, dplyr, tidry, forcats, etc.
 
-\includegraphics[width=20.71in]{images/library_vs_package}
+\includegraphics[width=400px]{images/library_vs_package}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1822,13 +1791,13 @@ columns:
 ## # A tibble: 6 x 4
 ## # Groups:   year [6]
 ##    year `Communicable diseases` Injuries `Non-communicable diseases`
-## * <int>                   <chr>    <chr>                       <chr>
-## 1  1990                  34.02%    9.11%                      56.87%
-## 2  1995                  30.91%    9.28%                      59.81%
-## 3  2000                  28.93%    9.35%                      61.72%
-## 4  2005                  26.53%    9.23%                      64.24%
-## 5  2010                  23.17%    9.26%                      67.57%
-## 6  2013                  21.53%    8.73%                      69.75%
+## * <int> <chr>                   <chr>    <chr>                      
+## 1  1990 34.02%                  9.11%    56.87%                     
+## 2  1995 30.91%                  9.28%    59.81%                     
+## 3  2000 28.93%                  9.35%    61.72%                     
+## 4  2005 26.53%                  9.23%    64.24%                     
+## 5  2010 23.17%                  9.26%    67.57%                     
+## 6  2013 21.53%                  8.73%    69.75%
 \end{verbatim}
 
 \subsection{Exercise}\label{exercise-19}
@@ -1891,14 +1860,14 @@ Solution:
 
 \begin{verbatim}
 ## # A tibble: 6 x 3
-##    year Female  Male
-## * <int>  <chr> <chr>
-## 1  1990    47%   53%
-## 2  1995    47%   53%
-## 3  2000    46%   54%
-## 4  2005    46%   54%
-## 5  2010    46%   54%
-## 6  2013    45%   55%
+##    year Female Male 
+## * <int> <chr>  <chr>
+## 1  1990 47%    53%  
+## 2  1995 47%    53%  
+## 3  2000 46%    54%  
+## 4  2005 46%    54%  
+## 5  2010 46%    54%  
+## 6  2013 45%    55%
 \end{verbatim}
 
 And save it into a csv file using \texttt{write\_csv()}:
@@ -1941,20 +1910,20 @@ The opposite of \texttt{spread()} is \texttt{gather()}:
 
 \begin{verbatim}
 ## # A tibble: 12 x 3
-##     year    sex percentage
-##    <int>  <chr>      <chr>
-##  1  1990 Female        47%
-##  2  1995 Female        47%
-##  3  2000 Female        46%
-##  4  2005 Female        46%
-##  5  2010 Female        46%
-##  6  2013 Female        45%
-##  7  1990   Male        53%
-##  8  1995   Male        53%
-##  9  2000   Male        54%
-## 10  2005   Male        54%
-## 11  2010   Male        54%
-## 12  2013   Male        55%
+##     year sex    percentage
+##    <int> <chr>  <chr>     
+##  1  1990 Female 47%       
+##  2  1995 Female 47%       
+##  3  2000 Female 46%       
+##  4  2005 Female 46%       
+##  5  2010 Female 46%       
+##  6  2013 Female 45%       
+##  7  1990 Male   53%       
+##  8  1995 Male   53%       
+##  9  2000 Male   54%       
+## 10  2005 Male   54%       
+## 11  2010 Male   54%       
+## 12  2013 Male   55%
 \end{verbatim}
 
 \subsection{Exercise}\label{exercise-20}
@@ -2035,7 +2004,7 @@ Explain how and why these two plots are different.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-17-1.pdf}
+\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-18-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2045,12 +2014,12 @@ Explain how and why these two plots are different.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-17-2.pdf}
+\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-18-2.pdf}
 
 What about these?
 
-\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-18-1.pdf}
-\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-18-2.pdf}
+\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-19-1.pdf}
+\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-19-2.pdf}
 
 These illustrate why it might sometimes be useful to use numbers as
 factors - on the second one we have used \texttt{fill=factor(year)} as
@@ -2107,7 +2076,7 @@ that we can then reorder it for the plot:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-20-1.pdf}
+\includegraphics{03_summarising_files/figure-latex/unnamed-chunk-21-1.pdf}
 
 \subsection{\texorpdfstring{\texttt{fct\_recode()} - rename
 levels}{fct\_recode() - rename levels}}\label{fct_recode---rename-levels}
@@ -2225,10 +2194,10 @@ your R session, add \texttt{library(tidyverse)} and load
 
 \begin{verbatim}
 ## # A tibble: 2 x 3
-##      sex Developed Developing
-## * <fctr>     <dbl>      <dbl>
-## 1 Female  5.517136   16.83571
-## 2   Male  5.702191   19.41365
+##   sex    Developed Developing
+## * <fct>      <dbl>      <dbl>
+## 1 Female      5.52       16.8
+## 2 Male        5.70       19.4
 \end{verbatim}
 
 \section{Extra: formatting a table for
@@ -2263,14 +2232,14 @@ Creating a publication table with both the total numbers and percentages
 \begin{verbatim}
 ## # A tibble: 6 x 4
 ## # Groups:   year [6]
-##    year `Communicable diseases`   Injuries `Non-communicable diseases`
-## * <int>                   <chr>      <chr>                       <chr>
-## 1  1990            16.1 (34.0%) 4.3 (9.1%)                27.0 (56.9%)
-## 2  1995            15.4 (30.9%) 4.6 (9.3%)                29.9 (59.8%)
-## 3  2000            14.8 (28.9%) 4.8 (9.4%)                31.5 (61.7%)
-## 4  2005            13.9 (26.5%) 4.8 (9.2%)                33.6 (64.2%)
-## 5  2010            12.4 (23.2%) 5.0 (9.3%)                36.3 (67.6%)
-## 6  2013            11.8 (21.5%) 4.8 (8.7%)                38.3 (69.7%)
+##    year `Communicable diseases` Injuries   `Non-communicable diseases`
+## * <int> <chr>                   <chr>      <chr>                      
+## 1  1990 16.1 (34.0%)            4.3 (9.1%) 27.0 (56.9%)               
+## 2  1995 15.4 (30.9%)            4.6 (9.3%) 29.9 (59.8%)               
+## 3  2000 14.8 (28.9%)            4.8 (9.4%) 31.5 (61.7%)               
+## 4  2005 13.9 (26.5%)            4.8 (9.2%) 33.6 (64.2%)               
+## 5  2010 12.4 (23.2%)            5.0 (9.3%) 36.3 (67.6%)               
+## 6  2013 11.8 (21.5%)            4.8 (8.7%) 38.3 (69.7%)
 \end{verbatim}
 
 \section{Solution: Long Exercise}\label{solution-long-exercise}
@@ -3641,11 +3610,11 @@ Lets plot the life expectancy within Africa in 1997, 2002, and 2007.
 
 \begin{verbatim}
 ## # A tibble: 3 x 3
-##    year      avg     med
-##   <int>    <dbl>   <dbl>
-## 1  1997 53.59827 52.7590
-## 2  2002 53.32523 51.2355
-## 3  2007 54.80604 52.9265
+##    year   avg   med
+##   <int> <dbl> <dbl>
+## 1  1997  53.6  52.8
+## 2  2002  53.3  51.2
+## 3  2007  54.8  52.9
 \end{verbatim}
 
 \subsection{Exercise: Non-parametric
@@ -3758,15 +3727,15 @@ Performing t-tests across all continents at once:
 \begin{verbatim}
 ## # A tibble: 5 x 11
 ## # Groups:   continent [5]
-##   continent  estimate estimate1 estimate2  statistic     p.value
-##      <fctr>     <dbl>     <dbl>     <dbl>      <dbl>       <dbl>
-## 1    Africa -1.207769  53.59827  54.80604 -0.6571949 0.512540467
-## 2  Americas -2.457640  71.15048  73.60812 -1.8607703 0.068964167
-## 3      Asia -2.707970  68.02052  70.72848 -1.3702336 0.175402726
-## 4    Europe -2.143433  75.50517  77.64860 -2.7281613 0.008417968
-## 5   Oceania -2.529500  78.19000  80.71950 -3.0780337 0.096472711
-## # ... with 5 more variables: parameter <dbl>, conf.low <dbl>,
-## #   conf.high <dbl>, method <fctr>, alternative <fctr>
+##   continent estimate estimate1 estimate2 statistic p.value parameter
+##   <fct>        <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>
+## 1 Africa       -1.21      53.6      54.8    -0.657 0.513      102   
+## 2 Americas     -2.46      71.2      73.6    -1.86  0.0690      47.6 
+## 3 Asia         -2.71      68.0      70.7    -1.37  0.175       64.0 
+## 4 Europe       -2.14      75.5      77.6    -2.73  0.00842     57.9 
+## 5 Oceania      -2.53      78.2      80.7    -3.08  0.0965       1.91
+## # ... with 4 more variables: conf.low <dbl>, conf.high <dbl>,
+## #   method <fct>, alternative <fct>
 \end{verbatim}
 
 \chapter{Linear regression}\label{linear-regression}
@@ -4698,10 +4667,10 @@ Or combine everything together without the intermediate
 
 \begin{verbatim}
 ## # A tibble: 2 x 3
-##   ulcer.factor     Alive      Died
-## *       <fctr>     <chr>     <chr>
-## 1       Absent 99 (66.9) 16 (28.1)
-## 2      Present 49 (33.1) 41 (71.9)
+##   ulcer.factor Alive     Died     
+## * <fct>        <chr>     <chr>    
+## 1 Absent       99 (66.9) 16 (28.1)
+## 2 Present      49 (33.1) 41 (71.9)
 \end{verbatim}
 
 \subsection{Exercise}\label{exercise-42}

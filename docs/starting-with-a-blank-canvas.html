@@ -26,7 +26,7 @@
 <meta name="author" content="Riinu Ots and Ewen Harrison">
 
 
-<meta name="date" content="2018-02-06">
+<meta name="date" content="2018-04-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -104,9 +104,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">R for healthcare data analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li><a href="index.html#section"></a><ul>
 <li class="chapter" data-level="0.1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>0.1</b> Installation</a></li>
-<li class="chapter" data-level="0.2" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>0.2</b> Datasets</a></li>
 </ul></li>
 <li class="part"><span><b>I Always plot your data first</b></span></li>
 <li class="chapter" data-level="1" data-path="your-first-r-plots.html"><a href="your-first-r-plots.html"><i class="fa fa-check"></i><b>1</b> Your first R plots</a><ul>
@@ -403,15 +402,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="starting-with-a-blank-canvas" class="section level2">
 <h2><span class="header-section-number">2.2</span> Starting with a blank canvas</h2>
 <p>In the first session we loaded some data that we then plotted. When we import data, R remembers the data and stores it in the Environment tab.</p>
-<p>It’s good practice to clear the environment before starting new work, as it’s best to use fresh up to date data - otherwise we could accidentally use data which has nothing to do with our work.</p>
-<p>Try clearing and loading in the data again.</p>
-<p>To clear data we can simply run the following code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</code></pre></div>
-<p>We can also manually clear the environment in RStudio by clicking the brush symbol underneath the Environment tab.</p>
-<p>Sometimes just clearing the Environment tab is not enough - especially if you are working with lots of different packages or other people’s scripts. You should also:</p>
+<p>It’s good practice to Restart R before starting new work, as it’s best to use fresh up to date data - otherwise we could accidentally use data which has nothing to do with our work. Restarting R only takes a second!</p>
+<ul>
+<li>Restart R (Control+Shift+F10 or select it from Session -&gt; Restart R).</li>
+</ul>
+<p>RStudio has a default option that is not best practise any more, you should do this (once only):</p>
 <ul>
 <li>Go to Tools -&gt; Global Options -&gt; General and set “Save .RData on exit” to Never. This does not mean you can’t or shouldn’t save your work in .RData files. But it is best to do it consciously and load exactly what you need to load, rather than letting R always save and load everything for you, as this could also include broken data or objects.</li>
-<li>Restart R (Control+Shift+F10 or select it from Session -&gt; Restart R).</li>
 </ul>
 </div>
             </section>

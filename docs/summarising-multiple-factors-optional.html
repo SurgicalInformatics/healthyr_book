@@ -26,7 +26,7 @@
 <meta name="author" content="Riinu Ots and Ewen Harrison">
 
 
-<meta name="date" content="2018-02-06">
+<meta name="date" content="2018-04-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -104,9 +104,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">R for healthcare data analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li><a href="index.html#section"></a><ul>
 <li class="chapter" data-level="0.1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>0.1</b> Installation</a></li>
-<li class="chapter" data-level="0.2" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>0.2</b> Datasets</a></li>
 </ul></li>
 <li class="part"><span><b>I Always plot your data first</b></span></li>
 <li class="chapter" data-level="1" data-path="your-first-r-plots.html"><a href="your-first-r-plots.html"><i class="fa fa-check"></i><b>1</b> Your first R plots</a><ul>
@@ -475,10 +474,10 @@ counted_data3 <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>total, <span class="op">-</span>n, <span class="op">-</span>percentage) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">spread</span>(status.factor, count_perc)</code></pre></div>
 <pre><code>## # A tibble: 2 x 3
-##   ulcer.factor     Alive      Died
-## *       &lt;fctr&gt;     &lt;chr&gt;     &lt;chr&gt;
-## 1       Absent 99 (66.9) 16 (28.1)
-## 2      Present 49 (33.1) 41 (71.9)</code></pre>
+##   ulcer.factor Alive     Died     
+## * &lt;fct&gt;        &lt;chr&gt;     &lt;chr&gt;    
+## 1 Absent       99 (66.9) 16 (28.1)
+## 2 Present      49 (33.1) 41 (71.9)</code></pre>
 </div>
 <div id="exercise-42" class="section level3">
 <h3><span class="header-section-number">8.4.4</span> Exercise</h3>

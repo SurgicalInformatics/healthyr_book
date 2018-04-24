@@ -1,7 +1,7 @@
 --- 
 title: "HealthyR: R for healthcare data analysis"
 author: "Riinu Ots and Ewen Harrison"
-date: "2018-02-06"
+date: "2018-04-24"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -14,9 +14,7 @@ colorlinks: yes
 cover-image: images/healthyr_book_cover.png
 ---
 
-# Preface {-}
-
-<img src="images/cover.jpg" width="3625" />
+# {-}
 
 Version 0.3.
 
@@ -73,20 +71,6 @@ install.packages("survminer")
 <p>When working with data, don't copy or type code directly into the Console. We will only be using the Console for viewing output, warnings, and errors (and installing packages as in the previous section). All code should be in a script and executed (=Run) using Control+Enter (line or section) or Control+Shift+Enter (whole script). Make sure you are always working in a project (the right-top corner of your RStudio interface should say &quot;HealthyR&quot;).</p>
 </div>
 
-<img src="images/rstudio_vs_r.png" width="720" />
-
-## Datasets
-
-<div class="healthyr">
-<p>Files:</p>
-<p>gbp.rda</p>
-<p>gbp.csv</p>
-<p>melaoma_factored</p>
-</div>
-
-<div class="error">
-<p>These will include common errors.</p>
-</div>
-
+<img src="images/rstudio_vs_r.png" width="400px" />
 
 

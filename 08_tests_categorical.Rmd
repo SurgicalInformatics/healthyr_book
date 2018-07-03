@@ -3,10 +3,10 @@
 ## Data
 We are now changing to a new dataset: melanoma. Click on mydata in your Environment and have a look at the values - you'll see that categorical variables are coded as numbers, rather than text. You will need to recode these numbers into proper factors. 
 
-```{r, message = FALSE}
+```{r, message = F}
 
-rm(list=ls())
 library(tidyverse)
+library(summarizer)
 library(broom)
 mydata = boot::melanoma
 
@@ -38,6 +38,7 @@ mydata$ulcer %>%
              "Absent"  = "0") -> 
   mydata$ulcer.factor
 
+#the cut() function makes a continuous variable into a categorical variable
 mydata$age %>% 
   cut(breaks = c(4,20,40,60,95), include.lowest=TRUE) ->
   mydata$age.factor
@@ -149,24 +150,19 @@ CrossTable(mydata$status.factor, mydata$age.factor, expected=TRUE, chisq=TRUE)
 ## Summarising multiple factors (optional)
 `CrossTable` is useful for summarising single variables. We often want to summarise more than one factor or continuous variable against our `dependent` variable of interest. Think of Table 1 in a journal article. 
 
-Here is a quick way of doing so:
+## Summarising factors with `library(summarizer)`
 
-### Summarising factors with `library(Hmisc)`
+This is our own package which we have written and maintain. It contains functions to summarise data for publication tables and figures, and to easily run regression analyses. We specify a `dependent` or outcome variable, and a set of `explanatory` or predictor varaibles. 
+
 ```{r, message = FALSE}
-library(Hmisc)
-
-summary(status.factor ~ sex.factor + ulcer.factor + age.factor, 
-											 method = "reverse", 
-											 test   = TRUE,
-											 data   = mydata)
+library(summarizer)
+mydata %>% 
+  summary.factorlist(dependent = "status.factor", 
+                     explanatory = c("sex.factor", "ulcer.factor", "age.factor"),
+                     p = TRUE,
+                     column = TRUE)
 ```
 
-```{block, type="error"}
-
-Error: could not find function summary.formula.
-We used to use summary.formula() in the above example, but that has been deprecated in the latest version of Hmisc. We can now use just summary().
-
-```
 
 ### Summarising factors with `library(tidyverse)`
 

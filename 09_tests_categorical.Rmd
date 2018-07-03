@@ -7,6 +7,7 @@ As we have seen in previous sessions, regression analysis is a statistical proce
 
 ![](images/age_bp.png)
 
+
 Logistic regression is an extension of this, where the variable being predicted is *categorical*. We will deal with binary logistic regression, where the variable being predicted has two levels, e.g. yes or no, 0 or 1. In healthcare this is usually done for an event (like death) occurring or not occurring. Logistic regression can tell us the probability of the outcome occuring.
 
 The aims of this session are to:
@@ -103,7 +104,7 @@ In this example, the outcome variable called `status.factor` describes whether p
 
 ###Worked Example
 
-```{r, message = F, warning = F}
+```{r, message = FALSE, warning = FALSE}
 library(tidyverse)
 
 load("melanoma_factored.rda")
@@ -163,7 +164,7 @@ mydata$stage.factor %>% levels()
 
 ### Always plot your data first!
 
-```{r, results='hide', warning=F}
+```{r, results='hide', warning=F, fig.width=3, fig.height=3}
 
 source("1_source_theme.R")
 
@@ -172,7 +173,7 @@ mydata %>%
   geom_bar(aes(fill = sex.factor))
 ```
 
-```{r, results='hide', warning=F}
+```{r, results='hide', warning=F, fig.width=3, fig.height=3}
 
 mydata %>% 
   ggplot(aes(x = ulcer.factor)) +
@@ -180,7 +181,7 @@ mydata %>%
 
 ```
 
-```{r, results='hide', warning=F}
+```{r, results='hide', warning=F, fig.width=4, fig.height=3}
 
 mydata %>% 
   ggplot(aes(x = stage.factor)) +
@@ -369,7 +370,7 @@ mydata %>%
 
 While outwith the objectives of this course, diagnostic plots for `glm` models can be produced by:
 
-```{r}
+```{r, fig.width=3, fig.height=3}
 
 plot(model1)
 

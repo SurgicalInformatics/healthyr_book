@@ -15,29 +15,28 @@ mydata = boot::melanoma
 
 
 mydata$status %>% 
-  factor() %>% 
-  fct_recode('Died' = '1',
-             'Alive' = '2',
-             'Died - other causes' = '3') %>% 
-  fct_relevel('Alive') -> # move Alive to front (first factor level) 
-  mydata$status.factor    # so OR will be relative to that
+	factor() %>% 
+	fct_recode("Died" = "1",
+						 "Alive" = "2",
+						 "Died - other causes" = "3") %>% 
+	fct_relevel("Alive") -> # move Alive to front (first factor level) 
+	mydata$status.factor    # so OR will be relative to that
 
 mydata$sex %>% 
-  factor() %>% 
-  fct_recode('Female' = '0',
-             'Male' = '1') ->
-  mydata$sex.factor
-  
+	factor() %>% 
+	fct_recode("Female" = "0",
+						 "Male"   = "1") ->
+	mydata$sex.factor
 
 mydata$ulcer %>% 
-  factor() %>% 
-  fct_recode('Present' = '1',
-             'Absent' = '0') -> 
-  mydata$ulcer.factor
+	factor() %>% 
+	fct_recode("Present" = "1",
+						 "Absent" = "0") -> 
+	mydata$ulcer.factor
 
 mydata$age %>% 
-  cut(breaks = c(4,20,40,60,95), include.lowest=TRUE) ->
-  mydata$age.factor
+	cut(breaks = c(4,20,40,60,95), include.lowest=TRUE) ->
+	mydata$age.factor
 ```
 
 ## Kaplan-Meier survival estimator
@@ -122,15 +121,7 @@ my_survplot = ggsurvplot(my_survfit, data = mydata,
            ggtheme = theme_bw(),
            palette = 'Dark2',
            conf.int = TRUE,
-           pval=TRUE)
-```
-
-```
-## Warning in .pvalue(fit, data = data, method = method, pval = pval, pval.coord = pval.coord, : There are no survival curves to be compared. 
-##  This is a null model.
-```
-
-```r
+           pval=FALSE)
 my_survplot
 ```
 

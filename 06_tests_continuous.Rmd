@@ -76,7 +76,7 @@ qqline(subdata$lifeExp)
 ```
 
 ### Boxplot of 2 years
-```{r}
+```{r, fig.width=3, fig.height=3}
 mydata %>% 
 	filter(year %in% c(2002, 2007)) %>% 
 	ggplot(aes(x = factor(year), y=lifeExp)) + #show that x = year errors: 

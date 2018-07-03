@@ -3745,24 +3745,9 @@ Performing t-tests across all continents at once:
 \section{Data}\label{data-3}
 
 We will be using the same gapminder dataset as in the last two sessions.
-Make sure your script includes:
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{rm(list=ls())} to remove all data and results from the
-  previous session.
-\item
-  Loading these packages into your library: tidyverse, gapminder,
-  lubridate, broom.
-\item
-  \texttt{mydata\ =\ gapminder}
-\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list=}\KeywordTok{ls}\NormalTok{())}
-
 \KeywordTok{library}\NormalTok{(tidyverse)}
 \KeywordTok{library}\NormalTok{(gapminder) }\CommentTok{# dataset}
 \KeywordTok{library}\NormalTok{(lubridate) }\CommentTok{# handles dates}
@@ -4191,8 +4176,8 @@ recode these numbers into proper factors.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list=}\KeywordTok{ls}\NormalTok{())}
 \KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(summarizer)}
 \KeywordTok{library}\NormalTok{(broom)}
 \NormalTok{mydata =}\StringTok{ }\NormalTok{boot}\OperatorTok{::}\NormalTok{melanoma}
 \end{Highlighting}
@@ -4226,6 +4211,7 @@ into proper factors.
              \StringTok{"Absent"}\NormalTok{  =}\StringTok{ "0"}\NormalTok{) ->}\StringTok{ }
 \StringTok{  }\NormalTok{mydata}\OperatorTok{$}\NormalTok{ulcer.factor}
 
+\CommentTok{#the cut() function makes a continuous variable into a categorical variable}
 \NormalTok{mydata}\OperatorTok{$}\NormalTok{age }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{cut}\NormalTok{(}\DataTypeTok{breaks =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{40}\NormalTok{,}\DecValTok{60}\NormalTok{,}\DecValTok{95}\NormalTok{), }\DataTypeTok{include.lowest=}\OtherTok{TRUE}\NormalTok{) ->}
 \StringTok{  }\NormalTok{mydata}\OperatorTok{$}\NormalTok{age.factor}
@@ -4557,19 +4543,23 @@ want to summarise more than one factor or continuous variable against
 our \texttt{dependent} variable of interest. Think of Table 1 in a
 journal article.
 
-Here is a quick way of doing so:
+\section{\texorpdfstring{Summarising factors with
+\texttt{library(summarizer)}}{Summarising factors with library(summarizer)}}\label{summarising-factors-with-librarysummarizer}
 
-\subsection{\texorpdfstring{Summarising factors with
-\texttt{library(Hmisc)}}{Summarising factors with library(Hmisc)}}\label{summarising-factors-with-libraryhmisc}
+This is our own package which we have written and maintain. It contains
+functions to summarise data for publication tables and figures, and to
+easily run regression analyses. We specify a \texttt{dependent} or
+outcome variable, and a set of \texttt{explanatory} or predictor
+varaibles.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(Hmisc)}
-
-\KeywordTok{summary}\NormalTok{(status.factor }\OperatorTok{~}\StringTok{ }\NormalTok{sex.factor }\OperatorTok{+}\StringTok{ }\NormalTok{ulcer.factor }\OperatorTok{+}\StringTok{ }\NormalTok{age.factor, }
-                                             \DataTypeTok{method =} \StringTok{"reverse"}\NormalTok{, }
-                                             \DataTypeTok{test   =} \OtherTok{TRUE}\NormalTok{,}
-                                             \DataTypeTok{data   =}\NormalTok{ mydata)}
+\KeywordTok{library}\NormalTok{(summarizer)}
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{summary.factorlist}\NormalTok{(}\DataTypeTok{dependent =} \StringTok{"status.factor"}\NormalTok{, }
+                     \DataTypeTok{explanatory =} \KeywordTok{c}\NormalTok{(}\StringTok{"sex.factor"}\NormalTok{, }\StringTok{"ulcer.factor"}\NormalTok{, }\StringTok{"age.factor"}\NormalTok{),}
+                     \DataTypeTok{p =} \OtherTok{TRUE}\NormalTok{,}
+                     \DataTypeTok{column =} \OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4579,33 +4569,16 @@ Here is a quick way of doing so:
 \end{verbatim}
 
 \begin{verbatim}
-## 
-## 
-## Descriptive Statistics by status.factor
-## 
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |                   |Alive               |Died                |  Test                         |
-## |                   |(N=148)             |(N=57)              |Statistic                      |
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |sex.factor : Male  |           34%  (50)|           51%  (29)| Chi-square=5.08 d.f.=1 P=0.024|
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |ulcer.factor       |           33%  (49)|           72%  (41)|Chi-square=25.18 d.f.=1 P<0.001|
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |age.factor : [4,20]|            4%  ( 6)|            5%  ( 3)| Chi-square=2.02 d.f.=3 P=0.568|
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |    (20,40]        |           20%  (30)|           12%  ( 7)|                               |
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |    (40,60]        |           45%  (66)|           46%  (26)|                               |
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |    (60,95]        |           31%  (46)|           37%  (21)|                               |
-## +-------------------+--------------------+--------------------+-------------------------------+
+##          label  levels     Alive      Died pvalue
+## 5   sex.factor  Female 98 (66.2) 28 (49.1)  0.024
+## 6                 Male 50 (33.8) 29 (50.9)       
+## 7 ulcer.factor  Absent 99 (66.9) 16 (28.1) <0.001
+## 8              Present 49 (33.1) 41 (71.9)       
+## 1   age.factor  [4,20]   6 (4.1)   3 (5.3)  0.568
+## 2              (20,40] 30 (20.3)  7 (12.3)       
+## 3              (40,60] 66 (44.6) 26 (45.6)       
+## 4              (60,95] 46 (31.1) 21 (36.8)
 \end{verbatim}
-
-\begin{error}
-Error: could not find function summary.formula. We used to use
-summary.formula() in the above example, but that has been deprecated in
-the latest version of Hmisc. We can now use just summary().
-\end{error}
 
 \subsection{\texorpdfstring{Summarising factors with
 \texttt{library(tidyverse)}}{Summarising factors with library(tidyverse)}}\label{summarising-factors-with-librarytidyverse}
@@ -5474,29 +5447,28 @@ during the study period.
 
 
 \NormalTok{mydata}\OperatorTok{$}\NormalTok{status }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{factor}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{fct_recode}\NormalTok{(}\StringTok{'Died'}\NormalTok{ =}\StringTok{ '1'}\NormalTok{,}
-             \StringTok{'Alive'}\NormalTok{ =}\StringTok{ '2'}\NormalTok{,}
-             \StringTok{'Died - other causes'}\NormalTok{ =}\StringTok{ '3'}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{fct_relevel}\NormalTok{(}\StringTok{'Alive'}\NormalTok{) ->}\StringTok{ }\CommentTok{# move Alive to front (first factor level) }
-\StringTok{  }\NormalTok{mydata}\OperatorTok{$}\NormalTok{status.factor    }\CommentTok{# so OR will be relative to that}
+\StringTok{    }\KeywordTok{factor}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{fct_recode}\NormalTok{(}\StringTok{"Died"}\NormalTok{ =}\StringTok{ "1"}\NormalTok{,}
+                         \StringTok{"Alive"}\NormalTok{ =}\StringTok{ "2"}\NormalTok{,}
+                         \StringTok{"Died - other causes"}\NormalTok{ =}\StringTok{ "3"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{fct_relevel}\NormalTok{(}\StringTok{"Alive"}\NormalTok{) ->}\StringTok{ }\CommentTok{# move Alive to front (first factor level) }
+\StringTok{    }\NormalTok{mydata}\OperatorTok{$}\NormalTok{status.factor    }\CommentTok{# so OR will be relative to that}
 
 \NormalTok{mydata}\OperatorTok{$}\NormalTok{sex }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{factor}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{fct_recode}\NormalTok{(}\StringTok{'Female'}\NormalTok{ =}\StringTok{ '0'}\NormalTok{,}
-             \StringTok{'Male'}\NormalTok{ =}\StringTok{ '1'}\NormalTok{) ->}
-\StringTok{  }\NormalTok{mydata}\OperatorTok{$}\NormalTok{sex.factor}
-  
+\StringTok{    }\KeywordTok{factor}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{fct_recode}\NormalTok{(}\StringTok{"Female"}\NormalTok{ =}\StringTok{ "0"}\NormalTok{,}
+                         \StringTok{"Male"}\NormalTok{   =}\StringTok{ "1"}\NormalTok{) ->}
+\StringTok{    }\NormalTok{mydata}\OperatorTok{$}\NormalTok{sex.factor}
 
 \NormalTok{mydata}\OperatorTok{$}\NormalTok{ulcer }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{factor}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{fct_recode}\NormalTok{(}\StringTok{'Present'}\NormalTok{ =}\StringTok{ '1'}\NormalTok{,}
-             \StringTok{'Absent'}\NormalTok{ =}\StringTok{ '0'}\NormalTok{) ->}\StringTok{ }
-\StringTok{  }\NormalTok{mydata}\OperatorTok{$}\NormalTok{ulcer.factor}
+\StringTok{    }\KeywordTok{factor}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{fct_recode}\NormalTok{(}\StringTok{"Present"}\NormalTok{ =}\StringTok{ "1"}\NormalTok{,}
+                         \StringTok{"Absent"}\NormalTok{ =}\StringTok{ "0"}\NormalTok{) ->}\StringTok{ }
+\StringTok{    }\NormalTok{mydata}\OperatorTok{$}\NormalTok{ulcer.factor}
 
 \NormalTok{mydata}\OperatorTok{$}\NormalTok{age }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{cut}\NormalTok{(}\DataTypeTok{breaks =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{40}\NormalTok{,}\DecValTok{60}\NormalTok{,}\DecValTok{95}\NormalTok{), }\DataTypeTok{include.lowest=}\OtherTok{TRUE}\NormalTok{) ->}
-\StringTok{  }\NormalTok{mydata}\OperatorTok{$}\NormalTok{age.factor}
+\StringTok{    }\KeywordTok{cut}\NormalTok{(}\DataTypeTok{breaks =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{40}\NormalTok{,}\DecValTok{60}\NormalTok{,}\DecValTok{95}\NormalTok{), }\DataTypeTok{include.lowest=}\OtherTok{TRUE}\NormalTok{) ->}
+\StringTok{    }\NormalTok{mydata}\OperatorTok{$}\NormalTok{age.factor}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5607,17 +5579,7 @@ and \url{https://github.com/kassambara/survminer}
            \DataTypeTok{ggtheme =} \KeywordTok{theme_bw}\NormalTok{(),}
            \DataTypeTok{palette =} \StringTok{'Dark2'}\NormalTok{,}
            \DataTypeTok{conf.int =} \OtherTok{TRUE}\NormalTok{,}
-           \DataTypeTok{pval=}\OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning in .pvalue(fit, data = data, method = method, pval = pval, pval.coord = pval.coord, : There are no survival curves to be compared. 
-##  This is a null model.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+           \DataTypeTok{pval=}\OtherTok{FALSE}\NormalTok{)}
 \NormalTok{my_survplot}
 \end{Highlighting}
 \end{Shaded}

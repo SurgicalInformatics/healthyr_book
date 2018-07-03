@@ -2,16 +2,10 @@
 
 ## Data
 
-We will be using the same gapminder dataset as in the last two sessions. Make sure your script includes:
-
-* `rm(list=ls())` to remove all data and results from the previous session.
-* Loading these packages into your library: tidyverse, gapminder, lubridate, broom.
-* `mydata = gapminder`
+We will be using the same gapminder dataset as in the last two sessions.
 
 
 ```r
-rm(list=ls())
-
 library(tidyverse)
 library(gapminder) # dataset
 library(lubridate) # handles dates

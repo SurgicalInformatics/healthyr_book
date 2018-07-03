@@ -34,7 +34,7 @@
   
   
 <link rel="prev" href="analysis-1.html">
-<link rel="next" href="logistic-regression.html">
+<link rel="next" href="summarising-factors-with-librarysummarizer.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -321,11 +321,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.3.3" data-path="analysis-1.html"><a href="analysis-1.html#exercise-41"><i class="fa fa-check"></i><b>8.3.3</b> Exercise</a></li>
 <li class="chapter" data-level="8.3.4" data-path="analysis-1.html"><a href="analysis-1.html#fishers-exact-test"><i class="fa fa-check"></i><b>8.3.4</b> Fisher’s exact test</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="summarising-multiple-factors-optional.html"><a href="summarising-multiple-factors-optional.html"><i class="fa fa-check"></i><b>8.4</b> Summarising multiple factors (optional)</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="summarising-multiple-factors-optional.html"><a href="summarising-multiple-factors-optional.html#summarising-factors-with-libraryhmisc"><i class="fa fa-check"></i><b>8.4.1</b> Summarising factors with <code>library(Hmisc)</code></a></li>
-<li class="chapter" data-level="8.4.2" data-path="summarising-multiple-factors-optional.html"><a href="summarising-multiple-factors-optional.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.4.2</b> Summarising factors with <code>library(tidyverse)</code></a></li>
-<li class="chapter" data-level="8.4.3" data-path="summarising-multiple-factors-optional.html"><a href="summarising-multiple-factors-optional.html#example"><i class="fa fa-check"></i><b>8.4.3</b> Example</a></li>
-<li class="chapter" data-level="8.4.4" data-path="summarising-multiple-factors-optional.html"><a href="summarising-multiple-factors-optional.html#exercise-42"><i class="fa fa-check"></i><b>8.4.4</b> Exercise</a></li>
+<li class="chapter" data-level="8.4" data-path="summarising-multiple-factors-optional.html"><a href="summarising-multiple-factors-optional.html"><i class="fa fa-check"></i><b>8.4</b> Summarising multiple factors (optional)</a></li>
+<li class="chapter" data-level="8.5" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(summarizer)</code></a><ul>
+<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
+<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
+<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Logistic regression</a><ul>
@@ -402,108 +402,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="summarising-multiple-factors-optional" class="section level2">
 <h2><span class="header-section-number">8.4</span> Summarising multiple factors (optional)</h2>
 <p><code>CrossTable</code> is useful for summarising single variables. We often want to summarise more than one factor or continuous variable against our <code>dependent</code> variable of interest. Think of Table 1 in a journal article.</p>
-<p>Here is a quick way of doing so:</p>
-<div id="summarising-factors-with-libraryhmisc" class="section level3">
-<h3><span class="header-section-number">8.4.1</span> Summarising factors with <code>library(Hmisc)</code></h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Hmisc)
-
-<span class="kw">summary</span>(status.factor <span class="op">~</span><span class="st"> </span>sex.factor <span class="op">+</span><span class="st"> </span>ulcer.factor <span class="op">+</span><span class="st"> </span>age.factor, 
-                                             <span class="dt">method =</span> <span class="st">&quot;reverse&quot;</span>, 
-                                             <span class="dt">test   =</span> <span class="ot">TRUE</span>,
-                                             <span class="dt">data   =</span> mydata)</code></pre></div>
-<pre><code>## Warning in chisq.test(tab, correct = FALSE): Chi-squared approximation may
-## be incorrect</code></pre>
-<pre><code>## 
-## 
-## Descriptive Statistics by status.factor
-## 
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |                   |Alive               |Died                |  Test                         |
-## |                   |(N=148)             |(N=57)              |Statistic                      |
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |sex.factor : Male  |           34%  (50)|           51%  (29)| Chi-square=5.08 d.f.=1 P=0.024|
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |ulcer.factor       |           33%  (49)|           72%  (41)|Chi-square=25.18 d.f.=1 P&lt;0.001|
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |age.factor : [4,20]|            4%  ( 6)|            5%  ( 3)| Chi-square=2.02 d.f.=3 P=0.568|
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |    (20,40]        |           20%  (30)|           12%  ( 7)|                               |
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |    (40,60]        |           45%  (66)|           46%  (26)|                               |
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |    (60,95]        |           31%  (46)|           37%  (21)|                               |
-## +-------------------+--------------------+--------------------+-------------------------------+</code></pre>
-<div class="error">
-<p>
-Error: could not find function summary.formula. We used to use summary.formula() in the above example, but that has been deprecated in the latest version of Hmisc. We can now use just summary().
-</p>
 </div>
-</div>
-<div id="summarising-factors-with-librarytidyverse" class="section level3">
-<h3><span class="header-section-number">8.4.2</span> Summarising factors with <code>library(tidyverse)</code></h3>
-</div>
-<div id="example" class="section level3">
-<h3><span class="header-section-number">8.4.3</span> Example</h3>
-<p><code>Tidyverse</code> gives the flexibility and power to examine millions of rows of your data any way you wish. The following are intended as an extension to what you have already done. These demonstrate some more advanced approaches to combining <code>tidy</code> functions.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculate number of patients in each group</span>
-mydata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>(ulcer.factor, status.factor) -&gt;
-<span class="st">  </span>counted_data
-
-<span class="co"># Add the total number of people in each status group</span>
-counted_data <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(status.factor) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total =</span> <span class="kw">sum</span>(n)) -&gt;
-<span class="st">  </span>counted_data2   </code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculate the percentage of n to total</span>
-counted_data2 <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percentage =</span> <span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>n<span class="op">/</span>total, <span class="dv">1</span>)) -&gt;
-<span class="st">  </span>counted_data3</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a combined columns of both n and percentage,</span>
-<span class="co"># using paste to add brackets around the percentage</span>
-counted_data3 <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">count_perc =</span> <span class="kw">paste0</span>(n, <span class="st">&quot; (&quot;</span>, percentage, <span class="st">&quot;)&quot;</span>)) -&gt;<span class="st"> </span>
-<span class="st">  </span>counted_data4</code></pre></div>
-<p>Or combine everything together without the intermediate <code>counted_data</code> breaks.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>(ulcer.factor, status.factor) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(status.factor) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total =</span> <span class="kw">sum</span>(n)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percentage =</span> <span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>n<span class="op">/</span>total, <span class="dv">1</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">count_perc =</span> <span class="kw">paste0</span>(n, <span class="st">&quot; (&quot;</span>, percentage, <span class="st">&quot;)&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>total, <span class="op">-</span>n, <span class="op">-</span>percentage) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">spread</span>(status.factor, count_perc)</code></pre></div>
-<pre><code>## # A tibble: 2 x 3
-##   ulcer.factor Alive     Died     
-## * &lt;fct&gt;        &lt;chr&gt;     &lt;chr&gt;    
-## 1 Absent       99 (66.9) 16 (28.1)
-## 2 Present      49 (33.1) 41 (71.9)</code></pre>
-</div>
-<div id="exercise-42" class="section level3">
-<h3><span class="header-section-number">8.4.4</span> Exercise</h3>
-<p>By changing one and only one word at a time in the above block (the “Combine everything together” section)</p>
-<p>Reproduce this:</p>
-<pre><code>##   age.factor     Alive      Died
-## 1     [4,20]   6 (4.1)   3 (5.3)
-## 2    (20,40] 30 (20.3)  7 (12.3)
-## 3    (40,60] 66 (44.6) 26 (45.6)
-## 4    (60,95] 46 (31.1) 21 (36.8)</code></pre>
-<p>And then this:</p>
-<pre><code>##   sex.factor     Alive      Died
-## 1     Female 98 (66.2) 28 (49.1)
-## 2       Male 50 (33.8) 29 (50.9)</code></pre>
-<p>Solution: The only thing you need to change is the first variable in <code>count()</code>, e.g., <code>count(age.factor, ...</code>.</p>
-
-</div>
-</div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="analysis-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="logistic-regression.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="summarising-factors-with-librarysummarizer.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>

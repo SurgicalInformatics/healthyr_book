@@ -7,6 +7,7 @@ As we have seen in previous sessions, regression analysis is a statistical proce
 
 ![](images/age_bp.png)
 
+
 Logistic regression is an extension of this, where the variable being predicted is *categorical*. We will deal with binary logistic regression, where the variable being predicted has two levels, e.g. yes or no, 0 or 1. In healthcare this is usually done for an event (like death) occurring or not occurring. Logistic regression can tell us the probability of the outcome occuring.
 
 The aims of this session are to:

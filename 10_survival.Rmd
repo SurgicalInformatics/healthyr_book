@@ -5,7 +5,7 @@ The `boot::melanoma` dataset was introduced in module 7.
 
 In the previous session, we used logistic regression to calculate the odds ratios of different factors to death from melanoma at any point during the study period.
 
-```{r, include=TRUE, message = FALSE}
+```{r, include=TRUE, message = FALSE, warning=FALSE}
 
 library(tidyverse)
 library(broom)
@@ -15,29 +15,28 @@ mydata = boot::melanoma
 
 
 mydata$status %>% 
-  factor() %>% 
-  fct_recode('Died' = '1',
-             'Alive' = '2',
-             'Died - other causes' = '3') %>% 
-  fct_relevel('Alive') -> # move Alive to front (first factor level) 
-  mydata$status.factor    # so OR will be relative to that
+	factor() %>% 
+	fct_recode("Died" = "1",
+						 "Alive" = "2",
+						 "Died - other causes" = "3") %>% 
+	fct_relevel("Alive") -> # move Alive to front (first factor level) 
+	mydata$status.factor    # so OR will be relative to that
 
 mydata$sex %>% 
-  factor() %>% 
-  fct_recode('Female' = '0',
-             'Male' = '1') ->
-  mydata$sex.factor
-  
+	factor() %>% 
+	fct_recode("Female" = "0",
+						 "Male"   = "1") ->
+	mydata$sex.factor
 
 mydata$ulcer %>% 
-  factor() %>% 
-  fct_recode('Present' = '1',
-             'Absent' = '0') -> 
-  mydata$ulcer.factor
+	factor() %>% 
+	fct_recode("Present" = "1",
+						 "Absent" = "0") -> 
+	mydata$ulcer.factor
 
 mydata$age %>% 
-  cut(breaks = c(4,20,40,60,95), include.lowest=TRUE) ->
-  mydata$age.factor
+	cut(breaks = c(4,20,40,60,95), include.lowest=TRUE) ->
+	mydata$age.factor
 
 ```
 
@@ -93,7 +92,7 @@ my_survplot = ggsurvplot(my_survfit, data = mydata,
            ggtheme = theme_bw(),
            palette = 'Dark2',
            conf.int = TRUE,
-           pval=TRUE)
+           pval=FALSE)
 my_survplot
 ```
 

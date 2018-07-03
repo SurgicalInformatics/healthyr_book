@@ -5,8 +5,8 @@ We are now changing to a new dataset: melanoma. Click on mydata in your Environm
 
 
 ```r
-rm(list=ls())
 library(tidyverse)
+library(summarizer)
 library(broom)
 mydata = boot::melanoma
 ```
@@ -37,6 +37,7 @@ mydata$ulcer %>%
              "Absent"  = "0") -> 
   mydata$ulcer.factor
 
+#the cut() function makes a continuous variable into a categorical variable
 mydata$age %>% 
   cut(breaks = c(4,20,40,60,95), include.lowest=TRUE) ->
   mydata$age.factor
@@ -334,17 +335,18 @@ CrossTable(mydata$status.factor, mydata$age.factor, expected=TRUE, chisq=TRUE)
 ## Summarising multiple factors (optional)
 `CrossTable` is useful for summarising single variables. We often want to summarise more than one factor or continuous variable against our `dependent` variable of interest. Think of Table 1 in a journal article. 
 
-Here is a quick way of doing so:
+## Summarising factors with `library(summarizer)`
 
-### Summarising factors with `library(Hmisc)`
+This is our own package which we have written and maintain. It contains functions to summarise data for publication tables and figures, and to easily run regression analyses. We specify a `dependent` or outcome variable, and a set of `explanatory` or predictor varaibles. 
+
 
 ```r
-library(Hmisc)
-
-summary(status.factor ~ sex.factor + ulcer.factor + age.factor, 
-											 method = "reverse", 
-											 test   = TRUE,
-											 data   = mydata)
+library(summarizer)
+mydata %>% 
+  summary.factorlist(dependent = "status.factor", 
+                     explanatory = c("sex.factor", "ulcer.factor", "age.factor"),
+                     p = TRUE,
+                     column = TRUE)
 ```
 
 ```
@@ -353,31 +355,17 @@ summary(status.factor ~ sex.factor + ulcer.factor + age.factor,
 ```
 
 ```
-## 
-## 
-## Descriptive Statistics by status.factor
-## 
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |                   |Alive               |Died                |  Test                         |
-## |                   |(N=148)             |(N=57)              |Statistic                      |
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |sex.factor : Male  |           34%  (50)|           51%  (29)| Chi-square=5.08 d.f.=1 P=0.024|
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |ulcer.factor       |           33%  (49)|           72%  (41)|Chi-square=25.18 d.f.=1 P<0.001|
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |age.factor : [4,20]|            4%  ( 6)|            5%  ( 3)| Chi-square=2.02 d.f.=3 P=0.568|
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |    (20,40]        |           20%  (30)|           12%  ( 7)|                               |
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |    (40,60]        |           45%  (66)|           46%  (26)|                               |
-## +-------------------+--------------------+--------------------+-------------------------------+
-## |    (60,95]        |           31%  (46)|           37%  (21)|                               |
-## +-------------------+--------------------+--------------------+-------------------------------+
+##          label  levels     Alive      Died pvalue
+## 5   sex.factor  Female 98 (66.2) 28 (49.1)  0.024
+## 6                 Male 50 (33.8) 29 (50.9)       
+## 7 ulcer.factor  Absent 99 (66.9) 16 (28.1) <0.001
+## 8              Present 49 (33.1) 41 (71.9)       
+## 1   age.factor  [4,20]   6 (4.1)   3 (5.3)  0.568
+## 2              (20,40] 30 (20.3)  7 (12.3)       
+## 3              (40,60] 66 (44.6) 26 (45.6)       
+## 4              (60,95] 46 (31.1) 21 (36.8)
 ```
 
-<div class="error">
-<p>Error: could not find function summary.formula. We used to use summary.formula() in the above example, but that has been deprecated in the latest version of Hmisc. We can now use just summary().</p>
-</div>
 
 ### Summarising factors with `library(tidyverse)`
 

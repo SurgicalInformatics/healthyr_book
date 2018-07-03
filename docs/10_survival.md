@@ -178,7 +178,7 @@ survdiff(survival_object ~ ulcer.factor, data = mydata)
 ## ulcer.factor=Absent  115       16     35.8      10.9      29.6
 ## ulcer.factor=Present  90       41     21.2      18.5      29.6
 ## 
-##  Chisq= 29.6  on 1 degrees of freedom, p= 5.41e-08
+##  Chisq= 29.6  on 1 degrees of freedom, p= 5e-08
 ```
 
 Is there a signficiant difference between survival curves?
@@ -220,9 +220,9 @@ summary(my_hazard)
 ## 
 ## Concordance= 0.735  (se = 0.04 )
 ## Rsquare= 0.153   (max possible= 0.937 )
-## Likelihood ratio test= 34.08  on 5 df,   p=2.291e-06
-## Wald test            = 30.19  on 5 df,   p=1.35e-05
-## Score (logrank) test = 35.21  on 5 df,   p=1.367e-06
+## Likelihood ratio test= 34.08  on 5 df,   p=2e-06
+## Wald test            = 30.19  on 5 df,   p=1e-05
+## Score (logrank) test = 35.21  on 5 df,   p=1e-06
 ```
 
 ```r

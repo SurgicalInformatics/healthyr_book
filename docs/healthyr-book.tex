@@ -120,15 +120,16 @@
 }
 
 \setlength{\droptitle}{-2em}
+
   \title{HealthyR: R for healthcare data analysis}
-  \pretitle{\vspace{\droptitle}\centering\huge}
+    \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
-  \author{Riinu Ots and Ewen Harrison}
-  \preauthor{\centering\large\emph}
+    \author{Riinu Ots and Ewen Harrison}
+    \preauthor{\centering\large\emph}
   \postauthor{\par}
-  \predate{\centering\large\emph}
+      \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-04-24}
+    \date{24-April 2018}
 
 \usepackage[utf8]{inputenc}
 \usepackage{booktabs}
@@ -228,6 +229,20 @@
 % end custom blocks definitions
 %%%%%%%%%%%%%%%%
 
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[chapter]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
 \begin{document}
 \maketitle
 
@@ -239,7 +254,7 @@
 \chapter*{}\label{section}
 \addcontentsline{toc}{chapter}{}
 
-Version 0.3.
+Version 0.3.1
 
 Contributors: Riinu Ots, Ewen Harrison, Tom Drake, Peter Hall, Kenneth
 McLean.
@@ -1434,16 +1449,16 @@ Hint: Use the functions \texttt{paste0()}, \texttt{seq()} and
 ## # A tibble: 10 x 3
 ##    patient_id   age sex   
 ##    <chr>      <dbl> <chr> 
-##  1 ID11        15.0 Male  
-##  2 ID12        20.0 Male  
-##  3 ID13        25.0 Male  
-##  4 ID14        30.0 Male  
-##  5 ID15        35.0 Male  
-##  6 ID16        40.0 Female
-##  7 ID17        45.0 Female
-##  8 ID18        50.0 Female
-##  9 ID19        55.0 Female
-## 10 ID20        60.0 Female
+##  1 ID11          15 Male  
+##  2 ID12          20 Male  
+##  3 ID13          25 Male  
+##  4 ID14          30 Male  
+##  5 ID15          35 Male  
+##  6 ID16          40 Female
+##  7 ID17          45 Female
+##  8 ID18          50 Female
+##  9 ID19          55 Female
+## 10 ID20          60 Female
 \end{verbatim}
 
 \section{Solutions}\label{solutions-1}
@@ -1793,7 +1808,7 @@ columns:
 ## # A tibble: 6 x 4
 ## # Groups:   year [6]
 ##    year `Communicable diseases` Injuries `Non-communicable diseases`
-## * <int> <chr>                   <chr>    <chr>                      
+##   <int> <chr>                   <chr>    <chr>                      
 ## 1  1990 34.02%                  9.11%    56.87%                     
 ## 2  1995 30.91%                  9.28%    59.81%                     
 ## 3  2000 28.93%                  9.35%    61.72%                     
@@ -1863,7 +1878,7 @@ Solution:
 \begin{verbatim}
 ## # A tibble: 6 x 3
 ##    year Female Male 
-## * <int> <chr>  <chr>
+##   <int> <chr>  <chr>
 ## 1  1990 47%    53%  
 ## 2  1995 47%    53%  
 ## 3  2000 46%    54%  
@@ -2197,7 +2212,7 @@ your R session, add \texttt{library(tidyverse)} and load
 \begin{verbatim}
 ## # A tibble: 2 x 3
 ##   sex    Developed Developing
-## * <fct>      <dbl>      <dbl>
+##   <fct>      <dbl>      <dbl>
 ## 1 Female      5.52       16.8
 ## 2 Male        5.70       19.4
 \end{verbatim}
@@ -2235,7 +2250,7 @@ Creating a publication table with both the total numbers and percentages
 ## # A tibble: 6 x 4
 ## # Groups:   year [6]
 ##    year `Communicable diseases` Injuries   `Non-communicable diseases`
-## * <int> <chr>                   <chr>      <chr>                      
+##   <int> <chr>                   <chr>      <chr>                      
 ## 1  1990 16.1 (34.0%)            4.3 (9.1%) 27.0 (56.9%)               
 ## 2  1995 15.4 (30.9%)            4.6 (9.3%) 29.9 (59.8%)               
 ## 3  2000 14.8 (28.9%)            4.8 (9.4%) 31.5 (61.7%)               
@@ -2604,7 +2619,7 @@ Hints: \texttt{coord\_flip()}, \texttt{scale\_color\_gradient(...)},
 \begin{Highlighting}[]
 \NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(continent }\OperatorTok{==}\StringTok{ "Europe"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =} \KeywordTok{fct_reorder}\NormalTok{(country, gdpPercap, }\DataTypeTok{fun=}\NormalTok{max), }\DataTypeTok{x=}\NormalTok{lifeExp, }\DataTypeTok{colour=}\NormalTok{year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =} \KeywordTok{fct_reorder}\NormalTok{(country, gdpPercap, }\DataTypeTok{.fun=}\NormalTok{max), }\DataTypeTok{x=}\NormalTok{lifeExp, }\DataTypeTok{colour=}\NormalTok{year)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{shape =} \DecValTok{15}\NormalTok{, }\DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_colour_distiller}\NormalTok{(}\DataTypeTok{palette =} \StringTok{"Greens"}\NormalTok{, }\DataTypeTok{direction =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}
@@ -3486,7 +3501,7 @@ this difference as a p-value?
 ##   group1   group2      p.value
 ## 1   Asia Americas 6.005357e-02
 ## 2 Europe Americas 2.092411e-02
-## 4 Europe     Asia 1.910504e-05
+## 3 Europe     Asia 1.910504e-05
 \end{verbatim}
 
 F1 for help to see options for \texttt{pairwise.t.test()}.
@@ -3731,7 +3746,7 @@ Performing t-tests across all continents at once:
 ## # Groups:   continent [5]
 ##   continent estimate estimate1 estimate2 statistic p.value parameter
 ##   <fct>        <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>
-## 1 Africa       -1.21      53.6      54.8    -0.657 0.513      102   
+## 1 Africa       -1.21      53.6      54.8    -0.657 0.513      102.  
 ## 2 Americas     -2.46      71.2      73.6    -1.86  0.0690      47.6 
 ## 3 Asia         -2.71      68.0      70.7    -1.37  0.175       64.0 
 ## 4 Europe       -2.14      75.5      77.6    -2.73  0.00842     57.9 
@@ -4643,7 +4658,7 @@ Or combine everything together without the intermediate
 \begin{verbatim}
 ## # A tibble: 2 x 3
 ##   ulcer.factor Alive     Died     
-## * <fct>        <chr>     <chr>    
+##   <fct>        <chr>     <chr>    
 ## 1 Absent       99 (66.9) 16 (28.1)
 ## 2 Present      49 (33.1) 41 (71.9)
 \end{verbatim}
@@ -5659,7 +5674,7 @@ function \texttt{survdiff()}.
 ## ulcer.factor=Absent  115       16     35.8      10.9      29.6
 ## ulcer.factor=Present  90       41     21.2      18.5      29.6
 ## 
-##  Chisq= 29.6  on 1 degrees of freedom, p= 5.41e-08
+##  Chisq= 29.6  on 1 degrees of freedom, p= 5e-08
 \end{verbatim}
 
 Is there a signficiant difference between survival curves?
@@ -5707,9 +5722,9 @@ proportional hazard regression analysis.
 ## 
 ## Concordance= 0.735  (se = 0.04 )
 ## Rsquare= 0.153   (max possible= 0.937 )
-## Likelihood ratio test= 34.08  on 5 df,   p=2.291e-06
-## Wald test            = 30.19  on 5 df,   p=1.35e-05
-## Score (logrank) test = 35.21  on 5 df,   p=1.367e-06
+## Likelihood ratio test= 34.08  on 5 df,   p=2e-06
+## Wald test            = 30.19  on 5 df,   p=1e-05
+## Score (logrank) test = 35.21  on 5 df,   p=1e-06
 \end{verbatim}
 
 \begin{Shaded}
@@ -5918,7 +5933,7 @@ variable), rather than a \texttt{date} object, so we'll convert it:
 \end{Highlighting}
 \end{Shaded}
 
-\bibliography{packages.bib,book.bib}
+\bibliography{book.bib,packages.bib}
 
 
 \end{document}

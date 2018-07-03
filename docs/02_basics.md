@@ -644,16 +644,16 @@ Hint: Use the functions `paste0()`, `seq()` and `rep()`
 ## # A tibble: 10 x 3
 ##    patient_id   age sex   
 ##    <chr>      <dbl> <chr> 
-##  1 ID11        15.0 Male  
-##  2 ID12        20.0 Male  
-##  3 ID13        25.0 Male  
-##  4 ID14        30.0 Male  
-##  5 ID15        35.0 Male  
-##  6 ID16        40.0 Female
-##  7 ID17        45.0 Female
-##  8 ID18        50.0 Female
-##  9 ID19        55.0 Female
-## 10 ID20        60.0 Female
+##  1 ID11          15 Male  
+##  2 ID12          20 Male  
+##  3 ID13          25 Male  
+##  4 ID14          30 Male  
+##  5 ID15          35 Male  
+##  6 ID16          40 Female
+##  7 ID17          45 Female
+##  8 ID18          50 Female
+##  9 ID19          55 Female
+## 10 ID20          60 Female
 ```
 
 

@@ -191,7 +191,7 @@ alldata %>%
 ## # A tibble: 6 x 4
 ## # Groups:   year [6]
 ##    year `Communicable diseases` Injuries `Non-communicable diseases`
-## * <int> <chr>                   <chr>    <chr>                      
+##   <int> <chr>                   <chr>    <chr>                      
 ## 1  1990 34.02%                  9.11%    56.87%                     
 ## 2  1995 30.91%                  9.28%    59.81%                     
 ## 3  2000 28.93%                  9.35%    61.72%                     
@@ -245,7 +245,7 @@ result_spread
 ```
 ## # A tibble: 6 x 3
 ##    year Female Male 
-## * <int> <chr>  <chr>
+##   <int> <chr>  <chr>
 ## 1  1990 47%    53%  
 ## 2  1995 47%    53%  
 ## 3  2000 46%    54%  
@@ -508,7 +508,7 @@ First, create a new script called "2_long_exercise.R". Then Restart your R sessi
 ```
 ## # A tibble: 2 x 3
 ##   sex    Developed Developing
-## * <fct>      <dbl>      <dbl>
+##   <fct>      <dbl>      <dbl>
 ## 1 Female      5.52       16.8
 ## 2 Male        5.70       19.4
 ```
@@ -545,7 +545,7 @@ alldata %>%
 ## # A tibble: 6 x 4
 ## # Groups:   year [6]
 ##    year `Communicable diseases` Injuries   `Non-communicable diseases`
-## * <int> <chr>                   <chr>      <chr>                      
+##   <int> <chr>                   <chr>      <chr>                      
 ## 1  1990 16.1 (34.0%)            4.3 (9.1%) 27.0 (56.9%)               
 ## 2  1995 15.4 (30.9%)            4.6 (9.3%) 29.9 (59.8%)               
 ## 3  2000 14.8 (28.9%)            4.8 (9.4%) 31.5 (61.7%)               

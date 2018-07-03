@@ -421,7 +421,7 @@ mydata %>%
 ```
 ## # A tibble: 2 x 3
 ##   ulcer.factor Alive     Died     
-## * <fct>        <chr>     <chr>    
+##   <fct>        <chr>     <chr>    
 ## 1 Absent       99 (66.9) 16 (28.1)
 ## 2 Present      49 (33.1) 41 (71.9)
 ```

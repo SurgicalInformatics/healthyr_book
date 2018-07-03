@@ -283,7 +283,7 @@ Hints: `coord_flip()`, `scale_color_gradient(...)`, `geom_segment(...)`, `annota
 ```r
 mydata %>% 
   filter(continent == "Europe") %>% 
-  ggplot(aes(y = fct_reorder(country, gdpPercap, fun=max), x=lifeExp, colour=year)) +
+  ggplot(aes(y = fct_reorder(country, gdpPercap, .fun=max), x=lifeExp, colour=year)) +
   geom_point(shape = 15, size = 2) +
   theme_bw() +
   scale_colour_distiller(palette = "Greens", direction = 1) +

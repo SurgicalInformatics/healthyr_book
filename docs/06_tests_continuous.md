@@ -363,7 +363,7 @@ mydata %>%
 ##   group1   group2      p.value
 ## 1   Asia Americas 6.005357e-02
 ## 2 Europe Americas 2.092411e-02
-## 4 Europe     Asia 1.910504e-05
+## 3 Europe     Asia 1.910504e-05
 ```
 
 F1 for help to see options for `pairwise.t.test()`.
@@ -576,7 +576,7 @@ mydata %>%
 ## # Groups:   continent [5]
 ##   continent estimate estimate1 estimate2 statistic p.value parameter
 ##   <fct>        <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>
-## 1 Africa       -1.21      53.6      54.8    -0.657 0.513      102   
+## 1 Africa       -1.21      53.6      54.8    -0.657 0.513      102.  
 ## 2 Americas     -2.46      71.2      73.6    -1.86  0.0690      47.6 
 ## 3 Asia         -2.71      68.0      70.7    -1.37  0.175       64.0 
 ## 4 Europe       -2.14      75.5      77.6    -2.73  0.00842     57.9 

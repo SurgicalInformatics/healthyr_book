@@ -121,8 +121,8 @@ We want to find out using logistic regression, which variables predict death fro
 ```{r}
 
 mydata$status.factor %>% 
-  fct_collapse("Yes" = c("Died", "Died - other causes"),
-               "No" = "Alive") ->
+  fct_collapse("Yes" = c("Died"),
+               "No"  = c("Alive", "Died - other causes")) ->
   mydata$died_melanoma.factor
 
 mydata$died_melanoma.factor %>% levels()

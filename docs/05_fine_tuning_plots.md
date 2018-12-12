@@ -23,7 +23,7 @@ mydata$year %>% unique()
 ```
 
 ```r
-p = gapminder %>% 
+p = mydata %>% 
   filter(year == 2007) %>% 
   group_by(continent, year) %>% 
   ggplot(aes(y = lifeExp, x = gdpPercap, colour = continent)) +

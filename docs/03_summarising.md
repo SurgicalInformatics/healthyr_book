@@ -315,7 +315,7 @@ Turns out in the above example, `percentage` and `sex` were just label you assig
 
 ```r
 result_spread %>% 
-  gather(look-I-gathered-sex, values-Are-Here, -year)
+  gather(`look-I-gathered-sex`, `values-Are-Here`, -year)
 ```
 
 * What happens if we omit `-year`:

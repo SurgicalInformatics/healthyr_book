@@ -243,7 +243,7 @@ mydata %>%
   mutate(time_days_numeric = as.numeric(time_days))  ->
   mydata
 
-survival_object = Surv(mydata$time_days_numeric, mydata$status==1) # this works as expected
+survival_object = Surv(mydata$time_days_numeric, mydata$status.factor == "Died") # this works as expected
 ```
 
 

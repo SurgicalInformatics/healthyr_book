@@ -307,9 +307,11 @@ mydata %>%
 ```
 
 ```
-##        term df     sumsq    meansq statistic     p.value
-## 1 continent  2  755.6178 377.80892  11.63417 3.41973e-05
-## 2 Residuals 85 2760.2966  32.47408        NA          NA
+## # A tibble: 2 x 6
+##   term         df sumsq meansq statistic    p.value
+##   <chr>     <dbl> <dbl>  <dbl>     <dbl>      <dbl>
+## 1 continent     2  756.  378.       11.6  0.0000342
+## 2 Residuals    85 2760.   32.5      NA   NA
 ```
 
 ### Check assumptions
@@ -360,10 +362,12 @@ mydata %>%
 ```
 
 ```
-##   group1   group2      p.value
-## 1   Asia Americas 6.005357e-02
-## 2 Europe Americas 2.092411e-02
-## 3 Europe     Asia 1.910504e-05
+## # A tibble: 3 x 3
+##   group1 group2     p.value
+## * <chr>  <chr>        <dbl>
+## 1 Asia   Americas 0.0601   
+## 2 Europe Americas 0.0209   
+## 3 Europe Asia     0.0000191
 ```
 
 F1 for help to see options for `pairwise.t.test()`.
@@ -582,5 +586,5 @@ mydata %>%
 ## 4 Europe       -2.14      75.5      77.6    -2.73  0.00842     57.9 
 ## 5 Oceania      -2.53      78.2      80.7    -3.08  0.0965       1.91
 ## # ... with 4 more variables: conf.low <dbl>, conf.high <dbl>,
-## #   method <fct>, alternative <fct>
+## #   method <chr>, alternative <chr>
 ```

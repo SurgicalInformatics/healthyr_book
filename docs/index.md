@@ -1,7 +1,7 @@
 --- 
 title: "HealthyR: R for healthcare data analysis"
-author: "Riinu Ots and Ewen Harrison"
-date: "24-April 2018"
+author: "Ewen Harrison and Riinu Ots"
+date: "12-December 2018"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -68,7 +68,7 @@ install.packages("survminer")
 ```
 
 <div class="warning">
-<p>When working with data, don't copy or type code directly into the Console. We will only be using the Console for viewing output, warnings, and errors (and installing packages as in the previous section). All code should be in a script and executed (=Run) using Control+Enter (line or section) or Control+Shift+Enter (whole script). Make sure you are always working in a project (the right-top corner of your RStudio interface should say &quot;HealthyR&quot;).</p>
+<p>When working with data, don’t copy or type code directly into the Console. We will only be using the Console for viewing output, warnings, and errors (and installing packages as in the previous section). All code should be in a script and executed (=Run) using Control+Enter (line or section) or Control+Shift+Enter (whole script). Make sure you are always working in a project (the right-top corner of your RStudio interface should say “HealthyR”).</p>
 </div>
 
 <img src="images/rstudio_vs_r.png" width="400px" />

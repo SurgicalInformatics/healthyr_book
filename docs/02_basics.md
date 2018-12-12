@@ -309,7 +309,7 @@ mydata = read_csv("global_burden_disease_short.csv")
 ## Parsed with column specification:
 ## cols(
 ##   cause = col_character(),
-##   year = col_integer(),
+##   year = col_double(),
 ##   deaths = col_double()
 ## )
 ```

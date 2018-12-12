@@ -121,8 +121,8 @@ We want to find out using logistic regression, which variables predict death fro
 
 ```r
 mydata$status.factor %>% 
-  fct_collapse("Yes" = c("Died", "Died - other causes"),
-               "No" = "Alive") ->
+  fct_collapse("Yes" = c("Died"),
+               "No"  = c("Alive", "Died - other causes")) ->
   mydata$died_melanoma.factor
 
 mydata$died_melanoma.factor %>% levels()
@@ -248,11 +248,11 @@ glm(died_melanoma.factor ~ sex.factor, data = mydata, family = "binomial")
 ## 
 ## Coefficients:
 ##    (Intercept)  sex.factorMale  
-##        -0.9555          0.7778  
+##         -1.253           0.708  
 ## 
 ## Degrees of Freedom: 204 Total (i.e. Null);  203 Residual
-## Null Deviance:	    264.5 
-## Residual Deviance: 257.8 	AIC: 261.8
+## Null Deviance:	    242.4 
+## Residual Deviance: 237.4 	AIC: 241.4
 ```
 
 ```r
@@ -269,20 +269,20 @@ summary(model1)
 ## 
 ## Deviance Residuals: 
 ##     Min       1Q   Median       3Q      Max  
-## -1.1030  -0.8067  -0.8067   1.2537   1.6006  
+## -0.9565  -0.7090  -0.7090   1.4157   1.7344  
 ## 
 ## Coefficients:
 ##                Estimate Std. Error z value Pr(>|z|)    
-## (Intercept)     -0.9555     0.1989  -4.804 1.56e-06 ***
-## sex.factorMale   0.7778     0.3010   2.584  0.00976 ** 
+## (Intercept)     -1.2528     0.2143  -5.846 5.03e-09 ***
+## sex.factorMale   0.7080     0.3169   2.235   0.0254 *  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
-##     Null deviance: 264.51  on 204  degrees of freedom
-## Residual deviance: 257.79  on 203  degrees of freedom
-## AIC: 261.79
+##     Null deviance: 242.35  on 204  degrees of freedom
+## Residual deviance: 237.35  on 203  degrees of freedom
+## AIC: 241.35
 ## 
 ## Number of Fisher Scoring iterations: 4
 ```
@@ -302,7 +302,7 @@ exp(model1$coefficients)
 
 ```
 ##    (Intercept) sex.factorMale 
-##      0.3846154      2.1767442
+##      0.2857143      2.0300000
 ```
 
 This gives us an odds ratio of 2.03 for males. That is to say, males are twice as likely to die from melanoma than females.
@@ -320,8 +320,8 @@ exp(confint(model1))
 
 ```
 ##                    2.5 %    97.5 %
-## (Intercept)    0.2571813 0.5623277
-## sex.factorMale 1.2090780 3.9446328
+## (Intercept)    0.1843592 0.4284939
+## sex.factorMale 1.0914854 3.7938450
 ```
 
 The 2.5% is the lower bound and the 97.5% is the upper bound of the 95% confidence interval.
@@ -398,11 +398,11 @@ mydata %>%
 ```
 
 
-label        levels              No           Yes   pvalue
------------  ----------  ----------  ------------  -------
-age          Mean (SD)    50 (15.9)   57.1 (17.2)    0.004
-sex.factor   Female       91 (72.2)     35 (27.8)    0.009
-             Male         43 (54.4)     36 (45.6)         
+label        levels                No           Yes   pvalue
+-----------  ----------  ------------  ------------  -------
+age          Mean (SD)    51.5 (16.1)   55.1 (17.9)    0.189
+sex.factor   Female         98 (77.8)     28 (22.2)    0.024
+             Male           50 (63.3)     29 (36.7)         
 
 ##`summarizer` function for logistic regression
 
@@ -420,8 +420,8 @@ mydata %>%
 
 label        levels           No         Yes            OR (univariable)          OR (multivariable)
 -----------  -------  ----------  ----------  --------------------------  --------------------------
-sex.factor   Female    91 (67.9)   35 (49.3)                           -                           -
-             Male      43 (32.1)   36 (50.7)   2.18 (1.21-3.94, p=0.010)   2.18 (1.21-3.94, p=0.010)
+sex.factor   Female    98 (66.2)   28 (49.1)                           -                           -
+             Male      50 (33.8)   29 (50.9)   2.03 (1.09-3.79, p=0.025)   2.03 (1.09-3.79, p=0.025)
 
 \newpage
 ##Adjusting for multiple variables in R
@@ -447,15 +447,15 @@ mydata %>%
 ```
 
 
-label          levels              No           Yes              OR (univariable)            OR (multivariable)
--------------  ----------  ----------  ------------  ----------------------------  ----------------------------
-age            Mean (SD)    50 (15.9)   57.1 (17.2)     1.03 (1.01-1.05, p=0.004)     1.02 (1.00-1.04, p=0.033)
-sex.factor     Female       91 (67.9)     35 (49.3)                             -                             -
-               Male         43 (32.1)     36 (50.7)     2.18 (1.21-3.94, p=0.010)     1.70 (0.88-3.29, p=0.112)
-stage.factor   Stage I      17 (12.7)       2 (2.8)                             -                             -
-               Stage II     30 (22.4)       7 (9.9)    1.98 (0.42-14.33, p=0.424)    2.35 (0.48-17.34, p=0.327)
-               Stage III    69 (51.5)     35 (49.3)    4.31 (1.15-28.17, p=0.060)    4.76 (1.25-31.44, p=0.046)
-               Stage IV     18 (13.4)     27 (38.0)   12.75 (3.15-86.81, p=0.002)   10.46 (2.50-72.43, p=0.004)
+label          levels                No           Yes               OR (univariable)             OR (multivariable)
+-------------  ----------  ------------  ------------  -----------------------------  -----------------------------
+age            Mean (SD)    51.5 (16.1)   55.1 (17.9)      1.01 (0.99-1.03, p=0.163)      1.01 (0.99-1.03, p=0.534)
+sex.factor     Female         98 (66.2)     28 (49.1)                              -                              -
+               Male           50 (33.8)     29 (50.9)      2.03 (1.09-3.79, p=0.025)      1.62 (0.81-3.21, p=0.167)
+stage.factor   Stage I        18 (12.2)       1 (1.8)                              -                              -
+               Stage II       32 (21.6)       5 (8.8)     2.81 (0.41-56.12, p=0.362)     2.83 (0.40-56.96, p=0.363)
+               Stage III      75 (50.7)     29 (50.9)    6.96 (1.34-128.04, p=0.065)    7.17 (1.37-132.38, p=0.061)
+               Stage IV       23 (15.5)     22 (38.6)   17.22 (3.13-322.85, p=0.008)   14.30 (2.54-270.31, p=0.014)
 
 
 ```r
@@ -530,25 +530,25 @@ mydata %>%
 
 ```
 ## [[1]]
-##          label    levels        No         Yes            OR (univariable)
-## 1          age Mean (SD) 50 (15.9) 57.1 (17.2)   1.03 (1.01-1.05, p=0.004)
-## 2   sex.factor    Female 91 (67.9)   35 (49.3)                           -
-## 3                   Male 43 (32.1)   36 (50.7)   2.18 (1.21-3.94, p=0.010)
-## 4 stage.factor   Stage I 17 (12.7)     2 (2.8)                           -
-## 5               Stage II 30 (22.4)     7 (9.9)  1.98 (0.42-14.33, p=0.424)
-## 6              Stage III 69 (51.5)   35 (49.3)  4.31 (1.15-28.17, p=0.060)
-## 7               Stage IV 18 (13.4)   27 (38.0) 12.75 (3.15-86.81, p=0.002)
-##            OR (multivariable)
-## 1   1.02 (1.00-1.04, p=0.033)
-## 2                           -
-## 3   1.70 (0.88-3.29, p=0.112)
-## 4                           -
-## 5  2.35 (0.48-17.34, p=0.327)
-## 6  4.76 (1.25-31.44, p=0.046)
-## 7 10.46 (2.50-72.43, p=0.004)
+##          label    levels          No         Yes
+## 1          age Mean (SD) 51.5 (16.1) 55.1 (17.9)
+## 2   sex.factor    Female   98 (66.2)   28 (49.1)
+## 3                   Male   50 (33.8)   29 (50.9)
+## 4 stage.factor   Stage I   18 (12.2)     1 (1.8)
+## 5               Stage II   32 (21.6)     5 (8.8)
+## 6              Stage III   75 (50.7)   29 (50.9)
+## 7               Stage IV   23 (15.5)   22 (38.6)
+##               OR (univariable)           OR (multivariable)
+## 1    1.01 (0.99-1.03, p=0.163)    1.01 (0.99-1.03, p=0.534)
+## 2                            -                            -
+## 3    2.03 (1.09-3.79, p=0.025)    1.62 (0.81-3.21, p=0.167)
+## 4                            -                            -
+## 5   2.81 (0.41-56.12, p=0.362)   2.83 (0.40-56.96, p=0.363)
+## 6  6.96 (1.34-128.04, p=0.065)  7.17 (1.37-132.38, p=0.061)
+## 7 17.22 (3.13-322.85, p=0.008) 14.30 (2.54-270.31, p=0.014)
 ## 
 ## [[2]]
-## [1] "Number in dataframe = 205, Number in model = 205, Missing = 0, AIC = 246.7, C-statistic = 0.72"
+## [1] "Number in dataframe = 205, Number in model = 205, Missing = 0, AIC = 232.3, C-statistic = 0.708"
 ```
 
 ###Extra material: Diagnostics plots

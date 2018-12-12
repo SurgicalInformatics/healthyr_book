@@ -231,18 +231,14 @@ tidy(my_hazard)
 ```
 
 ```
-##                  term    estimate std.error   statistic      p.value
-## 1      sex.factorMale  0.48249139 0.2683506  1.79798864 7.217881e-02
-## 2 ulcer.factorPresent  1.38971952 0.2977194  4.66788318 3.043188e-06
-## 3   age.factor(20,40] -0.40627653 0.6933884 -0.58592926 5.579231e-01
-## 4   age.factor(40,60] -0.04512504 0.6133390 -0.07357276 9.413503e-01
-## 5   age.factor(60,95]  0.17888630 0.6215979  0.28778460 7.735116e-01
-##      conf.low conf.high
-## 1 -0.04346619 1.0084490
-## 2  0.80620016 1.9732389
-## 3 -1.76529272 0.9527397
-## 4 -1.24724731 1.1569972
-## 5 -1.03942317 1.3971958
+## # A tibble: 5 x 7
+##   term            estimate std.error statistic  p.value conf.low conf.high
+##   <chr>              <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>
+## 1 sex.factorMale    0.482      0.268    1.80    7.22e-2  -0.0435     1.01 
+## 2 ulcer.factorPr…   1.39       0.298    4.67    3.04e-6   0.806      1.97 
+## 3 age.factor(20,…  -0.406      0.693   -0.586   5.58e-1  -1.77       0.953
+## 4 age.factor(40,…  -0.0451     0.613   -0.0736  9.41e-1  -1.25       1.16 
+## 5 age.factor(60,…   0.179      0.622    0.288   7.74e-1  -1.04       1.40
 ```
 The interpretation of the results of model fitting are beyond the aims of this course. The exponentiated coefficient (`exp(coef)`) represents the hazard ratio. Therefore, patients with ulcers are 4-times more likely to die at any given time than those without ulcers. 
 
@@ -325,7 +321,7 @@ mydata %>%
   mutate(time_days_numeric = as.numeric(time_days))  ->
   mydata
 
-survival_object = Surv(mydata$time_days_numeric, mydata$status==1) # this works as expected
+survival_object = Surv(mydata$time_days_numeric, mydata$status.factor == "Died") # this works as expected
 ```
 
 

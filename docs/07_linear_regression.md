@@ -145,9 +145,11 @@ fit_uk %>% tidy()
 ```
 
 ```
-##            term   estimate   std.error statistic      p.value
-## 1   (Intercept) 68.8085256 0.240079443 286.60732 6.576359e-21
-## 2 year_from1952  0.1859657 0.007394356  25.14969 2.262287e-10
+## # A tibble: 2 x 5
+##   term          estimate std.error statistic  p.value
+##   <chr>            <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)     68.8     0.240       287.  6.58e-21
+## 2 year_from1952    0.186   0.00739      25.1 2.26e-10
 ```
 
 ```r
@@ -155,10 +157,11 @@ fit_uk %>% glance()
 ```
 
 ```
-##   r.squared adj.r.squared     sigma statistic      p.value df    logLik
-## 1  0.984436     0.9828796 0.4421182  632.5068 2.262287e-10  2 -6.139196
-##        AIC      BIC deviance df.residual
-## 1 18.27839 19.73311 1.954685          10
+## # A tibble: 1 x 11
+##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC
+## *     <dbl>         <dbl> <dbl>     <dbl>    <dbl> <int>  <dbl> <dbl>
+## 1     0.984         0.983 0.442      633. 2.26e-10     2  -6.14  18.3
+## # ... with 3 more variables: BIC <dbl>, deviance <dbl>, df.residual <int>
 ```
 
 
@@ -221,8 +224,10 @@ fit_uk %>%
 ```
 
 ```
-##            term estimate
-## 1   (Intercept)    68.81
+## # A tibble: 2 x 2
+##   term          estimate
+##   <chr>            <dbl>
+## 1 (Intercept)      68.8 
 ## 2 year_from1952     0.19
 ```
 
@@ -234,9 +239,11 @@ fit_turkey %>%
 ```
 
 ```
-##            term estimate
-## 1   (Intercept)    46.02
-## 2 year_from1952     0.50
+## # A tibble: 2 x 2
+##   term          estimate
+##   <chr>            <dbl>
+## 1 (Intercept)       46.0
+## 2 year_from1952      0.5
 ```
 
 (The lines `tidy()`, `mutate()`, and `select()` are only included for neater presentation here, you can use `summary()` instead.)
@@ -254,10 +261,12 @@ mydata %>%
 ```
 
 ```
-##                                  term estimate
-## 1                         (Intercept)    46.02
-## 2                       year_from1952     0.50
-## 3               countryUnited Kingdom    22.79
+## # A tibble: 4 x 2
+##   term                                estimate
+##   <chr>                                  <dbl>
+## 1 (Intercept)                            46.0 
+## 2 year_from1952                           0.5 
+## 3 countryUnited Kingdom                  22.8 
 ## 4 year_from1952:countryUnited Kingdom    -0.31
 ```
 

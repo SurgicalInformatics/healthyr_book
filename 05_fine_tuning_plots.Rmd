@@ -86,7 +86,7 @@ p + coord_cartesian(ylim = c(70, 85), xlim = c(20000, 40000))
 ```
 
 
-###Exercise
+### Exercise
 
 How is this one different to the previous:
 

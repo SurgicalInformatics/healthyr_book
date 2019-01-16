@@ -158,10 +158,10 @@ fit_uk %>% glance()
 
 ```
 ## # A tibble: 1 x 11
-##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC
-## *     <dbl>         <dbl> <dbl>     <dbl>    <dbl> <int>  <dbl> <dbl>
-## 1     0.984         0.983 0.442      633. 2.26e-10     2  -6.14  18.3
-## # ... with 3 more variables: BIC <dbl>, deviance <dbl>, df.residual <int>
+##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <int>  <dbl> <dbl> <dbl>
+## 1     0.984         0.983 0.442      633. 2.26e-10     2  -6.14  18.3  19.7
+## # … with 2 more variables: deviance <dbl>, df.residual <int>
 ```
 
 

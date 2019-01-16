@@ -1,7 +1,7 @@
 --- 
 title: "HealthyR: R for healthcare data analysis"
 author: "Ewen Harrison and Riinu Ots"
-date: "12-December 2018"
+date: "16-January 2019"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -60,7 +60,7 @@ install.packages("Hmisc")
 
 install.packages("devtools")
 
-devtools::install_github("ewenharrison/summarizer")
+devtools::install_github("ewenharrison/finalfit")
 
 install.packages("pROC")
 

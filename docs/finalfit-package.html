@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="chi-squared-test-fishers-exact-test.html">
-<link rel="next" href="summarising-multiple-factors-optional.html">
+<link rel="prev" href="basic-one-explanatory-variable-predictor.html">
+<link rel="next" href="summarise-a-list-of-variables-by-another-variable.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -425,209 +425,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="analysis-1" class="section level2">
-<h2><span class="header-section-number">8.3</span> Analysis</h2>
-<div id="using-base-r" class="section level3">
-<h3><span class="header-section-number">8.3.1</span> Using base R</h3>
-<p>First lets group together those that ‘died of another cause’ with those ‘alive’, to give a disease-specific mortality variable (<code>fct_collapse</code> will help us) .</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1">mydata<span class="op">$</span>status.factor <span class="op">%&gt;%</span><span class="st">  </span></a>
-<a class="sourceLine" id="cb242-2" data-line-number="2"><span class="st">    </span><span class="kw">fct_collapse</span>(<span class="st">&quot;Alive&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Alive&quot;</span>, <span class="st">&quot;Died - other causes&quot;</span>)) -&gt;</a>
-<a class="sourceLine" id="cb242-3" data-line-number="3"><span class="st">  </span>mydata<span class="op">$</span>status.factor</a></code></pre></div>
-<p>Let’s test mortality against sex.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1"><span class="kw">table</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>sex.factor)</a></code></pre></div>
-<pre><code>##        
-##         Female Male
-##   Alive     98   50
-##   Died      28   29</code></pre>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="kw">chisq.test</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>sex.factor)</a></code></pre></div>
-<pre><code>## 
-##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
-## 
-## data:  mydata$status.factor and mydata$sex.factor
-## X-squared = 4.3803, df = 1, p-value = 0.03636</code></pre>
-<p>Note that <code>chisq.test()</code> defaults to the Yates continuity correction. It is fine to use this, but if you have a particular need not to, turn if off with <code>chisq.test(mydata$status.factor, mydata$sex.factor, correct=FALSE)</code>.</p>
-</div>
-<div id="using-crosstable" class="section level3">
-<h3><span class="header-section-number">8.3.2</span> Using <code>CrossTable</code></h3>
-<p>This gives lots of useful information. It is readable in R and has lots of options, including Fisher’s exact test. It is not that easy to extract results.
-</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1"><span class="kw">library</span>(gmodels)</a>
-<a class="sourceLine" id="cb247-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb247-3" data-line-number="3"><span class="co"># F1 CrossTable to see options</span></a>
-<a class="sourceLine" id="cb247-4" data-line-number="4"><span class="kw">CrossTable</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>sex.factor, <span class="dt">chisq=</span><span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## 
-##  
-##    Cell Contents
-## |-------------------------|
-## |                       N |
-## | Chi-square contribution |
-## |           N / Row Total |
-## |           N / Col Total |
-## |         N / Table Total |
-## |-------------------------|
-## 
-##  
-## Total Observations in Table:  205 
-## 
-##  
-##                      | mydata$sex.factor 
-## mydata$status.factor |    Female |      Male | Row Total | 
-## ---------------------|-----------|-----------|-----------|
-##                Alive |        98 |        50 |       148 | 
-##                      |     0.544 |     0.868 |           | 
-##                      |     0.662 |     0.338 |     0.722 | 
-##                      |     0.778 |     0.633 |           | 
-##                      |     0.478 |     0.244 |           | 
-## ---------------------|-----------|-----------|-----------|
-##                 Died |        28 |        29 |        57 | 
-##                      |     1.412 |     2.253 |           | 
-##                      |     0.491 |     0.509 |     0.278 | 
-##                      |     0.222 |     0.367 |           | 
-##                      |     0.137 |     0.141 |           | 
-## ---------------------|-----------|-----------|-----------|
-##         Column Total |       126 |        79 |       205 | 
-##                      |     0.615 |     0.385 |           | 
-## ---------------------|-----------|-----------|-----------|
-## 
-##  
-## Statistics for All Table Factors
-## 
-## 
-## Pearson&#39;s Chi-squared test 
-## ------------------------------------------------------------
-## Chi^2 =  5.076334     d.f. =  1     p =  0.0242546 
-## 
-## Pearson&#39;s Chi-squared test with Yates&#39; continuity correction 
-## ------------------------------------------------------------
-## Chi^2 =  4.380312     d.f. =  1     p =  0.03635633 
-## 
-## </code></pre>
-</div>
-<div id="exercise-41" class="section level3">
-<h3><span class="header-section-number">8.3.3</span> Exercise</h3>
-<p>Use the 3 methods (<code>table</code>, <code>chisq.test</code>, <code>CrossTable</code>) to test <code>status.factor</code> against <code>ulcer.factor</code>.</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1"><span class="kw">str</span>(mydata)</a>
-<a class="sourceLine" id="cb249-2" data-line-number="2"><span class="kw">table</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>ulcer.factor)</a>
-<a class="sourceLine" id="cb249-3" data-line-number="3"><span class="kw">chisq.test</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>ulcer.factor)</a></code></pre></div>
-<p>Using <code>CrossTable</code></p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1"><span class="kw">CrossTable</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>ulcer.factor, <span class="dt">chisq=</span><span class="ot">TRUE</span>)</a></code></pre></div>
-</div>
-<div id="fishers-exact-test" class="section level3">
-<h3><span class="header-section-number">8.3.4</span> Fisher’s exact test</h3>
-<p>An assumption of the chi-squared test is that the ‘expected cell count’ is greater than 5. If it is less than 5 the test becomes unreliable and the Fisher’s exact test is recommended.</p>
-<p>Run the following code.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="kw">library</span>(gmodels)</a>
-<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="kw">CrossTable</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>age.factor, <span class="dt">expected=</span><span class="ot">TRUE</span>, <span class="dt">chisq=</span><span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## Warning in chisq.test(t, correct = FALSE, ...): Chi-squared approximation
-## may be incorrect</code></pre>
-<pre><code>## 
-##  
-##    Cell Contents
-## |-------------------------|
-## |                       N |
-## |              Expected N |
-## | Chi-square contribution |
-## |           N / Row Total |
-## |           N / Col Total |
-## |         N / Table Total |
-## |-------------------------|
-## 
-##  
-## Total Observations in Table:  205 
-## 
-##  
-##                      | mydata$age.factor 
-## mydata$status.factor |    [4,20] |   (20,40] |   (40,60] |   (60,95] | Row Total | 
-## ---------------------|-----------|-----------|-----------|-----------|-----------|
-##                Alive |         6 |        30 |        66 |        46 |       148 | 
-##                      |     6.498 |    26.712 |    66.420 |    48.371 |           | 
-##                      |     0.038 |     0.405 |     0.003 |     0.116 |           | 
-##                      |     0.041 |     0.203 |     0.446 |     0.311 |     0.722 | 
-##                      |     0.667 |     0.811 |     0.717 |     0.687 |           | 
-##                      |     0.029 |     0.146 |     0.322 |     0.224 |           | 
-## ---------------------|-----------|-----------|-----------|-----------|-----------|
-##                 Died |         3 |         7 |        26 |        21 |        57 | 
-##                      |     2.502 |    10.288 |    25.580 |    18.629 |           | 
-##                      |     0.099 |     1.051 |     0.007 |     0.302 |           | 
-##                      |     0.053 |     0.123 |     0.456 |     0.368 |     0.278 | 
-##                      |     0.333 |     0.189 |     0.283 |     0.313 |           | 
-##                      |     0.015 |     0.034 |     0.127 |     0.102 |           | 
-## ---------------------|-----------|-----------|-----------|-----------|-----------|
-##         Column Total |         9 |        37 |        92 |        67 |       205 | 
-##                      |     0.044 |     0.180 |     0.449 |     0.327 |           | 
-## ---------------------|-----------|-----------|-----------|-----------|-----------|
-## 
-##  
-## Statistics for All Table Factors
-## 
-## 
-## Pearson&#39;s Chi-squared test 
-## ------------------------------------------------------------
-## Chi^2 =  2.019848     d.f. =  3     p =  0.5682975 
-## 
-## 
-## </code></pre>
-<p>Why does it give a warning? Run it a second time including <code>fisher=TRUE</code>.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1"><span class="kw">library</span>(gmodels)</a>
-<a class="sourceLine" id="cb254-2" data-line-number="2"><span class="kw">CrossTable</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>age.factor, <span class="dt">expected=</span><span class="ot">TRUE</span>, <span class="dt">chisq=</span><span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## Warning in chisq.test(t, correct = FALSE, ...): Chi-squared approximation
-## may be incorrect</code></pre>
-<pre><code>## 
-##  
-##    Cell Contents
-## |-------------------------|
-## |                       N |
-## |              Expected N |
-## | Chi-square contribution |
-## |           N / Row Total |
-## |           N / Col Total |
-## |         N / Table Total |
-## |-------------------------|
-## 
-##  
-## Total Observations in Table:  205 
-## 
-##  
-##                      | mydata$age.factor 
-## mydata$status.factor |    [4,20] |   (20,40] |   (40,60] |   (60,95] | Row Total | 
-## ---------------------|-----------|-----------|-----------|-----------|-----------|
-##                Alive |         6 |        30 |        66 |        46 |       148 | 
-##                      |     6.498 |    26.712 |    66.420 |    48.371 |           | 
-##                      |     0.038 |     0.405 |     0.003 |     0.116 |           | 
-##                      |     0.041 |     0.203 |     0.446 |     0.311 |     0.722 | 
-##                      |     0.667 |     0.811 |     0.717 |     0.687 |           | 
-##                      |     0.029 |     0.146 |     0.322 |     0.224 |           | 
-## ---------------------|-----------|-----------|-----------|-----------|-----------|
-##                 Died |         3 |         7 |        26 |        21 |        57 | 
-##                      |     2.502 |    10.288 |    25.580 |    18.629 |           | 
-##                      |     0.099 |     1.051 |     0.007 |     0.302 |           | 
-##                      |     0.053 |     0.123 |     0.456 |     0.368 |     0.278 | 
-##                      |     0.333 |     0.189 |     0.283 |     0.313 |           | 
-##                      |     0.015 |     0.034 |     0.127 |     0.102 |           | 
-## ---------------------|-----------|-----------|-----------|-----------|-----------|
-##         Column Total |         9 |        37 |        92 |        67 |       205 | 
-##                      |     0.044 |     0.180 |     0.449 |     0.327 |           | 
-## ---------------------|-----------|-----------|-----------|-----------|-----------|
-## 
-##  
-## Statistics for All Table Factors
-## 
-## 
-## Pearson&#39;s Chi-squared test 
-## ------------------------------------------------------------
-## Chi^2 =  2.019848     d.f. =  3     p =  0.5682975 
-## 
-## 
-## </code></pre>
-</div>
+<div id="finalfit-package" class="section level2">
+<h2><span class="header-section-number">9.8</span> Finalfit package</h2>
+<p>We have developed our <code>finalfit</code> package to help with advanced regression modelling. We will introduce it here, but not go into detail.</p>
+<p>See www.finalfit.org for more information and updates.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="chi-squared-test-fishers-exact-test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="summarising-multiple-factors-optional.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="basic-one-explanatory-variable-predictor.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summarise-a-list-of-variables-by-another-variable.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -657,7 +466,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/SurgicalInformatics/healthyr_book/edit/master/08_tests_categorical.Rmd",
+"link": "https://github.com/SurgicalInformatics/healthyr_book/edit/master/09_tests_categorical.Rmd",
 "text": "Edit"
 },
 "download": ["healthyr-book.pdf", "healthyr-book.epub"],

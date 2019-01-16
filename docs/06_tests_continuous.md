@@ -71,7 +71,7 @@ mydata %>%
 
 ![](06_tests_continuous_files/figure-epub3/unnamed-chunk-3-1.png)<!-- -->
 
-###Q-Q plot for each continent
+### Q-Q plot for each continent
 
 With `ggplot()`, we can drawa Q-Q plot for each subgroup very efficiently:
 
@@ -364,7 +364,7 @@ mydata %>%
 ```
 ## # A tibble: 3 x 3
 ##   group1 group2     p.value
-## * <chr>  <chr>        <dbl>
+##   <chr>  <chr>        <dbl>
 ## 1 Asia   Americas 0.0601   
 ## 2 Europe Americas 0.0209   
 ## 3 Europe Asia     0.0000191
@@ -585,6 +585,6 @@ mydata %>%
 ## 3 Asia         -2.71      68.0      70.7    -1.37  0.175       64.0 
 ## 4 Europe       -2.14      75.5      77.6    -2.73  0.00842     57.9 
 ## 5 Oceania      -2.53      78.2      80.7    -3.08  0.0965       1.91
-## # ... with 4 more variables: conf.low <dbl>, conf.high <dbl>,
-## #   method <chr>, alternative <chr>
+## # … with 4 more variables: conf.low <dbl>, conf.high <dbl>, method <chr>,
+## #   alternative <chr>
 ```

@@ -94,7 +94,7 @@ p + coord_cartesian(ylim = c(70, 85), xlim = c(20000, 40000))
 ![](05_fine_tuning_plots_files/figure-epub3/unnamed-chunk-6-1.png)<!-- -->
 
 
-###Exercise
+### Exercise
 
 How is this one different to the previous:
 

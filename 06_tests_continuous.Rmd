@@ -49,7 +49,7 @@ mydata %>%
 	facet_grid(year~continent, scales = "free")
 ```
 
-###Q-Q plot for each continent
+### Q-Q plot for each continent
 
 With `ggplot()`, we can drawa Q-Q plot for each subgroup very efficiently:
 

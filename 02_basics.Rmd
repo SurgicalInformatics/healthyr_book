@@ -9,7 +9,7 @@ Throughout this course, don't copy or type code directly into the Console. We wi
 RStudio has a built in Help tab. To use the Help tab, move your cursor to something in your code (e.g. `read_csv()`) and press F1 - this will show you the definition and some examples. However, the Help tab is only useful if you already know what you are looking for but can't remember how it worked exactly. For finding help on things you have not used before, it is best to Google it. R has about 2 million users so someone somewhere has had the same question or problem.
 
 
-##Starting with a blank canvas
+## Starting with a blank canvas
 
 In the first session we loaded some data that we then plotted. When we import data, R remembers the data and stores it in the Environment tab.
 
@@ -23,7 +23,7 @@ RStudio has a default option that is not best practise any more, you should do t
 
 
 
-##Working with Objects
+## Working with Objects
 
 It's sometimes difficult to appreciate how coding works without trying it first.
 
@@ -79,7 +79,7 @@ e <- 7
 ```
 
 
-##Loading data
+## Loading data
 
 Before we load a new dataset, we should clear or experiments from the previous section: Restart R by pressing Control+Shift+F10 or Select Section -> Restart R from the menu above.
 
@@ -95,7 +95,7 @@ mydata = read_csv("global_burden_disease_short.csv")
 
 But how can we look at the data we just loaded? How do we know which variables it contains? Hint: the Environment tab.
 
-###Excercise
+### Excercise
 
 Answer these question about your data:
 
@@ -135,7 +135,7 @@ Re-write `names(mydata)` and `head(mydata)` using the pipe (`%>%`). Use the keyb
 
 How many unique values does the `cause` variable have? Hint: `mydata$cause` piped into `unique()` piped into `length()`.
 
-##Operators
+## Operators
 
 Operators are symbols in R Code that tell R how to handle different pieces of data or objects.
 
@@ -196,7 +196,7 @@ mydata %>%
 
 How would you change the above code to only include years greater than 2000 (so not including 2000 itself too)? Hint: look at the table of operators above (also in your HealthyR QuickStart Sheet).
 
-###Exercise
+### Exercise
 
 Modify the above example to filter for only year 2000, not all years greater than 2000. Save it into a variable called `mydata_year2000`.
 
@@ -209,7 +209,7 @@ mydata_year2000 = mydata %>%
 
 
 
-###Exercise
+### Exercise
 
 Let's practice this and combine multiple selections together.
 
@@ -234,7 +234,7 @@ new_data_selection = mydata %>%
 
 
 
-##Types of variables
+## Types of variables
 
 Like many other types of statistical software, R needs to know the variable type of each column. The main types are:
 
@@ -314,7 +314,7 @@ mydata = read_csv("global_burden_disease_short.csv")
 
 You can use the "Import Dataset" button in the Environment tab to get the code for importing data from Excel, SPSS, SAS, or Stata.
 
-##Adding columns to dataframes
+## Adding columns to dataframes
 
 If we wanted to add in a new column or variable to our data, we can simply use the dollar sign '$' to create a new variable inside a pre-existing piece of data:
 
@@ -386,7 +386,7 @@ mydata$deaths_millions
 
 * What do `ceiling()` and `floor()` do? Hint: sometimes you want to round a number up or down.
 
-##The combine function: c()
+## The combine function: c()
 
 The combine function combines several values: `c()`
 
@@ -407,7 +407,7 @@ examplelist
 There are 18 lines (observations) in mydata. Create a new variable using `c()` with 18 values (numbers, words, whichever you like, e.g. like we created `examplelist`). Then add it as new column to `mydata$newlist`. Advanced version: do this using a combination of `rep()` and `c()`.
 
 \newpage
-##The `paste()` function
+## The `paste()` function
 
 The `paste()` function is used to paste several words or numbers into one character variable/sentence.
 
@@ -444,7 +444,7 @@ paste("Year is", mydata$year)
 ```
 
 
-###Exercise
+### Exercise
 
 Fix this code:
 
@@ -457,7 +457,7 @@ paste(Today is, Sys.Date() )
 ```
 
 
-##Combining two dataframes
+## Combining two dataframes
 
 For combining dataframes based on shared variables we use the Joins: `left_join()`, `right_join()`, `inner_join()`, or `full_join()`. Let's split some of the variables in `mydata` between two new dataframes: `first_data` and `second_data`. For demonstrating the difference between the different joins, we will only include a subset (first 6 rows) of the dataset in `second_data`:
 
@@ -486,7 +486,7 @@ Those who have used R before, or those who come across older scripts will have s
 Investigate the four new dataframes called `combined_` using the Environment tab and discuss how the different joins (left, right, inner, full) work.
 
 
-##The `summary()` Function
+## The `summary()` Function
 
 In R, the `summary()` function provides a quick way of summarising both data or the results of statistical tests.
 
@@ -529,7 +529,7 @@ mydata %>%
 ```
 
 
-###Exercise
+### Exercise
 
 Try adding a new variable called `death_over_10m` which indicates whether there were more than 10 million deaths for a cause. The new variable should take the form 'Yes' or 'No'. 
 
@@ -546,7 +546,7 @@ mydata$death_over_10m %>% summary()
 
 ```
 
-##Extra: Creating a dataframe from scratch
+## Extra: Creating a dataframe from scratch
 
 It is rare that you will need to create a dataframe by hand as most of the time you will be reading in a data from a .csv or similar. But in some cases (e.g., when creating special labels for a plot) it might be useful, so this is how to create one:
 
@@ -573,7 +573,7 @@ newdata      = data_frame(
 
 If we used `data.frame()` instead of `data_frame()`, all our character variables (`patient_id`, `sex`) would become factors automatically. This might make sense for `sex`, but it doesn't for `patient_id`.
 
-###Exercise
+### Exercise
 
 Create a new dataframe called `my_dataframe` that looks like this:
 

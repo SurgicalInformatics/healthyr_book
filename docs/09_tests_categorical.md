@@ -1,6 +1,6 @@
 # Logistic regression
 
-##What is Logistic Regression?
+## What is Logistic Regression?
 
 As we have seen in previous sessions, regression analysis is a statistical process for estimating the relationships between variables. For instance, we may try to predict the blood pressure of a group of patients based on their age. As age and blood pressure are on a continuous scale, this is an example of linear regression. 
 
@@ -60,7 +60,7 @@ An alternative is a ratio of probabilites, called a risk ratio or relative risk.
 
 \newpage
 
-##Melanoma dataset
+## Melanoma dataset
 
 Malignant Melanoma is a cancer of the skin. It is agressive and highly invasive, making it difficult to treat.
 
@@ -75,7 +75,7 @@ This will be important in our analysis as we will creating a new variable based 
 
 Using logistic regression, we will investigate factors associated with death from malignant melanoma.
 
-###Doing logistic regression in R
+### Doing logistic regression in R
 
 There are a few different ways of creating a logistic regression in R. The `glm()` function is probably the most common and most flexible one to use. (`glm` stands for `generalised linear model`.)
 
@@ -94,7 +94,7 @@ The final `glm()` function takes the following form:
 `glm(x ~ a + b + c + d, data = data, family = "binomial")`
 
 
-##Setting up your data
+## Setting up your data
 
 The most important step to ensure a good basis to start from is to ensure your variables are well structured and your outcome variable has exactly two outcomes.
 
@@ -102,7 +102,7 @@ We will need to make sure our outcome variables and predictor variables (the one
 
 In this example, the outcome variable called `status.factor` describes whether patients died or not and will be our (dependent) variable of interest.
 
-###Worked Example
+### Worked Example
 
 
 ```r
@@ -132,7 +132,7 @@ mydata$died_melanoma.factor %>% levels()
 ## [1] "No"  "Yes"
 ```
 
-##Creating categories
+## Creating categories
 
 Now we have set up our outcome variable, we should ensure our predictor variables are prepared too.
 
@@ -140,7 +140,7 @@ Remember the stages of Melanoma? This is an important predictor of Melanoma Mort
 
 We should take this into account in our model.
 
-###Exercise
+### Exercise
 
 After sorting out your outcome variable, create a new variable called `stage.factor` to encompass the stages of melanoma based upon the thickness. In this data, the `thickness` variable is measured in millimetres too.
 
@@ -222,13 +222,13 @@ mydata %>%
 Now we are ready for some modelling!
 
 
-##Basic: One explanatory variable (predictor)
+## Basic: One explanatory variable (predictor)
 
 Lets find out what the influence of each predictor/confounding variable is on mortality from melanoma, which may help inform a more complicated regression, with multiple predictors/confounders.
 
 We'll start with whether the patient was male or female
 
-###Worked example
+### Worked example
 
 First we need to create a regression model, using `glm()`, we will then summarise it using `summary()`
 
@@ -328,7 +328,7 @@ The 2.5% is the lower bound and the 97.5% is the upper bound of the 95% confiden
 
 So we can therefore say that being male doubles your chances of dying from melanoma with an Odds Ratio of 2.03 (95% confidence interval of 1.09 to 3.79)
 
-###Exercise
+### Exercise
 
 Repeat this for all the variables contained within the data, particulary:
 
@@ -338,93 +338,55 @@ Write their odds ratios and 95% confidence intervals down for the next section!
 
 Congratulations on building your first regression model in R!
 
-##Summarizer package
+## Finalfit package
 
-We have developed our `summarizer` package to help with advanced regression modelling. We will introduce it here, but not go into detail.
+We have developed our `finalfit` package to help with advanced regression modelling. We will introduce it here, but not go into detail.
 
-Most packages can be installed with just `install.packages("package-name")`, e.g. `install.packages("survival")`.
-
-Summarizer is still in development and can be installed with `install.packages("devtools")` followed by `devtools::install_github("ewenharrison/summarizer")`. See https://github.com/ewenharrison/summarizer for more information and updates.
+See www.finalfit.org for more information and updates.
 
 
-##Summarise a list of variables by another variable
+## Summarise a list of variables by another variable
 
-We can use the summarizer package to summarise a list of variables by another variable. This is very useful for "Table 1" in many studies. 
+We can use the `finalfit` package to summarise a list of variables by another variable. This is very useful for "Table 1" in many studies. 
 
 
 ```r
-library(summarizer)
-```
-
-```
-## Loading required package: Hmisc
-```
-
-```
-## Loading required package: lattice
-```
-
-```
-## Loading required package: survival
-```
-
-```
-## Loading required package: Formula
-```
-
-```
-## 
-## Attaching package: 'Hmisc'
-```
-
-```
-## The following objects are masked from 'package:dplyr':
-## 
-##     src, summarize
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     format.pval, units
-```
-
-```r
-dependent="died_melanoma.factor"
+library(finalfit)
+dependent   = "died_melanoma.factor"
 explanatory = c("age", "sex.factor")
 
 mydata %>% 
-  summary.factorlist(dependent, explanatory, p = TRUE) -> table_result
+  summary_factorlist(dependent, explanatory, p = TRUE) -> table_result
 ```
 
 
-label        levels                No           Yes   pvalue
------------  ----------  ------------  ------------  -------
-age          Mean (SD)    51.5 (16.1)   55.1 (17.9)    0.189
-sex.factor   Female         98 (77.8)     28 (22.2)    0.024
-             Male           50 (63.3)     29 (36.7)         
+label        levels                No           Yes       p
+-----------  ----------  ------------  ------------  ------
+age          Mean (SD)    51.5 (16.1)   55.1 (17.9)   0.189
+sex.factor   Female         98 (77.8)     28 (22.2)   0.024
+             Male           50 (63.3)     29 (36.7)        
 
-##`summarizer` function for logistic regression
+## `finalfit` function for logistic regression
 
-We can then use the `summarizer` function to run a logistic regression analysis with similar syntax.
+We can then use the `finalfit` function to run a logistic regression analysis with similar syntax.
 
 
 ```r
-dependent="died_melanoma.factor"
+dependent   = "died_melanoma.factor"
 explanatory = c("sex.factor")
 
 mydata %>% 
-  summarizer(dependent, explanatory) -> model2
+  finalfit(dependent, explanatory) -> model2
 ```
 
 
-label        levels           No         Yes            OR (univariable)          OR (multivariable)
------------  -------  ----------  ----------  --------------------------  --------------------------
-sex.factor   Female    98 (66.2)   28 (49.1)                           -                           -
-             Male      50 (33.8)   29 (50.9)   2.03 (1.09-3.79, p=0.025)   2.03 (1.09-3.79, p=0.025)
+Dependent: died_melanoma.factor                    No         Yes            OR (univariable)          OR (multivariable)
+--------------------------------  -------  ----------  ----------  --------------------------  --------------------------
+sex.factor                        Female    98 (66.2)   28 (49.1)                           -                           -
+                                  Male      50 (33.8)   29 (50.9)   2.03 (1.09-3.79, p=0.025)   2.03 (1.09-3.79, p=0.025)
 
 \newpage
-##Adjusting for multiple variables in R
+## Adjusting for multiple variables in R
 
 Your first models only included one variable. It's time to scale them up.
 
@@ -432,58 +394,38 @@ Multivariable models take multiple variables and estimates how each variable pre
 
 When you see the term 'adjusted' in scientific papers, this is what it means.
 
-###Worked Example
+### Worked Example
 
 Lets adjust for `age` (as a continuous variable), `sex.factor` and `stage.factor`. Then output them as odds ratios.
 
 
 
 ```r
-dependent="died_melanoma.factor"
+dependent   = "died_melanoma.factor"
 explanatory = c("age", "sex.factor", "stage.factor")
 
 mydata %>% 
-  summarizer(dependent, explanatory) -> model3
+  finalfit(dependent, explanatory) -> model3
 ```
 
 
-label          levels                No           Yes               OR (univariable)             OR (multivariable)
--------------  ----------  ------------  ------------  -----------------------------  -----------------------------
-age            Mean (SD)    51.5 (16.1)   55.1 (17.9)      1.01 (0.99-1.03, p=0.163)      1.01 (0.99-1.03, p=0.534)
-sex.factor     Female         98 (66.2)     28 (49.1)                              -                              -
-               Male           50 (33.8)     29 (50.9)      2.03 (1.09-3.79, p=0.025)      1.62 (0.81-3.21, p=0.167)
-stage.factor   Stage I        18 (12.2)       1 (1.8)                              -                              -
-               Stage II       32 (21.6)       5 (8.8)     2.81 (0.41-56.12, p=0.362)     2.83 (0.40-56.96, p=0.363)
-               Stage III      75 (50.7)     29 (50.9)    6.96 (1.34-128.04, p=0.065)    7.17 (1.37-132.38, p=0.061)
-               Stage IV       23 (15.5)     22 (38.6)   17.22 (3.13-322.85, p=0.008)   14.30 (2.54-270.31, p=0.014)
+Dependent: died_melanoma.factor                         No           Yes               OR (univariable)             OR (multivariable)
+--------------------------------  ----------  ------------  ------------  -----------------------------  -----------------------------
+age                               Mean (SD)    51.5 (16.1)   55.1 (17.9)      1.01 (0.99-1.03, p=0.163)      1.01 (0.99-1.03, p=0.534)
+sex.factor                        Female         98 (66.2)     28 (49.1)                              -                              -
+                                  Male           50 (33.8)     29 (50.9)      2.03 (1.09-3.79, p=0.025)      1.62 (0.81-3.21, p=0.167)
+stage.factor                      Stage I        18 (12.2)       1 (1.8)                              -                              -
+                                  Stage II       32 (21.6)       5 (8.8)     2.81 (0.41-56.12, p=0.362)     2.83 (0.40-56.96, p=0.363)
+                                  Stage III      75 (50.7)     29 (50.9)    6.96 (1.34-128.04, p=0.065)    7.17 (1.37-132.38, p=0.061)
+                                  Stage IV       23 (15.5)     22 (38.6)   17.22 (3.13-322.85, p=0.008)   14.30 (2.54-270.31, p=0.014)
 
 
 ```r
-or.plot(mydata, dependent, explanatory)
+or_plot(mydata, dependent, explanatory)
 ```
 
 ```
-## Loading required package: scales
-```
-
-```
-## 
-## Attaching package: 'scales'
-```
-
-```
-## The following object is masked from 'package:purrr':
-## 
-##     discard
-```
-
-```
-## The following object is masked from 'package:readr':
-## 
-##     col_factor
-```
-
-```
+## Waiting for profiling to be done...
 ## Waiting for profiling to be done...
 ## Waiting for profiling to be done...
 ```
@@ -497,12 +439,12 @@ or.plot(mydata, dependent, explanatory)
 
 Note- when we enter age into regression models, the effect estimate is provided in terms of per unit increase. So in this case it's expressed in terms of an odds ratio per year increase (i.e. for every year in age gained odds of death increases by 1.02).
 
-###Exercise
+### Exercise
 
 Now you try making a regression that includes `ulcer.factor`.
 
 \newpage
-##Advanced: Fitting the best model
+## Advanced: Fitting the best model
 
 Now we have our preliminary model. We could leave it there.
 
@@ -518,7 +460,7 @@ These metrics are available here:
 
 ```r
 mydata %>% 
-  summarizer(dependent, explanatory, metrics=TRUE)
+  finalfit(dependent, explanatory, metrics=TRUE)
 ```
 
 ```
@@ -530,14 +472,14 @@ mydata %>%
 
 ```
 ## [[1]]
-##          label    levels          No         Yes
-## 1          age Mean (SD) 51.5 (16.1) 55.1 (17.9)
-## 2   sex.factor    Female   98 (66.2)   28 (49.1)
-## 3                   Male   50 (33.8)   29 (50.9)
-## 4 stage.factor   Stage I   18 (12.2)     1 (1.8)
-## 5               Stage II   32 (21.6)     5 (8.8)
-## 6              Stage III   75 (50.7)   29 (50.9)
-## 7               Stage IV   23 (15.5)   22 (38.6)
+##   Dependent: died_melanoma.factor                    No         Yes
+## 1                             age Mean (SD) 51.5 (16.1) 55.1 (17.9)
+## 2                      sex.factor    Female   98 (66.2)   28 (49.1)
+## 3                                      Male   50 (33.8)   29 (50.9)
+## 4                    stage.factor   Stage I   18 (12.2)     1 (1.8)
+## 5                                  Stage II   32 (21.6)     5 (8.8)
+## 6                                 Stage III   75 (50.7)   29 (50.9)
+## 7                                  Stage IV   23 (15.5)   22 (38.6)
 ##               OR (univariable)           OR (multivariable)
 ## 1    1.01 (0.99-1.03, p=0.163)    1.01 (0.99-1.03, p=0.534)
 ## 2                            -                            -
@@ -548,10 +490,10 @@ mydata %>%
 ## 7 17.22 (3.13-322.85, p=0.008) 14.30 (2.54-270.31, p=0.014)
 ## 
 ## [[2]]
-## [1] "Number in dataframe = 205, Number in model = 205, Missing = 0, AIC = 232.3, C-statistic = 0.708"
+## [1] "Number in dataframe = 205, Number in model = 205, Missing = 0, AIC = 232.3, C-statistic = 0.708, H&L = Chi-sq(8) 3.63 (p=0.889)"
 ```
 
-###Extra material: Diagnostics plots
+### Extra material: Diagnostics plots
 
 While outwith the objectives of this course, diagnostic plots for `glm` models can be produced by:
 

@@ -232,13 +232,13 @@ tidy(my_hazard)
 
 ```
 ## # A tibble: 5 x 7
-##   term            estimate std.error statistic  p.value conf.low conf.high
-##   <chr>              <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>
-## 1 sex.factorMale    0.482      0.268    1.80    7.22e-2  -0.0435     1.01 
-## 2 ulcer.factorPr…   1.39       0.298    4.67    3.04e-6   0.806      1.97 
-## 3 age.factor(20,…  -0.406      0.693   -0.586   5.58e-1  -1.77       0.953
-## 4 age.factor(40,…  -0.0451     0.613   -0.0736  9.41e-1  -1.25       1.16 
-## 5 age.factor(60,…   0.179      0.622    0.288   7.74e-1  -1.04       1.40
+##   term            estimate std.error statistic   p.value conf.low conf.high
+##   <chr>              <dbl>     <dbl>     <dbl>     <dbl>    <dbl>     <dbl>
+## 1 sex.factorMale    0.482      0.268    1.80     7.22e-2  -0.0435     1.01 
+## 2 ulcer.factorPr…   1.39       0.298    4.67     3.04e-6   0.806      1.97 
+## 3 age.factor(20,…  -0.406      0.693   -0.586    5.58e-1  -1.77       0.953
+## 4 age.factor(40,…  -0.0451     0.613   -0.0736   9.41e-1  -1.25       1.16 
+## 5 age.factor(60,…   0.179      0.622    0.288    7.74e-1  -1.04       1.40
 ```
 The interpretation of the results of model fitting are beyond the aims of this course. The exponentiated coefficient (`exp(coef)`) represents the hazard ratio. Therefore, patients with ulcers are 4-times more likely to die at any given time than those without ulcers. 
 

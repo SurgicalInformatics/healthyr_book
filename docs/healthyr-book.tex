@@ -129,7 +129,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{12-December 2018}
+    \date{16-January 2019}
 
 \usepackage[utf8]{inputenc}
 \usepackage{booktabs}
@@ -308,7 +308,7 @@ copy of this license, visit
 
 \KeywordTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{)}
 
-\NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"ewenharrison/summarizer"}\NormalTok{)}
+\NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"ewenharrison/finalfit"}\NormalTok{)}
 
 \KeywordTok{install.packages}\NormalTok{(}\StringTok{"pROC"}\NormalTok{)}
 
@@ -630,7 +630,9 @@ can't remember how it worked exactly. For finding help on things you
 have not used before, it is best to Google it. R has about 2 million
 users so someone somewhere has had the same question or problem.
 
-\#\#Starting with a blank canvas
+\hypertarget{starting-with-a-blank-canvas}{%
+\section{Starting with a blank
+canvas}\label{starting-with-a-blank-canvas}}
 
 In the first session we loaded some data that we then plotted. When we
 import data, R remembers the data and stores it in the Environment tab.
@@ -660,7 +662,8 @@ should do this (once only):
   include broken data or objects.
 \end{itemize}
 
-\#\#Working with Objects
+\hypertarget{working-with-objects}{%
+\section{Working with Objects}\label{working-with-objects}}
 
 It's sometimes difficult to appreciate how coding works without trying
 it first.
@@ -733,7 +736,8 @@ Create 3 new variables, \texttt{d}, \texttt{e}, \texttt{f} with values
 \end{Highlighting}
 \end{Shaded}
 
-\#\#Loading data
+\hypertarget{loading-data}{%
+\section{Loading data}\label{loading-data}}
 
 Before we load a new dataset, we should clear or experiments from the
 previous section: Restart R by pressing Control+Shift+F10 or Select
@@ -752,7 +756,8 @@ Now the environment is clear, lets load in the data:
 But how can we look at the data we just loaded? How do we know which
 variables it contains? Hint: the Environment tab.
 
-\#\#\#Excercise
+\hypertarget{excercise}{%
+\subsection{Excercise}\label{excercise}}
 
 Answer these question about your data:
 
@@ -812,7 +817,8 @@ How many unique values does the \texttt{cause} variable have? Hint:
 \texttt{mydata\$cause} piped into \texttt{unique()} piped into
 \texttt{length()}.
 
-\#\#Operators
+\hypertarget{operators}{%
+\section{Operators}\label{operators}}
 
 Operators are symbols in R Code that tell R how to handle different
 pieces of data or objects.
@@ -897,13 +903,15 @@ How would you change the above code to only include years greater than
 2000 (so not including 2000 itself too)? Hint: look at the table of
 operators above (also in your HealthyR QuickStart Sheet).
 
-\#\#\#Exercise
+\hypertarget{exercise-6}{%
+\subsection{Exercise}\label{exercise-6}}
 
 Modify the above example to filter for only year 2000, not all years
 greater than 2000. Save it into a variable called
 \texttt{mydata\_year2000}.
 
-\#\#\#Exercise
+\hypertarget{exercise-7}{%
+\subsection{Exercise}\label{exercise-7}}
 
 Let's practice this and combine multiple selections together.
 
@@ -926,7 +934,8 @@ and cause is ``Communicable diseases'':
 \end{Highlighting}
 \end{Shaded}
 
-\#\#Types of variables
+\hypertarget{types-of-variables}{%
+\section{Types of variables}\label{types-of-variables}}
 
 Like many other types of statistical software, R needs to know the
 variable type of each column. The main types are:
@@ -980,8 +989,8 @@ have to convert the column to a character, add it, and convert it back
 to a factor, or use \texttt{fct\_expand} to add the level and then add
 your new line.
 
-\hypertarget{exercise-6}{%
-\subsubsection{Exercise}\label{exercise-6}}
+\hypertarget{exercise-8}{%
+\subsubsection{Exercise}\label{exercise-8}}
 
 Temporarily type \texttt{fct\_inorder} anywhere in your script, then
 press F1. Read the \textbf{Description} in the Help tab and discuss with
@@ -1019,8 +1028,8 @@ sometimes called integers. Click on the blue arrow in front of
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercise-7}{%
-\subsection{Exercise}\label{exercise-7}}
+\hypertarget{exercise-9}{%
+\subsection{Exercise}\label{exercise-9}}
 
 Change the order of the levels in \texttt{mydata\$cause} so that
 ``Non-communicable diseases'' come before ``Injuries''. Hint: use F1 to
@@ -1068,7 +1077,9 @@ Tidyverse:
 You can use the ``Import Dataset'' button in the Environment tab to get
 the code for importing data from Excel, SPSS, SAS, or Stata.
 
-\#\#Adding columns to dataframes
+\hypertarget{adding-columns-to-dataframes}{%
+\section{Adding columns to
+dataframes}\label{adding-columns-to-dataframes}}
 
 If we wanted to add in a new column or variable to our data, we can
 simply use the dollar sign `\$' to create a new variable inside a
@@ -1135,8 +1146,8 @@ duplication, but it does add a new line and brackets.
 We can use \texttt{round()} to round the new variables to create
 integers.
 
-\hypertarget{exercise-8}{%
-\subsection{Exercise}\label{exercise-8}}
+\hypertarget{exercise-10}{%
+\subsection{Exercise}\label{exercise-10}}
 
 Round the new column \texttt{deaths\_millions} to no decimals:
 
@@ -1153,7 +1164,8 @@ Round the new column \texttt{deaths\_millions} to no decimals:
   you want to round a number up or down.
 \end{itemize}
 
-\#\#The combine function: c()
+\hypertarget{the-combine-function-c}{%
+\section{The combine function: c()}\label{the-combine-function-c}}
 
 The combine function combines several values: \texttt{c()}
 
@@ -1174,8 +1186,8 @@ or letters):
 ## [1] "Red"    "Yellow" "Green"  "Blue"
 \end{verbatim}
 
-\hypertarget{exercise-9}{%
-\subsection{Exercise}\label{exercise-9}}
+\hypertarget{exercise-11}{%
+\subsection{Exercise}\label{exercise-11}}
 
 There are 18 lines (observations) in mydata. Create a new variable using
 \texttt{c()} with 18 values (numbers, words, whichever you like,
@@ -1185,7 +1197,9 @@ of \texttt{rep()} and \texttt{c()}.
 
 \newpage
 
-\#\#The \texttt{paste()} function
+\hypertarget{the-paste-function}{%
+\section{\texorpdfstring{The \texttt{paste()}
+function}{The paste() function}}\label{the-paste-function}}
 
 The \texttt{paste()} function is used to paste several words or numbers
 into one character variable/sentence.
@@ -1262,7 +1276,8 @@ We can also join two different variables together using
 ## [17] "Year is 2013" "Year is 2013"
 \end{verbatim}
 
-\#\#\#Exercise
+\hypertarget{exercise-12}{%
+\subsection{Exercise}\label{exercise-12}}
 
 Fix this code:
 
@@ -1274,7 +1289,8 @@ Hint: Think about characters and quotes!
 \end{Highlighting}
 \end{Shaded}
 
-\#\#Combining two dataframes
+\hypertarget{combining-two-dataframes}{%
+\section{Combining two dataframes}\label{combining-two-dataframes}}
 
 For combining dataframes based on shared variables we use the Joins:
 \texttt{left\_join()}, \texttt{right\_join()}, \texttt{inner\_join()},
@@ -1307,14 +1323,16 @@ clearly at the front, you would have had to use the
 
 \includegraphics{images/databasejoke.jpg}
 
-\hypertarget{exercise-10}{%
-\subsection{Exercise}\label{exercise-10}}
+\hypertarget{exercise-13}{%
+\subsection{Exercise}\label{exercise-13}}
 
 Investigate the four new dataframes called \texttt{combined\_} using the
 Environment tab and discuss how the different joins (left, right, inner,
 full) work.
 
-\#\#The \texttt{summary()} Function
+\hypertarget{the-summary-function}{%
+\section{\texorpdfstring{The \texttt{summary()}
+Function}{The summary() Function}}\label{the-summary-function}}
 
 In R, the \texttt{summary()} function provides a quick way of
 summarising both data or the results of statistical tests.
@@ -1404,7 +1422,8 @@ mydata:
 \end{Highlighting}
 \end{Shaded}
 
-\#\#\#Exercise
+\hypertarget{exercise-14}{%
+\subsection{Exercise}\label{exercise-14}}
 
 Try adding a new variable called \texttt{death\_over\_10m} which
 indicates whether there were more than 10 million deaths for a cause.
@@ -1430,7 +1449,9 @@ Then use \texttt{summary()} to find out about it!
 ##   6  12
 \end{verbatim}
 
-\#\#Extra: Creating a dataframe from scratch
+\hypertarget{extra-creating-a-dataframe-from-scratch}{%
+\section{Extra: Creating a dataframe from
+scratch}\label{extra-creating-a-dataframe-from-scratch}}
 
 It is rare that you will need to create a dataframe by hand as most of
 the time you will be reading in a data from a .csv or similar. But in
@@ -1444,7 +1465,16 @@ useful, so this is how to create one:
 \NormalTok{age        =}\StringTok{ }\DecValTok{18}\OperatorTok{:}\DecValTok{27}
 
 \NormalTok{newdata =}\StringTok{ }\KeywordTok{data_frame}\NormalTok{(patient_id, sex, age)}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{verbatim}
+## Warning: `data_frame()` is deprecated, use `tibble()`.
+## This warning is displayed once per session.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{#same as}
 
 \NormalTok{newdata      =}\StringTok{ }\KeywordTok{data_frame}\NormalTok{(}
@@ -1460,7 +1490,8 @@ our character variables (\texttt{patient\_id}, \texttt{sex}) would
 become factors automatically. This might make sense for \texttt{sex},
 but it doesn't for \texttt{patient\_id}.
 
-\#\#\#Exercise
+\hypertarget{exercise-15}{%
+\subsection{Exercise}\label{exercise-15}}
 
 Create a new dataframe called \texttt{my\_dataframe} that looks like
 this:
@@ -1725,8 +1756,8 @@ per year:
   year.
 \end{itemize}
 
-\hypertarget{exercise-11}{%
-\subsection{Exercise}\label{exercise-11}}
+\hypertarget{exercise-16}{%
+\subsection{Exercise}\label{exercise-16}}
 
 Compare the sizes - number of rows (observations) and number of columns
 (variables) - of \texttt{mydata}, \texttt{summary\_data1}, and
@@ -1742,8 +1773,8 @@ Compare the sizes - number of rows (observations) and number of columns
   have 2 and 3. Which variables got dropped? Why?
 \end{itemize}
 
-\hypertarget{exercise-12}{%
-\subsection{Exercise}\label{exercise-12}}
+\hypertarget{exercise-17}{%
+\subsection{Exercise}\label{exercise-17}}
 
 For each cause, calculate its percentage to total deaths in each year.
 
@@ -1777,8 +1808,8 @@ the original data. \texttt{summarise()}, on the other hand, condenses
 the data into a minimal table that only includes the variables
 specifically asked for.
 
-\hypertarget{exercise-13}{%
-\subsection{Exercise}\label{exercise-13}}
+\hypertarget{exercise-18}{%
+\subsection{Exercise}\label{exercise-18}}
 
 Investigate these examples to learn how \texttt{summarise()} and
 \texttt{mutate()} differ.
@@ -1853,8 +1884,8 @@ columns:
 ## 6  2013 21.53%                  8.73%    69.75%
 \end{verbatim}
 
-\hypertarget{exercise-14}{%
-\subsection{Exercise}\label{exercise-14}}
+\hypertarget{exercise-19}{%
+\subsection{Exercise}\label{exercise-19}}
 
 Calculate the percentage of male and female deaths for each year. Spread
 it to a human readable form:
@@ -1981,8 +2012,8 @@ The opposite of \texttt{spread()} is \texttt{gather()}:
 ## 12  2013 Male   55%
 \end{verbatim}
 
-\hypertarget{exercise-15}{%
-\subsection{Exercise}\label{exercise-15}}
+\hypertarget{exercise-20}{%
+\subsection{Exercise}\label{exercise-20}}
 
 Test what happens when you
 
@@ -2050,8 +2081,8 @@ We talked about the pros and cons of working with factors in Session 2.
 Overall, they are very useful for the type of analyses involved in
 medical research.
 
-\hypertarget{exercise-16}{%
-\subsection{Exercise}\label{exercise-16}}
+\hypertarget{exercise-21}{%
+\subsection{Exercise}\label{exercise-21}}
 
 Explain how and why these two plots are different.
 
@@ -2178,8 +2209,8 @@ integers (so like number codes), only the function
 \texttt{as.character()} will turn a factor back into a collated format
 which can then be converted into a number or date.)
 
-\hypertarget{exercise-17}{%
-\subsection{Exercise}\label{exercise-17}}
+\hypertarget{exercise-22}{%
+\subsection{Exercise}\label{exercise-22}}
 
 Investigate the two examples converting the \texttt{year.factor}
 variable back to a number.
@@ -2388,8 +2419,8 @@ Plot life expectancy against GDP per capita
 
 \includegraphics{04_plotting_files/figure-latex/unnamed-chunk-2-1.pdf}
 
-\hypertarget{exercise-18}{%
-\subsection{Exercise}\label{exercise-18}}
+\hypertarget{exercise-23}{%
+\subsection{Exercise}\label{exercise-23}}
 
 Follow the step-by-step instructions to transform the grey plot just
 above into this:
@@ -2451,8 +2482,8 @@ you want data points grouped to lines: \texttt{group\ =\ country} in
 
 \includegraphics{04_plotting_files/figure-latex/unnamed-chunk-5-1.pdf}
 
-\hypertarget{exercise-19}{%
-\subsection{Exercise}\label{exercise-19}}
+\hypertarget{exercise-24}{%
+\subsection{Exercise}\label{exercise-24}}
 
 Follow the step-by-step instructions to transform the grey plot just
 above into this:
@@ -2535,8 +2566,8 @@ Plot the distribution of life expectancies within each continent at year
 
 \includegraphics{04_plotting_files/figure-latex/unnamed-chunk-9-1.pdf}
 
-\hypertarget{exercise-20}{%
-\subsection{Exercise}\label{exercise-20}}
+\hypertarget{exercise-25}{%
+\subsection{Exercise}\label{exercise-25}}
 
 Add individual (country) points on top of the box plot:
 
@@ -2602,8 +2633,8 @@ countries in each continent without summarising the data beforehand:
 
 \includegraphics{04_plotting_files/figure-latex/unnamed-chunk-14-1.pdf}
 
-\hypertarget{exercise-21}{%
-\subsection{Exercise}\label{exercise-21}}
+\hypertarget{exercise-26}{%
+\subsection{Exercise}\label{exercise-26}}
 
 Create this barplot of life expectancies in European countries (year
 2007). Hint: \texttt{coord\_flip()} makes the bars horizontal,
@@ -2647,8 +2678,8 @@ points will be coloured:
 \hypertarget{extra-optional-exercises}{%
 \section{Extra: Optional exercises}\label{extra-optional-exercises}}
 
-\hypertarget{exercise-22}{%
-\subsection{Exercise}\label{exercise-22}}
+\hypertarget{exercise-27}{%
+\subsection{Exercise}\label{exercise-27}}
 
 Make this:
 
@@ -2675,8 +2706,8 @@ Make this:
 
 \newpage
 
-\hypertarget{exercise-23}{%
-\subsection{Exercise}\label{exercise-23}}
+\hypertarget{exercise-28}{%
+\subsection{Exercise}\label{exercise-28}}
 
 Make this:
 
@@ -2883,7 +2914,8 @@ remove this padding with the expand option:
 
 \includegraphics{05_fine_tuning_plots_files/figure-latex/unnamed-chunk-6-1.pdf}
 
-\#\#\#Exercise
+\hypertarget{exercise-29}{%
+\subsection{Exercise}\label{exercise-29}}
 
 How is this one different to the previous:
 
@@ -3243,7 +3275,9 @@ continent}\label{histogram-for-each-continent}}
 
 \includegraphics{06_tests_continuous_files/figure-latex/unnamed-chunk-3-1.pdf}
 
-\#\#\#Q-Q plot for each continent
+\hypertarget{q-q-plot-for-each-continent}{%
+\subsection{Q-Q plot for each
+continent}\label{q-q-plot-for-each-continent}}
 
 With \texttt{ggplot()}, we can drawa Q-Q plot for each subgroup very
 efficiently:
@@ -3291,8 +3325,8 @@ single Q-Q plot with less code:
 
 \includegraphics{06_tests_continuous_files/figure-latex/unnamed-chunk-6-1.pdf}
 
-\hypertarget{exercise-24}{%
-\subsection{Exercise}\label{exercise-24}}
+\hypertarget{exercise-30}{%
+\subsection{Exercise}\label{exercise-30}}
 
 Make a histogram, Q-Q plot, and a box-plot for the life expectancy for a
 continent (you choose!) but for all years - does the data appear
@@ -3421,8 +3455,8 @@ Thus, now we understand the output structure we can extract any result.
 ## [1] 0.3690064
 \end{verbatim}
 
-\hypertarget{exercise-25}{%
-\subsection{Exercise}\label{exercise-25}}
+\hypertarget{exercise-31}{%
+\subsection{Exercise}\label{exercise-31}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -3467,8 +3501,8 @@ significant different to 77 years in 2007.
 ##   77.6486
 \end{verbatim}
 
-\hypertarget{exercise-26}{%
-\subsection{Exercise}\label{exercise-26}}
+\hypertarget{exercise-32}{%
+\subsection{Exercise}\label{exercise-32}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -3607,7 +3641,7 @@ this difference as a p-value?
 \begin{verbatim}
 ## # A tibble: 3 x 3
 ##   group1 group2     p.value
-## * <chr>  <chr>        <dbl>
+##   <chr>  <chr>        <dbl>
 ## 1 Asia   Americas 0.0601   
 ## 2 Europe Americas 0.0209   
 ## 3 Europe Asia     0.0000191
@@ -3631,8 +3665,8 @@ variable is to use the cut() function
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercise-27}{%
-\subsection{Exercise}\label{exercise-27}}
+\hypertarget{exercise-33}{%
+\subsection{Exercise}\label{exercise-33}}
 
 When we used \texttt{cut()} to divide country populations into
 quantiles, the labels it assigned are not very neat:
@@ -3661,8 +3695,8 @@ Use \texttt{fct\_recode()} to change them to something nicer, e.g.,
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercise-28}{%
-\subsection{Exercise}\label{exercise-28}}
+\hypertarget{exercise-34}{%
+\subsection{Exercise}\label{exercise-34}}
 
 Perform ANOVA to test for a difference in mean life expectancy by
 country population factor (\texttt{mydata\$pop.factor}). Remember to
@@ -3912,8 +3946,8 @@ years:
 
 \includegraphics{07_linear_regression_files/figure-latex/unnamed-chunk-2-1.pdf}
 
-\hypertarget{exercise-29}{%
-\subsection{Exercise}\label{exercise-29}}
+\hypertarget{exercise-35}{%
+\subsection{Exercise}\label{exercise-35}}
 
 Save the above filter into a new variable called \texttt{eurodata}:
 
@@ -3924,8 +3958,8 @@ Save the above filter into a new variable called \texttt{eurodata}:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercise-30}{%
-\subsection{Exercise}\label{exercise-30}}
+\hypertarget{exercise-36}{%
+\subsection{Exercise}\label{exercise-36}}
 
 Create the same plot as above (life expectancy over time), but for just
 Turkey and the United Kingdom, and add linear regression lines. Hint:
@@ -3968,8 +4002,8 @@ coefficients (linear increase per year):
 ## -924.5898865    0.4972399
 \end{verbatim}
 
-\hypertarget{exercise-31}{%
-\subsection{Exercise}\label{exercise-31}}
+\hypertarget{exercise-37}{%
+\subsection{Exercise}\label{exercise-37}}
 
 To make the intercepts more meaningful, add a new column called
 \texttt{year\_from1952} and redo \texttt{fit\_turkey} and
@@ -4058,10 +4092,10 @@ Accessing all other information about our regression model:
 
 \begin{verbatim}
 ## # A tibble: 1 x 11
-##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC
-## *     <dbl>         <dbl> <dbl>     <dbl>    <dbl> <int>  <dbl> <dbl>
-## 1     0.984         0.983 0.442      633. 2.26e-10     2  -6.14  18.3
-## # ... with 3 more variables: BIC <dbl>, deviance <dbl>, df.residual <int>
+##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <int>  <dbl> <dbl> <dbl>
+## 1     0.984         0.983 0.442      633. 2.26e-10     2  -6.14  18.3  19.7
+## # ... with 2 more variables: deviance <dbl>, df.residual <int>
 \end{verbatim}
 
 \hypertarget{if-you-are-new-to-linear-regression}{%
@@ -4117,8 +4151,8 @@ These examples of multiple regression include two variables:
 \texttt{year} and \texttt{country}, but we could include more by just
 adding them with \texttt{+}.
 
-\hypertarget{exercise-32}{%
-\subsection{Exercise}\label{exercise-32}}
+\hypertarget{exercise-38}{%
+\subsection{Exercise}\label{exercise-38}}
 
 Open the second Shiny app (``Multiple regression'') and see how:
 
@@ -4140,8 +4174,8 @@ Open the second Shiny app (``Multiple regression'') and see how:
   have different intercepts and different slopes.
 \end{itemize}
 
-\hypertarget{exercise-33}{%
-\subsection{Exercise}\label{exercise-33}}
+\hypertarget{exercise-39}{%
+\subsection{Exercise}\label{exercise-39}}
 
 Convince yourself that using an fully interactive multivariable model is
 the same as running several separate simple linear regression models.
@@ -4215,8 +4249,8 @@ actually in the Intercept = 46.02 and in year\_from1952 = 0.50. Can you
 make out the intercept and slope for the UK? Are they the same as in the
 simple linear regression model?
 
-\hypertarget{exercise-34}{%
-\subsection{Exercise}\label{exercise-34}}
+\hypertarget{exercise-40}{%
+\subsection{Exercise}\label{exercise-40}}
 
 Add a third country (e.g. ``Portugal'') to
 \texttt{filter(country\ \%in\%\ c("Turkey",\ "United\ Kingdom"))} in the
@@ -4545,8 +4579,8 @@ extract results. \newpage
 ## 
 \end{verbatim}
 
-\hypertarget{exercise-35}{%
-\subsection{Exercise}\label{exercise-35}}
+\hypertarget{exercise-41}{%
+\subsection{Exercise}\label{exercise-41}}
 
 Use the 3 methods (\texttt{table}, \texttt{chisq.test},
 \texttt{CrossTable}) to test \texttt{status.factor} against
@@ -4821,8 +4855,8 @@ Or combine everything together without the intermediate
 ## 2 Present      49 (33.1) 41 (71.9)
 \end{verbatim}
 
-\hypertarget{exercise-36}{%
-\subsection{Exercise}\label{exercise-36}}
+\hypertarget{exercise-42}{%
+\subsection{Exercise}\label{exercise-42}}
 
 By changing one and only one word at a time in the above block (the
 ``Combine everything together'' section)
@@ -4851,7 +4885,9 @@ Solution: The only thing you need to change is the first variable in
 \hypertarget{logistic-regression}{%
 \chapter{Logistic regression}\label{logistic-regression}}
 
-\#\#What is Logistic Regression?
+\hypertarget{what-is-logistic-regression}{%
+\section{What is Logistic
+Regression?}\label{what-is-logistic-regression}}
 
 As we have seen in previous sessions, regression analysis is a
 statistical process for estimating the relationships between variables.
@@ -4959,7 +4995,8 @@ are the main expression of results in logistic regression analysis.
 
 \newpage
 
-\#\#Melanoma dataset
+\hypertarget{melanoma-dataset}{%
+\section{Melanoma dataset}\label{melanoma-dataset}}
 
 Malignant Melanoma is a cancer of the skin. It is agressive and highly
 invasive, making it difficult to treat.
@@ -4985,7 +5022,9 @@ variable based upon this.
 Using logistic regression, we will investigate factors associated with
 death from malignant melanoma.
 
-\#\#\#Doing logistic regression in R
+\hypertarget{doing-logistic-regression-in-r}{%
+\subsection{Doing logistic regression in
+R}\label{doing-logistic-regression-in-r}}
 
 There are a few different ways of creating a logistic regression in R.
 The \texttt{glm()} function is probably the most common and most
@@ -5014,7 +5053,8 @@ The final \texttt{glm()} function takes the following form:
 
 \texttt{glm(x\ \textasciitilde{}\ a\ +\ b\ +\ c\ +\ d,\ data\ =\ data,\ family\ =\ "binomial")}
 
-\#\#Setting up your data
+\hypertarget{setting-up-your-data}{%
+\section{Setting up your data}\label{setting-up-your-data}}
 
 The most important step to ensure a good basis to start from is to
 ensure your variables are well structured and your outcome variable has
@@ -5027,7 +5067,8 @@ In this example, the outcome variable called \texttt{status.factor}
 describes whether patients died or not and will be our (dependent)
 variable of interest.
 
-\#\#\#Worked Example
+\hypertarget{worked-example}{%
+\subsection{Worked Example}\label{worked-example}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5063,7 +5104,8 @@ melanoma).
 ## [1] "No"  "Yes"
 \end{verbatim}
 
-\#\#Creating categories
+\hypertarget{creating-categories}{%
+\section{Creating categories}\label{creating-categories}}
 
 Now we have set up our outcome variable, we should ensure our predictor
 variables are prepared too.
@@ -5073,7 +5115,8 @@ Melanoma Mortality based upon the scientific literature.
 
 We should take this into account in our model.
 
-\#\#\#Exercise
+\hypertarget{exercise-43}{%
+\subsection{Exercise}\label{exercise-43}}
 
 After sorting out your outcome variable, create a new variable called
 \texttt{stage.factor} to encompass the stages of melanoma based upon the
@@ -5165,7 +5208,9 @@ first!}\label{always-plot-your-data-first}}
 
 Now we are ready for some modelling!
 
-\#\#Basic: One explanatory variable (predictor)
+\hypertarget{basic-one-explanatory-variable-predictor}{%
+\section{Basic: One explanatory variable
+(predictor)}\label{basic-one-explanatory-variable-predictor}}
 
 Lets find out what the influence of each predictor/confounding variable
 is on mortality from melanoma, which may help inform a more complicated
@@ -5173,7 +5218,8 @@ regression, with multiple predictors/confounders.
 
 We'll start with whether the patient was male or female
 
-\#\#\#Worked example
+\hypertarget{worked-example-1}{%
+\subsection{Worked example}\label{worked-example-1}}
 
 First we need to create a regression model, using \texttt{glm()}, we
 will then summarise it using \texttt{summary()}
@@ -5290,7 +5336,8 @@ So we can therefore say that being male doubles your chances of dying
 from melanoma with an Odds Ratio of 2.03 (95\% confidence interval of
 1.09 to 3.79)
 
-\#\#\#Exercise
+\hypertarget{exercise-44}{%
+\subsection{Exercise}\label{exercise-44}}
 
 Repeat this for all the variables contained within the data,
 particulary:
@@ -5303,78 +5350,36 @@ section!
 
 Congratulations on building your first regression model in R!
 
-\#\#Summarizer package
+\hypertarget{finalfit-package}{%
+\section{Finalfit package}\label{finalfit-package}}
 
-We have developed our \texttt{summarizer} package to help with advanced
+We have developed our \texttt{finalfit} package to help with advanced
 regression modelling. We will introduce it here, but not go into detail.
 
-Most packages can be installed with just
-\texttt{install.packages("package-name")}, e.g.
-\texttt{install.packages("survival")}.
+See www.finalfit.org for more information and updates.
 
-Summarizer is still in development and can be installed with
-\texttt{install.packages("devtools")} followed by
-\texttt{devtools::install\_github("ewenharrison/summarizer")}. See
-\url{https://github.com/ewenharrison/summarizer} for more information
-and updates.
+\hypertarget{summarise-a-list-of-variables-by-another-variable}{%
+\section{Summarise a list of variables by another
+variable}\label{summarise-a-list-of-variables-by-another-variable}}
 
-\#\#Summarise a list of variables by another variable
-
-We can use the summarizer package to summarise a list of variables by
-another variable. This is very useful for ``Table 1'' in many studies.
+We can use the \texttt{finalfit} package to summarise a list of
+variables by another variable. This is very useful for ``Table 1'' in
+many studies.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(summarizer)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Loading required package: Hmisc
-\end{verbatim}
-
-\begin{verbatim}
-## Loading required package: lattice
-\end{verbatim}
-
-\begin{verbatim}
-## Loading required package: survival
-\end{verbatim}
-
-\begin{verbatim}
-## Loading required package: Formula
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Attaching package: 'Hmisc'
-\end{verbatim}
-
-\begin{verbatim}
-## The following objects are masked from 'package:dplyr':
-## 
-##     src, summarize
-\end{verbatim}
-
-\begin{verbatim}
-## The following objects are masked from 'package:base':
-## 
-##     format.pval, units
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dependent=}\StringTok{"died_melanoma.factor"}
+\KeywordTok{library}\NormalTok{(finalfit)}
+\NormalTok{dependent   =}\StringTok{ "died_melanoma.factor"}
 \NormalTok{explanatory =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"age"}\NormalTok{, }\StringTok{"sex.factor"}\NormalTok{)}
 
 \NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{summary.factorlist}\NormalTok{(dependent, explanatory, }\DataTypeTok{p =} \OtherTok{TRUE}\NormalTok{) ->}\StringTok{ }\NormalTok{table_result}
+\StringTok{  }\KeywordTok{summary_factorlist}\NormalTok{(dependent, explanatory, }\DataTypeTok{p =} \OtherTok{TRUE}\NormalTok{) ->}\StringTok{ }\NormalTok{table_result}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{tabular}{l|l|r|r|r}
 \hline
-label & levels & No & Yes & pvalue\\
+label & levels & No & Yes & p\\
 \hline
 age & Mean (SD) & 51.5 (16.1) & 55.1 (17.9) & 0.189\\
 \hline
@@ -5384,24 +5389,26 @@ sex.factor & Female & 98 (77.8) & 28 (22.2) & 0.024\\
 \hline
 \end{tabular}
 
-\#\#\texttt{summarizer} function for logistic regression
+\hypertarget{finalfit-function-for-logistic-regression}{%
+\section{\texorpdfstring{\texttt{finalfit} function for logistic
+regression}{finalfit function for logistic regression}}\label{finalfit-function-for-logistic-regression}}
 
-We can then use the \texttt{summarizer} function to run a logistic
+We can then use the \texttt{finalfit} function to run a logistic
 regression analysis with similar syntax.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{dependent=}\StringTok{"died_melanoma.factor"}
+\NormalTok{dependent   =}\StringTok{ "died_melanoma.factor"}
 \NormalTok{explanatory =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"sex.factor"}\NormalTok{)}
 
 \NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{summarizer}\NormalTok{(dependent, explanatory) ->}\StringTok{ }\NormalTok{model2}
+\StringTok{  }\KeywordTok{finalfit}\NormalTok{(dependent, explanatory) ->}\StringTok{ }\NormalTok{model2}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{tabular}{l|l|r|r|r|r}
 \hline
-label & levels & No & Yes & OR (univariable) & OR (multivariable)\\
+Dependent: died\_melanoma.factor &  & No & Yes & OR (univariable) & OR (multivariable)\\
 \hline
 sex.factor & Female & 98 (66.2) & 28 (49.1) & - & -\\
 \hline
@@ -5411,7 +5418,9 @@ sex.factor & Female & 98 (66.2) & 28 (49.1) & - & -\\
 
 \newpage
 
-\#\#Adjusting for multiple variables in R
+\hypertarget{adjusting-for-multiple-variables-in-r}{%
+\section{Adjusting for multiple variables in
+R}\label{adjusting-for-multiple-variables-in-r}}
 
 Your first models only included one variable. It's time to scale them
 up.
@@ -5424,7 +5433,8 @@ you end up with a model that calculates the adjusted effect estimate
 When you see the term `adjusted' in scientific papers, this is what it
 means.
 
-\#\#\#Worked Example
+\hypertarget{worked-example-2}{%
+\subsection{Worked Example}\label{worked-example-2}}
 
 Lets adjust for \texttt{age} (as a continuous variable),
 \texttt{sex.factor} and \texttt{stage.factor}. Then output them as odds
@@ -5432,17 +5442,17 @@ ratios.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{dependent=}\StringTok{"died_melanoma.factor"}
+\NormalTok{dependent   =}\StringTok{ "died_melanoma.factor"}
 \NormalTok{explanatory =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"age"}\NormalTok{, }\StringTok{"sex.factor"}\NormalTok{, }\StringTok{"stage.factor"}\NormalTok{)}
 
 \NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{summarizer}\NormalTok{(dependent, explanatory) ->}\StringTok{ }\NormalTok{model3}
+\StringTok{  }\KeywordTok{finalfit}\NormalTok{(dependent, explanatory) ->}\StringTok{ }\NormalTok{model3}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{tabular}{l|l|r|r|r|r}
 \hline
-label & levels & No & Yes & OR (univariable) & OR (multivariable)\\
+Dependent: died\_melanoma.factor &  & No & Yes & OR (univariable) & OR (multivariable)\\
 \hline
 age & Mean (SD) & 51.5 (16.1) & 55.1 (17.9) & 1.01 (0.99-1.03, p=0.163) & 1.01 (0.99-1.03, p=0.534)\\
 \hline
@@ -5462,32 +5472,12 @@ stage.factor & Stage I & 18 (12.2) & 1 (1.8) & - & -\\
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{or.plot}\NormalTok{(mydata, dependent, explanatory)}
+\KeywordTok{or_plot}\NormalTok{(mydata, dependent, explanatory)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Loading required package: scales
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Attaching package: 'scales'
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:purrr':
-## 
-##     discard
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:readr':
-## 
-##     col_factor
-\end{verbatim}
-
-\begin{verbatim}
+## Waiting for profiling to be done...
 ## Waiting for profiling to be done...
 ## Waiting for profiling to be done...
 \end{verbatim}
@@ -5503,13 +5493,16 @@ provided in terms of per unit increase. So in this case it's expressed
 in terms of an odds ratio per year increase (i.e.~for every year in age
 gained odds of death increases by 1.02).
 
-\#\#\#Exercise
+\hypertarget{exercise-45}{%
+\subsection{Exercise}\label{exercise-45}}
 
 Now you try making a regression that includes \texttt{ulcer.factor}.
 
 \newpage
 
-\#\#Advanced: Fitting the best model
+\hypertarget{advanced-fitting-the-best-model}{%
+\section{Advanced: Fitting the best
+model}\label{advanced-fitting-the-best-model}}
 
 Now we have our preliminary model. We could leave it there.
 
@@ -5531,7 +5524,7 @@ These metrics are available here:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{summarizer}\NormalTok{(dependent, explanatory, }\DataTypeTok{metrics=}\OtherTok{TRUE}\NormalTok{)}
+\StringTok{  }\KeywordTok{finalfit}\NormalTok{(dependent, explanatory, }\DataTypeTok{metrics=}\OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5544,14 +5537,14 @@ These metrics are available here:
 
 \begin{verbatim}
 ## [[1]]
-##          label    levels          No         Yes
-## 1          age Mean (SD) 51.5 (16.1) 55.1 (17.9)
-## 2   sex.factor    Female   98 (66.2)   28 (49.1)
-## 3                   Male   50 (33.8)   29 (50.9)
-## 4 stage.factor   Stage I   18 (12.2)     1 (1.8)
-## 5               Stage II   32 (21.6)     5 (8.8)
-## 6              Stage III   75 (50.7)   29 (50.9)
-## 7               Stage IV   23 (15.5)   22 (38.6)
+##   Dependent: died_melanoma.factor                    No         Yes
+## 1                             age Mean (SD) 51.5 (16.1) 55.1 (17.9)
+## 2                      sex.factor    Female   98 (66.2)   28 (49.1)
+## 3                                      Male   50 (33.8)   29 (50.9)
+## 4                    stage.factor   Stage I   18 (12.2)     1 (1.8)
+## 5                                  Stage II   32 (21.6)     5 (8.8)
+## 6                                 Stage III   75 (50.7)   29 (50.9)
+## 7                                  Stage IV   23 (15.5)   22 (38.6)
 ##               OR (univariable)           OR (multivariable)
 ## 1    1.01 (0.99-1.03, p=0.163)    1.01 (0.99-1.03, p=0.534)
 ## 2                            -                            -
@@ -5562,10 +5555,12 @@ These metrics are available here:
 ## 7 17.22 (3.13-322.85, p=0.008) 14.30 (2.54-270.31, p=0.014)
 ## 
 ## [[2]]
-## [1] "Number in dataframe = 205, Number in model = 205, Missing = 0, AIC = 232.3, C-statistic = 0.708"
+## [1] "Number in dataframe = 205, Number in model = 205, Missing = 0, AIC = 232.3, C-statistic = 0.708, H&L = Chi-sq(8) 3.63 (p=0.889)"
 \end{verbatim}
 
-\#\#\#Extra material: Diagnostics plots
+\hypertarget{extra-material-diagnostics-plots}{%
+\subsection{Extra material: Diagnostics
+plots}\label{extra-material-diagnostics-plots}}
 
 While outwith the objectives of this course, diagnostic plots for
 \texttt{glm} models can be produced by:
@@ -5773,8 +5768,8 @@ publication).
 
 \includegraphics{10_survival_files/figure-latex/unnamed-chunk-7-1.pdf}
 
-\hypertarget{exercise-37}{%
-\subsection{Exercise}\label{exercise-37}}
+\hypertarget{exercise-46}{%
+\subsection{Exercise}\label{exercise-46}}
 
 Using the above scripts, perform a univariable Kaplam Meier analysis to
 determine if \texttt{ulcer.factor} influences overall survival. Hint:
@@ -5887,13 +5882,13 @@ proportional hazard regression analysis.
 
 \begin{verbatim}
 ## # A tibble: 5 x 7
-##   term            estimate std.error statistic  p.value conf.low conf.high
-##   <chr>              <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>
-## 1 sex.factorMale    0.482      0.268    1.80    7.22e-2  -0.0435     1.01 
-## 2 ulcer.factorPr~   1.39       0.298    4.67    3.04e-6   0.806      1.97 
-## 3 age.factor(20,~  -0.406      0.693   -0.586   5.58e-1  -1.77       0.953
-## 4 age.factor(40,~  -0.0451     0.613   -0.0736  9.41e-1  -1.25       1.16 
-## 5 age.factor(60,~   0.179      0.622    0.288   7.74e-1  -1.04       1.40
+##   term            estimate std.error statistic   p.value conf.low conf.high
+##   <chr>              <dbl>     <dbl>     <dbl>     <dbl>    <dbl>     <dbl>
+## 1 sex.factorMale    0.482      0.268    1.80     7.22e-2  -0.0435     1.01 
+## 2 ulcer.factorPr~   1.39       0.298    4.67     3.04e-6   0.806      1.97 
+## 3 age.factor(20,~  -0.406      0.693   -0.586    5.58e-1  -1.77       0.953
+## 4 age.factor(40,~  -0.0451     0.613   -0.0736   9.41e-1  -1.25       1.16 
+## 5 age.factor(60,~   0.179      0.622    0.288    7.74e-1  -1.04       1.40
 \end{verbatim}
 
 The interpretation of the results of model fitting are beyond the aims
@@ -5945,8 +5940,8 @@ worse or better over time. This can be checked.
 
 Hazard decreases a little between 2 and 5 years, but is acceptable.
 
-\hypertarget{exercise-38}{%
-\subsection{Exercise}\label{exercise-38}}
+\hypertarget{exercise-47}{%
+\subsection{Exercise}\label{exercise-47}}
 
 Create a new CPH model, but now include the variable \texttt{thickness}
 as a variable. How would you interpret the output? Is it an independent

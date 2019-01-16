@@ -22,7 +22,7 @@
   <meta name="twitter:description" content="A HealthyR texbook for our 2.5-day quickstart training course." />
   <meta name="twitter:image" content="images/healthyr_book_cover.png" />
 
-<meta name="author" content="Riinu Ots and Ewen Harrison">
+<meta name="author" content="Ewen Harrison and Riinu Ots">
 
 
 
@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="summarizer-function-for-logistic-regression.html">
+<link rel="prev" href="finalfit-function-for-logistic-regression.html">
 <link rel="next" href="advanced-fitting-the-best-model.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,41 +49,69 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -346,9 +374,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.7.1" data-path="basic-one-explanatory-variable-predictor.html"><a href="basic-one-explanatory-variable-predictor.html#worked-example-1"><i class="fa fa-check"></i><b>9.7.1</b> Worked example</a></li>
 <li class="chapter" data-level="9.7.2" data-path="basic-one-explanatory-variable-predictor.html"><a href="basic-one-explanatory-variable-predictor.html#exercise-44"><i class="fa fa-check"></i><b>9.7.2</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.8" data-path="summarizer-package.html"><a href="summarizer-package.html"><i class="fa fa-check"></i><b>9.8</b> Summarizer package</a></li>
+<li class="chapter" data-level="9.8" data-path="finalfit-package.html"><a href="finalfit-package.html"><i class="fa fa-check"></i><b>9.8</b> Finalfit package</a></li>
 <li class="chapter" data-level="9.9" data-path="summarise-a-list-of-variables-by-another-variable.html"><a href="summarise-a-list-of-variables-by-another-variable.html"><i class="fa fa-check"></i><b>9.9</b> Summarise a list of variables by another variable</a></li>
-<li class="chapter" data-level="9.10" data-path="summarizer-function-for-logistic-regression.html"><a href="summarizer-function-for-logistic-regression.html"><i class="fa fa-check"></i><b>9.10</b> <code>summarizer</code> function for logistic regression</a></li>
+<li class="chapter" data-level="9.10" data-path="finalfit-function-for-logistic-regression.html"><a href="finalfit-function-for-logistic-regression.html"><i class="fa fa-check"></i><b>9.10</b> <code>finalfit</code> function for logistic regression</a></li>
 <li class="chapter" data-level="9.11" data-path="adjusting-for-multiple-variables-in-r.html"><a href="adjusting-for-multiple-variables-in-r.html"><i class="fa fa-check"></i><b>9.11</b> Adjusting for multiple variables in R</a><ul>
 <li class="chapter" data-level="9.11.1" data-path="adjusting-for-multiple-variables-in-r.html"><a href="adjusting-for-multiple-variables-in-r.html#worked-example-2"><i class="fa fa-check"></i><b>9.11.1</b> Worked Example</a></li>
 <li class="chapter" data-level="9.11.2" data-path="adjusting-for-multiple-variables-in-r.html"><a href="adjusting-for-multiple-variables-in-r.html#exercise-45"><i class="fa fa-check"></i><b>9.11.2</b> Exercise</a></li>
@@ -405,16 +433,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="worked-example-2" class="section level3">
 <h3><span class="header-section-number">9.11.1</span> Worked Example</h3>
 <p>Lets adjust for <code>age</code> (as a continuous variable), <code>sex.factor</code> and <code>stage.factor</code>. Then output them as odds ratios.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dependent=<span class="st">&quot;died_melanoma.factor&quot;</span>
-explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;sex.factor&quot;</span>, <span class="st">&quot;stage.factor&quot;</span>)
-
-mydata <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarizer</span>(dependent, explanatory) -&gt;<span class="st"> </span>model3</code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1">dependent   =<span class="st"> &quot;died_melanoma.factor&quot;</span></a>
+<a class="sourceLine" id="cb290-2" data-line-number="2">explanatory =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;sex.factor&quot;</span>, <span class="st">&quot;stage.factor&quot;</span>)</a>
+<a class="sourceLine" id="cb290-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb290-4" data-line-number="4">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb290-5" data-line-number="5"><span class="st">  </span><span class="kw">finalfit</span>(dependent, explanatory) -&gt;<span class="st"> </span>model3</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th align="left">label</th>
-<th align="left">levels</th>
+<th align="left">Dependent: died_melanoma.factor</th>
+<th></th>
 <th align="right">No</th>
 <th align="right">Yes</th>
 <th align="right">OR (univariable)</th>
@@ -424,73 +452,65 @@ mydata <span class="op">%&gt;%</span><span class="st"> </span>
 <tbody>
 <tr class="odd">
 <td align="left">age</td>
-<td align="left">Mean (SD)</td>
-<td align="right">50 (15.9)</td>
-<td align="right">57.1 (17.2)</td>
-<td align="right">1.03 (1.01-1.05, p=0.004)</td>
-<td align="right">1.02 (1.00-1.04, p=0.033)</td>
+<td>Mean (SD)</td>
+<td align="right">51.5 (16.1)</td>
+<td align="right">55.1 (17.9)</td>
+<td align="right">1.01 (0.99-1.03, p=0.163)</td>
+<td align="right">1.01 (0.99-1.03, p=0.534)</td>
 </tr>
 <tr class="even">
 <td align="left">sex.factor</td>
-<td align="left">Female</td>
-<td align="right">91 (67.9)</td>
-<td align="right">35 (49.3)</td>
+<td>Female</td>
+<td align="right">98 (66.2)</td>
+<td align="right">28 (49.1)</td>
 <td align="right">-</td>
 <td align="right">-</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">Male</td>
-<td align="right">43 (32.1)</td>
-<td align="right">36 (50.7)</td>
-<td align="right">2.18 (1.21-3.94, p=0.010)</td>
-<td align="right">1.70 (0.88-3.29, p=0.112)</td>
+<td>Male</td>
+<td align="right">50 (33.8)</td>
+<td align="right">29 (50.9)</td>
+<td align="right">2.03 (1.09-3.79, p=0.025)</td>
+<td align="right">1.62 (0.81-3.21, p=0.167)</td>
 </tr>
 <tr class="even">
 <td align="left">stage.factor</td>
-<td align="left">Stage I</td>
-<td align="right">17 (12.7)</td>
-<td align="right">2 (2.8)</td>
+<td>Stage I</td>
+<td align="right">18 (12.2)</td>
+<td align="right">1 (1.8)</td>
 <td align="right">-</td>
 <td align="right">-</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">Stage II</td>
-<td align="right">30 (22.4)</td>
-<td align="right">7 (9.9)</td>
-<td align="right">1.98 (0.42-14.33, p=0.424)</td>
-<td align="right">2.35 (0.48-17.34, p=0.327)</td>
+<td>Stage II</td>
+<td align="right">32 (21.6)</td>
+<td align="right">5 (8.8)</td>
+<td align="right">2.81 (0.41-56.12, p=0.362)</td>
+<td align="right">2.83 (0.40-56.96, p=0.363)</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">Stage III</td>
-<td align="right">69 (51.5)</td>
-<td align="right">35 (49.3)</td>
-<td align="right">4.31 (1.15-28.17, p=0.060)</td>
-<td align="right">4.76 (1.25-31.44, p=0.046)</td>
+<td>Stage III</td>
+<td align="right">75 (50.7)</td>
+<td align="right">29 (50.9)</td>
+<td align="right">6.96 (1.34-128.04, p=0.065)</td>
+<td align="right">7.17 (1.37-132.38, p=0.061)</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">Stage IV</td>
-<td align="right">18 (13.4)</td>
-<td align="right">27 (38.0)</td>
-<td align="right">12.75 (3.15-86.81, p=0.002)</td>
-<td align="right">10.46 (2.50-72.43, p=0.004)</td>
+<td>Stage IV</td>
+<td align="right">23 (15.5)</td>
+<td align="right">22 (38.6)</td>
+<td align="right">17.22 (3.13-322.85, p=0.008)</td>
+<td align="right">14.30 (2.54-270.31, p=0.014)</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">or.plot</span>(mydata, dependent, explanatory)</code></pre></div>
-<pre><code>## Loading required package: scales</code></pre>
-<pre><code>## 
-## Attaching package: &#39;scales&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     discard</code></pre>
-<pre><code>## The following object is masked from &#39;package:readr&#39;:
-## 
-##     col_factor</code></pre>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1"><span class="kw">or_plot</span>(mydata, dependent, explanatory)</a></code></pre></div>
 <pre><code>## Waiting for profiling to be done...
+## Waiting for profiling to be done...
 ## Waiting for profiling to be done...</code></pre>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_errorbarh).</code></pre>
 <p><img src="09_tests_categorical_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
@@ -507,7 +527,7 @@ mydata <span class="op">%&gt;%</span><span class="st"> </span>
           </div>
         </div>
       </div>
-<a href="summarizer-function-for-logistic-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="finalfit-function-for-logistic-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="advanced-fitting-the-best-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -554,7 +574,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

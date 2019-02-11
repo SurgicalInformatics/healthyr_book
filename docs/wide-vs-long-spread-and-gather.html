@@ -49,69 +49,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -431,10 +403,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="wide-format" class="section level3">
 <h3><span class="header-section-number">3.6.1</span> Wide format</h3>
 <p>Although having data in the long format is very convenient for R, for publication tables, it makes sense to spread some of the values out into columns:</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1">alldata <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb79-2" data-line-number="2"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">percentage =</span> <span class="kw">paste0</span>(<span class="kw">round</span>(percentage, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#add a % label and round to 2 decimals</span></a>
-<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="st">    </span><span class="kw">select</span>(year, cause, percentage) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#only select the variables you want in your final table</span></a>
-<a class="sourceLine" id="cb79-4" data-line-number="4"><span class="st">    </span><span class="kw">spread</span>(cause, percentage)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alldata <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">percentage =</span> <span class="kw">paste0</span>(<span class="kw">round</span>(percentage, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#add a % label and round to 2 decimals</span>
+<span class="st">    </span><span class="kw">select</span>(year, cause, percentage) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#only select the variables you want in your final table</span>
+<span class="st">    </span><span class="kw">spread</span>(cause, percentage)</code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ## # Groups:   year [6]
 ##    year `Communicable diseases` Injuries `Non-communicable diseases`
@@ -448,8 +420,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="exercise-19" class="section level3">
 <h3><span class="header-section-number">3.6.2</span> Exercise</h3>
-<p>Calculate the percentage of male and female deaths for each year.
-Spread it to a human readable form:</p>
+<p>Calculate the percentage of male and female deaths for each year. Spread it to a human readable form:</p>
 <p>Hints:</p>
 <ul>
 <li>create <code>summary_data3</code> that includes a variable called <code>total_per_sex</code></li>
@@ -459,25 +430,25 @@ Spread it to a human readable form:</p>
 <li>spread</li>
 </ul>
 <p>Solution:</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb81-2" data-line-number="2"><span class="st">    </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb81-3" data-line-number="3"><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">total_per_year =</span> <span class="kw">sum</span>(deaths_millions)) -&gt;</a>
-<a class="sourceLine" id="cb81-4" data-line-number="4"><span class="st">    </span>summary_data1</a>
-<a class="sourceLine" id="cb81-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb81-6" data-line-number="6">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb81-7" data-line-number="7"><span class="st">    </span><span class="kw">group_by</span>(year, sex) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb81-8" data-line-number="8"><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">total_per_sex =</span> <span class="kw">sum</span>(deaths_millions)) -&gt;</a>
-<a class="sourceLine" id="cb81-9" data-line-number="9"><span class="st">    </span>summary_data3</a>
-<a class="sourceLine" id="cb81-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb81-11" data-line-number="11">alldata =<span class="st"> </span><span class="kw">full_join</span>(summary_data1, summary_data3)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">total_per_year =</span> <span class="kw">sum</span>(deaths_millions)) -&gt;
+<span class="st">    </span>summary_data1
+
+mydata <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">group_by</span>(year, sex) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">total_per_sex =</span> <span class="kw">sum</span>(deaths_millions)) -&gt;
+<span class="st">    </span>summary_data3
+
+alldata =<span class="st"> </span><span class="kw">full_join</span>(summary_data1, summary_data3)</code></pre></div>
 <pre><code>## Joining, by = &quot;year&quot;</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1">result_spread =<span class="st"> </span>alldata <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb83-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percentage =</span> <span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>total_per_sex<span class="op">/</span>total_per_year, <span class="dv">0</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb83-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percentage =</span> <span class="kw">paste0</span>(percentage, <span class="st">&quot;%&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb83-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(year, sex, percentage) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb83-5" data-line-number="5"><span class="st">  </span><span class="kw">spread</span>(sex, percentage)</a>
-<a class="sourceLine" id="cb83-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb83-7" data-line-number="7">result_spread</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result_spread =<span class="st"> </span>alldata <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percentage =</span> <span class="kw">round</span>(<span class="dv">100</span><span class="op">*</span>total_per_sex<span class="op">/</span>total_per_year, <span class="dv">0</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percentage =</span> <span class="kw">paste0</span>(percentage, <span class="st">&quot;%&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(year, sex, percentage) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">spread</span>(sex, percentage)
+
+result_spread</code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##    year Female Male 
 ##   &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;
@@ -488,7 +459,7 @@ Spread it to a human readable form:</p>
 ## 5  2010 46%    54%  
 ## 6  2013 45%    55%</code></pre>
 <p>And save it into a csv file using <code>write_csv()</code>:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="kw">write_csv</span>(result_spread, <span class="st">&quot;gbd_genders_summarised.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_csv</span>(result_spread, <span class="st">&quot;gbd_genders_summarised.csv&quot;</span>)</code></pre></div>
 <p>You can open a csv file with Excel and copy the table into Word or PowerPoint for presenting.</p>
 </div>
 <div id="long-format" class="section level3">
@@ -499,8 +470,8 @@ Spread it to a human readable form:</p>
 <li>The second argument is a name for the column that will include the values from the wide-format columns (the values from <code>Male</code> and <code>Female</code> are gathered into <code>percentage</code>).</li>
 <li>Any columns that already are condensed (e.g. year was in one column, not spread out like in the pre-course example) must be included with a negative (i.e. -year).</li>
 </ul>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1">result_spread <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb86-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(sex, percentage, <span class="op">-</span>year)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result_spread <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(sex, percentage, <span class="op">-</span>year)</code></pre></div>
 <pre><code>## # A tibble: 12 x 3
 ##     year sex    percentage
 ##    &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     
@@ -523,17 +494,16 @@ Spread it to a human readable form:</p>
 <ul>
 <li>Change the order of sex and percentage:</li>
 </ul>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">result_spread <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb88-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(percentage, sex, <span class="op">-</span>year)</a></code></pre></div>
-<p>Turns out in the above example, <code>percentage</code> and <code>sex</code> were just label you assigned to the gathered columns.
-It could be anything, e.g.:</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1">result_spread <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb89-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">look-I-gathered-sex</span><span class="st">`</span>, <span class="st">`</span><span class="dt">values-Are-Here</span><span class="st">`</span>, <span class="op">-</span>year)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result_spread <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(percentage, sex, <span class="op">-</span>year)</code></pre></div>
+<p>Turns out in the above example, <code>percentage</code> and <code>sex</code> were just label you assigned to the gathered columns. It could be anything, e.g.:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result_spread <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">look-I-gathered-sex</span><span class="st">`</span>, <span class="st">`</span><span class="dt">values-Are-Here</span><span class="st">`</span>, <span class="op">-</span>year)</code></pre></div>
 <ul>
 <li>What happens if we omit <code>-year</code>:</li>
 </ul>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">result_spread <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb90-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(sex, percentage)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result_spread <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(sex, percentage)</code></pre></div>
 <p><code>-year</code> was telling R we don’t want the year column to be gathered together with Male and Female, we want to keep it as it is.</p>
 </div>
 </div>
@@ -589,7 +559,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

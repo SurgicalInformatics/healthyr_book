@@ -189,7 +189,7 @@ str(t.result) # or click on the blue button in the Environment tab
 ##  $ parameter  : Named num 47.7
 ##   ..- attr(*, "names")= chr "df"
 ##  $ p.value    : num 0.369
-##  $ conf.int   : atomic [1:2] -3.82 1.44
+##  $ conf.int   : num [1:2] -3.82 1.44
 ##   ..- attr(*, "conf.level")= num 0.95
 ##  $ estimate   : Named num [1:2] 72.4 73.6
 ##   ..- attr(*, "names")= chr [1:2] "mean in group 2002" "mean in group 2007"
@@ -307,6 +307,22 @@ mydata %>%
   filter(continent %in% c("Americas", "Europe", "Asia")) %>% 
   aov(lifeExp~continent, data = .) %>% 
 	tidy()
+```
+
+```
+## Warning: Prefixing `UQS()` with the rlang namespace is deprecated as of rlang 0.3.0.
+## Please use the non-prefixed form or `!!!` instead.
+## 
+##   # Bad:
+##   rlang::expr(mean(rlang::UQS(args)))
+## 
+##   # Ok:
+##   rlang::expr(mean(UQS(args)))
+## 
+##   # Good:
+##   rlang::expr(mean(!!!args))
+## 
+## This warning is displayed once per session.
 ```
 
 ```

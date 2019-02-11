@@ -348,10 +348,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.4" data-path="analysis-1.html"><a href="analysis-1.html#fishers-exact-test"><i class="fa fa-check"></i><b>8.3.4</b> Fisher’s exact test</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="summarising-multiple-factors-optional.html"><a href="summarising-multiple-factors-optional.html"><i class="fa fa-check"></i><b>8.4</b> Summarising multiple factors (optional)</a></li>
-<li class="chapter" data-level="8.5" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(summarizer)</code></a><ul>
-<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
-<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
-<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
+<li class="chapter" data-level="8.5" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(finalfit)</code></a><ul>
+<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
+<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
+<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Logistic regression</a><ul>
@@ -445,11 +445,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## data:  mydata$status.factor and mydata$sex.factor
 ## X-squared = 4.3803, df = 1, p-value = 0.03636</code></pre>
-<p>Note that <code>chisq.test()</code> defaults to the Yates continuity correction. It is fine to use this, but if you have a particular need not to, turn if off with <code>chisq.test(mydata$status.factor, mydata$sex.factor, correct=FALSE)</code>.</p>
+<p>Note that <code>chisq.test()</code> defaults to the Yates continuity correction.
+It is fine to use this, but if you have a particular need not to, turn if off with <code>chisq.test(mydata$status.factor, mydata$sex.factor, correct=FALSE)</code>.</p>
 </div>
 <div id="using-crosstable" class="section level3">
 <h3><span class="header-section-number">8.3.2</span> Using <code>CrossTable</code></h3>
-<p>This gives lots of useful information. It is readable in R and has lots of options, including Fisher’s exact test. It is not that easy to extract results.
+<p>This gives lots of useful information.
+It is readable in R and has lots of options, including Fisher’s exact test.
+It is not that easy to extract results.
 </p>
 <div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1"><span class="kw">library</span>(gmodels)</a>
 <a class="sourceLine" id="cb247-2" data-line-number="2"></a>
@@ -514,7 +517,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="fishers-exact-test" class="section level3">
 <h3><span class="header-section-number">8.3.4</span> Fisher’s exact test</h3>
-<p>An assumption of the chi-squared test is that the ‘expected cell count’ is greater than 5. If it is less than 5 the test becomes unreliable and the Fisher’s exact test is recommended.</p>
+<p>An assumption of the chi-squared test is that the ‘expected cell count’ is greater than 5.
+If it is less than 5 the test becomes unreliable and the Fisher’s exact test is recommended.</p>
 <p>Run the following code.</p>
 <div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="kw">library</span>(gmodels)</a>
 <a class="sourceLine" id="cb251-2" data-line-number="2"><span class="kw">CrossTable</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>age.factor, <span class="dt">expected=</span><span class="ot">TRUE</span>, <span class="dt">chisq=</span><span class="ot">TRUE</span>)</a></code></pre></div>

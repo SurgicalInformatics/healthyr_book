@@ -348,10 +348,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.4" data-path="analysis-1.html"><a href="analysis-1.html#fishers-exact-test"><i class="fa fa-check"></i><b>8.3.4</b> Fisher’s exact test</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="summarising-multiple-factors-optional.html"><a href="summarising-multiple-factors-optional.html"><i class="fa fa-check"></i><b>8.4</b> Summarising multiple factors (optional)</a></li>
-<li class="chapter" data-level="8.5" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(summarizer)</code></a><ul>
-<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
-<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
-<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
+<li class="chapter" data-level="8.5" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(finalfit)</code></a><ul>
+<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
+<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
+<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Logistic regression</a><ul>
@@ -430,25 +430,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Like many other types of statistical software, R needs to know the variable type of each column. The main types are:</p>
 <div id="characters" class="section level3">
 <h3><span class="header-section-number">2.6.1</span> Characters</h3>
-<p><strong>Characters</strong> (sometimes referred to as <em>strings</em> or <em>character strings</em>) in R are letters, words, or even whole sentences (an example of this may be free text comments). We can specify these using the <code>as.character()</code> function. Characters are displayed in-between <code>&quot;&quot;</code> (or <code>''</code>).</p>
+<p><strong>Characters</strong> (sometimes referred to as <em>strings</em> or <em>character strings</em>) in R are letters, words, or even whole sentences (an example of this may be free text comments).
+We can specify these using the <code>as.character()</code> function. Characters are displayed in-between <code>&quot;&quot;</code> (or <code>''</code>).</p>
 </div>
 <div id="factors" class="section level3">
 <h3><span class="header-section-number">2.6.2</span> Factors</h3>
-<p><strong>Factors</strong> are fussy characters. Factors are fussy because they have something called levels. Levels are all the unique values this variable could take - e.g. like when we looked at <code>mydata$cause %&gt;% unique()</code>.
+<p><strong>Factors</strong> are fussy characters.
+Factors are fussy because they have something called levels.
+Levels are all the unique values this variable could take - e.g. like when we looked at <code>mydata$cause %&gt;% unique()</code>.
 Using factors rather than just characters can be useful because:</p>
 <ul>
-<li>The values factor levels can take is fixed. For example, if the levels of your column called <code>sex</code> are “Male” and “Female” and you try to add a new patient where sex is called just “F” you will get a warning from R. If <code>sex</code> was a character column rather than a factor R would have no problem with this and you would end up with “Male”, “Female”, and “F” in your column.</li>
-<li>Levels have an order. When we plotted the different causes of death in the last session, R ordered them alphabetically (because <code>cause</code> was a character rather than a factor). But if you want to use a non-alphabetical order, e.g. “Communicable diseases”-“Non-communicable diseases”-“Injuries”, we need make <code>cause</code> into a factor. Making a character column into a factor enables us to define and change the order of the levels. Furthermore, there are useful tools such as <code>fct_inorder</code> or <code>fct_infreq</code> that can order factor levels for us.</li>
+<li>The values factor levels can take is fixed.
+For example, if the levels of your column called <code>sex</code> are “Male” and “Female” and you try to add a new patient where sex is called just “F” you will get a warning from R.
+If <code>sex</code> was a character column rather than a factor R would have no problem with this and you would end up with “Male”, “Female”, and “F” in your column.</li>
+<li>Levels have an order.
+When we plotted the different causes of death in the last session, R ordered them alphabetically (because <code>cause</code> was a character rather than a factor).
+But if you want to use a non-alphabetical order, e.g. “Communicable diseases”-“Non-communicable diseases”-“Injuries”, we need make <code>cause</code> into a factor.
+Making a character column into a factor enables us to define and change the order of the levels.
+Furthermore, there are useful tools such as <code>fct_inorder</code> or <code>fct_infreq</code> that can order factor levels for us.</li>
 </ul>
-<p>These can be huge benefits, especially as a lot of medical data analyses include comparing different risks to a reference level. Nevertheless, the fussiness of factors can sometimes be unhelpful or even frustrating. For example, if you really did want to add a new level to your <code>gender</code> column (e.g., “Prefer not to say”) you will either have to convert the column to a character, add it, and convert it back to a factor, or use <code>fct_expand</code> to add the level and then add your new line.</p>
+<p>These can be huge benefits, especially as a lot of medical data analyses include comparing different risks to a reference level.
+Nevertheless, the fussiness of factors can sometimes be unhelpful or even frustrating.
+For example, if you really did want to add a new level to your <code>gender</code> column (e.g., “Prefer not to say”) you will either have to convert the column to a character, add it, and convert it back to a factor, or use <code>fct_expand</code> to add the level and then add your new line.</p>
 <div id="exercise-8" class="section level4">
 <h4><span class="header-section-number">2.6.2.1</span> Exercise</h4>
-<p>Temporarily type <code>fct_inorder</code> anywhere in your script, then press F1. Read the <strong>Description</strong> in the Help tab and discuss with your neighbour how <code>fct_inorder</code> and <code>fct_infreq</code> would order your factor levels.</p>
+<p>Temporarily type <code>fct_inorder</code> anywhere in your script, then press F1.
+Read the <strong>Description</strong> in the Help tab and discuss with your neighbour how <code>fct_inorder</code> and <code>fct_infreq</code> would order your factor levels.</p>
 </div>
 </div>
 <div id="numbers" class="section level3">
 <h3><span class="header-section-number">2.6.3</span> Numbers</h3>
-<p>Self-explanatory! These are numbers. In R, we specify these using the <code>as.numeric()</code> function. Numbers without decimal places are sometimes called integers. Click on the blue arrow in front of <code>mydata</code> in the Environment tab and see that <code>year</code> is an <code>int</code> (integer) whereas <code>deaths</code> is a <code>num</code> (numeric).</p>
+<p>Self-explanatory!
+These are numbers.
+In R, we specify these using the <code>as.numeric()</code> function.
+Numbers without decimal places are sometimes called integers.
+Click on the blue arrow in front of <code>mydata</code> in the Environment tab and see that <code>year</code> is an <code>int</code> (integer) whereas <code>deaths</code> is a <code>num</code> (numeric).</p>
 </div>
 <div id="specifying-variable-types" class="section level3">
 <h3><span class="header-section-number">2.6.4</span> Specifying variable types</h3>
@@ -468,7 +484,8 @@ Using factors rather than just characters can be useful because:</p>
 </div>
 <div id="exercise-9" class="section level3">
 <h3><span class="header-section-number">2.6.5</span> Exercise</h3>
-<p>Change the order of the levels in <code>mydata$cause</code> so that “Non-communicable diseases” come before “Injuries”. Hint: use F1 to investigate examples of how <code>fct_relevel()</code> works.</p>
+<p>Change the order of the levels in <code>mydata$cause</code> so that “Non-communicable diseases” come before “Injuries”.
+Hint: use F1 to investigate examples of how <code>fct_relevel()</code> works.</p>
 </div>
 </div>
             </section>

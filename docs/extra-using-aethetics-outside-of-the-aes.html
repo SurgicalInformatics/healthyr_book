@@ -348,10 +348,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.4" data-path="analysis-1.html"><a href="analysis-1.html#fishers-exact-test"><i class="fa fa-check"></i><b>8.3.4</b> Fisher’s exact test</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="summarising-multiple-factors-optional.html"><a href="summarising-multiple-factors-optional.html"><i class="fa fa-check"></i><b>8.4</b> Summarising multiple factors (optional)</a></li>
-<li class="chapter" data-level="8.5" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(summarizer)</code></a><ul>
-<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
-<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
-<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
+<li class="chapter" data-level="8.5" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(finalfit)</code></a><ul>
+<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
+<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
+<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Logistic regression</a><ul>
@@ -429,12 +429,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">1.5</span> Extra: using aethetics outside of the aes()</h2>
 <div id="setting-a-constant-fill" class="section level3">
 <h3><span class="header-section-number">1.5.1</span> Setting a constant fill</h3>
-<p>Using the <code>mydata2013</code> example again, what does the addition of <code>fill = &quot;black&quot;</code> in this code do? Note that putting the <code>ggplot(aes())</code> code all on one line not affect the result.</p>
+<p>Using the <code>mydata2013</code> example again, what does the addition of <code>fill = &quot;black&quot;</code> in this code do?
+Note that putting the <code>ggplot(aes())</code> code all on one line not affect the result.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">mydata2013 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> location, <span class="dt">y =</span> deaths_millions, <span class="dt">fill =</span> cause, <span class="dt">colour =</span> cause)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">fill =</span> <span class="st">&quot;black&quot;</span>)</a></code></pre></div>
 <p><img src="01_first_interaction_files/figure-html/unnamed-chunk-7-1.png" width="480" /></p>
-<p>Setting aesthetics (x, y, fill, colour, etc.) outside of <code>aes()</code> sets them to a constant value. R can recognise of a lot of colour names, e.g., try “cornflowerblue”, “firebrick”, or just “red”, “green”, “blue”, etc. For a full list, Google “Colours in R”. R also knows HEX codes, e.g. <code>fill = &quot;#fec3fc&quot;</code> is pink.</p>
+<p>Setting aesthetics (x, y, fill, colour, etc.) outside of <code>aes()</code> sets them to a constant value.
+R can recognise of a lot of colour names, e.g., try “cornflowerblue”, “firebrick”, or just “red”, “green”, “blue”, etc.
+For a full list, Google “Colours in R”. R also knows HEX codes, e.g. <code>fill = &quot;#fec3fc&quot;</code> is pink.</p>
 </div>
 <div id="exercise-1" class="section level3">
 <h3><span class="header-section-number">1.5.2</span> Exercise</h3>

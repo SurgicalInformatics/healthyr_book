@@ -46,13 +46,16 @@ mydata %>%
 
 ### Exercise
 
-Create the same plot as above (life expectancy over time), but for just Turkey and the United Kingdom, and add linear regression lines. Hint: use `+ geom_smooth(method = "lm")` for the lines. `lm()` stands for linear model.
+Create the same plot as above (life expectancy over time), but for just Turkey and the United Kingdom, and add linear regression lines. 
+Hint: use `+ geom_smooth(method = "lm")` for the lines. `lm()` stands for linear model.
 
 ![](07_linear_regression_files/figure-epub3/unnamed-chunk-4-1.png)<!-- -->
 
 ## Simple linear regression
 
-As you can see, `ggplot()` is very happy to run and plot linear regression for us. To access the results, however, we should save the full results of the linear regression models into variables in our Environment. We can then investigate the intercepts and the slope coefficients (linear increase per year):
+As you can see, `ggplot()` is very happy to run and plot linear regression for us. 
+To access the results, however, we should save the full results of the linear regression models into variables in our Environment. 
+We can then investigate the intercepts and the slope coefficients (linear increase per year):
 
 
 ```r
@@ -177,13 +180,17 @@ https://gallery.shinyapps.io/multi_regression/
 
 ### Exercise - Residuals
 
-Open the first Shiny app ("Simple regression"). Move the sliders until the red lines (residuals*) turn green - this means you've made the line fit the points as well as possible. Look at the intercept and slope - discuss with your neighbour or a tutor what these numbers mean/how they affect the straight line on the plot.
+Open the first Shiny app ("Simple regression"). 
+Move the sliders until the red lines (residuals*) turn green - this means you've made the line fit the points as well as possible. 
+Look at the intercept and slope - discuss with your neighbour or a tutor what these numbers mean/how they affect the straight line on the plot.
 
-*Residual is how far away each point (observation) is from the linear regression line. (In this example it's the linear regression line, but residuals are relevant in many other contexts as well.)
+*Residual is how far away each point (observation) is from the linear regression line. 
+(In this example it's the linear regression line, but residuals are relevant in many other contexts as well.)
 
 ## Multiple linear regression
 
-Multiple linear regression includes more than one predictor variable. There are a few ways to include more variables, depending on whether they should share the intercept and how they interact:
+Multiple linear regression includes more than one predictor variable. 
+There are a few ways to include more variables, depending on whether they should share the intercept and how they interact:
 
 Simple linear regression (exactly one predictor variable):
 
@@ -213,7 +220,8 @@ Open the second Shiny app ("Multiple regression") and see how:
 
 ### Exercise
 
-Convince yourself that using an fully interactive multivariable model is the same as running several separate simple linear regression models. Remember that we calculate the life expectancy in 1952 (intercept) and improvement per year (slope) for Turkey and the United Kingdom:
+Convince yourself that using an fully interactive multivariable model is the same as running several separate simple linear regression models. 
+Remember that we calculate the life expectancy in 1952 (intercept) and improvement per year (slope) for Turkey and the United Kingdom:
 
 
 ```r
@@ -270,7 +278,8 @@ mydata %>%
 ## 4 year_from1952:countryUnited Kingdom    -0.31
 ```
 
-Now. It may seem like R has omitted Turkey but the values for Turkey are actually in the Intercept = 46.02 and in year_from1952 = 0.50. Can you make out the intercept and slope for the UK? Are they the same as in the simple linear regression model?
+Now. It may seem like R has omitted Turkey but the values for Turkey are actually in the Intercept = 46.02 and in year_from1952 = 0.50. 
+Can you make out the intercept and slope for the UK? Are they the same as in the simple linear regression model?
 
 ### Exercise
 

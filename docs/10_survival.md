@@ -62,7 +62,8 @@ head(survival_object) # + marks censoring in this case "Died of other causes"
 
 ### KM analysis for whole cohort
 ### Model
-The survival object is the first step to performing univariable and multivariable survival analyses. A univariable model can then be fitted.
+The survival object is the first step to performing univariable and multivariable survival analyses. 
+A univariable model can then be fitted.
 
 If you want to plot survival stratified by a single grouping variable, you can substitute "survival_object ~ 1" by "survival_object ~ factor"
 
@@ -81,7 +82,8 @@ my_survfit # 205 patients, 57 events
 ```
 
 ### Life table
-A life table is the tabular form of a KM plot, which you may be familiar with. It shows survival as a proportion, together with confidence limits. 
+A life table is the tabular form of a KM plot, which you may be familiar with. 
+It shows survival as a proportion, together with confidence limits. 
 
 ```r
 # The whole table is shown with, summary(my_survfit)
@@ -134,7 +136,8 @@ my_survplot$plot +
 	annotate('text', x = 5, y = 0.25, label='Whole cohort')
 ```
 
-Here is an alternative plot in base R to compare. Not only does this produce a more basic survival plot, but tailoring the plot can be more difficult to achieve.
+Here is an alternative plot in base R to compare. 
+Not only does this produce a more basic survival plot, but tailoring the plot can be more difficult to achieve.
 
 Furthermore, appending a life table ("risk.table") alongside the plot can also be difficult (yet this is often required for interpretation / publication).
 
@@ -162,7 +165,8 @@ Try modifying the plot produced (see Help for ggsurvplot). For example:
 
 
 ### Log-rank test
-Two KM survival curves can be compared using the log-rank test. Note survival curves can also be compared using a Wilcoxon test that may be appropriate in some circumstances. 
+Two KM survival curves can be compared using the log-rank test. 
+Note survival curves can also be compared using a Wilcoxon test that may be appropriate in some circumstances. 
 
 This can easily be performed in `library(survival)` using the function `survdiff()`.
 
@@ -240,10 +244,14 @@ tidy(my_hazard)
 ## 4 age.factor(40,…  -0.0451     0.613   -0.0736   9.41e-1  -1.25       1.16 
 ## 5 age.factor(60,…   0.179      0.622    0.288    7.74e-1  -1.04       1.40
 ```
-The interpretation of the results of model fitting are beyond the aims of this course. The exponentiated coefficient (`exp(coef)`) represents the hazard ratio. Therefore, patients with ulcers are 4-times more likely to die at any given time than those without ulcers. 
+The interpretation of the results of model fitting are beyond the aims of this course. 
+The exponentiated coefficient (`exp(coef)`) represents the hazard ratio. 
+Therefore, patients with ulcers are 4-times more likely to die at any given time than those without ulcers. 
 
 ### Assumptions
-The CPH model presumes 'constant hazards'. That means that the risk associated with any given variable (like ulcer status) shouldn't get worse or better over time. This can be checked.
+The CPH model presumes 'constant hazards'. 
+That means that the risk associated with any given variable (like ulcer status) shouldn't get worse or better over time. 
+This can be checked.
 
 
 ```r
@@ -277,11 +285,16 @@ plot(ph, var=2) # ulcer.status is variable 2
 Hazard decreases a little between 2 and 5 years, but is acceptable.
 
 ### Exercise
-Create a new CPH model, but now include the variable `thickness` as a variable. How would you interpret the output? Is it an independent predictor of overall survival in this model? Are CPH assumptions maintained?
+Create a new CPH model, but now include the variable `thickness` as a variable. 
+How would you interpret the output? 
+Is it an independent predictor of overall survival in this model? 
+Are CPH assumptions maintained?
 
 ## Dates in R
 ### Converting dates to survival time
-In the melanoma example dataset, we already had the time in a convenient format for survial analysis - survival time in days since the operation. This section shows how to convert dates into "days from event". First we will generate a dummy operation date and censoring date based on the melanoma data. 
+In the melanoma example dataset, we already had the time in a convenient format for survial analysis - survival time in days since the operation. 
+This section shows how to convert dates into "days from event". 
+First we will generate a dummy operation date and censoring date based on the melanoma data. 
 
 
 ```r
@@ -292,7 +305,8 @@ operation_date = seq(from = first_date, to = last_date, by = "1 day") # create d
 
 mydata$operation_date = operation_date # add the created sequence to melanoma dataset
 ```
-Now we will to create a 'censoring' date by adding `time` from the melanoma dataset to our made up operation date. Remember the censoring date is either when an event occurred (e.g. death) or the last known alive status of the patient. 
+Now we will to create a 'censoring' date by adding `time` from the melanoma dataset to our made up operation date. 
+Remember the censoring date is either when an event occurred (e.g. death) or the last known alive status of the patient. 
 
 
 ```r
@@ -304,7 +318,8 @@ mydata %>%
 mydata$censoring_date = mydata$operation_date + days(mydata$time)
 ```
 
-Now consider if we only had the `operation date` and `censoring date`. We want to create the `time` variable. 
+Now consider if we only had the `operation date` and `censoring date`. 
+We want to create the `time` variable. 
 
 ```r
 mydata %>% 

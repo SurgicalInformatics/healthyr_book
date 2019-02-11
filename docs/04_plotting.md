@@ -86,7 +86,8 @@ mydata %>%
 
 ![](04_plotting_files/figure-epub3/unnamed-chunk-4-1.png)<!-- -->
 
-The reason you now see this weird zig-zag is that, using the above code, R does not know you want a connected line for each country. Specify how you want data points grouped to lines: `group = country` in `aes()`:
+The reason you now see this weird zig-zag is that, using the above code, R does not know you want a connected line for each country. 
+Specify how you want data points grouped to lines: `group = country` in `aes()`:
 
 
 ```r
@@ -198,7 +199,8 @@ label_data = mydata %>%
 ## Barplot - `geom_bar()` and `geom_col()`
 
 
-In the first module, we plotted barplots from already summarised data (using the `geom_col`), but `geom_bar()` is perfectly happy to count up data for you. For example, we can plot the number of countries in each continent without summarising the data beforehand:
+In the first module, we plotted barplots from already summarised data (using the `geom_col`), but `geom_bar()` is perfectly happy to count up data for you. 
+For example, we can plot the number of countries in each continent without summarising the data beforehand:
 
 
 ```r
@@ -231,7 +233,8 @@ Remember that you can always combine different types of plots - i.e. add lines o
 
 ## Specifying `aes()` variables
 
-The `aes()` variables wrapped inside `ggplot()` will be taken into account by all geoms. If you put `aes(colour = lifeExp)` inside `geom_point()`, only points will be coloured:
+The `aes()` variables wrapped inside `ggplot()` will be taken into account by all geoms. 
+If you put `aes(colour = lifeExp)` inside `geom_point()`, only points will be coloured:
 
 
 ```r

@@ -348,10 +348,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.4" data-path="analysis-1.html"><a href="analysis-1.html#fishers-exact-test"><i class="fa fa-check"></i><b>8.3.4</b> Fisher’s exact test</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="summarising-multiple-factors-optional.html"><a href="summarising-multiple-factors-optional.html"><i class="fa fa-check"></i><b>8.4</b> Summarising multiple factors (optional)</a></li>
-<li class="chapter" data-level="8.5" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(summarizer)</code></a><ul>
-<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
-<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
-<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
+<li class="chapter" data-level="8.5" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(finalfit)</code></a><ul>
+<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
+<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
+<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Logistic regression</a><ul>
@@ -427,7 +427,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="combining-two-dataframes" class="section level2">
 <h2><span class="header-section-number">2.12</span> Combining two dataframes</h2>
-<p>For combining dataframes based on shared variables we use the Joins: <code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, or <code>full_join()</code>. Let’s split some of the variables in <code>mydata</code> between two new dataframes: <code>first_data</code> and <code>second_data</code>. For demonstrating the difference between the different joins, we will only include a subset (first 6 rows) of the dataset in <code>second_data</code>:</p>
+<p>For combining dataframes based on shared variables we use the Joins: <code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, or <code>full_join()</code>.
+Let’s split some of the variables in <code>mydata</code> between two new dataframes: <code>first_data</code> and <code>second_data</code>.
+For demonstrating the difference between the different joins, we will only include a subset (first 6 rows) of the dataset in <code>second_data</code>:</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">first_data  =<span class="st"> </span><span class="kw">select</span>(mydata, year, cause, deaths_millions)</a>
 <a class="sourceLine" id="cb42-2" data-line-number="2">second_data =<span class="st"> </span><span class="kw">select</span>(mydata, year, cause, deaths_millions) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)</a>
 <a class="sourceLine" id="cb42-3" data-line-number="3"></a>
@@ -438,7 +440,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb42-8" data-line-number="8">combined_right =<span class="st"> </span><span class="kw">right_join</span>(first_data, second_data)</a>
 <a class="sourceLine" id="cb42-9" data-line-number="9">combined_inner =<span class="st"> </span><span class="kw">inner_join</span>(first_data, second_data)</a>
 <a class="sourceLine" id="cb42-10" data-line-number="10">combined_full  =<span class="st">  </span><span class="kw">full_join</span>(first_data, second_data)</a></code></pre></div>
-<p>Those who have used R before, or those who come across older scripts will have seen <code>merge()</code> instead of the joins. <code>merge()</code> works similarly to joins, but instead of having the four options defined clearly at the front, you would have had to use the <code>all = FALSE, all.x = all, all.y = all</code> arguments.</p>
+<p>Those who have used R before, or those who come across older scripts will have seen <code>merge()</code> instead of the joins.
+<code>merge()</code> works similarly to joins, but instead of having the four options defined clearly at the front, you would have had to use the <code>all = FALSE, all.x = all, all.y = all</code> arguments.</p>
 <p><img src="images/databasejoke.jpg" /></p>
 <div id="exercise-13" class="section level3">
 <h3><span class="header-section-number">2.12.1</span> Exercise</h3>

@@ -88,7 +88,8 @@ Make a histogram, Q-Q plot, and a box-plot for the life expectancy for a contine
 
 ## Two-sample t-tests
 
-Lets perform a t-test on the "Americas" data as it appears normally distributed. We are savings the results of our t.test into a variable called t.result, but you can call it whatever you like (e.g. `myttest`).
+Lets perform a t-test on the "Americas" data as it appears normally distributed. 
+We are savings the results of our t.test into a variable called t.result, but you can call it whatever you like (e.g. `myttest`).
 
 
 ```{r, fig.width=4, fig.height=4}
@@ -113,7 +114,8 @@ names(t.result)
 str(t.result) # or click on the blue button in the Environment tab
 ```
 
-The structure of R's `t.test()` result looks a bit overwhelming. Fortunately, the `tidy()` function from `library(broom)` puts it into a neat dataframe for us:
+The structure of R's `t.test()` result looks a bit overwhelming. 
+Fortunately, the `tidy()` function from `library(broom)` puts it into a neat dataframe for us:
 
 ```{r}
 
@@ -131,7 +133,8 @@ t.result$p.value
 
 ### Exercise
 
-1. Select any 2 years in any continent and perform a t-test to determine whether the life expectancy is signficantly different. Remember to plot your data first.
+1. Select any 2 years in any continent and perform a t-test to determine whether the life expectancy is signficantly different. 
+Remember to plot your data first.
 
 2. Extract only the p-value from your `t.test()` output.
 

@@ -348,10 +348,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.4" data-path="analysis-1.html"><a href="analysis-1.html#fishers-exact-test"><i class="fa fa-check"></i><b>8.3.4</b> Fisher’s exact test</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="summarising-multiple-factors-optional.html"><a href="summarising-multiple-factors-optional.html"><i class="fa fa-check"></i><b>8.4</b> Summarising multiple factors (optional)</a></li>
-<li class="chapter" data-level="8.5" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(summarizer)</code></a><ul>
-<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
-<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
-<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
+<li class="chapter" data-level="8.5" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(finalfit)</code></a><ul>
+<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
+<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
+<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Logistic regression</a><ul>
@@ -428,7 +428,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-summary-function" class="section level2">
 <h2><span class="header-section-number">2.13</span> The <code>summary()</code> Function</h2>
 <p>In R, the <code>summary()</code> function provides a quick way of summarising both data or the results of statistical tests.</p>
-<p>Lets get a quick summary of all the variables inside the Global Burden of Disease dataset. It will work for whole datasets and single variables too.</p>
+<p>Lets get a quick summary of all the variables inside the Global Burden of Disease dataset.
+It will work for whole datasets and single variables too.</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">mydata <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</a></code></pre></div>
 <pre><code>##     cause                year          deaths         years_from_1990
 ##  Length:18          Min.   :1990   Min.   : 4325788   Min.   : 0.00  
@@ -469,14 +470,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb47-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(deaths <span class="op">~</span><span class="st"> </span>year) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb47-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
-<p>This is because the pipe tries to send data into the first place of the function (first argument), but <code>lm()</code> wants the formula (<code>deaths ~ year</code>) first, then the dataframe. We can bypass this using <code>data = .</code> to tell the pipe where to put mydata:</p>
+<p>This is because the pipe tries to send data into the first place of the function (first argument), but <code>lm()</code> wants the formula (<code>deaths ~ year</code>) first, then the dataframe.
+We can bypass this using <code>data = .</code> to tell the pipe where to put mydata:</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb48-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(deaths <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb48-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
 </div>
 <div id="exercise-14" class="section level3">
 <h3><span class="header-section-number">2.13.2</span> Exercise</h3>
-<p>Try adding a new variable called <code>death_over_10m</code> which indicates whether there were more than 10 million deaths for a cause. The new variable should take the form ‘Yes’ or ‘No’.</p>
+<p>Try adding a new variable called <code>death_over_10m</code> which indicates whether there were more than 10 million deaths for a cause.
+The new variable should take the form ‘Yes’ or ‘No’.</p>
 <p>Then make it into a factor.</p>
 <p>Then use <code>summary()</code> to find out about it!</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">mydata =<span class="st"> </span>mydata <span class="op">%&gt;%</span><span class="st"> </span></a>

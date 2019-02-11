@@ -348,10 +348,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.4" data-path="analysis-1.html"><a href="analysis-1.html#fishers-exact-test"><i class="fa fa-check"></i><b>8.3.4</b> Fisher’s exact test</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="summarising-multiple-factors-optional.html"><a href="summarising-multiple-factors-optional.html"><i class="fa fa-check"></i><b>8.4</b> Summarising multiple factors (optional)</a></li>
-<li class="chapter" data-level="8.5" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(summarizer)</code></a><ul>
-<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
-<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
-<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
+<li class="chapter" data-level="8.5" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(finalfit)</code></a><ul>
+<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
+<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
+<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Logistic regression</a><ul>
@@ -429,21 +429,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.4</span> Dates in R</h2>
 <div id="converting-dates-to-survival-time" class="section level3">
 <h3><span class="header-section-number">10.4.1</span> Converting dates to survival time</h3>
-<p>In the melanoma example dataset, we already had the time in a convenient format for survial analysis - survival time in days since the operation. This section shows how to convert dates into “days from event”. First we will generate a dummy operation date and censoring date based on the melanoma data.</p>
+<p>In the melanoma example dataset, we already had the time in a convenient format for survial analysis - survival time in days since the operation.
+This section shows how to convert dates into “days from event”.
+First we will generate a dummy operation date and censoring date based on the melanoma data.</p>
 <div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1"><span class="kw">library</span>(lubridate)</a>
 <a class="sourceLine" id="cb319-2" data-line-number="2">first_date =<span class="st"> </span><span class="kw">ymd</span>(<span class="st">&quot;1966-01-01&quot;</span>)           <span class="co"># let&#39;s create made-up dates for the operations</span></a>
 <a class="sourceLine" id="cb319-3" data-line-number="3">last_date =<span class="st"> </span>first_date <span class="op">+</span><span class="st"> </span><span class="kw">days</span>(<span class="kw">nrow</span>(mydata)<span class="op">-</span><span class="dv">1</span>) <span class="co"># assume tone every day from 1-Jan 1966</span></a>
 <a class="sourceLine" id="cb319-4" data-line-number="4">operation_date =<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> first_date, <span class="dt">to =</span> last_date, <span class="dt">by =</span> <span class="st">&quot;1 day&quot;</span>) <span class="co"># create dates</span></a>
 <a class="sourceLine" id="cb319-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb319-6" data-line-number="6">mydata<span class="op">$</span>operation_date =<span class="st"> </span>operation_date <span class="co"># add the created sequence to melanoma dataset</span></a></code></pre></div>
-<p>Now we will to create a ‘censoring’ date by adding <code>time</code> from the melanoma dataset to our made up operation date. Remember the censoring date is either when an event occurred (e.g. death) or the last known alive status of the patient.</p>
+<p>Now we will to create a ‘censoring’ date by adding <code>time</code> from the melanoma dataset to our made up operation date.
+Remember the censoring date is either when an event occurred (e.g. death) or the last known alive status of the patient.</p>
 <div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" data-line-number="1">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb320-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">censoring_date =</span> operation_date <span class="op">+</span><span class="st"> </span><span class="kw">days</span>(time)) -&gt;</a>
 <a class="sourceLine" id="cb320-3" data-line-number="3"><span class="st">  </span>mydata</a>
 <a class="sourceLine" id="cb320-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb320-5" data-line-number="5"><span class="co"># (Same as doing:):</span></a>
 <a class="sourceLine" id="cb320-6" data-line-number="6">mydata<span class="op">$</span>censoring_date =<span class="st"> </span>mydata<span class="op">$</span>operation_date <span class="op">+</span><span class="st"> </span><span class="kw">days</span>(mydata<span class="op">$</span>time)</a></code></pre></div>
-<p>Now consider if we only had the <code>operation date</code> and <code>censoring date</code>. We want to create the <code>time</code> variable.</p>
+<p>Now consider if we only had the <code>operation date</code> and <code>censoring date</code>.
+We want to create the <code>time</code> variable.</p>
 <div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" data-line-number="1">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb321-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">time_days =</span> censoring_date <span class="op">-</span><span class="st"> </span>operation_date) -&gt;</a>
 <a class="sourceLine" id="cb321-3" data-line-number="3"><span class="st">  </span>mydata</a></code></pre></div>

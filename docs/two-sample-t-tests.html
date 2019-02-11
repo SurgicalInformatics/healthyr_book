@@ -348,10 +348,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.4" data-path="analysis-1.html"><a href="analysis-1.html#fishers-exact-test"><i class="fa fa-check"></i><b>8.3.4</b> Fisher’s exact test</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="summarising-multiple-factors-optional.html"><a href="summarising-multiple-factors-optional.html"><i class="fa fa-check"></i><b>8.4</b> Summarising multiple factors (optional)</a></li>
-<li class="chapter" data-level="8.5" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(summarizer)</code></a><ul>
-<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
-<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
-<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
+<li class="chapter" data-level="8.5" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(finalfit)</code></a><ul>
+<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
+<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
+<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Logistic regression</a><ul>
@@ -427,7 +427,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="two-sample-t-tests" class="section level2">
 <h2><span class="header-section-number">6.3</span> Two-sample t-tests</h2>
-<p>Lets perform a t-test on the “Americas” data as it appears normally distributed. We are savings the results of our t.test into a variable called t.result, but you can call it whatever you like (e.g. <code>myttest</code>).</p>
+<p>Lets perform a t-test on the “Americas” data as it appears normally distributed.
+We are savings the results of our t.test into a variable called t.result, but you can call it whatever you like (e.g. <code>myttest</code>).</p>
 <div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb171-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2002</span>, <span class="dv">2007</span>)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb171-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Americas&quot;</span>) -&gt;<span class="st"> </span>test.data</a>
@@ -484,7 +485,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ method     : chr &quot;Welch Two Sample t-test&quot;
 ##  $ data.name  : chr &quot;lifeExp by year&quot;
 ##  - attr(*, &quot;class&quot;)= chr &quot;htest&quot;</code></pre>
-<p>The structure of R’s <code>t.test()</code> result looks a bit overwhelming. Fortunately, the <code>tidy()</code> function from <code>library(broom)</code> puts it into a neat dataframe for us:</p>
+<p>The structure of R’s <code>t.test()</code> result looks a bit overwhelming.
+Fortunately, the <code>tidy()</code> function from <code>library(broom)</code> puts it into a neat dataframe for us:</p>
 <div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1">t.result &lt;-<span class="st"> </span><span class="kw">tidy</span>(t.result) <span class="co"># broom package puts it all in a data frame</span></a></code></pre></div>
 <p>try clicking on it in the Environment tab now.</p>
 <p>Thus, now we understand the output structure we can extract any result.</p>
@@ -494,7 +496,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exercise-31" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Exercise</h3>
 <ol style="list-style-type: decimal">
-<li><p>Select any 2 years in any continent and perform a t-test to determine whether the life expectancy is signficantly different. Remember to plot your data first.</p></li>
+<li><p>Select any 2 years in any continent and perform a t-test to determine whether the life expectancy is signficantly different.
+Remember to plot your data first.</p></li>
 <li><p>Extract only the p-value from your <code>t.test()</code> output.</p></li>
 </ol>
 </div>

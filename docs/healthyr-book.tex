@@ -1630,7 +1630,7 @@ will learn how to summarise it ourselves.
 \end{Highlighting}
 \end{Shaded}
 
-We were already using this longer dataset in Session1, but with
+We were already using this longer dataset in Session 1, but with
 \texttt{colour=cause} to hide the fact that the total deaths in each
 year was made up of 12 groups of data (as the black lines on the bars
 indicate):
@@ -4372,7 +4372,7 @@ recode these numbers into proper factors.
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(summarizer)}
+\KeywordTok{library}\NormalTok{(finalfit)}
 \KeywordTok{library}\NormalTok{(broom)}
 \NormalTok{mydata =}\StringTok{ }\NormalTok{boot}\OperatorTok{::}\NormalTok{melanoma}
 \end{Highlighting}
@@ -4747,9 +4747,9 @@ want to summarise more than one factor or continuous variable against
 our \texttt{dependent} variable of interest. Think of Table 1 in a
 journal article.
 
-\hypertarget{summarising-factors-with-librarysummarizer}{%
+\hypertarget{summarising-factors-with-libraryfinalfit}{%
 \section{\texorpdfstring{Summarising factors with
-\texttt{library(summarizer)}}{Summarising factors with library(summarizer)}}\label{summarising-factors-with-librarysummarizer}}
+\texttt{library(finalfit)}}{Summarising factors with library(finalfit)}}\label{summarising-factors-with-libraryfinalfit}}
 
 This is our own package which we have written and maintain. It contains
 functions to summarise data for publication tables and figures, and to
@@ -4759,9 +4759,9 @@ varaibles.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(summarizer)}
+\KeywordTok{library}\NormalTok{(finalfit)}
 \NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{summary.factorlist}\NormalTok{(}\DataTypeTok{dependent =} \StringTok{"status.factor"}\NormalTok{, }
+\StringTok{  }\KeywordTok{summary_factorlist}\NormalTok{(}\DataTypeTok{dependent =} \StringTok{"status.factor"}\NormalTok{, }
                      \DataTypeTok{explanatory =} \KeywordTok{c}\NormalTok{(}\StringTok{"sex.factor"}\NormalTok{, }\StringTok{"ulcer.factor"}\NormalTok{, }\StringTok{"age.factor"}\NormalTok{),}
                      \DataTypeTok{p =} \OtherTok{TRUE}\NormalTok{,}
                      \DataTypeTok{column =} \OtherTok{TRUE}\NormalTok{)}
@@ -4774,7 +4774,7 @@ varaibles.
 \end{verbatim}
 
 \begin{verbatim}
-##          label  levels     Alive      Died pvalue
+##          label  levels     Alive      Died      p
 ## 5   sex.factor  Female 98 (66.2) 28 (49.1)  0.024
 ## 6                 Male 50 (33.8) 29 (50.9)       
 ## 7 ulcer.factor  Absent 99 (66.9) 16 (28.1) <0.001
@@ -4984,7 +4984,7 @@ Look at the numbers and convince yourself that this works.
 
 For a given categorical explanatory variable (e.g.~gender), the
 likelihood of an outcome/dependent occuring (e.g cancer) can be
-expressed in a ratio of odds or odds ratio , e.g.~the odds of men
+expressed in a ratio of odds or odds ratio, e.g.~the odds of men
 developing cancer is 2-times that of females, odds ratio = 2.0.
 
 \includegraphics{images/or.png}

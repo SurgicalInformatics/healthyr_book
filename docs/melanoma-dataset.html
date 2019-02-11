@@ -348,10 +348,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.4" data-path="analysis-1.html"><a href="analysis-1.html#fishers-exact-test"><i class="fa fa-check"></i><b>8.3.4</b> Fisher’s exact test</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="summarising-multiple-factors-optional.html"><a href="summarising-multiple-factors-optional.html"><i class="fa fa-check"></i><b>8.4</b> Summarising multiple factors (optional)</a></li>
-<li class="chapter" data-level="8.5" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(summarizer)</code></a><ul>
-<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
-<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
-<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
+<li class="chapter" data-level="8.5" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(finalfit)</code></a><ul>
+<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
+<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
+<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Logistic regression</a><ul>
@@ -427,7 +427,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="melanoma-dataset" class="section level2">
 <h2><span class="header-section-number">9.4</span> Melanoma dataset</h2>
-<p>Malignant Melanoma is a cancer of the skin. It is agressive and highly invasive, making it difficult to treat.</p>
+<p>Malignant Melanoma is a cancer of the skin.
+It is agressive and highly invasive, making it difficult to treat.</p>
 <p>It’s classically divided into 4 stages of severity, based upon the depth of the tumour:</p>
 <ul>
 <li>Stage I- &lt;0.5 mm depth</li>
@@ -439,7 +440,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Using logistic regression, we will investigate factors associated with death from malignant melanoma.</p>
 <div id="doing-logistic-regression-in-r" class="section level3">
 <h3><span class="header-section-number">9.4.1</span> Doing logistic regression in R</h3>
-<p>There are a few different ways of creating a logistic regression in R. The <code>glm()</code> function is probably the most common and most flexible one to use. (<code>glm</code> stands for <code>generalised linear model</code>.)</p>
+<p>There are a few different ways of creating a logistic regression in R.
+The <code>glm()</code> function is probably the most common and most flexible one to use. (<code>glm</code> stands for <code>generalised linear model</code>.)</p>
 <p>Within the <code>glm()</code> function there are several <code>options</code> in the function we must define to make R run a logistic regression.</p>
 <p><code>data</code> - you must define the dataframe to be used in the regression.</p>
 <p><code>family</code> - this tells R to treat the analysis as a logisitic regression. For our purposes, <code>family</code> will always be <code>&quot;binomial&quot;</code> (as binary data follow this distribution).</p>

@@ -1,12 +1,14 @@
 # Tests for categorical variables
 
 ## Data
-We are now changing to a new dataset: melanoma. Click on mydata in your Environment and have a look at the values - you'll see that categorical variables are coded as numbers, rather than text. You will need to recode these numbers into proper factors. 
+We are now changing to a new dataset: melanoma. 
+Click on mydata in your Environment and have a look at the values - you'll see that categorical variables are coded as numbers, rather than text. 
+You will need to recode these numbers into proper factors. 
 
 
 ```r
 library(tidyverse)
-library(summarizer)
+library(finalfit)
 library(broom)
 mydata = boot::melanoma
 ```
@@ -121,10 +123,13 @@ chisq.test(mydata$status.factor, mydata$sex.factor)
 ## X-squared = 4.3803, df = 1, p-value = 0.03636
 ```
 
-Note that `chisq.test()` defaults to the Yates continuity correction. It is fine to use this, but if you have a particular need not to, turn if off with `chisq.test(mydata$status.factor, mydata$sex.factor, correct=FALSE)`.
+Note that `chisq.test()` defaults to the Yates continuity correction. 
+It is fine to use this, but if you have a particular need not to, turn if off with `chisq.test(mydata$status.factor, mydata$sex.factor, correct=FALSE)`.
 
 ### Using `CrossTable`
-This gives lots of useful information. It is readable in R and has lots of options, including Fisher's exact test. It is not that easy to extract results. 
+This gives lots of useful information. 
+It is readable in R and has lots of options, including Fisher's exact test. 
+It is not that easy to extract results. 
 \newpage
 
 ```r
@@ -202,7 +207,8 @@ CrossTable(mydata$status.factor, mydata$ulcer.factor, chisq=TRUE)
 
 ### Fisher's exact test
 
-An assumption of the chi-squared test is that the 'expected cell count' is greater than 5. If it is less than 5 the test becomes unreliable and the Fisher's exact test is recommended. 
+An assumption of the chi-squared test is that the 'expected cell count' is greater than 5. 
+If it is less than 5 the test becomes unreliable and the Fisher's exact test is recommended. 
 
 Run the following code. 
 
@@ -333,17 +339,21 @@ CrossTable(mydata$status.factor, mydata$age.factor, expected=TRUE, chisq=TRUE)
 
 
 ## Summarising multiple factors (optional)
-`CrossTable` is useful for summarising single variables. We often want to summarise more than one factor or continuous variable against our `dependent` variable of interest. Think of Table 1 in a journal article. 
+`CrossTable` is useful for summarising single variables. 
+We often want to summarise more than one factor or continuous variable against our `dependent` variable of interest. 
+Think of Table 1 in a journal article. 
 
-## Summarising factors with `library(summarizer)`
+## Summarising factors with `library(finalfit)`
 
-This is our own package which we have written and maintain. It contains functions to summarise data for publication tables and figures, and to easily run regression analyses. We specify a `dependent` or outcome variable, and a set of `explanatory` or predictor varaibles. 
+This is our own package which we have written and maintain. 
+It contains functions to summarise data for publication tables and figures, and to easily run regression analyses. 
+We specify a `dependent` or outcome variable, and a set of `explanatory` or predictor varaibles. 
 
 
 ```r
-library(summarizer)
+library(finalfit)
 mydata %>% 
-  summary.factorlist(dependent = "status.factor", 
+  summary_factorlist(dependent = "status.factor", 
                      explanatory = c("sex.factor", "ulcer.factor", "age.factor"),
                      p = TRUE,
                      column = TRUE)
@@ -355,7 +365,7 @@ mydata %>%
 ```
 
 ```
-##          label  levels     Alive      Died pvalue
+##          label  levels     Alive      Died      p
 ## 5   sex.factor  Female 98 (66.2) 28 (49.1)  0.024
 ## 6                 Male 50 (33.8) 29 (50.9)       
 ## 7 ulcer.factor  Absent 99 (66.9) 16 (28.1) <0.001

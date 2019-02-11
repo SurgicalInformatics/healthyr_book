@@ -348,10 +348,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.4" data-path="analysis-1.html"><a href="analysis-1.html#fishers-exact-test"><i class="fa fa-check"></i><b>8.3.4</b> Fisher’s exact test</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="summarising-multiple-factors-optional.html"><a href="summarising-multiple-factors-optional.html"><i class="fa fa-check"></i><b>8.4</b> Summarising multiple factors (optional)</a></li>
-<li class="chapter" data-level="8.5" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(summarizer)</code></a><ul>
-<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
-<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
-<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
+<li class="chapter" data-level="8.5" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(finalfit)</code></a><ul>
+<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
+<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
+<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Logistic regression</a><ul>
@@ -436,8 +436,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb267-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb267-3" data-line-number="3"><span class="kw">load</span>(<span class="st">&quot;melanoma_factored.rda&quot;</span>)</a>
 <a class="sourceLine" id="cb267-4" data-line-number="4"><span class="co">#Load in data from the previous session</span></a></code></pre></div>
-<p>Here <code>status.factor</code> has three levels: <code>Died</code>, <code>Died - other causes</code> and <code>Alive</code>. This is not useful for us, as logistic regression requires outcomes to be binary.</p>
-<p>We want to find out using logistic regression, which variables predict death from Melanoma. So we should create a new factor variable, <code>died_melanoma.factor</code>. This will have two outcomes, <code>Yes</code> (did die from melanoma) or <code>No</code> (did not die from melanoma).</p>
+<p>Here <code>status.factor</code> has three levels: <code>Died</code>, <code>Died - other causes</code> and <code>Alive</code>.
+This is not useful for us, as logistic regression requires outcomes to be binary.</p>
+<p>We want to find out using logistic regression, which variables predict death from Melanoma.
+So we should create a new factor variable, <code>died_melanoma.factor</code>.
+This will have two outcomes, <code>Yes</code> (did die from melanoma) or <code>No</code> (did not die from melanoma).</p>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1">mydata<span class="op">$</span>status.factor <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb268-2" data-line-number="2"><span class="st">  </span><span class="kw">fct_collapse</span>(<span class="st">&quot;Yes&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Died&quot;</span>),</a>
 <a class="sourceLine" id="cb268-3" data-line-number="3">               <span class="st">&quot;No&quot;</span>  =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Alive&quot;</span>, <span class="st">&quot;Died - other causes&quot;</span>)) -&gt;</a>

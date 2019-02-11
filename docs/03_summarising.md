@@ -3,7 +3,8 @@
 In this session we will get to know our three best friends for summarising data: `group_by()`, `summarise()`, and `mutate()`.
 
 ## Data
-In Session 2, we used a very condensed version of the Global Burden of Disease data. In this module we are going back to a longer one and we will learn how to summarise it ourselves.
+In Session 2, we used a very condensed version of the Global Burden of Disease data. 
+In this module we are going back to a longer one and we will learn how to summarise it ourselves.
 
 
 ```r
@@ -11,7 +12,7 @@ source("1_source_theme.R")
 load("global_burden_disease_long.rda")
 ```
 
-We were already using this longer dataset in Session1, but with `colour=cause` to hide the fact that the total deaths in each year was made up of 12 groups of data (as the black lines on the bars indicate):
+We were already using this longer dataset in Session 1, but with `colour=cause` to hide the fact that the total deaths in each year was made up of 12 groups of data (as the black lines on the bars indicate):
 
 
 ```r
@@ -82,7 +83,9 @@ But if you want to get the total number of deaths for each `year` (or `cause`, o
 
 ## Subgroup analysis: `group_by()` and `summarise()`
 
-The `group_by()` function tells R that you are about to perform subgroup analysis on your data. It retains information about your groupings and calculations are applied on each group separately. To go back to summarising the whole dataset again use `ungroup()`. Note that `summarise()` is different to the `summary()` function we used in Session 2.
+The `group_by()` function tells R that you are about to perform subgroup analysis on your data. 
+It retains information about your groupings and calculations are applied on each group separately. 
+To go back to summarising the whole dataset again use `ungroup()`. Note that `summarise()` is different to the `summary()` function we used in Session 2.
 
 With `summarise()`, we can calculate the total number of deaths per year:
 
@@ -153,7 +156,8 @@ You should see that `mutate()` adds the same number total number (309.4174) to e
 
 ### Optional advanced exercise
 
-Based on what we just observed on how `mutate()` adds a value to each row, can you think of a way to redo **Exercise 3.4.2** without using a join? Hint: instead of creating `summary_data1` (total deaths per year) as a separate dataframe which we then merge with `summary_data2` (total deaths for all causes per year), we can use `mutate()` to add total death per year to each row.
+Based on what we just observed on how `mutate()` adds a value to each row, can you think of a way to redo **Exercise 3.4.2** without using a join? 
+Hint: instead of creating `summary_data1` (total deaths per year) as a separate dataframe which we then merge with `summary_data2` (total deaths for all causes per year), we can use `mutate()` to add total death per year to each row.
 
 
 ```r
@@ -201,7 +205,8 @@ alldata %>%
 ```
 
 ### Exercise
-Calculate the percentage of male and female deaths for each year. Spread it to a human readable form:
+Calculate the percentage of male and female deaths for each year. 
+Spread it to a human readable form:
 
 Hints:
 
@@ -310,7 +315,8 @@ result_spread %>%
   gather(percentage, sex, -year)
 ```
 
-Turns out in the above example, `percentage` and `sex` were just label you assigned to the gathered columns. It could be anything, e.g.:
+Turns out in the above example, `percentage` and `sex` were just label you assigned to the gathered columns. 
+It could be anything, e.g.:
 
 
 ```r
@@ -346,7 +352,8 @@ mydata %>%
 
 ## Factor handling
 
-We talked about the pros and cons of working with factors in Session 2. Overall, they are very useful for the type of analyses involved in medical research. 
+We talked about the pros and cons of working with factors in Session 2. 
+Overall, they are very useful for the type of analyses involved in medical research. 
 
 ### Exercise
 Explain how and why these two plots are different.

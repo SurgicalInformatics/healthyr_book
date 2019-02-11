@@ -3,7 +3,8 @@
 
 
 
-In this session, we will create 5 beautiful and colourful barplots in less than an hour. Do not worry about understanding every single word or symbol (e.g. the pipe - `%>%`) in the R code you are about to see. The purpose of this session is merely to
+In this session, we will create 5 beautiful and colourful barplots in less than an hour.
+Do not worry about understanding every single word or symbol (e.g. the pipe - `%>%`) in the R code you are about to see. The purpose of this session is merely to
 
 * gain familiarity with the RStudio interface:
     + to know what a script looks like,
@@ -27,7 +28,9 @@ load("global_burden_disease_long.rda")
 After loading the datasets, investigate your Environment tab (top-right):
 
 
-Click on the name `mydata` and it will pop up next to where your script is. Clicking on the blue button is not as useful, but it doesn't do any harm either. Try it.
+Click on the name `mydata` and it will pop up next to where your script is.
+Clicking on the blue button is not as useful, but it doesn't do any harm either.
+Try it.
 
 ## First plot
 
@@ -126,7 +129,8 @@ mydata %>%
 
 ### Setting a constant fill
 
-Using the `mydata2013` example again, what does the addition of `fill = "black"` in this code do? Note that putting the `ggplot(aes())` code all on one line not affect the result.
+Using the `mydata2013` example again, what does the addition of `fill = "black"` in this code do?
+Note that putting the `ggplot(aes())` code all on one line not affect the result.
 
 
 ```r
@@ -137,7 +141,9 @@ mydata2013 %>%
 
 ![](01_first_interaction_files/figure-epub3/unnamed-chunk-7-1.png)<!-- -->
 
-Setting aesthetics (x, y, fill, colour, etc.) outside of `aes()` sets them to a constant value. R can recognise of a lot of colour names, e.g., try "cornflowerblue", "firebrick", or just "red", "green", "blue", etc. For a full list, Google "Colours in R". R also knows HEX codes, e.g. `fill = "#fec3fc"` is pink.
+Setting aesthetics (x, y, fill, colour, etc.) outside of `aes()` sets them to a constant value.
+R can recognise of a lot of colour names, e.g., try "cornflowerblue", "firebrick", or just "red", "green", "blue", etc.
+For a full list, Google "Colours in R". R also knows HEX codes, e.g. `fill = "#fec3fc"` is pink.
 
 
 ### Exercise
@@ -195,9 +201,12 @@ mydata2013 %>%
 
 **1.5.2:**
 
-On a barplot, the colour aesthetic outlines the fill. In a later session we will see, however, that for points and lines, colour is the main aesthetic to define.
+On a barplot, the colour aesthetic outlines the fill.
+In a later session we will see, however, that for points and lines, colour is the main aesthetic to define.
 
 **1.5.3:**
 
-Words in quotes are generally something set to a constant value (e.g. make all outlines black, rather than colour them based on the cause they are representing). Unquoted words are generally variables (or functions). If the word "function" just threw you, Google "Jesse Maegan: What the h*ck is a function"
+Words in quotes are generally something set to a constant value (e.g. make all outlines black, rather than colour them based on the cause they are representing).
+Unquoted words are generally variables (or functions).
+If the word "function" just threw you, Google "Jesse Maegan: What the h*ck is a function"
 

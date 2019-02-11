@@ -348,10 +348,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.4" data-path="analysis-1.html"><a href="analysis-1.html#fishers-exact-test"><i class="fa fa-check"></i><b>8.3.4</b> Fisher’s exact test</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="summarising-multiple-factors-optional.html"><a href="summarising-multiple-factors-optional.html"><i class="fa fa-check"></i><b>8.4</b> Summarising multiple factors (optional)</a></li>
-<li class="chapter" data-level="8.5" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(summarizer)</code></a><ul>
-<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
-<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
-<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
+<li class="chapter" data-level="8.5" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(finalfit)</code></a><ul>
+<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
+<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
+<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Logistic regression</a><ul>
@@ -427,7 +427,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="extra-creating-a-dataframe-from-scratch" class="section level2">
 <h2><span class="header-section-number">2.14</span> Extra: Creating a dataframe from scratch</h2>
-<p>It is rare that you will need to create a dataframe by hand as most of the time you will be reading in a data from a .csv or similar. But in some cases (e.g., when creating special labels for a plot) it might be useful, so this is how to create one:</p>
+<p>It is rare that you will need to create a dataframe by hand as most of the time you will be reading in a data from a .csv or similar.
+But in some cases (e.g., when creating special labels for a plot) it might be useful, so this is how to create one:</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">patient_id =<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;ID&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a>
 <a class="sourceLine" id="cb51-2" data-line-number="2">sex        =<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>), <span class="dv">5</span>)</a>
 <a class="sourceLine" id="cb51-3" data-line-number="3">age        =<span class="st"> </span><span class="dv">18</span><span class="op">:</span><span class="dv">27</span></a>
@@ -442,7 +443,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb53-5" data-line-number="5">  <span class="dt">sex        =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>), <span class="dv">5</span>),</a>
 <a class="sourceLine" id="cb53-6" data-line-number="6">  <span class="dt">age        =</span> <span class="dv">18</span><span class="op">:</span><span class="dv">27</span></a>
 <a class="sourceLine" id="cb53-7" data-line-number="7">)</a></code></pre></div>
-<p>If we used <code>data.frame()</code> instead of <code>data_frame()</code>, all our character variables (<code>patient_id</code>, <code>sex</code>) would become factors automatically. This might make sense for <code>sex</code>, but it doesn’t for <code>patient_id</code>.</p>
+<p>If we used <code>data.frame()</code> instead of <code>data_frame()</code>, all our character variables (<code>patient_id</code>, <code>sex</code>) would become factors automatically.
+This might make sense for <code>sex</code>, but it doesn’t for <code>patient_id</code>.</p>
 <div id="exercise-15" class="section level3">
 <h3><span class="header-section-number">2.14.1</span> Exercise</h3>
 <p>Create a new dataframe called <code>my_dataframe</code> that looks like this:</p>

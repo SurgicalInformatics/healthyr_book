@@ -6,7 +6,10 @@
 ## Data and initial plot
 
 
-We can save a `ggplot()` object into a variable (usually called `p` but can be any name). This then appear in the Environment tab. To plot it it needs to be recalled on a separate line. Saving a plot into a variable allows us to modify it later (e.g., `p+theme_bw()`).
+We can save a `ggplot()` object into a variable (usually called `p` but can be any name). 
+This then appear in the Environment tab. 
+To plot it it needs to be recalled on a separate line. 
+Saving a plot into a variable allows us to modify it later (e.g., `p+theme_bw()`).
 
 
 ```r
@@ -72,7 +75,8 @@ p + expand_limits(y = c(0, 100))
 
 ![](05_fine_tuning_plots_files/figure-epub3/unnamed-chunk-4-1.png)<!-- -->
 
-By default, `ggplot` adds some padding around the included area (see how the scale doesn't start from 0, but slightly before). You can remove this padding with the expand option:
+By default, `ggplot` adds some padding around the included area (see how the scale doesn't start from 0, but slightly before). 
+You can remove this padding with the expand option:
 
 
 ```r
@@ -115,7 +119,8 @@ p +
 
 ![](05_fine_tuning_plots_files/figure-epub3/unnamed-chunk-7-1.png)<!-- -->
 
-Answer: the first one zooms in, still retaining information about the excluded points when calculating the linear regression lines. The second one removes the data (as the warnings say), calculating the linear regression lines only for the visible points.
+Answer: the first one zooms in, still retaining information about the excluded points when calculating the linear regression lines. 
+The second one removes the data (as the warnings say), calculating the linear regression lines only for the visible points.
 
 ### Axis ticks
 

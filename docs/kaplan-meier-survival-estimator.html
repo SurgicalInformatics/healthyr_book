@@ -348,10 +348,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.4" data-path="analysis-1.html"><a href="analysis-1.html#fishers-exact-test"><i class="fa fa-check"></i><b>8.3.4</b> Fisher’s exact test</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="summarising-multiple-factors-optional.html"><a href="summarising-multiple-factors-optional.html"><i class="fa fa-check"></i><b>8.4</b> Summarising multiple factors (optional)</a></li>
-<li class="chapter" data-level="8.5" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(summarizer)</code></a><ul>
-<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
-<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
-<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-librarysummarizer.html"><a href="summarising-factors-with-librarysummarizer.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
+<li class="chapter" data-level="8.5" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html"><i class="fa fa-check"></i><b>8.5</b> Summarising factors with <code>library(finalfit)</code></a><ul>
+<li class="chapter" data-level="8.5.1" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#summarising-factors-with-librarytidyverse"><i class="fa fa-check"></i><b>8.5.1</b> Summarising factors with <code>library(tidyverse)</code></a></li>
+<li class="chapter" data-level="8.5.2" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#example"><i class="fa fa-check"></i><b>8.5.2</b> Example</a></li>
+<li class="chapter" data-level="8.5.3" data-path="summarising-factors-with-libraryfinalfit.html"><a href="summarising-factors-with-libraryfinalfit.html#exercise-42"><i class="fa fa-check"></i><b>8.5.3</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Logistic regression</a><ul>
@@ -443,7 +443,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="model" class="section level3">
 <h3><span class="header-section-number">10.2.2</span> Model</h3>
-<p>The survival object is the first step to performing univariable and multivariable survival analyses. A univariable model can then be fitted.</p>
+<p>The survival object is the first step to performing univariable and multivariable survival analyses.
+A univariable model can then be fitted.</p>
 <p>If you want to plot survival stratified by a single grouping variable, you can substitute “survival_object ~ 1” by “survival_object ~ factor”</p>
 <div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" data-line-number="1"><span class="co"># For all patients</span></a>
 <a class="sourceLine" id="cb301-2" data-line-number="2">my_survfit =<span class="st"> </span><span class="kw">survfit</span>(survival_object <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> mydata)</a>
@@ -455,7 +456,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="life-table" class="section level3">
 <h3><span class="header-section-number">10.2.3</span> Life table</h3>
-<p>A life table is the tabular form of a KM plot, which you may be familiar with. It shows survival as a proportion, together with confidence limits.</p>
+<p>A life table is the tabular form of a KM plot, which you may be familiar with.
+It shows survival as a proportion, together with confidence limits.</p>
 <div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1"><span class="co"># The whole table is shown with, summary(my_survfit)</span></a>
 <a class="sourceLine" id="cb303-2" data-line-number="2"><span class="co"># Here is </span></a>
 <a class="sourceLine" id="cb303-3" data-line-number="3"><span class="kw">summary</span>(my_survfit, <span class="dt">times=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</a></code></pre></div>
@@ -489,7 +491,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1"><span class="co"># Note can also take `ggplot()` options. </span></a>
 <a class="sourceLine" id="cb307-2" data-line-number="2">my_survplot<span class="op">$</span>plot <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb307-3" data-line-number="3"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="dt">x =</span> <span class="dv">5</span>, <span class="dt">y =</span> <span class="fl">0.25</span>, <span class="dt">label=</span><span class="st">&#39;Whole cohort&#39;</span>)</a></code></pre></div>
-<p>Here is an alternative plot in base R to compare. Not only does this produce a more basic survival plot, but tailoring the plot can be more difficult to achieve.</p>
+<p>Here is an alternative plot in base R to compare.
+Not only does this produce a more basic survival plot, but tailoring the plot can be more difficult to achieve.</p>
 <p>Furthermore, appending a life table (“risk.table”) alongside the plot can also be difficult (yet this is often required for interpretation / publication).</p>
 <div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1"><span class="kw">plot</span>(my_survfit, <span class="dt">mark.time=</span><span class="ot">FALSE</span>, <span class="dt">conf.int=</span><span class="ot">TRUE</span>, </a>
 <a class="sourceLine" id="cb308-2" data-line-number="2">         <span class="dt">xlab=</span><span class="st">&quot;Time (years)&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Survival&quot;</span>)</a></code></pre></div>
@@ -509,7 +512,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="log-rank-test" class="section level3">
 <h3><span class="header-section-number">10.2.6</span> Log-rank test</h3>
-<p>Two KM survival curves can be compared using the log-rank test. Note survival curves can also be compared using a Wilcoxon test that may be appropriate in some circumstances.</p>
+<p>Two KM survival curves can be compared using the log-rank test.
+Note survival curves can also be compared using a Wilcoxon test that may be appropriate in some circumstances.</p>
 <p>This can easily be performed in <code>library(survival)</code> using the function <code>survdiff()</code>.</p>
 <div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" data-line-number="1"><span class="kw">survdiff</span>(survival_object <span class="op">~</span><span class="st"> </span>ulcer.factor, <span class="dt">data =</span> mydata)</a></code></pre></div>
 <pre><code>## Call:

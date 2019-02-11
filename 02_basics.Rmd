@@ -1,25 +1,37 @@
 # R Basics
 
-The aim of this module is to familiarise you with how R works and how to read in and apply basic manipulations on your data. Here, we will be working with similar but slightly shorter version of the Global Burden of Disease dataset than we did for the bar plots.
+The aim of this module is to familiarise you with how R works and how to read in and apply basic manipulations on your data. 
+Here, we will be working with similar but slightly shorter version of the Global Burden of Disease dataset than we did for the bar plots.
 
-Throughout this course, don't copy or type code directly into the Console. We will only be using the Console for viewing output, warnings, and errors. All code should be in a script and executed (=run) using Control+Enter (line or section) or Control+Shift+Enter (whole script). Make sure you are always working in a project (the right-top corner of your RStudio interface should say "HealthyR").
+Throughout this course, don't copy or type code directly into the Console. 
+We will only be using the Console for viewing output, warnings, and errors. 
+All code should be in a script and executed (=run) using Control+Enter (line or section) or Control+Shift+Enter (whole script). 
+Make sure you are always working in a project (the right-top corner of your RStudio interface should say "HealthyR").
 
 ## Getting help
 
-RStudio has a built in Help tab. To use the Help tab, move your cursor to something in your code (e.g. `read_csv()`) and press F1 - this will show you the definition and some examples. However, the Help tab is only useful if you already know what you are looking for but can't remember how it worked exactly. For finding help on things you have not used before, it is best to Google it. R has about 2 million users so someone somewhere has had the same question or problem.
+RStudio has a built in Help tab. 
+To use the Help tab, move your cursor to something in your code (e.g. `read_csv()`) and press F1 - this will show you the definition and some examples. 
+However, the Help tab is only useful if you already know what you are looking for but can't remember how it worked exactly. 
+For finding help on things you have not used before, it is best to Google it. 
+R has about 2 million users so someone somewhere has had the same question or problem.
 
 
 ## Starting with a blank canvas
 
-In the first session we loaded some data that we then plotted. When we import data, R remembers the data and stores it in the Environment tab.
+In the first session we loaded some data that we then plotted. 
+When we import data, R remembers the data and stores it in the Environment tab.
 
-It's good practice to Restart R before starting new work, as it's best to use fresh up to date data - otherwise we could accidentally use data which has nothing to do with our work. Restarting R only takes a second!
+It's good practice to Restart R before starting new work, as it's best to use fresh up to date data - otherwise we could accidentally use data which has nothing to do with our work. 
+Restarting R only takes a second!
 
 * Restart R (Control+Shift+F10 or select it from Session -> Restart R).
 
 RStudio has a default option that is not best practise any more, you should do this (once only):
 
-* Go to Tools -> Global Options -> General and set "Save .RData on exit" to Never. This does not mean you can't or shouldn't save your work in .RData files. But it is best to do it consciously and load exactly what you need to load, rather than letting R always save and load everything for you, as this could also include broken data or objects.
+* Go to Tools -> Global Options -> General and set "Save .RData on exit" to Never. 
+This does not mean you can't or shouldn't save your work in .RData files. 
+But it is best to do it consciously and load exactly what you need to load, rather than letting R always save and load everything for you, as this could also include broken data or objects.
 
 
 
@@ -64,10 +76,13 @@ c # should return the number 3
 
 All of R is just an extension of this: applying more complex functions (calculations) across more complex objects.
 
-It's important to appreciate that objects can be more than just single numbers too. They can be entire spreadsheets, which in R are known as `data frames`.
+It's important to appreciate that objects can be more than just single numbers too. 
+They can be entire spreadsheets, which in R are known as `data frames`.
 
 
-Note that many people use `<-` instead of `=`. They mean the same thing in R. `=` and `<-` save what is on the right into the name on the left. There is also a left-to-right operator: `->`.
+Note that many people use `<-` instead of `=`. 
+They mean the same thing in R. `=` and `<-` save what is on the right into the name on the left. 
+There is also a left-to-right operator: `->`.
 
 ### Exercise
 
@@ -93,7 +108,8 @@ mydata = read_csv("global_burden_disease_short.csv")
 
 ```
 
-But how can we look at the data we just loaded? How do we know which variables it contains? Hint: the Environment tab.
+But how can we look at the data we just loaded? How do we know which variables it contains? 
+Hint: the Environment tab.
 
 ### Excercise
 
@@ -107,7 +123,8 @@ Answer these question about your data:
 
 ### Other ways to investigate objects
 
-In most cases, you can rely on the Environment tab to see how many variables you have. If, however, the dataset you are using is too big to easily navigate within, you might need to use `names(mydata)`, `head(mydata)`, or `str(mydata)`.
+In most cases, you can rely on the Environment tab to see how many variables you have. 
+If, however, the dataset you are using is too big to easily navigate within, you might need to use `names(mydata)`, `head(mydata)`, or `str(mydata)`.
 
 Furthermore, we can select a single column using the dollar sign: `$`.
 
@@ -240,28 +257,44 @@ Like many other types of statistical software, R needs to know the variable type
 
 ### Characters
 
-**Characters** (sometimes referred to as *strings* or *character strings*) in R are letters, words, or even whole sentences (an example of this may be free text comments). We can specify these using the `as.character()` function. Characters are displayed in-between `""` (or `''`).
+**Characters** (sometimes referred to as *strings* or *character strings*) in R are letters, words, or even whole sentences (an example of this may be free text comments). 
+We can specify these using the `as.character()` function. Characters are displayed in-between `""` (or `''`).
 
 ### Factors
 
-**Factors** are fussy characters. Factors are fussy because they have something called levels. Levels are all the unique values this variable could take - e.g. like when we looked at `mydata$cause %>% unique()`.
+**Factors** are fussy characters. 
+Factors are fussy because they have something called levels. 
+Levels are all the unique values this variable could take - e.g. like when we looked at `mydata$cause %>% unique()`.
 Using factors rather than just characters can be useful because:
 
 
-* The values factor levels can take is fixed. For example, if the levels of your column called `sex` are "Male" and "Female" and you try to add a new patient where sex is called just "F" you will get a warning from R. If `sex` was a character column rather than a factor R would have no problem with this and you would end up with "Male", "Female", and "F" in your column.
-* Levels have an order. When we plotted the different causes of death in the last session, R ordered them alphabetically (because `cause` was a character rather than a factor). But if you want to use a non-alphabetical order, e.g. "Communicable diseases"-"Non-communicable diseases"-"Injuries", we need make `cause` into a factor. Making a character column into a factor enables us to define and change the order of the levels. Furthermore, there are useful tools such as `fct_inorder` or `fct_infreq` that can order factor levels for us.
+* The values factor levels can take is fixed. 
+For example, if the levels of your column called `sex` are "Male" and "Female" and you try to add a new patient where sex is called just "F" you will get a warning from R. 
+If `sex` was a character column rather than a factor R would have no problem with this and you would end up with "Male", "Female", and "F" in your column.
+* Levels have an order. 
+When we plotted the different causes of death in the last session, R ordered them alphabetically (because `cause` was a character rather than a factor). 
+But if you want to use a non-alphabetical order, e.g. "Communicable diseases"-"Non-communicable diseases"-"Injuries", we need make `cause` into a factor. 
+Making a character column into a factor enables us to define and change the order of the levels. 
+Furthermore, there are useful tools such as `fct_inorder` or `fct_infreq` that can order factor levels for us.
 
 
-These can be huge benefits, especially as a lot of medical data analyses include comparing different risks to a reference level. Nevertheless, the fussiness of factors can sometimes be unhelpful or even frustrating. For example, if you really did want to add a new level to your `gender` column (e.g., "Prefer not to say") you will either have to convert the column to a character, add it, and convert it back to a factor, or use `fct_expand` to add the level and then add your new line.
+These can be huge benefits, especially as a lot of medical data analyses include comparing different risks to a reference level. 
+Nevertheless, the fussiness of factors can sometimes be unhelpful or even frustrating. 
+For example, if you really did want to add a new level to your `gender` column (e.g., "Prefer not to say") you will either have to convert the column to a character, add it, and convert it back to a factor, or use `fct_expand` to add the level and then add your new line.
 
 #### Exercise
 
-Temporarily type `fct_inorder` anywhere in your script, then press F1. Read the **Description** in the Help tab and discuss with your neighbour how `fct_inorder` and `fct_infreq` would order your factor levels.
+Temporarily type `fct_inorder` anywhere in your script, then press F1. 
+Read the **Description** in the Help tab and discuss with your neighbour how `fct_inorder` and `fct_infreq` would order your factor levels.
 
 
 ### Numbers
 
-Self-explanatory! These are numbers. In R, we specify these using the `as.numeric()` function. Numbers without decimal places are sometimes called integers. Click on the blue arrow in front of `mydata` in the Environment tab and see that `year` is an `int` (integer) whereas `deaths` is a `num` (numeric).
+Self-explanatory! 
+These are numbers. 
+In R, we specify these using the `as.numeric()` function. 
+Numbers without decimal places are sometimes called integers. 
+Click on the blue arrow in front of `mydata` in the Environment tab and see that `year` is an `int` (integer) whereas `deaths` is a `num` (numeric).
 
 
 
@@ -288,11 +321,13 @@ mydata$cause
 
 ### Exercise
 
-Change the order of the levels in `mydata$cause` so that "Non-communicable diseases" come before "Injuries". Hint: use F1 to investigate examples of how `fct_relevel()` works.
+Change the order of the levels in `mydata$cause` so that "Non-communicable diseases" come before "Injuries". 
+Hint: use F1 to investigate examples of how `fct_relevel()` works.
 
 ## Importing data
 
-For historical reasons, R's default functions (e.g. `read.csv()` or `data.frame()`) convert all characters to factors automatically (for more on this see [forcats.tidyverse.org](http://forcats.tidyverse.org). But it is usually more convenient to deal with characters and convert some of the columns to factors when necessary.
+For historical reasons, R's default functions (e.g. `read.csv()` or `data.frame()`) convert all characters to factors automatically (for more on this see [forcats.tidyverse.org](http://forcats.tidyverse.org). 
+But it is usually more convenient to deal with characters and convert some of the columns to factors when necessary.
 
 Base R:
 
@@ -343,7 +378,8 @@ mydata = mydata %>%
 
 We can make new variables using calculations based on variables in the data too.
 
-The mutate function is useful here. All you have to specify within the mutate function is the name of the variable (this can be new or pre-existing) and where the new data should come from.
+The mutate function is useful here. 
+All you have to specify within the mutate function is the name of the variable (this can be new or pre-existing) and where the new data should come from.
 
 There are two equivalent ways of defining new columns based on a calculation with a previous column:
 
@@ -363,7 +399,9 @@ mydata = mydata %>%
 
 ```
 
-Throughout this course we will be using both of these ways to create or modify columns. The first option (using the `$`) can look neater when changing a single variable, but when combining multiple ones you will end up repeating `mydata$`. `mutate()` removes the duplication, but it does add a new line and brackets. 
+Throughout this course we will be using both of these ways to create or modify columns. 
+The first option (using the `$`) can look neater when changing a single variable, but when combining multiple ones you will end up repeating `mydata$`. 
+`mutate()` removes the duplication, but it does add a new line and brackets. 
 
 
 ## Rounding numbers
@@ -404,14 +442,18 @@ examplelist
 
 ### Exercise
 
-There are 18 lines (observations) in mydata. Create a new variable using `c()` with 18 values (numbers, words, whichever you like, e.g. like we created `examplelist`). Then add it as new column to `mydata$newlist`. Advanced version: do this using a combination of `rep()` and `c()`.
+There are 18 lines (observations) in mydata. 
+Create a new variable using `c()` with 18 values (numbers, words, whichever you like, e.g. like we created `examplelist`). 
+Then add it as new column to `mydata$newlist`. 
+Advanced version: do this using a combination of `rep()` and `c()`.
 
 \newpage
 ## The `paste()` function
 
 The `paste()` function is used to paste several words or numbers into one character variable/sentence.
 
-In the paste function we need to specify what we would like to combine, and what should separate the components. By default, the separation is a space, but we can change this using the `sep =` option within the paste function.
+In the paste function we need to specify what we would like to combine, and what should separate the components. 
+By default, the separation is a space, but we can change this using the `sep =` option within the paste function.
 
 So, for example if we wanted to make a sentence:
 
@@ -459,7 +501,9 @@ paste(Today is, Sys.Date() )
 
 ## Combining two dataframes
 
-For combining dataframes based on shared variables we use the Joins: `left_join()`, `right_join()`, `inner_join()`, or `full_join()`. Let's split some of the variables in `mydata` between two new dataframes: `first_data` and `second_data`. For demonstrating the difference between the different joins, we will only include a subset (first 6 rows) of the dataset in `second_data`:
+For combining dataframes based on shared variables we use the Joins: `left_join()`, `right_join()`, `inner_join()`, or `full_join()`. 
+Let's split some of the variables in `mydata` between two new dataframes: `first_data` and `second_data`. 
+For demonstrating the difference between the different joins, we will only include a subset (first 6 rows) of the dataset in `second_data`:
 
 ```{r, message = FALSE}
 
@@ -477,7 +521,8 @@ combined_full  =  full_join(first_data, second_data)
 
 ```
 
-Those who have used R before, or those who come across older scripts will have seen `merge()` instead of the joins. `merge()` works similarly to joins, but instead of having the four options defined clearly at the front, you would have had to use the `all = FALSE, all.x = all, all.y = all` arguments.
+Those who have used R before, or those who come across older scripts will have seen `merge()` instead of the joins. 
+`merge()` works similarly to joins, but instead of having the four options defined clearly at the front, you would have had to use the `all = FALSE, all.x = all, all.y = all` arguments.
 
 ![](images/databasejoke.jpg)
 
@@ -490,7 +535,8 @@ Investigate the four new dataframes called `combined_` using the Environment tab
 
 In R, the `summary()` function provides a quick way of summarising both data or the results of statistical tests.
 
-Lets get a quick summary of all the variables inside the Global Burden of Disease dataset. It will work for whole datasets and single variables too.
+Lets get a quick summary of all the variables inside the Global Burden of Disease dataset. 
+It will work for whole datasets and single variables too.
 
 ```{r}
 
@@ -519,7 +565,8 @@ mydata %>%
 
 ```
 
-This is because the pipe tries to send data into the first place of the function (first argument), but `lm()` wants the formula (`deaths ~ year`) first, then the dataframe. We can bypass this using `data = .` to tell the pipe where to put mydata:
+This is because the pipe tries to send data into the first place of the function (first argument), but `lm()` wants the formula (`deaths ~ year`) first, then the dataframe. 
+We can bypass this using `data = .` to tell the pipe where to put mydata:
 
 ```{r, eval = FALSE}
 mydata %>% 
@@ -531,7 +578,8 @@ mydata %>%
 
 ### Exercise
 
-Try adding a new variable called `death_over_10m` which indicates whether there were more than 10 million deaths for a cause. The new variable should take the form 'Yes' or 'No'. 
+Try adding a new variable called `death_over_10m` which indicates whether there were more than 10 million deaths for a cause. 
+The new variable should take the form 'Yes' or 'No'. 
 
 Then make it into a factor.
 
@@ -548,7 +596,8 @@ mydata$death_over_10m %>% summary()
 
 ## Extra: Creating a dataframe from scratch
 
-It is rare that you will need to create a dataframe by hand as most of the time you will be reading in a data from a .csv or similar. But in some cases (e.g., when creating special labels for a plot) it might be useful, so this is how to create one:
+It is rare that you will need to create a dataframe by hand as most of the time you will be reading in a data from a .csv or similar. 
+But in some cases (e.g., when creating special labels for a plot) it might be useful, so this is how to create one:
 
 
 ```{r}
@@ -571,7 +620,8 @@ newdata      = data_frame(
 ```
 
 
-If we used `data.frame()` instead of `data_frame()`, all our character variables (`patient_id`, `sex`) would become factors automatically. This might make sense for `sex`, but it doesn't for `patient_id`.
+If we used `data.frame()` instead of `data_frame()`, all our character variables (`patient_id`, `sex`) would become factors automatically. 
+This might make sense for `sex`, but it doesn't for `patient_id`.
 
 ### Exercise
 

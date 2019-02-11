@@ -2,13 +2,18 @@
 
 ## What is Logistic Regression?
 
-As we have seen in previous sessions, regression analysis is a statistical process for estimating the relationships between variables. For instance, we may try to predict the blood pressure of a group of patients based on their age. As age and blood pressure are on a continuous scale, this is an example of linear regression. 
+As we have seen in previous sessions, regression analysis is a statistical process for estimating the relationships between variables. 
+For instance, we may try to predict the blood pressure of a group of patients based on their age.
+As age and blood pressure are on a continuous scale, this is an example of linear regression. 
 
 
 ![](images/age_bp.png)
 
 
-Logistic regression is an extension of this, where the variable being predicted is *categorical*. We will deal with binary logistic regression, where the variable being predicted has two levels, e.g. yes or no, 0 or 1. In healthcare this is usually done for an event (like death) occurring or not occurring. Logistic regression can tell us the probability of the outcome occuring.
+Logistic regression is an extension of this, where the variable being predicted is *categorical*.
+We will deal with binary logistic regression, where the variable being predicted has two levels, e.g. yes or no, 0 or 1. 
+In healthcare this is usually done for an event (like death) occurring or not occurring. 
+Logistic regression can tell us the probability of the outcome occuring.
 
 The aims of this session are to:
 
@@ -18,19 +23,24 @@ The aims of this session are to:
 
 ![](images/exam_pass.jpeg)
 
-Logistic regression lets you adjust for the effects of confounding factors on an outcome. When you read a paper that says it has adjusted for confounding factors, this is the usual method which is used.
+Logistic regression lets you adjust for the effects of confounding factors on an outcome. 
+When you read a paper that says it has adjusted for confounding factors, this is the usual method which is used.
 
-Adjusting for confounding factors allows us to isolate the true effect of a variable upon an outcome. For example, if we wanted to know the effects of smoking on deaths from heart attacks, we would need to also control for things like sex and diabetes, as we know they contribute towards heart attacks too.
+Adjusting for confounding factors allows us to isolate the true effect of a variable upon an outcome. 
+For example, if we wanted to know the effects of smoking on deaths from heart attacks, we would need to also control for things like sex and diabetes, as we know they contribute towards heart attacks too.
 
 Although in binary logistic regression the outcome must have two levels, the predictor variables (also known as the explanatory variables) can be either continuous or categorical.
 
-Logistic regression can be performed to examine the influence of one predictor variable, which is known as a univariable analysis. Or multiple predictor variables, known as a multivariable analysis.
+Logistic regression can be performed to examine the influence of one predictor variable, which is known as a univariable analysis. 
+Or multiple predictor variables, known as a multivariable analysis.
 
 ## Definitions
 
-**Dependent** variable (in clinical research usually synonymous to **outcome**) - is what we are trying to explain, i.e. we are trying to identify the factors associated with a particular outcome. In binomial logistic regression, the dependent variable has exactly two levels (e.g. "Died" or "Alive", "Yes - Complications" or "No Complications", "Cured" or "Not Cured", etc.).
+**Dependent** variable (in clinical research usually synonymous to **outcome**) - is what we are trying to explain, i.e. we are trying to identify the factors associated with a particular outcome. 
+In binomial logistic regression, the dependent variable has exactly two levels (e.g. "Died" or "Alive", "Yes - Complications" or "No Complications", "Cured" or "Not Cured", etc.).
 
-**Explanatory** variables (also known as **predictors**, **confounding** variables, or **"adjusted for"**) - patient-level information, usually including demographics (age, gender) as well as clinical information (disease stage, tumour type). Explanatory variables can be categorical as well as continuous, and categorical variables can have more than two levels.
+**Explanatory** variables (also known as **predictors**, **confounding** variables, or **"adjusted for"**) - patient-level information, usually including demographics (age, gender) as well as clinical information (disease stage, tumour type). 
+Explanatory variables can be categorical as well as continuous, and categorical variables can have more than two levels.
 
 **Univariable** - analysis with only one Explanatory variable.
 
@@ -44,7 +54,8 @@ Odds and probabilities can get confusing so let's get them straight:
 
 ![](images/p_vs_odds2.png)
 
-Odds and probabilities can always be interconverted. For example, if the odds of a patient dying from a disease are `9 to 1` then the probability of death (also known as risk) is 10%. Odds of `1 to 1` equal 50%.
+Odds and probabilities can always be interconverted. 
+For example, if the odds of a patient dying from a disease are `9 to 1` then the probability of death (also known as risk) is 10%. Odds of `1 to 1` equal 50%.
 
 $Odds = \frac{p}{1-p}$, where $p$ is the probability of the outcome occuring (or the circle being red).
 
@@ -52,17 +63,19 @@ Look at the numbers and convince yourself that this works.
 
 ### Odds ratios
 
-For a given categorical explanatory variable (e.g. gender), the likelihood of an outcome/dependent occuring (e.g cancer) can be expressed in a ratio of odds or odds ratio , e.g. the odds of men developing cancer is 2-times that of females, odds ratio = 2.0. 
+For a given categorical explanatory variable (e.g. gender), the likelihood of an outcome/dependent occuring (e.g cancer) can be expressed in a ratio of odds or odds ratio, e.g. the odds of men developing cancer is 2-times that of females, odds ratio = 2.0. 
 
 ![](images/or.png)
 
-An alternative is a ratio of probabilites, called a risk ratio or relative risk. Odds ratios have useful mathematical characteristics and are the main expression of results in logistic regression analysis.
+An alternative is a ratio of probabilites, called a risk ratio or relative risk. 
+Odds ratios have useful mathematical characteristics and are the main expression of results in logistic regression analysis.
 
 \newpage
 
 ## Melanoma dataset
 
-Malignant Melanoma is a cancer of the skin. It is agressive and highly invasive, making it difficult to treat.
+Malignant Melanoma is a cancer of the skin. 
+It is agressive and highly invasive, making it difficult to treat.
 
 It's classically divided into 4 stages of severity, based upon the depth of the tumour:
 
@@ -77,7 +90,8 @@ Using logistic regression, we will investigate factors associated with death fro
 
 ### Doing logistic regression in R
 
-There are a few different ways of creating a logistic regression in R. The `glm()` function is probably the most common and most flexible one to use. (`glm` stands for `generalised linear model`.)
+There are a few different ways of creating a logistic regression in R. 
+The `glm()` function is probably the most common and most flexible one to use. (`glm` stands for `generalised linear model`.)
 
 Within the `glm()` function there are several `options` in the function we must define to make R run a logistic regression.
 
@@ -113,9 +127,12 @@ load("melanoma_factored.rda")
 ```
 
 
-Here `status.factor` has three levels: `Died`, `Died - other causes` and `Alive`. This is not useful for us, as logistic regression requires outcomes to be binary.
+Here `status.factor` has three levels: `Died`, `Died - other causes` and `Alive`. 
+This is not useful for us, as logistic regression requires outcomes to be binary.
 
-We want to find out using logistic regression, which variables predict death from Melanoma. So we should create a new factor variable, `died_melanoma.factor`. This will have two outcomes, `Yes` (did die from melanoma) or `No` (did not die from melanoma).
+We want to find out using logistic regression, which variables predict death from Melanoma. 
+So we should create a new factor variable, `died_melanoma.factor`. 
+This will have two outcomes, `Yes` (did die from melanoma) or `No` (did not die from melanoma).
 
 
 ```{r}
@@ -138,7 +155,8 @@ We should take this into account in our model.
 
 ### Exercise
 
-After sorting out your outcome variable, create a new variable called `stage.factor` to encompass the stages of melanoma based upon the thickness. In this data, the `thickness` variable is measured in millimetres too.
+After sorting out your outcome variable, create a new variable called `stage.factor` to encompass the stages of melanoma based upon the thickness. 
+In this data, the `thickness` variable is measured in millimetres too.
 
 ```{r}
 
@@ -238,9 +256,11 @@ exp(model1$coefficients)
 
 ```
 
-This gives us an odds ratio of 2.03 for males. That is to say, males are twice as likely to die from melanoma than females.
+This gives us an odds ratio of 2.03 for males. 
+That is to say, males are twice as likely to die from melanoma than females.
 
-Now a confidence interval might be handy. As this will be the logarithm of the confidence interval, we should exponentiate it to make it understandable.
+Now a confidence interval might be handy. 
+As this will be the logarithm of the confidence interval, we should exponentiate it to make it understandable.
 
 ```{r}
 
@@ -311,7 +331,8 @@ model2 %>%
 
 Your first models only included one variable. It's time to scale them up.
 
-Multivariable models take multiple variables and estimates how each variable predicts an event. It adjusts for the effects of each one, so you end up with a model that calculates the adjusted effect estimate (i.e. the odds ratio), upon an outcome.
+Multivariable models take multiple variables and estimates how each variable predicts an event.
+It adjusts for the effects of each one, so you end up with a model that calculates the adjusted effect estimate (i.e. the odds ratio), upon an outcome.
 
 When you see the term 'adjusted' in scientific papers, this is what it means.
 
@@ -339,7 +360,8 @@ or_plot(mydata, dependent, explanatory)
 ```
 
 
-Note- when we enter age into regression models, the effect estimate is provided in terms of per unit increase. So in this case it's expressed in terms of an odds ratio per year increase (i.e. for every year in age gained odds of death increases by 1.02).
+Note- when we enter age into regression models, the effect estimate is provided in terms of per unit increase. 
+So in this case it's expressed in terms of an odds ratio per year increase (i.e. for every year in age gained odds of death increases by 1.02).
 
 ### Exercise
 
@@ -352,9 +374,12 @@ Now we have our preliminary model. We could leave it there.
 
 However, when you publish research, you are often asked to supply a measure of how well the model fitted the data.
 
-There are different approaches to model fitting. Come to our course HealthyR-Advanced: Practical Logistic Regression. At this we describe use of the Akaike Information Criterion (AIC) and the C-statistic. 
+There are different approaches to model fitting. 
+Come to our course HealthyR-Advanced: Practical Logistic Regression. 
+At this we describe use of the Akaike Information Criterion (AIC) and the C-statistic. 
 
-The C-statistic describes discrimination and anything over 0.60 is considered good. The closer to 1.00 the C-statistic is, the better the fit.
+The C-statistic describes discrimination and anything over 0.60 is considered good. 
+The closer to 1.00 the C-statistic is, the better the fit.
 
 The AIC measure model fit with lower values indicating better fit. 
 

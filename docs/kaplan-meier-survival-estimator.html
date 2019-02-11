@@ -49,69 +49,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -429,26 +401,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.2</span> Kaplan-Meier survival estimator</h2>
 <p>The KM survival estimator is a non-parametric statistic used to estimate the survival function from life time data.</p>
 <p>‘Time’ is time from event to last known status. This status could be the event, for instance death. Or could be when the patient was last seen, for instance at a clinic. In this circumstance the patient is considered ‘censored’.</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1">survival_object =<span class="st"> </span><span class="kw">Surv</span>(mydata<span class="op">$</span>time, mydata<span class="op">$</span>status.factor <span class="op">==</span><span class="st"> &quot;Died&quot;</span>)</a>
-<a class="sourceLine" id="cb299-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb299-3" data-line-number="3"><span class="co"># It is often useful to convert days into years</span></a>
-<a class="sourceLine" id="cb299-4" data-line-number="4">survival_object =<span class="st"> </span><span class="kw">Surv</span>(mydata<span class="op">$</span>time<span class="op">/</span><span class="dv">365</span>, mydata<span class="op">$</span>status.factor <span class="op">==</span><span class="st"> &quot;Died&quot;</span>)</a>
-<a class="sourceLine" id="cb299-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb299-6" data-line-number="6"><span class="co"># Investigate this:</span></a>
-<a class="sourceLine" id="cb299-7" data-line-number="7"><span class="kw">head</span>(survival_object) <span class="co"># + marks censoring in this case &quot;Died of other causes&quot;</span></a>
-<a class="sourceLine" id="cb299-8" data-line-number="8"><span class="co"># Or that the follow-up ended and the patient is censored.</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">survival_object =<span class="st"> </span><span class="kw">Surv</span>(mydata<span class="op">$</span>time, mydata<span class="op">$</span>status.factor <span class="op">==</span><span class="st"> &quot;Died&quot;</span>)
+
+<span class="co"># It is often useful to convert days into years</span>
+survival_object =<span class="st"> </span><span class="kw">Surv</span>(mydata<span class="op">$</span>time<span class="op">/</span><span class="dv">365</span>, mydata<span class="op">$</span>status.factor <span class="op">==</span><span class="st"> &quot;Died&quot;</span>)
+
+<span class="co"># Investigate this:</span>
+<span class="kw">head</span>(survival_object) <span class="co"># + marks censoring in this case &quot;Died of other causes&quot;</span>
+<span class="co"># Or that the follow-up ended and the patient is censored.</span></code></pre></div>
 <pre><code>## [1] 0.02739726+ 0.08219178+ 0.09589041+ 0.27123288+ 0.50684932  0.55890411</code></pre>
 <div id="km-analysis-for-whole-cohort" class="section level3">
 <h3><span class="header-section-number">10.2.1</span> KM analysis for whole cohort</h3>
 </div>
 <div id="model" class="section level3">
 <h3><span class="header-section-number">10.2.2</span> Model</h3>
-<p>The survival object is the first step to performing univariable and multivariable survival analyses.
-A univariable model can then be fitted.</p>
+<p>The survival object is the first step to performing univariable and multivariable survival analyses. A univariable model can then be fitted.</p>
 <p>If you want to plot survival stratified by a single grouping variable, you can substitute “survival_object ~ 1” by “survival_object ~ factor”</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" data-line-number="1"><span class="co"># For all patients</span></a>
-<a class="sourceLine" id="cb301-2" data-line-number="2">my_survfit =<span class="st"> </span><span class="kw">survfit</span>(survival_object <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> mydata)</a>
-<a class="sourceLine" id="cb301-3" data-line-number="3">my_survfit <span class="co"># 205 patients, 57 events</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># For all patients</span>
+my_survfit =<span class="st"> </span><span class="kw">survfit</span>(survival_object <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> mydata)
+my_survfit <span class="co"># 205 patients, 57 events</span></code></pre></div>
 <pre><code>## Call: survfit(formula = survival_object ~ 1, data = mydata)
 ## 
 ##       n  events  median 0.95LCL 0.95UCL 
@@ -456,11 +427,10 @@ A univariable model can then be fitted.</p>
 </div>
 <div id="life-table" class="section level3">
 <h3><span class="header-section-number">10.2.3</span> Life table</h3>
-<p>A life table is the tabular form of a KM plot, which you may be familiar with.
-It shows survival as a proportion, together with confidence limits.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1"><span class="co"># The whole table is shown with, summary(my_survfit)</span></a>
-<a class="sourceLine" id="cb303-2" data-line-number="2"><span class="co"># Here is </span></a>
-<a class="sourceLine" id="cb303-3" data-line-number="3"><span class="kw">summary</span>(my_survfit, <span class="dt">times=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</a></code></pre></div>
+<p>A life table is the tabular form of a KM plot, which you may be familiar with. It shows survival as a proportion, together with confidence limits.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The whole table is shown with, summary(my_survfit)</span>
+<span class="co"># Here is </span>
+<span class="kw">summary</span>(my_survfit, <span class="dt">times=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</code></pre></div>
 <pre><code>## Call: survfit(formula = survival_object ~ 1, data = mydata)
 ## 
 ##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
@@ -470,32 +440,31 @@ It shows survival as a proportion, together with confidence limits.</p>
 ##     3    167      15    0.849  0.0255        0.800        0.900
 ##     4    160       6    0.818  0.0274        0.766        0.874
 ##     5    122       9    0.769  0.0303        0.712        0.831</code></pre>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1"><span class="co"># 5 year survival is 77%</span></a>
-<a class="sourceLine" id="cb305-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb305-3" data-line-number="3"><span class="co"># Help is at hand</span></a>
-<a class="sourceLine" id="cb305-4" data-line-number="4"><span class="kw">help</span>(summary.survfit)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 5 year survival is 77%</span>
+
+<span class="co"># Help is at hand</span>
+<span class="kw">help</span>(summary.survfit)</code></pre></div>
 </div>
 <div id="km-plot" class="section level3">
 <h3><span class="header-section-number">10.2.4</span> KM plot</h3>
 <p>A KM plot can easily be generated using the <code>survminer</code> package.</p>
 <p>For more information on how the survminer package draws this plot, or how to modify it: <a href="http://www.sthda.com/english/wiki/survminer-r-package-survival-data-analysis-and-visualization" class="uri">http://www.sthda.com/english/wiki/survminer-r-package-survival-data-analysis-and-visualization</a> and <a href="https://github.com/kassambara/survminer" class="uri">https://github.com/kassambara/survminer</a></p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1"><span class="kw">library</span>(survminer)</a>
-<a class="sourceLine" id="cb306-2" data-line-number="2">my_survplot =<span class="st"> </span><span class="kw">ggsurvplot</span>(my_survfit, <span class="dt">data =</span> mydata,                 </a>
-<a class="sourceLine" id="cb306-3" data-line-number="3">           <span class="dt">risk.table =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb306-4" data-line-number="4">           <span class="dt">ggtheme =</span> <span class="kw">theme_bw</span>(),</a>
-<a class="sourceLine" id="cb306-5" data-line-number="5">           <span class="dt">palette =</span> <span class="st">&#39;Dark2&#39;</span>,</a>
-<a class="sourceLine" id="cb306-6" data-line-number="6">           <span class="dt">conf.int =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb306-7" data-line-number="7">           <span class="dt">pval=</span><span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb306-8" data-line-number="8">my_survplot</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(survminer)
+my_survplot =<span class="st"> </span><span class="kw">ggsurvplot</span>(my_survfit, <span class="dt">data =</span> mydata,                 
+           <span class="dt">risk.table =</span> <span class="ot">TRUE</span>,
+           <span class="dt">ggtheme =</span> <span class="kw">theme_bw</span>(),
+           <span class="dt">palette =</span> <span class="st">&#39;Dark2&#39;</span>,
+           <span class="dt">conf.int =</span> <span class="ot">TRUE</span>,
+           <span class="dt">pval=</span><span class="ot">FALSE</span>)
+my_survplot</code></pre></div>
 <p><img src="10_survival_files/figure-html/unnamed-chunk-5-1.png" width="384" /></p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1"><span class="co"># Note can also take `ggplot()` options. </span></a>
-<a class="sourceLine" id="cb307-2" data-line-number="2">my_survplot<span class="op">$</span>plot <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb307-3" data-line-number="3"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="dt">x =</span> <span class="dv">5</span>, <span class="dt">y =</span> <span class="fl">0.25</span>, <span class="dt">label=</span><span class="st">&#39;Whole cohort&#39;</span>)</a></code></pre></div>
-<p>Here is an alternative plot in base R to compare.
-Not only does this produce a more basic survival plot, but tailoring the plot can be more difficult to achieve.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Note can also take `ggplot()` options. </span>
+my_survplot<span class="op">$</span>plot <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="dt">x =</span> <span class="dv">5</span>, <span class="dt">y =</span> <span class="fl">0.25</span>, <span class="dt">label=</span><span class="st">&#39;Whole cohort&#39;</span>)</code></pre></div>
+<p>Here is an alternative plot in base R to compare. Not only does this produce a more basic survival plot, but tailoring the plot can be more difficult to achieve.</p>
 <p>Furthermore, appending a life table (“risk.table”) alongside the plot can also be difficult (yet this is often required for interpretation / publication).</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1"><span class="kw">plot</span>(my_survfit, <span class="dt">mark.time=</span><span class="ot">FALSE</span>, <span class="dt">conf.int=</span><span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb308-2" data-line-number="2">         <span class="dt">xlab=</span><span class="st">&quot;Time (years)&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Survival&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(my_survfit, <span class="dt">mark.time=</span><span class="ot">FALSE</span>, <span class="dt">conf.int=</span><span class="ot">TRUE</span>, 
+         <span class="dt">xlab=</span><span class="st">&quot;Time (years)&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Survival&quot;</span>)</code></pre></div>
 <p><img src="10_survival_files/figure-html/unnamed-chunk-7-1.png" width="384" /></p>
 </div>
 <div id="exercise-46" class="section level3">
@@ -512,10 +481,9 @@ Not only does this produce a more basic survival plot, but tailoring the plot ca
 </div>
 <div id="log-rank-test" class="section level3">
 <h3><span class="header-section-number">10.2.6</span> Log-rank test</h3>
-<p>Two KM survival curves can be compared using the log-rank test.
-Note survival curves can also be compared using a Wilcoxon test that may be appropriate in some circumstances.</p>
+<p>Two KM survival curves can be compared using the log-rank test. Note survival curves can also be compared using a Wilcoxon test that may be appropriate in some circumstances.</p>
 <p>This can easily be performed in <code>library(survival)</code> using the function <code>survdiff()</code>.</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" data-line-number="1"><span class="kw">survdiff</span>(survival_object <span class="op">~</span><span class="st"> </span>ulcer.factor, <span class="dt">data =</span> mydata)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">survdiff</span>(survival_object <span class="op">~</span><span class="st"> </span>ulcer.factor, <span class="dt">data =</span> mydata)</code></pre></div>
 <pre><code>## Call:
 ## survdiff(formula = survival_object ~ ulcer.factor, data = mydata)
 ## 
@@ -579,7 +547,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

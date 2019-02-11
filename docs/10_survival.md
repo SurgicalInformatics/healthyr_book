@@ -222,7 +222,7 @@ summary(my_hazard)
 ## age.factor(40,60]      0.9559     1.0462    0.2873     3.180
 ## age.factor(60,95]      1.1959     0.8362    0.3537     4.044
 ## 
-## Concordance= 0.735  (se = 0.04 )
+## Concordance= 0.735  (se = 0.031 )
 ## Rsquare= 0.153   (max possible= 0.937 )
 ## Likelihood ratio test= 34.08  on 5 df,   p=2e-06
 ## Wald test            = 30.19  on 5 df,   p=1e-05
@@ -235,14 +235,14 @@ tidy(my_hazard)
 ```
 
 ```
-## # A tibble: 5 x 7
-##   term            estimate std.error statistic   p.value conf.low conf.high
-##   <chr>              <dbl>     <dbl>     <dbl>     <dbl>    <dbl>     <dbl>
-## 1 sex.factorMale    0.482      0.268    1.80     7.22e-2  -0.0435     1.01 
-## 2 ulcer.factorPr…   1.39       0.298    4.67     3.04e-6   0.806      1.97 
-## 3 age.factor(20,…  -0.406      0.693   -0.586    5.58e-1  -1.77       0.953
-## 4 age.factor(40,…  -0.0451     0.613   -0.0736   9.41e-1  -1.25       1.16 
-## 5 age.factor(60,…   0.179      0.622    0.288    7.74e-1  -1.04       1.40
+## # A tibble: 5 x 5
+##   term                estimate std.error statistic    p.value
+##   <chr>                  <dbl>     <dbl>     <dbl>      <dbl>
+## 1 sex.factorMale        0.482      0.268    1.80   0.0722    
+## 2 ulcer.factorPresent   1.39       0.298    4.67   0.00000304
+## 3 age.factor(20,40]    -0.406      0.693   -0.586  0.558     
+## 4 age.factor(40,60]    -0.0451     0.613   -0.0736 0.941     
+## 5 age.factor(60,95]     0.179      0.622    0.288  0.774
 ```
 The interpretation of the results of model fitting are beyond the aims of this course. 
 The exponentiated coefficient (`exp(coef)`) represents the hazard ratio. 

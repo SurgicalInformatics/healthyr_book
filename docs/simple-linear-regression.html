@@ -49,69 +49,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -427,22 +399,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="simple-linear-regression" class="section level2">
 <h2><span class="header-section-number">7.3</span> Simple linear regression</h2>
-<p>As you can see, <code>ggplot()</code> is very happy to run and plot linear regression for us.
-To access the results, however, we should save the full results of the linear regression models into variables in our Environment.
-We can then investigate the intercepts and the slope coefficients (linear increase per year):</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1">fit_uk =<span class="st"> </span>mydata <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb216-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;United Kingdom&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb216-3" data-line-number="3"><span class="st">  </span><span class="kw">lm</span>(lifeExp<span class="op">~</span>year, <span class="dt">data=</span>.)  <span class="co"># the data=. argument is necessary</span></a>
-<a class="sourceLine" id="cb216-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb216-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb216-6" data-line-number="6">fit_turkey =<span class="st"> </span>mydata <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb216-7" data-line-number="7"><span class="st">  </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;Turkey&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb216-8" data-line-number="8"><span class="st">  </span><span class="kw">lm</span>(lifeExp<span class="op">~</span>year, <span class="dt">data=</span>.)</a>
-<a class="sourceLine" id="cb216-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb216-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb216-11" data-line-number="11">fit_uk<span class="op">$</span>coefficients</a>
-<a class="sourceLine" id="cb216-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb216-13" data-line-number="13">fit_turkey<span class="op">$</span>coefficients</a></code></pre></div>
+<p>As you can see, <code>ggplot()</code> is very happy to run and plot linear regression for us. To access the results, however, we should save the full results of the linear regression models into variables in our Environment. We can then investigate the intercepts and the slope coefficients (linear increase per year):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_uk =<span class="st"> </span>mydata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;United Kingdom&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">lm</span>(lifeExp<span class="op">~</span>year, <span class="dt">data=</span>.)  <span class="co"># the data=. argument is necessary</span>
+
+
+fit_turkey =<span class="st"> </span>mydata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;Turkey&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">lm</span>(lifeExp<span class="op">~</span>year, <span class="dt">data=</span>.)
+
+
+fit_uk<span class="op">$</span>coefficients
+
+fit_turkey<span class="op">$</span>coefficients</code></pre></div>
 <pre><code>##  (Intercept)         year 
 ## -294.1965876    0.1859657 
 ##  (Intercept)         year 
@@ -450,21 +420,21 @@ We can then investigate the intercepts and the slope coefficients (linear increa
 <div id="exercise-37" class="section level3">
 <h3><span class="header-section-number">7.3.1</span> Exercise</h3>
 <p>To make the intercepts more meaningful, add a new column called <code>year_from1952</code> and redo <code>fit_turkey</code> and <code>fit_uk</code> using <code>year_from1952</code> instead of <code>year</code>.</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1">mydata<span class="op">$</span>year_from1952 =<span class="st"> </span>mydata<span class="op">$</span>year <span class="op">-</span><span class="st"> </span><span class="dv">1952</span></a>
-<a class="sourceLine" id="cb218-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb218-3" data-line-number="3">fit_uk =<span class="st"> </span>mydata <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb218-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;United Kingdom&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb218-5" data-line-number="5"><span class="st">  </span><span class="kw">lm</span>(lifeExp<span class="op">~</span>year_from1952, <span class="dt">data=</span>.)</a>
-<a class="sourceLine" id="cb218-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb218-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb218-8" data-line-number="8">fit_turkey =<span class="st"> </span>mydata <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb218-9" data-line-number="9"><span class="st">  </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;Turkey&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb218-10" data-line-number="10"><span class="st">  </span><span class="kw">lm</span>(lifeExp<span class="op">~</span>year_from1952, <span class="dt">data=</span>.)</a>
-<a class="sourceLine" id="cb218-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb218-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb218-13" data-line-number="13">fit_uk<span class="op">$</span>coefficients</a>
-<a class="sourceLine" id="cb218-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb218-15" data-line-number="15">fit_turkey<span class="op">$</span>coefficients</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata<span class="op">$</span>year_from1952 =<span class="st"> </span>mydata<span class="op">$</span>year <span class="op">-</span><span class="st"> </span><span class="dv">1952</span>
+
+fit_uk =<span class="st"> </span>mydata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;United Kingdom&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">lm</span>(lifeExp<span class="op">~</span>year_from1952, <span class="dt">data=</span>.)
+
+
+fit_turkey =<span class="st"> </span>mydata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;Turkey&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">lm</span>(lifeExp<span class="op">~</span>year_from1952, <span class="dt">data=</span>.)
+
+
+fit_uk<span class="op">$</span>coefficients
+
+fit_turkey<span class="op">$</span>coefficients</code></pre></div>
 <pre><code>##   (Intercept) year_from1952 
 ##    68.8085256     0.1859657 
 ##   (Intercept) year_from1952 
@@ -473,7 +443,7 @@ We can then investigate the intercepts and the slope coefficients (linear increa
 <div id="model-information-summary-tidy-glance" class="section level3">
 <h3><span class="header-section-number">7.3.2</span> Model information: <code>summary()</code>, <code>tidy()</code> ,<code>glance()</code></h3>
 <p>Accessing all other information about our regression model:</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1">fit_uk <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_uk <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = lifeExp ~ year_from1952, data = .)
@@ -492,13 +462,13 @@ We can then investigate the intercepts and the slope coefficients (linear increa
 ## Residual standard error: 0.4421 on 10 degrees of freedom
 ## Multiple R-squared:  0.9844, Adjusted R-squared:  0.9829 
 ## F-statistic: 632.5 on 1 and 10 DF,  p-value: 2.262e-10</code></pre>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1">fit_uk <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_uk <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   term          estimate std.error statistic  p.value
 ##   &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)     68.8     0.240       287.  6.58e-21
 ## 2 year_from1952    0.186   0.00739      25.1 2.26e-10</code></pre>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1">fit_uk <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">glance</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_uk <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">glance</span>()</code></pre></div>
 <pre><code>## # A tibble: 1 x 11
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -558,7 +528,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

@@ -13,7 +13,7 @@ Do not worry about understanding every single word or symbol (e.g. the pipe - `%
 
 ## Data
 
-Load the example dataset which is already saved as an R-Data file (recognisable by the file extension .rda/.RData):
+Load the example dataset which is already saved as an R-Data file (recognisable by the file extension .rda or .RData):
 
 
 ```r
@@ -22,14 +22,13 @@ library(ggplot2)
 source("1_source_theme.R")
 
 load("global_burden_disease_long.rda")
-#loads two dataframes - mydata and mydata2013 which is a subset of mydata
 ```
 
-After loading the datasets, investigate your Environment tab (top-right):
+After loading the datasets, investigate your Environment tab (top-right). You will see two things listed: `mydata` and `mydata2013`, which is a subset of mydata.
 
 
 Click on the name `mydata` and it will pop up next to where your script is.
-Clicking on the blue button is not as useful, but it doesn't do any harm either.
+Clicking on the blue button is not as useful (in this session), but it doesn't do any harm either.
 Try it.
 
 ## First plot
@@ -130,7 +129,8 @@ mydata %>%
 ### Setting a constant fill
 
 Using the `mydata2013` example again, what does the addition of `fill = "black"` in this code do?
-Note that putting the `ggplot(aes())` code all on one line not affect the result.
+Note that putting the `ggplot(aes())` code all on one line does not affect the result.
+
 
 
 ```r
@@ -143,7 +143,7 @@ mydata2013 %>%
 
 Setting aesthetics (x, y, fill, colour, etc.) outside of `aes()` sets them to a constant value.
 R can recognise of a lot of colour names, e.g., try "cornflowerblue", "firebrick", or just "red", "green", "blue", etc.
-For a full list, Google "Colours in R". R also knows HEX codes, e.g. `fill = "#fec3fc"` is pink.
+For a full list, search Google for "Colours in R". R also knows HEX codes, e.g. `fill = "#fec3fc"` is pink.
 
 
 ### Exercise

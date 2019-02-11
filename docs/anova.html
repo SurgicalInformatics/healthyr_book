@@ -49,69 +49,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -431,33 +403,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="plotting-1" class="section level3">
 <h3><span class="header-section-number">6.5.1</span> Plotting</h3>
 <p>For example, lets plot the life expectancy in 2007 accross 3 continents.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb184-2" data-line-number="2"><span class="st">    </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb184-3" data-line-number="3"><span class="st">    </span><span class="kw">filter</span>(continent <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Americas&quot;</span>, <span class="st">&quot;Europe&quot;</span>, <span class="st">&quot;Asia&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb184-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> continent, <span class="dt">y=</span>lifeExp)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb184-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">filter</span>(continent <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Americas&quot;</span>, <span class="st">&quot;Europe&quot;</span>, <span class="st">&quot;Asia&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> continent, <span class="dt">y=</span>lifeExp)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_boxplot</span>()</code></pre></div>
 <p><img src="06_tests_continuous_files/figure-html/unnamed-chunk-12-1.png" width="288" /></p>
 </div>
 <div id="analysis" class="section level3">
 <h3><span class="header-section-number">6.5.2</span> Analysis</h3>
 <p>ANOVA tests are useful for testing for the presence of signficant differences between more than two groups or variables.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb185-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb185-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Americas&quot;</span>, <span class="st">&quot;Europe&quot;</span>, <span class="st">&quot;Asia&quot;</span>)) -&gt;<span class="st"> </span>subdata</a>
-<a class="sourceLine" id="cb185-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb185-5" data-line-number="5">fit =<span class="st"> </span><span class="kw">aov</span>(lifeExp<span class="op">~</span>continent, <span class="dt">data =</span> subdata) </a>
-<a class="sourceLine" id="cb185-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb185-7" data-line-number="7"><span class="kw">summary</span>(fit)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(continent <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Americas&quot;</span>, <span class="st">&quot;Europe&quot;</span>, <span class="st">&quot;Asia&quot;</span>)) -&gt;<span class="st"> </span>subdata
+
+fit =<span class="st"> </span><span class="kw">aov</span>(lifeExp<span class="op">~</span>continent, <span class="dt">data =</span> subdata) 
+
+<span class="kw">summary</span>(fit)</code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## continent    2  755.6   377.8   11.63 3.42e-05 ***
 ## Residuals   85 2760.3    32.5                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" data-line-number="1">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb187-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb187-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Americas&quot;</span>, <span class="st">&quot;Europe&quot;</span>, <span class="st">&quot;Asia&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb187-4" data-line-number="4"><span class="st">  </span><span class="kw">aov</span>(lifeExp<span class="op">~</span>continent, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb187-5" data-line-number="5"><span class="st">    </span><span class="kw">tidy</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(continent <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Americas&quot;</span>, <span class="st">&quot;Europe&quot;</span>, <span class="st">&quot;Asia&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">aov</span>(lifeExp<span class="op">~</span>continent, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">tidy</span>()</code></pre></div>
+<pre><code>## Warning: Prefixing `UQS()` with the rlang namespace is deprecated as of rlang 0.3.0.
+## Please use the non-prefixed form or `!!!` instead.
+## 
+##   # Bad:
+##   rlang::expr(mean(rlang::UQS(args)))
+## 
+##   # Ok:
+##   rlang::expr(mean(UQS(args)))
+## 
+##   # Good:
+##   rlang::expr(mean(!!!args))
+## 
+## This warning is displayed once per session.</code></pre>
 <pre><code>## # A tibble: 2 x 6
 ##   term         df sumsq meansq statistic    p.value
 ##   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
@@ -466,20 +451,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="check-assumptions" class="section level3">
 <h3><span class="header-section-number">6.5.3</span> Check assumptions</h3>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1"><span class="co"># Check ANOVA assumptions </span></a>
-<a class="sourceLine" id="cb189-2" data-line-number="2"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># 4 plots in 2 x 2 grid</span></a>
-<a class="sourceLine" id="cb189-3" data-line-number="3"><span class="kw">plot</span>(fit)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Check ANOVA assumptions </span>
+<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># 4 plots in 2 x 2 grid</span>
+<span class="kw">plot</span>(fit)</code></pre></div>
 <p><img src="06_tests_continuous_files/figure-html/unnamed-chunk-14-1.png" width="480" /></p>
 </div>
 <div id="perform-pairwise-tests" class="section level3">
 <h3><span class="header-section-number">6.5.4</span> Perform pairwise tests</h3>
 <p>The ANOVA test was significant, indicating that there is a signficant difference in the mean life expectancy across those continents.</p>
 <p>But which continents are significantly different, and can we quantify this difference as a p-value?</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" data-line-number="1">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb190-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb190-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Americas&quot;</span>, <span class="st">&quot;Europe&quot;</span>, <span class="st">&quot;Asia&quot;</span>)) -&gt;<span class="st"> </span>subdata</a>
-<a class="sourceLine" id="cb190-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb190-5" data-line-number="5"><span class="kw">pairwise.t.test</span>(subdata<span class="op">$</span>lifeExp, subdata<span class="op">$</span>continent)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(continent <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Americas&quot;</span>, <span class="st">&quot;Europe&quot;</span>, <span class="st">&quot;Asia&quot;</span>)) -&gt;<span class="st"> </span>subdata
+
+<span class="kw">pairwise.t.test</span>(subdata<span class="op">$</span>lifeExp, subdata<span class="op">$</span>continent)</code></pre></div>
 <pre><code>## 
 ##  Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -490,13 +475,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Europe 0.021    1.9e-05
 ## 
 ## P value adjustment method: holm</code></pre>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1"><span class="co"># or equivalently, without saving the subset in a separate variable:</span></a>
-<a class="sourceLine" id="cb192-2" data-line-number="2"><span class="co"># sending it into the test using pipes only</span></a>
-<a class="sourceLine" id="cb192-3" data-line-number="3">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb192-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb192-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Americas&quot;</span>, <span class="st">&quot;Europe&quot;</span>, <span class="st">&quot;Asia&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb192-6" data-line-number="6"><span class="st">  </span><span class="kw">pairwise.t.test</span>(.<span class="op">$</span>lifeExp, .<span class="op">$</span>continent, <span class="dt">data=</span>.) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb192-7" data-line-number="7"><span class="st">  </span><span class="kw">tidy</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># or equivalently, without saving the subset in a separate variable:</span>
+<span class="co"># sending it into the test using pipes only</span>
+mydata <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(continent <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Americas&quot;</span>, <span class="st">&quot;Europe&quot;</span>, <span class="st">&quot;Asia&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pairwise.t.test</span>(.<span class="op">$</span>lifeExp, .<span class="op">$</span>continent, <span class="dt">data=</span>.) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">tidy</span>()</code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   group1 group2     p.value
 ##   &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt;
@@ -508,36 +493,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="top-tip-the-cut-function" class="section level3">
 <h3><span class="header-section-number">6.5.5</span> Top tip: the cut() function</h3>
 <p>A great way of easily converting a continuous variable to a categorical variable is to use the cut() function</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" data-line-number="1">pop_quantiles =<span class="st"> </span><span class="kw">quantile</span>(mydata<span class="op">$</span>pop)</a>
-<a class="sourceLine" id="cb194-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb194-3" data-line-number="3">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb194-4" data-line-number="4"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">pop.factor =</span> <span class="kw">cut</span>(pop, <span class="dt">breaks=</span>pop_quantiles)) -&gt;<span class="st"> </span>mydata</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pop_quantiles =<span class="st"> </span><span class="kw">quantile</span>(mydata<span class="op">$</span>pop)
+
+mydata <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">pop.factor =</span> <span class="kw">cut</span>(pop, <span class="dt">breaks=</span>pop_quantiles)) -&gt;<span class="st"> </span>mydata</code></pre></div>
 </div>
 <div id="exercise-33" class="section level3">
 <h3><span class="header-section-number">6.5.6</span> Exercise</h3>
 <p>When we used <code>cut()</code> to divide country populations into quantiles, the labels it assigned are not very neat:</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" data-line-number="1">mydata<span class="op">$</span>pop.factor <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">levels</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata<span class="op">$</span>pop.factor <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">levels</span>()</code></pre></div>
 <pre><code>## [1] &quot;(6e+04,2.79e+06]&quot;    &quot;(2.79e+06,7.02e+06]&quot; &quot;(7.02e+06,1.96e+07]&quot;
 ## [4] &quot;(1.96e+07,1.32e+09]&quot;</code></pre>
 <p>Use <code>fct_recode()</code> to change them to something nicer, e.g., “Tiny”, “Small”, “Medium”, “Large”:</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" data-line-number="1">mydata<span class="op">$</span>pop.factor <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb197-2" data-line-number="2"><span class="st">  </span><span class="kw">fct_recode</span>(<span class="st">&quot;Tiny&quot;</span>   =<span class="st"> &quot;(6e+04,2.79e+06]&quot;</span>,</a>
-<a class="sourceLine" id="cb197-3" data-line-number="3">             <span class="st">&quot;Small&quot;</span>  =<span class="st"> &quot;(2.79e+06,7.02e+06]&quot;</span>,</a>
-<a class="sourceLine" id="cb197-4" data-line-number="4">             <span class="st">&quot;Medium&quot;</span> =<span class="st"> &quot;(7.02e+06,1.96e+07]&quot;</span>,</a>
-<a class="sourceLine" id="cb197-5" data-line-number="5">             <span class="st">&quot;Large&quot;</span>  =<span class="st"> &quot;(1.96e+07,1.32e+09]&quot;</span>) -&gt;<span class="st"> </span>mydata<span class="op">$</span>pop.factor </a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata<span class="op">$</span>pop.factor <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">fct_recode</span>(<span class="st">&quot;Tiny&quot;</span>   =<span class="st"> &quot;(6e+04,2.79e+06]&quot;</span>,
+             <span class="st">&quot;Small&quot;</span>  =<span class="st"> &quot;(2.79e+06,7.02e+06]&quot;</span>,
+             <span class="st">&quot;Medium&quot;</span> =<span class="st"> &quot;(7.02e+06,1.96e+07]&quot;</span>,
+             <span class="st">&quot;Large&quot;</span>  =<span class="st"> &quot;(1.96e+07,1.32e+09]&quot;</span>) -&gt;<span class="st"> </span>mydata<span class="op">$</span>pop.factor </code></pre></div>
 </div>
 <div id="exercise-34" class="section level3">
 <h3><span class="header-section-number">6.5.7</span> Exercise</h3>
 <p>Perform ANOVA to test for a difference in mean life expectancy by country population factor (<code>mydata$pop.factor</code>). Remember to plot data first</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb198-2" data-line-number="2"><span class="st">    </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb198-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>pop.factor, <span class="dt">y=</span>lifeExp))<span class="op">+</span></a>
-<a class="sourceLine" id="cb198-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>pop.factor, <span class="dt">y=</span>lifeExp))<span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_boxplot</span>()</code></pre></div>
 <p><img src="06_tests_continuous_files/figure-html/unnamed-chunk-19-1.png" width="384" /></p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" data-line-number="1">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb199-2" data-line-number="2"><span class="st">    </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb199-3" data-line-number="3"><span class="st">    </span><span class="kw">aov</span>(.<span class="op">$</span>lifeExp <span class="op">~</span><span class="st"> </span>.<span class="op">$</span>pop.factor, <span class="dt">data=</span>.) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb199-4" data-line-number="4"><span class="st">    </span><span class="kw">summary</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">aov</span>(.<span class="op">$</span>lifeExp <span class="op">~</span><span class="st"> </span>.<span class="op">$</span>pop.factor, <span class="dt">data=</span>.) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summary</span>()</code></pre></div>
 <pre><code>##               Df Sum Sq Mean Sq F value Pr(&gt;F)  
 ## .$pop.factor   3   1160   386.6   2.751 0.0451 *
 ## Residuals    138  19392   140.5                 
@@ -597,7 +582,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

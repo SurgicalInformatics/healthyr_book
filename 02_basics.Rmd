@@ -459,6 +459,7 @@ So, for example if we wanted to make a sentence:
 
 ```{r}
 
+# 
 paste("Edinburgh", "is", "Great")
 
 #Lets add in full stops

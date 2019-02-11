@@ -49,69 +49,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -430,10 +402,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="model-1" class="section level3">
 <h3><span class="header-section-number">10.3.1</span> Model</h3>
 <p>Multivariable survival analysis can be complex with parametric and semi-parametric methods available. The latter is performed using a Cox proportional hazard regression analysis.</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" data-line-number="1"><span class="co"># Note several variables are now introduced into the model. </span></a>
-<a class="sourceLine" id="cb311-2" data-line-number="2"><span class="co"># Variables should be selected carefully based on published methods.  </span></a>
-<a class="sourceLine" id="cb311-3" data-line-number="3">my_hazard =<span class="st"> </span><span class="kw">coxph</span>(survival_object<span class="op">~</span>sex.factor<span class="op">+</span>ulcer.factor<span class="op">+</span>age.factor, <span class="dt">data=</span>mydata)</a>
-<a class="sourceLine" id="cb311-4" data-line-number="4"><span class="kw">summary</span>(my_hazard)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Note several variables are now introduced into the model. </span>
+<span class="co"># Variables should be selected carefully based on published methods.  </span>
+my_hazard =<span class="st"> </span><span class="kw">coxph</span>(survival_object<span class="op">~</span>sex.factor<span class="op">+</span>ulcer.factor<span class="op">+</span>age.factor, <span class="dt">data=</span>mydata)
+<span class="kw">summary</span>(my_hazard)</code></pre></div>
 <pre><code>## Call:
 ## coxph(formula = survival_object ~ sex.factor + ulcer.factor + 
 ##     age.factor, data = mydata)
@@ -456,32 +428,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## age.factor(40,60]      0.9559     1.0462    0.2873     3.180
 ## age.factor(60,95]      1.1959     0.8362    0.3537     4.044
 ## 
-## Concordance= 0.735  (se = 0.04 )
+## Concordance= 0.735  (se = 0.031 )
 ## Rsquare= 0.153   (max possible= 0.937 )
 ## Likelihood ratio test= 34.08  on 5 df,   p=2e-06
 ## Wald test            = 30.19  on 5 df,   p=1e-05
 ## Score (logrank) test = 35.21  on 5 df,   p=1e-06</code></pre>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" data-line-number="1"><span class="kw">library</span>(broom)</a>
-<a class="sourceLine" id="cb313-2" data-line-number="2"><span class="kw">tidy</span>(my_hazard)</a></code></pre></div>
-<pre><code>## # A tibble: 5 x 7
-##   term            estimate std.error statistic   p.value conf.low conf.high
-##   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-## 1 sex.factorMale    0.482      0.268    1.80     7.22e-2  -0.0435     1.01 
-## 2 ulcer.factorPr…   1.39       0.298    4.67     3.04e-6   0.806      1.97 
-## 3 age.factor(20,…  -0.406      0.693   -0.586    5.58e-1  -1.77       0.953
-## 4 age.factor(40,…  -0.0451     0.613   -0.0736   9.41e-1  -1.25       1.16 
-## 5 age.factor(60,…   0.179      0.622    0.288    7.74e-1  -1.04       1.40</code></pre>
-<p>The interpretation of the results of model fitting are beyond the aims of this course.
-The exponentiated coefficient (<code>exp(coef)</code>) represents the hazard ratio.
-Therefore, patients with ulcers are 4-times more likely to die at any given time than those without ulcers.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(broom)
+<span class="kw">tidy</span>(my_hazard)</code></pre></div>
+<pre><code>## # A tibble: 5 x 5
+##   term                estimate std.error statistic    p.value
+##   &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+## 1 sex.factorMale        0.482      0.268    1.80   0.0722    
+## 2 ulcer.factorPresent   1.39       0.298    4.67   0.00000304
+## 3 age.factor(20,40]    -0.406      0.693   -0.586  0.558     
+## 4 age.factor(40,60]    -0.0451     0.613   -0.0736 0.941     
+## 5 age.factor(60,95]     0.179      0.622    0.288  0.774</code></pre>
+<p>The interpretation of the results of model fitting are beyond the aims of this course. The exponentiated coefficient (<code>exp(coef)</code>) represents the hazard ratio. Therefore, patients with ulcers are 4-times more likely to die at any given time than those without ulcers.</p>
 </div>
 <div id="assumptions" class="section level3">
 <h3><span class="header-section-number">10.3.2</span> Assumptions</h3>
-<p>The CPH model presumes ‘constant hazards’.
-That means that the risk associated with any given variable (like ulcer status) shouldn’t get worse or better over time.
-This can be checked.</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" data-line-number="1">ph =<span class="st"> </span><span class="kw">cox.zph</span>(my_hazard)</a>
-<a class="sourceLine" id="cb315-2" data-line-number="2">ph</a></code></pre></div>
+<p>The CPH model presumes ‘constant hazards’. That means that the risk associated with any given variable (like ulcer status) shouldn’t get worse or better over time. This can be checked.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ph =<span class="st"> </span><span class="kw">cox.zph</span>(my_hazard)
+ph</code></pre></div>
 <pre><code>##                        rho chisq      p
 ## sex.factorMale      -0.104 0.647 0.4212
 ## ulcer.factorPresent -0.238 3.135 0.0766
@@ -489,21 +457,18 @@ This can be checked.</p>
 ## age.factor(40,60]    0.194 2.222 0.1361
 ## age.factor(60,95]    0.146 1.257 0.2622
 ## GLOBAL                  NA 6.949 0.2244</code></pre>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" data-line-number="1"><span class="co"># GLOBAL shows no overall violation of assumptions. </span></a>
-<a class="sourceLine" id="cb317-2" data-line-number="2"><span class="co"># Ulcer.status is borderline significant</span></a>
-<a class="sourceLine" id="cb317-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb317-4" data-line-number="4"><span class="co"># Plot Schoenfield residuals to evaluate PH</span></a>
-<a class="sourceLine" id="cb317-5" data-line-number="5"><span class="kw">plot</span>(ph, <span class="dt">var=</span><span class="dv">2</span>) <span class="co"># ulcer.status is variable 2</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># GLOBAL shows no overall violation of assumptions. </span>
+<span class="co"># Ulcer.status is borderline significant</span>
+
+<span class="co"># Plot Schoenfield residuals to evaluate PH</span>
+<span class="kw">plot</span>(ph, <span class="dt">var=</span><span class="dv">2</span>) <span class="co"># ulcer.status is variable 2</span></code></pre></div>
 <p><img src="10_survival_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" data-line-number="1"><span class="co"># help(plot.cox.zph)</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># help(plot.cox.zph)</span></code></pre></div>
 <p>Hazard decreases a little between 2 and 5 years, but is acceptable.</p>
 </div>
 <div id="exercise-47" class="section level3">
 <h3><span class="header-section-number">10.3.3</span> Exercise</h3>
-<p>Create a new CPH model, but now include the variable <code>thickness</code> as a variable.
-How would you interpret the output?
-Is it an independent predictor of overall survival in this model?
-Are CPH assumptions maintained?</p>
+<p>Create a new CPH model, but now include the variable <code>thickness</code> as a variable. How would you interpret the output? Is it an independent predictor of overall survival in this model? Are CPH assumptions maintained?</p>
 </div>
 </div>
             </section>
@@ -558,7 +523,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

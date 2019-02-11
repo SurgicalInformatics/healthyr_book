@@ -49,69 +49,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -430,34 +402,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="using-base-r" class="section level3">
 <h3><span class="header-section-number">8.3.1</span> Using base R</h3>
 <p>First lets group together those that ‘died of another cause’ with those ‘alive’, to give a disease-specific mortality variable (<code>fct_collapse</code> will help us) .</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1">mydata<span class="op">$</span>status.factor <span class="op">%&gt;%</span><span class="st">  </span></a>
-<a class="sourceLine" id="cb242-2" data-line-number="2"><span class="st">    </span><span class="kw">fct_collapse</span>(<span class="st">&quot;Alive&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Alive&quot;</span>, <span class="st">&quot;Died - other causes&quot;</span>)) -&gt;</a>
-<a class="sourceLine" id="cb242-3" data-line-number="3"><span class="st">  </span>mydata<span class="op">$</span>status.factor</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata<span class="op">$</span>status.factor <span class="op">%&gt;%</span><span class="st">  </span>
+<span class="st">    </span><span class="kw">fct_collapse</span>(<span class="st">&quot;Alive&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Alive&quot;</span>, <span class="st">&quot;Died - other causes&quot;</span>)) -&gt;
+<span class="st">  </span>mydata<span class="op">$</span>status.factor</code></pre></div>
 <p>Let’s test mortality against sex.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1"><span class="kw">table</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>sex.factor)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>sex.factor)</code></pre></div>
 <pre><code>##        
 ##         Female Male
 ##   Alive     98   50
 ##   Died      28   29</code></pre>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="kw">chisq.test</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>sex.factor)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>sex.factor)</code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
 ## data:  mydata$status.factor and mydata$sex.factor
 ## X-squared = 4.3803, df = 1, p-value = 0.03636</code></pre>
-<p>Note that <code>chisq.test()</code> defaults to the Yates continuity correction.
-It is fine to use this, but if you have a particular need not to, turn if off with <code>chisq.test(mydata$status.factor, mydata$sex.factor, correct=FALSE)</code>.</p>
+<p>Note that <code>chisq.test()</code> defaults to the Yates continuity correction. It is fine to use this, but if you have a particular need not to, turn if off with <code>chisq.test(mydata$status.factor, mydata$sex.factor, correct=FALSE)</code>.</p>
 </div>
 <div id="using-crosstable" class="section level3">
 <h3><span class="header-section-number">8.3.2</span> Using <code>CrossTable</code></h3>
-<p>This gives lots of useful information.
-It is readable in R and has lots of options, including Fisher’s exact test.
-It is not that easy to extract results.
-</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1"><span class="kw">library</span>(gmodels)</a>
-<a class="sourceLine" id="cb247-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb247-3" data-line-number="3"><span class="co"># F1 CrossTable to see options</span></a>
-<a class="sourceLine" id="cb247-4" data-line-number="4"><span class="kw">CrossTable</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>sex.factor, <span class="dt">chisq=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<p>This gives lots of useful information. It is readable in R and has lots of options, including Fisher’s exact test. It is not that easy to extract results. </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gmodels)
+
+<span class="co"># F1 CrossTable to see options</span>
+<span class="kw">CrossTable</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>sex.factor, <span class="dt">chisq=</span><span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## 
 ##  
 ##    Cell Contents
@@ -509,19 +477,18 @@ It is not that easy to extract results.
 <div id="exercise-41" class="section level3">
 <h3><span class="header-section-number">8.3.3</span> Exercise</h3>
 <p>Use the 3 methods (<code>table</code>, <code>chisq.test</code>, <code>CrossTable</code>) to test <code>status.factor</code> against <code>ulcer.factor</code>.</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1"><span class="kw">str</span>(mydata)</a>
-<a class="sourceLine" id="cb249-2" data-line-number="2"><span class="kw">table</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>ulcer.factor)</a>
-<a class="sourceLine" id="cb249-3" data-line-number="3"><span class="kw">chisq.test</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>ulcer.factor)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(mydata)
+<span class="kw">table</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>ulcer.factor)
+<span class="kw">chisq.test</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>ulcer.factor)</code></pre></div>
 <p>Using <code>CrossTable</code></p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1"><span class="kw">CrossTable</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>ulcer.factor, <span class="dt">chisq=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">CrossTable</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>ulcer.factor, <span class="dt">chisq=</span><span class="ot">TRUE</span>)</code></pre></div>
 </div>
 <div id="fishers-exact-test" class="section level3">
 <h3><span class="header-section-number">8.3.4</span> Fisher’s exact test</h3>
-<p>An assumption of the chi-squared test is that the ‘expected cell count’ is greater than 5.
-If it is less than 5 the test becomes unreliable and the Fisher’s exact test is recommended.</p>
+<p>An assumption of the chi-squared test is that the ‘expected cell count’ is greater than 5. If it is less than 5 the test becomes unreliable and the Fisher’s exact test is recommended.</p>
 <p>Run the following code.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="kw">library</span>(gmodels)</a>
-<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="kw">CrossTable</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>age.factor, <span class="dt">expected=</span><span class="ot">TRUE</span>, <span class="dt">chisq=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gmodels)
+<span class="kw">CrossTable</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>age.factor, <span class="dt">expected=</span><span class="ot">TRUE</span>, <span class="dt">chisq=</span><span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## Warning in chisq.test(t, correct = FALSE, ...): Chi-squared approximation
 ## may be incorrect</code></pre>
 <pre><code>## 
@@ -572,8 +539,8 @@ If it is less than 5 the test becomes unreliable and the Fisher’s exact test i
 ## 
 ## </code></pre>
 <p>Why does it give a warning? Run it a second time including <code>fisher=TRUE</code>.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1"><span class="kw">library</span>(gmodels)</a>
-<a class="sourceLine" id="cb254-2" data-line-number="2"><span class="kw">CrossTable</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>age.factor, <span class="dt">expected=</span><span class="ot">TRUE</span>, <span class="dt">chisq=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gmodels)
+<span class="kw">CrossTable</span>(mydata<span class="op">$</span>status.factor, mydata<span class="op">$</span>age.factor, <span class="dt">expected=</span><span class="ot">TRUE</span>, <span class="dt">chisq=</span><span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## Warning in chisq.test(t, correct = FALSE, ...): Chi-squared approximation
 ## may be incorrect</code></pre>
 <pre><code>## 
@@ -677,7 +644,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

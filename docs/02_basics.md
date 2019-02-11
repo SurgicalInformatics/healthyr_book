@@ -344,7 +344,7 @@ mydata = read_csv("global_burden_disease_short.csv")
 ## Parsed with column specification:
 ## cols(
 ##   cause = col_character(),
-##   year = col_double(),
+##   year = col_integer(),
 ##   deaths = col_double()
 ## )
 ```
@@ -455,6 +455,7 @@ So, for example if we wanted to make a sentence:
 
 
 ```r
+# 
 paste("Edinburgh", "is", "Great")
 ```
 

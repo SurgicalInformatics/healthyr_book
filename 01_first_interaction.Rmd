@@ -9,7 +9,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-In this session, we will create 5 beautiful and colourful barplots in less than an hour.
+In this session, we will create five beautiful and colourful barplots in less than an hour.
 Do not worry about understanding every single word or symbol (e.g. the pipe - `%>%`) in the R code you are about to see. The purpose of this session is merely to
 
 * gain familiarity with the RStudio interface:

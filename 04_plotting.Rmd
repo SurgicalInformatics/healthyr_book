@@ -4,20 +4,23 @@
 We will be using the gapminder dataset:
 
 ```{r, message=F}
+
 library(tidyverse)
-library(forcats)
 library(gapminder)
 
 mydata = gapminder
 
 summary(mydata)
 mydata$year %>% unique()
+
 ```
 
 ## Scatter plots/bubble plots - `geom_point()`
 
 Plot life expectancy against GDP per capita (`x = gdpPercap, y=lifeExp`) at year 2007:
+
 ```{r}
+
 mydata %>% 
   filter(year == 2007) %>% 
   ggplot(aes(x = gdpPercap, y=lifeExp)) +
@@ -53,9 +56,6 @@ mydata %>%
 * Make the background white: `+ theme_bw()`
 
 
-
- 
- 
 ## Line chart/timeplot - `geom_line()`
 
 Plot life expectancy against year (`x = year, y=lifeExp`), add `geom_line()`:
@@ -74,6 +74,7 @@ mydata %>%
   ggplot(aes(x = year, y=lifeExp, group = country)) +
   geom_line()
 ```
+
 
 ### Exercise
 
@@ -96,9 +97,6 @@ mydata %>%
 * Continents on separate panels: `+ facet_wrap(~continent)`
 * Make the background white: `+ theme_bw()`
 * Use a nicer colour scheme: `+ scale_colour_brewer(palette = "Paired")`
-
-
-
 
 
 ### Advanced example
@@ -154,7 +152,6 @@ mydata %>%
   geom_boxplot() +
   theme_bw()
 
-
 ```
 
 
@@ -200,7 +197,6 @@ label_data = mydata %>%
 ```{r, eval = FALSE}
 + geom_label(data = label_data, aes(label=country), vjust = 0)
 ```
-
 
 
 ### Dot-plot - `geom_dotplot()`
@@ -253,7 +249,6 @@ mydata %>%
 ```
 
 
-
 ## All other types of plots
 
 These are just some of the main ones, see this gallery for more options: http://www.r-graph-gallery.com/portfolio/ggplot2-package/
@@ -261,6 +256,7 @@ These are just some of the main ones, see this gallery for more options: http://
 And the `ggplot()` documentation: http://docs.ggplot2.org/
 
 Remember that you can always combine different types of plots - i.e. add lines or points on bars, etc.
+
 
 ## Specifying `aes()` variables
 
@@ -292,7 +288,7 @@ mydata2007 = mydata %>%
   filter(year==max(year)) %>% 
   group_by(continent) %>% 
   mutate(country_number = cumsum(dummy))  # create a column called "country_number" that
-  #is a cumulative sum of the number of countries before it - basically indexing
+  # is a cumulative sum of the number of countries before it - basically indexing
 
 
 mydata2007 %>% 

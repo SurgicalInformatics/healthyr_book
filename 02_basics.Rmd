@@ -1,6 +1,7 @@
 # R Basics
 
-The aim of this module is to familiarise you with how R works. We will read in data and start to basic manipulations. 
+The aim of this module is to familiarise you with how R works. 
+We will read in data and start basic manipulations. 
 We will be working with a shorter version of the Global Burden of Disease dataset that we met earlier. 
 
 Throughout this course, don't copy or type code directly into the Console. 

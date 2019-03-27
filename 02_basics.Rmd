@@ -457,30 +457,30 @@ By default, the separation is a space, but we can change this using the `sep =` 
 
 So, for example if we wanted to make a sentence:
 
-```{r}
+```{r pasteexample1}
 
 # 
-paste("Edinburgh", "is", "Great")
+#paste("Edinburgh", "is", "Great")
 
 #Lets add in full stops
 
-paste("Edinburgh", "is", "Great", sep = ".")
+#paste("Edinburgh", "is", "Great", sep = ".")
 #separator needs to go in "" as it is a character
 
 #If we really like Edinburgh
 
-paste("Edinburgh", "is", "Great", sep = "!")
+#paste("Edinburgh", "is", "Great", sep = "!")
 
 #If we want to make it one word
 
-paste("Edinburgh", "is", "Great", sep = "") # no separator (still need the brackets)
+#paste("Edinburgh", "is", "Great", sep = "") # no separator (still need the brackets)
 
 ```
 
 We can also join two different variables together using `paste()`: 
 
 
-```{r}
+```{r pasteexample2}
 
 paste("Year is", mydata$year)
 

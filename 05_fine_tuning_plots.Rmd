@@ -9,9 +9,9 @@ knitr::opts_chunk$set(echo=TRUE, message=FALSE, fig.width=4, fig.height=3)
 
 
 We can save a `ggplot()` object into a variable (usually called `p` but can be any name). 
-This then appears in the Environment tab. 
+This then appear in the Environment tab. 
 To plot it it needs to be recalled on a separate line. 
-Saving a plot into a variable allows us to modify it later (e.g., `p + theme_bw()`).
+Saving a plot into a variable allows us to modify it later (e.g., `p+theme_bw()`).
 
 ```{r, message = FALSE}
 
@@ -44,8 +44,7 @@ p
 
 ```{r}
 
-p +
-  scale_x_log10()
+p + scale_x_log10()
 
 
 ```
@@ -56,8 +55,7 @@ Specify the value you want to be included:
 
 ```{r}
 
-p +
-  expand_limits(y = 0)
+p + expand_limits(y = 0)
 
 ```
 
@@ -67,12 +65,11 @@ Or two:
 
 ```{r}
 
-p +
-  expand_limits(y = c(0, 100))
+p + expand_limits(y = c(0, 100))
 
 ```
 
-By default, `ggplot()` adds some padding around the included area (see how the scale doesn't start from 0, but slightly before). 
+By default, `ggplot` adds some padding around the included area (see how the scale doesn't start from 0, but slightly before). 
 You can remove this padding with the expand option:
 
 ```{r}
@@ -88,15 +85,14 @@ p +
 
 ```{r}
 
-p +
-  coord_cartesian(ylim = c(70, 85), xlim = c(20000, 40000))
+p + coord_cartesian(ylim = c(70, 85), xlim = c(20000, 40000))
 
 ```
 
 
 ### Exercise
 
-How is this one different to the previous?
+How is this one different to the previous:
 
 ```{r}
 
@@ -275,7 +271,7 @@ p +
 ### Legend position
 
 
-Use the following words: `"right", "left", "top", "bottom"`, or `"none"` to remove the legend.
+Use the following words: `"right", "left", "top", "bottom"`, or "none" to remove the legend.
 ```{r}
 
 p +
@@ -288,8 +284,8 @@ Or use relative coordinates (0--1) to give it an -y location:
 ```{r}
 
 p +
-  theme(legend.position      = c(1,0),
-        legend.justification = c(1,0)) #bottom-right corner
+  theme(legend.position=c(1,0),
+        legend.justification=c(1,0)) #bottom-right corner
 
 ```
 
@@ -299,7 +295,7 @@ p +
 
 p +
   theme(legend.position = "top") +
-  guides(colour = guide_legend(ncol = 2))
+  guides(colour = guide_legend(ncol=2))
 
 ```
 

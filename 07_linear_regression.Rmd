@@ -18,7 +18,7 @@ mydata = gapminder
 
 ## Plotting
 
-Let's plot the life expectancies of European countries over the past 60 years:
+Let's plot the life expectancies in European countries over the past 60 years:
 
 
 ```{r, fig.height=7, fig.width=7}
@@ -39,8 +39,8 @@ Save the above filter into a new variable called `eurodata`:
 
 ```{r}
 
-mydata %>% 
-  filter(continent == "Europe") -> eurodata
+eurodata = mydata %>% 
+  filter(continent == "Europe")
 
 ```
 
@@ -75,12 +75,12 @@ We can then investigate the intercepts and the slope coefficients (linear increa
 
 fit_uk = mydata %>%
   filter(country == "United Kingdom") %>% 
-  lm(lifeExp~year, data=.)  # the data=. argument is necessary
+  lm(lifeExp~year, data = .)  # the data=. argument is necessary
 
 
 fit_turkey = mydata %>%
   filter(country == "Turkey") %>% 
-  lm(lifeExp~year, data=.)
+  lm(lifeExp~year, data = .)
 
 
 fit_uk$coefficients
@@ -101,12 +101,12 @@ mydata$year_from1952 = mydata$year - 1952
 
 fit_uk = mydata %>%
   filter(country == "United Kingdom") %>% 
-  lm(lifeExp~year_from1952, data=.)
+  lm(lifeExp~year_from1952, data = .)
 
 
 fit_turkey = mydata %>%
   filter(country == "Turkey") %>% 
-  lm(lifeExp~year_from1952, data=.)
+  lm(lifeExp~year_from1952, data = .)
 
 
 fit_uk$coefficients
@@ -146,7 +146,7 @@ https://gallery.shinyapps.io/multi_regression/
 
 Open the first Shiny app ("Simple regression"). 
 Move the sliders until the red lines (residuals*) turn green - this means you've made the line fit the points as well as possible. 
-Look at the intercept and slope - discuss with your neighbour or a tutor what these numbers mean/how they affect the straight line on the plot.
+Look at the intercept and slope - discuss with your neighbour or a tutor what these numbers mean and how they affect the straight line on the plot.
 
 *Residual is how far away each point (observation) is from the linear regression line. 
 (In this example it's the linear regression line, but residuals are relevant in many other contexts as well.)
@@ -168,9 +168,6 @@ Multiple linear regression (all interactions):
 
 `myfit = lm(lifeExp~year*country, data=eurodata)`
 
-Multiple linear regression (some interactions):
-
-`myfit = lm(lifeExp~year:country, data=eurodata)`
 
 These examples of multiple regression include two variables: `year` and `country`, but we could include more by just adding them with `+`.
 
@@ -184,7 +181,7 @@ Open the second Shiny app ("Multiple regression") and see how:
 
 ### Exercise
 
-Convince yourself that using an fully interactive multivariable model is the same as running several separate simple linear regression models. 
+Convince yourself that using an fully interactive multivariable model is similar to running several separate simple linear regression models. 
 Remember that we calculate the life expectancy in 1952 (intercept) and improvement per year (slope) for Turkey and the United Kingdom:
 
 ```{r}
@@ -223,6 +220,8 @@ Add a third country (e.g. "Portugal") to `filter(country %in% c("Turkey", "Unite
 
 
 ### Optional (Advanced) Exercise
+
+<!-- Replace do() with purrr map() on nested tibbles? Actually, the purrr example is below, maybe just remove the do() then? -->
 
 Run separate linear regression models for every country in the dataset at the same time and putting it all in two neat dataframes (one for the coefficients, one for the summary statistics):
 
@@ -271,7 +270,7 @@ mydata %>%
 
 ## Very advanced example
 
-Or you can do the above in a nested dataframe (dataframes nested in dataframes):
+Or you can do the above in a nested tibble/data frame:
 
 ```{r}
 nested_linreg = mydata %>% 
@@ -315,7 +314,7 @@ mydata %>%
 
 ```
 
-Overall, the estimates for Turkey and the UK do not change, but Portugal becomes the reference (alphabetically first) and you need to subtract or add the relevant lines for Turkey and the UK.
+Overall, the estimates for Turkey and the UK do not change, but Portugal becomes the reference (alphabetically first) to which you can subtract or add the relevant lines for Turkey and the UK.
 
 
 

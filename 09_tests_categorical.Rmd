@@ -2,7 +2,7 @@
 
 ## What is Logistic Regression?
 
-As we have seen in previous sessions, regression analysis is a statistical process for estimating the relationships between variables. 
+As we have seen in previously, regression analysis is a statistical process for estimating the relationships between variables. 
 For instance, we may try to predict the blood pressure of a group of patients based on their age.
 As age and blood pressure are on a continuous scale, this is an example of linear regression. 
 
@@ -12,14 +12,9 @@ As age and blood pressure are on a continuous scale, this is an example of linea
 
 Logistic regression is an extension of this, where the variable being predicted is *categorical*.
 We will deal with binary logistic regression, where the variable being predicted has two levels, e.g. yes or no, 0 or 1. 
-In healthcare this is usually done for an event (like death) occurring or not occurring. 
+In healthcare, this is usually done for an event (like death) occurring or not occurring. 
 Logistic regression can tell us the probability of the outcome occuring.
 
-The aims of this session are to:
-
-- Take you through Logistic Regression in R
-- Learn how to fit a multivariable logistic regression model
-- Output a logistic regression model to useful statistics
 
 ![](images/exam_pass.jpeg)
 
@@ -54,7 +49,7 @@ Odds and probabilities can get confusing so let's get them straight:
 
 ![](images/p_vs_odds2.png)
 
-Odds and probabilities can always be interconverted. 
+Odds and probabilities can be interconverted. 
 For example, if the odds of a patient dying from a disease are `9 to 1` then the probability of death (also known as risk) is 10%. Odds of `1 to 1` equal 50%.
 
 $Odds = \frac{p}{1-p}$, where $p$ is the probability of the outcome occuring (or the circle being red).
@@ -72,6 +67,7 @@ Odds ratios have useful mathematical characteristics and are the main expression
 
 \newpage
 
+
 ## Melanoma dataset
 
 Malignant Melanoma is a cancer of the skin. 
@@ -79,10 +75,10 @@ It is agressive and highly invasive, making it difficult to treat.
 
 It's classically divided into 4 stages of severity, based upon the depth of the tumour:
 
-- Stage I- <0.5 mm depth
-- Stage II- 0.5 to 1.0 mm depth
-- Stage III- 1.0 to 4.0 mm depth
-- Stage IV- > 4.0 mm depth
+- Stage I: <0.5 mm depth
+- Stage II: 0.5 to 1.0 mm depth
+- Stage III: 1.0 to 4.0 mm depth
+- Stage IV: > 4.0 mm depth
 
 This will be important in our analysis as we will creating a new variable based upon this.
 
@@ -90,7 +86,7 @@ Using logistic regression, we will investigate factors associated with death fro
 
 ### Doing logistic regression in R
 
-There are a few different ways of creating a logistic regression in R. 
+There are a few different ways of doing logistic regression in R. 
 The `glm()` function is probably the most common and most flexible one to use. (`glm` stands for `generalised linear model`.)
 
 Within the `glm()` function there are several `options` in the function we must define to make R run a logistic regression.
@@ -128,9 +124,9 @@ load("melanoma_factored.rda")
 
 
 Here `status.factor` has three levels: `Died`, `Died - other causes` and `Alive`. 
-This is not useful for us, as logistic regression requires outcomes to be binary.
+This is not useful for us, as logistic regression requires outcomes to be binary (exactly two levels).
 
-We want to find out using logistic regression, which variables predict death from Melanoma. 
+We want to find out which variables predict death from Melanoma. 
 So we should create a new factor variable, `died_melanoma.factor`. 
 This will have two outcomes, `Yes` (did die from melanoma) or `No` (did not die from melanoma).
 
@@ -143,11 +139,12 @@ mydata$status.factor %>%
   mydata$died_melanoma.factor
 
 mydata$died_melanoma.factor %>% levels()
+
 ```
 
 ## Creating categories
 
-Now we have set up our outcome variable, we should ensure our predictor variables are prepared too.
+Now that we have set up our outcome variable, we should ensure our predictor variables are prepared too.
 
 Remember the stages of Melanoma? This is an important predictor of Melanoma Mortality based upon the scientific literature.
 
@@ -155,7 +152,7 @@ We should take this into account in our model.
 
 ### Exercise
 
-After sorting out your outcome variable, create a new variable called `stage.factor` to encompass the stages of melanoma based upon the thickness. 
+Create a new variable called `stage.factor` to encompass the stages of melanoma based upon the thickness. 
 In this data, the `thickness` variable is measured in millimetres too.
 
 ```{r}
@@ -222,13 +219,13 @@ Now we are ready for some modelling!
 
 Lets find out what the influence of each predictor/confounding variable is on mortality from melanoma, which may help inform a more complicated regression, with multiple predictors/confounders.
 
-We'll start with whether the patient was male or female
+We'll start with whether the patient was male or female:
 
 ### Worked example
 
-First we need to create a regression model, using `glm()`, we will then summarise it using `summary()`
+First we need to create a regression model using `glm()`. We will then summarise it using `summary()`
 
-Note, we need to use the `family` option. Specifying `'binomial'` in `family` tells `glm` to switch to logistic regression.
+Note, we need to use the `family` option. Specifying `'binomial'` in `family` tells `glm()` to switch to logistic regression.
 
 ```{r}
 
@@ -242,9 +239,9 @@ summary(model1)
 
 ```
 
-Now we have created the model- fantastic!
+Now we have created the model - fantastic!
 
-But this doesn't mean a lot to humans reading a paper- or us in fact.
+But this doesn't mean a lot to humans reading a paper - or us in fact.
 
 The estimate output of `summary(model_1)` represents the logarithm of the odds ratio. The odds ratio would be a lot easier to understand.
 
@@ -294,12 +291,14 @@ See www.finalfit.org for more information and updates.
 We can use the `finalfit` package to summarise a list of variables by another variable. This is very useful for "Table 1" in many studies. 
 
 ``` {r}
+
 library(finalfit)
 dependent   = "died_melanoma.factor"
 explanatory = c("age", "sex.factor")
 
-mydata %>% 
-  summary_factorlist(dependent, explanatory, p = TRUE) -> table_result
+table_result = mydata %>% 
+  summary_factorlist(dependent, explanatory, p = TRUE)
+
 ```
 
 ```{r, echo = FALSE, message = FALSE, warning=FALSE, fig.width=10, fig.height=5}
@@ -316,17 +315,20 @@ We can then use the `finalfit` function to run a logistic regression analysis wi
 dependent   = "died_melanoma.factor"
 explanatory = c("sex.factor")
 
-mydata %>% 
-  finalfit(dependent, explanatory) -> model2
+model2 = mydata %>% 
+  finalfit(dependent, explanatory)
 
 ```
 
 ```{r, echo = FALSE, message = FALSE, warning=FALSE, fig.width=10, fig.height=5}
+
 model2 %>% 
   knitr::kable(row.names = FALSE,  align = c("l", "l", "r", "r", "r", "r"))
+
 ```
 
 \newpage
+
 ## Adjusting for multiple variables in R
 
 Your first models only included one variable. It's time to scale them up.
@@ -346,13 +348,16 @@ Lets adjust for `age` (as a continuous variable), `sex.factor` and `stage.factor
 dependent   = "died_melanoma.factor"
 explanatory = c("age", "sex.factor", "stage.factor")
 
-mydata %>% 
-  finalfit(dependent, explanatory) -> model3
+model3 = mydata %>% 
+  finalfit(dependent, explanatory)
+
 ```
 
 ```{r, echo = FALSE, message = FALSE, warning=FALSE, fig.width=10, fig.height=5}
+
 model3 %>% 
   knitr::kable(row.names = FALSE,  align = c("l", "l", "r", "r", "r", "r"))
+
 ```
 
 ```{r}
@@ -360,12 +365,12 @@ or_plot(mydata, dependent, explanatory)
 ```
 
 
-Note- when we enter age into regression models, the effect estimate is provided in terms of per unit increase. 
+When we enter age into regression models, the effect estimate is provided in terms of per unit increase. 
 So in this case it's expressed in terms of an odds ratio per year increase (i.e. for every year in age gained odds of death increases by 1.02).
 
 ### Exercise
 
-Now you try making a regression that includes `ulcer.factor`.
+Create a regression that includes `ulcer.factor`.
 
 \newpage
 ## Advanced: Fitting the best model

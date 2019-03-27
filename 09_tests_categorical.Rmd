@@ -70,7 +70,7 @@ Odds ratios have useful mathematical characteristics and are the main expression
 
 ## Melanoma dataset
 
-Malignant Melanoma is a cancer of the skin. 
+Malignant melanoma is a cancer of the skin. 
 It is agressive and highly invasive, making it difficult to treat.
 
 It's classically divided into 4 stages of severity, based upon the depth of the tumour:
@@ -126,7 +126,7 @@ load("melanoma_factored.rda")
 Here `status.factor` has three levels: `Died`, `Died - other causes` and `Alive`. 
 This is not useful for us, as logistic regression requires outcomes to be binary (exactly two levels).
 
-We want to find out which variables predict death from Melanoma. 
+We want to find out which variables predict death from melanoma. 
 So we should create a new factor variable, `died_melanoma.factor`. 
 This will have two outcomes, `Yes` (did die from melanoma) or `No` (did not die from melanoma).
 
@@ -146,7 +146,7 @@ mydata$died_melanoma.factor %>% levels()
 
 Now that we have set up our outcome variable, we should ensure our predictor variables are prepared too.
 
-Remember the stages of Melanoma? This is an important predictor of Melanoma Mortality based upon the scientific literature.
+Remember the stages of melanoma? This is an important predictor of melanoma Mortality based upon the scientific literature.
 
 We should take this into account in our model.
 

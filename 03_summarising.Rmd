@@ -4,7 +4,7 @@ In this session we will get to know our three best friends for summarising data:
 
 ## Data
 In Session 2, we used a very condensed version of the Global Burden of Disease data. 
-In this module we are going back to a longer one and we will learn how to summarise it ourselves.
+We are now going back to a longer one and we will learn how to summarise it ourselves.
 
 ```{r, message=F}
 source("1_source_theme.R")
@@ -81,12 +81,32 @@ mydata %>%
 * `summary_data1` includes the total number of deaths per year.
 * `summary_data2` includes the number of deaths per cause per year.
 
+```{r, echo = FALSE}
+
+summary_data1 %>% 
+  knitr::kable(digits = 0,
+               caption = "summary_data1",
+               align = "c")
+
+summary_data2 %>% 
+  filter(year < 1996) %>% 
+  knitr::kable(digits = 0,
+               caption = "summary_data2",
+               align = "c")
+
+```
+
+... remaining years omitted from printing.
+
+
 ### Exercise
 
 Compare the sizes - number of rows (observations) and number of columns (variables) - of `mydata`, `summary_data1`, and `summary_data2` (in the Environment tab).
 
+* Convince yourself that for 1990, deaths by the three causes (`summary_data2`) add up to total deaths per year (`summary_data1`).
 * `summary_data2` has exactly 3 times as many rows as `summary_data1`. Why?
 * `mydata` has 5 variables, whereas the summarised dataframes have 2 and 3. Which variables got dropped? Why?
+
 
 
 ### Exercise
@@ -95,14 +115,28 @@ For each cause, calculate its percentage to total deaths in each year.
 
 Hint: Use `full_join()` on `summary_data1` and `summary_data2`.
 
+<!-- All this alldata$ here does not look good. Would be better to do it using mutate(), but we'd have to reorder the chapter then - to introduce mutate() before summarise(). -->
+
 Solution:
 ```{r}
 
 alldata = full_join(summary_data1, summary_data2)
 
-alldata$percentage = round(100*alldata$total_per_cause/alldata$total_per_year, 0)
+alldata$percentage = 100*alldata$total_per_cause/alldata$total_per_year %>% round()
 ```
 
+```{r, echo = FALSE}
+
+alldata %>% 
+  filter(year < 1996) %>% 
+  knitr::kable(digits = 0,
+               caption = "alldata",
+               align = "c")
+
+
+```
+
+`round()` defaults to 0 digits. If you want to round to a specified number of decimal places, use, e.g.,  round(digits = 2).
 
 ## `mutate()`
 
@@ -122,12 +156,29 @@ mutate_example = mydata %>%
 
 ```
 
-You should see that `mutate()` adds the same number total number (309.4174) to every line in the dataframe. 
+
+```{r, echo = FALSE}
+
+summarise_example %>% 
+  knitr::kable(digits = 0,
+               caption = "summarise_example",
+               align = "c")
+
+mutate_example %>% 
+  slice(1:5) %>% 
+  knitr::kable(digits = 0,
+               caption = "mutate_example",
+               align = "c")
+
+```
+
+
+You should see that `mutate()` adds the same total number (309) to every line in the dataframe. 
 
 ### Optional advanced exercise
 
 Based on what we just observed on how `mutate()` adds a value to each row, can you think of a way to redo **Exercise 3.4.2** without using a join? 
-Hint: instead of creating `summary_data1` (total deaths per year) as a separate dataframe which we then merge with `summary_data2` (total deaths for all causes per year), we can use `mutate()` to add total death per year to each row.
+Hint: instead of creating `summary_data1` (total deaths per year) as a separate dataframe which we then merge with `summary_data2` (total deaths for all causes per year), we can use `mutate()` to add `total_per_year` to each row.
 
 ```{r}
 mydata %>% 
@@ -155,13 +206,17 @@ knitr::include_graphics("images/wide_long.png")
 ### Wide format
 Although having data in the long format is very convenient for R, for publication tables, it makes sense to spread some of the values out into columns:
 
+<!-- I wonder if we should replace all th paste0 and round nonsense with `scales::percent()` -->
+
 ```{r}
 alldata %>%
-	mutate(percentage = paste0(round(percentage, 2), "%")) %>% #add a % label and round to 2 decimals
-	select(year, cause, percentage) %>% #only select the variables you want in your final table
+	mutate(percentage = paste0(round(percentage, 2), "%")) %>%
+	select(year, cause, percentage) %>%
 	spread(cause, percentage)
 
 ```
+
+* `select()` pick the variables you want to keep. Try running the lines until `spread()` to see how it works.
 
 ### Exercise
 Calculate the percentage of male and female deaths for each year. 
@@ -198,8 +253,6 @@ result_spread = alldata %>%
   spread(sex, percentage)
 
 result_spread
-
-
 
 ```
 
@@ -280,7 +333,7 @@ mydata %>%
 ## Factor handling
 
 We talked about the pros and cons of working with factors in Session 2. 
-Overall, they are very useful for the type of analyses involved in medical research. 
+Overall, they are extremely useful for the type of analyses done in medical research. 
 
 ### Exercise
 Explain how and why these two plots are different.
@@ -288,11 +341,11 @@ Explain how and why these two plots are different.
 ```{r, fig.width=5}
 
 mydata %>%                                   
-	ggplot(aes(x=year, y=deaths_millions, fill=cause))+  
+	ggplot(aes(x = year, y = deaths_millions, fill = cause))+  
 	geom_col()
 
 mydata %>% 
-	ggplot(aes(x=factor(year), y=deaths_millions, fill=cause, colour=cause))+ 
+	ggplot(aes(x = factor(year), y = deaths_millions, fill = cause, colour = cause))+ 
 	geom_col()
 ```
 
@@ -302,21 +355,21 @@ What about these?
 ggplot <- function(...) ggplot2::ggplot(...)
 
 mydata %>% 
-	ggplot(aes(x=year, y=deaths_millions, fill=year, colour=year))+ 
-	geom_bar(stat='identity') +
+	ggplot(aes(x = year, y = deaths_millions, fill = year, colour = year))+ 
+	geom_col() +
 	theme_bw()
 
 mydata %>% 
-	ggplot(aes(x=year, y=deaths_millions, fill=factor(year), colour=factor(year)))+ 
+	ggplot(aes(x = year, y = deaths_millions, fill = factor(year), colour = factor(year)))+ 
 	geom_col()  +
-	guides(fill=guide_legend(ncol=3)) +
+	guides(fill = guide_legend(ncol=3)) +
 	scale_fill_brewer(palette = "Dark2")+
 	scale_colour_brewer(palette = "Dark2") +
 	theme_bw() +
-	theme(legend.position="top")
+	theme(legend.position = "top")
 ```
 
-These illustrate why it might sometimes be useful to use numbers as factors - on the second one we have used `fill=factor(year)` as the fill, so each year gets a distinct colour, rather than a gradual palette.
+These illustrate why it might sometimes be useful to use numbers as factors - on the second one we have used `fill = factor(year)` as the fill, so each year gets a distinct colour, rather than a gradual palette.
 
 ### `fct_collapse()` - grouping levels together
 
@@ -366,7 +419,7 @@ mydata$cause %>%
 ### Converting factors to numbers
 
 MUST REMEMBER: factor needs to become `as.character()` before converting to numeric or date!
-(Factors are actually stored as labelled integers (so like number codes), only the function `as.character()` will turn a factor back into a collated format which can then be converted into a number or date.)
+Factors are actually stored as labelled integers (so like number codes), only the function `as.character()` will turn a factor back into a collated format which can then be converted into a number or date.
 
 ### Exercise
 
@@ -391,12 +444,12 @@ mydata$year.factor %>%
 
 This exercise includes multiple steps, combining all of the above.
 
-First, create a new script called "2_long_exercise.R". Then Restart your R session, add `library(tidyverse)` and load `"global_burden_disease_long.rda"` again.
+First, create a new script called "2_long_exercise.R". Then Restart your R session, add `library(tidyverse)` and load `"global_burden_disease_long.rda"`.
 
-* Calculate the total number of deaths in Developed and Developing countries. Hint: use `group_by(location)` and `summarise( Include new column name = sum() here)`.
+* Calculate the total number of deaths in Developed and Developing countries. Hint: use `group_by(location)` and `summarise(new-column-name = sum(variable-to-sum))`.
 * Calculate the total number of deaths in Developed and Developing countries and for men and women. Hint: this is as easy as adding `, sex` to `group_by()`.
 * Filter for 1990.
-* `spread()` the the `location` column.
+* `spread()` the `location` column.
 
 ```{r, echo = FALSE}
 

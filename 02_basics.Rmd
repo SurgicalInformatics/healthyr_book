@@ -1,48 +1,44 @@
 # R Basics
 
-The aim of this module is to familiarise you with how R works and how to read in and apply basic manipulations on your data. 
-Here, we will be working with similar but slightly shorter version of the Global Burden of Disease dataset than we did for the bar plots.
+The aim of this module is to familiarise you with how R works. 
+We will read in data and start basic manipulations. 
+We will be working with a shorter version of the Global Burden of Disease dataset that we met earlier. 
 
 Throughout this course, don't copy or type code directly into the Console. 
 We will only be using the Console for viewing output, warnings, and errors. 
-All code should be in a script and executed (=run) using Control+Enter (line or section) or Control+Shift+Enter (whole script). 
+All code should be in a script and executed (=run) using Ctrl+Enter (line or section) or Ctrl+Shift+Enter (whole script). 
 Make sure you are always working in a project (the right-top corner of your RStudio interface should say "HealthyR").
 
 ## Getting help
 
 RStudio has a built in Help tab. 
-To use the Help tab, move your cursor to something in your code (e.g. `read_csv()`) and press F1 - this will show you the definition and some examples. 
-However, the Help tab is only useful if you already know what you are looking for but can't remember how it worked exactly. 
+To use the Help tab, click your cursor on something in your code (e.g. `read_csv()`) and press F1. This will show you the definition and some examples. 
+However, the Help tab is only useful if you already know what you are looking for but can't remember exactly how it works. 
 For finding help on things you have not used before, it is best to Google it. 
 R has about 2 million users so someone somewhere has had the same question or problem.
-
 
 ## Starting with a blank canvas
 
 In the first session we loaded some data that we then plotted. 
-When we import data, R remembers the data and stores it in the Environment tab.
+When we import data, R stores it and displays it in the Environment tab.
 
-It's good practice to Restart R before starting new work, as it's best to use fresh up to date data - otherwise we could accidentally use data which has nothing to do with our work. 
+It's good practice to restart R before commencing new work. This is to avoid accidentally using the wrong data or functions stored in the environment.  
 Restarting R only takes a second!
 
-* Restart R (Control+Shift+F10 or select it from Session -> Restart R).
+* Restart R (Ctrl+Shift+F10 or select it from Session -> Restart R).
 
-RStudio has a default option that is not best practise any more, you should do this (once only):
+RStudio has a default setting that is no longer considered best practice. You should do this once:
 
 * Go to Tools -> Global Options -> General and set "Save .RData on exit" to Never. 
 This does not mean you can't or shouldn't save your work in .RData files. 
 But it is best to do it consciously and load exactly what you need to load, rather than letting R always save and load everything for you, as this could also include broken data or objects.
 
-
-
 ## Working with Objects
 
 It's sometimes difficult to appreciate how coding works without trying it first.
-
 These exercises will show you how R works.
 
 We'll first create an object and call it `a`, we will give the object `a` a value of 1.
-
 In R the equals `=` sign tells R to give the object on the left of the sign the value of whatever is on the right of the sign.
 
 ```{r, message=F}
@@ -67,7 +63,7 @@ Lets now add `a` and `b` together to create the object `c`
 
 c = a + b 
 
-#Print the value of c to the Console
+# Print the value of c to the Console
 
 c # should return the number 3
 
@@ -96,13 +92,13 @@ e <- 7
 
 ## Loading data
 
-Before we load a new dataset, we should clear or experiments from the previous section: Restart R by pressing Control+Shift+F10 or Select Section -> Restart R from the menu above.
+Before we load a new dataset, we should clear our experiments from the previous section. Restart R by pressing Ctrl+Shift+F10 or Select Section -> Restart R from the menu above.
 
 Now the environment is clear, lets load in the data:
 
 ```{r, message=F}
 
-library(tidyverse) #Tidyverse is the package which contains some of the code we want to use
+library(tidyverse) # Tidyverse is the package which contains some of the code we want to use
 
 mydata = read_csv("global_burden_disease_short.csv")
 
@@ -118,7 +114,6 @@ Answer these question about your data:
 1. At present, how many variables are there?
 
 2. How many deaths were there from communicable diseases in 1990? Hint: clicking on columns when Viewing a dataframe orders it.
-
 
 
 ### Other ways to investigate objects
@@ -145,7 +140,7 @@ R will give us all the data for that variable.
 
 *Image source: https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html*
 
-Re-write `names(mydata)` and `head(mydata)` using the pipe (`%>%`). Use the keyboard shortcut `Control+Shift+M` to insert it.
+Re-write `names(mydata)` and `head(mydata)` using the pipe (`%>%`). Use the keyboard shortcut `Ctrl+Shift+M` to insert it.
 
 
 ### Exercise
@@ -204,7 +199,7 @@ To save this as a new object we would then write:
 mydata_out = mydata %>% 
   filter(year >= 2000)
 
-#Or we could write
+# Or we could write
 
 mydata %>% 
   filter(year >= 2000) -> mydata_out
@@ -225,7 +220,6 @@ mydata_year2000 = mydata %>%
 ```
 
 
-
 ### Exercise
 
 Let's practice this and combine multiple selections together.
@@ -239,7 +233,7 @@ From `mydata`, select the lines where year is either 1990 or 2013 and cause is "
 new_data_selection = mydata %>% 
   filter( (year == 1990 | year == 2013) & cause == "Communicable diseases")
 
-# or we can get rid of the extra brackets around the years
+# Or we can get rid of the extra brackets around the years
 # by moving cause into a new filter on a new line:
 
 new_data_selection = mydata %>% 
@@ -252,6 +246,8 @@ new_data_selection = mydata %>%
 
 
 ## Types of variables
+
+**consider structuring as per here: https://finalfit.org/articles/data_prep.html**
 
 Like many other types of statistical software, R needs to know the variable type of each column. The main types are:
 
@@ -359,7 +355,6 @@ mydata$new = 1
 
 mydata$new2 = 1:18
 
-
 ```
 
 Run these lines and click on `mydata` in the Environment tab to check this worked as expected.
@@ -373,7 +368,6 @@ mydata$new = NULL
 mydata = mydata %>% 
   select(-new2)
 
-
 ```
 
 We can make new variables using calculations based on variables in the data too.
@@ -383,19 +377,20 @@ All you have to specify within the mutate function is the name of the variable (
 
 There are two equivalent ways of defining new columns based on a calculation with a previous column:
 
+**mutate formally introduced in later chapter. Need to think how best to present this in book.**
+
 ```{r}
 
-#First option
+# First option
 
 mydata$years_from_1990 = mydata$year - 1990 
 mydata$deaths_millions = mydata$deaths/1000000
 
-#Second option (mutate() function)
+# Second option (mutate() function)
 
 mydata = mydata %>% 
   mutate(years_from_1990 = year-1990,
          deaths_millions = deaths/1000000) 
-
 
 ```
 
@@ -462,16 +457,18 @@ So, for example if we wanted to make a sentence:
 # 
 #paste("Edinburgh", "is", "Great")
 
-#Lets add in full stops
+# Lets add in full stops
 
-#paste("Edinburgh", "is", "Great", sep = ".")
-#separator needs to go in "" as it is a character
 
-#If we really like Edinburgh
+paste("Edinburgh", "is", "Great", sep = ".")
+# separator needs to go in "" as it is a character
+
+
+# If we really like Edinburgh
 
 #paste("Edinburgh", "is", "Great", sep = "!")
 
-#If we want to make it one word
+# If we want to make it one word
 
 #paste("Edinburgh", "is", "Great", sep = "") # no separator (still need the brackets)
 
@@ -502,7 +499,7 @@ paste(Today is, Sys.Date() )
 
 ## Combining two dataframes
 
-For combining dataframes based on shared variables we use the Joins: `left_join()`, `right_join()`, `inner_join()`, or `full_join()`. 
+For combining dataframes based on shared variables we use the joins: `left_join()`, `right_join()`, `inner_join()`, or `full_join()`. 
 Let's split some of the variables in `mydata` between two new dataframes: `first_data` and `second_data`. 
 For demonstrating the difference between the different joins, we will only include a subset (first 6 rows) of the dataset in `second_data`:
 
@@ -511,7 +508,7 @@ For demonstrating the difference between the different joins, we will only inclu
 first_data  = select(mydata, year, cause, deaths_millions)
 second_data = select(mydata, year, cause, deaths_millions) %>% slice(1:6)
 
-#change the order of rows in first_data to demosntrate the join does not rely on the ordering of rows:
+# change the order of rows in first_data to demosntrate the join does not rely on the ordering of rows:
 first_data = arrange(first_data, deaths_millions)
 
 combined_left  =  left_join(first_data, second_data)
@@ -532,7 +529,7 @@ Those who have used R before, or those who come across older scripts will have s
 Investigate the four new dataframes called `combined_` using the Environment tab and discuss how the different joins (left, right, inner, full) work.
 
 
-## The `summary()` Function
+## The `summary()` function
 
 In R, the `summary()` function provides a quick way of summarising both data or the results of statistical tests.
 
@@ -560,6 +557,7 @@ Note that our usual way of doing things with the pipe would not work here:
 
 
 ```{r, eval = FALSE}
+
 mydata %>% 
   lm(deaths ~ year) %>%
   summary()
@@ -570,6 +568,7 @@ This is because the pipe tries to send data into the first place of the function
 We can bypass this using `data = .` to tell the pipe where to put mydata:
 
 ```{r, eval = FALSE}
+
 mydata %>% 
   lm(deaths ~ year, data = .) %>%
   summary()
@@ -586,8 +585,9 @@ Then make it into a factor.
 
 Then use `summary()` to find out about it!
 ```{r}
+
 mydata = mydata %>% 
-  mutate(death_over_10m = ifelse(deaths >= 10000000, "Yes", "No")) #Using ifelse
+  mutate(death_over_10m = ifelse(deaths >= 10000000, "Yes", "No")) # Using ifelse
 
 mydata$death_over_10m = as.factor(mydata$death_over_10m)
 
@@ -597,8 +597,8 @@ mydata$death_over_10m %>% summary()
 
 ## Extra: Creating a dataframe from scratch
 
-It is rare that you will need to create a dataframe by hand as most of the time you will be reading in a data from a .csv or similar. 
-But in some cases (e.g., when creating special labels for a plot) it might be useful, so this is how to create one:
+It is rare that you will need to create a data frame by hand as most of the time you will be reading in a data from a .csv or similar. 
+But in some cases (e.g. when creating special labels for a plot) it might be useful, so this is how to create one:
 
 
 ```{r}
@@ -609,7 +609,7 @@ age        = 18:27
 
 newdata = data_frame(patient_id, sex, age)
 
-#same as
+# same as
 
 newdata      = data_frame(
   patient_id = paste0("ID", 1:10), #note the commas

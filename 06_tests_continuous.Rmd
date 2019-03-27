@@ -7,27 +7,33 @@
 This session we will be using the gapminder dataset as in Session 4.
 
 ```{r, message=F}
+
 library(tidyverse) 
 library(gapminder)
 library(broom)
 
 mydata = gapminder
+
 ```
+
+**Consider adding `ff_glimpse()`**
 
 The first step of choosing the right statistical test is determining the type of variable you have.
 
-Lets first have a look at some of our avalible data:
+Lets first have a look at some of our available data:
 
 ```{r, message=F}
+
 mydata$continent %>% unique() # categorical
 
 mydata$year %>% unique() # categorical
 
 mydata$lifeExp %>% head() # continuous
+
 ```
 
 ## T-test
-A t-test is used to compare the means of two groups of continuous variables.
+A *t*-test is used to compare the means of two groups of continuous variables.
 
 ### Plotting
 Before you perform any statistical tests, you should always plot your data first to determine whether these have a "normal" distribution.
@@ -40,6 +46,7 @@ Before you perform any statistical tests, you should always plot your data first
 
 ### Histogram for each continent
 ```{r, fig.width=7}
+
 theme_set(theme_bw())
 
 mydata %>% 
@@ -47,11 +54,14 @@ mydata %>%
 	ggplot(aes(x = lifeExp)) +
 	geom_histogram(bins = 10) +
 	facet_grid(year~continent, scales = "free")
+
 ```
 
 ### Q-Q plot for each continent
 
-With `ggplot()`, we can drawa Q-Q plot for each subgroup very efficiently:
+**add what a q-q plot is**
+
+With `ggplot()`, we can draw a Q-Q plot for each subgroup very efficiently:
 
 ```{r, fig.width=8, fig.height=3.5}
 mydata %>% 
@@ -76,23 +86,27 @@ qqline(subdata$lifeExp)
 ```
 
 ### Boxplot of 2 years
+
 ```{r, fig.width=3, fig.height=3}
+
 mydata %>% 
 	filter(year %in% c(2002, 2007)) %>% 
-	ggplot(aes(x = factor(year), y=lifeExp)) + #show that x = year errors: 
-	geom_boxplot()                           #needs to be factor(year) or group=year
+	ggplot(aes(x = factor(year), y=lifeExp)) +  # show that x = year errors: 
+	geom_boxplot()                              # needs to be factor(year) or group=year
+
 ```
 
 ### Exercise
-Make a histogram, Q-Q plot, and a box-plot for the life expectancy for a continent (you choose!) but for all years - does the data appear normally distributed?
+Make a histogram, Q-Q plot, and a box-plot for the life expectancy for a continent of your choice, but for all years. Does the data appear normally distributed?
 
-## Two-sample t-tests
+## Two-sample *t*-tests
 
-Lets perform a t-test on the "Americas" data as it appears normally distributed. 
-We are savings the results of our t.test into a variable called t.result, but you can call it whatever you like (e.g. `myttest`).
+Lets perform a *t*-test on the "Americas" data as it appears normally distributed. 
+We are savings the results of our *t*-test into a variable called t.result, but you can call it whatever you like (e.g. `myttest`).
 
 
 ```{r, fig.width=4, fig.height=4}
+
 mydata %>% 
   filter(year %in% c(2002, 2007)) %>%
   filter(continent == "Americas") -> test.data
@@ -105,17 +119,22 @@ mydata %>%
   t.test(lifeExp~year, data = .) -> t.result
 
 t.result
+
 ```
 
-### T-Test output
+### T-test output
+
 However, that output isn't in a useful format, let's investigate the output of the function `t.test()`. 
+
 ```{r}
+
 names(t.result)
 str(t.result) # or click on the blue button in the Environment tab
+
 ```
 
 The structure of R's `t.test()` result looks a bit overwhelming. 
-Fortunately, the `tidy()` function from `library(broom)` puts it into a neat dataframe for us:
+Fortunately, the `tidy()` function from `library(broom)` puts it into a neat data frame for us:
 
 ```{r}
 
@@ -123,23 +142,27 @@ t.result <- tidy(t.result) # broom package puts it all in a data frame
 
 ```
 
-try clicking on it in the Environment tab now.
+Try clicking on it in the Environment tab.
 
 Thus, now we understand the output structure we can extract any result.
+
 ```{r}
+
 t.result$p.value
+
 ```
 
 
 ### Exercise
 
-1. Select any 2 years in any continent and perform a t-test to determine whether the life expectancy is signficantly different. 
+1. Select any 2 years in any continent and perform a *t*-test to determine whether the life expectancy is signficantly different. 
 Remember to plot your data first.
 
 2. Extract only the p-value from your `t.test()` output.
 
 
-## One sample t-tests
+## One sample *t*-tests
+
 However, we don't always want to compare 2 groups or sometimes we don't have the data to be able to.
 
 Let's investigate whether the mean life expectancy in each continent significant different to 77 years in 2007.
@@ -155,27 +178,35 @@ t.test(subdata$lifeExp, mu=77)
 ```
 
 ### Exercise
-1. Select a different year, different continent, and different age to compare the mean life expectancy to.
+
+1. Select a different year, different continent, and different age to compare with mean life expectancy.
 
 2. Replace mu=77 with mu=0 (the default value). How does this affect your result?
 
 
 ## ANOVA
+
 In some cases, we may also want to test more than two groups to see if they are signficantly different.
 
 ### Plotting
+
 For example, lets plot the life expectancy in 2007 accross 3 continents.
 ```{r, fig.width=3, fig.height=3}
+
 mydata %>% 
 	filter(year == 2007) %>% 
 	filter(continent %in% c("Americas", "Europe", "Asia")) %>% 
 	ggplot(aes(x = continent, y=lifeExp)) +
 	geom_boxplot()
+
 ```
 
 ### Analysis
+
 ANOVA tests are useful for testing for the presence of signficant differences between more than two groups or variables.
+
 ```{r}
+
 mydata %>% 
   filter(year == 2007) %>% 
   filter(continent %in% c("Americas", "Europe", "Asia")) -> subdata
@@ -189,21 +220,26 @@ mydata %>%
   filter(continent %in% c("Americas", "Europe", "Asia")) %>% 
   aov(lifeExp~continent, data = .) %>% 
 	tidy()
+
 ```
 
 ### Check assumptions
+
 ```{r, fig.width=5, fig.height=5}
-# Check ANOVA assumptions 
+
 par(mfrow=c(2, 2)) # 4 plots in 2 x 2 grid
 plot(fit)
+
 ```
 
 ### Perform pairwise tests
+
 The ANOVA test was significant, indicating that there is a signficant difference in the mean life expectancy across those continents.
 
-But which continents are significantly different, and can we quantify this difference as a p-value?
+But which continents are significantly different, and can we quantify this difference as a *p*-value?
 
 ```{r}
+
 mydata %>% 
   filter(year == 2007) %>% 
   filter(continent %in% c("Americas", "Europe", "Asia")) -> subdata
@@ -212,6 +248,7 @@ pairwise.t.test(subdata$lifeExp, subdata$continent)
 
 # or equivalently, without saving the subset in a separate variable:
 # sending it into the test using pipes only
+
 mydata %>% 
   filter(year == 2007) %>% 
   filter(continent %in% c("Americas", "Europe", "Asia")) %>% 
@@ -224,7 +261,8 @@ F1 for help to see options for `pairwise.t.test()`.
 
 ### Top tip: the cut() function
 
-A great way of easily converting a continuous variable to a categorical variable is to use the cut() function
+A great way of easily converting a continuous variable to a categorical variable is to use the `cut()` function.
+
 ```{r}
 
 pop_quantiles = quantile(mydata$pop)
@@ -235,7 +273,7 @@ mydata %>%
 
 ### Exercise
 
-When we used `cut()` to divide country populations into quantiles, the labels it assigned are not very neat:
+When we used `cut()` to divide country populations into quantiles, the labels it assigned were not very neat:
 
 ```{r}
 
@@ -246,18 +284,22 @@ mydata$pop.factor %>% levels()
 Use `fct_recode()` to change them to something nicer, e.g., "Tiny", "Small", "Medium", "Large":
 
 ```{r}
+
 mydata$pop.factor %>% 
   fct_recode("Tiny"   = "(6e+04,2.79e+06]",
              "Small"  = "(2.79e+06,7.02e+06]",
              "Medium" = "(7.02e+06,1.96e+07]",
              "Large"  = "(1.96e+07,1.32e+09]") -> mydata$pop.factor 
+
 ```
 
 
 ### Exercise
+
 Perform ANOVA to test for a difference in mean life expectancy by country population factor (`mydata$pop.factor`). Remember to plot data first
 
 ```{r, fig.width=4, fig.height=3}
+
 mydata %>% 
 	filter(year == 2007) %>% 
 	ggplot(aes(x=pop.factor, y=lifeExp))+
@@ -267,20 +309,23 @@ mydata %>%
 	filter(year == 2007) %>% 
 	aov(.$lifeExp ~ .$pop.factor, data=.) %>% 
 	summary()
+
 ```
 
 
-
 ## Non-parametric data
-If your data is not parametric (e.g. not normally distributed) then the usual t-test is invalid. In this case there are 2 options:
+If your data is not parametric (i.e. not normally distributed), then the usual *t*-test is invalid. In this case there are 2 options:
 
 1. Non-parametric statistical tests.
 
-2. "Transform" the data to fit a normal distribution (*not covered here*) so that a t-test can be used.
+2. "Transform" the data to fit a normal distribution (*not covered here*) so that a *t*-test can be used.
 
 ### Plotting
+
 Lets plot the life expectancy within Africa in 1997, 2002, and 2007.
+
 ```{r, fig.width=3, fig.height=3}
+
 # African data is not normally distributed
 mydata %>% 
   filter(year %in% c(1997, 2002, 2007)) %>%
@@ -294,10 +339,12 @@ mydata %>%
   filter(continent == "Africa") %>% 
   group_by(year) %>% 
   summarise(avg = mean(lifeExp), med = median(lifeExp))
+
 ```
 
 
 ### Exercise: Non-parametric testing
+
 Mann-Whitney U test is also called the Wilcoxon rank sum test (note the Wilcoxon signed rank test is for paried data).
 
 Is there a significant increase in the life expectencies for African countries between 1992 and 2007? How about 1982 and 2007?
@@ -353,12 +400,10 @@ mydata %>%
 ```
 
 
-
-
 ## Advanced example
-This is a complex but useful example which shows you the power of the syntax. Here multiple t-tests are performed and reported with just a few lines of code. 
+This is a complex but useful example which shows you the power of the syntax. Here multiple *t*-tests are performed and reported with just a few lines of code. 
 
-Performing t-tests across all continents at once:
+Performing *t*-tests across all continents at once:
 
 ```{r, fig.width=6, fig.height=4}
 mydata %>% 

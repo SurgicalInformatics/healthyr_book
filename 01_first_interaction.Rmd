@@ -1,3 +1,4 @@
+\mainmatter
 # (PART) Always plot your data first {-}
 # Your first R plots
 

@@ -12,7 +12,15 @@ pre {
 pre code {
   white-space: inherit;
 }
-
+p.flushright {
+  text-align: right;
+}
+blockquote > p:last-child {
+  text-align: right;
+}
+blockquote > p:first-child {
+  text-align: inherit;
+}
 .healthyr, .warning, .error {
   padding: 1em 1em 1em 8em;
   margin-bottom: 10px;

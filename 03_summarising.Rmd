@@ -31,7 +31,7 @@ mydata %>%
 Most of the functions introduced in this session come from the tidyverse family (http://tidyverse.org/), rather than Base R. Including `library(tidyverse)` in your script loads a list of packages: ggplot2, dplyr, tidry, forcats, etc.
 
 
-```{r, out.width = "400px", echo = FALSE}
+```{r, echo = FALSE}
 knitr::include_graphics("images/library_vs_package.png")
 ```
 
@@ -197,7 +197,7 @@ mydata %>%
 ## Wide vs long: `spread()` and `gather()`
 
 
-```{r, out.width = "700px", echo = FALSE}
+```{r, echo = FALSE}
 knitr::include_graphics("images/wide_long.png")
 ```
 

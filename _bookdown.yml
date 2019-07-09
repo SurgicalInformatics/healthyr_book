@@ -1,7 +1,12 @@
 book_filename: "healthyr-book"
-language:
-  ui:
-    chapter_name: "Chapter "
+clean: [packages.bib, bookdown.bbl]
 delete_merged_file: true
+language:
+  label:
+    fig: "FIGURE "
+    tab: "TABLE "
+  ui:
+    edit: "Edit"
+    chapter_name: "Chapter "
 new_session: yes
 output_dir: "docs"

@@ -12,6 +12,8 @@ colorlinks: yes
 graphics: yes
 lot: yes
 lof: yes
+fontsize: 12pt
+monofontoptions: "Scale=0.7"
 github-repo: SurgicalInformatics/healthyr_book/
 description: "An introductory book for healthcare data analysis using R."
 cover-image: images/healthyr_book_cover.png
@@ -119,4 +121,5 @@ When working with data, don't copy or type code directly into the Console. We wi
 knitr::include_graphics("images/rstudio_vs_r.png")
 ```
 
+\mainmatter
 

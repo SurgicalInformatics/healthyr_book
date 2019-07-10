@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Summarising data
 
 In this session we will get to know our three best friends for summarising data: `group_by()`, `summarise()`, and `mutate()`.
@@ -7,7 +12,7 @@ In Session 2, we used a very condensed version of the Global Burden of Disease d
 We are now going back to a longer one and we will learn how to summarise it ourselves.
 
 ```{r, message=F}
-source("1_source_theme.R")
+source("healthyr_theme.R")
 load("global_burden_disease_long.rda")
 
 
@@ -85,13 +90,15 @@ mydata %>%
 
 summary_data1 %>% 
   knitr::kable(digits = 0,
-               caption = "summary_data1",
+               #caption = "summary_data1",
                align = "c")
+```
 
+```{r, echo = FALSE}
 summary_data2 %>% 
   filter(year < 1996) %>% 
   knitr::kable(digits = 0,
-               caption = "summary_data2",
+               #caption = "summary_data2",
                align = "c")
 
 ```
@@ -130,6 +137,7 @@ alldata$percentage = 100*alldata$total_per_cause/alldata$total_per_year %>% roun
 alldata %>% 
   filter(year < 1996) %>% 
   knitr::kable(digits = 0,
+               booktabs = TRUE,
                caption = "alldata",
                align = "c")
 
@@ -146,7 +154,7 @@ Mutate works similarly to `summarise()` (as in it respects groupings set with `g
 
 Investigate these examples to learn how `summarise()` and `mutate()` differ.
 
-```{r}
+```{r nownamedthis1}
 summarise_example = mydata %>% 
 	summarise(total_deaths = sum(deaths_millions)) 
 
@@ -156,17 +164,40 @@ mutate_example = mydata %>%
 
 ```
 
+```{r nownamedthis2, echo = TRUE}
 
-```{r, echo = FALSE}
+alldata %>% 
+  filter(year < 1996) %>% 
+  knitr::kable(digits = 0,
+               booktabs = TRUE,
+               caption = "alldata2",
+               align = "c")
+
+
+```
+
+
+```{r nownamedthis3, echo = TRUE}
 
 summarise_example %>% 
   knitr::kable(digits = 0,
+               booktabs = TRUE,
                caption = "summarise_example",
                align = "c")
+
+```
+
+
+Text here  
+
+
+
+```{r nownamedthis4, echo = TRUE, eval = FALSE}
 
 mutate_example %>% 
   slice(1:5) %>% 
   knitr::kable(digits = 0,
+               booktabs = TRUE,
                caption = "mutate_example",
                align = "c")
 

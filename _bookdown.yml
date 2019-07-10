@@ -1,5 +1,5 @@
 book_filename: "healthyr-book"
-clean: [packages.bib, bookdown.bbl]
+clean: [bookdown.bbl]
 delete_merged_file: true
 language:
   label:

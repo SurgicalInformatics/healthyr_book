@@ -154,7 +154,8 @@ Mutate works similarly to `summarise()` (as in it respects groupings set with `g
 
 Investigate these examples to learn how `summarise()` and `mutate()` differ.
 
-```{r nownamedthis1}
+```{r}
+
 summarise_example = mydata %>% 
 	summarise(total_deaths = sum(deaths_millions)) 
 
@@ -164,41 +165,25 @@ mutate_example = mydata %>%
 
 ```
 
-```{r nownamedthis2, echo = TRUE}
 
-alldata %>% 
-  filter(year < 1996) %>% 
-  knitr::kable(digits = 0,
-               booktabs = TRUE,
-               caption = "alldata2",
-               align = "c")
-
-
-```
-
-
-```{r nownamedthis3, echo = TRUE}
+```{r, echo = FALSE}
 
 summarise_example %>% 
   knitr::kable(digits = 0,
                booktabs = TRUE,
-               caption = "summarise_example",
+               caption = "summarise example",
                align = "c")
 
 ```
 
 
-Text here  
-
-
-
-```{r nownamedthis4, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE}
 
 mutate_example %>% 
   slice(1:5) %>% 
   knitr::kable(digits = 0,
                booktabs = TRUE,
-               caption = "mutate_example",
+               caption = "mutate\\_example",
                align = "c")
 
 ```

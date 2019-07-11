@@ -1,4 +1,4 @@
-# (PART) Always plot your data first {-}
+# (PART) Data wrangling and visualisation {-}
 # Your first R plots
 
 ```{r setup, include=FALSE}

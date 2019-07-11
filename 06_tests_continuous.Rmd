@@ -1,4 +1,4 @@
-# (PART) Medical Statistics {-}
+# (PART) Data analysis {-}
 
 # Tests for continuous outcome variables
 

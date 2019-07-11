@@ -1,4 +1,4 @@
-# Time-to-event data (survival)
+# Time-to-event data and survival
 
 ## Data
 

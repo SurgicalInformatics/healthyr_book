@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  10 JUL 2019 11:16
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  11 JUL 2019 09:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -4137,7 +4137,452 @@ Overfull \hbox (81.64384pt too wide) in paragraph at lines 6015--6015
 File: 10_survival_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type 
 QTm)
 <use  "10_survival_files/figure-latex/unnamed-chunk-11-1.pdf" > [182] [183] [18
-4] [185] (./healthyr-book.bbl [186]
+4] [185]
+Underfull \vbox (badness 10000) detected at line 6206
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6206
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6206
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6206
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6206
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6206
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6206
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6206
+[]
+ []
+
+[186]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[187
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[188]
+Underfull \vbox (badness 10000) detected at line 6209
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6209
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6209
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6209
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6209
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6209
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6209
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6209
+[]
+ []
+
+Chapter 11.
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[189
+
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[190
+
+]
+Underfull \vbox (badness 10000) detected at line 6212
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6212
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6212
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6212
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6212
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6212
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6212
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6212
+[]
+ []
+
+Chapter 12.
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[191
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[192
+
+]
+Underfull \vbox (badness 10000) detected at line 6215
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6215
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6215
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6215
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6215
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6215
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6215
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6215
+[]
+ []
+
+Chapter 13.
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[193
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[194
+
+]
+Underfull \vbox (badness 10000) detected at line 6218
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6218
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6218
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6218
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6218
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6218
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6218
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 6218
+[]
+ []
+
+Chapter 14.
+(./healthyr-book.bbl
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[195
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[196
+
+]
 Underfull \vbox (badness 10000) detected at line 1
  []
 
@@ -4183,8 +4628,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[187
-
+[197
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -4223,7 +4667,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[188
+[198
 
 ] (./healthyr-book.ind
 Underfull \hbox (badness 10000) detected at line 1
@@ -4239,28 +4683,28 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[189
+[199
 
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 6210.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 6210.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 6225.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 6225.
 (./healthyr-book.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 6210.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 6210.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 6225.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 6225.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 6210.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 6225.
  ) 
 Here is how much of TeX's memory you used:
- 30102 strings out of 495579
- 526312 string characters out of 6187323
- 686157 words of memory out of 5000000
- 32987 multiletter control sequences out of 15000+600000
+ 30108 strings out of 495579
+ 526417 string characters out of 6187323
+ 687129 words of memory out of 5000000
+ 32993 multiletter control sequences out of 15000+600000
  10516 words of font info for 84 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  61i,8n,109p,10422b,620s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on healthyr-book.pdf (207 pages).
+Output written on healthyr-book.pdf (217 pages).

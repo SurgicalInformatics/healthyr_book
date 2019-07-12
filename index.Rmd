@@ -45,9 +45,8 @@ This work is licensed under the Creative Commons Attribution-NonCommercial-NoDer
 
 ## Why read this book {-}
 
-> We are drowning in information but starved for knowledge.
-
-John Naisbitt
+> We are drowning in information but starved for knowledge. 
+> John Naisbitt
 
 In this age of information, the manipulation, analysis and interpretation of data has become paramount. 
 Nowhere more so than in the delivery of healthcare. 
@@ -69,6 +68,7 @@ We banish equations in favour of code and use examples rather than lengthy expla
 We are grateful to the many individuals and students who have helped refine these and welcome suggestions and bug reports via https://github.com/SurgicalInformatics. 
 
 Ewen Harrison and Riinu Ots
+
 August 2019
 
 ## Structure of the book {-}

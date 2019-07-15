@@ -1,5 +1,11 @@
 # R Basics
 
+```{r, include = FALSE}
+library(tidyverse)
+
+```
+
+
 The aim of this module is to familiarise you with how R works. 
 We will read in data and start basic manipulations. 
 We will be working with a shorter version of the Global Burden of Disease dataset that we met earlier. 
@@ -17,23 +23,47 @@ However, the Help tab is only useful if you already know what you are looking fo
 For finding help on things you have not used before, it is best to Google it. 
 R has about 2 million users so someone somewhere has had the same question or problem.
 
-## Starting with a blank canvas
+\clearpage
 
-In the first session we loaded some data that we then plotted. 
-When we import data, R stores it and displays it in the Environment tab.
+## Object or function, session or environment?
 
-It's good practice to restart R before commencing new work. This is to avoid accidentally using the wrong data or functions stored in the environment.  
-Restarting R only takes a second!
+The two fundamental thins to understand about statistical programming are objects and functions. As usual, in this book, we prefer introducing new concepts using specific examples first. And then define things in general terms after examples.
 
-* Restart R (Ctrl+Shift+F10 or select it from Session -> Restart R).
+The most common data object you will be working with is a table - so something with rows and columns. It should be regular, e.g., the made-up example in Table \@ref(tab:chap2-examp1).
 
-RStudio has a default setting that is no longer considered best practice. You should do this once:
+```{r chap2-examp1, echo = FALSE}
 
-* Go to Tools -> Global Options -> General and set "Save .RData on exit" to Never. 
-This does not mean you can't or shouldn't save your work in .RData files. 
-But it is best to do it consciously and load exactly what you need to load, rather than letting R always save and load everything for you, as this could also include broken data or objects.
+mydata = tibble(id   = 1:4,
+       sex  = c("Male", "Female", "Female", "Male"),
+       var1 = c(4, 1, 2, 3),
+       var2 = c(NA, 4, 5, NA),
+       var3 = c(2, 1, NA, NA))
+
+mydata %>% 
+  knitr::kable(booktabs = TRUE, caption = "Example of a table, including NA values.")
+
+```
+
+Now, regular does not mean it can't have missing values. Missing values are denoted NA, which can stand for either not available or not applicable. In same contexts, these things can have a different meaning, For example:
+
+Since `var2` is NA for all Male subjects, it may mean "Not applicable", i.e. something that can only be measured in females. Whereas in `var3`, NA is more likely to mean "Not available" so real missing data, e.g. lost to follow-up. We will come back to handling missing values later, but let's return to introducing objects and functions.
+
+A table can live anywhere: on paper, in a Spreadsheet, in an SQL database, or it can live in R session's Environment. And yes, R sessions are as fun as they sound, almost as fun as, e.g., music sessions. We usually initiate and interface R using RStudio, but everything we talk about here (objects, functions, sessions, enviroment) also work when RStudio is not available, but R is. This can be the case if you are working on a supercomputer that can only serve the R Console, and not an RStudio IDE (reminder from first chapter: Integrated Development Environment). So, regualarly shaped data in rows and columns is called table when it lives outside R. Once you read it into R (import it), we call it a tibble. When you are in one of your very cool R sessions and read in a table, it goes into this session's Envionment. There used to be an older version of tables in R - they are called data frames. In most cases, `data frames` and `tibbles` work interchangeably (and both are R objects), but `tibbles` are newer and better. Another great alterntative to base R's `data frames` are `data tables`. In this book, and for most of our day-to-day work these days, we only use tibbles.
+
+TODO: show how this comes from a Spreadhseet to the Environment, unless that's covered in Chapter 1?
+
+So, our first example of an object that lives in the Environment of your R Session is a tibble called `mydata`. A function that you may want to apply on `mydata` is `mean()`:
+
+```{r}
+
+mean(mydata$var1)
+mean(mydata$var2)
+
+```
+
 
 ## Working with Objects
+
 
 It's sometimes difficult to appreciate how coding works without trying it first.
 These exercises will show you how R works.
@@ -73,7 +103,7 @@ c # should return the number 3
 All of R is just an extension of this: applying more complex functions (calculations) across more complex objects.
 
 It's important to appreciate that objects can be more than just single numbers too. 
-They can be entire spreadsheets, which in R are known as `data frames`.
+They can be entire spreadsheets, which in R are known as `tibbles` (or in base R: `data frames`).
 
 
 Note that many people use `<-` instead of `=`. 
@@ -107,13 +137,13 @@ mydata = read_csv("global_burden_disease_short.csv")
 But how can we look at the data we just loaded? How do we know which variables it contains? 
 Hint: the Environment tab.
 
-### Excercise
+### Exercise
 
 Answer these question about your data:
 
 1. At present, how many variables are there?
 
-2. How many deaths were there from communicable diseases in 1990? Hint: clicking on columns when Viewing a dataframe orders it.
+2. How many deaths were there from communicable diseases in 1990? Hint: clicking on columns when Viewing a tibble orders it.
 
 
 ### Other ways to investigate objects

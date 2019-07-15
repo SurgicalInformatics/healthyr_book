@@ -1,0 +1,18 @@
+# RStudio settings, good practise
+
+## Starting with a blank canvas
+
+In the first session we loaded some data that we then plotted. 
+When we import data, R stores it and displays it in the Environment tab.
+
+It's good practice to restart R before commencing new work. This is to avoid accidentally using the wrong data or functions stored in the environment.  
+Restarting R only takes a second!
+
+* Restart R (Ctrl+Shift+F10 or select it from Session -> Restart R).
+
+RStudio has a default setting that is no longer considered best practice. You should do this once:
+
+* Go to Tools -> Global Options -> General and set "Save .RData on exit" to Never. 
+This does not mean you can't or shouldn't save your work in .RData files. 
+But it is best to do it consciously and load exactly what you need to load, rather than letting R always save and load everything for you, as this could also include broken data or objects.
+

@@ -25,7 +25,7 @@ R has about 2 million users so someone somewhere has had the same question or pr
 
 \clearpage
 
-## Object or function, session or environment?
+## Objects and functions
 
 The two fundamental thins to understand about statistical programming are objects and functions. As usual, in this book, we prefer introducing new concepts using specific examples first. And then define things in general terms after examples.
 
@@ -40,24 +40,59 @@ mydata = tibble(id   = 1:4,
        var3 = c(2, 1, NA, NA))
 
 mydata %>% 
-  knitr::kable(booktabs = TRUE, caption = "Example of a table, including NA values.")
+  knitr::kable(booktabs = TRUE, caption = "Example of a table, including NA (Not applicable/Not available) values.")
 
 ```
 
-Now, regular does not mean it can't have missing values. Missing values are denoted NA, which can stand for either not available or not applicable. In same contexts, these things can have a different meaning, For example:
+Now, regular does not mean it can't have missing values. Missing values are denoted `NA` that stands for either `Not available` or `Not applicable`. In same contexts, these things can have a different meaning, For example:
 
-Since `var2` is NA for all Male subjects, it may mean "Not applicable", i.e. something that can only be measured in females. Whereas in `var3`, NA is more likely to mean "Not available" so real missing data, e.g. lost to follow-up. We will come back to handling missing values later, but let's return to introducing objects and functions.
+Since `var2` is `NA` for all Male subjects, it may mean "Not applicable", i.e. something that can only be measured in females. Whereas in `var3`, `NA` is more likely to mean "Not available" so real missing data, e.g. lost to follow-up. We will come back to handling missing values later, but let's return to introducing objects and functions.
 
 A table can live anywhere: on paper, in a Spreadsheet, in an SQL database, or it can live in R session's Environment. And yes, R sessions are as fun as they sound, almost as fun as, e.g., music sessions. We usually initiate and interface R using RStudio, but everything we talk about here (objects, functions, sessions, enviroment) also work when RStudio is not available, but R is. This can be the case if you are working on a supercomputer that can only serve the R Console, and not an RStudio IDE (reminder from first chapter: Integrated Development Environment). So, regualarly shaped data in rows and columns is called table when it lives outside R. Once you read it into R (import it), we call it a tibble. When you are in one of your very cool R sessions and read in a table, it goes into this session's Envionment. There used to be an older version of tables in R - they are called data frames. In most cases, `data frames` and `tibbles` work interchangeably (and both are R objects), but `tibbles` are newer and better. Another great alterntative to base R's `data frames` are `data tables`. In this book, and for most of our day-to-day work these days, we only use tibbles.
 
-TODO: show how this comes from a Spreadhseet to the Environment, unless that's covered in Chapter 1?
-
-So, our first example of an object that lives in the Environment of your R Session is a tibble called `mydata`. A function that you may want to apply on `mydata` is `mean()`:
+So, the tibble `mydata` example of an object that lives in the Environment of your R Session. A function that you may want to apply on numeric data is `mean()`. R functions always have brackets after their name. This is for two reasons. First, to easily differentiate them from objects - which don't have brackets after their name. Second, and more important, we can put arguments in these brackets. Arguments can also be thought of as input, and in data analysis, the most common input for a function is data: we need to give the R function `mean()` some data to average. It does not make sense (nor will it work) to feed it the whole tibble that has multiple columns, including patient IDs and a categorical variable (`sex`). To quickly extract a single column, we use the `$` symbol, like this:
 
 ```{r}
+mydata$var1
+```
 
+You can ignore the `## [1]` at the beginning of the extracted values - this is something that becomes more useful when printing multiple lines of data, the number in the square brackets keeps count on how many values we are seeing.
+
+We can then use `mydata$var1` as the first argument of `mean()` by putting it inside its brackets:
+
+```{r}
 mean(mydata$var1)
+```
+
+In this example, `mydata$var1` is the first and only argument to `mean()`. But what happens if we try to calculate the average value of `var2`?
+
+```{r}
 mean(mydata$var2)
+```
+
+We get an `NA` ("Not applicable"). We would expect to see an `NA` if we tried to, for example, calculate the average of `sex`:
+
+```{r, error=TRUE}
+mean(mydata$sex)
+```
+
+In fact, R then gives as us a pretty clear Error (our first Error in this book!) saying it can't compute the mean of an argument that is not numeric or logical. The sentence actually reads pretty fun, as if R was saying it was not logical to calculate the mean of something that is not numeric. But what R is actually saying that it is happy to calculate the mean of two types of variables: numerics or logicals which is a data type with just two potential values TRUE/FALSE. We will come back to data types shortly.
+
+So `mean(mydata$var2)` does not return an Error, but it also doesn't return the mean of the numeric values included in this column. 
+That is because the column includes missing values (`NAs`), and R does not want to average over NAs implicitly.
+It is being cautious - what if you didn't know there were missing values for some patients?
+If you wanted to compare the means of `var1` and `var2` without any further filtering, you would be comparing samples of different size. 
+Which might be fine if the sample sizes are sufficiently representative and the values are missing at random. 
+If you decide to ignore the NAs and want to calculate the mean anyway, you can do so by adding another argument to `mean()`:
+
+```{r}
+mean(mydata$var2, na.rm = TRUE)
+```
+
+
+
+```{r}
+Sys.time()
 
 ```
 

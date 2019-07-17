@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 # Time-to-event data and survival
 
 ## Data
@@ -174,7 +179,7 @@ my_survplot.solution = ggsurvplot(my_survfit.solution,
                          # Display follow-up up to 10 years, and change the scale to 1 year
                          xlab = "Time (years)",
                          # present narrower X axis, but not affect survival estimates.
-                         xlim = c(0,10),
+                         #xlim = c(0,10),
                          # break X axis in time intervals by 1 year
                          break.time.by = 1)     
 my_survplot.solution

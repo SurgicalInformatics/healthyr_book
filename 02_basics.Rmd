@@ -2,7 +2,6 @@
 
 ```{r, include = FALSE}
 library(tidyverse)
-
 ```
 
 
@@ -27,7 +26,7 @@ R has about 2 million users so someone somewhere has had the same question or pr
 
 ## Objects and functions
 
-The two fundamental thins to understand about statistical programming are objects and functions. As usual, in this book, we prefer introducing new concepts using specific examples first. And then define things in general terms after examples.
+The two fundamental concepts to understand about statistical programming are objects and functions. As usual, in this book, we prefer introducing new concepts using specific examples first. And then define things in general terms after examples.
 
 The most common data object you will be working with is a table - so something with rows and columns. It should be regular, e.g., the made-up example in Table \@ref(tab:chap2-examp1).
 
@@ -40,7 +39,7 @@ mydata = tibble(id   = 1:4,
        var3 = c(2, 1, NA, NA))
 
 mydata %>% 
-  knitr::kable(booktabs = TRUE, caption = "Example of a table, including NA (Not applicable/Not available) values.")
+  knitr::kable(booktabs = TRUE, caption = "Example of a table, including missing values - denoted NA (Not applicable/Not available).")
 
 ```
 
@@ -64,7 +63,8 @@ We can then use `mydata$var1` as the first argument of `mean()` by putting it in
 mean(mydata$var1)
 ```
 
-In this example, `mydata$var1` is the first and only argument to `mean()`. But what happens if we try to calculate the average value of `var2`?
+Which tells us that the mean of `var1` (`r mydata$var1`) is `r mean(mydata$var1)`.
+In this example, `mydata$var1` is the first and only argument to `mean()`. But what happens if we try to calculate the average value of `var2` (`r mydata$var2`)?
 
 ```{r}
 mean(mydata$var2)
@@ -83,18 +83,26 @@ That is because the column includes missing values (`NAs`), and R does not want 
 It is being cautious - what if you didn't know there were missing values for some patients?
 If you wanted to compare the means of `var1` and `var2` without any further filtering, you would be comparing samples of different size. 
 Which might be fine if the sample sizes are sufficiently representative and the values are missing at random. 
-If you decide to ignore the NAs and want to calculate the mean anyway, you can do so by adding another argument to `mean()`:
+Therefore, if you decide to ignore the NAs and want to calculate the mean anyway, you can do so by adding another argument to `mean()`:
 
 ```{r}
 mean(mydata$var2, na.rm = TRUE)
 ```
 
+Adding `na.rm = TRUE` tells are that you are happy for it to calculate the mean of any existing values (but to remove - `na.rm` - the `NA` values). This 'removal' only means excluded from the calculation, it does not affect the actual tibble (`mydata`) holding the columns and rows. R is case sensitive, so it has to be `na.rm`, not `NA.rm` etc. There is no need to try to memorise how the arguments of functions are exactly spelled - this is what the Help tab (press `F1` when the cursor is on the name of the function) can remind you of. Information about functions (Help) is built into R, so an internet connection is not required for this.
 
+> Make sure to always separate arguments with commas, or R will give you an error of `Error: unexpected symbol`.
+
+Finally, some functions do not need any arguments to work.
+A good example is the `Sys.time()` which returns the current time and date. This is very useful when using R to generate and update reports automatically.
+Including this on the output document means you as well as your colleagues can always be clear on when the results were last updated.
 
 ```{r}
 Sys.time()
-
 ```
+
+To summarise, objects and functions work hand in hand. Objects are both an input as well as the output of a function (what the function returns). The data values input into a function are usually its first argument, further arguments can be used to specify a functions behaviour. When we say "the function returns", we are referring to its output. The returned object can be different to its input object. In our `mean()` examples, the input object was a column (`mydata$var1`: `r mydata$var1`), whereas the output was a single value: `r mean(mydata$var1)`.
+
 
 
 ## Working with Objects

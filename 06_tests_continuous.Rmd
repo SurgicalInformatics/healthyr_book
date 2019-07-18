@@ -1,100 +1,147 @@
 # (PART) Data analysis {-}
 
+```{r include=FALSE}
+theme_set(theme_bw())
+```
+
+In the second part of this book, we focus specifically on the business of data analysis.
+That is, formulating clear questions and seeking to answer them using available datasets. 
+
+Again, we emphasise the importance of understanding the underlying data through visualisation, rather than relying on statistical tests or, heaven forbid, the p-value alone. 
+
+There are five chapters. 
+Testing for continuous outcome variables (6) leads naturally into Linear regression (7). 
+We would expect the majority of actual analysis done by readers to be using the methods in chpater 7 rather than 6. 
+Similarly, Testing for categorical outcome variables (8) leads naturally to Logistic regression (9), where we would expect the majority of work to focus. 
+Chapters 6 and 8 however do provide helpful reminders of how to prepare data for these analyses and shouldn't be skipped.
+Time-to-event data introduces survival analysis and includes sections on the maniuplation of dates. 
+
 # Tests for continuous outcome variables
 
-## Load data
+> Continuous data can be measured.
+> Categorical data can be counted.
 
-This session we will be using the gapminder dataset as in Session 4.
+## Continuous data
+
+Continuous data is everywhere in healthcare. 
+From physiolgical measures in patients such as systolic blood pressure or pulmonary function tests, through to populations meausres like life expectancy or disease incidence, the analysis of continuous outcome measures is common and important.
+
+Our goal in most health data questions, is to draw a conclusion on a comparison between groups. 
+For instance, understanding differences life expectancy between the year 2002 and 2007 or between the Africa and Europe, is usually more useful than simply describing the average life expectancy across the entire world across all of time. 
+
+The basis for comparisons between continous measures is the distribution of the data. 
+That word, as many which have a stastistical flavour, brings on the sweats in a lot of people. 
+It needn't. 
+By distribution, we are simply referring to the shape of the data. 
+
+<!-- Probably: -->
+<!-- Figure of histograms or density plots showing normal, skew, mean, median. -->
+<!-- Do we need SD vs SEM? -->
+<!-- Maybe shiny app to help with this like https://gallery.shinyapps.io/dist_calc/ -->
+
+## The Question
+
+The examples in this chapter all use the data introduced previously from the amazing [Gapminder project](https://www.gapminder.org/). 
+We will start by looking at the life expectancy of populations over time and in different geographical regions. 
+
+## Get the data
 
 ```{r, message=F}
-
-library(tidyverse) 
+# Load packages
+library(tidyverse)
+library(finalfit)
 library(gapminder)
 library(broom)
 
+# Create object mydata from object gapminder
 mydata = gapminder
-
 ```
 
-**Consider adding `ff_glimpse()`**
+## Check the data
 
-The first step of choosing the right statistical test is determining the type of variable you have.
+It is vital that data is carefully inspected when first read. 
+<!-- Ref preparing data chapter -->
+The three functions below provide a clear summary allowing errors or miscoding to be quickly identified. 
+It is parituclary important to ensure that any missing data is identified. 
+If you don't do this you will regret it! 
+There are many times when an analysis has got to a relatively advanced stage before researchs realised the dataset was incomplete. 
 
-Lets first have a look at some of our available data:
-
-```{r, message=F}
-
-mydata$continent %>% unique() # categorical
-
-mydata$year %>% unique() # categorical
-
-mydata$lifeExp %>% head() # continuous
-
+```{r}
+glimpse(mydata)         # each variable on a single line, variable type, first values
+missing_glimpse(mydata) # missing data for each variable
+ff_glimpse(mydata)      # summary statistics for each variable
 ```
+
+As can be seen, there are 6 variables, 4 are continuous and 2 are categorical. The categorical variables are already identiifed as `factors`. There are no missing data. 
+
+## Plot the data
+
+We will start by comparing life expectancy between the 5 continents of the world in two different years. 
+Always plot your data first. 
+Never skip this step!
+We are particularly interested in the distribution. 
+There's that word again. 
+The shape of the data. 
+Is it normal? 
+Is it skewed? 
+Does it differ between regions and years?
+
+There are three useful plots which can help here: 
+
+ - Histograms: examine shape of data and compare groups;
+ - Q-Q plots: are data normally distributed?
+ - Box-plots: identify outliers, compare shape and groups.
+
+### Histogram for each continent
+
+```{r, fig.width=7, fig.height=3.5}
+mydata %>% 
+	filter(year %in% c(2002, 2007)) %>%  # only 2002 and 2007
+	ggplot(aes(x = lifeExp)) +           # x-axis is life expectancy
+	geom_histogram(bins = 20) +          # histogram with data chopped into 20 bars
+	facet_grid(year ~ continent)         # create grid of year by continent
+                                       # add scale = "free" to facet_grid to allow axes to vary
+```
+
+What can we see? That life expectcy in Africa is lower than in other regions. That we have little data for Oceania given there are only two countries included, Australia and New Zealand. That Africa and Asia have great variability in life expectancy by country than in the Americas or Europe. That the data follow a reasonably normal shape, with Africa 2002 a little right skewed. 
+
+### Q-Q plot for each continent
+
+A quantile-quantile sounds complicated but is not. 
+It is simply a graphical method for comparing the distribution (think shape) of our own data to a theoretical distribution, such as the normal distributuion. 
+In this context, quantiles are just cut points which divide our data into bins each containing the same number of observations.
+For example, if we have the life expectacny for 100 countries, then quartiles (note the quar-) for life expectancy are the three ages which split the observations into 4 groups each containing 25 countries. 
+A Q-Q plot simply plots the quantiles for our data against the theorectical quantiles for a particular distributions (default below is normal). 
+If our data follow that distribution (e.g. normal), then we get a 45 degree line on the plot. 
+
+```{r, fig.width=7, fig.height=3.5}
+mydata %>% 
+  filter(year %in% c(2002, 2007)) %>% 
+  ggplot(aes(sample = lifeExp)) + 
+  geom_qq() +
+  geom_qq_line() + 
+  facet_grid(year ~c ontinent)
+```
+
+What can we see. We are looking to see if the data follow the 45 degree line which is included in the plot. These do reasonably, except for Africa which is curved upwards at each end, suggesting a skew. 
+
+### Boxplot of 2 years
+
+```{r, fig.width=7, fig.height=3}
+mydata %>% 
+  filter(year %in% c(2002, 2007)) %>% 
+  ggplot(aes(x = factor(year), y = lifeExp)) + 
+  geom_boxplot() + 
+  facet_grid(. ~ continent)
+```
+
+
+# To here!
+
 
 ## T-test
 A *t*-test is used to compare the means of two groups of continuous variables.
 
-### Plotting
-Before you perform any statistical tests, you should always plot your data first to determine whether these have a "normal" distribution.
- 
- - Histograms should form a symmetrical "bell-shaped curve".
-
- - Q-Q plots should fall along the 45 degree line.
- 
- - Box-plots should be symmetrical and have few outliers.
-
-### Histogram for each continent
-```{r, fig.width=7}
-
-theme_set(theme_bw())
-
-mydata %>% 
-	filter(year %in% c(2002, 2007)) %>%
-	ggplot(aes(x = lifeExp)) +
-	geom_histogram(bins = 10) +
-	facet_grid(year~continent, scales = "free")
-
-```
-
-### Q-Q plot for each continent
-
-**add what a q-q plot is**
-
-With `ggplot()`, we can draw a Q-Q plot for each subgroup very efficiently:
-
-```{r, fig.width=8, fig.height=3.5}
-mydata %>% 
-  filter(year %in% c(2002, 2007)) %>% 
-  ggplot(aes(sample = lifeExp)) + 
-  geom_point(stat = "qq") +
-  facet_grid(year~continent)
-
-```
-
-Or we could save a subset of the data (e.g., "Americas" and year 2007 only) into a new variable (`subdata`) and use base R to draw a single Q-Q plot with less code:
-
-```{r}
-
-mydata %>% 
-  filter(year == 2007) %>% 
-  filter(continent == "Americas") -> subdata
-
-qqnorm(subdata$lifeExp)
-qqline(subdata$lifeExp)
-
-```
-
-### Boxplot of 2 years
-
-```{r, fig.width=3, fig.height=3}
-
-mydata %>% 
-	filter(year %in% c(2002, 2007)) %>% 
-	ggplot(aes(x = factor(year), y=lifeExp)) +  # show that x = year errors: 
-	geom_boxplot()                              # needs to be factor(year) or group=year
-
-```
 
 ### Exercise
 Make a histogram, Q-Q plot, and a box-plot for the life expectancy for a continent of your choice, but for all years. Does the data appear normally distributed?

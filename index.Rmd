@@ -13,7 +13,8 @@ graphics: yes
 lot: yes
 lof: yes
 fontsize: 12pt
-monofontoptions: "Scale=0.7"
+monofont: "Source Code Pro"
+monofontoptions: "Scale=0.65"
 github-repo: SurgicalInformatics/healthyr_book/
 description: "An introductory book for healthcare data analysis using R."
 cover-image: images/healthyr_book_cover.png

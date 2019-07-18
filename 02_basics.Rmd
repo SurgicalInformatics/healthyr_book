@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
 # R Basics
 
 ```{r, include = FALSE}
@@ -18,7 +23,6 @@ However, the Help tab is only useful if you already know what you are looking fo
 For finding help on things you have not used before, it is best to Google it. 
 R has about 2 million users so someone somewhere has had the same question or problem.
 
-\clearpage
 
 ## Objects and functions
 
@@ -28,6 +32,11 @@ And then define things in general terms after examples.
 
 The most common data object you will be working with is a table - so something with rows and columns. 
 It should be regular, e.g., the made-up example in Table \@ref(tab:chap2-examp1).
+^[Regular does not mean it can't have missing values.
+Missing values are denoted `NA` which stands for either `Not available` or `Not applicable`. 
+In same contexts, these things can have a different meaning. 
+For example, since `var2` is `NA` for all male subjects, it may mean "Not applicable", i.e. something that can only be measured in females.
+Whereas in `var3`, `NA` is more likely to mean "Not available" so real missing data, e.g. lost to follow-up.]
 
 ```{r chap2-examp1, echo = FALSE}
 
@@ -38,45 +47,42 @@ mydata = tibble(id   = 1:4,
        var3 = c(2, 1, NA, NA))
 
 mydata %>% 
-  knitr::kable(booktabs = TRUE, caption = "Example of a table (=tibble once read into R), including missing values - denoted NA (Not applicable/Not available).")
+  knitr::kable(booktabs = TRUE, caption = "Example of a table (=tibble once read into R), including missing values denoted NA (Not applicable/Not available).")
 
 ```
 
-Now, regular does not mean it can't have missing values.
-Missing values are denoted `NA` that stands for either `Not available` or `Not applicable`. 
-In same contexts, these things can have a different meaning, for example:
 
-Since `var2` is `NA` for all Male subjects, it may mean "Not applicable", i.e. something that can only be measured in females.
-Whereas in `var3`, `NA` is more likely to mean "Not available" so real missing data, e.g. lost to follow-up.
-We will come back to handling missing values later, but let's return to introducing objects and functions.
-
-A table can live anywhere: on paper, in a Spreadsheet, in an SQL database, or it can live in R session's Environment. 
+A table can live anywhere: on paper, in a Spreadsheet, in an SQL database, or it can live in your R Session's Environment. 
 And yes, R sessions are as fun as they sound, almost as fun as, e.g., music sessions. 
-We usually initiate and interface R using RStudio, but everything we talk about here (objects, functions, sessions, enviroment) also work when RStudio is not available, but R is. 
+We usually initiate and interface R using RStudio, but everything we talk about here (objects, functions, sessions, environment) also work when RStudio is not available, but R is. 
 This can be the case if you are working on a supercomputer that can only serve the R Console, and not an RStudio IDE (reminder from first chapter: Integrated Development Environment). 
-So, regualarly shaped data in rows and columns is called table when it lives outside R. 
-Once you read it into R (import it), we call it a tibble.
-When you are in one of your very cool R sessions and read in a table, it goes into this session's Envionment. 
-There used to be an older version of tables in R - they are called data frames. 
+So, regularly shaped data in rows and columns is called table when it lives outside R, but once you read it into R (import it), we call it a tibble.
+^[There used to be an older version of tables in R - they are called data frames. 
 In most cases, `data frames` and `tibbles` work interchangeably (and both are R objects), but `tibbles` are newer and better. 
-Another great alterntative to base R's `data frames` are `data tables`. 
-In this book, and for most of our day-to-day work these days, we only use tibbles.
+Another great alternative to base R's `data frames` are `data tables`. 
+In this book, and for most of our day-to-day work these days, we use `tibbles` though.]
+When you are in one of your very cool R sessions and read in some data, it goes into this session's Environment. Everything in your Environment needs to have a name as you can have multiple tibbles going on at the same time (`tibble` is not a name, it is the class of an object). To keep our code examples easy to follow, we call our example tibble `mydata`. In real analysis, you should give your tibbles meaningful names, e.g., `patient_data`, `lab_results`, `annual_totals`, etc.
 
-So, the tibble `mydata` example of an object that lives in the Environment of your R Session. 
-A function that you may want to apply on numeric data is `mean()`. 
-R functions always have brackets after their name. 
+So, the tibble named `mydata` is example of an object that can be in the Environment of your R Session:
+
+```{r}
+mydata
+```
+
+An example of a function that can be applied on numeric data is `mean()`. 
+R functions always have round brackets after their name. 
 This is for two reasons. 
-First, to easily differentiate them from objects - which don't have brackets after their name. 
+First, to easily differentiate them from objects - which don't have round brackets after their name. 
 Second, and more important, we can put arguments in these brackets. 
-Arguments can also be thought of as input, and in data analysis, the most common input for a function is data: we need to give the R function `mean()` some data to average. 
+Arguments can also be thought of as input, and in data analysis, the most common input for a function is data: we need to give `mean()` some data to average over. 
 It does not make sense (nor will it work) to feed it the whole tibble that has multiple columns, including patient IDs and a categorical variable (`sex`). 
-To quickly extract a single column, we use the `$` symbol, like this:
+To quickly extract a single column, we use the `$` symbol like this:
 
 ```{r}
 mydata$var1
 ```
 
-You can ignore the `## [1]` at the beginning of the extracted values - this is something that becomes more useful when printing multiple lines of data, the number in the square brackets keeps count on how many values we are seeing.
+You can ignore the `## [1]` at the beginning of the extracted values - this is something that becomes more useful when printing multiple lines of data as the number in the square brackets keeps count on how many values we are seeing.
 
 We can then use `mydata$var1` as the first argument of `mean()` by putting it inside its brackets:
 
@@ -101,8 +107,9 @@ mean(mydata$sex)
 
 In fact, R then gives as us a pretty clear Error (our first Error in this book!) saying it can't compute the mean of an argument that is not numeric or logical. 
 The sentence actually reads pretty fun, as if R was saying it was not logical to calculate the mean of something that is not numeric. 
-But what R is actually saying that it is happy to calculate the mean of two types of variables: numerics or logicals which is a data type with just two potential values TRUE/FALSE.
-We will come back to data types shortly.
+But what R is actually saying that it is happy to calculate the mean of two types of variables: numerics or logicals, but what you have passed it is neither.
+^[Logical is a data type with two potential values: TRUE or FALSE.
+We will come back to data types shortly.]
 
 So `mean(mydata$var2)` does not return an Error, but it also doesn't return the mean of the numeric values included in this column. 
 That is because the column includes missing values (`NAs`), and R does not want to average over NAs implicitly.
@@ -116,17 +123,17 @@ mean(mydata$var2, na.rm = TRUE)
 ```
 
 Adding `na.rm = TRUE` tells are that you are happy for it to calculate the mean of any existing values (but to remove - `na.rm` - the `NA` values).
-This 'removal' only means excluded from the calculation, it does not affect the actual tibble (`mydata`) holding the columns and rows. 
+This 'removal' excludes the NAs from the calculation, it does not affect the actual tibble (`mydata`) holding the whole dataset. 
 R is case sensitive, so it has to be `na.rm`, not `NA.rm` etc. 
 There is no need to try to memorise how the arguments of functions are exactly spelled - this is what the Help tab (press `F1` when the cursor is on the name of the function) can remind you of. 
-Information about functions (Help) is built into R, so an internet connection is not required for this.
+Functions' help pages are built into R, so an internet connection is not required for this.
 
-> Make sure to always separate arguments with commas, or R will give you an error of `Error: unexpected symbol`.
+> Make sure to separate multiple arguments with commas, or R will give you an error of `Error: unexpected symbol`.
 
 Finally, some functions do not need any arguments to work.
 A good example is the `Sys.time()` which returns the current time and date. 
 This is very useful when using R to generate and update reports automatically.
-Including this on the output document means you as well as your colleagues can always be clear on when the results were last updated.
+Including this means you can always be clear on when the results were last updated.
 
 ```{r}
 Sys.time()
@@ -134,42 +141,55 @@ Sys.time()
 
 To summarise, objects and functions work hand in hand. 
 Objects are both an input as well as the output of a function (what the function returns). 
-The data values input into a function are usually its first argument, further arguments can be used to specify a functions behaviour. 
-When we say "the function returns", we are referring to its output.
+The data values input into a function are usually its first argument, further arguments can be used to specify a function's behaviour. 
+When we say "the function returns", we are referring to its output (or an Error if it's one of those days).
 The returned object can be different to its input object.
-In our `mean()` examples, the input object was a column (`mydata$var1`: `r mydata$var1`), whereas the output was a single value: `r mean(mydata$var1)`.
-
-
+In our `mean()` examples above, the input object was a column (`mydata$var1`: `r mydata$var1`), whereas the output was a single value: `r mean(mydata$var1)`.
 
 ## Working with Objects
 
+To create a new object into our Environment we use the equals sign:
 
-It's sometimes difficult to appreciate how coding works without trying it first.
-These exercises will show you how R works.
-
-We'll first create an object and call it `a`, we will give the object `a` a value of 1.
-In R the equals `=` sign tells R to give the object on the left of the sign the value of whatever is on the right of the sign.
-
-```{r, message=F}
-
-a = 1
-
+```{r}
+a = 103
 ```
 
-In your environment panel, you should see `a` appear under the `Values` section.
+This reads: the variable `a` is assigned value `r a`. You know that the assignment worked when it shows up in the Environment tab.
+If we now run `a` just on its own, it gets printed back to us:
 
-Now, lets create `b` and give it a value of 2.
-
-```{r, message=F}
-
-b = 2
-
+```{r}
+a
 ```
+
+Similarly, if we run a function without assignment to a variable, it gets printed but not saved in your Environment:
+
+```{r}
+seq(15, 30)
+```
+
+`seq()` is a function that creates a sequence of numbers (+1 by default) between the two arguments you pass to it in its brackets. 
+We can assign the result of `seq(15, 30)` into a variable, let's call it `example_sequence`:
+
+```{r}
+example_sequence = seq(15, 30)
+```
+
+Doing this creates `example_sequence` in our Environment, but it does not print it. 
+
+> If you save the results of an R function in a variable, it does not get printed, and vice versa.
+
+You can call your variables (where you assigns new objects or the output of functions in) pretty much anything you want, as long as it starts with a letter. 
+It can then include numbers as well, for exmple, we could have named the new variable `sequence_15_to_30`.
+Spaces in variable names are not easy to work with, we tend to use underscores in their place, but you could also use capitalisation, e.g. `exampleSequence = seq(15, 30)`.
+
+
+## objects, old text, replace 
+
 
 Lets now add `a` and `b` together to create the object `c`
 
-```{r, message=F}
-
+```{r}
+b  = 2
 c = a + b 
 
 # Print the value of c to the Console

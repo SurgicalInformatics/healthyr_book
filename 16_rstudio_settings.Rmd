@@ -1,5 +1,13 @@
 # RStudio settings, good practise
 
+## Script vs Console
+
+Throughout this course, don't copy or type code directly into the Console. 
+We will only be using the Console for viewing output, warnings, and errors. 
+All code should be in a script and executed (=run) using Ctrl+Enter (line or section) or Ctrl+Shift+Enter (whole script). 
+Make sure you are always working in a project (the right-top corner of your RStudio interface should say "HealthyR").
+
+
 ## Starting with a blank canvas
 
 In the first session we loaded some data that we then plotted. 

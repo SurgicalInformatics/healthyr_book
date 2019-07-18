@@ -11,10 +11,10 @@ Again, we emphasise the importance of understanding the underlying data through 
 
 There are five chapters. 
 Testing for continuous outcome variables (6) leads naturally into Linear regression (7). 
-We would expect the majority of actual analysis done by readers to be using the methods in chpater 7 rather than 6. 
+We would expect the majority of actual analysis done by readers to be using the methods in chapter 7 rather than 6. 
 Similarly, Testing for categorical outcome variables (8) leads naturally to Logistic regression (9), where we would expect the majority of work to focus. 
 Chapters 6 and 8 however do provide helpful reminders of how to prepare data for these analyses and shouldn't be skipped.
-Time-to-event data introduces survival analysis and includes sections on the maniuplation of dates. 
+Time-to-event data introduces survival analysis and includes sections on the manipulation of dates. 
 
 # Tests for continuous outcome variables
 
@@ -24,13 +24,13 @@ Time-to-event data introduces survival analysis and includes sections on the man
 ## Continuous data
 
 Continuous data is everywhere in healthcare. 
-From physiolgical measures in patients such as systolic blood pressure or pulmonary function tests, through to populations meausres like life expectancy or disease incidence, the analysis of continuous outcome measures is common and important.
+From physiological measures in patients such as systolic blood pressure or pulmonary function tests, through to populations measures like life expectancy or disease incidence, the analysis of continuous outcome measures is common and important.
 
 Our goal in most health data questions, is to draw a conclusion on a comparison between groups. 
 For instance, understanding differences life expectancy between the year 2002 and 2007 or between the Africa and Europe, is usually more useful than simply describing the average life expectancy across the entire world across all of time. 
 
-The basis for comparisons between continous measures is the distribution of the data. 
-That word, as many which have a stastistical flavour, brings on the sweats in a lot of people. 
+The basis for comparisons between continuous measures is the distribution of the data. 
+That word, as many which have a statistical flavour, brings on the sweats in a lot of people. 
 It needn't. 
 By distribution, we are simply referring to the shape of the data. 
 
@@ -51,7 +51,6 @@ We will start by looking at the life expectancy of populations over time and in 
 library(tidyverse)
 library(finalfit)
 library(gapminder)
-library(broom)
 
 # Create object mydata from object gapminder
 mydata = gapminder
@@ -62,9 +61,9 @@ mydata = gapminder
 It is vital that data is carefully inspected when first read. 
 <!-- Ref preparing data chapter -->
 The three functions below provide a clear summary allowing errors or miscoding to be quickly identified. 
-It is parituclary important to ensure that any missing data is identified. 
+It is particularity important to ensure that any missing data is identified. 
 If you don't do this you will regret it! 
-There are many times when an analysis has got to a relatively advanced stage before researchs realised the dataset was incomplete. 
+There are many times when an analysis has got to a relatively advanced stage before research realised the dataset was incomplete. 
 
 ```{r}
 glimpse(mydata)         # each variable on a single line, variable type, first values
@@ -72,7 +71,7 @@ missing_glimpse(mydata) # missing data for each variable
 ff_glimpse(mydata)      # summary statistics for each variable
 ```
 
-As can be seen, there are 6 variables, 4 are continuous and 2 are categorical. The categorical variables are already identiifed as `factors`. There are no missing data. 
+As can be seen, there are 6 variables, 4 are continuous and 2 are categorical. The categorical variables are already identified as `factors`. There are no missing data. 
 
 ## Plot the data
 
@@ -92,7 +91,7 @@ There are three useful plots which can help here:
  - Q-Q plots: are data normally distributed?
  - Box-plots: identify outliers, compare shape and groups.
 
-### Histogram for each continent
+### Histogram
 
 ```{r, fig.width=7, fig.height=3.5}
 mydata %>% 
@@ -103,141 +102,226 @@ mydata %>%
                                        # add scale = "free" to facet_grid to allow axes to vary
 ```
 
-What can we see? That life expectcy in Africa is lower than in other regions. That we have little data for Oceania given there are only two countries included, Australia and New Zealand. That Africa and Asia have great variability in life expectancy by country than in the Americas or Europe. That the data follow a reasonably normal shape, with Africa 2002 a little right skewed. 
+What can we see? 
+That life expectancy in Africa is lower than in other regions. 
+That we have little data for Oceania given there are only two countries included, Australia and New Zealand. 
+That Africa and Asia have great variability in life expectancy by country than in the Americas or Europe. 
+That the data follow a reasonably normal shape, with Africa 2002 a little right skewed. 
 
-### Q-Q plot for each continent
+### Q-Q plot
 
 A quantile-quantile sounds complicated but is not. 
-It is simply a graphical method for comparing the distribution (think shape) of our own data to a theoretical distribution, such as the normal distributuion. 
+It is simply a graphical method for comparing the distribution (think shape) of our own data to a theoretical distribution, such as the normal distribution. 
 In this context, quantiles are just cut points which divide our data into bins each containing the same number of observations.
-For example, if we have the life expectacny for 100 countries, then quartiles (note the quar-) for life expectancy are the three ages which split the observations into 4 groups each containing 25 countries. 
-A Q-Q plot simply plots the quantiles for our data against the theorectical quantiles for a particular distributions (default below is normal). 
+For example, if we have the life expectancy for 100 countries, then quartiles (note the quar-) for life expectancy are the three ages which split the observations into 4 groups each containing 25 countries. 
+A Q-Q plot simply plots the quantiles for our data against the theoretical quantiles for a particular distributions (default below is normal). 
 If our data follow that distribution (e.g. normal), then we get a 45 degree line on the plot. 
 
 ```{r, fig.width=7, fig.height=3.5}
 mydata %>% 
-  filter(year %in% c(2002, 2007)) %>% 
-  ggplot(aes(sample = lifeExp)) + 
-  geom_qq() +
-  geom_qq_line() + 
-  facet_grid(year ~c ontinent)
+  filter(year %in% c(2002, 2007)) %>%  # only 2002 and 2007
+  ggplot(aes(sample = lifeExp)) +      # Q-Q plot requires `sample`, rather than `x`
+  geom_qq() +                          # geom for qq plot, defaults to normal distribution
+  geom_qq_line() +                     # add 45 degree line
+  facet_grid(year ~ continent)
 ```
 
-What can we see. We are looking to see if the data follow the 45 degree line which is included in the plot. These do reasonably, except for Africa which is curved upwards at each end, suggesting a skew. 
+What can we see. 
+We are looking to see if the data follow the 45 degree line which is included in the plot.
+These do reasonably, except for Africa which is curved upwards at each end, suggesting a skew. 
 
-### Boxplot of 2 years
+We are frequently asked about performing a hypothesis test to check the assumption of normality, such as the Shapiro-Wilk normality test. 
+We do not recommend this, simply because it is often non-signficiant when the number of observations is small but the data look skewed, and often significant when the number of obvervations is high but the data look reasonably normal on inspection of plots. 
+It is therefore not useful in practice - common sense shoudl prevail.
+
+### Boxplot
+
+Boxplots are our preferred method for comparing a continous variable such as life expectancy with a categorical explanatory variable. 
+It is much better than a bar plot, or a bar plot with error bars, sometimes called a dynamite plot. 
+
+The box represents the median and interquartile range (where 50% of the data sits). 
+The lines (whiskers) by default are 1.5 times the interquartile range.
+Outliers are represented as points. 
+
+Thus it contains information, not only on central tendancy (median), but on the variation in the data and the distribution of the data, for instance a skew should be obvious. 
 
 ```{r, fig.width=7, fig.height=3}
 mydata %>% 
-  filter(year %in% c(2002, 2007)) %>% 
-  ggplot(aes(x = factor(year), y = lifeExp)) + 
-  geom_boxplot() + 
-  facet_grid(. ~ continent)
+  filter(year %in% c(2002, 2007)) %>%        # only 2002 and 2007
+  ggplot(aes(x = continent, y = lifeExp)) +  # specify x and y axes, requies `aes()`
+  geom_boxplot() +                           # specify boxplot
+  facet_grid(. ~ year)                       # spread by year, note `.`
 ```
 
+What can we see?
+The median life expectancy is lower in Africa than in any other continent. 
+The variation in life expectancy is greatest in Africa and smallest in Oceania. 
+The data in Africa looks skewed, particularly in 2002 - the lines/whiskers are unequal lengths. 
 
-# To here!
+We can add further arguments 
+
+```{r, fig.width=7, fig.height=3}
+mydata %>%  
+  filter(year %in% c(2002, 2007)) %>%                    # only 2002 and 2007
+  ggplot(aes(x = factor(year), y = lifeExp)) +           # specify x and y axes, requies `aes()`
+  geom_boxplot(aes(fill = continent)) +                  # add colour to boxplots
+  geom_jitter(alpha = 0.4) +                             # add data points, alpha for transparency
+  facet_grid(. ~ continent) +                            # spread by year, note `.`
+  theme(legend.position = "none") +                      # remove legend
+  xlab("Year") +                                         # adjust x-axis
+  ylab("Life expectancy (years)") +                      # adjust y-axis
+  ggtitle("Life expectancy by continent in 2002 v 2007") # add title
+```
+
+## Compare the means of two groups
+
+### T-test
+A *t*-test is used to compare the means of two groups of continuous variables. Volumes have been written about this else where, and we won't rehearse it here. 
+
+There are various variations on the *t*-test.
+We will use two here. 
+The most useful in our context is a two-sample test if independent groups (first figure). 
+Repeated-measures data such as comparing the same countries between years can be analysed using a paired *t*-test (second figure)  
+
+<!-- Any more here? -->
 
 
-## T-test
-A *t*-test is used to compare the means of two groups of continuous variables.
+### Two-sample *t*-tests
+Referring to the first figure, let's compare life expectancy between Asia and Europe for 2007. 
+What is imperative, is that you decide what sort of difference exists by looking at the boxplot, rather than relying on the *t*-test output. 
+The median for Europe is clearly higher than in Asia. 
+The distributions overlap, but it looks likely that Europe has a higher life expectacny than Asia. 
 
+```{r}
+ttest_data = mydata %>%                          # Save subset as object testdata
+  filter(year == 2007) %>%                       # Filter for 2007 only
+  filter(continent %in% c("Asia", "Europe"))     # Filter for Asia and Europe only
 
-### Exercise
-Make a histogram, Q-Q plot, and a box-plot for the life expectancy for a continent of your choice, but for all years. Does the data appear normally distributed?
+ttest_result = 
+  t.test(lifeExp ~ continent, data = ttest_data) # Base R t.test
+ttest_result
+```
 
-## Two-sample *t*-tests
+The Welch two-sample t-test is the most flexible and copes with differences in variance (variabliity) between groups, as in this example. 
+The difference in means is provided at the bottom of the output. 
+The *t*-value, degrees of freedom (df) and p-value are all provided. 
+The p-value is 0.00003. 
 
-Lets perform a *t*-test on the "Americas" data as it appears normally distributed. 
-We are savings the results of our *t*-test into a variable called t.result, but you can call it whatever you like (e.g. `myttest`).
+The base R output is not that easy to utilise. 
+For reference, the results can be explored and exported. 
+However, more straightforward methods are provided below. 
 
+```{r}
+names(ttest_result)  # Names of elements of result object
+str(ttest_result)    # Details of result object
+ttest_result$p.value # Extracted element of result object
+```
 
-```{r, fig.width=4, fig.height=4}
+The `broom` package provides useful methods for 'tidying' common model outputs into a `tibble`.  
+The whole analysis can be constructed as a single piped function. 
 
+```{r}
+library(broom)
+mydata %>%
+  filter(year == 2007) %>%                        # Filter for 2007 only
+  filter(continent %in% c("Asia", "Europe")) %>%  # Filter for Asia and Europe only
+  t.test(lifeExp ~ continent, data = .) %>%       #  
+  tidy()
+
+```
+
+### Paired *t*-tests
+
+Consider that we want to compare the difference in life expectancy in Asian countries between 2002 and 2007.
+The overall difference is not impressive in the boxplot. 
+
+We can plot differences at the country level directly. 
+
+```{r fig.height=3, fig.width=3}
+paired_data = mydata %>%               # Save object with name paired_data
+  filter(year %in% c(2002, 2007)) %>%  # Filter for 2002 and 2007 only
+  filter(continent == "Asia")          # Filter for Asia
+
+paired_data %>%      
+  ggplot(aes(x = year, y = lifeExp, 
+             group = country)) +       # for individual country lines
+  geom_line()
+```
+
+What is the difference in life expectancy for each individual country. 
+We don't usually have to produce this directly, but here is one method. 
+
+```{r fig.height=3, fig.width=3}
+paired_table = paired_data %>%        # Save object with name paired_data
+  select(country, year, lifeExp) %>%  # Select variables of interest
+  spread (year, lifeExp) %>%          # Make wide table
+  mutate(
+    dlifeExp = `2007` - `2002`        # Calculate difference in means
+  )
+
+paired_table
+
+# Mean of difference in years
+paired_table %>% summarise( mean(dlifeExp) )
+
+```
+
+On average, therefore, there is an increase in life expectancy of 1.5 years in Asian countries between 2002 and 2007. 
+Let's test whether this number differs from zero with a paired *t*-test. 
+
+```{r}
+paired_data %>% 
+  t.test(lifeExp ~ year, data = .) # Include paired = TRUE
+```
+
+The results show a highly significant difference. 
+As an exercise you can repeat this analysis simply comparing the means in an unpaired manner. 
+The resulting p-value is `R paired_data %>% t.test(lifeExp ~ year, data = .)$p.value`.
+Why is there such a difference between the two approaches?
+This emphasises just how important it is to plot the data first. 
+The average difference of 1.5 years is highly consistent between countries, as show on the line plot, and this differs from zero.
+It is up to you the investogator to interpret the effect size of 1.5 y in reporting the finding. 
+
+## Compare the mean of one group
+
+### One sample *t*-tests
+
+We can use a *t*-test to determine whether the mean of a distribution is different to a specific value. 
+
+The paried *t*-test above is is equivalent to a one-sample *t*-test on the calcuated difference in life expectancy being different to zero.
+
+```{r}
+  t.test(paired_table$dlifeExp)
+```
+
+We can compare to values other than zero. 
+For instance, we can test wehterh the mean life expectancy in each continent was significantly different to 77 years in 2007.
+We have included some extra code here to demonstrate how to run multiple base R tests in one pipe function. 
+
+```{r}
 mydata %>% 
-  filter(year %in% c(2002, 2007)) %>%
-  filter(continent == "Americas") -> test.data
-
-t.test(lifeExp~year, data=test.data)
-
-mydata %>% 
-  filter(year %in% c(2002, 2007)) %>%
-  filter(continent == "Americas") %>% 
-  t.test(lifeExp~year, data = .) -> t.result
-
-t.result
-
+  filter(year == 2007) %>%          # filter for 2007 only
+  group_by(continent) %>%           # split data into chunks by continent
+  do(                               # dplyr function useful in this setting
+    t.test(.$lifeExp, mu = 77) %>%  # compare mean lifeExp for each continent to 77 years 
+      tidy()                        # tidy into tibble
+    )
 ```
 
-### T-test output
-
-However, that output isn't in a useful format, let's investigate the output of the function `t.test()`. 
-
-```{r}
-
-names(t.result)
-str(t.result) # or click on the blue button in the Environment tab
-
-```
-
-The structure of R's `t.test()` result looks a bit overwhelming. 
-Fortunately, the `tidy()` function from `library(broom)` puts it into a neat data frame for us:
-
-```{r}
-
-t.result <- tidy(t.result) # broom package puts it all in a data frame
-
-```
-
-Try clicking on it in the Environment tab.
-
-Thus, now we understand the output structure we can extract any result.
-
-```{r}
-
-t.result$p.value
-
-```
+The mean life expectancy for Europe and Oceania do not differ from 77, while the others to to varying degrees. 
+In particular, look at the confidence intervals of the tables and whether they include or exclude 77.
 
 
-### Exercise
+## Compare the means of more than two groups
 
-1. Select any 2 years in any continent and perform a *t*-test to determine whether the life expectancy is signficantly different. 
-Remember to plot your data first.
+It may be that our question is set around a hypothesis involving more than two groups. 
+For example, we may be interested in comparing life expectancy across 3 continents such as the Americas, Europe and Asia. 
 
-2. Extract only the p-value from your `t.test()` output.
-
-
-## One sample *t*-tests
-
-However, we don't always want to compare 2 groups or sometimes we don't have the data to be able to.
-
-Let's investigate whether the mean life expectancy in each continent significant different to 77 years in 2007.
-
-```{r}
-
-mydata %>% 
-  filter(year==2007, continent=='Europe') -> subdata
-
-# Standard one-sample t-test
-t.test(subdata$lifeExp, mu=77)
-
-```
-
-### Exercise
-
-1. Select a different year, different continent, and different age to compare with mean life expectancy.
-
-2. Replace mu=77 with mu=0 (the default value). How does this affect your result?
-
-
-## ANOVA
-
-In some cases, we may also want to test more than two groups to see if they are signficantly different.
+to see if they are significantly different.
 
 ### Plotting
 
-For example, lets plot the life expectancy in 2007 accross 3 continents.
+For example, lets plot the life expectancy in 2007 across 3 continents.
 ```{r, fig.width=3, fig.height=3}
 
 mydata %>% 
@@ -250,7 +334,9 @@ mydata %>%
 
 ### Analysis
 
-ANOVA tests are useful for testing for the presence of signficant differences between more than two groups or variables.
+### ANOVA
+
+ANOVA tests are useful for testing for the presence of significant differences between more than two groups or variables.
 
 ```{r}
 
@@ -281,7 +367,7 @@ plot(fit)
 
 ### Perform pairwise tests
 
-The ANOVA test was significant, indicating that there is a signficant difference in the mean life expectancy across those continents.
+The ANOVA test was significant, indicating that there is a significant difference in the mean life expectancy across those continents.
 
 But which continents are significantly different, and can we quantify this difference as a *p*-value?
 
@@ -394,7 +480,7 @@ mydata %>%
 
 Mann-Whitney U test is also called the Wilcoxon rank sum test (note the Wilcoxon signed rank test is for paried data).
 
-Is there a significant increase in the life expectencies for African countries between 1992 and 2007? How about 1982 and 2007?
+Is there a significant increase in the life expectancies for African countries between 1992 and 2007? How about 1982 and 2007?
 
 ```{r, fig.width=3, fig.height=2}
 mydata$year %>%  unique()
@@ -462,3 +548,28 @@ mydata %>%
 		)
 	)
 ```
+
+
+
+
+
+### Exercise
+Make a histogram, Q-Q plot, and a box-plot for the life expectancy for a continent of your choice, but for all years. Does the data appear normally distributed?
+
+
+
+### Exercise
+
+1. Select any 2 years in any continent and perform a *t*-test to determine whether the life expectancy is significantly different. 
+Remember to plot your data first.
+
+2. Extract only the p-value from your `t.test()` output.
+
+
+
+### Exercise
+
+1. Select a different year, different continent, and different age to compare with mean life expectancy.
+
+2. Replace mu=77 with mu=0 (the default value). How does this affect your result?
+

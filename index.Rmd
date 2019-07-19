@@ -74,7 +74,7 @@ August 2019
 
 ## Structure of the book {-}
 
-Chapters \@ref(introduction) introduces a new topic, and ...
+Chapter \@ref(r-basics) introduces a new topic, and ...
 
 ## Software information and conventions {-}
 

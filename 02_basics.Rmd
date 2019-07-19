@@ -10,7 +10,7 @@ library(tidyverse)
 ```
 
 
-The aim of this module is to familiarise you with how R works. 
+The aim of this chapter is to familiarise you with how R works. 
 We will read in data and start basic manipulations. 
 We will be working with a shorter version of the Global Burden of Disease dataset that we met earlier. 
 
@@ -31,14 +31,14 @@ As usual, in this book, we prefer introducing new concepts using specific exampl
 And then define things in general terms after examples.
 
 The most common data object you will be working with is a table - so something with rows and columns. 
-It should be regular, e.g., the made-up example in Table \@ref(tab:chap2-examp1).
+It should be regular, e.g., the made-up example in Table \@ref(tab:chap2-tab-examp1).
 ^[Regular does not mean it can't have missing values.
 Missing values are denoted `NA` which stands for either `Not available` or `Not applicable`. 
 In same contexts, these things can have a different meaning. 
 For example, since `var2` is `NA` for all male subjects, it may mean "Not applicable", i.e. something that can only be measured in females.
 Whereas in `var3`, `NA` is more likely to mean "Not available" so real missing data, e.g. lost to follow-up.]
 
-```{r chap2-examp1, echo = FALSE}
+```{r chap2-tab-examp1, echo = FALSE}
 
 mydata = tibble(id   = 1:4,
        sex  = c("Male", "Female", "Female", "Male"),
@@ -105,7 +105,7 @@ We would expect to see an `NA` if we tried to, for example, calculate the averag
 mean(mydata$sex)
 ```
 
-In fact, R then gives as us a pretty clear Error (our first Error in this book!) saying it can't compute the mean of an argument that is not numeric or logical. 
+In fact, in this case, R also gives us a pretty clear Warning suggesting it can't compute the mean of an argument that is not numeric or logical. 
 The sentence actually reads pretty fun, as if R was saying it was not logical to calculate the mean of something that is not numeric. 
 But what R is actually saying that it is happy to calculate the mean of two types of variables: numerics or logicals, but what you have passed it is neither.
 ^[Logical is a data type with two potential values: TRUE or FALSE.
@@ -122,10 +122,10 @@ Therefore, if you decide to ignore the NAs and want to calculate the mean anyway
 mean(mydata$var2, na.rm = TRUE)
 ```
 
-Adding `na.rm = TRUE` tells are that you are happy for it to calculate the mean of any existing values (but to remove - `na.rm` - the `NA` values).
-This 'removal' excludes the NAs from the calculation, it does not affect the actual tibble (`mydata`) holding the whole dataset. 
-R is case sensitive, so it has to be `na.rm`, not `NA.rm` etc. 
-There is no need to try to memorise how the arguments of functions are exactly spelled - this is what the Help tab (press `F1` when the cursor is on the name of the function) can remind you of. 
+Adding `na.rm = TRUE` tells R that you are happy for it to calculate the mean of any existing values (but to remove - `rm` - the `NA` values).
+This 'removal' excludes the NAs from the calculation, it does not affect the actual tibble (`mydata`) holding the dataset. 
+R is case sensitive, so it has look exactly how the function expects it, so `na.rm`, not `NA.rm` etc. 
+There is, however, no need to memorise how the arguments of functions are exactly spelled - this is what the Help tab (press `F1` when the cursor is on the name of the function) can remind you of. 
 Functions' help pages are built into R, so an internet connection is not required for this.
 
 > Make sure to separate multiple arguments with commas, or R will give you an error of `Error: unexpected symbol`.
@@ -176,67 +176,83 @@ example_sequence = seq(15, 30)
 
 Doing this creates `example_sequence` in our Environment, but it does not print it. 
 
-> If you save the results of an R function in a variable, it does not get printed, and vice versa.
+> If you save the results of an R function in a variable, it does not get printed. If you run a function without the assignment (`=`), its results get printed, but not saved in a variable.
 
 You can call your variables (where you assigns new objects or the output of functions in) pretty much anything you want, as long as it starts with a letter. 
 It can then include numbers as well, for exmple, we could have named the new variable `sequence_15_to_30`.
 Spaces in variable names are not easy to work with, we tend to use underscores in their place, but you could also use capitalisation, e.g. `exampleSequence = seq(15, 30)`.
 
-
-## objects, old text, replace 
-
-
-Lets now add `a` and `b` together to create the object `c`
+Finally, R doesn't mind overwriting an existing variable, for example (notice how we then include the variable on a new line to get it printed as well as overwritten):
 
 ```{r}
-b  = 2
-c = a + b 
+example_sequence = example_sequence/2
 
-# Print the value of c to the Console
-
-c # should return the number 3
-
-
+example_sequence
 ```
 
-All of R is just an extension of this: applying more complex functions (calculations) across more complex objects.
 
-It's important to appreciate that objects can be more than just single numbers too. 
-They can be entire spreadsheets, which in R are known as `tibbles` (or in base R: `data frames`).
+>Note that many people use `<-` instead of `=`. 
+>They mean the same thing in R: both `=` and `<-` save what is on the right into the variable name on the left. 
+>There is also a left-to-right operator: `->`.
 
 
-Note that many people use `<-` instead of `=`. 
-They mean the same thing in R. `=` and `<-` save what is on the right into the name on the left. 
-There is also a left-to-right operator: `->`.
+## Reading data into R
+
+We mentioned before that once a table (e.g. from spreadsheet or database) gets read into R we start calling it a `tibble`. 
+The most common format data comes to us in is CSV (comma separated values). 
+CSV is basically an uncomplicated spreadsheet with no formatting or objects other than a single table with rows and columns (no worksheets or formulas).
+Furthermore, you don't need special software to quickly view a CSV file - a text editor will do, and that includes RStudio.
+
+For example, look at "example_data.csv" in the healthyr project's folder in Figure \@ref(fig:chap2-fig-examplecsv) (this is the Files pane at the bottom-right corner of your RStudio).
+
+```{r chap2-fig-examplecsv, echo = FALSE, fig.cap="View or import a data file."}
+knitr::include_graphics("images/chapter02/files_csv_example.png")
+```
+
+Clicking on a data file gives us two opions: `View File` or `Import Dataset`. 
+For very standard CSV files, we don't usually bother with the Import interface and just type in (or copy from a previous script):
+
+```{r, eval = FALSE}
+library(tidyverse)
+example_data = read_csv("example_data.csv")
+```
+
+Without further arguments, `read_csv()` defaults to:
+
+* values are delimited by commas (e.g., `id, var1, var2, ...`)
+* numbers use decimal point (e.g., `4.12`), rather than decimal comma (e.g., `4,12`)
+* the first line has column names (it is a "header")
+* missing values are empty or denoted NA
+
+If your file, however, is different to these, then the `Import Dataset` interface (Figure \@ref(fig:chap2-fig-examplecsv)) is very useful as it will give you the relevant `read_()` syntax with all the extra arguments filled in for you.
+
+```{r chap02-fig-import-tool, echo = FALSE, fig.cap="Import: Some of the special settings your data file might have."}
+knitr::include_graphics("images/chapter02/import_options.png")
+```
+
+
+```{r chap02-fig-import-code, echo = FALSE, fig.cap="After using the Import Dataset window, copy-paste the resulting code into your script."}
+knitr::include_graphics("images/chapter02/code_preview.png")
+```
+
+After selecting the specific options for your import file (there is a friendly preview window too, so you can immediately see whether R understands the format of the your data file), DO NOT BE tempted to press the `Import` button. 
+Yes, this will read in your dataset once, but means you have to redo the selections every time you come back to RStudio.
+Do copy-paste the code it gives you (e.g., Figure \@ref(fig:chap02-fig-import-code)) into your R script - this way you can use it over and over again. 
+Making sure all steps are recorded in scripts makes your workflow reproducible by your future self, colleagues, supervisors, extraterrestials. 
+
+>The `Import Dataset` can also help you to read in Excel, SPSS, Stata, or SAS files (instead of read_csv(), it will give you `read_excel()`, `read_sav()`, `read_stata()`, or `read_sas()).
+
 
 ### Exercise
 
-Create 3 new variables, `d`, `e`, `f` with values 6, 7, 8 using the different assignment operators.
-```{r}
-d  = 6
-e <- 7
-8 -> f
-```
-
-
-## Loading data
-
-Before we load a new dataset, we should clear our experiments from the previous section. Restart R by pressing Ctrl+Shift+F10 or Select Section -> Restart R from the menu above.
-
-Now the environment is clear, lets load in the data:
 
 ```{r, message=F}
-
-library(tidyverse) # Tidyverse is the package which contains some of the code we want to use
-
+library(tidyverse)
 mydata = read_csv("global_burden_disease_short.csv")
-
 ```
 
 But how can we look at the data we just loaded? How do we know which variables it contains? 
 Hint: the Environment tab.
-
-### Exercise
 
 Answer these question about your data:
 
@@ -262,8 +278,7 @@ mydata$deaths
 
 R will give us all the data for that variable.
 
-### Exercise
-
+## Pipe
 
 ![](images/magittr.png)
 
@@ -336,6 +351,8 @@ mydata %>%
 ```
 
 How would you change the above code to only include years greater than 2000 (so not including 2000 itself too)? Hint: look at the table of operators above (also in your HealthyR QuickStart Sheet).
+
+
 
 ### Exercise
 

@@ -25,14 +25,14 @@ The explanatory variables can be either continuous or categorical.
 We will illustrate our examples of linear regression using a classical question which is important to many of us!
 This is the relationship between coffee drinking and blood pressure (and therefore cardiovascular events, such as myocardial infarction and stroke).
 There has been a lot of backwards and forwards over decades about whether coffee drinking is harmful, has no effect, or is in fact beneficial. 
-Figure \@ref(fig:chap7-fig-regression) shows a linear regression example. 
+Figure \@ref(fig:chap07-fig-regression) shows a linear regression example. 
 Each point is a person and cups of coffee per day is the explanatory variable of interest (*x*) and systolic blood pressure as the dependent variable (*y*). 
 This next bit is important!
 These data are made up, fake, randomly generated, fabricated, not real. 
 So please do not alter your coffee habit on the basis of these plots!
 
 ```{r chap07-fig-regression, echo = FALSE, fig.cap="The anatomy of a regression plot"}
-knitr::include_graphics("images/chapter07/1_regression_terms.png")
+knitr::include_graphics("images/chapter07/1_regression_terms.pdf")
 ```
 
 ## Fitting a regression line
@@ -53,7 +53,7 @@ If this number is as small as possible, the line is fitting as best it can.
 Or in more formal language, we want to minimise the sum of squared residuals. 
 
 ```{r chap07-fig-residuals, echo = FALSE, fig.cap="How a regression line is fitted"}
-knitr::include_graphics("images/chapter07/2_residuals.png")
+knitr::include_graphics("images/chapter07/2_residuals.pdf")
 ```
 
 ## When the line fits well
@@ -100,7 +100,7 @@ It is about ensuring that the regression line is valid across the range of the e
 It is really about understanding the underlying data, rather than relying on a fancy statistical test that gives you a p-value. 
 
 ```{r chap07-fig-diags, echo = FALSE, fig.cap="Regression diagnostics"}
-knitr::include_graphics("images/chapter07/3_diags.png")
+knitr::include_graphics("images/chapter07/3_diags.pdf")
 ```
 
 ## Univariable vs multivariable regression

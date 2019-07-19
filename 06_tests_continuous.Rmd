@@ -209,6 +209,7 @@ mydata %>%
 ## Compare the means of two groups
 
 ### T-test
+\index{t-test@\textbf{t-test}}
 A *t*-test is used to compare the means of two groups of continuous variables. Volumes have been written about this else where, and we won't rehearse it here. 
 
 There are various variations on the *t*-test.
@@ -220,6 +221,8 @@ Repeated-measures data such as comparing the same countries between years can be
 
 
 ### Two-sample *t*-tests
+\index{t-test@\textbf{t-test}!two-sample}
+
 Referring to the first figure, let's compare life expectancy between Asia and Europe for 2007. 
 What is imperative, is that you decide what sort of difference exists by looking at the boxplot, rather than relying on the *t*-test output. 
 The median for Europe is clearly higher than in Asia. 
@@ -270,6 +273,7 @@ mydata %>%
 \index{functions!tidy}
 
 ### Paired *t*-tests
+\index{t-test@\textbf{t-test}!paired}
 
 Consider that we want to compare the difference in life expectancy in Asian countries between 2002 and 2007.
 The overall difference is not impressive in the boxplot. 
@@ -335,6 +339,7 @@ It is up to you the investigator to interpret the effect size of 1.5 y in report
 ## Compare the mean of one group
 
 ### One sample *t*-tests
+\index{t-test@\textbf{t-test}!one-sample}
 
 We can use a *t*-test to determine whether the mean of a distribution is different to a specific value. 
 
@@ -388,6 +393,7 @@ mydata %>%
 \index{plotting!geom\_boxplot}
 
 ### ANOVA
+\index{analysis of variance (ANOVA)}
 
 Analysis of variance is a collection of statistical tests which can be used to test the difference in means between two or more groups. 
 
@@ -436,6 +442,7 @@ par(mfrow=c(1,1))
 ```
 
 ### Pairwise testing and multiple comparisons
+\index{pairwise testing}
 
 When the F-test is significant, we will often want to proceed to try and determine where the differences lie. 
 This should of course be obvious from the boxplot you have made. 
@@ -488,6 +495,7 @@ If you are trying to capture robust effect and want to minimise type 2 errors, u
 
 
 ## Non-parametric data
+\index{non-parametric tests@\textbf{non-parametric tests}}
 
 What if your data is different shape to normal or the ANOVA assumptions are not fulfilled (see linear regression chapter). 
 As always, be sensible!
@@ -502,6 +510,7 @@ If a comparison of means approach is reasonable, but the normality assumption ar
 2. Perform non-parametric tests.
 
 ### Transforming data
+\index{tranformations}
 
 Remember, the Welch *t*-test is reasonably robust to divergence from the normality assumption, so small deviations can be safely ignored. 
 
@@ -538,6 +547,8 @@ The right skew on the Africa data has been dealt with by the transformation.
 A parametric test such as a *t*-test can now be performed. 
 
 ### Non-parametric test for comparing two groups
+\index{non-parametric tests@\textbf{non-parametric tests}!Mann-Whitney U}
+\index{non-parametric tests@\textbf{non-parametric tests}!Wilcoxon rank sum}
 
 The Mann-Whitney U test is also called the Wilcoxon rank-sum test and uses a rank-based method to compare two groups (note the Wilcoxon signed-rank test is for paired data).
 We can use if to test for a difference in life expectancies for African countries between 1982 and 2007.
@@ -591,6 +602,7 @@ africa_plot %>%
 \index{functions!wilcox.test}
 
 ### Non-parametric test for comparing more than two groups
+\index{non-parametric tests@\textbf{non-parametric tests}!!Kruskal-Wallis}
 
 The non-parametric equivalent to ANOVA, is the Kruskal-Wallis test. 
 It can be used in base R, or via the finalfit package below. 

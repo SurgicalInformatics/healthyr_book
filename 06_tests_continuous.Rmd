@@ -5,6 +5,10 @@ library(ggplot2)
 theme_set(theme_bw())
 ```
 
+<!-- Temp to test -->
+<!-- \index{functions} -->
+<!-- \index{plotting} -->
+
 In the second part of this book, we focus specifically on the business of data analysis.
 That is, formulating clear questions and seeking to answer them using available datasets. 
 
@@ -18,6 +22,7 @@ Chapters 6 and 8 however do provide helpful reminders of how to prepare data for
 Time-to-event data introduces survival analysis and includes sections on the manipulation of dates. 
 
 # Tests for continuous outcome variables
+\index{continuous data@\textbf{continuous data}}
 
 > Continuous data can be measured.
 
@@ -73,6 +78,10 @@ missing_glimpse(mydata) # missing data for each variable
 ff_glimpse(mydata) # summary statistics for each variable
 ```
 
+\index{functions!glimpse}
+\index{functions!missing\_glimpse}
+\index{functions!ff\_glimpse}
+
 As can be seen, there are 6 variables, 4 are continuous and 2 are categorical. The categorical variables are already identified as `factors`. There are no missing data. 
 
 ## Plot the data
@@ -95,13 +104,17 @@ There are three useful plots which can help here:
 
 ### Histogram
 
-```{r, fig.width=7, fig.height=3.5}
+```{r, fig.width=7, fig.height=3.5, fig.cap="Histogram: country life expectancy by continent and year"}
 mydata %>% 
 	filter(year %in% c(2002, 2007)) %>%
 	ggplot(aes(x = lifeExp)) +       # remember aes()
 	geom_histogram(bins = 20) +      # histogram with 20 bars
 	facet_grid(year ~ continent)     # add scale="free" for axes to vary                                 
 ```
+
+\index{functions!filter}
+\index{plotting!geom\_histogram}
+\index{plotting!facet\_grid}
 
 What can we see? 
 That life expectancy in Africa is lower than in other regions. 
@@ -118,7 +131,7 @@ For example, if we have the life expectancy for 100 countries, then quartiles (n
 A Q-Q plot simply plots the quantiles for our data against the theoretical quantiles for a particular distributions (default below is normal). 
 If our data follow that distribution (e.g. normal), then we get a 45 degree line on the plot. 
 
-```{r, fig.width=7, fig.height=3.5}
+```{r, fig.width=7, fig.height=3.5, fig.cap="Q-Q plot: country life expectancy by continent and year"}
 mydata %>% 
   filter(year %in% c(2002, 2007)) %>%
   ggplot(aes(sample = lifeExp)) +      # Q-Q plot requires `sample
@@ -126,6 +139,11 @@ mydata %>%
   geom_qq_line() +                     # add 45 degree line
   facet_grid(year ~ continent)
 ```
+
+\index{functions!filter}
+\index{plotting!geom\_qq}
+\index{plotting!geom\_qq\_line}
+\index{plotting!facet\_grid}
 
 What can we see. 
 We are looking to see if the data follow the 45 degree line which is included in the plot.
@@ -146,13 +164,17 @@ Outliers are represented as points.
 
 Thus it contains information, not only on central tenancy (median), but on the variation in the data and the distribution of the data, for instance a skew should be obvious. 
 
-```{r, fig.width=7, fig.height=3}
+```{r, fig.width=7, fig.height=3, fig.cap="Boxplot: country life expectancy by continent and year"}
 mydata %>% 
   filter(year %in% c(2002, 2007)) %>%
   ggplot(aes(x = continent, y = lifeExp)) +
   geom_boxplot() +
   facet_grid(. ~ year)                    # spread by year, note `.`
 ```
+
+\index{functions!filter}
+\index{plotting!geom\_boxplot}
+\index{plotting!facet\_grid}
 
 What can we see?
 The median life expectancy is lower in Africa than in any other continent. 
@@ -161,7 +183,7 @@ The data in Africa looks skewed, particularly in 2002 - the lines/whiskers are u
 
 We can add further arguments 
 
-```{r, fig.width=7, fig.height=3}
+```{r, fig.width=7, fig.height=3, fig.cap="Boxplot with jitter points: country life expectancy by continent and year"}
 mydata %>%  
   filter(year %in% c(2002, 2007)) %>%
   ggplot(aes(x = factor(year), y = lifeExp)) +
@@ -174,6 +196,15 @@ mydata %>%
   ggtitle(
     "Life expectancy by continent in 2002 v 2007") # add title
 ```
+
+\index{functions!filter}
+\index{plotting!geom\_boxplot}
+\index{plotting!geom\_jitter}
+\index{plotting!facet\_grid}
+\index{plotting!theme}
+\index{plotting!xlab}
+\index{plotting!ylab}
+\index{plotting!ggtitle}
 
 ## Compare the means of two groups
 
@@ -204,6 +235,9 @@ ttest_result =
 ttest_result
 ```
 
+\index{functions!filter}
+\index{functions!t.test}
+
 The Welch two-sample t-test is the most flexible and copes with differences in variance (variability) between groups, as in this example. 
 The difference in means is provided at the bottom of the output. 
 The *t*-value, degrees of freedom (df) and p-value are all provided. 
@@ -232,6 +266,9 @@ mydata %>%
 
 ```
 
+\index{functions!filter}
+\index{functions!tidy}
+
 ### Paired *t*-tests
 
 Consider that we want to compare the difference in life expectancy in Asian countries between 2002 and 2007.
@@ -239,7 +276,7 @@ The overall difference is not impressive in the boxplot.
 
 We can plot differences at the country level directly. 
 
-```{r fig.height=3, fig.width=3}
+```{r fig.height=3, fig.width=3, fig.cap="Line plot: Change in life expectancy in Asian countries from 2002 to 2007"}
 paired_data = mydata %>%               # save as object paired_data
   filter(year %in% c(2002, 2007)) %>%  # 2002 and 2007 only
   filter(continent == "Asia")          # Asia only
@@ -249,6 +286,9 @@ paired_data %>%
              group = country)) +       # for individual country lines
   geom_line()
 ```
+
+\index{functions!filter}
+\index{plotting!geom\_line}
 
 What is the difference in life expectancy for each individual country. 
 We don't usually have to produce this directly, but here is one method. 
@@ -268,6 +308,12 @@ paired_table %>% summarise( mean(dlifeExp) )
 
 ```
 
+\index{functions!select}
+\index{functions!spread}
+\index{functions!mutate}
+\index{functions!summarise}
+
+
 On average, therefore, there is an increase in life expectancy of 1.5 years in Asian countries between 2002 and 2007. 
 Let's test whether this number differs from zero with a paired *t*-test. 
 
@@ -275,6 +321,8 @@ Let's test whether this number differs from zero with a paired *t*-test.
 paired_data %>% 
   t.test(lifeExp ~ year, data = .) # Include paired = TRUE
 ```
+
+\index{functions!t.test}
 
 The results show a highly significant difference. 
 As an exercise you can repeat this analysis simply comparing the means in an unpaired manner. 
@@ -310,6 +358,12 @@ mydata %>%
     )
 ```
 
+\index{functions!filter}
+\index{functions!group\_by}
+\index{functions!do}
+\index{functions!t.test}
+\index{functions!tidy}
+
 The mean life expectancy for Europe and Oceania do not differ from 77, while the others to to varying degrees. 
 In particular, look at the confidence intervals of the tables and whether they include or exclude 77.
 
@@ -317,18 +371,21 @@ In particular, look at the confidence intervals of the tables and whether they i
 ## Compare the means of more than two groups
 
 It may be that our question is set around a hypothesis involving more than two groups. 
-For example, we may be interested in comparing life expectancy across 3 continents such as the Americas, Europe and Asia. 
+For example, we may be interested in comparing life expectancy across 3 continents such as the Americas, Europe and Asia.
+
 ### Plot the data
 
-```{r, fig.width=3, fig.height=3}
+```{r, fig.width=3, fig.height=3, fig.cap="Boxplot: Life expectancy in selected continents for 2007"}
 mydata %>% 
 	filter(year == 2007) %>% 
 	filter(continent %in% 
 	         c("Americas", "Europe", "Asia")) %>% 
 	ggplot(aes(x = continent, y=lifeExp)) +
 	geom_boxplot()
-
 ```
+
+\index{functions!filter}
+\index{plotting!geom\_boxplot}
 
 ### ANOVA
 
@@ -347,6 +404,9 @@ fit = aov(lifeExp ~ continent, data = aov_data)
 summary(fit)
 ```
 
+\index{functions!aov}
+\index{functions!summary}
+
 We can conclude from this, that there is a difference in the means between at least two pairs of the included continents. 
 As above, the output can be neatened up using the `tidy` function. 
 
@@ -359,13 +419,17 @@ mydata %>%
 	tidy()
 ```
 
+\index{functions!filter}
+\index{functions!aov}
+\index{functions!tidy}
+
 ### Assumptions
 
 As with the normality assumption of the *t*-test, there are assumptions of the ANOVA model). 
 These are covered in detail in the linear regression chapter and will not be repeated here. 
 Suffice to say that diagnostic plots can be produced to check that the assumptions are fulfilled. 
 
-```{r fig.height=6, fig.width=6}
+```{r fig.height=6, fig.width=6, fig.cap="Diagnostic plots: ANOVA model of life expectancy by continent for 2007"}
 par(mfrow=c(2,2))
 plot(fit)
 par(mfrow=c(1,1))
@@ -381,6 +445,8 @@ However, some are fixated on the p-value!
 pairwise.t.test(aov_data$lifeExp, aov_data$continent, 
                 p.adjust.method = "bonferroni")
 ```
+
+\index{functions!pairwise.t.test}
 
 A matrix of pairwise p-values is produced.
 Here we can that there is good evidence of a difference in means between Europe and Asia. 
@@ -409,6 +475,8 @@ You can see in our example, that the p-values are lower with the `fdr` correctio
 pairwise.t.test(aov_data$lifeExp, aov_data$continent, 
                 p.adjust.method = "fdr")
 ```
+
+\index{functions!pairwise.t.test}
 
 Try not to get too hung up on this. 
 Be sensible. 
@@ -440,7 +508,7 @@ Remember, the Welch *t*-test is reasonably robust to divergence from the normali
 Otherwise, the data can be transformed to another scale to deal with a skew. 
 A natural `log` scale is most common. 
 
-```{r}
+```{r fig.height=3, fig.width=6, fig.cap="Histogram: Log transformation of life expectancy for countries in Africa 2002"}
 africa_data = mydata %>%                # save as africa_data
   filter(year == 2002) %>%              # only 2002
   filter(continent == "Africa") %>%     # only Africa
@@ -457,6 +525,14 @@ africa_data %>%
   facet_grid(. ~ key, scales = "free")   # facet & axes free to vary
 ```
 
+\index{functions!filter}
+\index{functions!select}
+\index{functions!mutate}
+\index{functions!head}
+\index{functions!gather}
+\index{plotting!geom\_histogram}
+\index{plotting!facet\_grid}
+
 This has worked well here. 
 The right skew on the Africa data has been dealt with by the transformation. 
 A parametric test such as a *t*-test can now be performed. 
@@ -467,7 +543,7 @@ The Mann-Whitney U test is also called the Wilcoxon rank-sum test and uses a ran
 We can use if to test for a difference in life expectancies for African countries between 1982 and 2007.
 Let's do a histogram, Q-Q plot and boxplot first. 
 
-```{r}
+```{r fig.height=6, fig.width=6, fig.cap="Panels plots: histogram, Q-Q, boxplot for life expectancy in Africa 1992 v 2007"}
 africa_plot = mydata %>%                          
   filter(year %in% c(1982, 2007)) %>%      # only 1982 and 2007
   filter(continent %in% c("Africa"))       # only Africa
@@ -495,6 +571,15 @@ p1 / p2 | p3
 
 ```
 
+\index{functions!filter}
+\index{plotting!geom\_boxplot}
+\index{plotting!facet\_grid}
+\index{plotting!geom\_qq}
+\index{plotting!geom\_qq\_line}
+\index{plotting!geom\_jitter}
+\index{plotting!patchwork}
+\index{plotting!theme}
+
 The data is a little skewed based on the histograms and Q-Q plots. 
 The difference between 1982 and 2007 is not particularly striking on the boxplot.
 
@@ -502,6 +587,8 @@ The difference between 1982 and 2007 is not particularly striking on the boxplot
 africa_plot %>% 
   wilcox.test(lifeExp ~ year, data = .)
 ```
+
+\index{functions!wilcox.test}
 
 ### Non-parametric test for comparing more than two groups
 
@@ -516,6 +603,10 @@ mydata %>%
   kruskal.test(lifeExp~continent, data = .) %>% 
 	tidy()
 ```
+
+\index{functions!filter}
+\index{functions!kruskal.test}
+\index{functions!tidy}
 
 ## Finalfit approach
 
@@ -535,8 +626,13 @@ mydata %>%
   summary_factorlist(dependent, explanatory,
                      cont = "median", p = TRUE) %>% 
   knitr::kable(row.names = FALSE, booktabs = TRUE, 
-               align = c("l", "l", "r", "r", "r", "r"))
+               align = c("l", "l", "r", "r", "r", "r"),
+               caption = "Life expectancy, population and GDPperCap in Africa 1982 v 2007")
 ```
+
+\index{functions!filter}
+\index{functions!mutate}
+\index{functions!summary\_factorlist}
 
 ## Conclusions
 

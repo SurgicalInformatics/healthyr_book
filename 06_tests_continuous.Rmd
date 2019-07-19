@@ -5,10 +5,6 @@ library(ggplot2)
 theme_set(theme_bw())
 ```
 
-<!-- Temp to test -->
-<!-- \index{functions} -->
-<!-- \index{plotting} -->
-
 In the second part of this book, we focus specifically on the business of data analysis.
 That is, formulating clear questions and seeking to answer them using available datasets. 
 
@@ -24,8 +20,7 @@ Time-to-event data introduces survival analysis and includes sections on the man
 # Tests for continuous outcome variables
 \index{continuous data@\textbf{continuous data}}
 
-> Continuous data can be measured.
-
+> Continuous data can be measured.  
 > Categorical data can be counted.
 
 ## Continuous data

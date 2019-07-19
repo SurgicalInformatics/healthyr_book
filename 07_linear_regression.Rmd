@@ -1,5 +1,70 @@
 # Linear regression
 
+## Regression
+
+Regression is a method with which we can determine the existence and strength of the relationship between two or more variables. 
+This can be thought of as drawing lines, ideally straight lines, through data points. 
+
+Linear regression is our method of choice for examining continuous outcome variables. 
+Broadly, there are often two separate goals in regression:
+
+* Prediction: fitting a predictive model to an observed dataset. Using that model to make predictions about an outcome from a new set of explanatory variables;
+* Explanation: fit a model to explain the inter-relationships between a set of variables.
+
+\@ref(fig:chap7-fig-regression) unifies the terms we will use throughout. 
+A clear scientific question should define our `explanatory variable of interest` (*x*), which somtimes gets called a predictor. 
+Our outcome of interest will be referred to as the `dependent` variable (*y*). 
+In simple linear regression, there is a single explanatory variable and dependent variable, and we will call this *univariable linear regression*. 
+When there is more than one explanatory variable, we will call this *multivariable regression*. Avoid the term *multivariate regression*, which suggests more than one dependent variable. We don't use this method and we suggest you don't either!
+
+Note that the dependent variable is always continuous, it cannot be a categorical variable. 
+The explanaotry variables can be either continuous or categorical. 
+
+## The Question
+
+We will illustrate our examples of linear regression using a classical question which is important to many of us!
+This is the relationship between coffee drinking and blood pressure (and therefore cardiovascular events, such as myocardial infarction and stroke).
+There has been a lot of backwards and forwards over decades about whether coffee drinking is harmful, has no effect, or is in fact beneficial. 
+\@ref(fig:chap7-fig-regression) shows a linear regression example. 
+Each point is a person and cups of cofee per day is the explanatory variable of interest (*x*) and systolic blood pressure as the dependent variable (*y*). 
+This next bit is important!
+These data are made up, fake, randomly generated, fabricated, not real. 
+So please do not alter your coffee habit on the basis of these plots!
+
+```{r chap7-fig-regression, echo = FALSE, fig.cap="The anatomy of a regression plot"}
+knitr::include_graphics("images/chapter7/1_regression_terms.png")
+```
+
+## Fitting a regression line
+
+Simple linear regression uses the *ordinary least squares* method for fitting. 
+The details of this are beyond the scope here, but if you want to get out the linear algebra/matrix maths you did in high school, an enjoyable afternoon can be spent proving to yourself how it actually works. 
+
+\@ref(fig:chap7-fig-residuals) aims to make this easy to understand. 
+The maths defines a line which best fits the data provided. 
+For the line to fit best, the distances between it and the observed data should be as small as possible. 
+The distance from each observed point to the line is called a *residual* - one of those statstical terms that bring on the sweats. 
+It just refers to the "residual error" left over after the line is fitted. 
+
+You can use the [simple regression shiny app](https://argoshare.is.ed.ac.uk/simple_regression) to explore the concept. 
+We want the residuals to be as small as possible. 
+We can square each residual (to get rid of minuses and penalise far away points) and add them up. 
+If this number is as small as possible, the line is fitting as best it can. 
+Or in more formal langauge, we want to minimise the sum of squares of residuals. 
+
+```{r chap7-fig-residuals, echo = FALSE, fig.cap="How a regression line is fitted"}
+knitr::include_graphics("images/chapter7/2_residuals.png")
+```
+
+## When the line fits well
+
+
+
+## Get the data
+## Check the data
+## Plot the data
+
+
 ## Data
 
 We will be using the same gapminder dataset as in the last two sessions.

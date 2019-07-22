@@ -105,8 +105,19 @@ knitr::include_graphics("images/chapter07/3_diags.pdf")
 
 ## Univariable vs multivariable regression
 
+```{r chap07-fig-equation, echo = FALSE, fig.cap="How a regression line is fitted"}
+knitr::include_graphics("images/chapter07/4_equation.pdf")
+```
+
+
 ## Effect modification
 Additive
+
+```{r chap07-fig-types, echo = FALSE, fig.cap="How a regression line is fitted"}
+knitr::include_graphics("images/chapter07/5_types.pdf")
+```
+
+
 
 ## Interactions
 of multiplicative effect modification. 

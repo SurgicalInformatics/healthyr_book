@@ -1,0 +1,7 @@
+---
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+$\hat{y} = \beta_0 + \beta_{1} x_{1}$

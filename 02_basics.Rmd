@@ -47,7 +47,8 @@ mydata = tibble(id   = 1:4,
        var3 = c(2, 1, NA, NA))
 
 mydata %>% 
-  knitr::kable(booktabs = TRUE, caption = "Example of a table (=tibble once read into R), including missing values denoted NA (Not applicable/Not available).")
+  knitr::kable(booktabs = TRUE, caption = "Example of a table (=tibble once read into R), including missing values denoted NA (Not applicable/Not available).") %>% 
+  kableExtra::kable_styling(font_size=8)
 
 ```
 
@@ -302,7 +303,8 @@ gbd_short %>%
   knitr::kable(booktabs = TRUE,
                linesep = c("", "", "\\addlinespace"),
                align = c("l", "c", "r"),
-               caption = "Deaths per year from three broad disease categories (short version of the Global Burden of Disease example dataset).")
+               caption = "Deaths per year from three broad disease categories (short version of the Global Burden of Disease example dataset).") %>% 
+  kableExtra::kable_styling(font_size=8)
 ```
 
 ```{r chap2-fig-gbd, echo = FALSE, fig.cap="Causes of death from the Global Burden of Disease dataset (Table \\@ref(tab:chap2-tab-gbd)). Data on (B) is the same as (A) but stacked to show the total (sum) of all causes.", fig.height=6, fig.width=6}
@@ -408,7 +410,8 @@ testdata %>%
     knitr::kable(booktabs = TRUE,
                linesep = c(rep("", 6), "\\addlinespace"),
                align = c("l", "c", "r"),
-               caption = "Filtering operators.")
+               caption = "Filtering operators.") %>% 
+  kableExtra::kable_styling(font_size=8)
 
 ```
 
@@ -424,7 +427,8 @@ testdata %>%
 | `#`               | comment| `#Riinu changed this` | ignored by R   |
 
 
-### Worked example
+
+### Worked examples
 
 Filter the dataset to only include the year 2000. Save this in a new variable using the assignment operator.
 
@@ -434,9 +438,6 @@ mydata_year2000 = gbd_short %>%
   filter(year == 2000)
 
 ```
-
-
-### Worked example
 
 Let's practice combining multiple selections together.
 
@@ -455,15 +456,104 @@ new_data_selection = gbd_short %>%
 new_data_selection = gbd_short %>% 
   filter(year == 1990 | year == 2013) %>% 
   filter(cause == "Communicable diseases")
-
-mydata = gbd_short
-
 ```
 
-TODO: filter and missing values, or just min/max with missing values.
+## Missing values (NAs) and filters
+
+Filtering for missing values (NAs) needs your special attention and care.
+Remember the small example tibble from Table \@ref(tab:chap2-tab-examp1) - it has some NAs in columns `var2` and `var3`:
+
+```{r}
+mydata
+```
+
+
+If we now want to filter for rows where `var2` is missing, `filter(var2 == NA)` is not the way to do it, it will not work. 
+Since R is a programming language, it can be a bit stubborn with things like these.
+When you ask R to do a comparison using `==` (or `<`, `>`, etc.) it expects a value on each side, but NA is not a value, it is the lack thereof.
+The way to filter for missing values is using the `is.na()` function:
+
+```{r}
+mydata %>% 
+  filter(is.na(var2))
+```
+We send `mydata` to the filter and keep rows where `var2` is `NA`. 
+Note the double brackets at the end: that's because the inner one belongs to `is.na()`, and the outer one to `filter()`.
+Missing out a closing bracket is also a very common source of (minor, easily fixed) mistakes, and it still happens to the best of us.
+
+If filtering for rows where `var2` is not missing, we do this:
+
+```{r}
+mydata %>% 
+  filter(! is.na(var2))
+```
+
+In R, the exclamation mark (!) means "not".
+
+Sometimes you want to drop a specific value (e.g. an outlier) from the dataset like this. The small example tibble `mydata` has 4 rows, with the values for `var2` as follows: `r mydata$var2`. We can exclude the row where `var2` is equal to 5 by using the "not equals (`!=`)^[ `filter(var2 != 5) is equivalent to filter(! var2 == 5)`]:
+
+```{r}
+mydata %>% 
+  filter(var2 != 5)
+```
+
+However, you'll see that by doing this, R drops the rows where `var2` is NA as well, as it can't be sure these missing values were not equal to 5.
+
+If you want to keep missing values, but still drop an outlier, you need to make use of the OR (`|`) operator and the `is.na()` function:
+
+```{r}
+mydata %>% 
+  filter(var2 != 5 | is.na(var2))
+```
+
+Being caught out by missing values, either in filters or other functions is very common (remember mydata$var2 %>% mean() returns NA unless you add `na.rm = TRUE`). This is also why we insist that you always plot your data first - outliers will reveal themselves and NA values usually become obivious too.
+
+Another thing we do to stay safe around filters and missing values is saving the results and making sure the number of rows still add up:
+
+```{r}
+subset1 = mydata %>% 
+  filter(var2 == 5)
+
+subset2 = mydata %>% 
+  filter(! var2 == 5)
+
+subset1
+subset2
+```
+
+If the numbers are small, you can now quickly look at RStudio's Environment tab and figure out whether the number of observations (rows) in `subset1` and `subset2` add up to the whole dataset (`mydata`). Or use the `nrow()` function to as R to tell you what the number of rows is in each dataset:
+
+Rows in `mydata`:
+
+```{r}
+nrow(mydata)
+```
+
+Rows in `subset1`:
+```{r}
+nrow(subset1)
+```
+
+Rows in `subset2`:
+```{r}
+nrow(subset2)
+```
+
+Asking R whether adding these two up equals the original size:
+
+```{r}
+nrow(subset1) + nrow(subset2) == nrow(mydata)
+```
+
 
 
 ## Types of variables
+
+```{r}
+
+mydata = gbd_short
+```
+
 
 **consider structuring as per here: https://finalfit.org/articles/data_prep.html - AGREED, will do asap**
 

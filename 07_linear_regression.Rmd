@@ -12,21 +12,23 @@ Broadly, there are often two separate goals in regression:
 * Explanation: fit a model to explain the inter-relationships between a set of variables.
 
 Figure \@ref(fig:chap07-fig-regression) unifies the terms we will use throughout. 
-A clear scientific question should define our `explanatory variable of interest` (*x*), which sometimes gets called a predictor. 
-Our outcome of interest will be referred to as the `dependent` variable (*y*). 
-In simple linear regression, there is a single explanatory variable and dependent variable, and we will call this *univariable linear regression*. 
-When there is more than one explanatory variable, we will call this *multivariable regression*. Avoid the term *multivariate regression*, which suggests more than one dependent variable. We don't use this method and we suggest you don't either!
+A clear scientific question should define our `explanatory variable of interest` (*x*), which sometimes gets called a exposure, predictor, or independent variable. 
+Our outcome of interest will be referred to as the `dependent` variable (*y*), sometimes referred to as the response. 
+In simple linear regression, there is a single explanatory variable and a dependent variable, and we will sometimes refer to this as *univariable linear regression*. 
+When there is more than one explanatory variable, we will call this *multivariable regression*. 
+Avoid the term *multivariate regression*, which suggests more than one dependent variable. 
+We don't use this method and we suggest you don't either!
 
 Note that the dependent variable is always continuous, it cannot be a categorical variable. 
 The explanatory variables can be either continuous or categorical. 
 
-## The Question
+## The Question (1)
 
 We will illustrate our examples of linear regression using a classical question which is important to many of us!
-This is the relationship between coffee drinking and blood pressure (and therefore cardiovascular events, such as myocardial infarction and stroke).
-There has been a lot of backwards and forwards over decades about whether coffee drinking is harmful, has no effect, or is in fact beneficial. 
+This is the relationship between coffee consumption and blood pressure (and therefore cardiovascular events, such as myocardial infarction and stroke).
+There has been a lot of backwards and forwards over decades about whether coffee is harmful, has no effect, or is in fact beneficial. 
 Figure \@ref(fig:chap07-fig-regression) shows a linear regression example. 
-Each point is a person and cups of coffee per day is the explanatory variable of interest (*x*) and systolic blood pressure as the dependent variable (*y*). 
+Each point is a person and average number of cups of coffee per day is the explanatory variable of interest (*x*) and systolic blood pressure as the dependent variable (*y*). 
 This next bit is important!
 These data are made up, fake, randomly generated, fabricated, not real. 
 So please do not alter your coffee habit on the basis of these plots!
@@ -108,258 +110,312 @@ We promised to keep the equations to a minimum, but this one is so important it 
 
 Figure \@ref(fig:chap07-fig-equation) links the fitted line, the linear equation, and the output from R. Some of this will likely be already familiar to you. 
 
-We are staying with our example in thinking about whether coffee influences blood pressure. Remember all of these plots use simulated data. 
+Figure \@ref(fig:chap07-fig-equation)A shows a scatter plot with fitted lines from a multivariable linear regression model. 
+The plot is taken from the [multivariable regression shiny app](https://argoshare.is.ed.ac.uk/multi_regression/). 
+Remember, these data are simulated and are not real. 
+This app will really help you understand different regression models, more on this below. 
+The app allows us to specify "the truth" with the sliders on the left hand side. 
+For instance, we can set the intercept=1, meaning that when all $x=0$, the value of the dependent variable, $\hat{y}=1$.  
 
+Our model has a continuous explanatory variable of interest (average coffee consumption) and a further categorical variable (smoking). 
+In the example the truth is set as $intercept=1$, $\beta_1=1$ (true effect of coffee on blood pressure, gradient/slope of line), and $\beta_2=2$ (true effect of smoking on blood pressure).
+The points on the plot are simulated following the addition of random noise. 
 
-
-
-
-
-In trying to answer this question using observational data, we have to account for other differences in 
-
-, we usually have to account for other variables which may influence the outcome. 
-
-
-
-Figure \@ref(fig:chap07-fig-equation)A shows a scatter plot with fitted lines from a multivariable linear regression model. The plot is taken from the [multiple regression shiny app](https://argoshare.is.ed.ac.uk/multi_regression/). Remember, these data are simulated and are not real. This app will really help you understand different regression models, more on this below. 
-
-Our plot uses 
-
-```{r chap07-fig-dags, echo = FALSE, fig.cap="Causal pathways, effect modification and confounding."}
-knitr::include_graphics("images/chapter07/4_dags.pdf")
-```
+Figure \@ref(fig:chap07-fig-equation)B shows the default output in R for this linear regression model. 
+Look carefully and make sure you are clear how the fitted lines, the linear equation, and the R output fit together. 
+In this example, the random sample from our true population specified above shows $intercept=0.67$, $\beta_1=1.00$ (coffee), and $\beta_2=2.48$ (smoking). 
+A *p*-value is provided ($Pr(> \left| t \right|)$), which is the result of a null hypothesis significance test for the gradient of the line being equal to zero. Said another way, this is the probability that the gradient of the particular line is equal to zero. 
 
 ```{r chap07-fig-equation, echo = FALSE, fig.cap="Linking the fitted line, regression equation and R output."}
-knitr::include_graphics("images/chapter07/5_equation.pdf")
+knitr::include_graphics("images/chapter07/4_equation.pdf")
 ```
 
-
 ## Effect modification
-Additive
+
+Effect modification occurs when the size of the effect of the explanatory variable of interest (exposure) on the outcome (dependent variable) differs depending on the level of a third variable. 
+Said another way, this is a situation in which an explanatory variable differentially (positively or negatively) modifies the observed effect of another explanatory variable on the outcome.
+
+Again, this is best thought about using the concrete example provided in the [multivariable regression shiny app](https://argoshare.is.ed.ac.uk/multi_regression/).
+
+Figure \@ref(fig:chap07-fig-dags) shows three potential causal pathways. 
+
+In the first, smoking is not associated with the outcome (blood pressure) or our explanatory variable of interest (coffee consumption). 
+
+In the second, smoking is associated with elevated blood pressure, but not with coffee consumption. 
+This is an example of effect modification. 
+
+In the third, smoking is associated with elevated blood pressure and with coffee consumption. 
+This is an example of confounding. 
+
+```{r chap07-fig-dags, echo = FALSE, fig.cap="Causal pathways, effect modification and confounding."}
+knitr::include_graphics("images/chapter07/5_dags.pdf")
+```
+
+### Additive vs. multiplicative effect modification (interaction)
+
+Depending on the field you work, will depend on which set of terms you use. 
+Effect modification can be additive or multiplicative. 
+We refer to multiplicative effect modification as simply including a statistical interaction. 
+
+Figure \@ref(fig:chap07-fig-types) should make it clear exactly how these work. 
+The data have been set-up to include an interaction term. 
+What does this mean? 
+
+* $intercept=1$: the blood pressure ($\hat{y}$) for non-smokers who drink no coffee (all $x=0$);
+* $\beta_1=1$ (`coffee`): the additional blood pressure for each cup of coffee drunk by non-smokers (slope of the line when $x_2=0$;
+* $\beta_2=1$ (`smoking`): the difference in blood pressure between non-smokers and smokers who drink no coffee ($x_1=0$);
+* $\beta_3=1$ (`coffee:smoking` interaction): the blood pressure ($\hat{y}$) in addition to $\beta_1$ and $\beta_2$, for each cup of coffee drunk by smokers ($x_2=1)$.
+
+You may have to read that a couple of times in combination with looking at Figure \@ref(fig:chap07-fig-types).
+
+With the additive model, the fitted lines for non-smoking vs smoking are constrained to be parallel. 
+Look at the equation in Figure \@ref(fig:chap07-fig-types)B and convince yourself that the lines can never be anything other than parallel. 
+
+A statistical interaction (or multiplicative effect modification) is a situation where the effect of an explanatory variable on the outcome is modified in non-additive manner. 
+In other words using our example, the fitted lines are no longer constrained to be parallel.
+
+If we had not checked for an interaction effect, we would have inadequately described the true relationship between these three variables. 
+
+What does this mean back in reality? 
+Well it may be biologically plausible for the effect of smoking on blood pressure to increase multiplicatively due to a a chemical interaction between cigarette smoke and caffeine, for example.
+
+Note, we are just trying to find a model which best describes the underlying data. 
+All models are approximations of reality. 
 
 ```{r chap07-fig-types, echo = FALSE, fig.cap="Multivariable linear regression with additive and multiplicative effect modification."}
 knitr::include_graphics("images/chapter07/6_types.pdf")
 ```
 
+## R-squared and model fit
 
+Figure \@ref(fig:chap07-fig-types) includes a further metric from the R output: `Adjusted R-squared`. 
 
-## Interactions
-of multiplicative effect modification. 
+R-squared is another measure of how close the data are to the fitted line. 
+It is also known as the coefficient of determination and represents proportion of the dependent variable which is explained by the explanatory variable(s). 
+So 0.0 indicates that none of the variability in the dependent is explained by the explanatory (no relationship between data points and fitted line) and 1.0 indicates that the model explains all of the variability in the dependent (fitted line follows data points exactly).
+
+R provides the `R-squared` and the `Adjusted R-squared`. 
+The adjusted R-squared includes a penalty the more explanatory variables are included in the model. 
+So if the model includes variables which do not contribute to the description of the dependent variable, the adjusted R-squared will be lower. 
+
+Looking again at Figure \@ref(fig:chap07-fig-types), in A, a simple model of coffee alone does not describe the data well (adjusted R-squared 0.38). 
+Add smoking to the model improves the fit as can be seen by the fitted lines (0.87). But a true interaction exists in the actual data. 
+By including this interaction in the model, the fit is very good indeed (0.93).
 
 ## Confounding
+
+The last important concept to mention here is confounding. 
+Confounding is a situation in which the association between an explanatory variable (exposure) and outcome (dependent variable) is distorted by the presence of another explanatory variable.
+
+In our example, confounding exists if there is an association between smoking and blood pressure AND smoking and coffee consumption (Figure \@ref(fig:chap07-fig-dags)C). 
+This exists simply if smokers drink more coffee than non-smokers. 
+
+Figure \@ref(fig:chap07-fig-confounding) shows this really clearly. 
+The underlying data have been altered so that those who drink more than two cups of coffee per day also smoke and those who drink fewer than two cups per day do not smoke. 
+A true effect of smoking on blood pressure is entered, but NO effect of coffee on blood pressure. 
+
+If we simply fit blood pressure by coffee consumption (Figure \@ref(fig:chap07-fig-confounding)A), then we may mistakenly conclude a relationship between coffee consumption and blood pressure. 
+But this does not exist, because the ground truth we have set is that no relationship exists between coffee and blood pressure. 
+We are simply seeing the effect of smoking on blood pressure, which is confounding the effect of coffee on blood pressure. 
+
+If we include the confounder in the model by adding smoking, the true relationship becomes apparent. 
+Two parallel flat lines indicating no effect of coffee on blood pressure, but a relationship between smoking and blood pressure. 
+This procedure is often referred to as controlling for or adjusting for confounders. 
 
 ```{r chap07-fig-confounding, echo = FALSE, fig.cap="Multivariable linear regression with confounding of coffee drinking by smoking."}
 knitr::include_graphics("images/chapter07/7_confounding.pdf")
 ```
 
+## Summary
 
+We have intentionally spent some time going through the principles and applications of linear regression because it is so important. 
+A firm grasp of these concepts lead to an easy understanding of other regression procedures, such as logistic regression and Cox Proportional Hazards regression. 
 
+We will now perform all this ourselves in R using a gapminder dataset which you are familiar with from preceding chapters. 
+
+## The Question (2)
+We are interested in modelling the change in life expectancy for different countries over the past 60 years.  
 
 ## Get the data
-## Check the data
-## Plot the data
-
-
-## Data
-
-We will be using the same gapminder dataset as in the last two sessions.
-
 ```{r, message=F}
-
 library(tidyverse)
 library(gapminder) # dataset
 library(lubridate) # handles dates
-library(broom)     # transforms statistical output to data frame
+library(finalfit)
+library(broom)
 
+theme_set(theme_bw())
 mydata = gapminder
-
-
 ```
 
-## Plotting
+## Check the data
+Always check a new dataset, as described in 06-1 
+<!-- need ref -->
 
-Let's plot the life expectancies in European countries over the past 60 years:
-
-
-```{r, fig.height=7, fig.width=7}
-
-mydata %>% 
-  filter(continent == "Europe") %>% 
-  ggplot(aes(x = year, y = lifeExp)) +
-  geom_point() +
-  facet_wrap(~country) +
-  theme_bw() +
-  scale_x_continuous(breaks = c(1960, 1980, 2000))
-
+```{r eval=FALSE}
+glimpse(mydata) # each variable as line, variable type, first values
+missing_glimpse(mydata) # missing data for each variable
+ff_glimpse(mydata) # summary statistics for each variable
 ```
 
-### Exercise
+## Plot the data
 
-Save the above filter into a new variable called `eurodata`:
+Let's plot the life expectancies in European countries over the past 60 years.
 
-```{r}
-
-eurodata = mydata %>% 
-  filter(continent == "Europe")
-
+```{r, fig.height=7, fig.width=7, fig.cap="Scatterplot: Life expectancy by year in European countries"}
+p = mydata %>%                         # save as object p
+  filter(continent == "Europe") %>%    # Europe only
+  ggplot(aes(x = year, y = lifeExp)) + # lifeExp~year  
+  geom_point() +                       # plot points
+  facet_wrap(~ country) +              # facet by country
+  scale_x_continuous(
+    breaks = c(1960, 1980, 2000))      # adjust x-axis   
+p                                      # view result
 ```
 
+We can add in simple best fit lines using `ggplot` directly
 
-
-### Exercise
-
-Create the same plot as above (life expectancy over time), but for just Turkey and the United Kingdom, and add linear regression lines. 
-Hint: use `+ geom_smooth(method = "lm")` for the lines. `lm()` stands for linear model.
-
-```{r, fig.width=5, fig.height=3, echo = FALSE}
-
-mydata %>% 
-  filter(country %in% c("United Kingdom", "Turkey") ) %>% 
-  ggplot(aes(x = year, y = lifeExp)) +
-  geom_point() +
-  facet_wrap(~country) +
-  theme_bw() +
+```{r, fig.height=7, fig.width=7, fig.cap="Scatter and line plot: Life expectancy by year in European countries with best fit simple linear regression line."}
+p +
   geom_smooth(method = "lm")
-
-
 ```
 
 ## Simple linear regression
 
-As you can see, `ggplot()` is very happy to run and plot linear regression for us. 
-To access the results, however, we should save the full results of the linear regression models into variables in our Environment. 
+As you can see, `ggplot()` is very happy to run and plot linear regression models for us.
+While this is sometimes convenient, we usually want to build, run, and explore these models ourselves. 
 We can then investigate the intercepts and the slope coefficients (linear increase per year):
 
-```{r, results = 'hold'}
-
-
+United Kingdom:
+```{r}
 fit_uk = mydata %>%
   filter(country == "United Kingdom") %>% 
-  lm(lifeExp~year, data = .)  # the data=. argument is necessary
+  lm(lifeExp~year, data = .)
 
+fit_uk %>% 
+  summary()
+```
 
+Turkey: 
+```{r}
 fit_turkey = mydata %>%
   filter(country == "Turkey") %>% 
   lm(lifeExp~year, data = .)
 
-
-fit_uk$coefficients
-
-fit_turkey$coefficients
-
-
+fit_turkey %>% 
+  summary()
 ```
 
+*Probably covered enough already ->*
 
-### Exercise
+## When pipe sends data to the wrong place: use `, data = .` to direct it
 
-To make the intercepts more meaningful, add a new column called `year_from1952` and redo `fit_turkey` and `fit_uk` using `year_from1952` instead of `year`.
+In the code above, the `, data = .` bit is necessary because the pipe usually sends data to the beginning of function brackets. So `mydata %>% lm(lifeExp~year)` would be equivalent to `lm(mydata, lifeExp~year)`. However, this is not an order that `lm()` will accept. `lm()` wants us to specify the variables first (`dependent~explanatory`), and then wants the data these variables are present in. So we have to use the `.` to tell the pipe to send the data to the second argument of `lm()`, not the first.
 
-```{r, results = 'hold'}
+### Accessing the coefficients of linear regression
 
-mydata$year_from1952 = mydata$year - 1952
+A simple linear regression model will return two coefficients - the intercept and the slope (the second returned value). 
+Compare this to the `summary()` output above.
+
+```{r}
+fit_uk$coefficients
+```
+
+```{r}
+fit_turkey$coefficients
+```
+
+In this example, the intercept is telling us that life expectancy at year 0 in the United Kingdom (some 2000 years ago) was -294 years. While this is mathematically correct (based on the data we have), it makes no sense in practice. It is important at all stages of data analysis, to keep "sense checking" your results.
+
+To make the intercepts meaningful, we will add in a new column called `year_from1952` and re-run `fit_uk` and `fit_turkey` using `year_from1952` instead of `year`.
+
+```{r}
+mydata = mydata %>% 
+  mutate(year_from1952 = year - 1952)
 
 fit_uk = mydata %>%
   filter(country == "United Kingdom") %>% 
   lm(lifeExp~year_from1952, data = .)
 
-
 fit_turkey = mydata %>%
   filter(country == "Turkey") %>% 
   lm(lifeExp~year_from1952, data = .)
-
-
-fit_uk$coefficients
-
-fit_turkey$coefficients
-
-
 ```
 
-
-### Model information: `summary()`, `tidy()` ,`glance()`
-
-Accessing all other information about our regression model:
 
 ```{r}
-
-fit_uk %>% summary()
-
-fit_uk %>% tidy()
-
-fit_uk %>% glance()
-
+fit_uk$coefficients
 ```
 
 
-## If you are new to linear regression
+```{r}
+fit_turkey$coefficients
+```
 
-See these interactive Shiny apps provided by RStudio:
+Now, the updated results tell us that in year 1952, the life expectancy in the United Kingdom was 68 years. 
+Note that the slope (0.18) does not change. There was nothing wrong with the original model and the results were correct, the intercept was just not very useful.
 
-https://gallery.shinyapps.io/simple_regression/
+### Accesing all model information `tidy()` and `glance()`
 
-https://gallery.shinyapps.io/multi_regression/
+In the fit_uk and fit_turkey examples above, we were using `fit_uk %>% summary()` to get R to print out a summary of the model. This summary is not, however, in a rectangular shape so we can't easily access the values or put them in a table/use as information on plot labels.
 
-(`library(shiny)` is an R package for making your output interactive)
+We use the `tidy()` function from `library(broom)` to get the explanatory variable specific values in a nice tibble:
 
-### Exercise - Residuals
+```{r}
+fit_uk %>% tidy()
+```
 
-Open the first Shiny app ("Simple regression"). 
-Move the sliders until the red lines (residuals*) turn green - this means you've made the line fit the points as well as possible. 
-Look at the intercept and slope - discuss with your neighbour or a tutor what these numbers mean and how they affect the straight line on the plot.
+In the `tidy()` output, the column `estimate` includes both the intercepts and slopes.
 
-*Residual is how far away each point (observation) is from the linear regression line. 
-(In this example it's the linear regression line, but residuals are relevant in many other contexts as well.)
+And we use the `glance()` function to get overall model statistics (mostly the r.squared).
+```{r}
+fit_uk %>% glance()
+```
 
-## Multiple linear regression
 
-Multiple linear regression includes more than one predictor variable. 
-There are a few ways to include more variables, depending on whether they should share the intercept and how they interact:
+## Multivariable linear regression
+
+Multivariable linear regression includes more than one explanatory variable. There are a few ways to include more variables, depending on whether they should share the intercept and how they interact:
 
 Simple linear regression (exactly one predictor variable):
 
-`myfit = lm(lifeExp~year, data=eurodata)`
+`myfit = lm(lifeExp ~ year, data = mydata)`
 
-Multiple linear regression (additive):
+Multivariable linear regression (additive):
 
-`myfit = lm(lifeExp~year+country, data=eurodata)`
+`myfit = lm(lifeExp ~ year + country, data = mydata)`
 
-Multiple linear regression (all interactions):
+Multivariable linear regression (interaction):
 
-`myfit = lm(lifeExp~year*country, data=eurodata)`
+`myfit = lm(lifeExp ~ year * country, data = mydata)`
 
+This equivalent to:
+`myfit = lm(lifeExp ~ year + country + year:country, data = mydata)`
 
-These examples of multiple regression include two variables: `year` and `country`, but we could include more by just adding them with `+`.
+These examples of multivariable regression include two variables: `year` and `country`, but we could include more by adding them with `+`.
 
-### Exercise
+*TO HERE* 
 
-Open the second Shiny app ("Multiple regression") and see how:
+## Exercise 4
 
-* In simple regression, there is only one intercept and slope for the whole dataset.
-* Using the additive model (`lm(formula = y ~ x + group`) the two lines (one for each group) have different intercepts but the same slope. However, the `lm()` summary seems to only include one line called "(Intercept)", how to find the intercept for the second group of points?
-* Using the interactive model (`lm(formula = y ~ x*group`)) the two lines have different intercepts and different slopes.
-
-### Exercise
-
-Convince yourself that using an fully interactive multivariable model is similar to running several separate simple linear regression models. 
-Remember that we calculate the life expectancy in 1952 (intercept) and improvement per year (slope) for Turkey and the United Kingdom:
+Convince yourself that using an fully interactive multivariable model is the same as running several separate simple linear regression models. Remember that we calculate the life expectancy in 1952 (intercept) and improvement per year (slope) for Turkey and the United Kingdom:
 
 ```{r}
 fit_uk %>%
   tidy() %>%
   mutate(estimate = round(estimate, 2)) %>% 
   select(term, estimate)
+```
 
+
+```{r}
 fit_turkey %>%
   tidy() %>%
   mutate(estimate = round(estimate, 2)) %>% 
   select(term, estimate)
-
 ```
 
-(The lines `tidy()`, `mutate()`, and `select()` are only included for neater presentation here, you can use `summary()` instead.)
-
-We can do this together using `year_from1952*country` in the `lm()`:
+These were the two separate models from above (now using `tidy() %>%  mutate() %>%  select()` instead of `summary()`). And this is how we can get to the same coefficients using a single multivariable linear regression model (note the `year_from1952*country`):
 
 ```{r}
 mydata %>% 
@@ -368,102 +424,57 @@ mydata %>%
   tidy() %>%
   mutate(estimate = round(estimate, 2)) %>% 
   select(term, estimate)
-
 ```
 
-Now. It may seem like R has omitted Turkey but the values for Turkey are actually in the Intercept = 46.02 and in year_from1952 = 0.50. 
-Can you make out the intercept and slope for the UK? Are they the same as in the simple linear regression model?
+Now. It may seem like R has omitted Turkey but the values for Turkey are actually in the Intercept = 46.02 and in year_from1952 = 0.50. Can you make out the intercept and slope for the UK? Are they the same as in the simple linear regression model?
 
-### Exercise
+## Exercise 5
 
-Add a third country (e.g. "Portugal") to `filter(country %in% c("Turkey", "United Kingdom"))` in the above example. Do the results change?
+1. Copy the multivariable linear regression model (where "Turkey" and the "United Kingdom" are in the same `lm()` model) from Exercise 4.
 
+2. Include a third country (e.g. "Portugal") in the `filter(country %in% c("Turkey", "United Kingdom", "Portugal"))` to your multivariable linear regression model.
 
-### Optional (Advanced) Exercise
-
-<!-- Replace do() with purrr map() on nested tibbles? Actually, the purrr example is below, maybe just remove the do() then? -->
-
-Run separate linear regression models for every country in the dataset at the same time and putting it all in two neat data frames (one for the coefficients, one for the summary statistics):
+3. Do the results change? How, and why?
 
 ```{r}
-
-
-linfit_coefficients = mydata %>% 
-  group_by(country) %>% 
-  do(
-    tidy(
-      lm(lifeExp~year, data=.)
-    )
-  )
-
-
-linfit_overall = mydata %>% 
-  group_by(country) %>% 
-  do(
-    glance(
-      lm(lifeExp~year, data=.)
-    )
-  )
-
-
+# Exercise 5 - your R code
 ```
 
+## Linear regression diagnostics
 
-Plot the linear regression estimate (improvement per year between 1952 -- 2007), size the points by their r-squared values, and colour the points by continent (hint: you will have to join `mydata`, `linfit_coefficients %>% filter(term == "year")`, and `linfit_overall`):
+Piping a fit object into the Base R's `plot()` function gives us 4 diagnostic plots:
 
-```{r, fig.width=4.5, fig.height=3}
-
-mydata %>% 
-  filter(year == 1952) %>% 
-  full_join(linfit_coefficients %>% filter(term == "year"), by = "country") %>% 
-  full_join(linfit_overall, by = "country") %>% 
-  ggplot(aes(x = lifeExp, y = estimate, colour = continent, size = r.squared)) +
-  geom_point(alpha = 0.6) +
-  theme_bw() +
-  scale_colour_brewer(palette = "Set1") +
-  ylab("Increase in life expectancy per year") +
-  xlab("Life expectancy in 1952")
-
-
+```{r, fig.width=3.8, fig.height=3}
+fit_turkey %>% plot()
 ```
 
+## Exercise 2
 
-## Very advanced example
+Open the first Shiny app ("Simple regression"). Move the sliders until the red lines (residuals*) turn green - this means you've made the line fit the points as well as possible. Look at the intercept and slope - discuss with your neighbour or a tutor what these numbers mean/how they affect the straight line on the plot.
 
-Or you can do the above in a nested tibble/data frame:
-
-```{r}
-nested_linreg = mydata %>% 
-  group_by(country) %>% 
-  nest() %>% 
-  mutate(model = purrr::map(data, ~ lm(lifeExp ~ year, data = .)))
-
-```
+*Residual is how far away each point (observation) is from the linear regression line. (In this example it's the linear regression line, but residuals are relevant in many other contexts as well.)
 
 
 
 ## Solutions
 
-**6.2.2**
+## Exercise 1 solution
 
-```{r, fig.width=5, fig.height=3, eval = FALSE}
-
+```{r}
 mydata %>% 
-  filter(country %in% c("United Kingdom", "Turkey") ) %>% 
-  ggplot(aes(x = year.formatted, y = lifeExp)) +
+  filter(country %in% c("United Kingdom", "Turkey")) %>% 
+  ggplot(aes(x = year, y = lifeExp)) +
   geom_point() +
   facet_wrap(~country) +
   theme_bw() +
+  scale_x_continuous(breaks = c(1960, 1980, 2000)) +
   geom_smooth(method = "lm")
-
-
 ```
 
+## Exercise 5 solution
 
-**6.5.3**
 
-
-```{r, eval = FALSE}
+```{r}
 
 mydata %>% 
   filter(country %in% c("Turkey", "United Kingdom", "Portugal")) %>% 
@@ -474,7 +485,9 @@ mydata %>%
 
 ```
 
-Overall, the estimates for Turkey and the UK do not change, but Portugal becomes the reference (alphabetically first) to which you can subtract or add the relevant lines for Turkey and the UK.
+Overall, the estimates for Turkey and the UK do not change, but Portugal becomes the reference (alphabetically first) and you need to subtract or add the relevant lines for Turkey and UK to get their intercept values.
+
+
 
 
 

@@ -490,7 +490,7 @@ mydata %>%
 
 In R, the exclamation mark (!) means "not".
 
-Sometimes you want to drop a specific value (e.g. an outlier) from the dataset like this. The small example tibble `mydata` has 4 rows, with the values for `var2` as follows: `r mydata$var2`. We can exclude the row where `var2` is equal to 5 by using the "not equals (`!=`)^[ `filter(var2 != 5) is equivalent to filter(! var2 == 5)`]:
+Sometimes you want to drop a specific value (e.g. an outlier) from the dataset like this. The small example tibble `mydata` has 4 rows, with the values for `var2` as follows: `r mydata$var2`. We can exclude the row where `var2` is equal to 5 by using the "not equals" (`!=`)^[ `filter(var2 != 5) is equivalent to filter(! var2 == 5)`]:
 
 ```{r}
 mydata %>% 
@@ -499,7 +499,7 @@ mydata %>%
 
 However, you'll see that by doing this, R drops the rows where `var2` is NA as well, as it can't be sure these missing values were not equal to 5.
 
-If you want to keep missing values, but still drop an outlier, you need to make use of the OR (`|`) operator and the `is.na()` function:
+If you want to keep the missing values, you need to make use of the OR (`|`) operator and the `is.na()` function:
 
 ```{r}
 mydata %>% 

@@ -358,6 +358,18 @@ mydata %>%
     )
 ```
 
+<!-- group_modify option -->
+
+```{r}
+mydata %>% 
+  filter(year == 2007) %>%           # 2007 only
+  group_by(continent) %>%            # split by continent
+  group_modify(                      # dplyr function
+    ~ t.test(.$lifeExp, mu = 77) %>% # compare mean to 77 years 
+      tidy()                         # tidy into tibble
+    )
+```
+
 \index{functions!filter}
 \index{functions!group\_by}
 \index{functions!do}
@@ -739,17 +751,20 @@ asia_years %>%
   t.test(lifeExp ~ year, data = .)
 ```
 
+<!-- Changed to group_modify -->
+
 ```{r}
 # Exercise 3
 ## In 2007, in which continents did mean life expectancy differ from 70
 mydata %>% 
   filter(year == 2007) %>% 
   group_by(continent) %>%
-  do(
-    t.test(.$lifeExp, mu = 70) %>% tidy() # Somtimes awkward in the tidyverse
+  group_modify(
+    ~ t.test(.$lifeExp, mu = 70) %>% tidy() # Somtimes awkward in the tidyverse
   )
 ```
 
+<!-- Changed to group_modify -->
 ```{r}
 # Exercise 4
 ## Use Kruskal-Wallis to determine if the mean population changed 
@@ -764,7 +779,7 @@ mydata %>%
 mydata %>% 
   filter(year >=1990) %>% 
   group_by(continent) %>% 
-  do(
-    kruskal.test(pop ~ factor(year), data = .) %>% tidy()
+  group_modify(
+    ~ kruskal.test(pop ~ factor(year), data = .) %>% tidy()
   )
 ```

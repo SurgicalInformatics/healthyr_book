@@ -31,7 +31,7 @@ This next bit is important!
 These data are made up, fake, randomly generated, fabricated, not real. 
 So please do not alter your coffee habit on the basis of these plots!
 
-```{r chap07-fig-regression, echo = FALSE, fig.cap="The anatomy of a regression plot"}
+```{r chap07-fig-regression, echo = FALSE, fig.cap="The anatomy of a regression plot."}
 knitr::include_graphics("images/chapter07/1_regression_terms.pdf")
 ```
 
@@ -52,7 +52,7 @@ We can square each residual (to get rid of minuses and penalise further away poi
 If this number is as small as possible, the line is fitting as best it can. 
 Or in more formal language, we want to minimise the sum of squared residuals. 
 
-```{r chap07-fig-residuals, echo = FALSE, fig.cap="How a regression line is fitted"}
+```{r chap07-fig-residuals, echo = FALSE, fig.cap="How a regression line is fitted."}
 knitr::include_graphics("images/chapter07/2_residuals.pdf")
 ```
 
@@ -94,33 +94,66 @@ The distribution of the observations around the fitted line should be the same o
 Look at the fan-shaped data on the [simple regression diagnostics shiny app](https://argoshare.is.ed.ac.uk/simple_regression_diagnostics). 
 This should be obvious on the residuals vs. fitted values plot, as well as the histogram and normal Q-Q plot. 
 
-
 This is really all about making sure that the line you draw through your data points is valid.
 It is about ensuring that the regression line is valid across the range of the explanatory variable and dependent variable.
 It is really about understanding the underlying data, rather than relying on a fancy statistical test that gives you a p-value. 
 
-```{r chap07-fig-diags, echo = FALSE, fig.cap="Regression diagnostics"}
+```{r chap07-fig-diags, echo = FALSE, fig.cap="Regression diagnostics."}
 knitr::include_graphics("images/chapter07/3_diags.pdf")
 ```
 
-## Univariable vs multivariable regression
+## The fitted line and the linear equation
 
-```{r chap07-fig-equation, echo = FALSE, fig.cap="How a regression line is fitted"}
-knitr::include_graphics("images/chapter07/4_equation.pdf")
+We promised to keep the equations to a minimum, but this one is so important it needs to be included. But it is easy to understand, so fear not. 
+
+Figure \@ref(fig:chap07-fig-equation) links the fitted line, the linear equation, and the output from R. Some of this will likely be already familiar to you. 
+
+We are staying with our example in thinking about whether coffee influences blood pressure. Remember all of these plots use simulated data. 
+
+
+
+
+
+
+In trying to answer this question using observational data, we have to account for other differences in 
+
+, we usually have to account for other variables which may influence the outcome. 
+
+
+
+Figure \@ref(fig:chap07-fig-equation)A shows a scatter plot with fitted lines from a multivariable linear regression model. The plot is taken from the [multiple regression shiny app](https://argoshare.is.ed.ac.uk/multi_regression/). Remember, these data are simulated and are not real. This app will really help you understand different regression models, more on this below. 
+
+Our plot uses 
+
+```{r chap07-fig-dags, echo = FALSE, fig.cap="Causal pathways, effect modification and confounding."}
+knitr::include_graphics("images/chapter07/4_dags.pdf")
+```
+
+```{r chap07-fig-equation, echo = FALSE, fig.cap="Linking the fitted line, regression equation and R output."}
+knitr::include_graphics("images/chapter07/5_equation.pdf")
 ```
 
 
 ## Effect modification
 Additive
 
-```{r chap07-fig-types, echo = FALSE, fig.cap="How a regression line is fitted"}
-knitr::include_graphics("images/chapter07/5_types.pdf")
+```{r chap07-fig-types, echo = FALSE, fig.cap="Multivariable linear regression with additive and multiplicative effect modification."}
+knitr::include_graphics("images/chapter07/6_types.pdf")
 ```
 
 
 
 ## Interactions
 of multiplicative effect modification. 
+
+## Confounding
+
+```{r chap07-fig-confounding, echo = FALSE, fig.cap="Multivariable linear regression with confounding of coffee drinking by smoking."}
+knitr::include_graphics("images/chapter07/7_confounding.pdf")
+```
+
+
+
 
 ## Get the data
 ## Check the data

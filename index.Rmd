@@ -46,7 +46,7 @@ This work is licensed under the Creative Commons Attribution-NonCommercial-NoDer
 
 ## Why read this book {-}
 
-> We are drowning in information but starved for knowledge. 
+> We are drowning in information but starved for knowledge.  
 > John Naisbitt
 
 In this age of information, the manipulation, analysis and interpretation of data has become paramount. 

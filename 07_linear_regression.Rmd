@@ -233,10 +233,12 @@ A firm grasp of these concepts lead to an easy understanding of other regression
 
 We will now perform all this ourselves in R using a gapminder dataset which you are familiar with from preceding chapters. 
 
-## The Question (2)
+## Fitting simple models
+
+### The Question (2)
 We are interested in modelling the change in life expectancy for different countries over the past 60 years.  
 
-## Get the data
+### Get the data
 ```{r, message=F}
 library(tidyverse)
 library(gapminder) # dataset
@@ -248,7 +250,7 @@ theme_set(theme_bw())
 mydata = gapminder
 ```
 
-## Check the data
+### Check the data
 Always check a new dataset, as described in 06-1 
 <!-- need ref -->
 
@@ -258,9 +260,9 @@ missing_glimpse(mydata) # missing data for each variable
 ff_glimpse(mydata) # summary statistics for each variable
 ```
 
-## Plot the data
+### Plot the data
 
-Let's plot the life expectancies in European countries over the past 60 years.
+Let's plot the life expectancies in European countries over the past 60 years, focussing on the UK and Turkey. 
 
 ```{r, fig.height=7, fig.width=7, fig.cap="Scatterplot: Life expectancy by year in European countries"}
 p = mydata %>%                         # save as object p
@@ -280,11 +282,24 @@ p +
   geom_smooth(method = "lm")
 ```
 
-## Simple linear regression
+### Simple linear regression
 
 As you can see, `ggplot()` is very happy to run and plot linear regression models for us.
 While this is sometimes convenient, we usually want to build, run, and explore these models ourselves. 
 We can then investigate the intercepts and the slope coefficients (linear increase per year):
+
+First let's plot two countries to compare, Turkey and United Kingdom
+
+```{r}
+mydata %>% 
+  filter(country %in% c("Turkey", "United Kingdom")) %>% 
+  ggplot(aes(x = year, y = lifeExp, colour = country)) + 
+  geom_point()
+```
+
+The two non-parallel lines may make you think of what has been discussed above. 
+
+First, let's model the two countries separately. 
 
 United Kingdom:
 ```{r}
@@ -308,11 +323,11 @@ fit_turkey %>%
 
 *Probably covered enough already ->*
 
-## When pipe sends data to the wrong place: use `, data = .` to direct it
+### When pipe sends data to the wrong place: use `, data = .` to direct it
 
 In the code above, the `, data = .` bit is necessary because the pipe usually sends data to the beginning of function brackets. So `mydata %>% lm(lifeExp~year)` would be equivalent to `lm(mydata, lifeExp~year)`. However, this is not an order that `lm()` will accept. `lm()` wants us to specify the variables first (`dependent~explanatory`), and then wants the data these variables are present in. So we have to use the `.` to tell the pipe to send the data to the second argument of `lm()`, not the first.
 
-### Accessing the coefficients of linear regression
+#### Accessing the coefficients of linear regression
 
 A simple linear regression model will return two coefficients - the intercept and the slope (the second returned value). 
 Compare this to the `summary()` output above.
@@ -335,11 +350,11 @@ mydata = mydata %>%
 
 fit_uk = mydata %>%
   filter(country == "United Kingdom") %>% 
-  lm(lifeExp~year_from1952, data = .)
+  lm(lifeExp ~ year_from1952, data = .)
 
 fit_turkey = mydata %>%
   filter(country == "Turkey") %>% 
-  lm(lifeExp~year_from1952, data = .)
+  lm(lifeExp ~ year_from1952, data = .)
 ```
 
 
@@ -355,7 +370,7 @@ fit_turkey$coefficients
 Now, the updated results tell us that in year 1952, the life expectancy in the United Kingdom was 68 years. 
 Note that the slope (0.18) does not change. There was nothing wrong with the original model and the results were correct, the intercept was just not very useful.
 
-### Accesing all model information `tidy()` and `glance()`
+#### Accesing all model information `tidy()` and `glance()`
 
 In the fit_uk and fit_turkey examples above, we were using `fit_uk %>% summary()` to get R to print out a summary of the model. This summary is not, however, in a rectangular shape so we can't easily access the values or put them in a table/use as information on plot labels.
 
@@ -372,8 +387,7 @@ And we use the `glance()` function to get overall model statistics (mostly the r
 fit_uk %>% glance()
 ```
 
-
-## Multivariable linear regression
+### Multivariable linear regression
 
 Multivariable linear regression includes more than one explanatory variable. There are a few ways to include more variables, depending on whether they should share the intercept and how they interact:
 
@@ -394,101 +408,291 @@ This equivalent to:
 
 These examples of multivariable regression include two variables: `year` and `country`, but we could include more by adding them with `+`.
 
-*TO HERE* 
+In this particular setting, it will become obvious which model is appropriate. So we have complete control over the model being fitted, we will use the `predict()` function directly to obtain our fitted line, rather than leaving it up to `ggplot`.  
 
-## Exercise 4
-
-Convince yourself that using an fully interactive multivariable model is the same as running several separate simple linear regression models. Remember that we calculate the life expectancy in 1952 (intercept) and improvement per year (slope) for Turkey and the United Kingdom:
+#### Model 1: year only
 
 ```{r}
-fit_uk %>%
-  tidy() %>%
-  mutate(estimate = round(estimate, 2)) %>% 
-  select(term, estimate)
+mydata_UK_T = mydata %>% 
+  filter(country %in% c("Turkey", "United Kingdom"))
+
+fit_both1 = mydata_UK_T %>% 
+  lm(lifeExp ~ year_from1952, data = .)
+fit_both1
+
+pred_both1 = predict(fit_both1)
+
+mydata_UK_T %>% 
+  bind_cols(pred_both = pred_both1) %>% 
+  ggplot() + 
+  geom_point(aes(x = year, y = lifeExp, colour = country)) +
+  geom_line(aes(x = year, y = pred_both))
 ```
 
+By fitting year only, the model ignores country. This gives us a fitted line which is the average of life expectancy in the UK and Turkey. This may be desirable, depending on the question. But here we want to best describe the data. 
+
+#### Model 2: year + country
+```{r}
+fit_both2 = mydata_UK_T %>% 
+  lm(lifeExp ~ year_from1952 + country, data = .)
+fit_both2
+
+pred_both2 = predict(fit_both2)
+
+mydata_UK_T %>% 
+  bind_cols(pred_both = pred_both2) %>% 
+  ggplot() + 
+  geom_point(aes(x = year, y = lifeExp, colour = country)) +
+  geom_line(aes(x = year, y = pred_both, colour = country))
+```
+
+This is better, by including country in the model, we now have fitted lines better represent the data. However, the lines are constrained to be parallel. This is discussed in detail above. We need to include an interaction term to allow the effect of year on life expectancy to vary by country in a non-additive manner. 
+
+#### Model 3: year * country
 
 ```{r}
-fit_turkey %>%
-  tidy() %>%
-  mutate(estimate = round(estimate, 2)) %>% 
-  select(term, estimate)
+fit_both3 = mydata_UK_T %>% 
+  lm(lifeExp ~ year_from1952 * country, data = .)
+fit_both3
+
+pred_both3 = predict(fit_both3)
+
+mydata_UK_T %>% 
+  bind_cols(pred_both = pred_both3) %>% 
+  ggplot() + 
+  geom_point(aes(x = year, y = lifeExp, colour = country)) +
+  geom_line(aes(x = year, y = pred_both, colour = country))
 ```
 
-These were the two separate models from above (now using `tidy() %>%  mutate() %>%  select()` instead of `summary()`). And this is how we can get to the same coefficients using a single multivariable linear regression model (note the `year_from1952*country`):
+This fits the data much better than the previous two models. You can check the R-squared using `summary(fit_both1)
+
+*Pro tip*
+
+```{r}
+library(purrr)
+list(fit_both1, fit_both2, fit_both3) %>% 
+  map_df(glance, .id = "fit")
+
+```
+
+### Check assumptions
+
+The assumptions of linear regression can be checked with diagnostic plots, either by passing the fitted object (`lm()` output) to base R `plot()`, or by using the more convenient function below. 
+
+```{r}
+library(ggfortify)
+autoplot(fit_both3)
+```
+
+There is no clear problem with the residuals, as we would expect from the scatterplot with fitted lines. 
+
+## Fitting more complex models
+
+### The Question (3)
+
+Finally in this chapter, we are going to fit a more complex linear regression model. Here, we will discuss variable selection and introduce the Akaike Information Criterion (AIC). 
+
+We will introduce a new dataset: The Western Collaborative Grou Study. This classic includes data from 3154 healthy young men aged 39-59 from the San Francisco area who were assessed for their personality type. It aimed to capture the occrunce of coronary heart disease over the following 8.5 years. 
+
+We will use it however to explore the relationship between systolic blood pressure (`sbp`), weight (`weight`) and personality type (`personality_2L`). 
+
+Personality type is A: aggressive and B: passive. 
+
+### AIC
+
+The Akaike Information Criterion (AIC) is an alternative goodness-of-fit measure. In that sense, it is similar to the R-squared, but has a different statistical basis. It is useful because it can be used to help guide the best fit in generalised linear models such as logistic regression (ref: chapter 9). It is based on the likelihood but is also penalised for the number of variables present in the model. We aim to have as small an AIC as possible. 
+
+### Model fitting principles
+
+Our 4/5 principles here. 
+
+### Get the data
+
+```{r}
+mydata = finalfit::wcgs #F1 here for details
+```
+
+### Check the data
+```{r eval=FALSE}
+library(dplyr)
+library(finalfit)
+glimpse(mydata) # each variable as line, variable type, first values
+missing_glimpse(mydata) # missing data for each variable
+ff_glimpse(mydata) # summary statistics for each variable
+```
+
+### Plot the data
+
+```{r, echo = FALSE}
+mykable = function(x, ...){
+  knitr::kable(x, row.names = FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r", "r"), 
+               booktabs = TRUE, ...)
+}
+```
 
 ```{r}
 mydata %>% 
-  filter(country %in% c("Turkey", "United Kingdom")) %>% 
-  lm(lifeExp ~ year_from1952*country, data = .)   %>% 
-  tidy() %>%
-  mutate(estimate = round(estimate, 2)) %>% 
-  select(term, estimate)
-```
-
-Now. It may seem like R has omitted Turkey but the values for Turkey are actually in the Intercept = 46.02 and in year_from1952 = 0.50. Can you make out the intercept and slope for the UK? Are they the same as in the simple linear regression model?
-
-## Exercise 5
-
-1. Copy the multivariable linear regression model (where "Turkey" and the "United Kingdom" are in the same `lm()` model) from Exercise 4.
-
-2. Include a third country (e.g. "Portugal") in the `filter(country %in% c("Turkey", "United Kingdom", "Portugal"))` to your multivariable linear regression model.
-
-3. Do the results change? How, and why?
-
-```{r}
-# Exercise 5 - your R code
-```
-
-## Linear regression diagnostics
-
-Piping a fit object into the Base R's `plot()` function gives us 4 diagnostic plots:
-
-```{r, fig.width=3.8, fig.height=3}
-fit_turkey %>% plot()
-```
-
-## Exercise 2
-
-Open the first Shiny app ("Simple regression"). Move the sliders until the red lines (residuals*) turn green - this means you've made the line fit the points as well as possible. Look at the intercept and slope - discuss with your neighbour or a tutor what these numbers mean/how they affect the straight line on the plot.
-
-*Residual is how far away each point (observation) is from the linear regression line. (In this example it's the linear regression line, but residuals are relevant in many other contexts as well.)
-
-
-
-## Solutions
-
-## Exercise 1 solution
-
-```{r}
-mydata %>% 
-  filter(country %in% c("United Kingdom", "Turkey")) %>% 
-  ggplot(aes(x = year, y = lifeExp)) +
+  ggplot(aes(y = sbp, x = weight, 
+             colour = personality_2L)) +   # Personality type
   geom_point() +
-  facet_wrap(~country) +
-  theme_bw() +
-  scale_x_continuous(breaks = c(1960, 1980, 2000)) +
-  geom_smooth(method = "lm")
+  geom_smooth(method = "lm", se = FALSE)
 ```
 
-## Exercise 5 solution
+From this plot we can see that there is a weak relationship between weight and blood pressure. In addition, there is really no meaningful effect of personality type on blood pressure. This is important, because as you will see below, we are about to find statistically significant effects in a model. 
+
+### Linear regression with Finalfit
+
+Finalfit is our own package and provides a convenient set of functions for fitting regression models with results presented in final tables.
+
+```{r}
+dependent = "sbp"
+explanatory = "weight"
+fit_sbp1 = mydata %>% 
+  finalfit(dependent, explanatory, metrics = TRUE)
+```
+
+```{r, echo=FALSE}
+fit_sbp1[[1]] %>% mykable()
+fit_sbp1[[2]] %>% mykable(col.names = "")
+```
+
+```{r}
+dependent = "sbp"
+explanatory = c("weight", "personality_2L")
+fit_sbp2 = mydata %>% 
+  finalfit(dependent, explanatory, metrics = TRUE)
+```
+
+```{r, echo=FALSE}
+fit_sbp2[[1]] %>% mykable()
+fit_sbp2[[2]] %>% mykable(col.names = "")
+```
 
 
 ```{r}
-
-mydata %>% 
-  filter(country %in% c("Turkey", "United Kingdom", "Portugal")) %>% 
-  lm(lifeExp ~ year_from1952*country, data = .)   %>% 
-  tidy() %>%
-  mutate(estimate = round(estimate, 2)) %>% 
-  select(term, estimate)
-
+dependent = "sbp"
+explanatory = c("weight", "personality_2L", "age", "height", "chol", "smoking") 
+fit_sbp3 = mydata %>% 
+  finalfit(dependent, explanatory, metrics = TRUE)
 ```
 
-Overall, the estimates for Turkey and the UK do not change, but Portugal becomes the reference (alphabetically first) and you need to subtract or add the relevant lines for Turkey and UK to get their intercept values.
+```{r, echo=FALSE}
+fit_sbp3[[1]] %>% mykable()
+fit_sbp3[[2]] %>% mykable(col.names = "")
+```
+
+
+```{r}
+dependent = "sbp"
+explanatory = c("weight", "personality_2L", "age", "height", "chol", "smoking") 
+explanatory_multi = c("weight", "personality_2L", "age", "height", "chol") 
+fit_sbp4 = mydata %>% 
+  finalfit(dependent, explanatory, 
+           explanatory_multi, 
+           keep_models = TRUE, metrics = TRUE)
+```
+
+```{r, echo=FALSE}
+fit_sbp4[[1]] %>% mykable()
+fit_sbp4[[2]] %>% mykable(col.names = "")
+```
+
+More to add for each step above.
+
+An important message here relates to the highly significant p-values in the table above. 
+Should we conclude that in a "multivariable regression model controlling for weight, height, age, serum cholesterol levels and smoking status, blood pressure was significantly elevated in those with a Type A personality (1.44 (95% CI 0.44 to 2.43, p=0.005) compared with Type B. 
+The p-value looks impressive, but the actual difference in blood pressure is only 1.4 mmHg. 
+Even at a population level, that seems unlikely to be clinically significant. 
+Which fits with our first thoughts when we saw the scatter plot. 
+
+
+<!-- ## Exercise 5 -->
+
+<!-- 1. Copy the multivariable linear regression model (where "Turkey" and the "United Kingdom" are in the same `lm()` model) from Exercise 4. -->
+
+<!-- 2. Include a third country (e.g. "Portugal") in the `filter(country %in% c("Turkey", "United Kingdom", "Portugal"))` to your multivariable linear regression model. -->
+
+<!-- 3. Do the results change? How, and why? -->
+
+<!-- ```{r} -->
+<!-- # Exercise 5 - your R code -->
+<!-- ``` -->
+
+
+<!-- ## Exercise 2 -->
+
+<!-- Open the first Shiny app ("Simple regression"). Move the sliders until the red lines (residuals*) turn green - this means you've made the line fit the points as well as possible. Look at the intercept and slope - discuss with your neighbour or a tutor what these numbers mean/how they affect the straight line on the plot. -->
+
+<!-- *Residual is how far away each point (observation) is from the linear regression line. (In this example it's the linear regression line, but residuals are relevant in many other contexts as well.) -->
+
+
+
+<!-- ## Solutions -->
+
+<!-- ## Exercise 1 solution -->
+
+<!-- ```{r} -->
+<!-- mydata %>%  -->
+<!--   filter(country %in% c("United Kingdom", "Turkey")) %>%  -->
+<!--   ggplot(aes(x = year, y = lifeExp)) + -->
+<!--   geom_point() + -->
+<!--   facet_wrap(~country) + -->
+<!--   theme_bw() + -->
+<!--   scale_x_continuous(breaks = c(1960, 1980, 2000)) + -->
+<!--   geom_smooth(method = "lm") -->
+<!-- ``` -->
+
+<!-- ## Exercise 5 solution -->
+
+
+<!-- ```{r} -->
+
+<!-- mydata %>%  -->
+<!--   filter(country %in% c("Turkey", "United Kingdom", "Portugal")) %>%  -->
+<!--   lm(lifeExp ~ year_from1952*country, data = .)   %>%  -->
+<!--   tidy() %>% -->
+<!--   mutate(estimate = round(estimate, 2)) %>%  -->
+<!--   select(term, estimate) -->
+
+<!-- ``` -->
+
+<!-- Overall, the estimates for Turkey and the UK do not change, but Portugal becomes the reference (alphabetically first) and you need to subtract or add the relevant lines for Turkey and UK to get their intercept values. -->
 
 
 
 
 
+
+
+<!-- ## Exercise 4 -->
+
+<!-- Convince yourself that using an fully interactive multivariable model is the same as running several separate simple linear regression models. Remember that we calculate the life expectancy in 1952 (intercept) and improvement per year (slope) for Turkey and the United Kingdom: -->
+
+<!-- ```{r} -->
+<!-- fit_uk %>% -->
+<!--   tidy() %>% -->
+<!--   mutate(estimate = round(estimate, 2)) %>%  -->
+<!--   select(term, estimate) -->
+<!-- ``` -->
+
+
+<!-- ```{r} -->
+<!-- fit_turkey %>% -->
+<!--   tidy() %>% -->
+<!--   mutate(estimate = round(estimate, 2)) %>%  -->
+<!--   select(term, estimate) -->
+<!-- ``` -->
+
+<!-- These were the two separate models from above (now using `tidy() %>%  mutate() %>%  select()` instead of `summary()`). And this is how we can get to the same coefficients using a single multivariable linear regression model (note the `year_from1952*country`): -->
+
+<!-- ```{r} -->
+<!-- mydata %>%  -->
+<!--   filter(country %in% c("Turkey", "United Kingdom")) %>%  -->
+<!--   lm(lifeExp ~ year_from1952 * country, data = .)   %>%  -->
+<!--   tidy() %>% -->
+<!--   mutate(estimate = round(estimate, 2)) %>%  -->
+<!--   select(term, estimate) -->
+<!-- ``` -->
+
+<!-- Now. It may seem like R has omitted Turkey but the values for Turkey are actually in the Intercept = 46.02 and in year_from1952 = 0.50. Can you make out the intercept and slope for the UK? Are they the same as in the simple linear regression model? -->
 

@@ -10,7 +10,12 @@ You will need to recode these numbers into proper factors.
 library(tidyverse)
 library(finalfit)
 library(broom)
+library(knitr)
+library(kableExtra)
 mydata = boot::melanoma
+head(mydata) %>% 
+ kable(booktabs = TRUE) %>% 
+ kable_styling(font_size = 7)
 
 ```
 

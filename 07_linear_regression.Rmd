@@ -526,7 +526,8 @@ ff_glimpse(mydata) # summary statistics for each variable
 ```{r, echo = FALSE}
 mykable = function(x, ...){
   knitr::kable(x, row.names = FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r", "r"), 
-               booktabs = TRUE, ...)
+               booktabs = TRUE, caption = "CAPTION", ...) %>% 
+    kableExtra::kable_styling(font_size = 6)
 }
 ```
 

@@ -14,7 +14,7 @@ library(knitr)
 library(kableExtra)
 mydata = boot::melanoma
 head(mydata) %>% 
- kable(booktabs = TRUE) %>% 
+ kable(booktabs = TRUE, caption = "CAPTION") %>% 
  kable_styling(font_size = 7)
 
 ```

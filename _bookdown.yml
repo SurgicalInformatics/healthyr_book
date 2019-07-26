@@ -20,4 +20,22 @@ output_dir: "docs"
 #rmd_files: ["index.Rmd", "08_tests_categorical.Rmd"]
 #rmd_files: ["index.Rmd", "09_logistic_regression.Rmd"]
 #rmd_files: ["index.Rmd", "10_survival.Rmd"]
+# rmd_files: ["index.Rmd",
+#             "01_first_interaction.Rmd",
+#             "02_basics.Rmd",
+#             "03_summarising.Rmd",
+#             "04_plotting.Rmd",
+#             "05_fine_tuning_plots.Rmd",
+#             "06_tests_continuous.Rmd",
+#             "07_linear_regression.Rmd",
+#             "08_tests_categorical.Rmd",
+#             "09_logistic_regression.Rmd",
+#             "10_survival.Rmd",
+#             "11_notebooks.Rmd",
+#             "12_missing_data.Rmd",
+#             "13_encryption.Rmd",
+#             "14_version_control.Rmd",
+#             "15_exporting.Rmd",
+#             "16_rstudio_settings.Rmd"
+#             ]
 

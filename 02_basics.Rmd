@@ -78,7 +78,7 @@ Second, and more important, we can put arguments in these brackets.
 Arguments can also be thought of as input, and in data analysis, the most common input for a function is data: we need to give `mean()` some data to average over. 
 It does not make sense (nor will it work) to feed it the whole tibble that has multiple columns, including patient IDs and a categorical variable (`sex`). 
 To quickly extract a single column, we use the `$` symbol like this:
-
+\index{symbols@\textbf{symbols}!select column \texttt{\$}}
 ```{r}
 mydata$var1
 ```
@@ -150,6 +150,7 @@ In our `mean()` examples above, the input object was a column (`mydata$var1`: `r
 ## Working with Objects
 
 To create a new object into our Environment we use the equals sign:
+\index{symbols@\textbf{symbols}!assignment \texttt{=}}
 
 ```{r}
 a = 103
@@ -198,6 +199,7 @@ example_sequence
 
 ## Pipe - `%>%` 
 
+\index{symbols@\textbf{symbols}!pipe \texttt{\%>\%}}
 The pipe - denoted `%>%` - is probably the oddest looking thing you'll see in this book. But please bear with, it is not as scary as it looks! Furthermore, it is super useful. We use the pipe to send objects into functions.
 
 In the above examples, we calculated the mean of column `var1` from `mydata` by `mean(mydata$var1)`. With the pipe, we can rewrite this as:
@@ -337,6 +339,14 @@ p1/p2 + plot_annotation(tag_levels = "A")
 \clearpage
 
 ## Operators for filtering data
+\index{symbols@\textbf{symbols}!less than \texttt{<}}
+\index{symbols@\textbf{symbols}!greater than \texttt{>}}
+\index{symbols@\textbf{symbols}!less or equal \texttt{<=}}
+\index{symbols@\textbf{symbols}!greater or equal \texttt{>=}}
+\index{symbols@\textbf{symbols}!equal \texttt{=}}
+\index{symbols@\textbf{symbols}!not \texttt{"!}}
+\index{symbols@\textbf{symbols}!AND \texttt{\&}}
+\index{symbols@\textbf{symbols}!OR \texttt{"|}}
 
 Operators are symbols that tell R how to handle different pieces of data or objects.
 We have already introduced three: `$` (selects a column), `=` (assignes values or results to a variable), and the pipe - `%>%` (sends data into a function).
@@ -415,18 +425,6 @@ testdata %>%
 
 ```
 
-| Symbol  | What does  | Example  | Example result|
-|-------- | ---------  | -------- |-------|
-| `%>% `   | sends data into a function | `x %>% print()` | 2 |
-| `::`     | indicates package | `dplyr::count()` | `count()` fn. from the `dplyr` package|
-| `->`            | assigns | `2 -> x` | the value of x is now 2 |
-
-| `%in%`          | is value in list | `x %in% c(1,2,3)` | TRUE |
-| `$`             | select a column | `mydata$year` | 1990,1996,...|
-| `c()`           | combines values | `c(1, 2)`     | 1, 2 |
-| `#`               | comment| `#Riinu changed this` | ignored by R   |
-
-
 
 ### Worked examples
 
@@ -458,6 +456,11 @@ new_data_selection = gbd_short %>%
   filter(cause == "Communicable diseases")
 ```
 
+\index{symbols@\textbf{symbols}!comment \texttt{\#}}
+The hash symbol (`#`) is used to add free text comments to R code. R will not try to run these lines, they will be ignored.
+Comments are an essential part of any programming code - these are notes for your future self on what and why you did.
+
+
 ## Missing values (NAs) and filters
 
 Filtering for missing values (NAs) needs your special attention and care.
@@ -481,7 +484,7 @@ We send `mydata` to the filter and keep rows where `var2` is `NA`.
 Note the double brackets at the end: that's because the inner one belongs to `is.na()`, and the outer one to `filter()`.
 Missing out a closing bracket is also a very common source of (minor, easily fixed) mistakes, and it still happens to the best of us.
 
-If filtering for rows where `var2` is not missing, we do this:
+If filtering for rows where `var2` is not missing, we do this^[In this simple example, `mydata %>% filter(! is.na(var2))` could be replace by a shorthand: `mydata %>% drop_na(var2)`, but it is important to understand how the ! and `is.na()` work as there will be more complex situations where using these is neccessary.]
 
 ```{r}
 mydata %>% 
@@ -545,19 +548,86 @@ Asking R whether adding these two up equals the original size:
 nrow(subset1) + nrow(subset2) == nrow(mydata)
 ```
 
+As expected, this returns FALSE - because we didn't add special handling for missing values.
+Let's create a third subset only including rows where `var3` is NA:
 
-
-## Types of variables
-
+Rows in `subset2`:
 ```{r}
+subset3 = mydata %>% 
+  filter(is.na(var2))
 
-mydata = gbd_short
+nrow(subset1) + nrow(subset2) + nrow(subset3) == nrow(mydata)
 ```
 
 
-**consider structuring as per here: https://finalfit.org/articles/data_prep.html - AGREED, will do asap**
 
-Like many other types of statistical software, R needs to know the variable type of each column. The main types are:
+## Types of variables
+```{r}
+mydata  = gbd_short
+```
+
+There are three broad types of data: 
+
+* continuous (numbers), in R: double or integer; 
+* categorical, in R: character, factor or logical (TRUE/FALSE); 
+* date/time, in R: POSIXct date-time^[Portable Operating System Interface (POSIX) is a set of computing standards. There's nothing more we need to understand about this other than when R starts shouting "POSIXct this and POSIXlt that" at you, check your date and time variables].
+
+
+Values within a column all have to be the same type, but a tibble can of course hold columns of different types.
+Generally, R is very good at figuring out what the type your data is (in programming, this 'figuring out' is called 'parsing').
+For example, when reading in data, it will tell you what it assumed for the columns:
+
+```{r}
+typesdata = read_csv("data/typesdata.csv")
+
+typesdata
+```
+
+This means that a lot of the time you do not have to worry about those little <chr> vs <dbl> vs <POSIXct> labels, R knows what its doing.
+But in cases of irregular or faulty input data, or when doing a lot of calculations and modifications your data, we need to be aware of these different types to be able to find and fix mistakes.
+
+For example, consider a very similar file as above but with a couple of data entry issues:
+
+```{r}
+typesdata_faulty = read_csv("data/typesdata_faulty.csv")
+
+typesdata_faulty
+```
+
+Notice R now parsed both measurement and date as characters. The first one is a data entry issue: the person taking the measurement couldn't decide which value to note down (maybe the scale was shifting between the two values) so they included both values and text "or" in the cell. A will also get parsed as a categorical variable because of a small typo, e.g. if entered as "3..7" instead of "3.7".
+
+>Since health data is generally full of categorical data, it is crucial that you understand the difference between characters and factors (both are types of categorical variables in R with their pros and cons).
+
+So here we go.
+
+### Continuous variables - numbers
+
+Self-explanatory! These are numbers. 
+Numbers without decimal places are sometimes called integers. 
+
+
+```{r}
+sqrt(2)*sqrt(2) == 2
+near(sqrt(2)*sqrt(2), 2)
+
+1/3 == 0.3333333
+
+near(0.00012, 0.00013, tol = 0.000001)
+
+print(2, digits = 18)
+
+print(sqrt(2)*sqrt(2), digits = 22)
+print(sqrt(2), digits = 22)
+
+c(2, 4, 5) %>% mean() %>% print(digits = 22)
+
+(11/3) %>% print(digits = 22)
+
+(c(2, 4, 5) %>% mean()) == 11/3
+
+```
+
+
 
 ### Characters
 
@@ -586,21 +656,25 @@ These can be huge benefits, especially as a lot of medical data analyses include
 Nevertheless, the fussiness of factors can sometimes be unhelpful or even frustrating. 
 For example, if you really did want to add a new level to your `gender` column (e.g., "Prefer not to say") you will either have to convert the column to a character, add it, and convert it back to a factor, or use `fct_expand` to add the level and then add your new line.
 
-#### Exercise
+### Date/time variables
 
-Temporarily type `fct_inorder` anywhere in your script, then press F1. 
-Read the **Description** in the Help tab and discuss with your neighbour how `fct_inorder` and `fct_infreq` would order your factor levels.
+### Coercion
 
-
-### Numbers
-
-Self-explanatory! 
-These are numbers. 
-In R, we specify these using the `as.numeric()` function. 
-Numbers without decimal places are sometimes called integers. 
-Click on the blue arrow in front of `mydata` in the Environment tab and see that `year` is an `int` (integer) whereas `deaths` is a `num` (numeric).
+### When data doesn't come in the right way
 
 
+```{r, message = FALSE}
+library(lubridate)
+```
+
+```{r}
+typesdata_faulty = read_csv("data/typesdata_faulty.csv")
+
+typesdata_faulty %>% 
+  mutate(date1 = ymd_hm(date),
+         date2 = dmy_hm(date)) %>% 
+  select(date, date1, date2)
+```
 
 
 ### Specifying variable types

@@ -129,7 +129,7 @@ R is case sensitive, so it has look exactly how the function expects it, so `na.
 There is, however, no need to memorise how the arguments of functions are exactly spelled - this is what the Help tab (press `F1` when the cursor is on the name of the function) can remind you of. 
 Functions' help pages are built into R, so an internet connection is not required for this.
 
-> Make sure to separate multiple arguments with commas, or R will give you an error of `Error: unexpected symbol`.
+> Make sure to separate multiple arguments with commas or R will give you an error of `Error: unexpected symbol`.
 
 Finally, some functions do not need any arguments to work.
 A good example is the `Sys.time()` which returns the current time and date. 
@@ -230,6 +230,9 @@ mean_result = mydata$var1 %>% mean()
 knitr::include_graphics("images/chapter02/magrittr.png")
 ```
 
+### When pipe sends data to the wrong place: use `, data = .` to direct it
+
+The pipe usually sends data to the beginning of function brackets (as most of the functions we use expect data as the first argument). So `mydata %>% lm(dependent~explanatory)` is equivalent to `lm(mydata, dependent~explanatory)`. However, this is not an order that `lm()` expects. `lm()` wants us to specify the variables first (`dependent~explanatory`), and then wants the data these variables are present in. So we have to use the `.` to tell the pipe to send the data to the second argument of `lm()`, not the first.
 
 ## Reading data into R
 
@@ -275,7 +278,7 @@ Yes, this will read in your dataset once, but means you have to redo the selecti
 Do copy-paste the code it gives you (e.g., Figure \@ref(fig:chap02-fig-import-code)) into your R script - this way you can use it over and over again. 
 Making sure all steps are recorded in scripts makes your workflow reproducible by your future self, colleagues, supervisors, extraterrestrials. 
 
->The `Import Dataset` can also help you to read in Excel, SPSS, Stata, or SAS files (instead of read_csv(), it will give you `read_excel()`, `read_sav()`, `read_stata()`, or `read_sas()).
+>The `Import Dataset` button can also help you to read in Excel, SPSS, Stata, or SAS files (instead of `read_csv()`, it will give you `read_excel()`, `read_sav()`, `read_stata()`, or `read_sas()`).
 
 If you've used R before or are trying to make sense of legacy scripts passed on to you by colleagues, you might see `read.csv()` rather than `read_csv()`. In short: `read_csv()` is faster and better, and in all new scripts that's what you should use. But in existing scripts that work and are tested, do not just start replacing `read.csv()` with `read_csv()`. The thing is, `read_csv()` handles categorical variables slightly differently ^[It does not silently convert strings to factors, i.e., it defaults to `stringsAsFactors = FALSE`. For those not familiar with the terminology here - don't worry, we will cover this in just a few sections.]. This means that an R script written using the `read.csv()` might not work as expected any more if just replaced with `read_csv()`.
 
@@ -292,7 +295,7 @@ Global Burden of Disease Study 2017 (GBD 2017) Results.
 Seattle, United States: Institute for Health Metrics and Evaluation (IHME), 2018.
 Available from http://ghdx.healthdata.org/gbd-results-tool.]
 
-GBD data are publicly available from their website. Table \@ref(tab:chap2-tab-gbd) and Figure \@ref(fig:chap2-fig-gbd) show a very high level version of the propject's data with just 3 variables: cause, year, deaths (number of people who die of each cause every year). Later, we will be using a longer dataset with different subgroups and we will show you how to summarise comprehensive datasets yourself.
+GBD data are publicly available from their website. Table \@ref(tab:chap2-tab-gbd) and Figure \@ref(fig:chap2-fig-gbd) show a very high level version of the project's data with just 3 variables: cause, year, deaths (number of people who die of each cause every year). Later, we will be using a longer dataset with different subgroups and we will show you how to summarise comprehensive datasets yourself.
 
 ```{r, message=F}
 library(tidyverse)
@@ -304,9 +307,9 @@ gbd_short %>%
   mutate(deaths = prettyNum(deaths, big.mark = ",")) %>% 
   knitr::kable(booktabs = TRUE,
                linesep = c("", "", "\\addlinespace"),
-               align = c("l", "c", "r"),
+               align = c("l", "c", "r", "l", "c", "r"),
                caption = "Deaths per year from three broad disease categories (short version of the Global Burden of Disease example dataset).") %>% 
-  kableExtra::kable_styling(font_size=8)
+  kableExtra::kable_styling(latex_options = c("scale_down", "hold_position"))
 ```
 
 ```{r chap2-fig-gbd, echo = FALSE, fig.cap="Causes of death from the Global Burden of Disease dataset (Table \\@ref(tab:chap2-tab-gbd)). Data on (B) is the same as (A) but stacked to show the total (sum) of all causes.", fig.height=6, fig.width=6}
@@ -349,13 +352,13 @@ p1/p2 + plot_annotation(tag_levels = "A")
 \index{symbols@\textbf{symbols}!OR \texttt{"|}}
 
 Operators are symbols that tell R how to handle different pieces of data or objects.
-We have already introduced three: `$` (selects a column), `=` (assignes values or results to a variable), and the pipe - `%>%` (sends data into a function).
+We have already introduced three: `$` (selects a column), `=` (assigns values or results to a variable), and the pipe - `%>%` (sends data into a function).
 
 Other common operators are the ones we use for filtering data - these are called comparison and logical operators.
 This may be for creating subgroups, or for excluding outliers or incomplete cases.
 
 The comparison operators that work with numeric data are relatively straightforward: `>, <, >=, <=`.
-The first two check whether your values are greater or less than another value, the last two check for "greater than or equal to" and "less than or equal to. These opreators are most commonly spotted inside the `filter()` function:
+The first two check whether your values are greater or less than another value, the last two check for "greater than or equal to" and "less than or equal to. These operators are most commonly spotted inside the `filter()` function:
 
 ```{r}
 gbd_short %>% 
@@ -378,7 +381,7 @@ gbd_short %>%
   filter(year == 1995)
 ```
 
-Accidentally using the single equals (`=` so the assignment operator) is a very common mistake and still ocasionally happens to the best of us.
+Accidentally using the single equals (`=` so the assignment operator) is a very common mistake and still occasionally happens to the best of us.
 In fact, it happens so often that the error the `filter()` function gives when using the wrong one also reminds us what the correct one was
 
 ```{r, error = TRUE}
@@ -484,7 +487,7 @@ We send `mydata` to the filter and keep rows where `var2` is `NA`.
 Note the double brackets at the end: that's because the inner one belongs to `is.na()`, and the outer one to `filter()`.
 Missing out a closing bracket is also a very common source of (minor, easily fixed) mistakes, and it still happens to the best of us.
 
-If filtering for rows where `var2` is not missing, we do this^[In this simple example, `mydata %>% filter(! is.na(var2))` could be replace by a shorthand: `mydata %>% drop_na(var2)`, but it is important to understand how the ! and `is.na()` work as there will be more complex situations where using these is neccessary.]
+If filtering for rows where `var2` is not missing, we do this^[In this simple example, `mydata %>% filter(! is.na(var2))` could be replace by a shorthand: `mydata %>% drop_na(var2)`, but it is important to understand how the ! and `is.na()` work as there will be more complex situations where using these is necessary.]
 
 ```{r}
 mydata %>% 
@@ -509,7 +512,7 @@ mydata %>%
   filter(var2 != 5 | is.na(var2))
 ```
 
-Being caught out by missing values, either in filters or other functions is very common (remember mydata$var2 %>% mean() returns NA unless you add `na.rm = TRUE`). This is also why we insist that you always plot your data first - outliers will reveal themselves and NA values usually become obivious too.
+Being caught out by missing values, either in filters or other functions is very common (remember mydata$var2 %>% mean() returns NA unless you add `na.rm = TRUE`). This is also why we insist that you always plot your data first - outliers will reveal themselves and NA values usually become obvious too.
 
 Another thing we do to stay safe around filters and missing values is saving the results and making sure the number of rows still add up:
 
@@ -561,16 +564,17 @@ nrow(subset1) + nrow(subset2) + nrow(subset3) == nrow(mydata)
 
 
 
-## Types of variables
+## Variable types and why do we care
+
 ```{r}
 mydata  = gbd_short
 ```
 
 There are three broad types of data: 
 
-* continuous (numbers), in R: double or integer; 
-* categorical, in R: character, factor or logical (TRUE/FALSE); 
-* date/time, in R: POSIXct date-time^[Portable Operating System Interface (POSIX) is a set of computing standards. There's nothing more we need to understand about this other than when R starts shouting "POSIXct this and POSIXlt that" at you, check your date and time variables].
+* continuous (numbers), in R: numeric, double, or integer; 
+* categorical, in R: character, factor, or logical (TRUE/FALSE); 
+* date/time, in R: POSIXct date-time^[Portable Operating System Interface (POSIX) is a set of computing standards. There's nothing more to understand about this other than when R starts shouting "POSIXct this and POSIXlt that" at you, check your date and time variables].
 
 
 Values within a column all have to be the same type, but a tibble can of course hold columns of different types.
@@ -583,7 +587,7 @@ typesdata = read_csv("data/typesdata.csv")
 typesdata
 ```
 
-This means that a lot of the time you do not have to worry about those little <chr> vs <dbl> vs <POSIXct> labels, R knows what its doing.
+This means that a lot of the time you do not have to worry about those little `<chr>` vs `<dbl>` vs `<S3: POSIXct>` labels, R knows what its doing.
 But in cases of irregular or faulty input data, or when doing a lot of calculations and modifications your data, we need to be aware of these different types to be able to find and fix mistakes.
 
 For example, consider a very similar file as above but with a couple of data entry issues:
@@ -594,73 +598,140 @@ typesdata_faulty = read_csv("data/typesdata_faulty.csv")
 typesdata_faulty
 ```
 
-Notice R now parsed both measurement and date as characters. The first one is a data entry issue: the person taking the measurement couldn't decide which value to note down (maybe the scale was shifting between the two values) so they included both values and text "or" in the cell. A will also get parsed as a categorical variable because of a small typo, e.g. if entered as "3..7" instead of "3.7".
+Notice R now parsed both measurement and date as characters. The first one is a data entry issue: the person taking the measurement couldn't decide which value to note down (maybe the scale was shifting between the two values) so they included both values and text "or" in the cell. A will also get parsed as a categorical variable because of a small typo, e.g., if entered as "3..7" instead of "3.7". And the reason R didn't automatically make sense of the date column is that it can't know whether which one is the month and which one year: __02-Jan-17__ could stand for _02-Jan-2017_ as well as _2002-Jan-17_.
 
->Since health data is generally full of categorical data, it is crucial that you understand the difference between characters and factors (both are types of categorical variables in R with their pros and cons).
+Therefore, while a lot of the time you do not have to worry about variable types and can just get on with your analysis, but it is important to understand what the different types are to be ready to deal with them when issues arise. 
+
+>Furthermore, since health data is generally full of categorical data, it is crucial that you do understand the difference between characters and factors (both are types of categorical variables in R with their pros and cons).
 
 So here we go.
 
-### Continuous variables - numbers
+## Numbers
 
-Self-explanatory! These are numbers. 
-Numbers without decimal places are sometimes called integers. 
+Number are generally very straightforward to handle and don't cause a lot of trouble. 
+R usually refers to numbers as `numeric` (or `num`), but sometimes it really gets its nerd on and also calls numbers `integer` or `double`.
+^[ Integers are numbers without decimal places (e.g., `1, 2, 3`), whereas `double` stands for "Double-precision floating-point" format (e.g., `1.234, 5.67890`).] 
+It doesn't usually matter whether R is classifying your continuous data `numeric/num/double/int`, but it is good to be aware of these different terms as you will see them in R messages.
+
+> FRIENDLY WARNING: What's about to follow is a bit dry. Furthermore, ist is not essential for complete beginners - you might want to continue reading from __Categorical variables - characters__.
+Before you leave, take a mental note that sometimes numbers in R have more decimal places than it seems, and that can cause issues when using the double equals operator (`==`).
+
+One minor thing to note about numbers is that sometimes R doesn't print all of the decimal places.
+For example, from the `typedata` tibble, we're taking the `measurement` column and sending it to the `mean()` function. 
+R then calculates the mean and tells us what it is using 6 decimal places:
 
 
 ```{r}
-sqrt(2)*sqrt(2) == 2
-near(sqrt(2)*sqrt(2), 2)
+typesdata$measurement %>% mean()
+```
+Let' save that in a new object:
 
-1/3 == 0.3333333
+```{r}
+measurement_mean = typesdata$measurement %>% mean()
+```
 
-near(0.00012, 0.00013, tol = 0.000001)
+But when using the double equals operator to check if this is equivalent to a fixed value (you might do this when comparing to a threshold, or even another mean value), R returns `FALSE`:
 
-print(2, digits = 18)
+```{r}
+measurement_mean == 3.333333
+```
 
-print(sqrt(2)*sqrt(2), digits = 22)
-print(sqrt(2), digits = 22)
+Now this doesn't seem right, does it - R clearly told us just above that the mean of this variable is 3.333333 (reminder: the actual values in the measurement column are `r typesdata$measurement`). 
+The reason the above statement is `FALSE` is because `measurement_mean` is quietly holding more than 6 decimal places.
+ 
+One way to go about this is to round the mean to a reasonable number of decimal places:
 
-c(2, 4, 5) %>% mean() %>% print(digits = 22)
+```{r}
+round(measurement_mean, 3)
+```
 
-(11/3) %>% print(digits = 22)
+The second argument of `round()` specifies the number of decimal places you want your number(s) rounded to.
+So when using `round()` in the equality statement like this, we get the expected `TRUE`:
 
-(c(2, 4, 5) %>% mean()) == 11/3
+```{r}
+round(measurement_mean, 3) == 3.333
+```
+
+
+Which is usually fine, especially if you've finished applying calculations on that number. 
+But when you indent to use it if further calculations, then rounding should be left to the very end - to minimise rounding errors. 
+This is where the `near()` function comes in handy:
+
+```{r}
+library(tidyverse)
+near(measurement_mean, 3.333, 0.001)
+```
+
+The first two arguments for `near()` are the numbers you are comparing, the third argument is the precision you are interested in. So if the numbers are equal within that precision, it returns `TRUE`. This means you get the expected result without having to round the numbers off.
+
+## Characters
+
+**Characters** (sometimes referred to as *strings* or *character strings*) in R are letters, words, or even whole sentences (an example of this may be free text comments). 
+Characters are displayed in-between `""` (or `''`).
+
+A useful way to investigate a categorical variable are the `unique()` and `n_distinct()` functions:
+
+```{r}
+typesdata$group %>% unique()
+typesdata$group %>% n_distinct()
+```
+
+```{r}
+typesdata$id %>% unique()
+# check whether the number of rows of typesdata is equal
+# to the number of distinct values in its id column:
+nrow(typesdata) == typesdata$id %>% n_distinct()
+```
+
+With this example `tibble` that only has three rows, it is pretty obvious that the `id` column is a unique identifier whereas the `group` column is a categorical variable.
+But for larger datasets, you should know how to ask these questions programmatically - can't go through 1000s of values checking if they're all the way you expect without unexpected duplicates or typos. Typos usually come out if the number of different values - result of `n_distinct()` - is greater than you expect. For example, if you expect your data to be in two groups: Control and Treatment, but `n_distinct()` says "3", it could mean that you have missing values (as NAs would also be counted as a distinct group), or that the spelling is inconsistent.
+
+
+## Factors
+
+**Factors** are fussy characters. 
+Factors are fussy because they have something called __levels.__ 
+Levels are all the unique values a factor variable could take - e.g. like when we looked at `typesdata$group %>% unique()`.
+Using factors rather than just characters can be useful because:
+
+
+* The values factor levels can take is fixed. 
+For example, once you tell R that `typesdata$group` is a factor with two levels: Control and Treatment, combining it with other datasets with different spellings are abbreviations for the same variable would get you a warning.
+This can be very helpful and useful, but it can also be a nuisance when you really do want to add in another option for a `factor` variable.
+* Levels have an order. 
+When running statistical tests on grouped data (e.g., Control vs Treatment, Adult vs Child) and the variable is just a character, not a factor, R will use the alphabetically first as the reference level. 
+Converting a character column into a factor column enables us to define and change the order of its levels. 
+Level order also affect plots: by default, categorical variables (i.e., think of a barplot) get ordered alphabetically, but if this is not the order we want them in, we have to make it into a factor before we plot it. The plot will then know how the order it better.
+
+
+So overall, since health data is often categrocial and has a reference (comparison) level, then factors are an essential way to work with these data in R.
+Nevertheless, the fussiness of factors can sometimes be unhelpful or even frustrating.
+It takes experience as an R use to know when is it easiest to keep your variables as characters and when to convert them to factors.
+A lot more about factor handling will be covered later in the book.
+
+## Date/time variables
+
+Dates and times sometimes look like character variables - and they are usually printed between double quotes, e.g.:
+
+```{r}
+Sys.Date()
+```
+
+
+
+```{r, message = FALSE}
+library(lubridate)
+
+Sys.Date() + days(14)
+
+typesdata$date
 
 ```
 
 
 
-### Characters
 
-**Characters** (sometimes referred to as *strings* or *character strings*) in R are letters, words, or even whole sentences (an example of this may be free text comments). 
-We can specify these using the `as.character()` function. Characters are displayed in-between `""` (or `''`).
-
-### Factors
-
-**Factors** are fussy characters. 
-Factors are fussy because they have something called levels. 
-Levels are all the unique values this variable could take - e.g. like when we looked at `mydata$cause %>% unique()`.
-Using factors rather than just characters can be useful because:
-
-
-* The values factor levels can take is fixed. 
-For example, if the levels of your column called `sex` are "Male" and "Female" and you try to add a new patient where sex is called just "F" you will get a warning from R. 
-If `sex` was a character column rather than a factor R would have no problem with this and you would end up with "Male", "Female", and "F" in your column.
-* Levels have an order. 
-When we plotted the different causes of death in the last session, R ordered them alphabetically (because `cause` was a character rather than a factor). 
-But if you want to use a non-alphabetical order, e.g. "Communicable diseases"-"Non-communicable diseases"-"Injuries", we need make `cause` into a factor. 
-Making a character column into a factor enables us to define and change the order of the levels. 
-Furthermore, there are useful tools such as `fct_inorder` or `fct_infreq` that can order factor levels for us.
-
-
-These can be huge benefits, especially as a lot of medical data analyses include comparing different risks to a reference level. 
-Nevertheless, the fussiness of factors can sometimes be unhelpful or even frustrating. 
-For example, if you really did want to add a new level to your `gender` column (e.g., "Prefer not to say") you will either have to convert the column to a character, add it, and convert it back to a factor, or use `fct_expand` to add the level and then add your new line.
-
-### Date/time variables
-
-### Coercion
-
-### When data doesn't come in the right way
+## When data doesn't come in the right way
 
 
 ```{r, message = FALSE}
@@ -696,6 +767,10 @@ mydata$cause = factor(mydata$cause)
 mydata$cause
 
 ```
+
+
+### Coercion
+
 
 ### Exercise
 

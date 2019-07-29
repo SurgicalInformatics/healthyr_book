@@ -526,39 +526,39 @@ library(kableExtra)
 mykable = function(x, caption = "CAPTION", ...){
   kable(x, row.names = FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r", "r"), 
                booktabs = TRUE, caption = caption, ...) %>%
-  kable_styling(latex_options = "scale_down")
+  kable_styling(latex_options = c("scale_down", "hold_position"))
 }
 ```
 
-<!-- ```{r fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Systolic blood pressure by weight and personality type."} -->
-<!-- mydata %>%  -->
-<!--   ggplot(aes(y = sbp, x = weight,  -->
-<!--              colour = personality_2L)) +   # Personality type -->
-<!--   geom_point(alpha = 0.2) +                # Add transparency -->
-<!--   geom_smooth(method = "lm", se = FALSE) -->
-<!-- ``` -->
+```{r fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Systolic blood pressure by weight and personality type."}
+mydata %>%
+  ggplot(aes(y = sbp, x = weight,
+             colour = personality_2L)) +   # Personality type
+  geom_point(alpha = 0.2) +                # Add transparency
+  geom_smooth(method = "lm", se = FALSE)
+```
 
-<!-- From this plot we can see that there is a weak relationship between weight and blood pressure. In addition, there is really no meaningful effect of personality type on blood pressure. This is important, because as you will see below, we are about to find statistically significant effects in a model.  -->
+From this plot we can see that there is a weak relationship between weight and blood pressure. In addition, there is really no meaningful effect of personality type on blood pressure. This is important, because as you will see below, we are about to find statistically significant effects in a model.
 
-<!-- ### Linear regression with Finalfit -->
+### Linear regression with Finalfit
 
-<!-- Finalfit is our own package and provides a convenient set of functions for fitting regression models with results presented in final tables. -->
+Finalfit is our own package and provides a convenient set of functions for fitting regression models with results presented in final tables.
 
-<!-- ```{r message=FALSE} -->
-<!-- dependent = "sbp" -->
-<!-- explanatory = "weight" -->
-<!-- fit_sbp1 = mydata %>%  -->
-<!--   finalfit(dependent, explanatory, metrics = TRUE) -->
-<!-- ``` -->
+```{r message=FALSE}
+dependent = "sbp"
+explanatory = "weight"
+fit_sbp1 = mydata %>%
+  finalfit(dependent, explanatory, metrics = TRUE)
+```
 
-<!-- ```{r, echo=FALSE} -->
-<!-- fit_sbp1[[1]] %>% mykable(caption = "Linear regression: Systolic blood pressure by weight") %>%  -->
-<!--   column_spec(1, width = "4cm") -->
+```{r, echo=FALSE}
+fit_sbp1[[1]] %>% mykable(caption = "Linear regression: Systolic blood pressure by weight") %>%
+  column_spec(1, width = "4cm")
 
-<!-- fit_sbp1[[2]] %>% mykable(caption = "Linear regression metrics: Systolic blood pressure by weight",  -->
-<!--                           col.names = "") %>%  -->
-<!--   column_spec(1, width = "18cm") -->
-<!-- ``` -->
+fit_sbp1[[2]] %>% mykable(caption = "Linear regression metrics: Systolic blood pressure by weight",
+                          col.names = "") %>%
+  column_spec(1, width = "18cm")
+```
 
 ```{r message=FALSE}
 dependent = "sbp"

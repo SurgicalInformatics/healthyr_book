@@ -62,7 +62,7 @@ knitr::include_graphics("images/chapter07/2_residuals.pdf")
 
 Linear regression modelling has four main assumptions:
 
-1. Linear relationship;
+1. Linear relationship between between predictors and outcome;
 2. Independence of residuals;
 3. Normal distribution of residuals;
 4. Equal variance of residuals. 
@@ -74,7 +74,7 @@ Figure \@ref(fig:chap07-fig-diags) shows diagnostic plots from the app, which we
 ### Linear relationship
 
 A simple scatter plot should show a linear relationship between the explanatory and the dependent variable, as in figure \@ref(fig:chap07-fig-diags)A. 
-If the data describe a non-linear pattern (figure \@ref(fig:chap07-fig-diags)B), then a straight line is not going to fit it very well. 
+If the data describe a non-linear pattern (figure \@ref(fig:chap07-fig-diags)B), then a straight line is not going to fit it well. 
 In this situation, an alternative model should be considered, such as including a quadratic (x^2^) or polynomial term. 
 
 ### Independence of residuals
@@ -100,7 +100,7 @@ This is really all about making sure that the line you draw through your data po
 It is about ensuring that the regression line is valid across the range of the explanatory variable and dependent variable.
 It is really about understanding the underlying data, rather than relying on a fancy statistical test that gives you a p-value. 
 
-```{r chap07-fig-diags, echo = FALSE, fig.cap="Regression diagnostics."}
+```{r chap07-fig-diags, echo = FALSE, fig.cap="Regression diagnostics. Does this also appear in the contents. What about this?"}
 knitr::include_graphics("images/chapter07/3_diags.pdf")
 ```
 
@@ -262,24 +262,21 @@ ff_glimpse(mydata) # summary statistics for each variable
 
 ### Plot the data
 
-Let's plot the life expectancies in European countries over the past 60 years, focussing on the UK and Turkey. 
+Let's plot the life expectancies in European countries over the past 60 years, focussing on the UK and Turkey. We can add in simple best fit lines using `ggplot` directly.
 
-```{r, fig.height=7, fig.width=7, fig.cap="Scatterplot: Life expectancy by year in European countries"}
-p = mydata %>%                         # save as object p
+```{r, fig.height=4, fig.width=7, fig.cap="Scatterplot with fitted line plot: Life expectancy by year in European countries"}
+p1 = mydata %>%                        # save as object p1
   filter(continent == "Europe") %>%    # Europe only
   ggplot(aes(x = year, y = lifeExp)) + # lifeExp~year  
   geom_point() +                       # plot points
   facet_wrap(~ country) +              # facet by country
   scale_x_continuous(
-    breaks = c(1960, 1980, 2000))      # adjust x-axis   
-p                                      # view result
-```
+    breaks = c(1960, 1980, 2000))      # adjust x-axis 
 
-We can add in simple best fit lines using `ggplot` directly
+p2 = p1 + geom_smooth(method = "lm")   # add regression line
 
-```{r, fig.height=7, fig.width=7, fig.cap="Scatter and line plot: Life expectancy by year in European countries with best fit simple linear regression line."}
-p +
-  geom_smooth(method = "lm")
+library(patchwork)
+p1 + p2
 ```
 
 ### Simple linear regression
@@ -290,7 +287,7 @@ We can then investigate the intercepts and the slope coefficients (linear increa
 
 First let's plot two countries to compare, Turkey and United Kingdom
 
-```{r}
+```{r fig.height=3, fig.width=4.5, fig.cap="Scatterplot: Life expectancy by year Turkey and Europe."}
 mydata %>% 
   filter(country %in% c("Turkey", "United Kingdom")) %>% 
   ggplot(aes(x = year, y = lifeExp, colour = country)) + 
@@ -412,7 +409,7 @@ In this particular setting, it will become obvious which model is appropriate. S
 
 #### Model 1: year only
 
-```{r}
+```{r fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Life expectancy in Turkey and the UK - univariable fit."}
 mydata_UK_T = mydata %>% 
   filter(country %in% c("Turkey", "United Kingdom"))
 
@@ -432,7 +429,7 @@ mydata_UK_T %>%
 By fitting year only, the model ignores country. This gives us a fitted line which is the average of life expectancy in the UK and Turkey. This may be desirable, depending on the question. But here we want to best describe the data. 
 
 #### Model 2: year + country
-```{r}
+```{r fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Life expectancy in Turkey and the UK - multivariable additive fit."}
 fit_both2 = mydata_UK_T %>% 
   lm(lifeExp ~ year_from1952 + country, data = .)
 fit_both2
@@ -450,7 +447,7 @@ This is better, by including country in the model, we now have fitted lines bett
 
 #### Model 3: year * country
 
-```{r}
+```{r fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Life expectancy in Turkey and the UK - multivariable multiplicative fit."}
 fit_both3 = mydata_UK_T %>% 
   lm(lifeExp ~ year_from1952 * country, data = .)
 fit_both3
@@ -523,41 +520,47 @@ ff_glimpse(mydata) # summary statistics for each variable
 
 ### Plot the data
 
-```{r, echo = FALSE}
-mykable = function(x, ...){
-  knitr::kable(x, row.names = FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r", "r"), 
-               booktabs = TRUE, caption = "CAPTION", ...) %>% 
-    kableExtra::kable_styling(font_size = 6)
+```{r echo=FALSE, message=FALSE}
+library(knitr)
+library(kableExtra)
+mykable = function(x, caption = "CAPTION", ...){
+  kable(x, row.names = FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r", "r"), 
+               booktabs = TRUE, caption = caption, ...) %>%
+  kable_styling(latex_options = "scale_down")
 }
 ```
 
-```{r}
-mydata %>% 
-  ggplot(aes(y = sbp, x = weight, 
-             colour = personality_2L)) +   # Personality type
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE)
-```
+<!-- ```{r fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Systolic blood pressure by weight and personality type."} -->
+<!-- mydata %>%  -->
+<!--   ggplot(aes(y = sbp, x = weight,  -->
+<!--              colour = personality_2L)) +   # Personality type -->
+<!--   geom_point(alpha = 0.2) +                # Add transparency -->
+<!--   geom_smooth(method = "lm", se = FALSE) -->
+<!-- ``` -->
 
-From this plot we can see that there is a weak relationship between weight and blood pressure. In addition, there is really no meaningful effect of personality type on blood pressure. This is important, because as you will see below, we are about to find statistically significant effects in a model. 
+<!-- From this plot we can see that there is a weak relationship between weight and blood pressure. In addition, there is really no meaningful effect of personality type on blood pressure. This is important, because as you will see below, we are about to find statistically significant effects in a model.  -->
 
-### Linear regression with Finalfit
+<!-- ### Linear regression with Finalfit -->
 
-Finalfit is our own package and provides a convenient set of functions for fitting regression models with results presented in final tables.
+<!-- Finalfit is our own package and provides a convenient set of functions for fitting regression models with results presented in final tables. -->
 
-```{r}
-dependent = "sbp"
-explanatory = "weight"
-fit_sbp1 = mydata %>% 
-  finalfit(dependent, explanatory, metrics = TRUE)
-```
+<!-- ```{r message=FALSE} -->
+<!-- dependent = "sbp" -->
+<!-- explanatory = "weight" -->
+<!-- fit_sbp1 = mydata %>%  -->
+<!--   finalfit(dependent, explanatory, metrics = TRUE) -->
+<!-- ``` -->
 
-```{r, echo=FALSE}
-fit_sbp1[[1]] %>% mykable()
-fit_sbp1[[2]] %>% mykable(col.names = "")
-```
+<!-- ```{r, echo=FALSE} -->
+<!-- fit_sbp1[[1]] %>% mykable(caption = "Linear regression: Systolic blood pressure by weight") %>%  -->
+<!--   column_spec(1, width = "4cm") -->
 
-```{r}
+<!-- fit_sbp1[[2]] %>% mykable(caption = "Linear regression metrics: Systolic blood pressure by weight",  -->
+<!--                           col.names = "") %>%  -->
+<!--   column_spec(1, width = "18cm") -->
+<!-- ``` -->
+
+```{r message=FALSE}
 dependent = "sbp"
 explanatory = c("weight", "personality_2L")
 fit_sbp2 = mydata %>% 
@@ -565,28 +568,35 @@ fit_sbp2 = mydata %>%
 ```
 
 ```{r, echo=FALSE}
-fit_sbp2[[1]] %>% mykable()
-fit_sbp2[[2]] %>% mykable(col.names = "")
+fit_sbp2[[1]] %>% mykable(caption = "Multivariable linear regression: Systolic blood pressure by weight and personality type.") %>% 
+  column_spec(1, width = "4cm")
+fit_sbp2[[2]] %>% mykable(caption = "Multivariable linear regression metrics: Systolic blood pressure by weight and personality type.", col.names = "") %>% 
+  column_spec(1, width = "18cm")
 ```
 
 
-```{r}
+```{r message=FALSE}
 dependent = "sbp"
-explanatory = c("weight", "personality_2L", "age", "height", "chol", "smoking") 
+explanatory = c("weight", "personality_2L", "age", 
+                "height", "chol", "smoking") 
 fit_sbp3 = mydata %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
 ```
 
 ```{r, echo=FALSE}
-fit_sbp3[[1]] %>% mykable()
-fit_sbp3[[2]] %>% mykable(col.names = "")
+fit_sbp3[[1]] %>% mykable(caption = "Multivariable linear regression: Systolic blood pressure by available explanatory variables.") %>% 
+  column_spec(1, width = "4cm")
+fit_sbp3[[2]] %>% mykable(caption = "Multivariable linear regression metrics: Systolic blood pressure by available explanatory variables.", col.names = "") %>% 
+  column_spec(1, width = "18cm")
 ```
 
 
-```{r}
+```{r message=FALSE}
 dependent = "sbp"
-explanatory = c("weight", "personality_2L", "age", "height", "chol", "smoking") 
-explanatory_multi = c("weight", "personality_2L", "age", "height", "chol") 
+explanatory = c("weight", "personality_2L", "age", 
+                "height", "chol", "smoking") 
+explanatory_multi = c("weight", "personality_2L", "age", 
+                      "height", "chol") 
 fit_sbp4 = mydata %>% 
   finalfit(dependent, explanatory, 
            explanatory_multi, 
@@ -594,8 +604,13 @@ fit_sbp4 = mydata %>%
 ```
 
 ```{r, echo=FALSE}
-fit_sbp4[[1]] %>% mykable()
-fit_sbp4[[2]] %>% mykable(col.names = "")
+fit_sbp4[[1]] %>% mykable(caption = "Multivariable linear regression: Systolic blood pressure by available explanatory variables and reduced model.") %>% 
+  column_spec(1, width = "4cm") %>% 
+  column_spec(4, width = "4cm") %>% 
+  column_spec(5, width = "4cm") %>% 
+  column_spec(6, width = "4cm")
+fit_sbp4[[2]] %>% mykable(caption = "Multivariable linear regression: Systolic blood pressure by available explanatory variables (top) with reduced model (bottom).", col.names = "") %>% 
+  column_spec(1, width = "18cm")
 ```
 
 More to add for each step above.

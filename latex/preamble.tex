@@ -14,6 +14,10 @@
 \usepackage{threeparttable}
 \usepackage[normalem]{ulem}
 
+% Changing line spacing of verbatim (R code results) - RO
+\usepackage{etoolbox}
+\BeforeBeginEnvironment{verbatim}{\def\baselinestretch{0.7}}
+
 \usepackage{framed,color}
 \definecolor{shadecolor}{RGB}{248,248,248}
 

@@ -267,6 +267,13 @@ mydata %>%
 \index{functions!filter}
 \index{functions!tidy}
 
+### When pipe sends data to the wrong place: use `, data = .` to direct it
+
+In the code above, the `, data = .` bit is necessary because the pipe usually sends data to the beginning of function brackets. So `mydata %>% t.test(lifeExp ~ continent)` would be equivalent to `t.test(mydata, lifeExp ~ continent`. 
+However, this is not an order that `t.test()` will accept. 
+`t.test()` wants us to specify the formula first, and then wants the data these variables are present in. 
+So we have to use the `.` to tell the pipe to send the data to the second argument of `t.test()`, not the first.
+
 ### Paired *t*-tests
 \index{t-test@\textbf{t-test}!paired}
 

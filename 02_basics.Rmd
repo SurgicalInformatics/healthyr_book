@@ -582,6 +582,7 @@ Generally, R is very good at figuring out what the type your data is (in program
 For example, when reading in data, it will tell you what it assumed for the columns:
 
 ```{r}
+library(tidyverse)
 typesdata = read_csv("data/typesdata.csv")
 
 typesdata
@@ -613,12 +614,12 @@ R usually refers to numbers as `numeric` (or `num`), but sometimes it really get
 ^[ Integers are numbers without decimal places (e.g., `1, 2, 3`), whereas `double` stands for "Double-precision floating-point" format (e.g., `1.234, 5.67890`).] 
 It doesn't usually matter whether R is classifying your continuous data `numeric/num/double/int`, but it is good to be aware of these different terms as you will see them in R messages.
 
-> FRIENDLY WARNING: What's about to follow is a bit dry. Furthermore, ist is not essential for complete beginners - you might want to continue reading from __Categorical variables - characters__.
-Before you leave, take a mental note that sometimes numbers in R have more decimal places than it seems, and that can cause issues when using the double equals operator (`==`).
+> FRIENDLY WARNING: What's about to follow is a bit dry. Furthermore, it is not essential for complete beginners - you might want to continue reading from __Characters__.
+Before you leave, take a mental note that sometimes numbers in R have more decimal places than it seems, and that can cause funny behaviour when using the double equals operator (`==`).
 
-One minor thing to note about numbers is that sometimes R doesn't print all of the decimal places.
+Something to note about numbers is that R doesn't usually print more than 6 decimal places, but that doesn't mean they don't exist.
 For example, from the `typedata` tibble, we're taking the `measurement` column and sending it to the `mean()` function. 
-R then calculates the mean and tells us what it is using 6 decimal places:
+R then calculates the mean and tells us what it is with 6 decimal places:
 
 
 ```{r}
@@ -711,24 +712,113 @@ A lot more about factor handling will be covered later in the book.
 
 ## Date/time variables
 
-Dates and times sometimes look like character variables - and they are usually printed between double quotes, e.g.:
-
-```{r}
-Sys.Date()
-```
-
+R is very good for working with dates. 
+For example, it can calculate the number of days/weeks/months between two dates, or it can be used to find a future date is (i.e., "what's the date exactly 60 days from now?").
+It alos knows about time zones and is happy to parse dates in pretty much any format - as long as you tell R how your date is formatted (e.g., day before month, month name abbreviated, year in 2 or 4 digits, etc.).
+Since R displays dates and times between quotes (""), they look similar to characters. However, it is important to know whether R has understood which of your columns contain date/time information, as which are just normal characters.
 
 
 ```{r, message = FALSE}
-library(lubridate)
+library(lubridate) # lubridate makes working with dates easier
+current_datetime = Sys.time()
+current_datetime
 
-Sys.Date() + days(14)
-
-typesdata$date
+my_datetime = "2020-12-01 12:00"
+my_datetime
 
 ```
 
+When printed, the two objects - `current_datetime` and `my_datetime` seem to have the a very similar format.
+But if we try to calculate the difference between these two dates, we get an error:
 
+```{r, error = TRUE}
+my_datetime - current_datetime
+```
+
+That's because when we assigned a value to `my_datetime`, R assumed the simpler type for it - so a character.
+We can check what the type of an object or variable is using the `class()` function:
+
+```{r}
+current_datetime %>% class()
+my_datetime %>% class()
+```
+
+
+So we need to tell R that `my_datetime` does indeed include date/time information so we can then use it in calculations:
+
+```{r}
+my_datetime_converted = ymd_hm(my_datetime)
+my_datetime_converted
+```
+
+Calculating the difference will now work:
+```{r}
+my_datetime_converted - current_datetime
+```
+
+Since R knows this is a difference between two date/time objects, it prints the in a nicely readable way.
+Furthermore, the result has its own type, it is a "difftime".
+```{r}
+my_datesdiff = my_datetime_converted - current_datetime
+my_datesdiff %>% class()
+```
+
+This is useful if we want to apply this time difference on another date, e.g.:
+
+```{r}
+ymd_hm("2021-01-02 12:00") + my_datesdiff
+```
+
+But if we want to use the number of days in a normal calculation, e.g., what if a measurement increased by 560 arbritrary units during this time period.
+We might want to calculate the increase per day like this:
+
+
+```{r, error = TRUE}
+560/my_datesdiff
+```
+
+Doesn't work, does it.
+We need to convert `my_datesdiff` (which is a difftime value) into a numeric value by using the `as.numeric()` function:
+
+```{r}
+560/as.numeric(my_datesdiff)
+```
+
+The lubridate package comes with several convenient functions for parsing dates, e.g., `ymd()`, `mdy()`, `ymd_hm()`, etc. - for a full list see lubridate.tidyverse.org.
+
+However, if your date/time variable comes in an extra special format, then use the `parse_date_time()` function where the second argument specifies the format using these helpers:
+
+| Notation | Meaning             | Example |
+|----------|---------            |---------|
+|`%d`        |day as number        |01-31|
+|`%m`        |month as number      |01-12|
+|`%B`        |month name           |January-December|
+|`%b`        |abbreviated month    |Jan-Dec|
+|`%Y`        |4-digit year         |2019|
+|`%y`        |2-digit year         |19|
+|`%H`        |hours                |12|
+|`%M`        |minutes              |01|
+|`%A`        |weekday              |Monday-Sunday|
+|`%a`        |abbreviated weekday  |Mon-Sun|
+
+
+For example:
+
+```{r}
+parse_date_time("12:34 07/Jan'20", "%H:%M %d/%b'%y")
+```
+
+Furthermore, the same date/time helpers can be used to rearrange your date and time for printing:
+
+```{r}
+Sys.time()
+Sys.time() %>% format("%H:%M on %B-%d (%Y)")
+```
+You can even add plain text into the `format()` function, R will know to put the right date/time values where the `%` are:
+
+```{r}
+Sys.time() %>% format("Happy days, the current time is %H:%M %B-%d (%Y)!")
+```
 
 
 ## When data doesn't come in the right way

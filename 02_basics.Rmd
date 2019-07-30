@@ -126,7 +126,7 @@ mean(mydata$var2, na.rm = TRUE)
 Adding `na.rm = TRUE` tells R that you are happy for it to calculate the mean of any existing values (but to remove - `rm` - the `NA` values).
 This 'removal' excludes the NAs from the calculation, it does not affect the actual tibble (`mydata`) holding the dataset. 
 R is case sensitive, so it has look exactly how the function expects it, so `na.rm`, not `NA.rm` etc. 
-There is, however, no need to memorise how the arguments of functions are exactly spelled - this is what the Help tab (press `F1` when the cursor is on the name of the function) can remind you of. 
+There is, however, no need to memorize how the arguments of functions are exactly spelled - this is what the Help tab (press `F1` when the cursor is on the name of the function) can remind you of. 
 Functions' help pages are built into R, so an internet connection is not required for this.
 
 > Make sure to separate multiple arguments with commas or R will give you an error of `Error: unexpected symbol`.
@@ -142,7 +142,7 @@ Sys.time()
 
 To summarise, objects and functions work hand in hand. 
 Objects are both an input as well as the output of a function (what the function returns). 
-The data values input into a function are usually its first argument, further arguments can be used to specify a function's behaviour. 
+The data values input into a function are usually its first argument, further arguments can be used to specify a function's behavior. 
 When we say "the function returns", we are referring to its output (or an Error if it's one of those days).
 The returned object can be different to its input object.
 In our `mean()` examples above, the input object was a column (`mydata$var1`: `r mydata$var1`), whereas the output was a single value: `r mean(mydata$var1)`.
@@ -182,7 +182,7 @@ Doing this creates `example_sequence` in our Environment, but it does not print 
 
 You can call your variables (where you assigns new objects or the output of functions in) pretty much anything you want, as long as it starts with a letter. 
 It can then include numbers as well, for example, we could have named the new variable `sequence_15_to_30`.
-Spaces in variable names are not easy to work with, we tend to use underscores in their place, but you could also use capitalisation, e.g. `exampleSequence = seq(15, 30)`.
+Spaces in variable names are not easy to work with, we tend to use underscores in their place, but you could also use capitalization, e.g. `exampleSequence = seq(15, 30)`.
 
 Finally, R doesn't mind overwriting an existing variable, for example (notice how we then include the variable on a new line to get it printed as well as overwritten):
 
@@ -232,7 +232,16 @@ knitr::include_graphics("images/chapter02/magrittr.png")
 
 ### When pipe sends data to the wrong place: use `, data = .` to direct it
 
-The pipe usually sends data to the beginning of function brackets (as most of the functions we use expect data as the first argument). So `mydata %>% lm(dependent~explanatory)` is equivalent to `lm(mydata, dependent~explanatory)`. However, this is not an order that `lm()` expects. `lm()` wants us to specify the variables first (`dependent~explanatory`), and then wants the data these variables are present in. So we have to use the `.` to tell the pipe to send the data to the second argument of `lm()`, not the first.
+The pipe usually sends data to the beginning of function brackets (as most of the functions we use expect a tibble as the first argument). So `mydata %>% lm(dependent~explanatory)` is equivalent to `lm(mydata, dependent~explanatory)` (`lm()` stands for linear model introduced in detail in Chapter 7: linear regression). 
+However, tibble first is not the order the `lm()` function expects. `lm()` wants us to specify the variables first (`dependent~explanatory`), and then wants the tibble these columns are in.
+So we have to use the `.` to tell the pipe to send the data to the second argument of `lm()`, not the first, e.g.
+
+```{r, eval = FALSE}
+mydata %>% 
+  lm(var1~var2, data = .)
+```
+
+
 
 ## Reading data into R
 
@@ -463,6 +472,35 @@ new_data_selection = gbd_short %>%
 The hash symbol (`#`) is used to add free text comments to R code. R will not try to run these lines, they will be ignored.
 Comments are an essential part of any programming code - these are notes for your future self on what and why you did.
 
+## The combine function: c()
+
+The combine function is used to list several values. It is especially useful together with the `%in%` operator which can be used to filter for multiple values. 
+Remember how the gbd_short cause column had three different causes in it:
+
+```{r}
+gbd_short$cause %>% unique()
+```
+
+Say we wanted to filter for communicable and non-communicable diseases.
+^[In this example, it would just be  easier to filter(cause `!=` "Injuries") but imagine your column had more than just three different values in it.] We could use the OR operator - `|` like this:
+
+```{r}
+gbd_short %>% 
+  # also filtering for a single year to keep the result concise
+  filter(year == 1990) %>% 
+  filter(cause == "Communicable diseases" | cause == "Non-communicable diseases")
+```
+
+But that means we have to type in `cause` twice (and even more time if we had more different values we wanted to include).
+This where the `%in%` operator together with the `c()` function come in handy:
+
+```{r}
+gbd_short %>% 
+  filter(year == 1990) %>% 
+  filter(cause %in% c("Communicable diseases", "Non-communicable diseases"))
+```
+
+
 
 ## Missing values (NAs) and filters
 
@@ -564,11 +602,7 @@ nrow(subset1) + nrow(subset2) + nrow(subset3) == nrow(mydata)
 
 
 
-## Variable types and why do we care
-
-```{r}
-mydata  = gbd_short
-```
+## Variable types and why we care
 
 There are three broad types of data: 
 
@@ -607,15 +641,15 @@ Therefore, while a lot of the time you do not have to worry about variable types
 
 So here we go.
 
-## Numbers
+## Numeric variables
 
-Number are generally very straightforward to handle and don't cause a lot of trouble. 
+Number are generally straightforward to handle and don't cause a lot of trouble. 
 R usually refers to numbers as `numeric` (or `num`), but sometimes it really gets its nerd on and also calls numbers `integer` or `double`.
 ^[ Integers are numbers without decimal places (e.g., `1, 2, 3`), whereas `double` stands for "Double-precision floating-point" format (e.g., `1.234, 5.67890`).] 
 It doesn't usually matter whether R is classifying your continuous data `numeric/num/double/int`, but it is good to be aware of these different terms as you will see them in R messages.
 
 > FRIENDLY WARNING: What's about to follow is a bit dry. Furthermore, it is not essential for complete beginners - you might want to continue reading from __Characters__.
-Before you leave, take a mental note that sometimes numbers in R have more decimal places than it seems, and that can cause funny behaviour when using the double equals operator (`==`).
+Before you leave, take a mental note that sometimes numbers in R have more decimal places than it seems, and that can cause funny behavior when using the double equals operator (`==`).
 
 Something to note about numbers is that R doesn't usually print more than 6 decimal places, but that doesn't mean they don't exist.
 For example, from the `typedata` tibble, we're taking the `measurement` column and sending it to the `mean()` function. 
@@ -665,7 +699,7 @@ near(measurement_mean, 3.333, 0.001)
 
 The first two arguments for `near()` are the numbers you are comparing, the third argument is the precision you are interested in. So if the numbers are equal within that precision, it returns `TRUE`. This means you get the expected result without having to round the numbers off.
 
-## Characters
+## Character variables
 
 **Characters** (sometimes referred to as *strings* or *character strings*) in R are letters, words, or even whole sentences (an example of this may be free text comments). 
 Characters are displayed in-between `""` (or `''`).
@@ -688,7 +722,7 @@ With this example `tibble` that only has three rows, it is pretty obvious that t
 But for larger datasets, you should know how to ask these questions programmatically - can't go through 1000s of values checking if they're all the way you expect without unexpected duplicates or typos. Typos usually come out if the number of different values - result of `n_distinct()` - is greater than you expect. For example, if you expect your data to be in two groups: Control and Treatment, but `n_distinct()` says "3", it could mean that you have missing values (as NAs would also be counted as a distinct group), or that the spelling is inconsistent.
 
 
-## Factors
+## Factor variables
 
 **Factors** are fussy characters. 
 Factors are fussy because they have something called __levels.__ 
@@ -705,7 +739,7 @@ Converting a character column into a factor column enables us to define and chan
 Level order also affect plots: by default, categorical variables (i.e., think of a barplot) get ordered alphabetically, but if this is not the order we want them in, we have to make it into a factor before we plot it. The plot will then know how the order it better.
 
 
-So overall, since health data is often categrocial and has a reference (comparison) level, then factors are an essential way to work with these data in R.
+So overall, since health data is often categorical and has a reference (comparison) level, then factors are an essential way to work with these data in R.
 Nevertheless, the fussiness of factors can sometimes be unhelpful or even frustrating.
 It takes experience as an R use to know when is it easiest to keep your variables as characters and when to convert them to factors.
 A lot more about factor handling will be covered later in the book.
@@ -714,7 +748,7 @@ A lot more about factor handling will be covered later in the book.
 
 R is very good for working with dates. 
 For example, it can calculate the number of days/weeks/months between two dates, or it can be used to find a future date is (i.e., "what's the date exactly 60 days from now?").
-It alos knows about time zones and is happy to parse dates in pretty much any format - as long as you tell R how your date is formatted (e.g., day before month, month name abbreviated, year in 2 or 4 digits, etc.).
+It also knows about time zones and is happy to parse dates in pretty much any format - as long as you tell R how your date is formatted (e.g., day before month, month name abbreviated, year in 2 or 4 digits, etc.).
 Since R displays dates and times between quotes (""), they look similar to characters. However, it is important to know whether R has understood which of your columns contain date/time information, as which are just normal characters.
 
 
@@ -769,7 +803,7 @@ This is useful if we want to apply this time difference on another date, e.g.:
 ymd_hm("2021-01-02 12:00") + my_datesdiff
 ```
 
-But if we want to use the number of days in a normal calculation, e.g., what if a measurement increased by 560 arbritrary units during this time period.
+But if we want to use the number of days in a normal calculation, e.g., what if a measurement increased by 560 arbitrary units during this time period.
 We might want to calculate the increase per day like this:
 
 
@@ -821,207 +855,172 @@ Sys.time() %>% format("Happy days, the current time is %H:%M %B-%d (%Y)!")
 ```
 
 
-## When data doesn't come in the right way
+
+## Creating new columns - `mutate()`
 
 
-```{r, message = FALSE}
-library(lubridate)
-```
+The function for adding new columns (or making changes to existing ones) to a tibble is called `mutate()`.
+As a reminder, this is what `typesdata` looked like:
 
 ```{r}
-typesdata_faulty = read_csv("data/typesdata_faulty.csv")
-
-typesdata_faulty %>% 
-  mutate(date1 = ymd_hm(date),
-         date2 = dmy_hm(date)) %>% 
-  select(date, date1, date2)
+typesdata
 ```
 
+Let's say we decide to divide the column measurement by 2.
+A very quick way to see these values would be to pull them out using the `$` operator and then divide by 2:
 
-### Specifying variable types
+```{r}
+typesdata$measurement
+typesdata$measurement/2
+```
+
+But this becomes very cumbersome once we want to combine multiple variables from the same tibble in a calculation. So the `mutate()` is the way to go here:
+
+```{r}
+typesdata %>% 
+  mutate(measurement/2)
+```
+
+Notice how the `mutate()` above returns the whole tibble with a new column called `measurement/2`. This is quite nice of `mutate()` already, but it would be best to give columns names that don't include characters other than underscores (`_`) or dots (`.`). So let's assign a more standard name for this new column:
+
+```{r}
+typesdata %>% 
+  mutate(measurement_half = measurement/2)
+```
+
+Better. You can see that R likes the name we gave it a bit better as it's now removed the back-ticks from around it.
+Overall, back-ticks can be used to call out non-standard column names, so if you are forced to read in data with, e.g., spaces in column names, then the back-ticks enable calling column names that would otherwise error^[If this happens to you a lot, then check out `library(janitor)` and its function `clean_names()` for automatically tidying non-standard column names.]:
 
 ```{r, eval = FALSE}
+mydata$`Nasty column name`
 
-as.character(mydata$cause)
+# or
 
-as.numeric(mydata$year)
-
-factor(mydata$year)
-
-#Lets save the cause as a factor
-
-mydata$cause = factor(mydata$cause)
-
-#Now lets print it out
-
-mydata$cause
-
+mydata %>% 
+  select(`Nasty column name`)
 ```
 
 
-### Coercion
-
-
-### Exercise
-
-Change the order of the levels in `mydata$cause` so that "Non-communicable diseases" come before "Injuries". 
-Hint: use F1 to investigate examples of how `fct_relevel()` works.
-
-
-
-## Adding columns to dataframes
-
-If we wanted to add in a new column or variable to our data, we can simply use the dollar sign '$' to create a new variable inside a pre-existing piece of data:
+But as usual, if it gets printed, it doesn't get saved. We have two options - we can either overwrite the `typesdata` tibble (by changing the first line to `typesdata = typesdata %>% `), or we can create a new one (that appears in your Environment):
 
 ```{r}
+typesdata_modified = typesdata %>% 
+  mutate(measurement_half = measurement/2)
 
-mydata$new = 1
-
-mydata$new2 = 1:21
-
+typesdata_modified
 ```
 
-Run these lines and click on `mydata` in the Environment tab to check this worked as expected.
 
-Conversely, if we want to delete a specific variable or column we can use the 'NULL' function, or alternatively ask R to `select()` the data without the new variable included.
+The `mutate()` function can also be used to create a new column with a single constant value, which in return can be used to calculate a difference for each of the existing dates:
 
 ```{r}
-
-mydata$new = NULL
-
-mydata = mydata %>% 
-  select(-new2)
-
+library(lubridate)
+typesdata %>% 
+  mutate(reference_date   = ymd_hm("2020-01-01 12:00"),
+         dates_difference = reference_date - date) %>% 
+  select(date, reference_date, dates_difference)
 ```
 
-We can make new variables using calculations based on variables in the data too.
+(We are then using the `select()` function to only choose the three relevant columns.)
 
-The mutate function is useful here. 
-All you have to specify within the mutate function is the name of the variable (this can be new or pre-existing) and where the new data should come from.
-
-There are two equivalent ways of defining new columns based on a calculation with a previous column:
-
-**mutate formally introduced in later chapter. Need to think how best to present this in book.**
+Finally, the mutate function can be used to create a new column with a summarised value in it, e.g. the mean of another column:
 
 ```{r}
-
-# First option
-
-mydata$years_from_1990 = mydata$year - 1990 
-mydata$deaths_millions = mydata$deaths/1000000
-
-# Second option (mutate() function)
-
-mydata = mydata %>% 
-  mutate(years_from_1990 = year-1990,
-         deaths_millions = deaths/1000000) 
-
+typesdata %>% 
+  mutate(mean_measurement = mean(measurement))
 ```
 
-Throughout this course we will be using both of these ways to create or modify columns. 
-The first option (using the `$`) can look neater when changing a single variable, but when combining multiple ones you will end up repeating `mydata$`. 
-`mutate()` removes the duplication, but it does add a new line and brackets. 
-
-
-## Rounding numbers
-
-We can use `round()` to round the new variables to create integers.
-
-### Exercise
-
-Round the new column `deaths_millions` to no decimals:
-
-```{r, echo = FALSE}
-
-mydata$deaths_millions = round(mydata$deaths_millions)
-
-mydata$deaths_millions
-
-```
-
-* How would you round it to 2 decimals? Hint: use F1 to investigate `round()`. 
-
-* What do `ceiling()` and `floor()` do? Hint: sometimes you want to round a number up or down.
-
-## The combine function: c()
-
-The combine function combines several values: `c()`
-
-The combine function can be used with numbers or characters (like words or letters):
+Which in return can be useful for calculating a standardized measurement (i.e. relative to the mean):
 
 ```{r}
-
-examplelist = c("Red", "Yellow", "Green", "Blue")
-
-# Ask R to print it by executing it on its own line
-
-examplelist
-
+typesdata %>% 
+  mutate(mean_measurement     = mean(measurement)) %>% 
+  mutate(measurement_relative = measurement/mean_measurement) %>% 
+  select(matches("measurement"))
 ```
 
-### Exercise
+### Worked example/exercise
 
-There are 18 lines (observations) in mydata. 
-Create a new variable using `c()` with 18 values (numbers, words, whichever you like, e.g. like we created `examplelist`). 
-Then add it as new column to `mydata$newlist`. 
-Advanced version: do this using a combination of `rep()` and `c()`.
+Round the difference to 0 decimal places using the `round()` function inside a `mutate()`. Then add a clever `matches("date")` inside the `select()` function to choose all matching columns.
 
-\newpage
-## The `paste()` function
-
-The `paste()` function is used to paste several words or numbers into one character variable/sentence.
-
-In the paste function we need to specify what we would like to combine, and what should separate the components. 
-By default, the separation is a space, but we can change this using the `sep =` option within the paste function.
-
-So, for example if we wanted to make a sentence:
-
-```{r pasteexample1}
-
-# 
-#paste("Edinburgh", "is", "Great")
-
-# Lets add in full stops
-
-
-paste("Edinburgh", "is", "Great", sep = ".")
-# separator needs to go in "" as it is a character
-
-
-# If we really like Edinburgh
-
-#paste("Edinburgh", "is", "Great", sep = "!")
-
-# If we want to make it one word
-
-#paste("Edinburgh", "is", "Great", sep = "") # no separator (still need the brackets)
-
+Solution:
+```{r}
+typesdata %>% 
+  mutate(reference_date   = ymd_hm("2020-01-01 12:00"),
+         dates_difference = reference_date - date) %>% 
+  mutate(dates_difference = round(dates_difference)) %>% 
+  select(matches("date"))
 ```
 
-We can also join two different variables together using `paste()`: 
+You can shorten this by adding the `round()` function directly around the subtraction, so the third line becomes `dates_difference = round(reference_date - date)) %>%`. But sometimes writing calculations out longer than the absolute minimum can make them easier to understand when you return to an old script months later.
+Furthermore, we didn't have to save the `reference_date` as a new column, the calculation could have used the value directly: `mutate(dates_difference = ymd_hm("2020-01-01 12:00") - date) %>%`.
+But again, defining it makes it clearer for future self what was done. And it makes `reference_date` available for reuse in more complicated calculations within the tibble.
 
 
-```{r pasteexample2}
+## Conditional calculations - `if_else()`
+And finally, we combine the filtering operators (`==`, `>`, `<`, etc) with the `if_else()` function to create new columns based on a condition.
 
-paste("Year is", mydata$year)
+```{r}
+typesdata %>% 
+  mutate(above_threshold = if_else(measurement > 3,
+                                   "Above three",
+                                   "Below three"))
+```
 
+We are sending `typesdata` into a `mutate()` function, we are creating a new column called `above_threshold` based on whether `measurement` is greater or less than 3. 
+The first argument to `if_else()` is a condition (in this case that measurement is greater than 3), the second argument is the value if the condition is TRUE, and the third argument is the value if the condition is FALSE.
+Look at each line in the tibble above and convince yourself that the `threshold` variable worked as expected. 
+Then look at the two closing brackets - `))` - at the end of the code and convince yourself they both need to be there.
+
+>`if_else()` and missing values tip: for rows with missing values (NAs), the condition returns neither TRUE or FALSE, it returns NA. 
+And that might be fine, but if you want to assign a specific group/label for missing values in the new variable, you can add a fourth argument to `if_else()`, e.g., `if_else(measurement > 3, "Above three", "Below three", "Value missing")`.
+
+## Create labels - `paste()`
+
+The `paste()` function is used to add characters together.
+It also works with numbers and dates which will automatically be converted to characters before being pasted together into a single label.
+See this example where we use all variables from `typesdata` to create a new column called `plot_label` (we `select()` for printing space):
+
+```{r}
+typesdata %>% 
+  mutate(plot_label = paste(id,
+                            "was last measured at", date,
+                            ", and the value was",    measurement)) %>% 
+  select(plot_label)
+```
+
+The paste is also useful when pieces of information are stored in different columns. For example, consider this made-up tibble:
+
+```{r}
+pastedata = tibble(year  = c(2007, 2008, 2009),
+                   month = c("Jan", "Feb", "March"),
+                   day   = c(1, 2, 3))
+
+pastedata
+```
+
+We can use `paste()` to combine these into a single column:
+
+```{r}
+pastedata %>% 
+  mutate(date = paste(day, month, year, sep = "-"))
+```
+
+By default, `paste()` adds a space between the each value, but we can use the `sep = ` argument to specify a different separator. 
+Sometimes it is useful to use `paste0()` which does not add anything between the values (no space, no dash, etc.).
+
+We can now tell R that the date column should be parsed as such:
+
+```{r}
+library(lubridate)
+
+pastedata %>% 
+  mutate(date = paste(day, month, year, sep = "-")) %>% 
+  mutate(date = dmy(date))
 ```
 
 
-### Exercise
-
-Fix this code:
-
-Hint: Think about characters and quotes!
-
-```{r, eval=F}
-
-paste(Today is, Sys.Date() )
-
-```
-
-
-## Combining two dataframes
+## Joining multiple datasets
 
 For combining dataframes based on shared variables we use the joins: `left_join()`, `right_join()`, `inner_join()`, or `full_join()`. 
 Let's split some of the variables in `mydata` between two new dataframes: `first_data` and `second_data`. 
@@ -1029,16 +1028,16 @@ For demonstrating the difference between the different joins, we will only inclu
 
 ```{r, message = FALSE}
 
-first_data  = select(mydata, year, cause, deaths_millions)
-second_data = select(mydata, year, cause, deaths_millions) %>% slice(1:6)
-
-# change the order of rows in first_data to demosntrate the join does not rely on the ordering of rows:
-first_data = arrange(first_data, deaths_millions)
-
-combined_left  =  left_join(first_data, second_data)
-combined_right = right_join(first_data, second_data)
-combined_inner = inner_join(first_data, second_data)
-combined_full  =  full_join(first_data, second_data)
+# first_data  = select(mydata, year, cause, deaths_millions)
+# second_data = select(mydata, year, cause, deaths_millions) %>% slice(1:6)
+# 
+# # change the order of rows in first_data to demosntrate the join does not rely on the ordering of rows:
+# first_data = arrange(first_data, deaths_millions)
+# 
+# combined_left  =  left_join(first_data, second_data)
+# combined_right = right_join(first_data, second_data)
+# combined_inner = inner_join(first_data, second_data)
+# combined_full  =  full_join(first_data, second_data)
 
 
 ```
@@ -1052,205 +1051,3 @@ Those who have used R before, or those who come across older scripts will have s
 
 Investigate the four new dataframes called `combined_` using the Environment tab and discuss how the different joins (left, right, inner, full) work.
 
-
-## The `summary()` function
-
-In R, the `summary()` function provides a quick way of summarising both data or the results of statistical tests.
-
-Lets get a quick summary of all the variables inside the Global Burden of Disease dataset. 
-It will work for whole datasets and single variables too.
-
-```{r}
-
-mydata %>% summary()
-
-```
-
-This even works on statistical tests (we will learn more about these later):
-
-```{r}
-
-# lm stands for linear model
-lm(deaths ~ year, data = mydata) %>% summary()
-
-```
-
-### When pipe sends data to the wrong place
-
-Note that our usual way of doing things with the pipe would not work here:
-
-
-```{r, eval = FALSE}
-
-mydata %>% 
-  lm(deaths ~ year) %>%
-  summary()
-
-```
-
-This is because the pipe tries to send data into the first place of the function (first argument), but `lm()` wants the formula (`deaths ~ year`) first, then the dataframe. 
-We can bypass this using `data = .` to tell the pipe where to put mydata:
-
-```{r, eval = FALSE}
-
-mydata %>% 
-  lm(deaths ~ year, data = .) %>%
-  summary()
-
-```
-
-
-### Exercise
-
-Try adding a new variable called `death_over_10m` which indicates whether there were more than 10 million deaths for a cause. 
-The new variable should take the form 'Yes' or 'No'. 
-
-Then make it into a factor.
-
-Then use `summary()` to find out about it!
-```{r}
-
-mydata = mydata %>% 
-  mutate(death_over_10m = ifelse(deaths >= 10000000, "Yes", "No")) # Using ifelse
-
-mydata$death_over_10m = as.factor(mydata$death_over_10m)
-
-mydata$death_over_10m %>% summary()
-
-```
-
-## Extra: Creating a dataframe from scratch
-
-It is rare that you will need to create a data frame by hand as most of the time you will be reading in a data from a .csv or similar. 
-But in some cases (e.g. when creating special labels for a plot) it might be useful, so this is how to create one:
-
-
-```{r}
-
-patient_id = paste0("ID", 1:10)
-sex        = rep(c("Female", "Male"), 5)
-age        = 18:27
-
-newdata = data_frame(patient_id, sex, age)
-
-# same as
-
-newdata      = data_frame(
-  patient_id = paste0("ID", 1:10), #note the commas
-  sex        = rep(c("Female", "Male"), 5),
-  age        = 18:27
-)
-
-
-```
-
-
-If we used `data.frame()` instead of `data_frame()`, all our character variables (`patient_id`, `sex`) would become factors automatically. 
-This might make sense for `sex`, but it doesn't for `patient_id`.
-
-### Exercise
-
-Create a new dataframe called `my_dataframe` that looks like this:
-
-Hint: Use the functions `paste0()`, `seq()` and `rep()`
-
-
-```{r, echo=F}
-
-my_dataframe = data_frame(
-  patient_id = paste0("ID", 11:20),
-  age        = seq(15, 60, 5),
-  sex        = c( rep("Male", 5), rep("Female", 5))
-)
-
-my_dataframe
-
-```
-
-
-## Solutions
-
-**2.5.3**
-
-```{r, eval = FALSE}
-
-mydata %>% names()
-mydata %>% head()
-mydata %>% str()
-
-```
-
-**2.5.4**
-
-```{r}
-
-mydata$cause %>% unique() %>% length()
-
-```
-
-**2.6.2**
-
-```{r}
-
-mydata_year2000 = mydata %>% 
-  filter(year == 2000)
-
-```
-
-**2.7.5** 
-
-```{r, eval = FALSE}
-mydata$cause %>% fct_relevel("Injuries", after = 1)
-```
-
-**2.10.1**
-
-```{r, message = FALSE}
-mydata$deaths_millions = round(mydata$deaths_millions)
-
-# or
-mydata$deaths_millions = mydata$deaths_millions %>% round()
-
-
-```
-
-**2.11.1**
-
-```{r}
-
-examplelist = c("Red", "Yellow", "Green", "Blue",
-                "Red", "Yellow", "Green", "Blue",
-                "Red", "Yellow", "Green", "Blue",
-                "Red", "Yellow", "Green", "Blue",
-                "Red", "Yellow", "Green", "Blue",
-                "Green")
-
-#Let's see what we've made by using print
-
-mydata$newlist = examplelist
-
-
-# using rep()
-
-#examplelist2 = rep(c("Green", "Red"), 9)
-
-```
-
-
-**2.12.1**
-
-```{r, eval = FALSE}
-paste("Today is", Sys.Date())
-```
-
-**2.15.1**
-
-```{r}
-
-my_dataframe = data_frame(
-  patient_id = paste0("ID", 11:20),
-  age        = seq(15, 60, 5),
-  sex        = c( rep("Male", 5), rep("Female", 5))
-)
-
-```

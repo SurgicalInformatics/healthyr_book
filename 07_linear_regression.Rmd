@@ -22,7 +22,7 @@ We don't use this method and we suggest you don't either!
 Note that the dependent variable is always continuous, it cannot be a categorical variable. 
 The explanatory variables can be either continuous or categorical. 
 
-## The Question (1)
+### The Question (1)
 
 We will illustrate our examples of linear regression using a classical question which is important to many of us!
 This is the relationship between coffee consumption and blood pressure (and therefore cardiovascular events, such as myocardial infarction and stroke).
@@ -37,7 +37,7 @@ So please do not alter your coffee habit on the basis of these plots!
 knitr::include_graphics("images/chapter07/1_regression_terms.pdf")
 ```
 
-## Fitting a regression line
+### Fitting a regression line
 
 Simple linear regression uses the *ordinary least squares* method for fitting. 
 The details of this are beyond the scope here, but if you want to get out the linear algebra/matrix maths you did in high school, an enjoyable afternoon can be spent proving to yourself how it actually works. 
@@ -58,7 +58,7 @@ Or in more formal language, we want to minimise the sum of squared residuals.
 knitr::include_graphics("images/chapter07/2_residuals.pdf")
 ```
 
-## When the line fits well
+### When the line fits well
 
 Linear regression modelling has four main assumptions:
 
@@ -71,26 +71,26 @@ You can use the [simple regression diagnostics shiny app](https://argoshare.is.e
 
 Figure \@ref(fig:chap07-fig-diags) shows diagnostic plots from the app, which we will run ourselves below. 
 
-### Linear relationship
+*Linear relationship*
 
 A simple scatter plot should show a linear relationship between the explanatory and the dependent variable, as in figure \@ref(fig:chap07-fig-diags)A. 
 If the data describe a non-linear pattern (figure \@ref(fig:chap07-fig-diags)B), then a straight line is not going to fit it well. 
 In this situation, an alternative model should be considered, such as including a quadratic (x^2^) or polynomial term. 
 
-### Independence of residuals
+*Independence of residuals*
 
 The observations and therefore the residuals should be independent.
 This is more commonly a problem in time series data, where observations may be correlated across time with each other (autocorrelation). 
 
 
-### Normal distribution of residuals
+*Normal distribution of residuals*
 
 The observations should be normally distributed around the fitted line. 
 This means that the residuals should show a normal distribution with a mean of zero (figure \@ref(fig:chap07-fig-diags)A).
 If the observations are not equally distributed around the line, the histogram of residuals will be skewed and a normal Q-Q plot will show residuals diverging from the 45 degree line (figure \@ref(fig:chap07-fig-diags)B). 
 See *Q-Q plot ref*. 
 
-### Equal variance of residuals
+*Equal variance of residuals*
 
 The distribution of the observations around the fitted line should be the same on the left side of the scatter plot as they are on the right side. 
 Look at the fan-shaped data on the [simple regression diagnostics shiny app](https://argoshare.is.ed.ac.uk/simple_regression_diagnostics). 
@@ -104,7 +104,7 @@ It is really about understanding the underlying data, rather than relying on a f
 knitr::include_graphics("images/chapter07/3_diags.pdf")
 ```
 
-## The fitted line and the linear equation
+### The fitted line and the linear equation
 
 We promised to keep the equations to a minimum, but this one is so important it needs to be included. But it is easy to understand, so fear not. 
 
@@ -130,7 +130,7 @@ A *p*-value is provided ($Pr(> \left| t \right|)$), which is the result of a nul
 knitr::include_graphics("images/chapter07/4_equation.pdf")
 ```
 
-## Effect modification
+### Effect modification
 
 Effect modification occurs when the size of the effect of the explanatory variable of interest (exposure) on the outcome (dependent variable) differs depending on the level of a third variable. 
 Said another way, this is a situation in which an explanatory variable differentially (positively or negatively) modifies the observed effect of another explanatory variable on the outcome.
@@ -151,7 +151,7 @@ This is an example of confounding.
 knitr::include_graphics("images/chapter07/5_dags.pdf")
 ```
 
-### Additive vs. multiplicative effect modification (interaction)
+*Additive vs. multiplicative effect modification (interaction)*
 
 Depending on the field you work, will depend on which set of terms you use. 
 Effect modification can be additive or multiplicative. 
@@ -186,7 +186,7 @@ All models are approximations of reality.
 knitr::include_graphics("images/chapter07/6_types.pdf")
 ```
 
-## R-squared and model fit
+### R-squared and model fit
 
 Figure \@ref(fig:chap07-fig-types) includes a further metric from the R output: `Adjusted R-squared`. 
 
@@ -202,7 +202,7 @@ Looking again at Figure \@ref(fig:chap07-fig-types), in A, a simple model of cof
 Add smoking to the model improves the fit as can be seen by the fitted lines (0.87). But a true interaction exists in the actual data. 
 By including this interaction in the model, the fit is very good indeed (0.93).
 
-## Confounding
+### Confounding
 
 The last important concept to mention here is confounding. 
 Confounding is a situation in which the association between an explanatory variable (exposure) and outcome (dependent variable) is distorted by the presence of another explanatory variable.
@@ -226,8 +226,7 @@ This procedure is often referred to as controlling for or adjusting for confound
 knitr::include_graphics("images/chapter07/7_confounding.pdf")
 ```
 
-## Summary
-
+### Summary
 We have intentionally spent some time going through the principles and applications of linear regression because it is so important. 
 A firm grasp of these concepts lead to an easy understanding of other regression procedures, such as logistic regression and Cox Proportional Hazards regression. 
 
@@ -320,7 +319,7 @@ fit_turkey %>%
 ```
 
 
-#### Accessing the coefficients of linear regression
+*Accessing the coefficients of linear regression*
 
 A simple linear regression model will return two coefficients - the intercept and the slope (the second returned value). 
 Compare this to the `summary()` output above.
@@ -363,7 +362,7 @@ fit_turkey$coefficients
 Now, the updated results tell us that in year 1952, the life expectancy in the United Kingdom was 68 years. 
 Note that the slope (0.18) does not change. There was nothing wrong with the original model and the results were correct, the intercept was just not very useful.
 
-#### Accessing all model information `tidy()` and `glance()`
+*Accessing all model information `tidy()` and `glance()`*
 
 In the fit_uk and fit_turkey examples above, we were using `fit_uk %>% summary()` to get R to print out a summary of the model. This summary is not, however, in a rectangular shape so we can't easily access the values or put them in a table/use as information on plot labels.
 
@@ -403,7 +402,7 @@ These examples of multivariable regression include two variables: `year` and `co
 
 In this particular setting, it will become obvious which model is appropriate. So we have complete control over the model being fitted, we will use the `predict()` function directly to obtain our fitted line, rather than leaving it up to `ggplot`.  
 
-#### Model 1: year only
+*Model 1: year only*
 
 ```{r fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Life expectancy in Turkey and the UK - univariable fit."}
 mydata_UK_T = mydata %>% 
@@ -424,7 +423,7 @@ mydata_UK_T %>%
 
 By fitting year only, the model ignores country. This gives us a fitted line which is the average of life expectancy in the UK and Turkey. This may be desirable, depending on the question. But here we want to best describe the data. 
 
-#### Model 2: year + country
+*Model 2: year + country*
 ```{r fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Life expectancy in Turkey and the UK - multivariable additive fit."}
 fit_both2 = mydata_UK_T %>% 
   lm(lifeExp ~ year_from1952 + country, data = .)
@@ -441,7 +440,7 @@ mydata_UK_T %>%
 
 This is better, by including country in the model, we now have fitted lines better represent the data. However, the lines are constrained to be parallel. This is discussed in detail above. We need to include an interaction term to allow the effect of year on life expectancy to vary by country in a non-additive manner. 
 
-#### Model 3: year * country
+*Model 3: year &ast; country*
 
 ```{r fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Life expectancy in Turkey and the UK - multivariable multiplicative fit."}
 fit_both3 = mydata_UK_T %>% 
@@ -487,7 +486,10 @@ Finally in this chapter, we are going to fit a more complex linear regression mo
 
 We will introduce a new dataset: The Western Collaborative Group Study. This classic includes data from 3154 healthy young men aged 39-59 from the San Francisco area who were assessed for their personality type. It aimed to capture the occurrence of coronary heart disease over the following 8.5 years. 
 
-We will use it however to explore the relationship between systolic blood pressure (`sbp`), weight (`weight`) and personality type (`personality_2L`). 
+We will use it however to explore the relationship between systolic blood pressure (`sbp`) and personality type (`personality_2L`), accounting for potential confounders such as weight (`weight`). 
+Now this is just for fun - don't write in!
+The study was designed to look at cardiovascular events as the outcome, not blood pressure. 
+But it is a convenient to use blood pressure as a continuous outcome from this dataset, even if that was not the intention of the study.
 
 Personality type is A: aggressive and B: passive. 
 
@@ -495,7 +497,7 @@ Personality type is A: aggressive and B: passive.
 
 We suggest building statistical models on the basis of the following six pragmatic principles: 
 
-1. As few explanatory variables should be used as possible (parsimony);  
+1. As few explanatory variables should be used as possible (parsimony);
 2. Explanatory variables associated with the outcome variable in previous studies should be accounted for; 
 3. Demographic variables should be included in model exploration; 
 4. Population stratification should be incorporated if available; 
@@ -569,7 +571,7 @@ library(kableExtra)
 sum_wcgs[[1]] %>%
   select(-c(5, 8, 9, 11, 12)) %>% 
   kable(row.names = FALSE, align = c("l", "l", "l", "r", "r", "r", "r", "r", "r", "r"), 
-        booktabs = TRUE, caption = "WCGS data, ff\\_glimpse: continous", 
+        booktabs = TRUE, caption = "WCGS data, ff\\_glimpse: continuous", 
         linesep = c("", "", "\\addlinespace")) %>%
   kable_styling(latex_options = c("scale_down", "hold_position")) %>% 
   column_spec(1, width = "4cm")
@@ -582,7 +584,6 @@ sum_wcgs[[2]] %>%
   column_spec(6, width = "3cm") %>% 
   column_spec(7, width = "3cm")
 ```
-
 
 ### Plot the data
 
@@ -605,51 +606,49 @@ mydata %>%
 
 From this plot we can see that there is a weak relationship between weight and blood pressure. 
 In addition, there is really no meaningful effect of personality type on blood pressure. 
-This is really important, because as you will see below, we are about to find some highly statistically significant effects in a model.
+This is really important because, as you will see below, we are about to find some highly statistically significant effects in a model.
 
-### Linear regression with Finalfit
+### Linear regression with finalfit
 
-Finalfit is our own package and provides a convenient set of functions for fitting regression models with results presented in final tables.
+finalfit is our own package and provides a convenient set of functions for fitting regression models with results presented in final tables.
 
-There are a host of features with example code at the [Finalfit website](https://finalfit.org).
+There are a host of features with example code at the [finalfit website](https://finalfit.org).
 
 Here we will use the all-in-one `finalfit` function, which takes a dependent variable and one or more explanatory variables. 
 The appropriate regression for the dependent variable is performed, from a choice of linear, logistic, and Cox Proportional Hazards regression. 
 Summary statistics, together with a univariable and a multivariable regression analysis are produced in a final results table. 
+
 ```{r message=FALSE}
 dependent = "sbp"
-explanatory = "weight"
-fit_sbp1 = mydata %>%
+explanatory = c("personality_2L")
+fit_sbp1 = mydata %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
 ```
 
 ```{r, echo=FALSE}
-fit_sbp1[[1]] %>% 
-  mykable(caption = "Linear regression: Systolic blood pressure by weight") %>%
+fit_sbp1[[1]] %>% mykable(caption = "Linear regression: Systolic blood pressure by personality type.") %>% 
   column_spec(1, width = "4cm")
-```
-
-The output shows us the range for weight (78 to 320 pounds) and the mean (standard deviation) systolic blood pressure for the whole cohort. 
-As there is only one variable, the univariable and multivariable analyses are the same (the multivariable column can be removed if desired by including `select(-5) #5th column` in the piped function). 
-<!-- These list outputs might need clarifed somewhere or the above will fail -->
-The coefficient and 95% confidence interval are provided by default. 
-This is interpretted as: for each pound increase in weight, there is on average a corresponding increase of 0.18 mmHg in systolic blood pressure.  
-
-```{r, echo=FALSE}
-fit_sbp1[[2]] %>% mykable(caption = "Model metrics: Systolic blood pressure by weight",
-                          col.names = "") %>%
+fit_sbp1[[2]] %>% mykable(caption = "Model metrics: Systolic blood pressure by personality type.", col.names = "") %>% 
   column_spec(1, width = "18cm")
 ```
 
-The optional `metrics = TRUE` output gives us the number included in the model. 
-This is so important as frequently people forget that in standard regression models, missing data from any variable results in the that entire row (think patient) being excluded from the analysis. 
-See missing data section. 
+Let's look first at our explanatory variable of interest, personality type.
+When a factor is entered into a regression model, the default is to compare each level of the factor with a "reference level".
+This reference level can be easily changed (REF Ch8 fct_relevel).
+Alternatives methods are available (sometimes called *contrasts*), but the default method is likely to be what you want almost all the time. 
+Note this is sometimes referred to as creating a "dummy variable". 
+
+It can be seen that the mean blood pressure for type A is higher than for type B. As there is only one variable, the univariable and multivariable analyses are the same (the multivariable column can be removed if desired by including `select(-5) #5th column` in the piped function). 
+
+Although the difference is numerically quite small (2.3 mmHg), it is statistically significant partly because of the large number of patients in the study. 
+The optional `metrics = TRUE` output gives us the number of rows (in this case subjects) included in the model. 
+This is important as frequently people forget that in standard regression models, missing data from any variable results in the that entire row  being excluded from the analysis. 
+REF See missing data section. 
 Note the `AIC` and `Adjusted R-squared` results. 
-The adjusted R-squared is very low - the fitted line only explains 6.4% of the variation of systolic blood pressure. 
+The adjusted R-squared is very low - the model only explains only 0.6% of the variation in systolic blood pressure. 
 This is to be expected, given our scatterplot above. 
 
-We will now add in personality type, our other variable of interest. 
-`personality_2L` - the '2L' just mean two levels, rather than the other option for this variable of four levels.
+Let's now include subject weight, which we may hypothesise also influences blood pressure. 
 
 ```{r message=FALSE}
 dependent = "sbp"
@@ -659,25 +658,31 @@ fit_sbp2 = mydata %>%
 ```
 
 ```{r, echo=FALSE}
-fit_sbp2[[1]] %>% mykable(caption = "Multivariable linear regression: Systolic blood pressure by weight and personality type.") %>% 
+fit_sbp2[[1]] %>% mykable(caption = "Multivariable linear regression: Systolic blood pressure by personality type and weight.") %>% 
   column_spec(1, width = "4cm")
-fit_sbp2[[2]] %>% mykable(caption = "Multivariable linear regression metrics: Systolic blood pressure by weight and personality type.", col.names = "") %>% 
+fit_sbp2[[2]] %>% mykable(caption = "Multivariable linear regression metrics: Systolic blood pressure by personality type and weight.", col.names = "") %>% 
   column_spec(1, width = "18cm")
 ```
 
-Looking first at personality type, the mean blood pressure for type A is higher than for type B. 
-This is quantified by the univariable analysis for personality type. 
-Althought the difference is numerically quite small (2.3 mmHg), it is staistically signficiant partly because there are a large number of patients in this study. 
-There is little change in the size of the coefficients for each variable in the multivarible analysis, meaning that they are reasonably independent. 
+The output shows us the range for weight (78 to 320 pounds) and the mean (standard deviation) systolic blood pressure for the whole cohort. 
+
+The coefficient and 95% confidence interval are provided by default. 
+This is interpreted as: for each pound increase in weight, there is on average a corresponding increase of 0.18 mmHg in systolic blood pressure.  
+
+Note the difference in the interpretation of continuous and categorical variables in the regression model output (REF SEE smoker/bp plots). 
+
+The adjusted R-squared is now higher - the personality and weight together explain 6.8% of the variation in blood pressure.  
+The AIC is also slightly lower meaning this new model better fits the data. 
+
+There is little change in the size of the coefficients for each variable in the multivariable analysis, meaning that they are reasonably independent. 
 As an exercise, check the the distribution of weight by personality type using a boxplot. 
 
-The AIC is slightly lower and the adjusted R-squared is slightly higher, meaning the model better fits the data with personality type included. 
+Let's now add in other variables that may influence systolic blood pressure.
 
-Let's now add in other variable that we think may influence systolic blood pressure. 
 
 ```{r message=FALSE}
 dependent = "sbp"
-explanatory = c("weight", "personality_2L", "age", 
+explanatory = c("personality_2L", "weight", "age", 
                 "height", "chol", "smoking") 
 fit_sbp3 = mydata %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
@@ -690,38 +695,94 @@ fit_sbp3[[2]] %>% mykable(caption = "Model metrics: Systolic blood pressure by a
   column_spec(1, width = "18cm")
 ```
 
-*to here*
+Age, height, serum cholesterol, and smoking status have been added. 
+Some of the variation explained by personality type has been taken up by these new variables - personality is now associated with an average change of blood pressure of 1.4 mmHg.
+
+The adjusted R-squared now tells us that 12% of the variation in blood pressure is explained by the model, which is an improvement. 
+
+Look out for variables that show large changes in effect size or a change in the direction of effect when going from a univariable to multivariable model. 
+This means that the other variables in the model are having a large effect on this variable and the cause of this should be explored. 
+For instance, in this example the effect of height changes size and direction. 
+This is because of the close association between weight and height. 
+<!-- (Co linearity with this?) -->
+For instance, it may be more sensible to work with body mass index ($weight / height^2$) rather than the two septate variables. 
+This can be created easily. 
+
+```{r}
+mydata = mydata %>% 
+  mutate(
+    bmi = ((weight*0.4536) / (height*0.0254)^2) %>% 
+      ff_label("BMI")
+  )
+```
+
+Weight and height can be replaced in the model with BMI. 
+
+```{r message=FALSE}
+explanatory = c("personality_2L", "bmi", "age", 
+                "chol", "smoking") 
+
+fit_sbp4 = mydata %>% 
+  finalfit(dependent, explanatory, metrics = TRUE)
+```
+
+```{r, echo=FALSE}
+fit_sbp4[[1]] %>% mykable(caption = "Multivariable linear regression: Systolic blood pressure using BMI.") %>% 
+  column_spec(1, width = "4cm")
+fit_sbp4[[2]] %>% mykable(caption = "Model metrics: Systolic blood pressure using BMI.", col.names = "") %>% 
+  column_spec(1, width = "18cm")
+```
+
+On the principle of parsimony, we may want to remove variables which are not contributing much to the model. 
+For instance, let's compare models with and without the inclusion of smoking. 
+This can be easily done using the `finalfit` `explanatory_multi` option.
 
 ```{r message=FALSE}
 dependent = "sbp"
-explanatory = c("weight", "personality_2L", "age", 
-                "height", "chol", "smoking") 
-explanatory_multi = c("weight", "personality_2L", "age", 
-                      "height", "chol") 
-fit_sbp4 = mydata %>% 
+explanatory = c("personality_2L", "bmi", "age", 
+                "chol", "smoking") 
+explanatory_multi = c("bmi", "personality_2L", "age", 
+                      "chol") 
+fit_sbp5 = mydata %>% 
   finalfit(dependent, explanatory, 
            explanatory_multi, 
            keep_models = TRUE, metrics = TRUE)
 ```
 
 ```{r, echo=FALSE}
-fit_sbp4[[1]] %>% mykable(caption = "Multivariable linear regression: Systolic blood pressure by available explanatory variables and reduced model.") %>% 
+fit_sbp5[[1]] %>% mykable(caption = "Multivariable linear regression: Systolic blood pressure by available explanatory variables and reduced model.") %>% 
   column_spec(1, width = "4cm") %>% 
   column_spec(4, width = "4cm") %>% 
   column_spec(5, width = "4cm") %>% 
   column_spec(6, width = "4cm")
-fit_sbp4[[2]] %>% mykable(caption = "Model metrics: Systolic blood pressure by available explanatory variables (top) with reduced model (bottom).", col.names = "") %>% 
+fit_sbp5[[2]] %>% mykable(caption = "Model metrics: Systolic blood pressure by available explanatory variables (top) with reduced model (bottom).", col.names = "") %>% 
   column_spec(1, width = "18cm")
 ```
 
-More to add for each step above.
+This results in little change in the other coefficients and very little change in the AIC. 
+We will consider the reduced model the final model. 
 
 An important message here relates to the highly significant p-values in the table above. 
-Should we conclude that in a "multivariable regression model controlling for weight, height, age, serum cholesterol levels and smoking status, blood pressure was significantly elevated in those with a Type A personality (1.44 (95% CI 0.44 to 2.43, p=0.005) compared with Type B. 
-The p-value looks impressive, but the actual difference in blood pressure is only 1.4 mmHg. 
+Should we conclude that in a "multivariable regression model controlling for BMI, age, and serum cholesterol, blood pressure was significantly elevated in those with a Type A personality (1.56 (0.57 to 2.56, p=0.002) compared with Type B?
+The p-value looks impressive, but the actual difference in blood pressure is only 1.6 mmHg. 
 Even at a population level, that seems unlikely to be clinically significant. 
 Which fits with our first thoughts when we saw the scatter plot. 
 
+This serves to emphasise our most important point.
+Our focus should be on understanding the underlying data itself, rather than relying on complex multidimensional modelling procedures. 
+By making liberal use of upfront plotting, together with further visualisation as you understand the data, you will likely be able to draw most of the important conclusions that the data has to offer. 
+Use modelling to quantify and confirm this, rather than the primary method of data exploration. 
+
+### Summary
+
+Time spent truly understanding linear regression is well spent. 
+Not because you will spend a lot of time making linear regression models in health data science (we rarely do), but because it the essential foundation for understanding more advanced statistical models. 
+
+It can even be argued that all [common statistical tests are linear models](https://lindeloev.github.io/tests-as-linear).
+This great post demonstrates beautifully how the statistical tests we are most familiar with (such as t-test, Mann-Whitney U test, ANOVA, chi-squared test) can simply be considered as special cases of linear models, or a close approximations. 
+
+Regression is fitting lines, preferably straight, through data points. 
+Make $\hat{y} = \beta_0 + \beta_1 x_1$ a close friend.
 
 <!-- ## Exercise 5 -->
 

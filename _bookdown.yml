@@ -20,6 +20,7 @@ output_dir: "docs"
 #rmd_files: ["index.Rmd", "08_tests_categorical.Rmd"]
 #rmd_files: ["index.Rmd", "09_logistic_regression.Rmd"]
 #rmd_files: ["index.Rmd", "10_survival.Rmd"]
+#rmd_files: ["index.Rmd", "12_missing_data.Rmd"]
 # rmd_files: ["index.Rmd",
 #             "01_first_interaction.Rmd",
 #             "02_basics.Rmd",

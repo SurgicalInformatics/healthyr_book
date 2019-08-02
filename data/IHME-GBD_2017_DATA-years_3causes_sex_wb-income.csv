@@ -1,0 +1,169 @@
+measure,location,sex,age,cause,metric,year,val,upper,lower
+Deaths,World Bank High Income,Male,All Ages,Injuries,Number,1990,420499.98633686715,424291.0163024223,417465.0383613333
+Deaths,World Bank High Income,Female,All Ages,Injuries,Number,1990,196518.8238661121,198226.8177264427,194720.20452887667
+Deaths,World Bank Upper Middle Income,Male,All Ages,Non-communicable diseases,Number,1990,5392806.1751324,5477932.449430277,5308455.658505787
+Deaths,World Bank Upper Middle Income,Female,All Ages,Non-communicable diseases,Number,1990,4979057.4010561425,5049043.77144191,4904296.620399973
+Deaths,World Bank Lower Middle Income,Male,All Ages,Non-communicable diseases,Number,1995,4580144.868097399,4751075.979577248,4344257.128794142
+Deaths,World Bank Lower Middle Income,Female,All Ages,Non-communicable diseases,Number,1995,3862413.2132930984,4025632.23798991,3663907.119049062
+Deaths,World Bank Low Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,1995,1917106.3630006337,1990018.691357669,1841497.6027413134
+Deaths,World Bank Low Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,1995,1729259.605034824,1781334.9221881756,1677557.9232373878
+Deaths,World Bank High Income,Male,All Ages,Non-communicable diseases,Number,1990,3777310.0425545936,3783582.5851453957,3769753.6108268285
+Deaths,World Bank High Income,Female,All Ages,Non-communicable diseases,Number,1990,3727879.482285018,3733814.0159347146,3721265.3635955937
+Deaths,World Bank Upper Middle Income,Male,All Ages,Injuries,Number,1990,1210396.8220969841,1246196.8162813003,1178297.5199024018
+Deaths,World Bank Upper Middle Income,Female,All Ages,Injuries,Number,1990,552906.4353381738,569807.819556198,536523.4566949897
+Deaths,World Bank Lower Middle Income,Male,All Ages,Injuries,Number,1995,1044000.7354621063,1097092.9859225128,964357.2015709669
+Deaths,World Bank Lower Middle Income,Female,All Ages,Injuries,Number,1995,570230.0391531986,612718.3152591222,514704.3050779043
+Deaths,World Bank Lower Middle Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,1995,4567623.470878756,4856462.423338071,4376319.937309795
+Deaths,World Bank Lower Middle Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,1995,4260104.551453574,4517466.186591756,4100520.801432793
+Deaths,World Bank Low Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,1990,1716937.3131303024,1812399.3970064432,1627771.937838966
+Deaths,World Bank Low Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,1990,1507838.7794963066,1567052.9029859027,1454359.938782373
+Deaths,World Bank Upper Middle Income,Male,All Ages,Injuries,Number,1995,1393780.006581393,1419946.0924419577,1358164.25161559
+Deaths,World Bank Upper Middle Income,Female,All Ages,Injuries,Number,1995,576231.173976335,590339.3270550155,562121.8683725416
+Deaths,World Bank High Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,1990,261590.8321393081,266683.27779926505,257621.28236016905
+Deaths,World Bank High Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,1990,206893.9431315463,210930.73063411092,203743.4272097224
+Deaths,World Bank High Income,Male,All Ages,Injuries,Number,1995,415886.36135636375,419133.7849740343,412766.3266756515
+Deaths,World Bank High Income,Female,All Ages,Injuries,Number,1995,196700.33482709777,198347.56866444656,194978.58160102018
+Deaths,World Bank High Income,Male,All Ages,Non-communicable diseases,Number,1995,3892198.9847925114,3898591.0261666644,3885638.690568475
+Deaths,World Bank High Income,Female,All Ages,Non-communicable diseases,Number,1995,3904188.984971503,3911005.112212357,3898150.780026455
+Deaths,World Bank Upper Middle Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,1995,1175636.1415105008,1209897.960293652,1145107.2052295567
+Deaths,World Bank Upper Middle Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,1995,941152.4814882136,967053.7617556654,917085.8551662224
+Deaths,World Bank Upper Middle Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,1990,1353317.7936971027,1399863.9556358024,1312991.8071192985
+Deaths,World Bank Upper Middle Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,1990,1150356.2963442018,1185637.2120501844,1117078.5906377821
+Deaths,World Bank Lower Middle Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,1990,4729669.269328065,5028476.683532446,4514551.9404455
+Deaths,World Bank Lower Middle Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,1990,4434740.718821255,4676721.424430818,4257486.762614099
+Deaths,World Bank Low Income,Male,All Ages,Non-communicable diseases,Number,1995,701712.8649033895,768268.8511594725,653238.5446340857
+Deaths,World Bank Low Income,Female,All Ages,Non-communicable diseases,Number,1995,657832.0451661072,699311.7577983546,621272.7790773127
+Deaths,World Bank High Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,1995,290200.527267431,294186.86565781845,286995.1646094106
+Deaths,World Bank High Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,1995,224974.62782051624,228291.76567731285,221715.7814235626
+Deaths,World Bank Upper Middle Income,Male,All Ages,Non-communicable diseases,Number,1995,6213240.644255911,6285929.122477589,6134927.107003671
+Deaths,World Bank Upper Middle Income,Female,All Ages,Non-communicable diseases,Number,1995,5470181.594854926,5534302.941106492,5410467.827643698
+Deaths,World Bank Low Income,Male,All Ages,Injuries,Number,2000,267172.2655094108,283916.5673793442,249563.20226973237
+Deaths,World Bank Low Income,Female,All Ages,Injuries,Number,2000,128545.53555218292,137823.99254461017,117711.10990216906
+Deaths,World Bank Lower Middle Income,Male,All Ages,Non-communicable diseases,Number,1990,4108489.2865633112,4294908.353577597,3878509.9811667795
+Deaths,World Bank Lower Middle Income,Female,All Ages,Non-communicable diseases,Number,1990,3493370.449512782,3665351.2128406097,3303685.947565337
+Deaths,World Bank Low Income,Male,All Ages,Injuries,Number,1995,219113.56361652445,238289.60413152393,196876.21257407602
+Deaths,World Bank Low Income,Female,All Ages,Injuries,Number,1995,108474.56090609582,118579.91259993975,95237.30358013122
+Deaths,World Bank Low Income,Male,All Ages,Non-communicable diseases,Number,1990,632454.1893447938,704345.9422082747,565637.2767889005
+Deaths,World Bank Low Income,Female,All Ages,Non-communicable diseases,Number,1990,597188.3263785021,641835.6149036316,553113.0669734224
+Deaths,World Bank High Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2000,250360.7975458638,253486.5808964231,247430.7356359909
+Deaths,World Bank High Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2000,228381.8367036705,231158.96070343617,225347.55105427446
+Deaths,World Bank Lower Middle Income,Male,All Ages,Injuries,Number,1990,985157.0931785697,1048997.0649354765,900955.6137836053
+Deaths,World Bank Lower Middle Income,Female,All Ages,Injuries,Number,1990,547238.2108889802,597208.3936614194,492205.67127144296
+Deaths,World Bank Low Income,Male,All Ages,Injuries,Number,1990,217789.88134301492,242345.6889437354,186336.2319976754
+Deaths,World Bank Low Income,Female,All Ages,Injuries,Number,1990,111557.51458125634,124120.04203599782,95307.91675080173
+Deaths,World Bank Upper Middle Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2000,1042822.968113979,1067896.1889432026,1018051.7486347252
+Deaths,World Bank Upper Middle Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2000,825721.7396861528,850039.8326906068,804394.3196189449
+Deaths,World Bank High Income,Male,All Ages,Injuries,Number,2000,397120.7044659851,400243.54811694706,394422.73863348016
+Deaths,World Bank High Income,Female,All Ages,Injuries,Number,2000,189947.53163838293,191423.4974744377,188580.66688969932
+Deaths,World Bank Upper Middle Income,Male,All Ages,Non-communicable diseases,Number,2000,6626474.0419734,6708649.563566647,6550122.057850118
+Deaths,World Bank Upper Middle Income,Female,All Ages,Non-communicable diseases,Number,2000,5732841.302457693,5798920.761887897,5665967.561715753
+Deaths,World Bank Lower Middle Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2000,4483828.523107273,4790189.250170626,4297982.294490743
+Deaths,World Bank Lower Middle Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2000,4170653.624680997,4446889.406547826,4001945.668455797
+Deaths,World Bank Lower Middle Income,Male,All Ages,Non-communicable diseases,Number,2000,5073200.382501896,5241091.553650901,4806705.025768591
+Deaths,World Bank Lower Middle Income,Female,All Ages,Non-communicable diseases,Number,2000,4215415.6461832365,4390031.338832305,3991541.122981153
+Deaths,World Bank Lower Middle Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2005,4236727.385912555,4550621.180890701,4050008.1691042674
+Deaths,World Bank Lower Middle Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2005,3897250.0766004785,4179005.659271605,3723767.649558892
+Deaths,World Bank Low Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2000,1980512.788540622,2045401.500742786,1909530.646559042
+Deaths,World Bank Low Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2000,1831714.4152270036,1886713.2954495458,1774648.194197647
+Deaths,World Bank Lower Middle Income,Male,All Ages,Injuries,Number,2000,1110162.1654310783,1158188.2143731264,1030189.4737213182
+Deaths,World Bank Lower Middle Income,Female,All Ages,Injuries,Number,2000,604210.5305708087,642341.0588640145,548554.872686237
+Deaths,World Bank Upper Middle Income,Male,All Ages,Injuries,Number,2000,1347716.5974643517,1369987.3587467775,1319333.4737509761
+Deaths,World Bank Upper Middle Income,Female,All Ages,Injuries,Number,2000,505757.2353449168,516672.9272939407,494857.50643616077
+Deaths,World Bank Lower Middle Income,Male,All Ages,Non-communicable diseases,Number,2005,5485176.054867318,5664916.776286795,5216611.198499408
+Deaths,World Bank Lower Middle Income,Female,All Ages,Non-communicable diseases,Number,2005,4520732.521837369,4697370.090678376,4279686.818428105
+Deaths,World Bank Lower Middle Income,Male,All Ages,Injuries,Number,2005,1178450.1267700067,1222938.3789381462,1094671.9931311538
+Deaths,World Bank Lower Middle Income,Female,All Ages,Injuries,Number,2005,618064.5086991658,648712.0662470178,560673.4098833707
+Deaths,World Bank High Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2005,246539.32356657903,249417.22501908528,243522.58173364672
+Deaths,World Bank High Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2005,228789.78983894503,231376.6396186896,226362.73404879356
+Deaths,World Bank High Income,Male,All Ages,Non-communicable diseases,Number,2000,3903644.5766545422,3909800.0243159346,3897753.230169367
+Deaths,World Bank High Income,Female,All Ages,Non-communicable diseases,Number,2000,4007233.1857435196,4013376.531792244,4001073.9959685365
+Deaths,World Bank Low Income,Male,All Ages,Non-communicable diseases,Number,2000,745254.9304804035,807263.9769585932,699269.684724585
+Deaths,World Bank Low Income,Female,All Ages,Non-communicable diseases,Number,2000,700882.4059879823,739389.5734800624,663610.2926098693
+Deaths,World Bank Upper Middle Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2005,953711.4200607849,983204.8167886524,931599.7004328999
+Deaths,World Bank Upper Middle Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2005,782713.9202445535,812308.2026309046,757153.3917272605
+Deaths,World Bank Low Income,Male,All Ages,Non-communicable diseases,Number,2005,792703.5227117945,850269.0765203707,745824.8466407313
+Deaths,World Bank Low Income,Female,All Ages,Non-communicable diseases,Number,2005,739305.7077746902,778298.2579695777,701030.208145869
+Deaths,World Bank Upper Middle Income,Male,All Ages,Non-communicable diseases,Number,2010,7648680.569230141,7756889.788985265,7546139.773227885
+Deaths,World Bank Upper Middle Income,Female,All Ages,Non-communicable diseases,Number,2010,6384327.84219465,6461438.390323313,6305430.624842474
+Deaths,World Bank Lower Middle Income,Male,All Ages,Injuries,Number,2010,1210100.8791780432,1256110.715265806,1132648.2517547992
+Deaths,World Bank Lower Middle Income,Female,All Ages,Injuries,Number,2010,608260.141601622,637488.1842703668,551493.3270063394
+Deaths,World Bank Low Income,Male,All Ages,Non-communicable diseases,Number,2010,868997.4264639239,923173.6205791375,817870.9699530661
+Deaths,World Bank Low Income,Female,All Ages,Non-communicable diseases,Number,2010,798268.9379056595,837621.7637893846,756498.8753463946
+Deaths,World Bank Low Income,Male,All Ages,Injuries,Number,2005,230134.45889352262,247332.93289522364,214806.79429341602
+Deaths,World Bank Low Income,Female,All Ages,Injuries,Number,2005,107347.80759809214,115253.11336476552,98217.11288108777
+Deaths,World Bank Upper Middle Income,Male,All Ages,Injuries,Number,2010,1250797.3874828662,1271303.9420696532,1210069.244627633
+Deaths,World Bank Upper Middle Income,Female,All Ages,Injuries,Number,2010,464699.05987990653,473693.8251687868,453032.7418520877
+Deaths,World Bank Upper Middle Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2010,842801.1027384592,871310.9825938245,821714.5766758968
+Deaths,World Bank Upper Middle Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2010,694881.6778272926,719919.4043653776,671680.3095346367
+Deaths,World Bank Upper Middle Income,Male,All Ages,Non-communicable diseases,Number,2005,7176422.063402042,7249951.4807251245,7105569.279403856
+Deaths,World Bank Upper Middle Income,Female,All Ages,Non-communicable diseases,Number,2005,6094824.118291764,6157755.949591653,6030491.901397549
+Deaths,World Bank High Income,Male,All Ages,Non-communicable diseases,Number,2005,3991400.9584717955,3997829.5174802984,3985306.8318073982
+Deaths,World Bank High Income,Female,All Ages,Non-communicable diseases,Number,2005,4071276.435404869,4077180.461383608,4065324.5252954056
+Deaths,World Bank High Income,Male,All Ages,Injuries,Number,2005,400044.00535701035,402973.67452263576,397023.4625174571
+Deaths,World Bank High Income,Female,All Ages,Injuries,Number,2005,192551.43200381752,194098.94674666793,191072.69514305712
+Deaths,World Bank Lower Middle Income,Male,All Ages,Non-communicable diseases,Number,2010,6282285.085760208,6473586.680811349,5995614.634653149
+Deaths,World Bank Lower Middle Income,Female,All Ages,Non-communicable diseases,Number,2010,5090698.644715818,5285829.032497429,4820176.1760526365
+Deaths,World Bank High Income,Male,All Ages,Non-communicable diseases,Number,2010,4150629.9870855734,4158661.6037147576,4143006.868916601
+Deaths,World Bank High Income,Female,All Ages,Non-communicable diseases,Number,2010,4212689.218775227,4219113.546543264,4206233.525423734
+Deaths,World Bank Upper Middle Income,Male,All Ages,Injuries,Number,2005,1281047.3236964107,1298723.2387213728,1240191.725846897
+Deaths,World Bank Upper Middle Income,Female,All Ages,Injuries,Number,2005,476714.9504922948,484965.8833055566,465275.8177693011
+Deaths,World Bank Low Income,Male,All Ages,Injuries,Number,2010,376797.4152308512,395206.83624805015,360843.9834104547
+Deaths,World Bank Low Income,Female,All Ages,Injuries,Number,2010,196564.59853904153,204199.8202074711,187620.56204081225
+Deaths,World Bank Lower Middle Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2010,3823185.532144043,4158840.6061527967,3608971.398144076
+Deaths,World Bank Lower Middle Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2010,3508469.8419837323,3822766.3125707954,3326178.3284529923
+Deaths,World Bank Low Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2005,1829696.4153218186,1897987.163393206,1762742.343278535
+Deaths,World Bank Low Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2005,1714724.6614353412,1768786.776285402,1661197.7713207032
+Deaths,World Bank High Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2010,254672.18050968173,258144.18228568108,250007.91735244956
+Deaths,World Bank High Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2010,236164.8931709222,239321.7120520763,233388.25471531117
+Deaths,World Bank Low Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2010,1637740.7564968467,1708318.6326067597,1572288.100685339
+Deaths,World Bank Low Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2010,1516076.8825444104,1571578.3389843758,1465355.3012966122
+Deaths,World Bank High Income,Male,All Ages,Injuries,Number,2010,391585.93392857,396090.54489943106,388229.711269092
+Deaths,World Bank High Income,Female,All Ages,Injuries,Number,2010,194751.071653649,196724.57572584663,193128.5143305744
+Deaths,World Bank Lower Middle Income,Male,All Ages,Non-communicable diseases,Number,2015,6983425.543572393,7186592.592478824,6711757.727873446
+Deaths,World Bank Lower Middle Income,Female,All Ages,Non-communicable diseases,Number,2015,5963963.783201442,6189460.201133151,5663028.631202914
+Deaths,World Bank High Income,Male,All Ages,Injuries,Number,2015,396124.8680225449,402359.1915236384,390660.9790589845
+Deaths,World Bank High Income,Female,All Ages,Injuries,Number,2015,203112.1172992737,205787.35859828177,200936.69227403984
+Deaths,World Bank Upper Middle Income,Male,All Ages,Non-communicable diseases,Number,2015,8408040.0305768,8587021.97899133,8224212.658379156
+Deaths,World Bank Upper Middle Income,Female,All Ages,Non-communicable diseases,Number,2015,7076283.020906728,7231597.042188386,6920765.44913581
+Deaths,World Bank Low Income,Male,All Ages,Non-communicable diseases,Number,2015,958242.1297739551,1010857.3306931573,899760.614803568
+Deaths,World Bank Low Income,Female,All Ages,Non-communicable diseases,Number,2015,885137.4073568127,930618.4572056738,838104.8501330151
+Deaths,World Bank Lower Middle Income,Male,All Ages,Injuries,Number,2015,1241733.5757032803,1286209.2961390426,1166809.8899919468
+Deaths,World Bank Lower Middle Income,Female,All Ages,Injuries,Number,2015,649306.8673755415,678940.1507086668,598953.5280119854
+Deaths,World Bank Low Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2015,1416676.8173394324,1492034.4334647818,1351888.2394070327
+Deaths,World Bank Low Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2015,1242517.4906379145,1295106.2685890307,1193630.0276355047
+Deaths,World Bank Low Income,Male,All Ages,Injuries,Number,2015,270453.5660372027,291747.25621139415,252923.65615576215
+Deaths,World Bank Low Income,Female,All Ages,Injuries,Number,2015,121263.53391681638,129110.89114807414,112588.77522469254
+Deaths,World Bank Lower Middle Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2015,3262082.7820324767,3584753.2657208354,3060507.4861212606
+Deaths,World Bank Lower Middle Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2015,3068067.4900714564,3403699.5201984085,2854941.755727146
+Deaths,World Bank Upper Middle Income,Male,All Ages,Injuries,Number,2015,1154489.551004969,1182421.5439580423,1108826.939236343
+Deaths,World Bank Upper Middle Income,Female,All Ages,Injuries,Number,2015,434363.082086979,446785.217055892,419139.75327136426
+Deaths,World Bank High Income,Male,All Ages,Non-communicable diseases,Number,2015,4469037.316138772,4481222.733732704,4458001.9948073905
+Deaths,World Bank High Income,Female,All Ages,Non-communicable diseases,Number,2015,4532439.102931843,4541997.456176204,4523553.390070382
+Deaths,World Bank Lower Middle Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2017,3095992.0780458837,3421137.2887563845,2896577.735227478
+Deaths,World Bank Lower Middle Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2017,2920220.7093609367,3289563.7721505333,2692926.065496707
+Deaths,World Bank Upper Middle Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2015,756077.8952204909,785845.6730502484,733294.6213167896
+Deaths,World Bank Upper Middle Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2015,588986.2228074705,613407.5075051833,570791.2320137911
+Deaths,World Bank High Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2015,278272.78114468564,283924.1691925671,271682.9783732774
+Deaths,World Bank High Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2015,257244.1398472355,261676.74515314616,253186.80712490008
+Deaths,World Bank Lower Middle Income,Male,All Ages,Non-communicable diseases,Number,2017,7297238.956018169,7536929.130635703,7004743.501012446
+Deaths,World Bank Lower Middle Income,Female,All Ages,Non-communicable diseases,Number,2017,6266154.226337754,6518478.857662909,5918602.043161091
+Deaths,World Bank Upper Middle Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2017,728760.0587457229,759233.2176288412,704179.6223055288
+Deaths,World Bank Upper Middle Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2017,546933.560280265,569465.8411986701,530039.1623944665
+Deaths,World Bank High Income,Male,All Ages,Injuries,Number,2017,404537.27361155354,414270.65999046946,395435.5680561482
+Deaths,World Bank High Income,Female,All Ages,Injuries,Number,2017,207017.50959095694,211404.91099630686,202924.99451706573
+Deaths,World Bank Upper Middle Income,Male,All Ages,Injuries,Number,2017,1156643.7273807907,1189367.0806539385,1110772.2187468
+Deaths,World Bank Upper Middle Income,Female,All Ages,Injuries,Number,2017,432196.2909379992,446094.39900432364,417824.4937100317
+Deaths,World Bank Lower Middle Income,Male,All Ages,Injuries,Number,2017,1234762.385193921,1284710.8062536626,1161755.1331373353
+Deaths,World Bank Lower Middle Income,Female,All Ages,Injuries,Number,2017,657408.254936466,690205.2985224489,610008.0996315636
+Deaths,World Bank High Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2017,290403.48758815014,298938.6455305647,281712.50278021256
+Deaths,World Bank High Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2017,264366.21346961934,271227.34578845586,258578.3103720352
+Deaths,World Bank Low Income,Male,All Ages,Non-communicable diseases,Number,2017,996711.4760335366,1052089.4324116737,935189.2876958362
+Deaths,World Bank Low Income,Female,All Ages,Non-communicable diseases,Number,2017,923387.2720647528,972260.9666094335,872210.5068063242
+Deaths,World Bank High Income,Male,All Ages,Non-communicable diseases,Number,2017,4652647.870056328,4722570.817109564,4586638.207320702
+Deaths,World Bank High Income,Female,All Ages,Non-communicable diseases,Number,2017,4679496.590790274,4756084.657100823,4607737.628570475
+Deaths,World Bank Low Income,Male,All Ages,Injuries,Number,2017,260899.68142328097,283484.15748065547,241848.8300098223
+Deaths,World Bank Low Income,Female,All Ages,Injuries,Number,2017,115596.76986339757,123420.71801650297,106789.21097227438
+Deaths,World Bank Low Income,Male,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2017,1354962.5898115768,1436744.3458660133,1287568.515948254
+Deaths,World Bank Low Income,Female,All Ages,"Communicable, maternal, neonatal, and nutritional diseases",Number,2017,1176032.6381271018,1231115.9295884469,1127614.1643866245
+Deaths,World Bank Upper Middle Income,Male,All Ages,Non-communicable diseases,Number,2017,8792885.943595557,9019729.646637063,8558512.561471144
+Deaths,World Bank Upper Middle Income,Female,All Ages,Non-communicable diseases,Number,2017,7279247.240830691,7464544.845645286,7106196.005197174

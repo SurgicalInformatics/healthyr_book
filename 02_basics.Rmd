@@ -142,7 +142,7 @@ Sys.time()
 
 To summarise, objects and functions work hand in hand. 
 Objects are both an input as well as the output of a function (what the function returns). 
-The data values input into a function are usually its first argument, further arguments can be used to specify a function's behavior. 
+The data values input into a function are usually its first argument, further arguments can be used to specify a function's behaviour. 
 When we say "the function returns", we are referring to its output (or an Error if it's one of those days).
 The returned object can be different to its input object.
 In our `mean()` examples above, the input object was a column (`mydata$var1`: `r mydata$var1`), whereas the output was a single value: `r mean(mydata$var1)`.
@@ -651,7 +651,7 @@ R usually refers to numbers as `numeric` (or `num`), but sometimes it really get
 It doesn't usually matter whether R is classifying your continuous data `numeric/num/double/int`, but it is good to be aware of these different terms as you will see them in R messages.
 
 > FRIENDLY WARNING: What's about to follow is a bit dry. Furthermore, it is not essential for complete beginners - you might want to continue reading from __Characters__.
-Before you leave, take a mental note that sometimes numbers in R have more decimal places than it seems, and that can cause funny behavior when using the double equals operator (`==`).
+Before you leave, take a mental note that sometimes numbers in R have more decimal places than it seems, and that can cause funny behaviour when using the double equals operator (`==`).
 
 Something to note about numbers is that R doesn't usually print more than 6 decimal places, but that doesn't mean they don't exist.
 For example, from the `typedata` tibble, we're taking the `measurement` column and sending it to the `mean()` function. 
@@ -1041,7 +1041,7 @@ labsdata = read_csv("data/labs_data.csv")
 labsdata
 ```
 
-Notice how these datasets are not only different size (`r nrow(patientdata)` rows in `patientdata`, `r nrow(labsdata)` rows in `labsdata`), but include information on different patients: patiendata has ids `r patientdata$id`, labsdata has ids `r labsdata$id`.
+Notice how these datasets are not only different size (`r nrow(patientdata)` rows in `patientdata`, `r nrow(labsdata)` rows in `labsdata`), but include information on different patients: `patiendata` has ids `r patientdata$id`, `labsdata` has ids `r labsdata$id`.
 
 A comprehensive way to join these is to use `full_join()` retaining all information from both tibbles (and matching up rows by shared columns, in this case `id`):
 
@@ -1069,7 +1069,7 @@ right_join(patientdata, labsdata)
 
 * The rows do not have to be ordered, the joins match on values within the rows, not the order of the rows within the tibble.
 
-* Joins are used to combine different varibles (columns) into a single tibble. __If you are getting more data of the same variables, use `bind_rows()` instead__:
+* Joins are used to combine different variables (columns) into a single tibble. __If you are getting more data of the same variables, use `bind_rows()` instead__:
 
 ```{r, message = FALSE}
 patientdata_new = read_csv("data/patient_data_updated.csv")

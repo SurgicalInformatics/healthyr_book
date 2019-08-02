@@ -304,7 +304,7 @@ Global Burden of Disease Study 2017 (GBD 2017) Results.
 Seattle, United States: Institute for Health Metrics and Evaluation (IHME), 2018.
 Available from http://ghdx.healthdata.org/gbd-results-tool.]
 
-GBD data are publicly available from their website. Table \@ref(tab:chap2-tab-gbd) and Figure \@ref(fig:chap2-fig-gbd) show a very high level version of the project's data with just 3 variables: cause, year, deaths (number of people who die of each cause every year). Later, we will be using a longer dataset with different subgroups and we will show you how to summarise comprehensive datasets yourself.
+GBD data are publicly available from their website. Table \@ref(tab:chap2-tab-gbd) and Figure \@ref(fig:chap2-fig-gbd) show a very high level version of the project's data with just 3 variables: cause, year, deaths_millions (number of people who die of each cause every year). Later, we will be using a longer dataset with different subgroups and we will show you how to summarise comprehensive datasets yourself.
 
 ```{r, message=F}
 library(tidyverse)
@@ -313,7 +313,6 @@ gbd_short = read_csv("data/global_burden_disease_SHORT.csv")
 
 ```{r chap2-tab-gbd, echo = FALSE}
 gbd_short %>% 
-  mutate(deaths = prettyNum(deaths, big.mark = ",")) %>% 
   knitr::kable(booktabs = TRUE,
                linesep = c("", "", "\\addlinespace"),
                align = c("l", "c", "r", "l", "c", "r"),
@@ -326,17 +325,17 @@ gbd_short %>%
 source("1_source_theme.R")
 library(patchwork)
 p1 = gbd_short %>% 
-  ggplot(aes(x = year, y = deaths/1e6, fill = cause, colour = cause)) +
+  ggplot(aes(x = year, y = deaths_millions, fill = cause, colour = cause)) +
   geom_point() +
   geom_line() +
   labs(x = "Year", y = "Deaths per year (millions)") +
   facet_wrap(~cause) +
   theme(legend.position = "none") +
   scale_y_continuous(limits = c(0, 50), expand = c(0, 0)) +
-  geom_text(aes(label = (deaths/1e6) %>% round(0)), colour = "#525252", size = 3, vjust = -0.5)
+  geom_text(aes(label = (deaths_millions %>% round(0))), colour = "#525252", size = 3, vjust = -0.5)
 
 p2 = gbd_short %>% 
-  ggplot(aes(x = year, y = deaths/1e6, fill = cause, colour = cause)) +
+  ggplot(aes(x = year, y = deaths_millions, fill = cause, colour = cause)) +
   geom_col() +
   labs(x = "Year", y = "Deaths per year (millions)") +
   theme(legend.position = "top") +

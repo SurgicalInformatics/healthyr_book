@@ -3,6 +3,11 @@ output:
   pdf_document: default
   html_document: default
 ---
+
+```{r, include = FALSE}
+options(pillar.sigfig = 4)
+```
+
 # Summarising data
 
 In this session we will get to know our three best friends for summarising data: `group_by()`, `summarise()`, and `mutate()`.
@@ -25,6 +30,7 @@ gbd_long  = read_csv("data/global_burden_disease_LONG.csv")
 # Creating a single-year tibble for printing and simple examples:
 gbd2017 = gbd_long %>% 
   filter(year == 2017)
+
 ```
 
 ```{r chap3-tab-gbd2017, echo = FALSE}
@@ -42,7 +48,7 @@ gbd2017 %>%
 
 The best way to investigate a dataset is of course to plot it. We have added a couple of notes as comments (the lines starting with a `#`) for those who can't wait to get to the next chapter where the code for plotting will be introduced and explained in detail. Overall, you shouldn't waste time trying to understand this code here but to look at the different groups within this new dataset.
 
-```{r fig.height=3, fig.width=6}
+```{r  chap03-fig-gbd, fig.height=3, fig.width=6, fig.cap="Global Burden of Disease data with subgroups: cause, sex, World Bank income group."}
 gbd2017 %>% 
   # without the mutate(... = fct_relevel()) 
   # the panels get ordered alphabetically
@@ -67,7 +73,7 @@ To quickly calculate the total number of deaths in 2017, we can select the colum
 gbd2017$deaths_millions %>% sum()
 ```
 
-But a mich cleverer way of summarising data is using the `summarise()` function:
+But a much cleverer way of summarising data is using the `summarise()` function:
 
 ```{r}
 gbd2017 %>% 
@@ -76,39 +82,41 @@ gbd2017 %>%
 
 And this is indeed equal to the number of deaths per year we were looking at in the shorter version of this data (Deaths from the three causes were `r gbd_short %>%filter(year == 2017) %>% pull(deaths_millions)` which adds to `r gbd_short %>%filter(year == 2017) %>% pull(deaths_millions) %>% sum()`).
 
-
-
-
-```{r, fig.width=6, fig.height=4}
-
-# mydata %>% 
-# 	ggplot(aes(x = year, y = deaths_millions, fill = cause))+ 
-# 	geom_col(colour = "black")
-# 
-# 
-# mydata %>% 
-# 	filter(year == 1990)
-```
-
-
-
-## Basic functions for summarising data
-
-You can always pick a column and ask R to give you the `sum()`, `mean()`, `min()`, `max()`, etc. for it:
+`sum()` is a function that adds numbers together, whereas `summarise()` is a clever and efficient way of creating summarised tibbles. The main strength of `sumarise()` is how it works together with the `group_by()` function. We use `group_by()` to tell `summarise()` which subgroups to apply the calculations on. In the above example, without `group_by()`, summarise just works on the whole dataset, yielding the same result as just sending a single column into the `sum()` function. But if we add `group_by()` like this, e.g., for the `cause` variable:
 
 ```{r}
-# mydata$deaths_millions %>% sum()
-# mydata$deaths_millions %>% mean()
-
+gbd2017 %>% 
+  group_by(cause) %>% 
+  summarise(sum(deaths_millions))
 ```
 
-But if you want to get the total number of deaths for each `year` (or `cause`, or `sex`, whichever grouping variables you have in your dataset) you can use `group_by()` and `summarise()` that make subgroup analysis very convenient and efficient.
+Furthermore, `group_by()` is happy accept multiple grouping variables. So by just copying and editing the above code, we can quickly get summarised totals across mutliple grouping variables (by just adding `sex` inside the `group_by()` after `cause`):
+
+```{r}
+gbd2017 %>% 
+  group_by(cause, sex) %>% 
+  summarise(sum(deaths_millions))
+```
 
 
-## Subgroup analysis: `group_by()` and `summarise()`
+Let's give the summarised column a better name, e.g. `deaths_pergroup`. And, if we use `ungroup()` we can use `mutate()` to add a total deaths column, and we can then use it to calculate a percentage:
 
-The `group_by()` function tells R that you are about to perform subgroup analysis on your data. 
-It retains information about your groupings and calculations are applied on each group separately. 
-To go back to summarising the whole dataset again use `ungroup()`. Note that `summarise()` is different to the `summary()` function we used in Session 2.
+```{r}
+gbd2017 %>% 
+  group_by(cause, sex) %>% 
+  summarise(deaths_pergroup = sum(deaths_millions)) %>% 
+  ungroup() %>% 
+  mutate(deaths_total = sum(deaths_pergroup))
+```
 
-With `summarise()`, we can calculate the total number of deaths per year:
+So `summarise()` condenses a tibble, whereas `mutate()` retains it's current size and adds columns. We can also further lines to `mutate()` to calculate the percentage of each group:
+
+```{r, message = FALSE}
+library(scales)
+gbd2017 %>% 
+  group_by(cause, sex) %>% 
+  summarise(deaths_pergroup = sum(deaths_millions)) %>% 
+  ungroup() %>% 
+  mutate(deaths_total = sum(deaths_pergroup),
+         deaths_relative = percent(deaths_pergroup/deaths_total))
+```

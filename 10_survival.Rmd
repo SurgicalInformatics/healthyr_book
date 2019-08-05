@@ -1,9 +1,7 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
 # Time-to-event data and survival
+
+> The reports of my death have been greatly exagerated.  
+> Mark Twain
 
 ## Data
 

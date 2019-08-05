@@ -1,5 +1,8 @@
 # Logistic regression
 
+> All generalizations are false, including this one.  
+> Mark Twain
+
 ## What is Logistic Regression?
 
 As we have seen in previously, regression analysis is a statistical process for estimating the relationships between variables. 

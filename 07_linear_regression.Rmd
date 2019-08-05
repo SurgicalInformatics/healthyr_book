@@ -1,5 +1,8 @@
 # Linear regression
 
+> Smoking is one of the leading causes of statistics.  
+> Fletcher Knebel
+
 ## Regression
 
 Regression is a method with which we can determine the existence and strength of the relationship between two or more variables. 
@@ -12,8 +15,8 @@ Broadly, there are often two separate goals in regression:
 * Explanation: fit a model to explain the inter-relationships between a set of variables.
 
 Figure \@ref(fig:chap07-fig-regression) unifies the terms we will use throughout. 
-A clear scientific question should define our `explanatory variable of interest` (*x*), which sometimes gets called a exposure, predictor, or independent variable. 
-Our outcome of interest will be referred to as the `dependent` variable (*y*), sometimes referred to as the response. 
+A clear scientific question should define our `explanatory variable of interest` (*x*), which sometimes gets called an exposure, predictor, or independent variable. 
+Our outcome of interest will be referred to as the `dependent` variable or outcome (*y*); it is sometimes referred to as the response. 
 In simple linear regression, there is a single explanatory variable and a dependent variable, and we will sometimes refer to this as *univariable linear regression*. 
 When there is more than one explanatory variable, we will call this *multivariable regression*. 
 Avoid the term *multivariate regression*, which suggests more than one dependent variable. 

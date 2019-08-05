@@ -1,23 +1,61 @@
 # Tests for categorical variables
 
-## Data
-We are now changing to a new dataset, `melanoma`. 
-Click on `mydata` in your environment and have a look at the values - you'll see that categorical variables are coded as numbers, rather than text. 
-You will need to recode these numbers into proper factors. 
+> Suddenly Christopher Robin began to tell Pooh about some of the things: People called Kings and Queens and something called Factors ... and Pooh said "Oh!" and thought how wonderful it would be to have a Real Brain which could tell you things.  
+> A.A. Milne, *The House at Pooh Corner* (1928)
+
+## Factors
+
+We said earlier that continuous data can be measured and categorical data can be counted, which is useful to remember. 
+Categorical data can be a:
+
+* Factor
+  + a fixed set of names/strings or numbers
+  + these may have an inherent order (1st, 2nd 3rd) - ordinal factor
+  + or may not (female, male) 
+* Character
+  + sequences of letters, numbers, and symbols
+* Logical
+  + containing only TRUE or FALSE
+
+Health data is awash with factors. 
+Whether it is outcomes like death, recurrence or readmission. 
+Or predictors like cancer stage, deprivation index, or body mass index. 
+
+It is essential therefore to be comfortable manipulating factors and dealing with outcomes which are categorical.
+
+## The Question
+
+We will use the classic “Survival from Malignant Melanoma” dataset which is included in the `boot` package. 
+The data consist of measurements made on patients with malignant melanoma, a type of skin cancer. 
+Each patient had their tumour removed by surgery at the Department of Plastic Surgery, University Hospital of Odense, Denmark between 1962 and 1977.
+
+We are interested in the association between tumour ulceration and death from melanoma. 
+
+## Get the data
+
+The help page (`?boot::melanoma`) gives us the data dictionary.
+This includes the defintion of each variable and the coding used.
 
 ```{r, message = F}
+mydata = boot::melanoma
+```
 
+## Check the data
+As always, check any new dataset carefully before you start analysis.  
+
+```{r}
 library(tidyverse)
 library(finalfit)
-library(broom)
-library(knitr)
-library(kableExtra)
-mydata = boot::melanoma
-head(mydata) %>% 
- kable(booktabs = TRUE, caption = "CAPTION") %>% 
- kable_styling(font_size = 7)
-
+mydata %>% glimpse()
+mydata %>% ff_glimpse()
 ```
+
+As can be seen, all of the variables are currently coded as continous/numeric.
+The `<dbl>` stands for 'double', meaning numeric which comes from 'double-precision floating point', an awkward computer science term. 
+
+It is really important that variables are correctly coded for all plotting and analysis functions. 
+Using the data dictionary, we will convert the categorical varibles to factors. 
+
 
 ### Recap on factors
 
@@ -27,6 +65,30 @@ Use the information from help to change the numbers into proper factors (e.g. 0 
 <!-- Dollars here which is quite late on, we should change this. Agree.  -->
 
 ```{r}
+
+mydata = mydata %>% 
+  mutate(status.factor = status %>% 
+           factor() %>% 
+           fct_recode("Died"  = "1",
+                      "Alive" = "2",
+                      "Died - other causes" = "3"))
+  
+
+mydata = mydata %>%
+  mutate(sex.factor = sex %>% 
+           factor() %>% 
+           fct_recode("Female" = "0",
+                      "Male"   = "1"))
+  
+mydata = mydata %>%
+  mutate(ulcer.factor = ulcer %>% 
+           factor() %>% 
+           fct_recode("Present" = "1",
+                      "Absent"  = "0"))
+
+
+
+
 
 mydata$status %>% 
   factor() %>% 

@@ -17,7 +17,7 @@ Similarly, Testing for categorical outcome variables (8) leads naturally to Logi
 Chapters 6 and 8 however do provide helpful reminders of how to prepare data for these analyses and shouldn't be skipped.
 Time-to-event data introduces survival analysis and includes sections on the manipulation of dates. 
 
-# Tests for continuous outcome variables
+# Working with continuous outcome variables
 \index{continuous data@\textbf{continuous data}}
 
 > Continuous data can be measured.  

@@ -1,4 +1,4 @@
-# Tests for categorical variables
+# Working with categorical outcome variables
 
 > Suddenly Christopher Robin began to tell Pooh about some of the things: People called Kings and Queens and something called Factors ... and Pooh said "Oh!" and thought how wonderful it would be to have a Real Brain which could tell you things.  
 > A.A. Milne, *The House at Pooh Corner* (1928)
@@ -18,9 +18,8 @@ Categorical data can be a:
   + containing only TRUE or FALSE
 
 Health data is awash with factors. 
-Whether it is outcomes like death, recurrence or readmission. 
-Or predictors like cancer stage, deprivation index, or body mass index. 
-
+Whether it is outcomes like death, recurrence, or readmission. 
+Or predictors like cancer stage, deprivation quintile, smoker yes/no.
 It is essential therefore to be comfortable manipulating factors and dealing with outcomes which are categorical.
 
 ## The Question
@@ -53,8 +52,55 @@ mydata %>% ff_glimpse()
 As can be seen, all of the variables are currently coded as continous/numeric.
 The `<dbl>` stands for 'double', meaning numeric which comes from 'double-precision floating point', an awkward computer science term. 
 
+## Recode the data
 It is really important that variables are correctly coded for all plotting and analysis functions. 
 Using the data dictionary, we will convert the categorical varibles to factors. 
+
+
+```{r}
+mydata = mydata %>% 
+  mutate(sex.factor = 
+           sex %>% 
+           factor() %>% 
+           fct_recode("Female" = "0",
+                      "Male"   = "1") %>% 
+           ff_label("Sex"),
+         
+         ulcer.factor = 
+           ulcer %>% 
+           factor() %>% 
+           fct_recode("Present" = "1",
+                      "Absent"  = "0") %>% 
+           ff_label("Ulcerated tumour"),
+         
+         status.factor = 
+           status %>% 
+           factor() %>% 
+           fct_recode("Died"  = "1",
+                      "Alive" = "2",
+                      "Died - other causes" = "3") %>% 
+           ff_label("Status"))
+```
+
+
+## Should I convert a continuous variable to a categorical variable?
+
+
+
+
+
+
+
+
+
+
+
+
+
+#the cut() function makes a continuous variable into a categorical variable
+mydata$age %>% 
+  cut(breaks = c(4,20,40,60,95), include.lowest=TRUE) ->
+  mydata$age.factor
 
 
 ### Recap on factors
@@ -63,59 +109,6 @@ Press `F1` on `boot::melanoma` to see its description.
 Use the information from help to change the numbers into proper factors (e.g. 0 - female, 1 - male).
 
 <!-- Dollars here which is quite late on, we should change this. Agree.  -->
-
-```{r}
-
-mydata = mydata %>% 
-  mutate(status.factor = status %>% 
-           factor() %>% 
-           fct_recode("Died"  = "1",
-                      "Alive" = "2",
-                      "Died - other causes" = "3"))
-  
-
-mydata = mydata %>%
-  mutate(sex.factor = sex %>% 
-           factor() %>% 
-           fct_recode("Female" = "0",
-                      "Male"   = "1"))
-  
-mydata = mydata %>%
-  mutate(ulcer.factor = ulcer %>% 
-           factor() %>% 
-           fct_recode("Present" = "1",
-                      "Absent"  = "0"))
-
-
-
-
-
-mydata$status %>% 
-  factor() %>% 
-  fct_recode("Died"  = "1",
-             "Alive" = "2",
-             "Died - other causes" = "3") %>% 
-  fct_relevel("Alive") -> # move Alive to front (first factor level) 
-  mydata$status.factor    # so odds ratio will be relative to that
-
-mydata$sex %>% 
-  factor() %>% 
-  fct_recode("Female" = "0",
-             "Male" = "1") ->
-  mydata$sex.factor
-  
-mydata$ulcer %>% 
-  factor() %>% 
-  fct_recode("Present" = "1",
-             "Absent"  = "0") -> 
-  mydata$ulcer.factor
-
-#the cut() function makes a continuous variable into a categorical variable
-mydata$age %>% 
-  cut(breaks = c(4,20,40,60,95), include.lowest=TRUE) ->
-  mydata$age.factor
-
-```
 
 
 ## Chi-squared test / Fisher's exact test

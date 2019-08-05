@@ -1,0 +1,169 @@
+cause,year,sex,income,deaths_millions
+Communicable diseases,1990,Female,High,0.21
+Communicable diseases,1990,Female,Upper-Middle,1.15
+Communicable diseases,1990,Female,Lower-Middle,4.43
+Communicable diseases,1990,Female,Low,1.51
+Communicable diseases,1990,Male,High,0.26
+Communicable diseases,1990,Male,Upper-Middle,1.35
+Communicable diseases,1990,Male,Lower-Middle,4.73
+Communicable diseases,1990,Male,Low,1.72
+Injuries,1990,Female,High,0.2
+Injuries,1990,Female,Upper-Middle,0.55
+Injuries,1990,Female,Lower-Middle,0.55
+Injuries,1990,Female,Low,0.11
+Injuries,1990,Male,High,0.42
+Injuries,1990,Male,Upper-Middle,1.21
+Injuries,1990,Male,Lower-Middle,0.99
+Injuries,1990,Male,Low,0.22
+Non-communicable diseases,1990,Female,High,3.73
+Non-communicable diseases,1990,Female,Upper-Middle,4.98
+Non-communicable diseases,1990,Female,Lower-Middle,3.49
+Non-communicable diseases,1990,Female,Low,0.6
+Non-communicable diseases,1990,Male,High,3.78
+Non-communicable diseases,1990,Male,Upper-Middle,5.39
+Non-communicable diseases,1990,Male,Lower-Middle,4.11
+Non-communicable diseases,1990,Male,Low,0.63
+Communicable diseases,1995,Female,High,0.22
+Communicable diseases,1995,Female,Upper-Middle,0.94
+Communicable diseases,1995,Female,Lower-Middle,4.26
+Communicable diseases,1995,Female,Low,1.73
+Communicable diseases,1995,Male,High,0.29
+Communicable diseases,1995,Male,Upper-Middle,1.18
+Communicable diseases,1995,Male,Lower-Middle,4.57
+Communicable diseases,1995,Male,Low,1.92
+Injuries,1995,Female,High,0.2
+Injuries,1995,Female,Upper-Middle,0.58
+Injuries,1995,Female,Lower-Middle,0.57
+Injuries,1995,Female,Low,0.11
+Injuries,1995,Male,High,0.42
+Injuries,1995,Male,Upper-Middle,1.39
+Injuries,1995,Male,Lower-Middle,1.04
+Injuries,1995,Male,Low,0.22
+Non-communicable diseases,1995,Female,High,3.9
+Non-communicable diseases,1995,Female,Upper-Middle,5.47
+Non-communicable diseases,1995,Female,Lower-Middle,3.86
+Non-communicable diseases,1995,Female,Low,0.66
+Non-communicable diseases,1995,Male,High,3.89
+Non-communicable diseases,1995,Male,Upper-Middle,6.21
+Non-communicable diseases,1995,Male,Lower-Middle,4.58
+Non-communicable diseases,1995,Male,Low,0.7
+Communicable diseases,2000,Female,High,0.23
+Communicable diseases,2000,Female,Upper-Middle,0.83
+Communicable diseases,2000,Female,Lower-Middle,4.17
+Communicable diseases,2000,Female,Low,1.83
+Communicable diseases,2000,Male,High,0.25
+Communicable diseases,2000,Male,Upper-Middle,1.04
+Communicable diseases,2000,Male,Lower-Middle,4.48
+Communicable diseases,2000,Male,Low,1.98
+Injuries,2000,Female,High,0.19
+Injuries,2000,Female,Upper-Middle,0.51
+Injuries,2000,Female,Lower-Middle,0.6
+Injuries,2000,Female,Low,0.13
+Injuries,2000,Male,High,0.4
+Injuries,2000,Male,Upper-Middle,1.35
+Injuries,2000,Male,Lower-Middle,1.11
+Injuries,2000,Male,Low,0.27
+Non-communicable diseases,2000,Female,High,4.01
+Non-communicable diseases,2000,Female,Upper-Middle,5.73
+Non-communicable diseases,2000,Female,Lower-Middle,4.22
+Non-communicable diseases,2000,Female,Low,0.7
+Non-communicable diseases,2000,Male,High,3.9
+Non-communicable diseases,2000,Male,Upper-Middle,6.63
+Non-communicable diseases,2000,Male,Lower-Middle,5.07
+Non-communicable diseases,2000,Male,Low,0.75
+Communicable diseases,2005,Female,High,0.23
+Communicable diseases,2005,Female,Upper-Middle,0.78
+Communicable diseases,2005,Female,Lower-Middle,3.9
+Communicable diseases,2005,Female,Low,1.71
+Communicable diseases,2005,Male,High,0.25
+Communicable diseases,2005,Male,Upper-Middle,0.95
+Communicable diseases,2005,Male,Lower-Middle,4.24
+Communicable diseases,2005,Male,Low,1.83
+Injuries,2005,Female,High,0.19
+Injuries,2005,Female,Upper-Middle,0.48
+Injuries,2005,Female,Lower-Middle,0.62
+Injuries,2005,Female,Low,0.11
+Injuries,2005,Male,High,0.4
+Injuries,2005,Male,Upper-Middle,1.28
+Injuries,2005,Male,Lower-Middle,1.18
+Injuries,2005,Male,Low,0.23
+Non-communicable diseases,2005,Female,High,4.07
+Non-communicable diseases,2005,Female,Upper-Middle,6.09
+Non-communicable diseases,2005,Female,Lower-Middle,4.52
+Non-communicable diseases,2005,Female,Low,0.74
+Non-communicable diseases,2005,Male,High,3.99
+Non-communicable diseases,2005,Male,Upper-Middle,7.18
+Non-communicable diseases,2005,Male,Lower-Middle,5.49
+Non-communicable diseases,2005,Male,Low,0.79
+Communicable diseases,2010,Female,High,0.24
+Communicable diseases,2010,Female,Upper-Middle,0.69
+Communicable diseases,2010,Female,Lower-Middle,3.51
+Communicable diseases,2010,Female,Low,1.52
+Communicable diseases,2010,Male,High,0.25
+Communicable diseases,2010,Male,Upper-Middle,0.84
+Communicable diseases,2010,Male,Lower-Middle,3.82
+Communicable diseases,2010,Male,Low,1.64
+Injuries,2010,Female,High,0.19
+Injuries,2010,Female,Upper-Middle,0.46
+Injuries,2010,Female,Lower-Middle,0.61
+Injuries,2010,Female,Low,0.2
+Injuries,2010,Male,High,0.39
+Injuries,2010,Male,Upper-Middle,1.25
+Injuries,2010,Male,Lower-Middle,1.21
+Injuries,2010,Male,Low,0.38
+Non-communicable diseases,2010,Female,High,4.21
+Non-communicable diseases,2010,Female,Upper-Middle,6.38
+Non-communicable diseases,2010,Female,Lower-Middle,5.09
+Non-communicable diseases,2010,Female,Low,0.8
+Non-communicable diseases,2010,Male,High,4.15
+Non-communicable diseases,2010,Male,Upper-Middle,7.65
+Non-communicable diseases,2010,Male,Lower-Middle,6.28
+Non-communicable diseases,2010,Male,Low,0.87
+Communicable diseases,2015,Female,High,0.26
+Communicable diseases,2015,Female,Upper-Middle,0.59
+Communicable diseases,2015,Female,Lower-Middle,3.07
+Communicable diseases,2015,Female,Low,1.24
+Communicable diseases,2015,Male,High,0.28
+Communicable diseases,2015,Male,Upper-Middle,0.76
+Communicable diseases,2015,Male,Lower-Middle,3.26
+Communicable diseases,2015,Male,Low,1.42
+Injuries,2015,Female,High,0.2
+Injuries,2015,Female,Upper-Middle,0.43
+Injuries,2015,Female,Lower-Middle,0.65
+Injuries,2015,Female,Low,0.12
+Injuries,2015,Male,High,0.4
+Injuries,2015,Male,Upper-Middle,1.15
+Injuries,2015,Male,Lower-Middle,1.24
+Injuries,2015,Male,Low,0.27
+Non-communicable diseases,2015,Female,High,4.53
+Non-communicable diseases,2015,Female,Upper-Middle,7.08
+Non-communicable diseases,2015,Female,Lower-Middle,5.96
+Non-communicable diseases,2015,Female,Low,0.89
+Non-communicable diseases,2015,Male,High,4.47
+Non-communicable diseases,2015,Male,Upper-Middle,8.41
+Non-communicable diseases,2015,Male,Lower-Middle,6.98
+Non-communicable diseases,2015,Male,Low,0.96
+Communicable diseases,2017,Female,High,0.26
+Communicable diseases,2017,Female,Upper-Middle,0.55
+Communicable diseases,2017,Female,Lower-Middle,2.92
+Communicable diseases,2017,Female,Low,1.18
+Communicable diseases,2017,Male,High,0.29
+Communicable diseases,2017,Male,Upper-Middle,0.73
+Communicable diseases,2017,Male,Lower-Middle,3.1
+Communicable diseases,2017,Male,Low,1.35
+Injuries,2017,Female,High,0.21
+Injuries,2017,Female,Upper-Middle,0.43
+Injuries,2017,Female,Lower-Middle,0.66
+Injuries,2017,Female,Low,0.12
+Injuries,2017,Male,High,0.4
+Injuries,2017,Male,Upper-Middle,1.16
+Injuries,2017,Male,Lower-Middle,1.23
+Injuries,2017,Male,Low,0.26
+Non-communicable diseases,2017,Female,High,4.68
+Non-communicable diseases,2017,Female,Upper-Middle,7.28
+Non-communicable diseases,2017,Female,Lower-Middle,6.27
+Non-communicable diseases,2017,Female,Low,0.92
+Non-communicable diseases,2017,Male,High,4.65
+Non-communicable diseases,2017,Male,Upper-Middle,8.79
+Non-communicable diseases,2017,Male,Lower-Middle,7.3
+Non-communicable diseases,2017,Male,Low,1

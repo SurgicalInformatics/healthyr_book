@@ -1,22 +1,22 @@
-cause,year,deaths
-Communicable diseases,1990,15392200.288617902
-Injuries,1990,4260492.518478363
-Non-communicable diseases,1990,26825621.31987952
-Communicable diseases,1995,15132653.623380652
-Injuries,1995,4543802.7210485665
-Non-communicable diseases,1995,29407048.60726543
-Communicable diseases,2000,14835530.528040135
-Injuries,2000,4568246.437249146
-Non-communicable diseases,2000,31138227.81166206
-Communicable diseases,2005,13906587.489398764
-Injuries,2005,4500880.984546174
-Non-communicable diseases,2005,33015794.851307757
-Communicable diseases,2010,12528020.169631908
-Injuries,2010,4718075.506429079
-Non-communicable diseases,2010,35592215.834489495
-Communicable diseases,2015,10882448.894897968
-Injuries,2015,4486745.463096139
-Non-communicable diseases,2015,39452998.705863245
-Communicable diseases,2017,10389874.171639994
-Injuries,2017,4484722.077168794
-Non-communicable diseases,2017,41071133.4864007
+year,cause,deaths_millions
+1990,Communicable diseases,15.36
+1990,Injuries,4.25
+1990,Non-communicable diseases,26.71
+1995,Communicable diseases,15.11
+1995,Injuries,4.53
+1995,Non-communicable diseases,29.27
+2000,Communicable diseases,14.81
+2000,Injuries,4.5600000000000005
+2000,Non-communicable diseases,31.01
+2005,Communicable diseases,13.89
+2005,Injuries,4.49
+2005,Non-communicable diseases,32.87
+2010,Communicable diseases,12.51
+2010,Injuries,4.69
+2010,Non-communicable diseases,35.43
+2015,Communicable diseases,10.879999999999999
+2015,Injuries,4.46
+2015,Non-communicable diseases,39.28
+2017,Communicable diseases,10.38
+2017,Injuries,4.47
+2017,Non-communicable diseases,40.89

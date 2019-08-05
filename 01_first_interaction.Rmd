@@ -225,3 +225,19 @@ Words in quotes are generally something set to a constant value (e.g. make all o
 Unquoted words are generally variables (or functions).
 If the word "function" just threw you, Google "Jesse Maegan: What the h*ck is a function"
 
+
+## Tidyverse packages: ggplot2, dplyr, tidyr, etc.
+
+Most of the functions introduced in this book come from the tidyverse family (http://tidyverse.org/), rather than Base R. Including `library(tidyverse)` in your script loads a list of packages: ggplot2, dplyr, tidry, forcats, etc.
+
+
+```{r, echo = FALSE}
+knitr::include_graphics("images/library_vs_package.png")
+```
+
+```{r , message=F}
+
+library(tidyverse)
+
+```
+

@@ -5,6 +5,17 @@
 
 ## Factors
 
+```{r echo=FALSE, message=FALSE}
+library(knitr)
+library(kableExtra)
+mykable = function(x, caption = "CAPTION", ...){
+  kable(x, row.names = FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r", "r"), 
+        booktabs = TRUE, caption = caption, 
+        linesep = c("", "", "\\addlinespace"), ...) %>%
+    kable_styling(latex_options = c("scale_down", "hold_position"))
+}
+```
+
 We said earlier that continuous data can be measured and categorical data can be counted, which is useful to remember. 
 Categorical data can be a:
 
@@ -33,7 +44,7 @@ We are interested in the association between tumour ulceration and death from me
 ## Get the data
 
 The help page (`?boot::melanoma`) gives us the data dictionary.
-This includes the defintion of each variable and the coding used.
+This includes the definition of each variable and the coding used.
 
 ```{r, message = F}
 mydata = boot::melanoma
@@ -42,259 +53,516 @@ mydata = boot::melanoma
 ## Check the data
 As always, check any new dataset carefully before you start analysis.  
 
-```{r}
+```{r message=FALSE}
 library(tidyverse)
 library(finalfit)
 mydata %>% glimpse()
 mydata %>% ff_glimpse()
 ```
 
-As can be seen, all of the variables are currently coded as continous/numeric.
+As can be seen, all of the variables are currently coded as continuous/numeric.
 The `<dbl>` stands for 'double', meaning numeric which comes from 'double-precision floating point', an awkward computer science term. 
 
 ## Recode the data
 It is really important that variables are correctly coded for all plotting and analysis functions. 
-Using the data dictionary, we will convert the categorical varibles to factors. 
+Using the data dictionary, we will convert the categorical variables to factors. 
 
+In the section below, we convert the continuous variables to `factors`, then use the `forcats` package to recode the factor levels. 
 
 ```{r}
+library(forcats)
 mydata = mydata %>% 
-  mutate(sex.factor = 
-           sex %>% 
-           factor() %>% 
-           fct_recode("Female" = "0",
-                      "Male"   = "1") %>% 
-           ff_label("Sex"),
+  mutate(sex.factor =             # Make new variable  
+           sex %>%                # from existing variable
+           factor() %>%           # convert to factor
+           fct_recode(            # forcats function
+             "Female" = "0",      # new on left, old on right
+             "Male"   = "1") %>% 
+           ff_label("Sex"),       # Label for finalfit tables
          
          ulcer.factor = 
            ulcer %>% 
            factor() %>% 
-           fct_recode("Present" = "1",
-                      "Absent"  = "0") %>% 
+           fct_recode(
+             "Present" = "1",
+             "Absent"  = "0") %>% 
            ff_label("Ulcerated tumour"),
          
          status.factor = 
            status %>% 
            factor() %>% 
-           fct_recode("Died"  = "1",
+           fct_recode("Died melanoma"  = "1",
                       "Alive" = "2",
                       "Died - other causes" = "3") %>% 
            ff_label("Status"))
 ```
 
-
 ## Should I convert a continuous variable to a categorical variable?
+This is a common question and something which is frequently done. 
+Take for instance the variable years. 
+Is it better to leave it as a continuous variable, or to chop it into categories, e.g. 30 to 39 etc.?
 
+The clear disadvantage in doing this is that information is being thrown away. 
+Which feels like a bad thing to be doing. 
+This is particularly important if categories being created are large. 
+For instance, if age was dichotimised to "young" and "old" at say 42 years (the current median age in Europe), then it is likely that information which is likely to be relevant to a number of analyses has been discarded. 
+Secondly, it is unforgivable practice to repeatedly cut a continuous variable in different ways in order to obtain a statistically significant result. 
+This is most commonly done in tests of diagnostic accuracy, where a threshold for considering a continuous test result positive is chosen *post hoc* to maximise sensitivity/specificity, but not then validated in an independent cohort.
 
+But there are also advantages. 
+Say the relationship between age and an outcome is not linear, but rather u-shaped, then fitting a regression line is more difficult. 
+While if the age has been cut into 10 year bands and entered into a regression as a factor, then the non-linearity is already accounted for. 
+Secondly, sometimes when communicating the results of an analysis to a lay audience, then using a rhetorical representation can make this easier. 
+For instance, an odds of death 1.8 times greater in 70 year olds compared with 40 year olds may be easier to grasp than 1.02 times per year. 
 
+So the answer. 
+Do not do it unless you have to. 
+Plot and understand the continuous variable first. 
+If you do it, try not to throw away too much information. 
 
+```{r echo=FALSE}
+theme_set(theme_bw())
+```
 
-
-
-
-
-
-
-
-
-#the cut() function makes a continuous variable into a categorical variable
+```{r fig.height=4, fig.width=4, warning=FALSE}
+# Summary of age
 mydata$age %>% 
-  cut(breaks = c(4,20,40,60,95), include.lowest=TRUE) ->
-  mydata$age.factor
-
-
-### Recap on factors
-
-Press `F1` on `boot::melanoma` to see its description. 
-Use the information from help to change the numbers into proper factors (e.g. 0 - female, 1 - male).
-
-<!-- Dollars here which is quite late on, we should change this. Agree.  -->
-
-
-## Chi-squared test / Fisher's exact test
-
-### Plotting
-
-Always plot new data first!
-
-```{r, fig.width=4, fig.height=3}
+  summary()
 
 mydata %>% 
-	ggplot(aes(x = ulcer.factor, fill=status.factor)) + 
-	  geom_bar(position = "fill") +
-	  theme_bw() +
-	  scale_fill_brewer(palette = "Paired")
+  ggplot(aes(x = age)) + 
+  geom_histogram()
+```
+
+There are different ways in which a continuous variable can be converted to a factor. 
+You may wish to create a number of intervals of equal length. 
+The `cut()` function can be used for this. 
+
+Figure \@ref(fig:chap08-fig-cut) illustrates different options for this. 
+We suggest not using the `label` option in the function, to avoid errors should the underlying data change or when the code is copied and reused. 
+A better practice is to recode the levels using `fct_recode` as above. 
+
+The intervals in the output are standard mathematical notation. 
+A square bracket indicates the value is included in the interval and a round bracket that the value is excluded.
+
+Note the requirement for `include.lowest = TRUE` when you specify breaks yourself and the the lowest cut-point is also the lowest data value. 
+This should be clear in Figure \@ref(fig:chap08-fig-cut).
+
+```{r chap08-fig-cut, echo = FALSE, fig.cap="`Cut` a continuous variable into a categorical variable."}
+knitr::include_graphics("images/chapter08/1_cut.pdf")
+```
+
+### Equal intervals vs quantiles
+
+Be clear in your head whether you wish to cut the data so the intervals are of equal lent. 
+Or whether you wish to cut the data so there are equal proportions of cases (patients) in each level. 
+
+Equal intervals:
+```{r}
+mydata = mydata %>% 
+  mutate(
+    age.factor = 
+      age %>%
+      cut(4)
+  )
+mydata$age.factor %>%
+  summary()
+```
+
+Quantiles:
+```{r}
+mydata = mydata %>% 
+  mutate(
+    age.factor = 
+      age %>%
+      Hmisc::cut2(g=4)
+  )
+mydata$age.factor %>% 
+  summary()
+
+# Or?
+# mydata$age.factor %>% 
+#  fct_count()
 
 ```
 
-```{r, fig.width=6, fig.height=3}
+Using the cut function, a continuous variable can be converted 
 
-mydata %>% 
-  ggplot(aes(x = age.factor, fill = status.factor)) +
-    geom_bar() +
-    theme_bw() +
-    scale_fill_brewer(palette = "Paired")
-
+```{r}
+mydata = mydata %>% 
+  mutate(
+    age.factor = 
+      age %>%
+      cut(breaks = c(4,20,40,60,95), include.lowest = TRUE) %>% 
+      fct_recode(
+        "≤20" = "[4,20]",
+        "21 to 40" = "(20,40]",
+        "41 to 60" = "(40,60]",
+        ">60" = "(60,95]"
+      ) %>% 
+      ff_label("Age (years)")
+  )
+head(mydata$age.factor)
 ```
 
-```{r, fig.width=6, fig.height=3}
+## Plot the data
 
-mydata %>% 
+We are interested in the association between tumour ulceration and death from melanoma. 
+To start then, we simply count the number of patients with ulcerated tumours who died. 
+It is useful to plot this as counts but also as proportions. 
+It is proportions you are comparing, but you really want to know the absolute numbers as well. 
+
+```{r, fig.width=7, fig.height=3, fig.cap="Bar chart: outcome after surgery for patients with ulcerated melanoma."}
+p1 = mydata %>% 
   ggplot(aes(x = ulcer.factor, fill=status.factor)) + 
-    geom_bar() +
-    theme_bw() +
-    scale_fill_brewer(palette = "Paired") +
-    facet_grid(sex.factor~age.factor)
+  geom_bar() + 
+  theme(legend.position = "none")
 
+p2 = mydata %>% 
+  ggplot(aes(x = ulcer.factor, fill=status.factor)) + 
+  geom_bar(position = "fill") + 
+  ylab("proportion")
+
+library(patchwork)
+p1 + p2
 ```
 
-## Analysis
+It should be obvious that more died from melanoma in the ulcerated tumour group compared with the non-ulcerated tumour group.
+The stacking is orders from top to bottom by default. 
+This can be easily adjusted by changing the order of the levels within the factor (see re-levelling below).
+This default order works well for binary variables - the "yes" or "1" is lowest and can be easily compared. 
+This ordering of this particular variable is unusual - it would be more common to have for instance `alive = 0`, `died = 1`. 
+One quick option is to just reverse the order of the levels in the plot. 
 
-### Using base R
+```{r, fig.width=7, fig.height=3, fig.cap="Bar chart: outcome after surgery for patients with ulcerated melanoma, reversed levels."}
+p1 = mydata %>% 
+  ggplot(aes(x = ulcer.factor, fill=status.factor)) + 
+  geom_bar(position = position_stack(reverse = TRUE)) + 
+  theme(legend.position = "none")
 
-First lets group together those that 'died of another cause' with those 'alive', to give a disease-specific mortality variable (`fct_collapse()` will help us). 
+p2 = mydata %>% 
+  ggplot(aes(x = ulcer.factor, fill=status.factor)) + 
+  geom_bar(position = position_fill(reverse = TRUE)) + 
+  ylab("proportion")
+
+library(patchwork)
+p1 + p2
+```
+
+Just from the plot then, death from melanoma in the ulcerated tumour group is around 40% and in the non-ulcerated group around 13%. 
+The number of patients included in the study is not huge, however, this still looks like a real difference given its size.
+
+We also may be interested in exploring potential effect modification, interactions and confounders.
+Again, we urge you to first visualise these, rather than going straight to a model. 
+
+```{r, fig.width=6, fig.height=6, fig.cap="Facetted bar plot: outcome after surgery for patients with ulcerated melanoma aggregated by sex and age."}
+p1 = mydata %>% 
+  ggplot(aes(x = ulcer.factor, fill=status.factor)) + 
+  geom_bar(position = position_stack(reverse = TRUE)) +
+  facet_grid(sex.factor ~ age.factor) + 
+  theme(legend.position = "none")
+
+p2 = mydata %>% 
+  ggplot(aes(x = ulcer.factor, fill=status.factor)) + 
+  geom_bar(position = position_fill(reverse = TRUE)) +
+  facet_grid(sex.factor ~ age.factor)+ 
+  theme(legend.position = "bottom")
+
+p1 / p2
+```
+
+## Group factor levels together - `fct_collapse()`
+Our question relates to the association between tumour ulceration and death from melanoma. 
+The outcome measure has three levels as can be seen. 
+There are a number of ways of approaching this, which are discussed in detail in chapter 10 (REF).
+For our purposes here, we will generate a disease-specific mortality variable, by combining "Died - other causes" and "Alive". 
 
 ```{r}
-
-mydata$status.factor %>%  
-	fct_collapse("Alive" = c("Alive", "Died - other causes")) ->
-  mydata$status.factor
-
+mydata = mydata %>%
+  mutate(
+    status_dss = fct_collapse(
+      status.factor,
+      "Alive" = c("Alive", "Died - other causes"))
+  )
 ```
 
-Let's test mortality against sex.
+## Change the order of values within a factor - `fct_relevel()`
+The default order for levels with `factor()` is alphabetical. 
+We often want to reorder the levels in a factor when plotting, or when performing an regression analysis and we want to specify the reference level.  
+
+The order can be checked using `levels()`.
 
 ```{r}
-
-table(mydata$status.factor, mydata$sex.factor)
-chisq.test(mydata$status.factor, mydata$sex.factor)
-
+mydata$status_dss %>% levels()
 ```
 
-Note that `chisq.test()` defaults to the Yates' continuity correction. 
-
-<!-- Lots of dollars here -->
-It is fine to use this, but if you have a particular need not to, turn if off with `chisq.test(mydata$status.factor, mydata$sex.factor, correct=FALSE)`.
-
-<!-- Crosstable in? -->
-### Using `CrossTable`
-This gives lots of useful information. 
-It is readable in R and has lots of options, including Fisher's exact test. 
-It is not that easy to extract results. 
-\newpage
-```{r}
-
-library(gmodels)
-# F1 CrossTable to see options
-CrossTable(mydata$status.factor, mydata$sex.factor, chisq=TRUE)
-
-```
-
-### Exercise
-Use the 3 methods (`table`, `chisq.test`, `CrossTable`) to test `status.factor` against `ulcer.factor`. 
-
-```{r, eval=F}
-
-table(mydata$status.factor, mydata$ulcer.factor)
-chisq.test(mydata$status.factor, mydata$ulcer.factor)
-
-```
-
-Using `CrossTable`
-```{r, eval=F}
-
-CrossTable(mydata$status.factor, mydata$ulcer.factor, chisq=TRUE)
-
-```
-
-### Fisher's exact test
-
-An assumption of the chi-squared test is that the 'expected cell count' is greater than 5. 
-If it is less than 5 the test becomes unreliable and the Fisher's exact test is recommended. 
-
-Run the following code. 
+The reason "Alive" is second, rather than alphabetical,  is it was recoded from "2" and that order was retained.
+If, however, we want to make comparisons relative to "Alive", we need to move it to the front by using `fct_relevel()`.
 
 ```{r}
-
-library(gmodels)
-CrossTable(mydata$status.factor, mydata$age.factor, expected=TRUE, chisq=TRUE)
-
+mydata = mydata %>% 
+  mutate(status_dss = status_dss %>%
+           fct_relevel("Alive")
+         )
 ```
 
-Why does it give a warning? Run it a second time including `fisher=TRUE`. 
+Any number of factor levels can be specified in `fct_relevel()`. 
 
+## Summarising factors with `Finalfit`
 
-```{r}
+Our own `Finalfit` package provides convenient functions to summarise and compare factors, producing final tables for publication. 
 
-library(gmodels)
-CrossTable(mydata$status.factor, mydata$age.factor, expected=TRUE, chisq=TRUE)
+```{r eval=FALSE}
+library(finalfit)
+mydata %>% 
+  summary_factorlist(dependent = "status_dss", 
+                     explanatory = "ulcer.factor")
+```
 
+```{r echo=FALSE}
+library(finalfit)
+mydata %>% 
+  summary_factorlist(dependent = "status_dss", 
+                     explanatory = "ulcer.factor") %>% 
+  mykable()
 ```
 
 
-## Summarising multiple factors (optional)
-`CrossTable` is useful for summarising single variables. 
+`Finalfit` is useful for summarising multiple variables. 
 We often want to summarise more than one factor or continuous variable against our `dependent` variable of interest. 
 Think of Table 1 in a journal article. 
 
-## Summarising factors with `library(finalfit)`
+Any number of continuous or categorical explanatory variables can be added. 
 
-This is our own package which we have written and maintain. 
-It contains functions to summarise data for publication tables and figures, and to easily run regression analyses. 
-We specify a `dependent` or outcome variable, and a set of `explanatory` or predictor varaibles. 
-
-```{r, message = FALSE}
-
+```{r eval=FALSE}
 library(finalfit)
 mydata %>% 
-  summary_factorlist(dependent = "status.factor", 
-                     explanatory = c("sex.factor", "ulcer.factor", "age.factor"),
+  summary_factorlist(dependent = "status_dss", 
+                     explanatory = 
+                       c("ulcer.factor", "age.factor", 
+                         "sex.factor", "thickness")
+  )
+```
+
+```{r echo=FALSE}
+library(finalfit)
+mydata %>% 
+  summary_factorlist(dependent = "status_dss", 
+                     explanatory = 
+                       c("ulcer.factor", "age.factor", 
+                         "sex.factor", "thickness")
+  ) %>% 
+  mykable()
+```
+
+## Pearson's chi-squared and Fisher's exact tests
+
+Pearson's chi-squared ($\chi^2$) test of independence is used to determine whether two categorical variables are independent in a given population.
+Independence here means that the relative frequencies of one variable are the same over all levels of another variable.
+
+A common setting for this is the classic 2x2 table. 
+This refers to two categorise variables each with two levels, such as is show in Table REF above. 
+The null hypothesis of independence for this particular question is no difference in the proportion of patients with ulcerated tumours who die (45.6%) compared with non-ulcerated tumours (13.9%).
+From the raw frequencies, there seems to be a large difference, as we noted in the plot we made above. 
+
+### Base R
+
+Base R has reliable functions for all common statistical tests, but they are sometimes a little inconvenient to perform or extract results from. 
+
+A table of counts can be constructed, either using the `$` to identify columns, or using the `with()` function. 
+```{r eval=FALSE}
+table(mydata$ulcer.factor, mydata$status_dss) # both give same result
+with(mydata, table(ulcer.factor, status_dss))
+```
+
+```{r echo=FALSE}
+table(mydata$ulcer.factor, mydata$status_dss)
+```
+
+When working with older R functions, a useful shortcut is the `exposition pipe-operator` (`%$%`) from the `magrittr` package, home of the standard forward pipe-operator (`%>%`). 
+The exposition pipe-operator exposes data frame/tibble columns on the left to the function which follows on the right.
+It's easier to see in action by making a table of counts. 
+
+```{r message=FALSE}
+library(magrittr)
+mydata %$%        # note $ sign here
+  table(ulcer.factor, status_dss) # No dollar, no data = .
+```
+
+The counts table can be passed to `prop.table()` for a proportions. 
+
+```{r}
+mydata %$%
+  table(ulcer.factor, status_dss) %>% 
+  prop.table(margin = 1)     # 1: row, 2: column etc.
+```
+
+Similarly, the counts table can be passed to `chisq.test()` to perform the chi-squared test. 
+```{r}
+mydata %$%        # note $ sign here
+  table(ulcer.factor, status_dss) %>% 
+  chisq.test()
+```
+
+The result can be extracted into a tibble using the `tidy()` function from the `broom` package. 
+```{r}
+library(broom)
+mydata %$%        # note $ sign here
+  table(ulcer.factor, status_dss) %>% 
+  chisq.test() %>% 
+  tidy()
+```
+
+The base R default statistic uses the Yates' continuity correction. 
+The standard interpretation assumes that the discrete probability of observed counts in the table can be approximated by the continuous chi-squared distribution. 
+This introduces some error. 
+A suggested correction involves subtracting 0.5 from the absolute difference between each observed and expected value. 
+This is particularly helpful when counts are low.
+This can be removed if desired, `chisq.test(..., correct = FALSE)`.
+
+## Fisher's exact test
+
+A commonly stated assumption of the chi-squared test is the requirement to have an expected count in each table cell of at least 5 in a 2x2 table. 
+For larger tables, all expected counts should be $>1$ and no more than 20% of all cells should have expected counts $<5$.
+If this assumption is not fulfilled, an alternative test is Fisher's exact test. 
+For instance, if were are testing across a 2x4 table created from our `age.factor` variable and `status_dss`, then we receive a warning.  
+
+```{r}
+mydata %$%        # note $ sign here
+  table(age.factor, status_dss) %>% 
+  chisq.test()
+```
+
+Switch to Fisher's exact test
+```{r}
+mydata %$%        # note $ sign here
+  table(age.factor, status_dss) %>% 
+  fisher.test()
+```
+
+## Chi-squared / Fisher's exact test using Finalfit
+
+It is easier using Finalfit. 
+Including `p = TRUE` in `summary_factorlist()` adds a hypothesis test to each included comparison. 
+This defaults to chi-squared tests with no continuity correct for categorical variables and a Kruskal-Wallis non-parametric test to continuous variables. 
+
+```{r eval=FALSE}
+library(finalfit)
+mydata %>% 
+  summary_factorlist(dependent = "status_dss", 
+                     explanatory = "ulcer.factor",
+                     p = TRUE)
+```
+
+```{r echo=FALSE}
+library(finalfit)
+mydata %>% 
+  summary_factorlist(dependent = "status_dss", 
+                     explanatory = "ulcer.factor",
+                     p = TRUE) %>% 
+  mykable()
+```
+
+Add further variables.
+
+```{r eval=FALSE}
+mydata %>% 
+  summary_factorlist(dependent = "status_dss", 
+                     explanatory = 
+                       c("ulcer.factor", "age.factor", 
+                         "sex.factor", "thickness"),
+                     p = TRUE)
+```
+
+```{r echo=FALSE}
+mydata %>% 
+  summary_factorlist(dependent = "status_dss", 
+                     explanatory = 
+                       c("ulcer.factor", "age.factor", 
+                         "sex.factor", "thickness"),
+                     p = TRUE) %>% 
+  mykable()
+```
+
+Switch to Fisher's exact test.
+
+```{r eval=FALSE}
+mydata %>% 
+  summary_factorlist(dependent = "status_dss", 
+                     explanatory = 
+                       c("ulcer.factor", "age.factor", 
+                         "sex.factor", "thickness"),
                      p = TRUE,
-                     column = TRUE)
-
+                     catTest = catTestfisher)
 ```
 
-
-### Summarising factors with `library(tidyverse)`
-
-### Example
-
-`Tidyverse` gives the flexibility and power to examine millions of rows of your data any way you wish. The following are intended as an extension to what you have already done. These demonstrate some more advanced approaches to combining `tidy` functions. 
-
-
-```{r}
-
-# Calculate number of patients in each group
-counted_data = mydata %>%
-  count(ulcer.factor, status.factor)
-
-# Add the total number of people in each status group
-counted_data2  = counted_data %>%
-  group_by(status.factor) %>%
-  mutate(total = sum(n))
-
+```{r echo=TRUE}
+mydata %>% 
+  summary_factorlist(dependent = "status_dss", 
+                     explanatory = 
+                       c("ulcer.factor", "age.factor", 
+                         "sex.factor", "thickness"),
+                     p = TRUE,
+                     catTest = catTestfisher) %>% 
+  mykable()
 ```
 
-```{r}
+Other options can be included.
 
-# Calculate the percentage of n to total
-counted_data3 = counted_data2 %>%
-  mutate(percentage = round(100*n/total, 1))
-
+```{r eval=FALSE}
+mydata %>% 
+  summary_factorlist(dependent = "status_dss", 
+                     explanatory = 
+                       c("ulcer.factor", "age.factor", 
+                         "sex.factor", "thickness"),
+                     p = TRUE,
+                     catTest = catTestfisher,
+                     digits = 
+                       c(1, 1, 4, 2), #1: mean/median, 2: SD/IQR 
+                                      # 3: p-value, 4: count percentage
+                     na_include = TRUE, # include missing in table and tests
+                     add_dependent_label = TRUE
+  )
 ```
 
-Create a combined columns of both `n` and `percentage` using `paste()` to add brackets around the percentage.
-
-```{r}
-
-counted_data4  = counted_data3 %>% 
-  mutate(count_perc = paste0(n, " (", percentage, ")"))
-
+```{r echo=FALSE}
+mydata %>% 
+  summary_factorlist(dependent = "status_dss", 
+                     explanatory = 
+                       c("ulcer.factor", "age.factor", 
+                         "sex.factor", "thickness"),
+                     p = TRUE,
+                     catTest = catTestfisher,
+                     digits = 
+                       c(1, 1, 4, 2), #1: mean/median, 2: SD/IQR 
+                                      # 3: p-value, 4: count percentage
+                     na_include = TRUE, # include missing in table and tests
+                     add_dependent_label = TRUE
+  ) %>% 
+  mykable()
 ```
 
-Or combine everything together without the intermediate `counted_data` breaks.
+## Exercise
 
-```{r}
+Using `finalfit` create a summary table with "status.factor" as the dependent variable and the following as explanatory variables:  
+
+* `sex.factor`  
+* `ulcer.factor`  
+* `age.factor`   
+* `thickness`   
+
+
+
+Try changing the table to show `median` and `interquartile range` instead of mean and sd.  
+
+
+
+## Exercise
+
+*Better for this to be in chapter 3*
+By changing one and only one line in the following block create firstly a new table showing the breakdown of `status.factor` by age and secondly the breakdown of `status.factor` by sex:
+
+```{r, eval=FALSE}
 
 mydata %>%
   count(ulcer.factor, status.factor) %>%
@@ -307,41 +575,8 @@ mydata %>%
 
 ```
 
-### Exercise
+## Exercise
+Now produce these tables using the `summary_factorlist` function from the `library(finalfit)` package. 
 
-By changing one and only one word at a time in the above block (the "Combine everything together" section)
-
-Reproduce this:
-
-```{r, echo=F}
-
-# Age
-mydata %>%
-  count(age.factor, status.factor) %>%
-  group_by(status.factor) %>%
-  mutate(total = sum(n)) %>%
-  mutate(percentage = round(100*n/total, 1)) %>% 
-  mutate(count_perc = paste0(n, " (", percentage, ")")) %>% 
-  select(-total, -n, -percentage) %>% 
-  spread(status.factor, count_perc) %>% 
-  as.data.frame()
-
-```
-
-And then this:
-```{r, echo=F}
-
-# Sex
-mydata %>%
-  count(sex.factor, status.factor) %>%
-  group_by(status.factor) %>%
-  mutate(total = sum(n)) %>%
-  mutate(percentage = round(100*n/total, 1)) %>% 
-  mutate(count_perc = paste0(n, " (", percentage, ")")) %>% 
-  select(-total, -n, -percentage) %>% 
-  spread(status.factor, count_perc) %>% 
-  as.data.frame()
-
-```
-
-Solution: The only thing you need to change is the first variable in `count()`, e.g., `count(age.factor, ...`.
+## Exercise
+Reproduce the plot from 6.1 but this time with row-wise percentages instead of col(column)-wise percentages.

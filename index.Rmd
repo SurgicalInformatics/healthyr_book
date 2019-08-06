@@ -13,7 +13,7 @@ graphics: yes
 lot: yes
 lof: yes
 fontsize: 12pt
-linestretch: 0.8
+# linestretch: 0.8
 monofont: "Source Code Pro"
 monofontoptions: "Scale=0.65"
 github-repo: SurgicalInformatics/healthyr_book/

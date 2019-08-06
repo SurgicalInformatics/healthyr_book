@@ -308,7 +308,7 @@ GBD data are publicly available from their website. Table \@ref(tab:chap2-tab-gb
 
 ```{r, message=F}
 library(tidyverse)
-gbd_short = read_csv("data/global_burden_disease_SHORT.csv")
+gbd_short = read_csv("data/global_burden_disease_cause-year.csv")
 ```
 
 ```{r chap2-tab-gbd, echo = FALSE}
@@ -644,7 +644,7 @@ So here we go.
 
 ## Numeric variables
 
-Number are generally straightforward to handle and don't cause a lot of trouble. 
+Number are straightforward to handle and don't usually cause trouble. 
 R usually refers to numbers as `numeric` (or `num`), but sometimes it really gets its nerd on and also calls numbers `integer` or `double`.
 ^[ Integers are numbers without decimal places (e.g., `1, 2, 3`), whereas `double` stands for "Double-precision floating-point" format (e.g., `1.234, 5.67890`).] 
 It doesn't usually matter whether R is classifying your continuous data `numeric/num/double/int`, but it is good to be aware of these different terms as you will see them in R messages.
@@ -742,7 +742,7 @@ Level order also affect plots: by default, categorical variables (i.e., think of
 
 So overall, since health data is often categorical and has a reference (comparison) level, then factors are an essential way to work with these data in R.
 Nevertheless, the fussiness of factors can sometimes be unhelpful or even frustrating.
-It takes experience as an R use to know when is it easiest to keep your variables as characters and when to convert them to factors.
+It takes experience as an R user to know when is it easiest to keep your variables as characters and when to convert them to factors.
 A lot more about factor handling will be covered later in the book.
 
 ## Date/time variables

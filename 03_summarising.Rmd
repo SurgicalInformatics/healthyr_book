@@ -12,7 +12,7 @@ options(pillar.sigfig = 4)
 
 In this session we will get to know our three best friends for summarising data: `group_by()`, `summarise()`, and `mutate()`.
 
-## Data: Global Burden of Disease (year, cause, sex, income, deaths)
+## Dataset: Global Burden of Disease (year, cause, sex, income, deaths)
 
 ```{r, include = FALSE}
 source("healthyr_theme.R")
@@ -67,6 +67,8 @@ gbd2017 %>%
   theme(legend.position = "top")
 ```
 
+## Aggregating: `group_by()`, `summarise()`
+
 To quickly calculate the total number of deaths in 2017, we can select the column and send it into the `sum()` function:
 
 ```{r}
@@ -98,25 +100,144 @@ gbd2017 %>%
   summarise(sum(deaths_millions))
 ```
 
+## Add new columns: `mutate()`
 
 Let's give the summarised column a better name, e.g. `deaths_pergroup`. And, if we use `ungroup()` we can use `mutate()` to add a total deaths column, and we can then use it to calculate a percentage:
 
 ```{r}
 gbd2017 %>% 
   group_by(cause, sex) %>% 
-  summarise(deaths_pergroup = sum(deaths_millions)) %>% 
+  summarise(deaths_pergroups = sum(deaths_millions)) %>% 
   ungroup() %>% 
-  mutate(deaths_total = sum(deaths_pergroup))
+  mutate(deaths_total = sum(deaths_pergroups))
 ```
+
+
+### percentages formatting: `percent()`
 
 So `summarise()` condenses a tibble, whereas `mutate()` retains it's current size and adds columns. We can also further lines to `mutate()` to calculate the percentage of each group:
 
 ```{r, message = FALSE}
+# percent() function for formatting percentages come from library(scales)
 library(scales)
 gbd2017 %>% 
   group_by(cause, sex) %>% 
-  summarise(deaths_pergroup = sum(deaths_millions)) %>% 
+  summarise(deaths_pergroups = sum(deaths_millions)) %>% 
   ungroup() %>% 
-  mutate(deaths_total = sum(deaths_pergroup),
-         deaths_relative = percent(deaths_pergroup/deaths_total))
+  mutate(deaths_total    = sum(deaths_pergroups),
+         deaths_relative = percent(deaths_pergroups/deaths_total))
 ```
+
+
+The `percent()` function that comes from `library(scales)` is a very handy way of formatting percentages, but you have to keep in mind that it changes the column from a number (denoted `<dbl>`) to a character (`<chr>`). The `percent()` function is basically equivalent to:
+
+```{r}
+# using values from the first row as an example:
+round(100*4.91/55.74, 1) %>% paste0("%")
+```
+
+This is very convenient for final presentation of number, but if you intend to do further calculations/plot/sort the percentages just calculate them as fractions with:
+
+```{r, eval = FALSE}
+mydata %>% 
+  mutate(deaths_relative = deaths_pergroups/deaths_total)
+```
+
+and convert to nicely formatted percentages later:
+
+```{r, eval = FALSE}
+mydata %>% 
+  mutate(deaths_percentage = percent(deaths_relative))
+```
+
+
+## `summarise()` vs `mutate()`
+
+So far we've shown you examples of using `summarise()` on grouped data (so following `group_by()`) and `mutate()` on the whole dataset (either without using `group_by()` at all, or resetting the grouping information with `ungroup()`).
+
+But here's the thing: `mutate()` is also happy to work on grouped data!
+
+Let's save the aggregated (one of the `summarise()` examples from above) in a new tibble, and let's `arrange()` the rows based on `sex`, just for easier viewing (it was previously sorted/arranged by `cause`).
+
+The `arrange()` function sorts the rows within a tibble:
+
+
+```{r}
+gbd_summarised = gbd2017 %>% 
+  group_by(cause, sex) %>% 
+  summarise(deaths_pergroups = sum(deaths_millions)) %>% 
+  arrange(sex)
+
+gbd_summarised
+```
+
+You should also notice that `summarise()` drops all variables that are not listed in `group_by()` or created inside it. So `year`, `income`, and `deaths_millions` exist in `gbd2017`, but they do not exist in `gbd_summarised`.
+
+
+We now want to calculate the percentage of deaths from each cause for each gender. We could use `summarise()` to calculate the totals:
+
+```{r}
+gbd_summarised_sex = gbd_summarised %>% 
+  group_by(sex) %>% 
+  summarise(deaths_persex = sum(deaths_pergroups))
+
+gbd_summarised_sex
+```
+
+But that drops the `cause` and `deaths_pergroups` columns. One way would be to now use a join on `gbd_summarised` and `gbd_summarised_sex`:
+
+```{r}
+full_join(gbd_summarised, gbd_summarised_sex)
+```
+
+And joining different summaries together is a good idea, especially if the individual pipelines are quite long (e.g., over 5 lines of `%>%`) - as it is reasonable to save the interim results in separate tibbles (like we've saved `gbd_summarised` and `gbd_summarised_sex`), check that they have worked as expected, and then join together.
+
+
+
+But in simpler examples, we can use `mutate()` with `group_by()` to achieve the same result as the `full_join()` above:
+
+```{r}
+gbd_summarised %>% 
+  group_by(sex) %>% 
+  mutate(deaths_persex = sum(deaths_pergroups))
+```
+
+
+So `mutate()` calculates the sums within each grouping variable (in this example just `group_by(sex)`) and puts the results in a new column without condensing the tibble down or removing any of the existing columns.
+
+Let's combine all of this together into a single pipeline and calculate the percentages per cause for each gender:
+
+
+```{r}
+gbd2017 %>% 
+  group_by(cause, sex) %>% 
+  summarise(deaths_pergroups = sum(deaths_millions)) %>% 
+  group_by(sex) %>% 
+  mutate(deaths_persex  = sum(deaths_pergroups),
+         sex_cause_perc = percent(deaths_pergroups/deaths_persex)) %>% 
+  arrange(sex, deaths_pergroups)
+```
+
+## TODO: Summarising functions -  list of common ones
+
+Here's a list of most common functions to use inside `summarise()` or `mutate()`:
+
+TODO
+
+For more examples, see the dplyr Cheat Sheet.
+
+## Reshaping data - long vs wide format
+
+
+```{r, echo = FALSE}
+knitr::include_graphics("images/wide_long.png")
+```
+
+
+
+### Wide format
+Although having data in the long format is very convenient for R, for publication tables, it makes sense to spread some of the values out into columns:
+
+
+
+

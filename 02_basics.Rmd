@@ -705,21 +705,24 @@ The first two arguments for `near()` are the numbers you are comparing, the thir
 **Characters** (sometimes referred to as *strings* or *character strings*) in R are letters, words, or even whole sentences (an example of this may be free text comments). 
 Characters are displayed in-between `""` (or `''`).
 
-A useful way to investigate a categorical variable are the `unique()` and `n_distinct()` functions:
+A useful way to quickly investigate a categorical variables is the`count()` function:
 
 ```{r}
-typesdata$group %>% unique()
-typesdata$group %>% n_distinct()
+typesdata %>%
+  count(group)
 ```
 
 ```{r}
-typesdata$id %>% unique()
-# check whether the number of rows of typesdata is equal
-# to the number of distinct values in its id column:
-nrow(typesdata) == typesdata$id %>% n_distinct()
+typesdata %>% count(group)
+typesdata %>% count(id, sort = TRUE)
+
+typesdata %>% 
+  add_row(id = "ID3") %>% 
+  count(id, sort = TRUE)
+
 ```
 
-With this example `tibble` that only has three rows, it is pretty obvious that the `id` column is a unique identifier whereas the `group` column is a categorical variable.
+With this example `tibble typesdata` that only has three rows, it is pretty obvious that the `id` column is a unique identifier whereas the `group` column is a categorical variable. You can check everything by just eyeballing the tibble using the built in Viewer tab (click on data in the Environment tab).
 But for larger datasets, you should know how to ask these questions programmatically - can't go through 1000s of values checking if they're all the way you expect without unexpected duplicates or typos. Typos usually come out if the number of different values - result of `n_distinct()` - is greater than you expect. For example, if you expect your data to be in two groups: Control and Treatment, but `n_distinct()` says "3", it could mean that you have missing values (as NAs would also be counted as a distinct group), or that the spelling is inconsistent.
 
 

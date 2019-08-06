@@ -166,7 +166,8 @@ The `arrange()` function sorts the rows within a tibble:
 
 
 ```{r}
-gbd_summarised = gbd2017 %>% 
+gbd_summarised = 
+  gbd2017 %>% 
   group_by(cause, sex) %>% 
   summarise(deaths_pergroups = sum(deaths_millions)) %>% 
   arrange(sex)
@@ -180,7 +181,8 @@ You should also notice that `summarise()` drops all variables that are not liste
 We now want to calculate the percentage of deaths from each cause for each gender. We could use `summarise()` to calculate the totals:
 
 ```{r}
-gbd_summarised_sex = gbd_summarised %>% 
+gbd_summarised_sex =
+  gbd_summarised %>% 
   group_by(sex) %>% 
   summarise(deaths_persex = sum(deaths_pergroups))
 
@@ -235,7 +237,9 @@ The most common ones are:
 * `IQR()` - inter-quartile range
 
 
-The import thing to remember about all of these is that if any of the values is NA (not applicable/not available), these functions will return an NA. Either deal with your missing values beforehand (recommended) or add the `na.rm = TRUE` argument into any of the above functions to ask R to ignore missing values. More discussion and examples around missing data can be found in Chapters \@ref(r-basics) and \@ref(missing-data).
+The import thing to remember about all of these is that if any of the values is NA (not applicable/not available), these functions will return an NA. 
+Either deal with your missing values beforehand (recommended) or add the `na.rm = TRUE` argument into any of the above functions to ask R to ignore missing values. 
+More discussion and examples around missing data can be found in Chapters \@ref(r-basics) and \@ref(missing-data).
 
 ```{r}
 mynumbers = c(1, 2, NA)
@@ -249,7 +253,9 @@ sum(mynumbers, na.rm = TRUE)
 
 ## Reshaping data - long vs wide format
 
-So far, all of the example we've shown you have been using 'tidy' data. Data is 'tidy' where each variable is in its own column, and each observation is in its own row. This long looking format is efficient to use in data analysis and visualisation, it can also be refered to as "computer readable". But sometimes when presenting data in tables for humans to have a look, or when collecting data directly into a Spreadsheet, it is convenient for us, humans, to have data in a "wide" format. 
+So far, all of the example we've shown you have been using 'tidy' data. Data is 'tidy' where each variable is in its own column, and each observation is in its own row. 
+This long looking format is efficient to use in data analysis and visualisation, it can also be refered to as "computer readable". 
+But sometimes when presenting data in tables for humans to have a look, or when collecting data directly into a Spreadsheet, it is convenient for us, humans, to have data in a "wide" format. 
 
 ```{r, message = FALSE}
 gbd_wide = read_csv("data/global_burden_disease_wide-format.csv")
@@ -279,14 +285,11 @@ gbd_long %>%
 
 
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, fig.cap="Same data in the long ('tidy', necessary for efficient analysis) and wide (easier for human-readability/presentation/manual data entry) formats. TODO: replace with updated darta."}
 knitr::include_graphics("images/wide_long.png")
 ```
 
 
-
-### Wide format
-Although having data in the long format is very convenient for R, for publication tables, it makes sense to spread some of the values out into columns:
 
 
 

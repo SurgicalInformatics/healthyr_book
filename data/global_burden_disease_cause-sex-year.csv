@@ -1,0 +1,13 @@
+cause,sex,year,deaths_millions
+Communicable diseases,Female,1990,7.3
+Communicable diseases,Female,2017,4.91
+Communicable diseases,Male,1990,8.06
+Communicable diseases,Male,2017,5.47
+Injuries,Female,1990,1.4100000000000001
+Injuries,Female,2017,1.42
+Injuries,Male,1990,2.84
+Injuries,Male,2017,3.05
+Non-communicable diseases,Female,1990,12.8
+Non-communicable diseases,Female,2017,19.15
+Non-communicable diseases,Male,1990,13.91
+Non-communicable diseases,Male,2017,21.74

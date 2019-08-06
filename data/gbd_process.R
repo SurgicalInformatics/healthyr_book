@@ -20,10 +20,31 @@ gbd_short = gbd_long %>%
   group_by(year, cause) %>%
   summarise(deaths_millions = sum(deaths_millions))
 
+# Chapter 2 - for filter()
 gbd_short %>%
-  write_csv(path = "data/global_burden_disease_SHORT.csv")
+  write_csv(path = "data/global_burden_disease_cause-year.csv")
 
-
+# Chapter 3 - for summarise() and mutate()
 gbd_long %>%
-  write_csv(path = "data/global_burden_disease_LONG.csv")
+  write_csv(path = "data/global_burden_disease_cause-year-sex-income.csv")
+
+#Chapter 3 - spread() and gather()
+gbd_long_example = gbd_long %>%
+  filter(year %in% c(1990, 2017)) %>%
+  group_by(cause, sex, year) %>%
+  summarise(deaths_millions = sum(deaths_millions))
+
+gbd_wide_exercise = gbd_long_example %>%
+  group_by(cause) %>%
+  arrange(year, cause, .by_group = TRUE) %>%
+  unite("sex_year", c("sex", "year"), sep = "-") %>%
+  spread(sex_year, deaths_millions)
+
+
+gbd_long_example %>%
+  write_csv(path = "data/global_burden_disease_cause-sex-year.csv")
+
+
+gbd_wide_exercise %>%
+  write_csv(path = "data/global_burden_disease_wide-format.csv")
 

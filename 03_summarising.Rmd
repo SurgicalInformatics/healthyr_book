@@ -10,13 +10,16 @@ options(pillar.sigfig = 4)
 
 # Summarising data
 
-In this session we will get to know our three best friends for summarising data: `group_by()`, `summarise()`, and `mutate()`.
+>“The Answer to the Great Question... Of Life, the Universe and Everything... Is... Forty-two," said Deep Thought, with infinite majesty and calm. 
+>Douglas Adams, The Hitchhiker's Guide to the Galaxy
+
+In this chapter we will get to know our three best friends for summarising data: `group_by()`, `summarise()`, and `mutate()`.
 
 ## Dataset: Global Burden of Disease (year, cause, sex, income, deaths)
 
 ```{r, include = FALSE}
 source("healthyr_theme.R")
-gbd_short = read_csv("data/global_burden_disease_SHORT.csv")
+gbd_short = read_csv("data/global_burden_disease_cause-year.csv")
 ```
 
 
@@ -25,7 +28,7 @@ The Global Burden of Disease dataset used in this chapter is more detailed than 
 
 ```{r, message=F}
 library(tidyverse)
-gbd_long  = read_csv("data/global_burden_disease_LONG.csv")
+gbd_long  = read_csv("data/global_burden_disease_cause-year-sex-income.csv")
 
 # Creating a single-year tibble for printing and simple examples:
 gbd2017 = gbd_long %>% 
@@ -92,7 +95,7 @@ gbd2017 %>%
   summarise(sum(deaths_millions))
 ```
 
-Furthermore, `group_by()` is happy accept multiple grouping variables. So by just copying and editing the above code, we can quickly get summarised totals across mutliple grouping variables (by just adding `sex` inside the `group_by()` after `cause`):
+Furthermore, `group_by()` is happy accept multiple grouping variables. So by just copying and editing the above code, we can quickly get summarised totals across multiple grouping variables (by just adding `sex` inside the `group_by()` after `cause`):
 
 ```{r}
 gbd2017 %>% 
@@ -218,15 +221,62 @@ gbd2017 %>%
   arrange(sex, deaths_pergroups)
 ```
 
-## TODO: Summarising functions -  list of common ones
+## Common arithmetic functions - `sum()`, `mean()`, `median()`, etc.
 
-Here's a list of most common functions to use inside `summarise()` or `mutate()`:
+Statistics is what R does, so if there is an arthemtic function you can think of it will already exist in R.
 
-TODO
+The most common ones are:
 
-For more examples, see the dplyr Cheat Sheet.
+* `sum()`
+* `mean()`
+* `median()`
+* `min()`, `max()`
+* `sd()` - standard deviation
+* `IQR()` - inter-quartile range
+
+
+The import thing to remember about all of these is that if any of the values is NA (not applicable/not available), these functions will return an NA. Either deal with your missing values beforehand (recommended) or add the `na.rm = TRUE` argument into any of the above functions to ask R to ignore missing values. More discussion and examples around missing data can be found in Chapters \@ref(r-basics) and \@ref(missing-data).
+
+```{r}
+mynumbers = c(1, 2, NA)
+sum(mynumbers)
+sum(mynumbers, na.rm = TRUE)
+```
+
+
+## `select()` columns
+
 
 ## Reshaping data - long vs wide format
+
+So far, all of the example we've shown you have been using 'tidy' data. Data is 'tidy' where each variable is in its own column, and each observation is in its own row. This long looking format is efficient to use in data analysis and visualisation, it can also be refered to as "computer readable". But sometimes when presenting data in tables for humans to have a look, or when collecting data directly into a Spreadsheet, it is convenient for us, humans, to have data in a "wide" format. 
+
+```{r, message = FALSE}
+gbd_wide = read_csv("data/global_burden_disease_wide-format.csv")
+gbd_long = read_csv("data/global_burden_disease_cause-sex-year.csv")
+```
+
+
+```{r chap3-tab-gbd-wide, echo = FALSE}
+gbd_wide %>% 
+  knitr::kable(booktabs = TRUE,
+               linesep = c(rep("", 3), "\\addlinespace"),
+               align = c("l", "c", "c", "c", "c"),
+               caption = "Global Burden of Disease data in human-readable wide format. This is not tidy data.") %>% 
+  kableExtra::kable_styling(latex_options = c("hold_position"),
+                            font_size = 10)
+```
+
+```{r chap3-tab-gbd-long, echo = FALSE}
+gbd_long %>% 
+  knitr::kable(booktabs = TRUE,
+               linesep = c(rep("", 3), "\\addlinespace"),
+               align = c("l", "c", "c", "c", "c"),
+               caption = "Global Burden of Disease data in analysis-friendly long format. This is tidy data.") %>% 
+  kableExtra::kable_styling(latex_options = c("hold_position"),
+                            font_size = 10)
+```
+
 
 
 ```{r, echo = FALSE}

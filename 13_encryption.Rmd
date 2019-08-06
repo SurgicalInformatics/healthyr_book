@@ -157,10 +157,10 @@ gp_encrypt = gp %>%
 gp_encrypt
 
 #> A tibble: 1,212 x 7
-#>  key   organisation_code city      county     opendate   
-#>  <int> <chr>             <chr>     <chr>      <date>     
-#>  1     1 S10002          DUNDEE    ANGUS      1995-05-01 
-#>  2     2 S10017          CRIEFF    PERTHSHIRE 1996-04-06 
+#>   key   organisation_code city      county     opendate   
+#>   <int> <chr>             <chr>     <chr>      <date>     
+#> 1 1     S10002            DUNDEE    ANGUS      1995-05-01 
+#> 2 2     S10017            CRIEFF    PERTHSHIRE 1996-04-06 
 ```
 
 The file creation can be turned off with `write_lookup = FALSE` and the name of the lookup can be changed with `lookup_name = "anyNameHere"`. 
@@ -221,7 +221,7 @@ This is a conscious decision given the risks associated with sharing the necessa
 In collaborative projects where data may be pooled, a public key can be made available by you via a link to enable collaborators to encrypt sensitive data.
 This provides a robust method for sharing potentially disclosive data points. 
 
-```{r eval=FALSE
+```{r eval=FALSE}
 gp_encrypt = gp %>% 
   select(-c(name, address1, address2, address3)) %>% 
   encrypt(postcode, telephone, public_key_path = "https://argonaut.is.ed.ac.uk/public/id_rsa.pub")

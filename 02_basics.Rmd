@@ -642,7 +642,7 @@ Therefore, while a lot of the time you do not have to worry about variable types
 
 So here we go.
 
-## Numeric variables
+## Numeric variables (continuous)
 
 Number are straightforward to handle and don't usually cause trouble. 
 R usually refers to numbers as `numeric` (or `num`), but sometimes it really gets its nerd on and also calls numbers `integer` or `double`.
@@ -700,33 +700,52 @@ near(measurement_mean, 3.333, 0.001)
 
 The first two arguments for `near()` are the numbers you are comparing, the third argument is the precision you are interested in. So if the numbers are equal within that precision, it returns `TRUE`. This means you get the expected result without having to round the numbers off.
 
-## Character variables
+## Character variables (categorical, IDs, free text)
 
 **Characters** (sometimes referred to as *strings* or *character strings*) in R are letters, words, or even whole sentences (an example of this may be free text comments). 
 Characters are displayed in-between `""` (or `''`).
 
-A useful way to quickly investigate a categorical variables is the`count()` function:
+A very unseful function for quickly investigating categorical variables is the `count()` function:
 
 ```{r}
+library(tidyverse)
 typesdata %>%
   count(group)
 ```
 
-```{r}
-typesdata %>% count(group)
-typesdata %>% count(id, sort = TRUE)
+`count()` can accept multiple variables and will count up the number of observations in each subgroup, e.g., `mydata %>% count(var1, var2)`.
 
+Another helpful option to count is `sort = TRUE`, which will order the result putting the highest count (`n`) to the top.
+
+```{r}
+typesdata %>%
+  count(group, sort = TRUE)
+```
+
+`count()` and its `sort = TRUE` option are also useful for identifying duplicate IDs or misspellings in your data.
+With this example `tibble` (`typesdata`) that only has three rows, it is easy to see that the `id` column is a unique identifier whereas the `group` column is a categorical variable.
+You can check everything by just eyeballing the `tibble` using the built in Viewer tab (click on the dataset in the Environment tab).
+
+But for larger datasets, you need to know how to check and then clean data programmatically - can't go through 1000s of values checking if they're all the way you expect without unexpected duplicates or typos.
+For most variables (categorical or numeric) we recommend always plotting your data before starting analys.
+But to check for duplicates in a unique identifier, use `count()` with `sort = TRUE`:
+
+
+```{r}
+# all ids are unique:
+typesdata %>% 
+  count(id, sort = TRUE)
+
+# we add in a duplicate row where id = ID3,
+# then count again:
 typesdata %>% 
   add_row(id = "ID3") %>% 
   count(id, sort = TRUE)
 
 ```
 
-With this example `tibble typesdata` that only has three rows, it is pretty obvious that the `id` column is a unique identifier whereas the `group` column is a categorical variable. You can check everything by just eyeballing the tibble using the built in Viewer tab (click on data in the Environment tab).
-But for larger datasets, you should know how to ask these questions programmatically - can't go through 1000s of values checking if they're all the way you expect without unexpected duplicates or typos. Typos usually come out if the number of different values - result of `n_distinct()` - is greater than you expect. For example, if you expect your data to be in two groups: Control and Treatment, but `n_distinct()` says "3", it could mean that you have missing values (as NAs would also be counted as a distinct group), or that the spelling is inconsistent.
 
-
-## Factor variables
+## Factor variables (categorical)
 
 **Factors** are fussy characters. 
 Factors are fussy because they have something called __levels.__ 

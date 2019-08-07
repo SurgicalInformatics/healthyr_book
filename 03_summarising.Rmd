@@ -28,10 +28,10 @@ The Global Burden of Disease dataset used in this chapter is more detailed than 
 
 ```{r, message=F}
 library(tidyverse)
-gbd_long  = read_csv("data/global_burden_disease_cause-year-sex-income.csv")
+gbd_full  = read_csv("data/global_burden_disease_cause-year-sex-income.csv")
 
 # Creating a single-year tibble for printing and simple examples:
-gbd2017 = gbd_long %>% 
+gbd2017 = gbd_full %>% 
   filter(year == 2017)
 
 ```
@@ -166,8 +166,7 @@ The `arrange()` function sorts the rows within a tibble:
 
 
 ```{r}
-gbd_summarised = 
-  gbd2017 %>% 
+gbd_summarised = gbd2017 %>% 
   group_by(cause, sex) %>% 
   summarise(deaths_pergroups = sum(deaths_millions)) %>% 
   arrange(sex)
@@ -225,7 +224,7 @@ gbd2017 %>%
 
 ## Common arithmetic functions - `sum()`, `mean()`, `median()`, etc.
 
-Statistics is what R does, so if there is an arthemtic function you can think of it will already exist in R.
+Statistics is what R does, so if there is a statistical function you can think of, it will exist in R.
 
 The most common ones are:
 
@@ -247,6 +246,10 @@ sum(mynumbers)
 sum(mynumbers, na.rm = TRUE)
 ```
 
+Overall, R's unwillingness to implicitly average over observations with missing values should be considered helpful, not an unnecessary pain. 
+Thing is, if you don't know exactly where your missing values are/how many, you might end up comparing the averages of very different groups (if the values are not missing and random or the sample size is small). 
+So the `na.rm = TRUE` is fine to use if quickly exploring and cleaning data, or you've already investigated missing values and are convinced the existing ones are representative.
+But it is rightfully not a default so get used to typing `na.rm = TRUE` when using these functions.
 
 ## `select()` columns
 
@@ -254,8 +257,8 @@ sum(mynumbers, na.rm = TRUE)
 ## Reshaping data - long vs wide format
 
 So far, all of the example we've shown you have been using 'tidy' data. Data is 'tidy' where each variable is in its own column, and each observation is in its own row. 
-This long looking format is efficient to use in data analysis and visualisation, it can also be refered to as "computer readable". 
-But sometimes when presenting data in tables for humans to have a look, or when collecting data directly into a Spreadsheet, it is convenient for us, humans, to have data in a "wide" format. 
+This long looking format is efficient to use in data analysis and visualisation, it can also be referred to as "computer readable". 
+But sometimes when presenting data in tables for humans to have a look, or when collecting data directly into a Spreadsheet, it can be convenient to have data in a wide format. 
 
 ```{r, message = FALSE}
 gbd_wide = read_csv("data/global_burden_disease_wide-format.csv")
@@ -269,8 +272,7 @@ gbd_wide %>%
                linesep = c(rep("", 3), "\\addlinespace"),
                align = c("l", "c", "c", "c", "c"),
                caption = "Global Burden of Disease data in human-readable wide format. This is not tidy data.") %>% 
-  kableExtra::kable_styling(latex_options = c("hold_position"),
-                            font_size = 10)
+  kableExtra::kable_styling(latex_options = c("scale_down", "hold_position"))
 ```
 
 ```{r chap3-tab-gbd-long, echo = FALSE}
@@ -283,14 +285,151 @@ gbd_long %>%
                             font_size = 10)
 ```
 
+Tables \@ref(tab:chap3-tab-gbd-long) and \@ref(tab:chap3-tab-gbd-wide) contain the exact same information, but in long (tidy) and wide formats, respectively.
 
 
-```{r, echo = FALSE, fig.cap="Same data in the long ('tidy', necessary for efficient analysis) and wide (easier for human-readability/presentation/manual data entry) formats. TODO: replace with updated darta."}
+```{r, echo = FALSE, fig.cap="Same data in the long ('tidy', necessary for efficient analysis) and wide (easier for human-readability/presentation/manual data entry) formats. TODO: replace with updated data."}
 knitr::include_graphics("images/wide_long.png")
+```
+
+\clearpage 
+
+### `spread()` values from rows into columns
+
+If we want to take the data from \@ref(tab:chap3-tab-gbd-long) and put some of the numbers next to each other for easier comparison, then `spread()` is the function to do it. 
+It means we want to spread a variable into columns, and it needs just two arguments: the column we want to spread, and the column where the values are.
+
+
+```{r}
+gbd_long %>% 
+  spread(year, deaths_millions)
+```
+
+
+In this example, we are sending `gbd_long` into the `spread(year, deaths_millions)` to put the year variable into different columns, the values to fill the new columns with are `deaths_millions`.
+This means we can quickly eyeball how the number of deaths have changed from 1990 to 2017 for each cause category and sex.
+Whereas if we wanted to quickly look at the difference in the number of deaths for Females and Males, we can just the `sex` variable instead, so `spread(sex, deaths_millions)`. Furthermore, we can now add a `mutate()` to show this difference in a new column:
+
+
+```{r}
+gbd_long %>% 
+  spread(sex, deaths_millions) %>% 
+  mutate(Male - Female)
+```
+
+All of these differences are positive which means every year, more men die than women.
+Which make sense, as more boys are also born than girls.
+
+And what if we want to spread both `year` and `sex` at the same time, so to create table \@ref(tab:chap3-tab-gbd-wide) from  Table \@ref(tab:chap3-tab-gbd-long)?
+Since `spread()` can only accept two columns - first that is to be spread into columns, second where the values come from, we need to combine something beforehand.
+This is what the `unite()` function is for:
+
+```{r}
+gbd_long %>% 
+  unite(sex_year, c(sex, year)) %>% 
+  slice(1:2)
+```
+
+We are using the `slice(1:2)` to select the first two rows - just for efficient printing (`:` in R is a shorthand for creating sequential numbers, e.g. `1:4` is `r 1:4`).
+
+
+We can then `spread()` the united column:
+```{r}
+gbd_long %>% 
+  unite(sex_year, c(sex, year)) %>% 
+  spread(sex_year, deaths_millions)
+```
+
+
+Both `spread()` and `unite()` have a few optional arguments that you may be useful for you. 
+For example, spread(..., fill = 0) is used to fill empty cells (default is `fill = NA`).
+Or `unite(..., sep = " ")` can be used to change the separator that gets put between the values (e.g. you may want "Female-1990" or "Female: 1990" instead of the default "_").
+Remember that pressing F1 when your cursor is on a function opens it up in the Help tab where these extra options are listed.
+
+The `unite()` is a very convenient function for pasting values from multiple columns together, but if you want to do something more special (i.e. also round numbers or add different separators between multiple different columns), then the `paste()` function inside `mutate()` will give you that extra flexibility and control.
+
+So for example, this:
+```{r}
+gbd_long %>% 
+  unite(sex_year, c(sex, year)) %>% 
+  slice(1)
+```
+
+is similar to:
+```{r}
+gbd_long %>% 
+   mutate(sex_year = paste(sex, year, sep = "_")) %>% 
+  slice(1)
+```
+
+
+They're similar but not exactly the same as `unite()` drops the original columns (and only keeps the new united one), whereas `mutate()` creates a new column and keeps all existing ones as well. 
+To make them equivalent, you could either add `drop = FALSE` inside `unite()` (keeping all columns) or `%>% select(-sex, -year)` after the `mutate()` (to drop/deselect these).
+
+
+
+
+**Exercise**
+
+Using this dataset (Table \@ref(tab:chap3-tab-gbd-long)):
+
+```{r, message = FALSE}
+gbd_long = read_csv("data/global_burden_disease_cause-sex-year.csv")
+```
+
+Spread the `cause` variable into columns using the `deaths_millions` as values:
+
+```{r, echo = FALSE}
+gbd_long %>% 
+  spread(cause, deaths_millions) %>% 
+    knitr::kable(booktabs = TRUE,
+               linesep = c(rep("", 3), "\\addlinespace"),
+               align = c("l", "c", "c", "c", "c"),
+               caption = "Exercise: putting the cause variable into the wide format using spread.") %>% 
+  kableExtra::kable_styling(latex_options = c("scale_down", "hold_position"))
 ```
 
 
 
+### `gather()` values from columns to rows
+
+The opposite of `spread()` is `gather()`. If you're lucky enough, your data comes from a proper database (e.g., REDCap) and is already in the long and tidy format. 
+But if you do get landed with something that looks like the Table \@ref(tab:chap3-tab-gbd-wide), you'll need to know how to gather and separate the variables currently spread across different columns into the tidy format (each column is a variable, each row is an observation).
+
+We could try and run `gather()` without any extra arguments (again, using slice(1:6) just for shorter printing, the first 6 lines this time):
+```{r}
+gbd_wide %>% 
+  gather() %>% 
+  slice(1:6)
+```
 
 
+So it gathers all column names into a new variable called `key`, and puts everything in the rows into a column called `value`.
+However, the `cause` variable already was how we wanted it - in a column of its own, so we don't want this gathered together the `deaths_millions` values.
+So we can tell `gather()` to leave it where it is:
+
+
+```{r}
+gbd_wide %>% 
+  gather(sex_year, deaths_millions, -cause) %>% 
+  slice(1:6)
+```
+
+Now there, because selection (or deselection) of columns needs to be the fourth argument to `gather()` (first on is the data that gets piped - %>% in, second and third the names of the new columns), we also need to include the names of the new columns before we can specify that we want `-cause` to stay where it is. 
+
+And finally, we need to use `separate()` to put `sex` and `year` into their own columns:
+```{r}
+gbd_wide %>% 
+  gather(sex_year, deaths_millions, -cause) %>% 
+  separate(sex_year, into = c("sex", "year"), convert = TRUE) %>% 
+  slice(1:6)
+```
+
+
+It is important to notice the quotes around the new column names: `into = c("sex", "year")`. Most tidyverse functions don't want to use use quotes around column names, so this can be confusing.
+But these columns don't exist yet, so in this case, `sex` and `year` and not variables, they are new names.
+We've also added `convert = TRUE` to `separate()` so `year` would get converted into a numeric variable.
+The combination of, e.g., "Female-1990" is a character variable, so after separating them both `sex` and `year` would still be classified as characters. But the `convert = TRUE` recognises that `year` is a number and will appropriately convert it into an integer.
+
+When working with large datasets with a lot of columns that need gathering, then the `select()` helpers are extremely useful.
 

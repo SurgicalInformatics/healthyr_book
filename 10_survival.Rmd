@@ -514,6 +514,11 @@ last_date = first_date + days(nrow(melanoma)-1) # assume tone every day from 1-J
 operation_date = seq(from = first_date, to = last_date, by = "1 day") # create dates
 
 melanoma$operation_date = operation_date # add the created sequence to melanoma dataset
+
+
+
+#  interval(anaesthetic_start_time, into_theatre_time) %>% 
+#      time_length(unit="minutes"),
 ```
 
 Now we will to create a 'censoring' date by adding `time` from the melanoma dataset to our made up operation date. 

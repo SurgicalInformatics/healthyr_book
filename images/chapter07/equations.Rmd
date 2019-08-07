@@ -4,4 +4,14 @@ output:
   html_notebook: default
 ---
 
-$\hat{y} = \beta_0 + \beta_{1} x_{1}$
+$\log_e(odds) = \beta_0 + \beta_1 x_1 + \beta_2x_2 + \beta_3 x_1 x_2$
+
+$\log_e(odds[event]) = \beta_0 + \beta_{coffee} x_{coffee} + \beta_{smoking}x_{smoking}$
+
+$exp(\beta_2)$
+
+$= a/c$
+
+$= b/d$
+
+$= \frac{a/c}{b/d}= \frac{ad}{bc}$

@@ -9,17 +9,15 @@ As we have seen in previously, regression analysis is a statistical process for 
 For instance, we may try to predict the blood pressure of a group of patients based on their age.
 As age and blood pressure are on a continuous scale, this is an example of linear regression. 
 
-
-![](images/age_bp.png)
-
-
 Logistic regression is an extension of this, where the variable being predicted is *categorical*.
 We will deal with binary logistic regression, where the variable being predicted has two levels, e.g. yes or no, 0 or 1. 
 In healthcare, this is usually done for an event (like death) occurring or not occurring. 
 Logistic regression can tell us the probability of the outcome occuring.
 
 
-![](images/exam_pass.jpeg)
+```{r chap09-fig-logodds, echo = FALSE, fig.cap="A logistic regression model of life-time cardiovascular event occurence by coffee consumption stratified by smoking (simulated data). Fitted lines plotted on the log-odds scale (A) and probability scale (B). *lines are straight when no polynomials or splines are included in regression. "}
+knitr::include_graphics("images/chapter09/0_prob_logodds.pdf")
+```
 
 Logistic regression lets you adjust for the effects of confounding factors on an outcome. 
 When you read a paper that says it has adjusted for confounding factors, this is the usual method which is used.
@@ -50,7 +48,9 @@ Explanatory variables can be categorical as well as continuous, and categorical 
 
 Odds and probabilities can get confusing so let's get them straight:
 
-![](images/p_vs_odds2.png)
+```{r chap09-fig-odds, echo = FALSE, fig.cap="Probability vs odds. "}
+knitr::include_graphics("images/chapter09/1_odds.pdf")
+```
 
 Odds and probabilities can be interconverted. 
 For example, if the odds of a patient dying from a disease are `9 to 1` then the probability of death (also known as risk) is 10%. Odds of `1 to 1` equal 50%.
@@ -63,10 +63,23 @@ Look at the numbers and convince yourself that this works.
 
 For a given categorical explanatory variable (e.g. gender), the likelihood of an outcome/dependent occuring (e.g cancer) can be expressed in a ratio of odds or odds ratio, e.g. the odds of men developing cancer is 2-times that of females, odds ratio = 2.0. 
 
-![](images/or.png)
+```{r chap09-fig-or, echo = FALSE, fig.cap="Odds ratios."}
+knitr::include_graphics("images/chapter09/2_or.pdf")
+```
 
 An alternative is a ratio of probabilites, called a risk ratio or relative risk. 
 Odds ratios have useful mathematical characteristics and are the main expression of results in logistic regression analysis.
+
+
+```{r chap09-fig-equation, echo = FALSE, fig.cap="Linking the logistic regression fitted line, equation and R output."}
+knitr::include_graphics("images/chapter09/4_equation.pdf")
+```
+
+```{r chap09-fig-types, echo = FALSE, fig.cap="Multivariable logistic regression with additive and multiplicative effect modification."}
+knitr::include_graphics("images/chapter09/6_types.pdf")
+```
+
+
 
 \newpage
 

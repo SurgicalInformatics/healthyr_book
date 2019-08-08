@@ -13,7 +13,13 @@ options(pillar.sigfig = 4)
 >“The Answer to the Great Question... Of Life, the Universe and Everything... Is... Forty-two," said Deep Thought, with infinite majesty and calm. 
 >Douglas Adams, The Hitchhiker's Guide to the Galaxy
 
-In this chapter we will get to know our three best friends for summarising data: `group_by()`, `summarise()`, and `mutate()`.
+In this chapter you will find out how to:
+
+* summarise data using: `group_by()`, `summarise()`, and `mutate()`
+* reshape data between the wide and long formats: `spread()` and `gather()`
+* `select()` columns and `arrange()` (sort) rows
+
+The exercises at the end of this chapter combine all of the above to give context and show you more worked examples.
 
 ## Dataset: Global Burden of Disease (year, cause, sex, income, deaths)
 
@@ -28,7 +34,7 @@ The Global Burden of Disease dataset used in this chapter is more detailed than 
 
 ```{r, message=F}
 library(tidyverse)
-gbd_full  = read_csv("data/global_burden_disease_cause-year-sex-income.csv")
+gbd_full = read_csv("data/global_burden_disease_cause-year-sex-income.csv")
 
 # Creating a single-year tibble for printing and simple examples:
 gbd2017 = gbd_full %>% 
@@ -41,7 +47,7 @@ gbd2017 %>%
   knitr::kable(booktabs = TRUE,
                linesep = c(rep("", 3), "\\addlinespace"),
                align = c("l", "c", "r", "l", "c", "r"),
-               caption = "Deaths per year from three broad disease categories, sex, and World Bank county-level income groups.") %>% 
+               caption = "Deaths per year (2017) from three broad disease categories, sex, and World Bank county-level income groups.") %>% 
   kableExtra::kable_styling(latex_options = c("hold_position"),
                             font_size = 10)
 
@@ -259,7 +265,7 @@ But sometimes when presenting data in tables for humans to have a look, or when 
 
 ```{r, message = FALSE}
 gbd_wide = read_csv("data/global_burden_disease_wide-format.csv")
-gbd_long = read_csv("data/global_burden_disease_cause-sex-year.csv")
+gbd_long = read_csv("data/global_burden_disease_cause-year-sex.csv")
 ```
 
 
@@ -366,28 +372,6 @@ To make them equivalent, you could either add `drop = FALSE` inside `unite()` (k
 
 
 
-**Exercise**
-
-Using this dataset (Table \@ref(tab:chap3-tab-gbd-long)):
-
-```{r, message = FALSE}
-gbd_long = read_csv("data/global_burden_disease_cause-sex-year.csv")
-```
-
-Spread the `cause` variable into columns using the `deaths_millions` as values:
-
-```{r, echo = FALSE}
-gbd_long %>% 
-  spread(cause, deaths_millions) %>% 
-    knitr::kable(booktabs = TRUE,
-               linesep = c(rep("", 3), "\\addlinespace"),
-               align = c("l", "c", "c", "c", "c"),
-               caption = "Exercise: putting the cause variable into the wide format using spread.") %>% 
-  kableExtra::kable_styling(latex_options = c("scale_down", "hold_position"))
-```
-
-
-
 ### `gather()` values from columns to rows
 
 The opposite of `spread()` is `gather()`. If you're lucky enough, your data comes from a proper database (e.g., REDCap) and is already in the long and tidy format. 
@@ -432,6 +416,175 @@ When working with large datasets with a lot of columns that need gathering, then
 
 ## select() columns
 
+TODO
+
 ## arrange() rows - reorder/sort
 
-## Exercises/Worked examples
+TODO
+
+## Exercise
+
+Using the GBD dataset with variables `cause`, `year` (1990 and 2017 only), `sex` (as shown in Table \@ref(tab:chap3-tab-gbd-long)):
+
+```{r, message = FALSE}
+gbd_long = read_csv("data/global_burden_disease_cause-year-sex.csv")
+```
+
+Spread the `cause` variable into columns using the `deaths_millions` as values:
+
+```{r, echo = FALSE}
+gbd_long %>% 
+  spread(cause, deaths_millions) %>% 
+    knitr::kable(booktabs = TRUE,
+               linesep = c(rep("", 3), "\\addlinespace"),
+               align = c("l", "c", "c", "c", "c"),
+               caption = "Exercise: putting the cause variable into the wide format using spread.") %>% 
+  kableExtra::kable_styling(latex_options = c("scale_down", "hold_position"))
+```
+
+**Solution**
+
+```{r, message = FALSE, results = 'hide'}
+gbd_long = read_csv("data/global_burden_disease_cause-year-sex.csv")
+gbd_long %>% 
+  spread(cause, deaths_millions) 
+```
+
+
+## Exercise
+
+Read in the full GBD dataset with variables `cause`, `year`, `sex`, `income`, `deaths_millions`.
+
+```{r, message = FALSE}
+gbd_full = read_csv("data/global_burden_disease_cause-year-sex-income.csv")
+
+glimpse(gbd_full)
+```
+
+Year 2017 of this dataset was shown in Table \@ref(tab:chap3-tab-gbd2017), the full dataset has seven times as many observations as Table \@ref(tab:chap3-tab-gbd2017) since it includes information about multiple years: `r gbd_full$year %>% unique()`.
+
+Investigate these code examples:
+
+```{r}
+summary_data1 = 
+  gbd_full %>% 
+  group_by(year) %>% 
+  summarise(total_per_year = sum(deaths_millions))
+
+summary_data1
+
+summary_data2 = 
+  gbd_full %>% 
+  group_by(year, cause) %>% 
+  summarise(total_per_cause = sum(deaths_millions))
+
+summary_data2
+```
+
+You should recognise that:
+
+* `summary_data1` includes the total number of deaths per year.
+* `summary_data2` includes the number of deaths per cause per year.
+* `summary_data1 =` means we are creating a new tibble called `summary_data1` and saving (=) results into it. If `summary_data1` was a tibble that already existed, it would get overwritten.
+* `gbd_full` is the data being sent to the `group_by()` and then `summarise()` functions.
+* `group_by()` tells `summarise()` that we want aggregated results for each year.
+* `summarise()` then creates a new variable called `total_per_year` that sums the deaths from each different observation (subcategory) together.
+* Calling `summary_data1` on a separate line gets it printed.
+* We then do something very similar in `summary_data2`.
+
+Compare the number of rows (observations) and number of columns (variables) of `gbd_full`, `summary_data1`, and `summary_data2`.
+
+You should notice that:
+* `summary_data2` has exactly 3 times as many rows (observations) as `summary_data1`. Why?
+* `gbd_full` has 5 variables, whereas the summarised tibbles have 2 and 3. Which variables got dropped? How?
+
+**Answers**
+
+* `gbd_full` has `r nrow(gbd_full)` observations (rows), 
+* `summary_data1` has `r nrow(summary_data1)`,
+* `summary_data2` has `r nrow(summary_data2)`.
+
+`summary_data1` was grouped by year, therefore it includes a (summarised) value for each year in the original dataset.
+`summary_data2` was grouped by year and cause (`r gbd_full$cause %>% unique()`), so it has 3 values for each year.
+
+The columns a `summarise()` function returns are: variables listed in `group_by()` + variables created inside `summarise()` (e.g., in this case `deaths_peryear`). All others get aggregated.
+
+## Exercise
+
+For each cause, calculate its percentage to total deaths in each year.
+
+Hint: Use `full_join()` on `summary_data1` and `summary_data2`, and then use `mutate()` to add a new column called `percentage`.
+
+Example result for a single year:
+
+```{r, echo = FALSE}
+library(scales)
+full_join(summary_data1, summary_data2) %>% 
+  mutate(percentage = percent(total_per_cause/total_per_year)) %>% 
+  filter(year == 1990)
+```
+
+**Solution**
+
+```{r, echo = FALSE}
+library(scales)
+full_join(summary_data1, summary_data2) %>% 
+  mutate(percentage = percent(total_per_cause/total_per_year)) 
+```
+
+## Exercise
+
+Instead of creating the two summarised tibbles and using a `full_join()`, achieve the same result as in the previous Exercise by with a single pipeline using `summarise()` and then `mutate()`.
+
+Hint: you have to do it the either way round, so `group_by(year, cause) %>% summarise(...)` first, then `group_by(year) %>% mutate()`.
+
+Bonus: `select()` columns `year`, `cause`, `percentage`, then `spread()` the `cause` variable using `percentage` as values.
+
+**Solution**
+
+```{r}
+gbd_full %>% 
+  # aggregate to deaths per cause per year using summarise()
+  group_by(year, cause) %>% 
+  summarise(total_per_cause = sum(deaths_millions)) %>% 
+  # then add a column of yearly totals using mutate()
+  group_by(year) %>% 
+  mutate(total_per_year = sum(total_per_cause)) %>% 
+  # add the percentage column
+  mutate(percentage = percent(total_per_cause/total_per_year)) %>% 
+  # select the final variables and spread for better vieweing
+  select(year, cause, percentage) %>% 
+  spread(cause, percentage)
+```
+
+
+Note that your pipelines shouldn't be much longer than this, and we often save interim results into separate tibbles for checking (like we did with `summary_data1` and `summary_data2`, making sure the number of rows are what we expect and spot checking that the calculation worked as expected).
+
+> R doesn't do what you want it to do, it does what you ask it to do. Testing and spot checking is essential as you will make mistakes. We sure do.
+
+Do not feel like you should be able to just bash out these clever pipelines without a lot of trial and error first.
+
+
+## Exercise
+
+Still working with `gbd_full`:
+
+* Filter for 1990.
+* Calculate the total number of deaths in the different income groups (`r gbd_full$income %>% unique()`). Hint: use `group_by(income)` and `summarise(new_column_name = sum(variable))`.
+* Calculate the total number of deaths within each income group for males and females. Hint: this is as easy as adding `, sex` to `group_by(income)`.
+
+* `spread()` the `income` column.
+
+**Solution**
+
+```{r}
+gbd_full %>% 
+  filter(year == 1990) %>% 
+  group_by(income, sex) %>% 
+  summarise(total_deaths = sum(deaths_millions)) %>% 
+  spread(income, total_deaths)
+```
+
+
+
+

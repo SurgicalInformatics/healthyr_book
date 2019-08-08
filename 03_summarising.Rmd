@@ -251,9 +251,6 @@ Thing is, if you don't know exactly where your missing values are/how many, you 
 So the `na.rm = TRUE` is fine to use if quickly exploring and cleaning data, or you've already investigated missing values and are convinced the existing ones are representative.
 But it is rightfully not a default so get used to typing `na.rm = TRUE` when using these functions.
 
-## `select()` columns
-
-
 ## Reshaping data - long vs wide format
 
 So far, all of the example we've shown you have been using 'tidy' data. Data is 'tidy' where each variable is in its own column, and each observation is in its own row. 
@@ -433,3 +430,8 @@ The combination of, e.g., "Female-1990" is a character variable, so after separa
 
 When working with large datasets with a lot of columns that need gathering, then the `select()` helpers are extremely useful.
 
+## select() columns
+
+## arrange() rows - reorder/sort
+
+## Exercises/Worked examples

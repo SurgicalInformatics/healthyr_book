@@ -15,8 +15,8 @@ Broadly, there are often two separate goals in regression:
 * Explanation: fit a model to explain the inter-relationships between a set of variables.
 
 Figure \@ref(fig:chap07-fig-regression) unifies the terms we will use throughout. 
-A clear scientific question should define our `explanatory variable of interest` (*x*), which sometimes gets called an exposure, predictor, or independent variable. 
-Our outcome of interest will be referred to as the `dependent` variable or outcome (*y*); it is sometimes referred to as the response. 
+A clear scientific question should define our `explanatory variable of interest` $(x)$, which sometimes gets called an exposure, predictor, or independent variable. 
+Our outcome of interest will be referred to as the `dependent` variable or outcome $(y)$; it is sometimes referred to as the response. 
 In simple linear regression, there is a single explanatory variable and a dependent variable, and we will sometimes refer to this as *univariable linear regression*. 
 When there is more than one explanatory variable, we will call this *multivariable regression*. 
 Avoid the term *multivariate regression*, which suggests more than one dependent variable. 
@@ -31,7 +31,7 @@ We will illustrate our examples of linear regression using a classical question 
 This is the relationship between coffee consumption and blood pressure (and therefore cardiovascular events, such as myocardial infarction and stroke).
 There has been a lot of backwards and forwards over decades about whether coffee is harmful, has no effect, or is in fact beneficial. 
 Figure \@ref(fig:chap07-fig-regression) shows a linear regression example. 
-Each point is a person and average number of cups of coffee per day is the explanatory variable of interest (*x*) and systolic blood pressure as the dependent variable (*y*). 
+Each point is a person and average number of cups of coffee per day is the explanatory variable of interest $(x)$ and systolic blood pressure as the dependent variable $(y)$. 
 This next bit is important!
 These data are made up, fake, randomly generated, fabricated, not real. 
 So please do not alter your coffee habit on the basis of these plots!
@@ -474,7 +474,7 @@ list(fit_both1, fit_both2, fit_both3) %>%
 
 The assumptions of linear regression can be checked with diagnostic plots, either by passing the fitted object (`lm()` output) to base R `plot()`, or by using the more convenient function below. 
 
-```{r}
+```{r fig.height=5, fig.width=5}
 library(ggfortify)
 autoplot(fit_both3)
 ```
@@ -765,7 +765,19 @@ fit_sbp5[[2]] %>% mykable(caption = "Model metrics: Systolic blood pressure by a
 This results in little change in the other coefficients and very little change in the AIC. 
 We will consider the reduced model the final model. 
 
-An important message here relates to the highly significant p-values in the table above. 
+We can check the assumptions as above.
+
+```{r fig.height=5, fig.width=5, message=FALSE, fig.cap="Diagnostic plots: linear regression model of systolic blood pressure."}
+dependent = "sbp"
+explanatory_multi = c("bmi", "personality_2L", "age", 
+                      "chol") 
+mydata %>%
+  lmmulti(dependent, explanatory_multi) %>% 
+  autoplot()
+```
+
+
+An important message in the results relates to the highly significant p-values in the table above. 
 Should we conclude that in a "multivariable regression model controlling for BMI, age, and serum cholesterol, blood pressure was significantly elevated in those with a Type A personality (1.56 (0.57 to 2.56, p=0.002) compared with Type B?
 The p-value looks impressive, but the actual difference in blood pressure is only 1.6 mmHg. 
 Even at a population level, that seems unlikely to be clinically significant. 

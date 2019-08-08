@@ -3,419 +3,906 @@
 > All generalizations are false, including this one.  
 > Mark Twain
 
-## What is Logistic Regression?
+```{r echo=FALSE, message=FALSE}
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+mykable = function(x, caption = "CAPTION", ...){
+  kable(x, row.names = FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r", "r"), 
+        booktabs = TRUE, caption = caption, 
+        linesep = c("", "", "\\addlinespace"), ...) %>%
+    kable_styling(latex_options = c("scale_down", "hold_position"))
+}
 
-As we have seen in previously, regression analysis is a statistical process for estimating the relationships between variables. 
-For instance, we may try to predict the blood pressure of a group of patients based on their age.
-As age and blood pressure are on a continuous scale, this is an example of linear regression. 
-
-Logistic regression is an extension of this, where the variable being predicted is *categorical*.
-We will deal with binary logistic regression, where the variable being predicted has two levels, e.g. yes or no, 0 or 1. 
-In healthcare, this is usually done for an event (like death) occurring or not occurring. 
-Logistic regression can tell us the probability of the outcome occuring.
-
-
-```{r chap09-fig-logodds, echo = FALSE, fig.cap="A logistic regression model of life-time cardiovascular event occurence by coffee consumption stratified by smoking (simulated data). Fitted lines plotted on the log-odds scale (A) and probability scale (B). *lines are straight when no polynomials or splines are included in regression. "}
-knitr::include_graphics("images/chapter09/0_prob_logodds.pdf")
+theme_set(theme_bw())
 ```
 
-Logistic regression lets you adjust for the effects of confounding factors on an outcome. 
-When you read a paper that says it has adjusted for confounding factors, this is the usual method which is used.
+## Generalised linear modelling
 
-Adjusting for confounding factors allows us to isolate the true effect of a variable upon an outcome. 
-For example, if we wanted to know the effects of smoking on deaths from heart attacks, we would need to also control for things like sex and diabetes, as we know they contribute towards heart attacks too.
+Do not start here! 
+The material covered in this chapter is best understood after having read linear regression (REF Chapter 7) and working with categorical outcome variables (chapter 8).
 
-Although in binary logistic regression the outcome must have two levels, the predictor variables (also known as the explanatory variables) can be either continuous or categorical.
+Generalised linear modelling is an extension to the linear modelling we are now familiar with. 
+It allows the principles of linear regression to be applied when outcomes are not continuous numeric variables.  
 
-Logistic regression can be performed to examine the influence of one predictor variable, which is known as a univariable analysis. 
-Or multiple predictor variables, known as a multivariable analysis.
+## Binary logistic regression
 
-## Definitions
+A regression analysis is a statistical approach to estimating the relationships between variables, often by drawing straight lines through data points. 
+For instance, we may try to predict blood pressure in a group of patients based on their coffee consumption (REF Chap 7 PLOT). 
+As blood pressure and coffee consumption can be considered on a continuous scale, this is an example of simple linear regression. 
 
-**Dependent** variable (in clinical research usually synonymous to **outcome**) - is what we are trying to explain, i.e. we are trying to identify the factors associated with a particular outcome. 
-In binomial logistic regression, the dependent variable has exactly two levels (e.g. "Died" or "Alive", "Yes - Complications" or "No Complications", "Cured" or "Not Cured", etc.).
+Logistic regression is an extension of this, where the variable being predicted is *categorical*. 
+We will focus on binary logistic regression, where the variable being predicted has two levels, e.g. yes or no, 0 or 1, dead or alive.
+Other types of logistic regression include 'ordinal', when the outcome variable has >2 ordered levels, and 'multinomial', where the outcome variable has >2 levels with no inherent order. 
+We will only deal with binary logistic regression, and and when we use the 'logistic regression' that is what we are referring to. 
 
-**Explanatory** variables (also known as **predictors**, **confounding** variables, or **"adjusted for"**) - patient-level information, usually including demographics (age, gender) as well as clinical information (disease stage, tumour type). 
-Explanatory variables can be categorical as well as continuous, and categorical variables can have more than two levels.
+We have good reason. 
+In healthcare we are often interested in an event (like death) occurring or not occurring. 
+Binary logistic regression can tell us the probability of this outcome occurring in a patient with a particularly set of characteristics.
 
-**Univariable** - analysis with only one Explanatory variable.
+Although in binary logistic regression the outcome must have two levels, remember that the predictors (explanatory variables) can be either continuous or categorical.
 
-**Multivariable** - analysis with more than one Explanatory variable. Synonymous to "adjusted".
+### The Question (1)
 
-(**Multivariate** - technically means more than one **Dependent variable** (we will not discuss this type of analysis), but very often used interchangeably with **Multivariable**.)
+As in previous chapters, we will use concrete examples when discussing the principles of the approach. 
+We return to our example of coffee drinking (REF The Question (1) chapter 7). 
+Yes, we are a little obsessed with coffee. 
 
-## Odds and probabilities
+Our outcome variable was previously blood pressure. 
+We will now consider our outcome as the occurrence of a cardiovascular (CV) event over a 10-year period. 
+A cardiovascular event includes the diagnosis of ischemic heart disease, a heart attack (myocardial infarction), or a stroke (cerebrovascular accident). 
+The occurrence of a cardiovascular event is clearly a binary condition, it either happens or it does not. 
+This is ideal therefore for modelling using binary logistic regression. 
+But remember, the data are completely simulated and not based on anything in the real world. 
+It's just for fun!
 
-Odds and probabilities can get confusing so let's get them straight:
+### Odds and probabilities
 
-```{r chap09-fig-odds, echo = FALSE, fig.cap="Probability vs odds. "}
-knitr::include_graphics("images/chapter09/1_odds.pdf")
+To understand logistic regression we need to remind ourselves about odds and probability. 
+Odds and probabilities can get confusing so get them straight with Figure \@ref(fig:chap09-fig-odds).
+
+```{r chap09-fig-odds, echo = FALSE, fig.cap="Probability vs odds."}
+knitr::include_graphics("images/chapter09/0_odds.pdf")
 ```
 
-Odds and probabilities can be interconverted. 
-For example, if the odds of a patient dying from a disease are `9 to 1` then the probability of death (also known as risk) is 10%. Odds of `1 to 1` equal 50%.
+In many situation, there is no particular reason to prefer one to the other. 
+However, humans seem to have a preference for expressing chance in terms of probabilities, while odds have particular mathematical properties which makes them useful in regression.
 
-$Odds = \frac{p}{1-p}$, where $p$ is the probability of the outcome occuring (or the circle being red).
+When a probability is 0, the odds are 0. 
+When a probability is between 0 and 0.5, the odds are less than 1.0. 
+As a probability increases from 0.5 to 1.0, the odds increase from 1.0 to approach infinity. 
 
-Look at the numbers and convince yourself that this works. 
+Thus the range of probability is 0 to 1 and the range of odds is 0 to $+\infty$.
+
+Odds and probabilities can easily be interconverted. 
+For example, if the odds of a patient dying from a disease are 1/3 (in horse racing this is stated as '3 to 1 against'), then the probability of death (also known as risk) is 0.25 (or 25%). 
+Odds of `1 to 1` equal 50%.
+
+$Odds = \frac{p}{1-p}$, where $p$ is the probability of the outcome occurring.
+
+$Probability = \frac{odds}{odds+1}$.
+
 
 ### Odds ratios
 
-For a given categorical explanatory variable (e.g. gender), the likelihood of an outcome/dependent occuring (e.g cancer) can be expressed in a ratio of odds or odds ratio, e.g. the odds of men developing cancer is 2-times that of females, odds ratio = 2.0. 
+Another important term to remind ourselves of is the 'odds ratio'. 
+Why?
+Because in a logistic regression the slopes of fitted lines (coefficients) can be interpreted as odds ratios. 
+This is very useful when interpreting the association of a particular predictor with an outcome. 
+
+For a given categorical predictor such as smoking, the difference in chance of the outcome occurring for smokers vs. non-smokers can be expressed as a ratio of odds or odds ratio Figure \@ref(fig:chap09-fig-or).
+For example, if the odds of a smoker have a CV event are 1.5 and the odds of a non smoker are 1.0, then the odds of a smoker having an event are 1.5-times greater than a non-smoker, odds ratio = 1.5. 
 
 ```{r chap09-fig-or, echo = FALSE, fig.cap="Odds ratios."}
-knitr::include_graphics("images/chapter09/2_or.pdf")
+knitr::include_graphics("images/chapter09/1_or.pdf")
 ```
 
-An alternative is a ratio of probabilites, called a risk ratio or relative risk. 
-Odds ratios have useful mathematical characteristics and are the main expression of results in logistic regression analysis.
+An alternative is a ratio of probabilities which is called a risk ratio or relative risk. 
+We will continue to work with odds ratios given they are an important expression of effect size in logistic regression analysis.
 
+
+### Fitting a regression line
+
+Let's return to the task at hand. 
+The difficulty in moving from a continuous to a binary outcome variable becomes obvious quickly. 
+If our $y$-axis only has two values, say 0 and 1, then how can be fit line through our data points?
+
+An assumption of linear regression is that dependent variable is continuous, unbounded and measured on an interval or ratio scale.
+Unfortunately, binary dependent variables fulfil none of these requirements. 
+
+The answer is what makes logistic regression so useful. 
+Rather than estimating $y=0$ or $y=1$ from the $x$-axis, we estimate the *probability* of $y=1$. 
+
+There is one more difficulty in this though.
+Probabilities can only exist between values of 0 and 1. 
+The probability scale is therefore not linear - straight lines do not make sense on it. 
+
+As we saw above, the odds scale runs from 0 to $+\infty$. 
+But here, probabilities from 0 to 0.5 are squashed into odds of 0 to 1, and probabilities from 0.5 to 1 have the expansive comfort of 1 to $+\infty$.
+
+This is why we fit binary data on a *log-odds scale*. 
+
+A log-odds scale sounds incredibly off-putting to non-mathematicians, but it is the perfect solution! 
+
+* Log-odds run from $-\infty$ to $+\infty$;
+* odds of 1 become log-odds of 0;
+* a doubling and a halving of odds represent the same distance on the scale. 
+
+```{r}
+log(1)
+log(2)
+log(0.5)
+```
+
+I'm sure some are shouting 'obviously' at the page. 
+That is good!
+
+This is wrapped up in a transformation (REF working with continuous data transform bit) using the so-called logit function. 
+This can be skipped with no loss of understanding, but for those who just-gots-to-see, the logit function is, 
+
+$\log_e (\frac{p}{1-p})$, where $p$ is the probability of the outcome occuring. 
+
+Figure \@ref(fig:chap09-fig-logodds) demonstrates the fitted lines from a logistic regression model of CV event by coffee consumption stratified by smoking on the log-odds scale (A) and the probability scale (B). 
+We could conclude, for instance, that on average, non-smokers who drink 2 cups of coffee per day have a 50% chance of a cardiovascular event. 
+
+```{r chap09-fig-logodds, echo = FALSE, fig.cap="A logistic regression model of life-time cardiovascular event occurence by coffee consumption stratified by smoking (simulated data). Fitted lines plotted on the log-odds scale (A) and probability scale (B). *lines are straight when no polynomials or splines are included in regression. "}
+knitr::include_graphics("images/chapter09/2_prob_logodds.pdf")
+```
+
+### The fitted line and the logistic regression equation
+
+Figure \@ref(fig:chap09-fig-equation) links the logistic regression equation, the appearance of the fitted lines on the probability scale, and the output from a standard base `R` analysis. 
+The dots at the top and bottom of the plot represent whether individual patients have had an event or not. The fitted line, therefore, represents the point-to-point probability of a patient with a particular set of characteristics having the event or not. 
+Compare this to Figure \@ref(fig:chap07-fig-equation) to be clear on the difference. 
+The slope of the line is linear on the log-odds scale and these are presented in the output on the log-odds scale. 
+
+Thankfully, it is straightforward to convert these to odds ratios, a measure we can use to communicate effect size and direction effectively. 
+Said in more technical language, the exponential of the coefficient on the log-odds scale can be interpreted as an odds ratio.  
+
+For a continuous variable such as cups of coffee consumed, the odds ratio is the change in odds of a CV event associated with a 1 cup increase in coffee consumption. 
+We are dealing with linear responses here, so the odds ratio is the same for an increase from 1 to 2 cups, or 3 to 4 cups etc. 
+Remember that if the odds ratio for 1 unit of change is 1.5, then the odds ratio for 2 units of change is $exp(log(1.5)*2) = 2.25$.
+
+For a categorical variable such as smoking, the odds ratio is the change in odds of a CV event associated with smoking compared with not smoking (the reference level). 
 
 ```{r chap09-fig-equation, echo = FALSE, fig.cap="Linking the logistic regression fitted line, equation and R output."}
 knitr::include_graphics("images/chapter09/4_equation.pdf")
 ```
 
+### Effect modification and confounding
+
+As with all multivariable regression models, logistic regression allows the incorporation of multiple variables which all may have direct effects on outcome or may confound the effect of another varaible. 
+This is explored in detail in (SEE CHAPTER 7 confounding). 
+
+Adjusting for effect modifciation and confounding allows us to isolate the direct effect of an explanatory variable of interest upon an outcome. 
+In our example, we are interested in direct effect of coffee drinking on the occurence of cardiovascular disease, independent of any association between coffee drinking and smoking. 
+
+Figure \@ref(fig:chap9-fig-types) demonstrates simple, additive and multiplicative models. 
+Refer to Figure \@ref(fig:chap7-fig-types) and the discussion around it if this doesn't make sense. 
+
+Presented on the probability scale, the effect of the interaction is difficult to see. 
+It is obvious on the log-odds scale that the fitted lines are no longer constrained to be parallel. 
+
 ```{r chap09-fig-types, echo = FALSE, fig.cap="Multivariable logistic regression with additive and multiplicative effect modification."}
 knitr::include_graphics("images/chapter09/6_types.pdf")
 ```
 
+The interpretation of the interaction term is important. 
+The exponential of the interaction coefficient term represents a 'ratio-of-odds ratios'.
+This is easiest to see through a worked example. 
+In Figure \@ref(fig:chap09-fig-interaction) the effect of coffee on the odds of a cardiovascular event can be compared in smokers and non-smokers. 
+The effect is now different given the inclusion of a significant interaction term. 
+Please check back to the linear regression chapter if this is not making sense. 
 
+```{r chap09-fig-interaction, echo = FALSE, fig.cap="Multivariable logistic regression with interaction term. The exponential of the interaction term is a ratio-of-odds ratios (ROR)."}
+knitr::include_graphics("images/chapter09/7_interactions.pdf")
+```
 
-\newpage
+## Data preparation and exploratory analysis
 
+### The Question (2)
 
-## Melanoma dataset
+We will go on to explore the `boot::melanoma` dataset introduced in Chapter 8 (REF). 
+The data consist of measurements made on patients after surgery to remove the melanoma in the University Hospital of Odense, Denmark between 1962 and 1977.
 
-Malignant melanoma is a cancer of the skin. 
-It is agressive and highly invasive, making it difficult to treat.
+Malignant melanoma is aggressive and highly invasive, making it difficult to treat.
 
-It's classically divided into 4 stages of severity, based upon the depth of the tumour:
+It's classically staged based on the depth of the tumour.
+The current TNM classification cut-offs are:
 
-- Stage I: <0.5 mm depth
-- Stage II: 0.5 to 1.0 mm depth
-- Stage III: 1.0 to 4.0 mm depth
-- Stage IV: > 4.0 mm depth
+- T1: $\leq$ 1.0 mm depth
+- T2: 1.1 to 2.0 mm depth
+- T3: 2.1 to 4.0 mm depth
+- T4: > 4.0 mm depth
 
-This will be important in our analysis as we will creating a new variable based upon this.
+This will be important in our analysis as we will create a new variable based upon this.
 
-Using logistic regression, we will investigate factors associated with death from malignant melanoma.
+Using logistic regression, we will investigate factors associated with death from malignant melanoma with particular interest in tumour ulceration.
 
-### Doing logistic regression in R
+### Get the data
 
-There are a few different ways of doing logistic regression in R. 
-The `glm()` function is probably the most common and most flexible one to use. (`glm` stands for `generalised linear model`.)
+The help page (`?boot::melanoma`) gives us the data dictionary.
+This includes the definition of each variable and the coding used.
 
-Within the `glm()` function there are several `options` in the function we must define to make R run a logistic regression.
+```{r, message = F}
+melanoma = boot::melanoma
+```
 
-`data` - you must define the dataframe to be used in the regression.
+### Check the data
+As before, always carefully check and clean new dataset before you start the analysis.  
 
-`family` - this tells R to treat the analysis as a logisitic regression. For our purposes, `family` will always be `"binomial"` (as binary data follow this distribution).
-
-`x ~ a + b + c` - this is the formula for the logistic regression, with `x` being the outcome and `a`, `b` and `c` being predictor variables.
-
-Note the outcome is separated from the rest of the formula and sits on the left hand side of a `~`. The confounding variables are on the right side, separated by a `+` sign.
-
-The final `glm()` function takes the following form:
-
-`glm(x ~ a + b + c + d, data = data, family = "binomial")`
-
-
-## Setting up your data
-
-The most important step to ensure a good basis to start from is to ensure your variables are well structured and your outcome variable has exactly two outcomes.
-
-We will need to make sure our outcome variables and predictor variables (the ones we want to adjust for) are suitably prepared.
-
-In this example, the outcome variable called `status.factor` describes whether patients died or not and will be our (dependent) variable of interest.
-
-### Worked Example
-
-```{r, message = FALSE, warning = FALSE}
+```{r eval=FALSE}
 library(tidyverse)
-
-load("melanoma_factored.rda")
-#Load in data from the previous session
-
+library(finalfit)
+mydata %>% glimpse()
+mydata %>% ff_glimpse()
 ```
 
+### Recode the data
+We have done some of this already, but for this particular analysis we will recode some further variables. 
+```{r message=FALSE}
+library(tidyverse)
+library(finalfit)
+melanoma = melanoma %>% 
+  mutate(sex.factor =             # Make new variable  
+           sex %>%                # from existing variable
+           factor() %>%           # convert to factor
+           fct_recode(            # forcats function
+             "Female" = "0",      # new on left, old on right
+             "Male"   = "1") %>% 
+           ff_label("Sex"),       # Label for finalfit tables
+         
+         ulcer.factor = 
+           ulcer %>% 
+           factor() %>% 
+           fct_recode(
+             "Present" = "1",
+             "Absent"  = "0") %>% 
+           ff_label("Ulcerated tumour"),
+         
+         age = ff_label(age, "Age (years)"),
+         year = ff_label(year, "Year"),
+         
+         status.factor =
+           status %>% 
+           factor() %>% 
+           fct_recode("Died melanoma"  = "1",
+                      "Alive" = "2",
+                      "Died - other" = "3") %>% 
+           fct_relevel("Alive") %>% 
+           ff_label("Status"),
+         
+         t_stage.factor = 
+           thickness %>% 
+           cut(breaks = c(0, 1.0, 2.0, 4.0, 
+                          max(thickness, na.rm=TRUE)),
+               include.lowest = TRUE)
+  )
+```
 
-Here `status.factor` has three levels: `Died`, `Died - other causes` and `Alive`. 
-This is not useful for us, as logistic regression requires outcomes to be binary (exactly two levels).
-
-We want to find out which variables predict death from melanoma. 
-So we should create a new factor variable, `died_melanoma.factor`. 
-This will have two outcomes, `Yes` (did die from melanoma) or `No` (did not die from melanoma).
-
+Check the `cut()` function has worked. 
 
 ```{r}
+melanoma$t_stage.factor %>% levels()
+```
 
-mydata$status.factor %>% 
-  fct_collapse("Yes" = c("Died"),
-               "No"  = c("Alive", "Died - other causes")) ->
-  mydata$died_melanoma.factor
+Recode for ease.
 
-mydata$died_melanoma.factor %>% levels()
+```{r}
+melanoma = melanoma %>% 
+  mutate(
+    t_stage.factor = 
+      fct_recode(t_stage.factor,
+                 T1 = "[0,1]",
+                 T2 = "(1,2]",
+                 T3 = "(2,4]",
+                 T4 = "(4,17.4]") %>% 
+      ff_label("T-stage")
+  )
+```
+
+We will now consider our outcome variable. 
+With a binary outcome and health data, we often have to make a decision as to *when* to determine if that variable has occurred or not. 
+In the next chapter we will look at survival analysis where this requirement if not needed. 
+
+Our outcome on interest is death from melanoma, but we need to decide when to define this. 
+
+A quick histogram of `time` stratified by `status.factor` helps. 
+We can see that most people who died from melanoma did so before 5 years. 
+We can also see that the status most of those who did not die is known beyond 5 years. 
+Let's decide then to look at 5-year mortality from melanoma. 
+The definition of this will be at 5 years after surgery, who had died from melanoma and who had not. 
+
+```{r}
+library(ggplot2)
+melanoma %>% 
+  ggplot(aes(x = time/365)) + 
+  geom_histogram() + 
+  facet_grid(. ~ status.factor)
+```
+
+```{r}
+# 5-year mortality
+melanoma = melanoma %>% 
+  mutate(
+    mort_5yr = 
+      if_else((time/365) < 5 & 
+                (status == 1), 
+              "Yes",          # then
+              "No") %>%       # else
+      fct_relevel("No") %>% 
+      ff_label("5-year survival")
+  )
+```
+
+### Plot the data
+
+We are interested in the association between tumour ulceration and outcome.
+
+```{r fig.height=5, fig.width=4, fig.cap = "CAPTION"}
+p1 = melanoma %>% 
+  ggplot(aes(x = ulcer.factor, fill = mort_5yr)) + 
+  geom_bar() + 
+  theme(legend.position = "none")
+
+p2 = melanoma %>% 
+  ggplot(aes(x = ulcer.factor, fill = mort_5yr)) + 
+  geom_bar(position = "fill") + 
+  ylab("proportion")
+
+library(patchwork)
+p1 / p2
+```
+
+As we might have anticipated from our work in chapter 8, 5-year mortality is higher in patients with ulcerated tumours compared with those with non-ulcerated tumours. 
+
+We are also interested in other variables that may be associated with tumour ulceration. 
+If they are also associated with our outcome, then they will confound the estimate of the direct effect of tumour ulceration. 
+
+We can plot out these relationships, or tabulate them instead. 
+
+### Tabulate data
+
+We will use the convenient `Finalfit` function `summary_factorlist()` to look for difference across other variables by tumour ulceration.
+
+```{r, eval=FALSE}
+library(finalfit)
+dependent = "ulcer.factor"
+explanatory = c("age", "sex.factor", "year", "t_stage.factor")
+melanoma %>% 
+  summary_factorlist(dependent, explanatory, p = TRUE,
+                     add_dependent_label = TRUE)
+```
+
+```{r, echo=FALSE}
+library(finalfit)
+dependent = "ulcer.factor"
+explanatory = c("age", "sex.factor", "year", "t_stage.factor")
+melanoma %>% 
+  summary_factorlist(dependent, explanatory, p = TRUE,
+                     column = TRUE,       # proportions by column
+                     add_dependent_label = TRUE) %>% 
+  mykable() %>% 
+  column_spec(1, width = "3.5cm")
+```
+
+It appears that patients with ulcerated tumours were older, more likely to be male, and had thicker/higher stage tumours. 
+It is important therefore to consider inclusion of these variables in a regression model. 
+
+## Model assumptions
+
+Binary logistic regression is robust many assumptions which can cause problems in other statistical analyses. 
+The main assumptions are:
+
+1. Binary dependent variable - this is obvious, but as above we need to check (alive, death from disease, death from other causes doesn't work);
+2. Independence of observations - the observations should not be repeated measurements or matched data;
+3. Linearity of continuous explanatory variables and the log-odds outcome - take age as an example. If the outcome, say death, gets more frequent or less frequent as age rises, the model will work well. However, say children and the elderly are at high risk of death, but those in middle years are not, then the relationship is not linear. Or more correctly, is not monotonic, meaning that the response does not only go in one direction. 
+4. No multicollinearity - explanatory variables should not be highly correlated with each other;
+
+### Linearity of continuous variables to the response
+
+A graphical check of linearity can be performed using a best fit "loess" line. 
+This is on the probability scale, so it is not going to be straight. 
+But it should be monotonic - it should only ever go up or down. 
+
+```{r, warning=FALSE, message = FALSE}
+library(tidyverse)
+melanoma %>% 
+  mutate(
+    mort_5yr.num = as.numeric(mort_5yr) - 1
+  ) %>% 
+  select(mort_5yr.num, age, year) %>% 
+  gather(key = "predictors", value = "value", -mort_5yr.num) %>% 
+  ggplot(aes(x = value, y = mort_5yr.num)) + 
+  geom_point(size = 0.5, alpha = 0.5) +
+  geom_smooth(method = "loess") + 
+  facet_wrap(~predictors, scales = "free_x")
+```
+
+Age is interesting here, the relationship is u-shaped. 
+The chance of death is higher in the young and the old compared with the middle-aged. 
+This will need to be accounted for in any model including age as a predictor. 
+
+### Multicollinearity
+
+Multicollinearity occurs when two highly correlated exlanatory variables are included in a model. 
+If both variables desribe the same thing, then their coefficients (ORs) can become unstable potentially leading to erroneous conclusions. 
+Think about your variables before you start - would any be expected to be highly correlated?
+
+The `ggpairs()` function from `library(GGally)` gives you all the plots you can dream of and more, but it is a lot:
+
+```{r fig.height=6, fig.width=6, message=FALSE}
+library(GGally)
+explanatory = c("ulcer.factor", "age", "sex.factor", 
+                "year", "t_stage.factor")
+melanoma %>% 
+  remove_labels() %>%  # ggpairs is older and doesn't like labels
+  ggpairs(columns = explanatory)
+```
+
+If you have many variables you want to check you can split them up. 
+
+**Continuous to continuous**
+
+```{r, fig.width=4, fig.height=4}
+select_explanatory = c("age", "year")
+melanoma %>% 
+  remove_labels() %>% 
+  ggpairs(columns = select_explanatory)
+```
+
+**Continuous to categorical**
+
+Let's split that up a bit and use a clever `gather()` and `facet_wrap()` combination. 
+We want to compare everything against, for example, age so we need to add `-age` to the gather call so it doesn't get lumped up with everything else. 
+But because the excluded variable has to be in the third argument of `gather()` we need to type in `key, value` as placeholders:
+
+```{r fig.height=3, fig.width=5, message=FALSE, warning=FALSE}
+select_explanatory = c("age", "ulcer.factor", 
+                       "sex.factor", "t_stage.factor")
+
+melanoma %>% 
+  select(one_of(select_explanatory)) %>% 
+  gather(key, value, -age) %>% 
+  ggplot(aes(value, age)) + 
+  geom_boxplot() +
+  facet_wrap(~key, scale = "free", ncol = 3) +
+  coord_flip()
+```
+
+**Categorical to categorical**
+
+```{r fig.height=3, fig.width=5, warning=FALSE}
+select_explanatory = c("ulcer.factor", "sex.factor", "t_stage.factor")
+
+melanoma %>% 
+  select(one_of(select_explanatory)) %>% 
+  gather(key, value, -sex.factor) %>% 
+  ggplot(aes(value, fill = sex.factor)) + 
+  geom_bar(position = "fill") +
+  ylab("proportion") +
+  facet_wrap(~key, scale = "free", ncol = 2) +
+  coord_flip()
 
 ```
 
-## Creating categories
+None of the explanatory variables are highly correlated with one another. 
 
-Now that we have set up our outcome variable, we should ensure our predictor variables are prepared too.
+We are not trying to over-egg this, but multicollinearity can be important. 
+The message as always is the same. 
+Understand the underlying data using plotting and tables, and you are unlikely to come unstuck.
+<!-- We include the popular `variance inflation factor` test below.  -->
 
-Remember the stages of melanoma? This is an important predictor of melanoma Mortality based upon the scientific literature.
+## Fitting logistic regression models in base R
 
-We should take this into account in our model.
+The `glm()` stands for `generalised linear model` and is the standard base R approach to logistic regression. 
+
+The `glm()` function has several options and many different types of model can be run. 
+For instance, 'Poisson regression' for count data.
+
+To run binary logistic regression use `family = binomial`. 
+This defaults to `family = binomial(link = 'logit')`. 
+Other link functions exists, such as the `probit` function, but this makes little difference to final conclusions. 
+
+Let's start with a simple univariable model using the classical R approach. 
+
+```{r}
+fit1 = glm(mort_5yr ~ ulcer.factor, data = melanoma, family = binomial)
+summary(fit1)
+```
+
+This is the standard R output which you should become familiar with. 
+It what is included in the previous figures. 
+The estimates of the coefficients (slopes) in this output are on the log-odds scale and always will be. 
+
+Easier approaches to use in practice are shown below, but for completeness here is how to extract these results. 
+`str()` shows all the information included in the model object, which is useful for experts but a bit off-putting if you are starting out. 
+
+The coefficients and their 95% confidence intervals can be extracted and exponentiated like this. 
+
+```{r}
+coef(fit1) %>% exp()
+confint(fit1) %>% exp()
+```
+
+Note that the 95% confidence interval is between the 2.5% and 97.5% quantiles of the distribution, hence why the results appear in this way. 
+
+A good alternative is the `tidy()` function from the `broom` package. 
+
+```{r}
+library(broom)
+fit1 %>% 
+  tidy(conf.int = TRUE, exp = TRUE)
+```
+
+We can see from these results that there is a strong association between tumour ulceration and 5-year mortality (OR 6.68, 95%CI 3.18, 15.18).
+
+Model metrics can be extracted using the `glance()` function. 
+
+```{r}
+fit1 %>% 
+  glance()
+```
+
+
+## Modelling strategy for binary outcomes
+
+A statistical model is a tool to understand the world. 
+The better your model describes your data, the more useful it will be.
+Fitting a successful statistical model requires decisions around which variables to include in the model. 
+Our advice regarding variable selection follows the same lines as in the linear regression chapter. 
+
+1. As few explanatory variables should be used as possible (parsimony);
+2. Explanatory variables associated with the outcome variable in previous studies should be accounted for; 
+3. Demographic variables should be included in model exploration; 
+4. Population stratification should be incorporated if available; 
+5. Interactions should be checked and included if influential; 
+6. Final model selection should be performed using a "criterion-based approach"
++ minimise the Akaike information criterion (AIC)
++ maximise the c-statistic (area under the receiver operator curve).
+
+We will use these principles through the next section.
+
+## Fitting logistic regression models with Finalfit
+
+Our preference in model fitting is now to use our own `Finalfit` package. 
+It gets us to our results quicker and more easily, and produces our final model tables which go directly into manuscripts for publication (we hope). 
+
+The approach is the same as in linear regression. 
+If the outcome variable is correctly specified as a factor, the `finalfit()` function will run a logistic regression model directly.
+
+```{r eval=FALSE}
+library(finalfit)
+dependent = "mort_5yr"
+explanatory = "ulcer.factor"
+melanoma %>% 
+  finalfit(dependent, explanatory, metrics = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE}
+library(finalfit)
+dependent = "mort_5yr"
+explanatory = "ulcer.factor"
+fit = melanoma %>% 
+  finalfit(dependent, explanatory, metrics = TRUE)
+fit[[1]] %>% mykable() %>% 
+  column_spec(1, width = "3.5cm")
+fit[[2]] %>% mykable(col.names = "") %>% 
+  column_spec(1, width = "18cm")
+```
+
+### Criterion-based model fitting
+
+Passing `metrics = TRUE` to `finalfit()` gives us a useful list of model fitting parameters. 
+
+We recommend looking at three metrics:
+
+* Akaike information criterion (AIC), which should be minimised,
+* C-statistic (area under the receiver operator curve), which should be maximised;
+* Hosmer–Lemeshow test, which should be non-significant. 
+
+**AIC**
+
+The AIC has been previous described (REF). 
+It provides a measure of model goodness-of-fit - or how well the model fits the available data. 
+It is penalised for each additional variable, so should be somewhat robust against over-fitting (when the model starts to describe noise).
+
+**C-statistic**
+
+The c-statistic or area under the reciever operator curve (ROC) provides a measure of model 'discrimination'. 
+It runs from 0.5 to 1.0, with 0.5 being no better than chance, and 1.0 being perfect fit. 
+What the number is can be thought of as this. 
+Take our example of death from melanoma. 
+If you take a random patient who died and a random patient who did not die, then the c-statistic is the probbaility that the model predicts that patient 1 is more liekly to die than patient 2. 
+In our example above, the should get that correct 72% of the time.  
+
+**Hosmer-Lemeshow test**
+
+If you are interested in using your model for prediction, it is important that it is calibrated correctly. 
+Using our example, callibration means that the model accurately predicts death from melanoma when the risk to the patient is low and also accurately predicts death when the risk is high. 
+The model should work well across the range of probabilities of death. 
+The Hosmer-Lemeshow test assesses this. 
+By default, it assesses the predictive accuracy for death in deciles of risk. 
+If the model predcits equally well (or badly) at low probabilites compared with high probabilites, the null hypothesis of a difference will be rejected (meaning you get a non-significant p-value).
+
+
+## Model fitting
+
+Engage with the data and the results when model fitting. 
+Do not use automated processes - you have to keep thinking. 
+
+Three things are important to keep looking at:
+
+* what is the assocication between a particular variable and the outcome (OR and 95%CI);
+* how much information is a variable bringing to the model (change in AIC and c-statistic); 
+* how much influence does adding a variable have on the effect size of another variable, and in particular my variable of interest (a rule of thumb is a greater than 10% change in the OR of the variable of interest is important). 
+
+We're going to start by including the variables from above which we think are relevant. 
+
+```{r eval=FALSE}
+library(finalfit)
+dependent = "mort_5yr"
+explanatory = c("ulcer.factor", "age", "sex.factor", "t_stage.factor")
+melanoma %>% 
+  finalfit(dependent, explanatory, metrics = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE}
+library(finalfit)
+dependent = "mort_5yr"
+explanatory = c("ulcer.factor", "age", "sex.factor", "t_stage.factor")
+fit = melanoma %>% 
+  finalfit(dependent, explanatory, metrics = TRUE)
+fit[[1]] %>% mykable() %>% 
+  column_spec(1, width = "3.5cm")
+fit[[2]] %>% mykable(col.names = "") %>% 
+  column_spec(1, width = "18cm")
+```
+
+The model metrics have improved with the AIC decreasing from 192 to 188 and the c-statistic increasing from 0.717 to 0.798. 
+
+Let's consider `age`. 
+We may expect age to be associated with the outcome become is so commonly is. 
+But there is weak evidence of an association in the univariable analysis. 
+We have shown above that the relationship of age to the outcome is not linear, therefore we need to act on this. 
+
+We can either convert age to a cateogorical variable or include it with a quadratic term ($x^2 + x$, remember parabolas from school?). 
+
+```{r eval=FALSE}
+melanoma = melanoma %>% 
+  mutate(
+    age.factor = cut(age,
+                     breaks = c(0, 25, 50, 75, 100)) %>% 
+      ff_label("Age (years)"))
+
+# Add this to relevel:
+# fct_relevel("(50,75]")
+
+melanoma %>% 
+  finalfit(dependent, c("ulcer.factor", "age.factor"), metrics = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE}
+melanoma = melanoma %>% 
+  mutate(
+    age.factor = cut(age,
+                     breaks = c(0, 25, 50, 75, 100)) %>% 
+      ff_label("Age (years)"))
+
+# Add this to relevel:
+# fct_relevel("(50,75]")
+
+fit = melanoma %>% 
+  finalfit(dependent, c("ulcer.factor", "age.factor"), metrics = TRUE)
+fit[[1]] %>% mykable() %>% 
+  column_spec(1, width = "3.5cm")
+fit[[2]] %>% mykable(col.names = "") %>% 
+  column_spec(1, width = "18cm")
+```
+
+There is no strong relationship between the categorical representation of age and the outcome. 
+Let's try a quadratic term. 
+
+In base R, a quadartic term is added like this. 
+
+```{r}
+glm(mort_5yr ~ ulcer.factor  +I(age^2) + age, 
+    data = melanoma, family = binomial) %>% 
+  summary()
+```
+
+It can be done in `Finalfit` in a similar manner. 
+Note with default univariable model settings, the quadratic and linear term are considered in separate models, which doesn't make much sense. 
+
+```{r eval=FALSE}
+library(finalfit)
+dependent = "mort_5yr"
+explanatory = c("ulcer.factor", "I(age^2)", "age")
+melanoma %>% 
+  finalfit(dependent, explanatory, metrics = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE}
+library(finalfit)
+dependent = "mort_5yr"
+explanatory = c("ulcer.factor", "I(age^2)", "age")
+fit = melanoma %>% 
+  finalfit(dependent, explanatory, metrics = TRUE)
+
+fit[[1]] %>% mykable() %>% 
+  column_spec(1, width = "3.5cm")
+fit[[2]] %>% mykable(col.names = "") %>% 
+  column_spec(1, width = "18cm")
+```
+
+The AIC is worse when adding age either as a factor or with a quadratic term to the base model. 
+
+One final method to visualise the contribution of a particular variable is to remove it from the full model. 
+This is convenient in `Finalfit`. 
+
+```{r eval=FALSE}
+library(finalfit)
+dependent = "mort_5yr"
+explanatory = c("ulcer.factor", "age.factor", "sex.factor", "t_stage.factor")
+explanatory_multi = c("ulcer.factor", "sex.factor", "t_stage.factor")
+
+melanoma %>% 
+  finalfit(dependent, explanatory, explanatory_multi, 
+           keep_models = TRUE, metrics = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE}
+library(finalfit)
+dependent = "mort_5yr"
+explanatory = c("ulcer.factor", "age.factor", "sex.factor", "t_stage.factor")
+explanatory_multi = c("ulcer.factor", "sex.factor", "t_stage.factor")
+fit = melanoma %>% 
+  finalfit(dependent, explanatory, explanatory_multi, 
+           keep_models = TRUE, metrics = TRUE)
+fit[[1]] %>% mykable() %>% 
+  column_spec(1, width = "3.5cm")
+fit[[2]] %>% mykable(col.names = "") %>% 
+  column_spec(1, width = "18cm")
+```  
+  
+The AIC improves when age is removed (186 from 190) at only a small loss in discrimination (0.794 from 0.802). 
+Looking at the model table and comparing the full multivariable with the reduced multivariable, there has been a small change in the OR for ulceration, with some of the variation accounted for by  age now being taken up by ulceration. 
+This is to be expected, given the association (albeit weak) that we saw earlier between age and ulceration.
+Given all this, we will decide not to include age in the model. 
+
+Now what about the variable sex. 
+It has a significant association with the outcome in the univariable analysis, but much of this is explained by other variables in multivaribale anlysis. 
+Is it contributing much to the model?
+
+```{r eval=FALSE}
+library(finalfit)
+dependent = "mort_5yr"
+explanatory = c("ulcer.factor", "sex.factor", "t_stage.factor")
+explanatory_multi = c("ulcer.factor", "t_stage.factor")
+
+melanoma %>% 
+  finalfit(dependent, explanatory, explanatory_multi, 
+           keep_models = TRUE, metrics = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE}
+library(finalfit)
+dependent = "mort_5yr"
+explanatory = c("ulcer.factor", "sex.factor", "t_stage.factor")
+explanatory_multi = c("ulcer.factor", "t_stage.factor")
+fit = melanoma %>% 
+  finalfit(dependent, explanatory, explanatory_multi, 
+           keep_models = TRUE, metrics = TRUE)
+fit[[1]] %>% mykable() %>% 
+  column_spec(1, width = "3.5cm")
+fit[[2]] %>% mykable(col.names = "") %>% 
+  column_spec(1, width = "18cm")
+```  
+  
+By removing sex we have improved the AIC a little (184.4 from 186.1) with a small change in the c-statistic (0.791 from 0.794). 
+
+Looking at the model table, the variation has been taken up mostly by stage 4 disease and a little by ulceration. 
+But there has been little change overall. 
+We will exclude sex from our final model as well. 
+
+As a final we can check for a first order interaction between ulceration and T-stage. 
+Just to remind us what this means, a significant interaction would mean the effect of, say, ulceration on 5-year mortality would differ by T-stage. 
+For instance, perhaps the presence of ulceration confers a much greater risk of death in advanced deep tumours compared with earlier superficial tumours. 
+
+```{r eval=FALSE}
+library(finalfit)
+dependent = "mort_5yr"
+explanatory = c("ulcer.factor", "t_stage.factor")
+explanatory_multi = c("ulcer.factor*t_stage.factor")
+melanoma %>% 
+  finalfit(dependent, explanatory, explanatory_multi, 
+           keep_models = TRUE, metrics = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE}
+library(finalfit)
+dependent = "mort_5yr"
+explanatory = c("ulcer.factor", "t_stage.factor")
+explanatory_multi = c("ulcer.factor*t_stage.factor")
+melanoma %>% 
+  finalfit(dependent, explanatory, explanatory_multi, 
+           keep_models = TRUE, add_dependent_label = FALSE) %>% 
+  mutate(
+    label = c("Ulcerated tumour", 
+              "", 
+              "T-stage", 
+              "",
+              "",
+              "",
+              "UlcerPresent:T2",
+              "UlcerPresent:T3",
+              "UlcerPresent:T4"),
+    `OR (univariable)` = factor(`OR (univariable)`) %>% 
+      fct_explicit_na(na_level = "-"),
+        `OR (multivariable)` = factor(`OR (multivariable)`) %>% 
+      fct_explicit_na(na_level = "-")
+  ) %>%
+  
+  #na.omit() %>% 
+
+  mykable() %>% 
+  column_spec(1, width = "3.5cm")
+```
+
+There are no significant interaction terms. 
+
+Our final model table is therefore:
+
+```{r eval=FALSE}
+library(finalfit)
+dependent = "mort_5yr"
+explanatory = c("ulcer.factor", "age.factor", 
+                "sex.factor", "t_stage.factor")
+explanatory_multi = c("ulcer.factor", "t_stage.factor")
+melanoma %>% 
+  finalfit(dependent, explanatory, explanatory_multi, metrics = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE}
+library(finalfit)
+dependent = "mort_5yr"
+explanatory = c("ulcer.factor", "age.factor", "sex.factor", "t_stage.factor")
+explanatory_multi = c("ulcer.factor", "t_stage.factor")
+fit = melanoma %>% 
+  finalfit(dependent, explanatory, explanatory_multi, metrics = TRUE)
+
+fit[[1]] %>% mykable() %>% 
+  column_spec(1, width = "3.5cm")
+fit[[2]] %>% mykable(col.names = "") %>% 
+  column_spec(1, width = "18cm")
+```
+
+We can conclude that there is evidence of an associaiton between tumour ulceration and 5-year survival which is independent of the tumour depth as captured by T-stage.
+
+
+**Don't include diagnostic plots and collinearity testing** 
+
+```{r eval=FALSE}
+library(ggfortify)
+dependent = "mort_5yr"
+explanatory_multi = c("ulcer.factor", "t_stage.factor")
+melanoma %>% 
+  glmmulti(dependent, explanatory) %>%
+  autoplot(which=1:6)
+
+melanoma %>% 
+  glmmulti(dependent, explanatory) %>%
+  car::vif()
+```
+
+Exercies need sorted 
 
 ### Exercise
 
-Create a new variable called `stage.factor` to encompass the stages of melanoma based upon the thickness. 
-In this data, the `thickness` variable is measured in millimetres too.
+Repeat this for all the variables contained within the data, particular:
 
-```{r}
-
-#the cut() function makes a continuous variable into a categorical variable
-mydata$thickness %>% 
-	cut(breaks = c(0,0.5,1,4, max(mydata$thickness, na.rm=T)),
-			include.lowest = T) ->
-mydata$stage.factor
-
-mydata$stage.factor %>% levels()
-
-mydata$stage.factor %>% 
-  fct_recode("Stage I"   = "[0,0.5]",
-             "Stage II"  = "(0.5,1]",
-             "Stage III" = "(1,4]",
-             "Stage IV"  = "(4,17.4]"
-    ) -> mydata$stage.factor
-
-mydata$stage.factor %>% levels()
-
-```
-
-
-### Always plot your data first!
-
-```{r, results='hide', warning=F, fig.width=3, fig.height=3}
-
-source("1_source_theme.R")
-
-mydata %>% 
-  ggplot(aes(x = sex.factor)) +
-  geom_bar(aes(fill = sex.factor))
-```
-
-```{r, results='hide', warning=F, fig.width=3, fig.height=3}
-
-mydata %>% 
-  ggplot(aes(x = ulcer.factor)) +
-  geom_bar(aes(fill = ulcer.factor))
-
-```
-
-```{r, results='hide', warning=F, fig.width=4, fig.height=3}
-
-mydata %>% 
-  ggplot(aes(x = stage.factor)) +
-  geom_bar(aes(fill = stage.factor))
-
-```
-
-```{r, results='hide', warning=F}
-
-mydata %>% 
-  ggplot(aes(x = age)) +
-  geom_histogram(aes(fill = age))
-
-```
-
-Now we are ready for some modelling!
-
-
-## Basic: One explanatory variable (predictor)
-
-Lets find out what the influence of each predictor/confounding variable is on mortality from melanoma, which may help inform a more complicated regression, with multiple predictors/confounders.
-
-We'll start with whether the patient was male or female:
-
-### Worked example
-
-First we need to create a regression model using `glm()`. We will then summarise it using `summary()`
-
-Note, we need to use the `family` option. Specifying `'binomial'` in `family` tells `glm()` to switch to logistic regression.
-
-```{r}
-
-#Create a model
-
-glm(died_melanoma.factor ~ sex.factor, data = mydata, family = "binomial")
-
-model1 = glm(died_melanoma.factor ~ sex.factor, data = mydata, family = "binomial")
-
-summary(model1)
-
-```
-
-Now we have created the model - fantastic!
-
-But this doesn't mean a lot to humans reading a paper - or us in fact.
-
-The estimate output of `summary(model_1)` represents the logarithm of the odds ratio. The odds ratio would be a lot easier to understand.
-
-Therefore, to sort that out we should exponentiate the output of the model! The `exp()` function will do this.
-
-```{r}
-
-exp(model1$coefficients)
-
-```
-
-This gives us an odds ratio of 2.03 for males. 
-That is to say, males are twice as likely to die from melanoma than females.
-
-Now a confidence interval might be handy. 
-As this will be the logarithm of the confidence interval, we should exponentiate it to make it understandable.
-
-```{r}
-
-exp(confint(model1))
-
-```
-
-The 2.5% is the lower bound and the 97.5% is the upper bound of the 95% confidence interval.
-
-So we can therefore say that being male doubles your chances of dying from melanoma with an Odds Ratio of 2.03 (95% confidence interval of 1.09 to 3.79)
-
-### Exercise
-
-Repeat this for all the variables contained within the data, particulary:
-
-`stage.factor`, `age`, `ulcer.factor`, `thickness` and `age.factor`.
+`t_stage.factor`, `age`, `ulcer.factor`, `thickness` and `age.factor`.
 
 Write their odds ratios and 95% confidence intervals down for the next section!
 
 Congratulations on building your first regression model in R!
-
-## Finalfit package
-
-We have developed our `finalfit` package to help with advanced regression modelling. We will introduce it here, but not go into detail.
-
-See www.finalfit.org for more information and updates.
-
-
-## Summarise a list of variables by another variable
-
-We can use the `finalfit` package to summarise a list of variables by another variable. This is very useful for "Table 1" in many studies. 
-
-``` {r}
-
-library(finalfit)
-dependent   = "died_melanoma.factor"
-explanatory = c("age", "sex.factor")
-
-table_result = mydata %>% 
-  summary_factorlist(dependent, explanatory, p = TRUE)
-
-```
-
-```{r, echo = FALSE, message = FALSE, warning=FALSE, fig.width=10, fig.height=5}
-table_result %>% 
-  knitr::kable(row.names = FALSE,  align = c("l", "l", "r", "r", "r", "r"))
-```
-
-## `finalfit` function for logistic regression
-
-We can then use the `finalfit` function to run a logistic regression analysis with similar syntax.
-
-``` {r, message = FALSE, warning=FALSE}
-
-dependent   = "died_melanoma.factor"
-explanatory = c("sex.factor")
-
-model2 = mydata %>% 
-  finalfit(dependent, explanatory)
-
-```
-
-```{r, echo = FALSE, message = FALSE, warning=FALSE, fig.width=10, fig.height=5}
-
-model2 %>% 
-  knitr::kable(row.names = FALSE,  align = c("l", "l", "r", "r", "r", "r"))
-
-```
-
-\newpage
-
-## Adjusting for multiple variables in R
-
-Your first models only included one variable. It's time to scale them up.
-
-Multivariable models take multiple variables and estimates how each variable predicts an event.
-It adjusts for the effects of each one, so you end up with a model that calculates the adjusted effect estimate (i.e. the odds ratio), upon an outcome.
-
-When you see the term 'adjusted' in scientific papers, this is what it means.
-
-### Worked Example
-
-Lets adjust for `age` (as a continuous variable), `sex.factor` and `stage.factor`. Then output them as odds ratios.
-
-
-``` {r, message = FALSE, warning=FALSE}
-
-dependent   = "died_melanoma.factor"
-explanatory = c("age", "sex.factor", "stage.factor")
-
-model3 = mydata %>% 
-  finalfit(dependent, explanatory)
-
-```
-
-```{r, echo = FALSE, message = FALSE, warning=FALSE, fig.width=10, fig.height=5}
-
-model3 %>% 
-  knitr::kable(row.names = FALSE,  align = c("l", "l", "r", "r", "r", "r"))
-
-```
-
-```{r}
-or_plot(mydata, dependent, explanatory)
-```
-
-
-When we enter age into regression models, the effect estimate is provided in terms of per unit increase. 
-So in this case it's expressed in terms of an odds ratio per year increase (i.e. for every year in age gained odds of death increases by 1.02).
-
-### Exercise
-
-Create a regression that includes `ulcer.factor`.
-
-\newpage
-## Advanced: Fitting the best model
-
-Now we have our preliminary model. We could leave it there.
-
-However, when you publish research, you are often asked to supply a measure of how well the model fitted the data.
-
-There are different approaches to model fitting. 
-Come to our course HealthyR-Advanced: Practical Logistic Regression. 
-At this we describe use of the Akaike Information Criterion (AIC) and the C-statistic. 
-
-The C-statistic describes discrimination and anything over 0.60 is considered good. 
-The closer to 1.00 the C-statistic is, the better the fit.
-
-The AIC measure model fit with lower values indicating better fit. 
-
-These metrics are available here:
-``` {r}
-mydata %>% 
-  finalfit(dependent, explanatory, metrics=TRUE)
-```
-
-### Extra material: Diagnostics plots
-
-While outwith the objectives of this course, diagnostic plots for `glm` models can be produced by:
-
-```{r, fig.width=3, fig.height=3}
-
-plot(model1)
-
-```

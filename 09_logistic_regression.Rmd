@@ -879,6 +879,152 @@ fit[[2]] %>% mykable(col.names = "") %>%
 
 We can conclude that there is evidence of an associaiton between tumour ulceration and 5-year survival which is independent of the tumour depth as captured by T-stage.
 
+## Correlated groups of observations
+
+In our modelling stratgey above, we mentioned the incorporation of population stratification if available.
+What does this mean. 
+Our regression is seeking to capture the characteristics of particular patients.
+These characterisitcs are made manifest through the slopes of fitted lines, the estimated coefficients of particular variables. 
+A goal is to estimate these characteristics as precisely as possible. 
+Bias can be introduced when correlations between patients are not accounted for. 
+Correlations may be as simple as being treated within the same hospital. 
+By virtue of this fact, these patients may have commonalities not be captured by the observed variables. 
+
+Population characteristics can be incorporated into our models. 
+We may not be intersted in capturing and measuring the effects themselves, but ensuring they are accounted for in the analysis. 
+
+One approach is to include grouping variables as `random effects`. 
+These may be nested with each other, for example patients within hospitals within countries. 
+These are added in additon to the `fixed effects` we have been dealing with up until now. 
+
+These models go under different names including mixed effects model, multilevel model, or hierarchical model. 
+
+Other approaches, such as generalized estimating equations are not dealt with here. 
+
+### Simulate data
+
+Our melanoma dataset doesn't include any higher level structure, so we will simulate this for demonstration purposes. 
+We have just randomly allocated 1 of 4 identifiers to each patient below. 
+
+```{r}
+# Simulate random hospital identifier
+set.seed(1)
+melanoma = melanoma %>% 
+	mutate(hospital_id = sample(1:4, 205, replace = TRUE))
+
+melanoma = melanoma %>%
+	mutate(hospital_id = c(rep(1:3, 50), rep(4, 55)))
+
+```
+
+
+### Plot the data 
+
+**This all might be better in linear regression. Bit difficult to demonstrate with binomial data**
+We will speak in terms of 'hospitals' now, but the grouping variable(s) could clearly be anything. 
+
+The simplest random effects approach is a 'random intercept model'. 
+This allows the intercept of fitted lines to vary by hospital. 
+The random intercept model constrains lines to be parallel, in a similar way to the additive models discussed above and in chapter 7. 
+
+It is harder to demonstrate with binomial data, but we can stratify the 5 year mortality by t-stage (considered as a continuous variable for this purpose).
+Note there were no deaths in 'hospital 4'.
+We can model this accounting for interhospital variation below. 
+
+```{r warning=FALSE}
+melanoma %>% 
+    mutate(
+    mort_5yr.num = as.numeric(mort_5yr) - 1
+  ) %>% 
+  ggplot(aes(x = as.numeric(t_stage.factor), y = mort_5yr.num)) + #, group = hospital_id
+  geom_smooth(method = 'loess', se = FALSE) + 
+  facet_wrap(~hospital_id)
+
+# melanoma %>%
+#   group_by(hospital_id) %>%
+#   count(mort_5yr) %>%
+#   spread(mort_5yr, n)
+```
+
+
+
+### Mixed effects models in base R
+
+There are a number of different packages offering mixed effects modelling in R, our preferred is `lme4`. 
+
+```{r}
+library(lme4)
+melanoma %>% 
+  glmer(mort_5yr ~ t_stage.factor + (1 | hospital_id), 
+        data = ., family = "binomial") %>% 
+  summary()
+```
+
+The base R output is similar to `glm()`. 
+It includes the standard deviation on the random effects intercept as well. 
+Meaning the variation between hospitals being captured by the model. 
+
+The output can be examined using `tidy()` and `glance()` functions as above. 
+
+We find it more straightforward to use finalfit. 
+
+```{r}
+dependent = "mort_5yr"
+explanatory = "t_stage.factor"
+random_effect = "hospital_id" # Is the same as ->
+random_effect = "(1 | hospital_id)"
+melanoma %>% 
+  finalfit(dependent, explanatory, 
+           random_effect = random_effect,
+           metrics = TRUE)
+```
+
+We can incorporate our (made-up) hospital identifier into our final model from above. 
+Using `keep_models = TRUE`, we can compare univariable, multivariable and mixed effects models. 
+
+```{r eval=FALSE}
+library(finalfit)
+dependent = "mort_5yr"
+explanatory = c("ulcer.factor", "age.factor", 
+                "sex.factor", "t_stage.factor")
+explanatory_multi = c("ulcer.factor", "t_stage.factor")
+random_effect = "hospital_id"
+melanoma %>% 
+  finalfit(dependent, explanatory, explanatory_multi, random_effect, 
+           keep_models = TRUE,
+           metrics = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE}
+library(finalfit)
+dependent = "mort_5yr"
+explanatory = c("ulcer.factor", "age.factor", "sex.factor", "t_stage.factor")
+explanatory_multi = c("ulcer.factor", "t_stage.factor")
+random_effect = "hospital_id"
+fit = melanoma %>% 
+  finalfit(dependent, explanatory, explanatory_multi, random_effect, 
+           keep_models = TRUE,
+           metrics = TRUE)
+
+fit[[1]] %>% mykable() %>% 
+  column_spec(1, width = "3.5cm")
+fit[[2]] %>% mykable(col.names = "") %>% 
+  column_spec(1, width = "18cm")
+```
+
+As can be seen, incorporating the (made-up) hospital identifier has altered our coefficients. 
+It has also improved the model discrminiation with a c-statistic of 0.830 from 0.802. 
+Note that the AIC should not be used to compare mixed effects models estimated in this way with `glm()' models (the former uses a restricted maximum likelihood [REML] approach by default, while `glm()` uses maximum likelihood).
+
+Random slope models are an extension of the random intercept model. 
+Here the gradient of the response to a particular variable is allowed to vary by hospital. 
+For example, this can be included using `random_effect = "(thickness | hospital_id)"` where the gradient of the continuous variable tumour thickness was allow to vary by hospital. 
+
+As models get more complex, care has to be taken to ensure the underlying data is understood and assumptions are checked. 
+
+Mixed effects modelling is a book in itself and the purpose here is to introduce the concept and provide some approaches its incorporation. 
+Clearly much is written else where for those who are enthusiastic to learn more. 
+
 
 **Don't include diagnostic plots and collinearity testing** 
 

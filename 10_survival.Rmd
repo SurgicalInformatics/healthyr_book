@@ -1,7 +1,8 @@
 # Time-to-event data and survival
 
-> The reports of my death have been greatly exagerated.  
+> The reports of my death have been greatly exaggerated.  
 > Mark Twain
+
 
 In healthcare, we deal with a lot of binary outcomes. 
 Death yes/no, disease recurrence yes/no, for instance. 
@@ -71,17 +72,17 @@ library(forcats)
 melanoma = melanoma %>%
   mutate(
     # Overall survival
-    status_os = ifelse(status == 2, 0, # "still alive"
+    status_os = if_else(status == 2, 0, # "still alive"
                        1), # "died of melanoma" or "died of other causes"
     
     # Diease-specific survival
-    status_dss = ifelse(status == 2, 0, # "still alive"
-                        ifelse(status == 1, 1, # "died of melanoma"
+    status_dss = if_else(status == 2, 0, # "still alive"
+                        if_else(status == 1, 1, # "died of melanoma"
                                0)), # "died of other causes is censored"
     
     # Competing risks regression
-    status_crr = ifelse(status == 2, 0, # "still alive"
-                        ifelse(status == 1, 1, # "died of melanoma"
+    status_crr = if_else(status == 2, 0, # "still alive"
+                        if_else(status == 1, 1, # "died of melanoma"
                                2)), # "died of other causes"
     
     # Label and recode other variables

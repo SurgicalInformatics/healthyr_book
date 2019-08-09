@@ -9,7 +9,6 @@ editor_options:
 library(tidyverse)
 ```
 
-
 The aim of this chapter is to familiarise you with how R works. 
 We will read in data and start basic manipulations. 
 We will be working with a shorter version of the Global Burden of Disease dataset that we met earlier. 
@@ -705,7 +704,7 @@ The first two arguments for `near()` are the numbers you are comparing, the thir
 **Characters** (sometimes referred to as *strings* or *character strings*) in R are letters, words, or even whole sentences (an example of this may be free text comments). 
 Characters are displayed in-between `""` (or `''`).
 
-A very unseful function for quickly investigating categorical variables is the `count()` function:
+A very useful function for quickly investigating categorical variables is the `count()` function:
 
 ```{r}
 library(tidyverse)
@@ -727,7 +726,7 @@ With this example `tibble` (`typesdata`) that only has three rows, it is easy to
 You can check everything by just eyeballing the `tibble` using the built in Viewer tab (click on the dataset in the Environment tab).
 
 But for larger datasets, you need to know how to check and then clean data programmatically - can't go through 1000s of values checking if they're all the way you expect without unexpected duplicates or typos.
-For most variables (categorical or numeric) we recommend always plotting your data before starting analys.
+For most variables (categorical or numeric) we recommend always plotting your data before starting analysis.
 But to check for duplicates in a unique identifier, use `count()` with `sort = TRUE`:
 
 

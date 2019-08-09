@@ -968,7 +968,7 @@ The output can be examined using `tidy()` and `glance()` functions as above.
 
 We find it more straightforward to use finalfit. 
 
-```{r}
+```{r eval=FALSE}
 dependent = "mort_5yr"
 explanatory = "t_stage.factor"
 random_effect = "hospital_id" # Is the same as ->

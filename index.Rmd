@@ -143,9 +143,6 @@ install.packages("survminer")
 When working with data, don't copy or type code directly into the Console. We will only be using the Console for viewing output, warnings, and errors (and installing packages as in the previous section). All code should be in a script and executed (=Run) using Control+Enter (line or section) or Control+Shift+Enter (whole script). Make sure you are always working in a project (the right-top corner of your RStudio interface should say "HealthyR").
 ```
 
-```{r, out.width = "5cm", echo = FALSE}
-knitr::include_graphics("images/rstudio_vs_r.png")
-```
 
 \mainmatter
 

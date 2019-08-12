@@ -13,7 +13,7 @@ output_dir: "docs"
 #rmd_files: ["index.Rmd", "01_first_interaction.Rmd"]
 #rmd_files: ["index.Rmd", "02_basics.Rmd"]
 #rmd_files: ["index.Rmd", "03_summarising.Rmd"]
-rmd_files: ["index.Rmd", "04_plotting.Rmd"]
+#rmd_files: ["index.Rmd", "04_plotting.Rmd"]
 #rmd_files: ["index.Rmd", "05_fine_tuning_plots.Rmd"]
 #rmd_files: ["index.Rmd", "06_working_continuous.Rmd"]
 #rmd_files: ["index.Rmd", "07_linear_regression.Rmd"]

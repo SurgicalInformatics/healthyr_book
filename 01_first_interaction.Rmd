@@ -1,5 +1,25 @@
 # (PART) Data wrangling and visualisation {-}
-# Your first R plots
+# Why we love R - TODO
+
+TODO:
+
+* R for Reproducibility
+* R for Reusing scripts - efficiency
+* R is powerful (graphics, all the stats you can dream of, reports, websites, books)
+
+
+## Help, what's a script
+
+And what's RStudio?
+
+```{r, out.width = "10cm", echo = FALSE}
+knitr::include_graphics("images/rstudio_vs_r.png")
+```
+
+
+## Your first R plots
+
+TODO: Rework or remove this section.
 
 ```{r setup, include=FALSE}
 library(knitr)
@@ -17,7 +37,7 @@ Do not worry about understanding every single word or symbol (e.g. the pipe - `%
     + what is the Environment tab,
     + where do your plots appear.
 
-## Data
+**Data**
 
 Load the example dataset which is already saved as an R-Data file (recognisable by the file extension .rda or .RData):
 
@@ -36,10 +56,6 @@ After loading the datasets, investigate your Environment tab (top-right). You wi
 Click on the name `mydata` and it will pop up next to where your script is.
 Clicking on the blue button is not as useful (in this session), but it doesn't do any harm either.
 Try it.
-
-## First plot
-
-
 
 ```{r}
 
@@ -61,12 +77,7 @@ mydata %>% #press Control-Shift-M to insert this symbol (pipe)
 
 `geom_()` stands for **geometric**.
 
-### Question
-
-Why are there two closing brackets - `))` - after the last aesthetic (colour)?
-
-
-### Exercise 
+### Exercise
 
 Plot the number of deaths in Developed and Developing countries for the year 2013:
 
@@ -81,149 +92,6 @@ mydata2013 %>%
 
 ```
 
-
-\newpage
-
-## Comparing bars of different height
-
-### Stretch each bar to 100%
-
-
-`position="fill"` stretches the bars to show relative contributions:
-
-```{r}
-
-mydata2013 %>% 
-  ggplot(aes(x      = location,
-             y      = deaths_millions,
-             fill   = cause,
-             colour = cause)) +
-  geom_col(position = "fill")
-
-```
-
-
-### Plot each bar next to each other
-
-`position="dodge"` puts the different causes next to each rather (the default is `position="stack"`):
-
-```{r}
-
-mydata2013 %>% 
-  ggplot(aes(x      = location,
-             y      = deaths_millions,
-             fill   = cause,
-             colour = cause)) +
-  geom_col(position = "dodge")
-
-
-```
-
-
-## Facets (panels)
-
-Going back to the dataframe with all years (1990 -- 2015), add `facet_wrap(~year)` to plot all years at once:
-
-
-```{r, fig.width = 8, fig.height=4}
-
-mydata %>% 
-  ggplot(aes(x      = location,
-             y      = deaths_millions,
-             fill   = cause,
-             colour = cause)) +
-  geom_col() +
-  facet_wrap(~year)
-
-
-
-```
-
-
-## Extra: using aethetics outside of the aes()
-
-### Setting a constant fill
-
-Using the `mydata2013` example again, what does the addition of `fill = "black"` in this code do?
-Note that putting the `ggplot(aes())` code all on one line does not affect the result.
-
-
-```{r}
-
-mydata2013 %>% 
-  ggplot(aes(x = location, y = deaths_millions, fill = cause, colour = cause)) +
-  geom_col(fill = "black")
-
-```
-
-Setting aesthetics (x, y, fill, colour, etc.) outside of `aes()` sets them to a constant value.
-R can recognise of a lot of colour names, e.g., try "cornflowerblue", "firebrick", or just "red", "green", "blue", etc.
-For a full list, search Google for "Colours in R". R also knows HEX codes, e.g. `fill = "#fec3fc"` is pink.
-
-
-### Exercise
-
-What is the difference between colour and fill in the context of a barplot?
-
-Hint: Use `colour = "black"` instead of `fill = "black"` to investigate what `ggplot()` thinks a colour is. 
-
-```{r}
-
-mydata2013 %>% 
-  ggplot(aes(x = location, y = deaths_millions, fill = cause, colour = cause))+
-  geom_col(colour = "black")
-
-```
-
-### Exercise
-
-Why are some of the words in our code quoted (e.g. `fill = "black"`) whereas others are not (e.g. `x = location`)?
-
-## Two geoms for barplots: `geom_bar()` or `geom_col()`
-
-Both `geom_bar()` and `geom_col()` create barplots. If you:
-
-* Want to visualise the count of different lines in a dataset - use geom_bar()
-    + For example, if you are using a patient-level dataset (each line is a patient record):
-    `mydata %>% 
-     ggplot(aes(x = sex)) +
-     geom_bar()`
-  
-* Your dataset is already summarised - use geom_col()
-    + For example, in the GBD dataset we use here, each line already includes a summarised value (`deaths_millions`)
-
-If you have used R before you might have come across `geom_bar(stat = "identity")` which is the same as `geom_col()`.
-
-
-## Solutions
-
-**1.2.1:**
-There is a double closing bracket because `aes()` is wrapped inside `ggplot()` - `ggplot(aes())`.
-
-
-**1.2.2:**
-```{r, eval = FALSE}
-
-mydata2013 %>% 
-  ggplot(aes(x      = location,
-             y      = deaths_millions,
-             fill   = cause,
-             colour = cause)) +
-  geom_col()
-
-```
-
-
-**1.5.2:**
-
-On a barplot, the colour aesthetic outlines the fill.
-In a later session we will see, however, that for points and lines, colour is the main aesthetic to define.
-
-**1.5.3:**
-
-Words in quotes are generally something set to a constant value (e.g. make all outlines black, rather than colour them based on the cause they are representing).
-Unquoted words are generally variables (or functions).
-If the word "function" just threw you, Google "Jesse Maegan: What the h*ck is a function"
 
 
 ## Tidyverse packages: ggplot2, dplyr, tidyr, etc.

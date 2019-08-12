@@ -4,13 +4,9 @@ knitr::opts_chunk$set(fig.width = 2.5, fig.height = 2.5)
 ```
 
 
-# Different types of plots 
+# Different types of plots
 
-
-## Data
-We will be using the gapminder dataset (https://www.gapminder.org/):
-
-```{r, message=F}
+```{r, message=F, include = FALSE}
 library(tidyverse)
 library(gapminder)
 
@@ -117,6 +113,23 @@ gapminder2007 %>%
 
 
 This is how `ggplot()` works - by adding or modifying things one at a time
+
+## Data
+We will be using the gapminder dataset (https://www.gapminder.org/):
+
+```{r, message=F, include = FALSE}
+library(tidyverse)
+library(gapminder)
+
+mydata = gapminder
+
+glimpse(mydata)
+mydata$year %>% unique()
+
+gapminder2007 = mydata %>% 
+  filter(year == 2007)
+
+```
 
 
 ## Scatter plots/bubble plots - `geom_point()`

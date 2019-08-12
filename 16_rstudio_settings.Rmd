@@ -1,5 +1,53 @@
 # RStudio settings, good practise
 
+
+<!-- Moved installation here for now. -->
+
+## Installation
+
+
+
+```{block}
+* Download R 
+```
+
+https://www.r-project.org/
+
+```{block}
+* Install RStudio
+```
+
+https://www.rstudio.com/products/rstudio/
+
+```{block}
+
+* Install packages (copy these lines into the Console in RStudio):
+```
+
+```{r, eval = FALSE}
+install.packages("tidyverse")
+
+install.packages("gapminder")
+
+install.packages("gmodels")
+
+install.packages("Hmisc")
+
+install.packages("devtools")
+
+devtools::install_github("ewenharrison/finalfit")
+
+install.packages("pROC")
+
+install.packages("survminer")
+
+```
+
+```{block}
+When working with data, don't copy or type code directly into the Console. We will only be using the Console for viewing output, warnings, and errors (and installing packages as in the previous section). All code should be in a script and executed (=Run) using Control+Enter (line or section) or Control+Shift+Enter (whole script). Make sure you are always working in a project (the right-top corner of your RStudio interface should say "HealthyR").
+```
+
+
 ## Script vs Console
 
 Throughout this course, don't copy or type code directly into the Console. 

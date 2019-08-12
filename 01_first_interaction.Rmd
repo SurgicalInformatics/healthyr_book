@@ -6,6 +6,7 @@ TODO:
 * R for Reproducibility
 * R for Reusing scripts - efficiency
 * R is powerful (graphics, all the stats you can dream of, reports, websites, books)
+* Getting started
 
 
 ## Help, what's a script

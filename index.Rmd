@@ -73,6 +73,8 @@ Ewen Harrison and Riinu Ots
 
 August 2019
 
+
+
 ## Structure of the book {-}
 
 Chapter \@ref(r-basics) introduces a new topic, and ...
@@ -89,60 +91,25 @@ Package names are in bold text (e.g., **rmarkdown**), and inline code and filena
 
 ## Acknowledgments {-}
 
-A lot of people helped me when I was writing the book.
+A lot of people helped us when we were writing the book.
 
 ```{block2, type='flushright', html.tag='p'}
-Frida Gomam  
-on the Mars
+This is how to 
+Write on the right
 ```
 
 
-<!-- This section should be moved somewhere a bit further down the line. -->
 
-## Installation {-}
+# About the Authors {-}
 
+Ewen is a surgeon and Riinu is a physicist.
+And they're both data scientists too. 
+They dabble with a few programming languages and are generally all over technology. 
+But they are most enthusiastic about the R statistical programming language, and know that you will be too. 
+They work at The University of Edinburgh and have taught R to hundreds of healthcare professionals and researchers.
 
-
-```{block}
-* Download R 
-```
-
-https://www.r-project.org/
-
-```{block}
-* Install RStudio
-```
-
-https://www.rstudio.com/products/rstudio/
-
-```{block}
-
-* Install packages (copy these lines into the Console in RStudio):
-```
-
-```{r, eval = FALSE}
-install.packages("tidyverse")
-
-install.packages("gapminder")
-
-install.packages("gmodels")
-
-install.packages("Hmisc")
-
-install.packages("devtools")
-
-devtools::install_github("ewenharrison/finalfit")
-
-install.packages("pROC")
-
-install.packages("survminer")
-
-```
-
-```{block}
-When working with data, don't copy or type code directly into the Console. We will only be using the Console for viewing output, warnings, and errors (and installing packages as in the previous section). All code should be in a script and executed (=Run) using Control+Enter (line or section) or Control+Shift+Enter (whole script). Make sure you are always working in a project (the right-top corner of your RStudio interface should say "HealthyR").
-```
-
+They believe that the first introduction to R and statistical programming should be relatively jargon free and outcome oriented (get those pretty plots out). 
+The understanding of complicated concepts will come over time with practise and experience, not by us defining the history of computing bit-by-byte, or by presenting the equations of every statistical test (although Ewen has sneaked a few equations in).
 
 \mainmatter
 

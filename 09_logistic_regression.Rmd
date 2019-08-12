@@ -877,7 +877,19 @@ fit[[2]] %>% mykable(col.names = "") %>%
   column_spec(1, width = "18cm")
 ```
 
-We can conclude that there is evidence of an associaiton between tumour ulceration and 5-year survival which is independent of the tumour depth as captured by T-stage.
+### Odds ratio plot
+
+```{r fig.height=3, fig.width=7, message=FALSE, warnings=FALSE}
+dependent = "mort_5yr"
+explanatory_multi = c("ulcer.factor", "t_stage.factor")
+melanoma %>% 
+  or_plot(dependent, explanatory_multi,
+          breaks = c(0.5, 1, 2, 5, 10, 25),
+          table_text_size = 4)
+```
+
+
+We can conclude that there is evidence of an association between tumour ulceration and 5-year survival which is independent of the tumour depth as captured by T-stage.
 
 ## Correlated groups of observations
 

@@ -1,19 +1,123 @@
+```{r setup, include=FALSE}
+# text width is 4.6 inch, but markdown will scale down nicely even if we include widths and heights greater than 4.6
+knitr::opts_chunk$set(fig.width = 2.5, fig.height = 2.5)
+```
+
+
 # Different types of plots 
 
+
 ## Data
-We will be using the gapminder dataset:
+We will be using the gapminder dataset (https://www.gapminder.org/):
 
 ```{r, message=F}
-
 library(tidyverse)
 library(gapminder)
 
 mydata = gapminder
 
-summary(mydata)
+glimpse(mydata)
 mydata$year %>% unique()
 
+gapminder2007 = mydata %>% 
+  filter(year == 2007)
+
 ```
+
+
+## Anatomy of ggplot explained
+
+1. `ggplot(aes(x = var1, y = var2))` initialises a canvas...
+
+`aes()` stands for aesthetics - things we can see.
+
+```{r}
+gapminder2007 %>% 
+  ggplot(aes(x = gdpPercap, y=lifeExp))
+```
+
+2. ...a canvas to which we can add geoms
+
+geom stands for geometrical. Here we've added `geom_point()`:
+
+```{r}
+
+gapminder2007 %>% 
+  ggplot(aes(x = gdpPercap, y=lifeExp)) +
+  geom_point()
+
+```
+
+Note that everything before a `ggplot()` is piped (here we're only using a `%>%`, but it can be very useful to add filters between your data and the `ggplot()`, e.g.
+
+```{r, eval = FALSE}
+gapminder %>%
+  filter(year == 2007) %>% 
+  ggplot(aes(...)) +
+  ...
+```
+
+
+3. specifying aesthetics outside `aes()`
+
+It is very important to understand the difference between  including ggplot arguments inside our outside of the `aes()` function.
+
+The main aesthetics we use are: **x**, **y**, **colour**, **fill**, **shape**, but there are more of course. 
+Press F1 on, e.g., `geom_point()` to see see the full list of aesthetics that can be used on scatterplots.
+
+Let's make all points hollow: `shape = 1`
+
+```{r}
+gapminder2007 %>% 
+  ggplot(aes(x = gdpPercap, y=lifeExp)) +
+  geom_point(shape = 1)
+
+```
+
+3. specifying aesthetics inside `aes()`
+
+Let's use the variable `continent` to colour the points by (`colour = continent` inside `aes()`):
+
+```{r, fig.width=4}
+
+gapminder2007 %>% 
+  ggplot(aes(x = gdpPercap, y=lifeExp, colour = continent)) +
+  geom_point(shape = 1)
+
+```
+
+There is no limit to the `aes()` you can include.^[There is a limit. Press F1 on `geom_point()` to see the list of aesthetics.]
+
+
+4. From 1 plot to 5 with `facet_wrap(~continent)`
+
+
+```{r fig.height=3.5, fig.width=7}
+
+gapminder2007 %>% 
+  ggplot(aes(x = gdpPercap, y=lifeExp, colour = continent)) +
+  geom_point(shape = 1) +
+  facet_wrap(~continent)
+
+```
+
+5. White background - `theme_bw()`
+
+We can include calculations inside `aes()`: e.g., `x = gdpPercap/1000`
+  
+```{r fig.height=3.5, fig.width=7}
+
+gapminder2007 %>% 
+  ggplot(aes(x = gdpPercap/1000, y=lifeExp, colour = continent)) +
+  geom_point(shape = 1) +
+  facet_wrap(~continent) +
+  theme_bw()
+
+```
+
+
+This is how `ggplot()` works - by adding or modifying things one at a time
+
 
 ## Scatter plots/bubble plots - `geom_point()`
 

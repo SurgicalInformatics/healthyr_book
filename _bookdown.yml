@@ -22,6 +22,7 @@ output_dir: "docs"
 #rmd_files: ["index.Rmd", "10_survival.Rmd"]
 #rmd_files: ["index.Rmd", "12_missing_data.Rmd"]
 #rmd_files: ["index.Rmd", "13_encryption.Rmd"]
+#rmd_files: ["index.Rmd", "14_version_control.Rmd"]
 #rmd_files: ["index.Rmd", "15_exporting.Rmd"]
 # rmd_files: ["index.Rmd",
 #             "01_first_interaction.Rmd",

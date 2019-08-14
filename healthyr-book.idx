@@ -1,0 +1,94 @@
+\indexentry{knitr|hyperpage}{xxiii}
+\indexentry{bookdown|hyperpage}{xxiii}
+\indexentry{symbols@\textbf{symbols}!select column \texttt{\$}|hyperpage}{11}
+\indexentry{symbols@\textbf{symbols}!assignment \texttt{=}|hyperpage}{14}
+\indexentry{symbols@\textbf{symbols}!pipe \texttt{\%>\%}|hyperpage}{16}
+\indexentry{symbols@\textbf{symbols}!less than \texttt{<}|hyperpage}{23}
+\indexentry{symbols@\textbf{symbols}!greater than \texttt{>}|hyperpage}{23}
+\indexentry{symbols@\textbf{symbols}!less or equal \texttt{<=}|hyperpage}{23}
+\indexentry{symbols@\textbf{symbols}!greater or equal \texttt{>=}|hyperpage}{23}
+\indexentry{symbols@\textbf{symbols}!equal \texttt{=}|hyperpage}{23}
+\indexentry{symbols@\textbf{symbols}!not \texttt{"!}|hyperpage}{23}
+\indexentry{symbols@\textbf{symbols}!AND \texttt{\&}|hyperpage}{23}
+\indexentry{symbols@\textbf{symbols}!OR \texttt{"|}|hyperpage}{23}
+\indexentry{symbols@\textbf{symbols}!comment \texttt{\#}|hyperpage}{26}
+\indexentry{continuous data@\textbf{continuous data}|hyperpage}{127}
+\indexentry{functions!glimpse|hyperpage}{130}
+\indexentry{functions!missing\_glimpse|hyperpage}{130}
+\indexentry{functions!ff\_glimpse|hyperpage}{130}
+\indexentry{functions!filter|hyperpage}{130}
+\indexentry{plotting!geom\_histogram|hyperpage}{130}
+\indexentry{plotting!facet\_grid|hyperpage}{130}
+\indexentry{functions!filter|hyperpage}{131}
+\indexentry{plotting!geom\_qq|hyperpage}{131}
+\indexentry{plotting!geom\_qq\_line|hyperpage}{131}
+\indexentry{plotting!facet\_grid|hyperpage}{131}
+\indexentry{functions!filter|hyperpage}{133}
+\indexentry{plotting!geom\_boxplot|hyperpage}{133}
+\indexentry{plotting!facet\_grid|hyperpage}{133}
+\indexentry{functions!filter|hyperpage}{134}
+\indexentry{plotting!geom\_boxplot|hyperpage}{134}
+\indexentry{plotting!geom\_jitter|hyperpage}{134}
+\indexentry{plotting!facet\_grid|hyperpage}{134}
+\indexentry{plotting!theme|hyperpage}{134}
+\indexentry{plotting!xlab|hyperpage}{134}
+\indexentry{plotting!ylab|hyperpage}{134}
+\indexentry{plotting!ggtitle|hyperpage}{134}
+\indexentry{t-test@\textbf{t-test}|hyperpage}{134}
+\indexentry{t-test@\textbf{t-test}!two-sample|hyperpage}{134}
+\indexentry{functions!filter|hyperpage}{135}
+\indexentry{functions!t.test|hyperpage}{135}
+\indexentry{functions!filter|hyperpage}{136}
+\indexentry{functions!tidy|hyperpage}{136}
+\indexentry{t-test@\textbf{t-test}!paired|hyperpage}{137}
+\indexentry{functions!filter|hyperpage}{137}
+\indexentry{plotting!geom\_line|hyperpage}{137}
+\indexentry{functions!select|hyperpage}{138}
+\indexentry{functions!spread|hyperpage}{138}
+\indexentry{functions!mutate|hyperpage}{138}
+\indexentry{functions!summarise|hyperpage}{138}
+\indexentry{functions!t.test|hyperpage}{139}
+\indexentry{t-test@\textbf{t-test}!one-sample|hyperpage}{139}
+\indexentry{functions!filter|hyperpage}{140}
+\indexentry{functions!group\_by|hyperpage}{140}
+\indexentry{functions!do|hyperpage}{140}
+\indexentry{functions!t.test|hyperpage}{140}
+\indexentry{functions!tidy|hyperpage}{140}
+\indexentry{functions!filter|hyperpage}{141}
+\indexentry{plotting!geom\_boxplot|hyperpage}{141}
+\indexentry{analysis of variance (ANOVA)|hyperpage}{141}
+\indexentry{functions!aov|hyperpage}{142}
+\indexentry{functions!summary|hyperpage}{142}
+\indexentry{functions!filter|hyperpage}{143}
+\indexentry{functions!aov|hyperpage}{143}
+\indexentry{functions!tidy|hyperpage}{143}
+\indexentry{pairwise testing|hyperpage}{143}
+\indexentry{functions!pairwise.t.test|hyperpage}{143}
+\indexentry{functions!pairwise.t.test|hyperpage}{145}
+\indexentry{non-parametric tests@\textbf{non-parametric tests}|hyperpage}{146}
+\indexentry{tranformations|hyperpage}{146}
+\indexentry{functions!filter|hyperpage}{147}
+\indexentry{functions!select|hyperpage}{147}
+\indexentry{functions!mutate|hyperpage}{147}
+\indexentry{functions!head|hyperpage}{147}
+\indexentry{functions!gather|hyperpage}{147}
+\indexentry{plotting!geom\_histogram|hyperpage}{147}
+\indexentry{plotting!facet\_grid|hyperpage}{147}
+\indexentry{non-parametric tests@\textbf{non-parametric tests}!Mann-Whitney U|hyperpage}{148}
+\indexentry{non-parametric tests@\textbf{non-parametric tests}!Wilcoxon rank sum|hyperpage}{148}
+\indexentry{functions!filter|hyperpage}{148}
+\indexentry{plotting!geom\_boxplot|hyperpage}{148}
+\indexentry{plotting!facet\_grid|hyperpage}{148}
+\indexentry{plotting!geom\_qq|hyperpage}{148}
+\indexentry{plotting!geom\_qq\_line|hyperpage}{148}
+\indexentry{plotting!geom\_jitter|hyperpage}{148}
+\indexentry{plotting!patchwork|hyperpage}{148}
+\indexentry{plotting!theme|hyperpage}{148}
+\indexentry{functions!wilcox.test|hyperpage}{149}
+\indexentry{non-parametric tests@\textbf{non-parametric tests}!!Kruskal-Wallis|hyperpage}{149}
+\indexentry{functions!filter|hyperpage}{150}
+\indexentry{functions!kruskal.test|hyperpage}{150}
+\indexentry{functions!tidy|hyperpage}{150}
+\indexentry{functions!filter|hyperpage}{150}
+\indexentry{functions!mutate|hyperpage}{150}
+\indexentry{functions!summary\_factorlist|hyperpage}{150}

@@ -1,0 +1,98 @@
+# Version control
+
+Version control is essential for keeping track of data analysis projects, as well as collaborating. 
+It allows backup of scripts and easy collaboration on complex projects. 
+RStudio works really well with Git, an open source open source distributed version control system, and GitHub, a web-based Git repository hosting service. 
+
+This example is done on RStudio Server, but the same procedure can be used for RStudio desktop. 
+Git is piece of softward which runs locally. 
+It may need to be installed first. 
+Ensure you are clear about the difference between Git (local version control software) and Github (a web-based repository store). 
+
+## Setup Git on RStudio and Associate with GitHub
+
+In RStudio, Tools -> Global Options, select Git//SVN tab. 
+Ensure the path to the Git executable is correct. 
+This is particularly important in Windows where it may not default correctly (e.g. C:/Program Files (x86)/Git/bin/git.exe).
+
+## Create an SSH RSA key and add to your GitHub account
+
+Fig 1, 2
+
+Now hit, Create RSA Key.
+Close this window.
+Click, View public key, and copy the displayed public key.
+If you haven’t already, create a GitHub account. 
+Open your account settings and click the SSH keys tab. 
+Click Add SSH key. 
+Paste in the public key you have copied from RStudio.
+
+```{r chap14-fig-ssh, echo = FALSE, fig.cap="SSH."}
+knitr::include_graphics("images/chapter14/1.pdf")
+```
+
+```{r echo = FALSE, fig.cap="CAPTION"}
+knitr::include_graphics("images/chapter14/2.pdf")
+```
+
+## Create a project in RStudio and commit a file
+
+Fig 3, 4
+
+Tell Git who you are. 
+Remember Git is a piece of software running on your own computer. 
+This is distinct to GitHub, which is the repository website. 
+
+In RStudio, click New project as normal. Click New Directory.
+Name the project and check Create a git repository.
+Now in RStudio, create a new script which you will add to your repository.
+
+After saving your new script (test.R), it should appear in the Git tab on the Environment / history panel.
+
+Click the file you wish to add, and the status should turn to a green ‘A’. 
+Now click Commit and enter an identifying message in Commit message.
+
+It is important to commit prior to linking the project and the GitHub repository. 
+
+You have now committed the current version of this file to your repository on your computer/server. 
+In the future you may wish to create branches to organise your work and help when collaborating.
+
+```{r echo = FALSE, fig.cap="CAPTION"}
+knitr::include_graphics("images/chapter14/3.pdf")
+```
+
+```{r echo = FALSE, fig.cap="CAPTION"}
+knitr::include_graphics("images/chapter14/4.pdf")
+```
+
+## Create a new repository on GitHub and link to RStudio project
+
+Fig 5, 6
+
+Now you want to push the contents of this commit to GitHub, so it is also backed-up off site and available to collaborators. 
+In GitHub, create a New repository, called here myproject.
+
+You have now pushed your commit to GitHub, and should be able to see your files in your GitHub account. 
+The Pull Push buttons in RStudio will now also work. 
+Remember, after each Commit, you have to Push to GitHub, this doesn’t happen automatically.
+
+```{r echo = FALSE, fig.cap="CAPTION"}
+knitr::include_graphics("images/chapter14/5.pdf")
+```
+
+```{r echo = FALSE, fig.cap="CAPTION"}
+knitr::include_graphics("images/chapter14/6.pdf")
+```
+
+## Clone an existing GitHub project to new RStudio project
+
+In RStudio, click New project as normal. Click Version Control.
+
+In Clone Git Repository, enter the GitHub repository URL as per below. Change the project directory name if necessary.
+
+remote origin
+
+```{r echo = FALSE, fig.cap="CAPTION"}
+knitr::include_graphics("images/chapter14/7.pdf")
+```
+

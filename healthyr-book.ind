@@ -1,0 +1,93 @@
+\begin{theindex}
+
+  \item analysis of variance (ANOVA), \hyperpage{141}
+
+  \indexspace
+
+  \item bookdown, \hyperpage{xi}
+
+  \indexspace
+
+  \item \textbf{continuous data}, \hyperpage{127}
+
+  \indexspace
+
+  \item functions
+    \subitem aov, \hyperpage{142, 143}
+    \subitem do, \hyperpage{140}
+    \subitem ff\_glimpse, \hyperpage{130}
+    \subitem filter, \hyperpage{130, 131}, \hyperpage{133--137}, 
+		\hyperpage{140, 141}, \hyperpage{143}, 
+		\hyperpage{147, 148}, \hyperpage{150}
+    \subitem gather, \hyperpage{147}
+    \subitem glimpse, \hyperpage{130}
+    \subitem group\_by, \hyperpage{140}
+    \subitem head, \hyperpage{147}
+    \subitem kruskal.test, \hyperpage{150}
+    \subitem missing\_glimpse, \hyperpage{130}
+    \subitem mutate, \hyperpage{138}, \hyperpage{147}, \hyperpage{150}
+    \subitem pairwise.t.test, \hyperpage{143}, \hyperpage{145}
+    \subitem select, \hyperpage{138}, \hyperpage{147}
+    \subitem spread, \hyperpage{138}
+    \subitem summarise, \hyperpage{138}
+    \subitem summary, \hyperpage{142}
+    \subitem summary\_factorlist, \hyperpage{150}
+    \subitem t.test, \hyperpage{135}, \hyperpage{139, 140}
+    \subitem tidy, \hyperpage{136}, \hyperpage{140}, \hyperpage{143}, 
+		\hyperpage{150}
+    \subitem wilcox.test, \hyperpage{149}
+
+  \indexspace
+
+  \item knitr, \hyperpage{xi}
+
+  \indexspace
+
+  \item \textbf{non-parametric tests}, \hyperpage{146}
+    \subitem Mann-Whitney U, \hyperpage{148}
+    \subitem Wilcoxon rank sum, \hyperpage{148}
+
+  \indexspace
+
+  \item pairwise testing, \hyperpage{143}
+  \item plotting
+    \subitem facet\_grid, \hyperpage{130, 131}, \hyperpage{133, 134}, 
+		\hyperpage{147, 148}
+    \subitem geom\_boxplot, \hyperpage{133, 134}, \hyperpage{141}, 
+		\hyperpage{148}
+    \subitem geom\_histogram, \hyperpage{130}, \hyperpage{147}
+    \subitem geom\_jitter, \hyperpage{134}, \hyperpage{148}
+    \subitem geom\_line, \hyperpage{137}
+    \subitem geom\_qq, \hyperpage{131}, \hyperpage{148}
+    \subitem geom\_qq\_line, \hyperpage{131}, \hyperpage{148}
+    \subitem ggtitle, \hyperpage{134}
+    \subitem patchwork, \hyperpage{148}
+    \subitem theme, \hyperpage{134}, \hyperpage{148}
+    \subitem xlab, \hyperpage{134}
+    \subitem ylab, \hyperpage{134}
+
+  \indexspace
+
+  \item \textbf{symbols}
+    \subitem AND \texttt{\&}, \hyperpage{23}
+    \subitem assignment \texttt{=}, \hyperpage{14}
+    \subitem comment \texttt{\#}, \hyperpage{26}
+    \subitem equal \texttt{=}, \hyperpage{23}
+    \subitem greater or equal \texttt{>=}, \hyperpage{23}
+    \subitem greater than \texttt{>}, \hyperpage{23}
+    \subitem less or equal \texttt{<=}, \hyperpage{23}
+    \subitem less than \texttt{<}, \hyperpage{23}
+    \subitem not \texttt{!}, \hyperpage{23}
+    \subitem OR \texttt{|}, \hyperpage{23}
+    \subitem pipe \texttt{\%>\%}, \hyperpage{16}
+    \subitem select column \texttt{\$}, \hyperpage{11}
+
+  \indexspace
+
+  \item \textbf{t-test}, \hyperpage{134}
+    \subitem one-sample, \hyperpage{139}
+    \subitem paired, \hyperpage{137}
+    \subitem two-sample, \hyperpage{134}
+  \item tranformations, \hyperpage{146}
+
+\end{theindex}

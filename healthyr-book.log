@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  12 AUG 2019 17:05
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  14 AUG 2019 17:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1292,6 +1292,18 @@ LaTeX Warning: Label `tab:unnamed-chunk-21' multiply defined.
 
 
 LaTeX Warning: Label `tab:unnamed-chunk-25' multiply defined.
+
+
+LaTeX Warning: Label `fig:unnamed-chunk-3' multiply defined.
+
+
+LaTeX Warning: Label `fig:unnamed-chunk-4' multiply defined.
+
+
+LaTeX Warning: Label `fig:unnamed-chunk-5' multiply defined.
+
+
+LaTeX Warning: Label `fig:unnamed-chunk-6' multiply defined.
 
 
 LaTeX Warning: Label `tab:unnamed-chunk-7' multiply defined.
@@ -4691,14 +4703,20 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 
 ]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[312] [313]
-File: 15_exporting_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type
- QTm)
-<use  "15_exporting_files/figure-latex/unnamed-chunk-12-1.pdf" > [314] [315] [3
-16] [317] [318] [319]
+File: images/chapter14/1.pdf Graphic file (type QTm)
+<use  "images/chapter14/1.pdf" >
+File: images/chapter14/2.pdf Graphic file (type QTm)
+<use  "images/chapter14/2.pdf" > [312] [313]
+File: images/chapter14/3.pdf Graphic file (type QTm)
+<use  "images/chapter14/3.pdf" >
+File: images/chapter14/4.pdf Graphic file (type QTm)
+<use  "images/chapter14/4.pdf" > [314] [315]
+File: images/chapter14/5.pdf Graphic file (type QTm)
+<use  "images/chapter14/5.pdf" >
+File: images/chapter14/6.pdf Graphic file (type QTm)
+<use  "images/chapter14/6.pdf" >
+File: images/chapter14/7.pdf Graphic file (type QTm)
+<use  "images/chapter14/7.pdf" > [316] [317] [318] [319]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -4738,38 +4756,38 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [320
 
 ]
-Underfull \vbox (badness 10000) detected at line 12009
+Underfull \vbox (badness 10000) detected at line 11727
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 12009
+Overfull \hbox (336.25pt too wide) detected at line 11727
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12009
+Underfull \vbox (badness 10000) detected at line 11727
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 12009
+Overfull \hbox (336.25pt too wide) detected at line 11727
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12009
+Underfull \vbox (badness 10000) detected at line 11727
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 12009
+Overfull \hbox (336.25pt too wide) detected at line 11727
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12009
+Underfull \vbox (badness 10000) detected at line 11727
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 12009
+Overfull \hbox (336.25pt too wide) detected at line 11727
 []
  []
 
@@ -4781,7 +4799,15 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [321
 
-] [322] (./healthyr-book.bbl [323]
+]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[322] [323]
+File: 15_exporting_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type
+ QTm)
+<use  "15_exporting_files/figure-latex/unnamed-chunk-12-1.pdf" > [324] [325] [3
+26] [327] [328] [329]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -4818,7 +4844,90 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[324
+[330
+
+]
+Underfull \vbox (badness 10000) detected at line 12127
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 12127
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 12127
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 12127
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 12127
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 12127
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 12127
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 12127
+[]
+ []
+
+Chapter 16.
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[331
+
+] [332] (./healthyr-book.bbl [333]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[334
 
 ]
 Underfull \vbox (badness 10000) detected at line 1
@@ -4866,7 +4975,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[325
+[335
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -4905,7 +5014,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[326
+[336
 
 ] (./healthyr-book.ind
 Underfull \hbox (badness 10000) detected at line 1
@@ -4921,32 +5030,32 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[327
+[337
 
 
-] [328
+] [338
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 12096.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 12096.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 12214.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 12214.
 (./healthyr-book.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 12096.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 12096.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 12214.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 12214.
 
 LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 12096.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 12214.
  ) 
 Here is how much of TeX's memory you used:
- 31840 strings out of 495579
- 554598 string characters out of 6187323
- 769462 words of memory out of 5000000
- 34642 multiletter control sequences out of 15000+600000
+ 31865 strings out of 495579
+ 555164 string characters out of 6187323
+ 771739 words of memory out of 5000000
+ 34659 multiletter control sequences out of 15000+600000
  12591 words of font info for 102 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  61i,12n,109p,10422b,833s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on healthyr-book.pdf (354 pages).
+Output written on healthyr-book.pdf (364 pages).

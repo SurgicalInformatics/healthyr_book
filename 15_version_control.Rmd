@@ -58,10 +58,6 @@ You have now committed the current version of this file to your repository on yo
 In the future you may wish to create branches to organise your work and help when collaborating.
 
 ```{r echo = FALSE, fig.cap="CAPTION"}
-knitr::include_graphics("images/chapter14/3.pdf")
-```
-
-```{r echo = FALSE, fig.cap="CAPTION"}
 knitr::include_graphics("images/chapter14/4.pdf")
 ```
 

@@ -17,7 +17,7 @@ Similarly, Testing for categorical outcome variables (8) leads naturally to Logi
 Chapters 6 and 8 however do provide helpful reminders of how to prepare data for these analyses and shouldn't be skipped.
 Time-to-event data introduces survival analysis and includes sections on the manipulation of dates. 
 
-# Working with continuous outcome variables
+# Working with continuous outcome variables{#ch06-h1}
 \index{continuous data@\textbf{continuous data}}
 
 > Continuous data can be measured.  
@@ -29,17 +29,12 @@ Continuous data is everywhere in healthcare.
 From physiological measures in patients such as systolic blood pressure or pulmonary function tests, through to populations measures like life expectancy or disease incidence, the analysis of continuous outcome measures is common and important.
 
 Our goal in most health data questions, is to draw a conclusion on a comparison between groups. 
-For instance, understanding differences life expectancy between the year 2002 and 2007 or between the Africa and Europe, is usually more useful than simply describing the average life expectancy across the entire world across all of time. 
+For instance, understanding differences in life expectancy between the year 2002 and 2007 is more useful than simply describing the average life expectancy across all of time. 
 
-The basis for comparisons between continuous measures is the distribution of the data. 
+The basis for comparisons between continuous measures is the *distribution* of the data. 
 That word, as many which have a statistical flavour, brings on the sweats in a lot of people. 
 It needn't. 
 By distribution, we are simply referring to the shape of the data. 
-
-<!-- Probably: -->
-<!-- Figure of histograms or density plots showing normal, skew, mean, median. -->
-<!-- Do we need SD vs SEM? -->
-<!-- Maybe shiny app to help with this like https://gallery.shinyapps.io/dist_calc/ -->
 
 ## The Question
 
@@ -60,10 +55,9 @@ mydata = gapminder
 
 ## Check the data
 
-It is vital that data is carefully inspected when first read. 
-<!-- Ref preparing data chapter -->
+It is vital that data is carefully inspected when first read (for help reading data into R see \@ref(ch02-h2-reading-data-into-r)).
 The three functions below provide a clear summary allowing errors or miscoding to be quickly identified. 
-It is particularity important to ensure that any missing data is identified. 
+It is particularity important to ensure that any missing data is identified (see \@ref(chxxx-h1. 
 If you don't do this you will regret it! 
 There are many times when an analysis has got to a relatively advanced stage before research realised the dataset was incomplete. 
 

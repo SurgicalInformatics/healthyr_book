@@ -15,7 +15,7 @@ Testing for continuous outcome variables (6) leads naturally into Linear regress
 We would expect the majority of actual analysis done by readers to be using the methods in chapter 7 rather than 6. 
 Similarly, Testing for categorical outcome variables (8) leads naturally to Logistic regression (9), where we would expect the majority of work to focus. 
 Chapters 6 and 8 however do provide helpful reminders of how to prepare data for these analyses and shouldn't be skipped.
-Time-to-event data introduces survival analysis and includes sections on the manipulation of dates. 
+Time-to-event data introduces survival analysis and includes sections on the manipulattion of dates. 
 
 # Working with continuous outcome variables{#ch06-h1}
 \index{continuous data@\textbf{continuous data}}
@@ -57,7 +57,7 @@ mydata = gapminder
 
 It is vital that data is carefully inspected when first read (for help reading data into R see \@ref(ch02-h2-reading-data-into-r)).
 The three functions below provide a clear summary allowing errors or miscoding to be quickly identified. 
-It is particularity important to ensure that any missing data is identified (see \@ref(chxxx-h1. 
+It is particularity important to ensure that any missing data is identified (see Chapter \@ref(ch13-h1}). 
 If you don't do this you will regret it! 
 There are many times when an analysis has got to a relatively advanced stage before research realised the dataset was incomplete. 
 
@@ -67,9 +67,9 @@ missing_glimpse(mydata) # missing data for each variable
 ff_glimpse(mydata) # summary statistics for each variable
 ```
 
-\index{functions!glimpse}
-\index{functions!missing\_glimpse}
-\index{functions!ff\_glimpse}
+\index{functions@\textbf{functions}!glimpse}
+\index{functions@\textbf{functions}!missing\_glimpse}
+\index{functions@\textbf{functions}!ff\_glimpse}
 
 As can be seen, there are 6 variables, 4 are continuous and 2 are categorical. The categorical variables are already identified as `factors`. There are no missing data. 
 
@@ -93,7 +93,7 @@ There are three useful plots which can help here:
 
 ### Histogram
 
-```{r, fig.width=7, fig.height=3.5, fig.cap="Histogram: country life expectancy by continent and year"}
+```{r chap06-fig-hist-life-year, fig.width=7, fig.height=3.5, fig.cap="Histogram: country life expectancy by continent and year"}
 mydata %>% 
 	filter(year %in% c(2002, 2007)) %>%
 	ggplot(aes(x = lifeExp)) +       # remember aes()
@@ -101,9 +101,9 @@ mydata %>%
 	facet_grid(year ~ continent)     # add scale="free" for axes to vary                                 
 ```
 
-\index{functions!filter}
-\index{plotting!geom\_histogram}
-\index{plotting!facet\_grid}
+\index{functions@\textbf{functions}!filter}
+\index{plotting@\textbf{plotting}!geom\_histogram}
+\index{plotting@\textbf{plotting}!facet\_grid}
 
 What can we see? 
 That life expectancy in Africa is lower than in other regions. 
@@ -117,10 +117,10 @@ A quantile-quantile sounds complicated but is not.
 It is simply a graphical method for comparing the distribution (think shape) of our own data to a theoretical distribution, such as the normal distribution. 
 In this context, quantiles are just cut points which divide our data into bins each containing the same number of observations.
 For example, if we have the life expectancy for 100 countries, then quartiles (note the quar-) for life expectancy are the three ages which split the observations into 4 groups each containing 25 countries. 
-A Q-Q plot simply plots the quantiles for our data against the theoretical quantiles for a particular distributions (default below is normal). 
+A Q-Q plot simply plots the quantiles for our data against the theoretical quantiles for a particular distributions (the default shown below is the normal distribution). 
 If our data follow that distribution (e.g. normal), then we get a 45 degree line on the plot. 
 
-```{r, fig.width=7, fig.height=3.5, fig.cap="Q-Q plot: country life expectancy by continent and year"}
+```{r chap06-fig-qq-life-year, fig.width=7, fig.height=3.5, fig.cap="Q-Q plot: country life expectancy by continent and year"}
 mydata %>% 
   filter(year %in% c(2002, 2007)) %>%
   ggplot(aes(sample = lifeExp)) +      # Q-Q plot requires `sample
@@ -129,12 +129,12 @@ mydata %>%
   facet_grid(year ~ continent)
 ```
 
-\index{functions!filter}
-\index{plotting!geom\_qq}
-\index{plotting!geom\_qq\_line}
-\index{plotting!facet\_grid}
+\index{functions@\textbf{functions}!filter}
+\index{plotting@\textbf{plotting}!geom\_qq}
+\index{plotting@\textbf{plotting}!geom\_qq\_line}
+\index{plotting@\textbf{plotting}!facet\_grid}
 
-What can we see. 
+What can we see?
 We are looking to see if the data follow the 45 degree line which is included in the plot.
 These do reasonably, except for Africa which is curved upwards at each end, suggesting a skew. 
 
@@ -161,9 +161,9 @@ mydata %>%
   facet_grid(. ~ year)                    # spread by year, note `.`
 ```
 
-\index{functions!filter}
-\index{plotting!geom\_boxplot}
-\index{plotting!facet\_grid}
+\index{functions@\textbf{functions}!filter}
+\index{plotting@\textbf{plotting}!geom\_boxplot}
+\index{plotting@\textbf{plotting}!facet\_grid}
 
 What can we see?
 The median life expectancy is lower in Africa than in any other continent. 
@@ -186,14 +186,14 @@ mydata %>%
     "Life expectancy by continent in 2002 v 2007") # add title
 ```
 
-\index{functions!filter}
-\index{plotting!geom\_boxplot}
-\index{plotting!geom\_jitter}
-\index{plotting!facet\_grid}
-\index{plotting!theme}
-\index{plotting!xlab}
-\index{plotting!ylab}
-\index{plotting!ggtitle}
+\index{functions@\textbf{functions}!filter}
+\index{plotting@\textbf{plotting}!geom\_boxplot}
+\index{plotting@\textbf{plotting}!geom\_jitter}
+\index{plotting@\textbf{plotting}!facet\_grid}
+\index{plotting@\textbf{plotting}!theme}
+\index{plotting@\textbf{plotting}!xlab}
+\index{plotting@\textbf{plotting}!ylab}
+\index{plotting@\textbf{plotting}!ggtitle}
 
 ## Compare the means of two groups
 
@@ -227,8 +227,8 @@ ttest_result =
 ttest_result
 ```
 
-\index{functions!filter}
-\index{functions!t.test}
+\index{functions@\textbf{functions}!filter}
+\index{functions@\textbf{functions}!t.test}
 
 The Welch two-sample t-test is the most flexible and copes with differences in variance (variability) between groups, as in this example. 
 The difference in means is provided at the bottom of the output. 
@@ -258,8 +258,8 @@ mydata %>%
 
 ```
 
-\index{functions!filter}
-\index{functions!tidy}
+\index{functions@\textbf{functions}!filter}
+\index{functions@\textbf{functions}!tidy}
 
 ### When pipe sends data to the wrong place: use `, data = .` to direct it
 
@@ -287,8 +287,8 @@ paired_data %>%
   geom_line()
 ```
 
-\index{functions!filter}
-\index{plotting!geom\_line}
+\index{functions@\textbf{functions}!filter}
+\index{plotting@\textbf{plotting}!geom\_line}
 
 What is the difference in life expectancy for each individual country. 
 We don't usually have to produce this directly, but here is one method. 
@@ -308,10 +308,10 @@ paired_table %>% summarise( mean(dlifeExp) )
 
 ```
 
-\index{functions!select}
-\index{functions!spread}
-\index{functions!mutate}
-\index{functions!summarise}
+\index{functions@\textbf{functions}!select}
+\index{functions@\textbf{functions}!spread}
+\index{functions@\textbf{functions}!mutate}
+\index{functions@\textbf{functions}!summarise}
 
 
 On average, therefore, there is an increase in life expectancy of 1.5 years in Asian countries between 2002 and 2007. 
@@ -322,7 +322,7 @@ paired_data %>%
   t.test(lifeExp ~ year, data = .) # Include paired = TRUE
 ```
 
-\index{functions!t.test}
+\index{functions@\textbf{functions}!t.test}
 
 The results show a highly significant difference. 
 As an exercise you can repeat this analysis simply comparing the means in an unpaired manner. 
@@ -371,11 +371,11 @@ mydata %>%
     )
 ```
 
-\index{functions!filter}
-\index{functions!group\_by}
-\index{functions!do}
-\index{functions!t.test}
-\index{functions!tidy}
+\index{functions@\textbf{functions}!filter}
+\index{functions@\textbf{functions}!group\_by}
+\index{functions@\textbf{functions}!do}
+\index{functions@\textbf{functions}!t.test}
+\index{functions@\textbf{functions}!tidy}
 
 The mean life expectancy for Europe and Oceania do not differ from 77, while the others to to varying degrees. 
 In particular, look at the confidence intervals of the tables and whether they include or exclude 77.
@@ -397,8 +397,8 @@ mydata %>%
 	geom_boxplot()
 ```
 
-\index{functions!filter}
-\index{plotting!geom\_boxplot}
+\index{functions@\textbf{functions}!filter}
+\index{plotting@\textbf{plotting}!geom\_boxplot}
 
 ### ANOVA
 \index{analysis of variance (ANOVA)}
@@ -418,8 +418,8 @@ fit = aov(lifeExp ~ continent, data = aov_data)
 summary(fit)
 ```
 
-\index{functions!aov}
-\index{functions!summary}
+\index{functions@\textbf{functions}!aov}
+\index{functions@\textbf{functions}!summary}
 
 We can conclude from this, that there is a difference in the means between at least two pairs of the included continents. 
 As above, the output can be neatened up using the `tidy` function. 
@@ -433,9 +433,9 @@ mydata %>%
 	tidy()
 ```
 
-\index{functions!filter}
-\index{functions!aov}
-\index{functions!tidy}
+\index{functions@\textbf{functions}!filter}
+\index{functions@\textbf{functions}!aov}
+\index{functions@\textbf{functions}!tidy}
 
 ### Assumptions
 
@@ -461,7 +461,7 @@ pairwise.t.test(aov_data$lifeExp, aov_data$continent,
                 p.adjust.method = "bonferroni")
 ```
 
-\index{functions!pairwise.t.test}
+\index{functions@\textbf{functions}!pairwise.t.test}
 
 A matrix of pairwise p-values is produced.
 Here we can that there is good evidence of a difference in means between Europe and Asia. 
@@ -491,7 +491,7 @@ pairwise.t.test(aov_data$lifeExp, aov_data$continent,
                 p.adjust.method = "fdr")
 ```
 
-\index{functions!pairwise.t.test}
+\index{functions@\textbf{functions}!pairwise.t.test}
 
 Try not to get too hung up on this. 
 Be sensible. 
@@ -542,13 +542,13 @@ africa_data %>%
   facet_grid(. ~ key, scales = "free")   # facet & axes free to vary
 ```
 
-\index{functions!filter}
-\index{functions!select}
-\index{functions!mutate}
-\index{functions!head}
-\index{functions!gather}
-\index{plotting!geom\_histogram}
-\index{plotting!facet\_grid}
+\index{functions@\textbf{functions}!filter}
+\index{functions@\textbf{functions}!select}
+\index{functions@\textbf{functions}!mutate}
+\index{functions@\textbf{functions}!head}
+\index{functions@\textbf{functions}!gather}
+\index{plotting@\textbf{plotting}!geom\_histogram}
+\index{plotting@\textbf{plotting}!facet\_grid}
 
 This has worked well here. 
 The right skew on the Africa data has been dealt with by the transformation. 
@@ -590,14 +590,14 @@ p1 / p2 | p3
 
 ```
 
-\index{functions!filter}
-\index{plotting!geom\_boxplot}
-\index{plotting!facet\_grid}
-\index{plotting!geom\_qq}
-\index{plotting!geom\_qq\_line}
-\index{plotting!geom\_jitter}
-\index{plotting!patchwork}
-\index{plotting!theme}
+\index{functions@\textbf{functions}!filter}
+\index{plotting@\textbf{plotting}!geom\_boxplot}
+\index{plotting@\textbf{plotting}!facet\_grid}
+\index{plotting@\textbf{plotting}!geom\_qq}
+\index{plotting@\textbf{plotting}!geom\_qq\_line}
+\index{plotting@\textbf{plotting}!geom\_jitter}
+\index{plotting@\textbf{plotting}!patchwork}
+\index{plotting@\textbf{plotting}!theme}
 
 The data is a little skewed based on the histograms and Q-Q plots. 
 The difference between 1982 and 2007 is not particularly striking on the boxplot.
@@ -607,7 +607,7 @@ africa_plot %>%
   wilcox.test(lifeExp ~ year, data = .)
 ```
 
-\index{functions!wilcox.test}
+\index{functions@\textbf{functions}!wilcox.test}
 
 ### Non-parametric test for comparing more than two groups
 \index{non-parametric tests@\textbf{non-parametric tests}!!Kruskal-Wallis}
@@ -624,9 +624,9 @@ mydata %>%
 	tidy()
 ```
 
-\index{functions!filter}
-\index{functions!kruskal.test}
-\index{functions!tidy}
+\index{functions@\textbf{functions}!filter}
+\index{functions@\textbf{functions}!kruskal.test}
+\index{functions@\textbf{functions}!tidy}
 
 ## Finalfit approach
 
@@ -650,9 +650,9 @@ mydata %>%
                caption = "Life expectancy, population and GDPperCap in Africa 1982 v 2007")
 ```
 
-\index{functions!filter}
-\index{functions!mutate}
-\index{functions!summary\_factorlist}
+\index{functions@\textbf{functions}!filter}
+\index{functions@\textbf{functions}!mutate}
+\index{functions@\textbf{functions}!summary\_factorlist}
 
 ## Conclusions
 

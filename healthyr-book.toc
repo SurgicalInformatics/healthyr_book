@@ -279,6 +279,5 @@
 \contentsline {section}{\numberline {16.1}Installation}{329}{section.16.1}
 \contentsline {section}{\numberline {16.2}Script vs Console}{330}{section.16.2}
 \contentsline {section}{\numberline {16.3}Starting with a blank canvas}{330}{section.16.3}
-\contentsline {fm}{Bibliography}{333}{chapter*.115}
-\contentsline {chapter}{Index}{335}{chapter*.115}
-\contentsline {section}{}{335}{section*.116}
+\contentsline {chapter}{Index}{333}{section.16.3}
+\contentsline {section}{}{333}{section*.115}

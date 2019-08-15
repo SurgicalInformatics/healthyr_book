@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  15 AUG 2019 10:40
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  15 AUG 2019 12:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2061,7 +2061,16 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [21
 
-] [22]
+]
+
+Package natbib Warning: Citation `xie2015' on page xxii undefined on input line
+ 274.
+
+
+Package natbib Warning: Citation `R-bookdown' on page xxii undefined on input l
+ine 274.
+
+[22]
 LaTeX Font Info:    Font shape `EU1/SourceCodePro(0)/bx/n' will be
 (Font)              scaled to size 7.79993pt on input line 278.
 Font mapping `tex-ansi.tec' for font `Source Code Pro Bold' not found.
@@ -2652,7 +2661,12 @@ U1/SourceCodePro(0)/m/n/12 ungroup() \EU1/lmr/m/n/12 we can use \EU1/SourceCode
 Pro(0)/m/n/12 mutate()
  []
 
-[59] [60] [61] [62] [63] [64]
+[59] [60] [61] [62] [63]
+
+LaTeX Warning: Reference `missing-data' on page 64 undefined on input line 2893
+.
+
+[64]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -3310,19 +3324,22 @@ Overfull \hbox (5.13693pt too wide) in paragraph at lines 4771--4771
  []
 
 [129]
+File: 06_working_continuous_files/figure-latex/chap06-fig-hist-life-year-1.pdf 
+Graphic file (type QTm)
+
+<use  "06_working_continuous_files/figure-latex/chap06-fig-hist-life-year-1.pdf
+" > [130]
+File: 06_working_continuous_files/figure-latex/chap06-fig-qq-life-year-1.pdf Gr
+aphic file (type QTm)
+
+<use  "06_working_continuous_files/figure-latex/chap06-fig-qq-life-year-1.pdf" 
+> [131] [132]
 File: 06_working_continuous_files/figure-latex/unnamed-chunk-4-1.pdf Graphic fi
 le (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-4-1.pdf" > [130]
+<use  "06_working_continuous_files/figure-latex/unnamed-chunk-4-1.pdf" > [133]
 File: 06_working_continuous_files/figure-latex/unnamed-chunk-5-1.pdf Graphic fi
 le (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-5-1.pdf" > [131] 
-[132]
-File: 06_working_continuous_files/figure-latex/unnamed-chunk-6-1.pdf Graphic fi
-le (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-6-1.pdf" > [133]
-File: 06_working_continuous_files/figure-latex/unnamed-chunk-7-1.pdf Graphic fi
-le (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-7-1.pdf" > [134] 
+<use  "06_working_continuous_files/figure-latex/unnamed-chunk-5-1.pdf" > [134] 
 [135]
 Overfull \hbox (14.49686pt too wide) in paragraph at lines 5092--5092
 []\EU1/SourceCodePro(0)/m/n/12 ##   ..- attr(*, "names")= chr [1:2] "mean in gr
@@ -3330,9 +3347,9 @@ oup Asia" "mean in group Europe"[]
  []
 
 [136]
-File: 06_working_continuous_files/figure-latex/unnamed-chunk-11-1.pdf Graphic f
-ile (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-11-1.pdf" > [137]
+File: 06_working_continuous_files/figure-latex/unnamed-chunk-9-1.pdf Graphic fi
+le (type QTm)
+<use  "06_working_continuous_files/figure-latex/unnamed-chunk-9-1.pdf" > [137] 
 [138] [139]
 Overfull \hbox (11.37688pt too wide) in paragraph at lines 5315--5315
 []\EU1/SourceCodePro(0)/m/n/12 ##   continent estimate statistic  p.value param
@@ -3346,13 +3363,13 @@ eter conf.low conf.high method[]
  []
 
 [140]
-File: 06_working_continuous_files/figure-latex/unnamed-chunk-17-1.pdf Graphic f
+File: 06_working_continuous_files/figure-latex/unnamed-chunk-15-1.pdf Graphic f
 ile (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-17-1.pdf" > [141]
+<use  "06_working_continuous_files/figure-latex/unnamed-chunk-15-1.pdf" > [141]
 [142]
-File: 06_working_continuous_files/figure-latex/unnamed-chunk-20-1.pdf Graphic f
+File: 06_working_continuous_files/figure-latex/unnamed-chunk-18-1.pdf Graphic f
 ile (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-20-1.pdf" > [143]
+<use  "06_working_continuous_files/figure-latex/unnamed-chunk-18-1.pdf" > [143]
 [144] [145]
 Underfull \hbox (badness 10000) detected at line 5567
  [][]
@@ -3374,12 +3391,12 @@ Underfull \hbox (badness 10000) detected at line 5569
  []
 
 [146]
-File: 06_working_continuous_files/figure-latex/unnamed-chunk-23-1.pdf Graphic f
+File: 06_working_continuous_files/figure-latex/unnamed-chunk-21-1.pdf Graphic f
 ile (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-23-1.pdf" > [147]
-File: 06_working_continuous_files/figure-latex/unnamed-chunk-24-1.pdf Graphic f
+<use  "06_working_continuous_files/figure-latex/unnamed-chunk-21-1.pdf" > [147]
+File: 06_working_continuous_files/figure-latex/unnamed-chunk-22-1.pdf Graphic f
 ile (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-24-1.pdf" > [148]
+<use  "06_working_continuous_files/figure-latex/unnamed-chunk-22-1.pdf" > [148]
 
 Underfull \hbox (badness 1024) in paragraph at lines 5711--5711
 []\EU1/lmr/bx/n/11 Non-parametric test for comparing more than two
@@ -3420,26 +3437,26 @@ Underfull \hbox (badness 10000) detected at line 5825
 [][][]
  []
 
-File: 06_working_continuous_files/figure-latex/unnamed-chunk-28-1.pdf Graphic f
+File: 06_working_continuous_files/figure-latex/unnamed-chunk-26-1.pdf Graphic f
 ile (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-28-1.pdf" > [152]
+<use  "06_working_continuous_files/figure-latex/unnamed-chunk-26-1.pdf" > [152]
 
 Overfull \vbox (1.12544pt too high) detected at line 5896
  []
 
 [153]
-File: 06_working_continuous_files/figure-latex/unnamed-chunk-29-1.pdf Graphic f
+File: 06_working_continuous_files/figure-latex/unnamed-chunk-27-1.pdf Graphic f
 ile (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-29-1.pdf" > [154]
+<use  "06_working_continuous_files/figure-latex/unnamed-chunk-27-1.pdf" > [154]
 
 Overfull \hbox (11.37688pt too wide) in paragraph at lines 5945--5945
 []\EU1/SourceCodePro(0)/m/n/12 ##   continent estimate statistic  p.value param
 eter conf.low conf.high method[] 
  []
 
-File: 06_working_continuous_files/figure-latex/unnamed-chunk-31-1.pdf Graphic f
+File: 06_working_continuous_files/figure-latex/unnamed-chunk-29-1.pdf Graphic f
 ile (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-31-1.pdf" > [155]
+<use  "06_working_continuous_files/figure-latex/unnamed-chunk-29-1.pdf" > [155]
 [156]
 Underfull \vbox (badness 10000) detected at line 5987
  []
@@ -4847,7 +4864,9 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [329
 
 
-] [330] (./healthyr-book.bbl [331]
+] [330]
+No file healthyr-book.bbl.
+[331]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -4886,93 +4905,6 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [332
 
-]
-Underfull \vbox (badness 10000) detected at line 1
- []
-
-
-Overfull \hbox (336.25pt too wide) detected at line 1
-[]
- []
-
-
-Underfull \vbox (badness 10000) detected at line 1
- []
-
-
-Overfull \hbox (336.25pt too wide) detected at line 1
-[]
- []
-
-
-Underfull \vbox (badness 10000) detected at line 1
- []
-
-
-Overfull \hbox (336.25pt too wide) detected at line 1
-[]
- []
-
-
-Underfull \vbox (badness 10000) detected at line 1
- []
-
-
-Overfull \hbox (336.25pt too wide) detected at line 1
-[]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 1
-[]
- []
-
-)
-Underfull \hbox (badness 10000) has occurred while \output is active
- [][][][] 
- []
-
-[333
-
-]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (336.25pt too wide) has occurred while \output is active
-[]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (336.25pt too wide) has occurred while \output is active
-[]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (336.25pt too wide) has occurred while \output is active
-[]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (336.25pt too wide) has occurred while \output is active
-[]
- []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
- [][][][] 
- []
-
-[334
-
 ] (./healthyr-book.ind
 Underfull \hbox (badness 10000) detected at line 1
 []
@@ -4987,12 +4919,15 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[335
+[333
 
 
-] [336
+] [334
 
 ])
+
+Package natbib Warning: There were undefined citations.
+
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 12208.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 12208.
 (./healthyr-book.aux)
@@ -5007,12 +4942,12 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 12208.
  ) 
 Here is how much of TeX's memory you used:
- 31863 strings out of 495579
- 555111 string characters out of 6187323
- 771784 words of memory out of 5000000
- 34658 multiletter control sequences out of 15000+600000
+ 31865 strings out of 495579
+ 555204 string characters out of 6187323
+ 771708 words of memory out of 5000000
+ 34661 multiletter control sequences out of 15000+600000
  12591 words of font info for 102 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  61i,12n,109p,10422b,833s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on healthyr-book.pdf (362 pages).
+Output written on healthyr-book.pdf (360 pages).

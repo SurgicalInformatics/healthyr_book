@@ -1,5 +1,5 @@
 --- 
-title: "HealthyR: R for healthcare data analysis"
+title: "HealthyR: R for health data analysis"
 author: "Ewen Harrison and Riinu Ots"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -17,7 +17,7 @@ fontsize: 12pt
 monofont: "Source Code Pro"
 monofontoptions: "Scale=0.65"
 github-repo: SurgicalInformatics/healthyr_book/
-description: "An introductory book for healthcare data analysis using R."
+description: "An introductory book for health data analysis using R."
 cover-image: images/healthyr_book_cover.png
 ---
 
@@ -43,7 +43,6 @@ Version 0.3.1
 Contributors: Riinu Ots, Ewen Harrison, Tom Drake, Peter Hall, Kenneth McLean.
 
 This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 United States License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/us/
-
 
 ## Why read this book {-}
 
@@ -73,8 +72,6 @@ Ewen Harrison and Riinu Ots
 
 August 2019
 
-
-
 ## Structure of the book {-}
 
 Chapter \@ref(r-basics) introduces a new topic, and ...
@@ -99,7 +96,6 @@ Write on the right
 ```
 
 
-
 # About the Authors {-}
 
 Ewen is a surgeon and Riinu is a physicist.
@@ -112,4 +108,3 @@ They believe that the first introduction to R and statistical programming should
 The understanding of complicated concepts will come over time with practise and experience, not by us defining the history of computing bit-by-byte, or by presenting the equations of every statistical test (although Ewen has sneaked a few equations in).
 
 \mainmatter
-

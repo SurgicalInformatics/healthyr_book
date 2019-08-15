@@ -5,7 +5,7 @@ bookdown::gitbook:
     toc:
       collapse: none
       before: |
-        <li><a href="./">R for healthcare data analysis</a></li>
+        <li><a href="./">R for health data analysis</a></li>
       after: |
         <li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
     edit: https://github.com/SurgicalInformatics/healthyr_book/edit/master/%s

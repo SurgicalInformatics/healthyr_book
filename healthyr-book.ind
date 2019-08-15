@@ -4,7 +4,7 @@
 
   \indexspace
 
-  \item bookdown, \hyperpage{xi}
+  \item bookdown, \hyperpage{xxiii}
 
   \indexspace
 
@@ -12,7 +12,7 @@
 
   \indexspace
 
-  \item functions
+  \item \textbf{functions}
     \subitem aov, \hyperpage{142, 143}
     \subitem do, \hyperpage{140}
     \subitem ff\_glimpse, \hyperpage{130}
@@ -39,7 +39,7 @@
 
   \indexspace
 
-  \item knitr, \hyperpage{xi}
+  \item knitr, \hyperpage{xxiii}
 
   \indexspace
 
@@ -50,7 +50,7 @@
   \indexspace
 
   \item pairwise testing, \hyperpage{143}
-  \item plotting
+  \item \textbf{plotting}
     \subitem facet\_grid, \hyperpage{130, 131}, \hyperpage{133, 134}, 
 		\hyperpage{147, 148}
     \subitem geom\_boxplot, \hyperpage{133, 134}, \hyperpage{141}, 

@@ -1,68 +1,141 @@
 \begin{theindex}
 
-  \item analysis of variance (ANOVA), \hyperpage{141}
+  \item AIC, \hyperpage{185}
+  \item analysis of variance (ANOVA), \hyperpage{142}
 
   \indexspace
 
-  \item bookdown, \hyperpage{xxiii}
+  \item binary data, \hyperpage{217}
+  \item Bonerroni correction, \hyperpage{146}
 
   \indexspace
 
+  \item C-statistic, \hyperpage{243}
+  \item \textbf{categorical data}
+    \subitem chi-squared test, \hyperpage{208}
+    \subitem finalfit, \hyperpage{207}
+    \subitem Fisher's exact test, \hyperpage{208}
+    \subitem quantiles, \hyperpage{201}
+    \subitem summarising, \hyperpage{207}
+  \item \textbf{categorical data}, \hyperpage{195}
+    \subitem convert from continuous, \hyperpage{199}
+  \item chi-squared test, \hyperpage{208}
+  \item confounding, \hyperpage{169}
   \item \textbf{continuous data}, \hyperpage{127}
+  \item Cox proportional hazards regression, \hyperpage{264}
 
   \indexspace
 
+  \item effect modification, \hyperpage{164}
+
+  \indexspace
+
+  \item factors, \hyperpage{195}
+  \item false discovery rate, \hyperpage{146}
+  \item Fisher's exact test, \hyperpage{208}
   \item \textbf{functions}
-    \subitem aov, \hyperpage{142, 143}
-    \subitem do, \hyperpage{140}
-    \subitem ff\_glimpse, \hyperpage{130}
-    \subitem filter, \hyperpage{130, 131}, \hyperpage{133--137}, 
-		\hyperpage{140, 141}, \hyperpage{143}, 
-		\hyperpage{147, 148}, \hyperpage{150}
-    \subitem gather, \hyperpage{147}
-    \subitem glimpse, \hyperpage{130}
-    \subitem group\_by, \hyperpage{140}
-    \subitem head, \hyperpage{147}
+    \subitem aov, \hyperpage{143}
+    \subitem do, \hyperpage{141}
+    \subitem ff\_glimpse, \hyperpage{129}
+    \subitem filter, \hyperpage{131--134}, \hyperpage{136--138}, 
+		\hyperpage{141--143}, \hyperpage{148--151}
+    \subitem gather, \hyperpage{148}
+    \subitem glimpse, \hyperpage{129}
+    \subitem group\_by, \hyperpage{141}
+    \subitem head, \hyperpage{148}
     \subitem kruskal.test, \hyperpage{150}
-    \subitem missing\_glimpse, \hyperpage{130}
-    \subitem mutate, \hyperpage{138}, \hyperpage{147}, \hyperpage{150}
-    \subitem pairwise.t.test, \hyperpage{143}, \hyperpage{145}
-    \subitem select, \hyperpage{138}, \hyperpage{147}
-    \subitem spread, \hyperpage{138}
-    \subitem summarise, \hyperpage{138}
-    \subitem summary, \hyperpage{142}
-    \subitem summary\_factorlist, \hyperpage{150}
-    \subitem t.test, \hyperpage{135}, \hyperpage{139, 140}
-    \subitem tidy, \hyperpage{136}, \hyperpage{140}, \hyperpage{143}, 
+    \subitem missing\_glimpse, \hyperpage{129}
+    \subitem mutate, \hyperpage{139}, \hyperpage{148}, \hyperpage{151}
+    \subitem pairwise.t.test, \hyperpage{145, 146}
+    \subitem select, \hyperpage{139}, \hyperpage{148}
+    \subitem spread, \hyperpage{139}
+    \subitem summarise, \hyperpage{139}
+    \subitem summary, \hyperpage{143}
+    \subitem summary\_factorlist, \hyperpage{151}
+    \subitem t.test, \hyperpage{136}, \hyperpage{139}, \hyperpage{141}
+    \subitem tidy, \hyperpage{137}, \hyperpage{141}, \hyperpage{143}, 
 		\hyperpage{150}
-    \subitem wilcox.test, \hyperpage{149}
+    \subitem wilcox.test, \hyperpage{150}
 
   \indexspace
 
-  \item knitr, \hyperpage{xxiii}
+  \item Hosmer-Lemeshow test, \hyperpage{244}
 
   \indexspace
 
-  \item \textbf{non-parametric tests}, \hyperpage{146}
-    \subitem Mann-Whitney U, \hyperpage{148}
-    \subitem Wilcoxon rank sum, \hyperpage{148}
+  \item interaction terms, \hyperpage{166}
 
   \indexspace
 
-  \item pairwise testing, \hyperpage{143}
+  \item Kaplan Meier estimator, \hyperpage{262}
+
+  \indexspace
+
+  \item \textbf{linear regression}, \hyperpage{157}
+    \subitem AIC, \hyperpage{185}
+    \subitem assumptions, \hyperpage{160}
+    \subitem coefficients, \hyperpage{175}
+    \subitem confounding, \hyperpage{169}
+    \subitem effect modification, \hyperpage{164}
+    \subitem finalfit, \hyperpage{187}
+    \subitem fitted line, \hyperpage{158}
+    \subitem interactions, \hyperpage{166}
+    \subitem model fitting principles, \hyperpage{183}
+    \subitem multivariable, \hyperpage{177}
+    \subitem r-squared, \hyperpage{169}
+  \item log-rank test, \hyperpage{262}
+  \item \textbf{logistic regression}, \hyperpage{217}
+    \subitem AIC, \hyperpage{243}
+    \subitem assumptions, \hyperpage{234}
+    \subitem binary data, \hyperpage{217}
+    \subitem C-statistic, \hyperpage{243}
+    \subitem confounding, \hyperpage{224}
+    \subitem correlated groups, \hyperpage{251}
+    \subitem effect modification, \hyperpage{224}
+    \subitem finalfit, \hyperpage{244}
+    \subitem fitted line, \hyperpage{221}
+    \subitem hierarchical, \hyperpage{251}
+    \subitem Hosmer-Lemeshow test, \hyperpage{244}
+    \subitem interactions, \hyperpage{224}
+    \subitem loess, \hyperpage{234}
+    \subitem mixed effects, \hyperpage{251}
+    \subitem model fitting, \hyperpage{239}, \hyperpage{244}
+    \subitem model fitting principles, \hyperpage{242}
+    \subitem multicollinearity, \hyperpage{235}
+    \subitem multilevel, \hyperpage{251}
+    \subitem odds and probabilities, \hyperpage{219}
+    \subitem odds ratio, \hyperpage{220}
+    \subitem odds ratio plot, \hyperpage{251}
+    \subitem random effects, \hyperpage{251}
+
+  \indexspace
+
+  \item \textbf{non-parametric tests}, \hyperpage{147}
+    \subitem Mann-Whitney U, \hyperpage{149}
+    \subitem Wilcoxon rank sum, \hyperpage{149}
+
+  \indexspace
+
+  \item odds ratio, \hyperpage{220}
+
+  \indexspace
+
+  \item pairwise testing, \hyperpage{144}
   \item \textbf{plotting}
-    \subitem facet\_grid, \hyperpage{130, 131}, \hyperpage{133, 134}, 
-		\hyperpage{147, 148}
-    \subitem geom\_boxplot, \hyperpage{133, 134}, \hyperpage{141}, 
-		\hyperpage{148}
-    \subitem geom\_histogram, \hyperpage{130}, \hyperpage{147}
-    \subitem geom\_jitter, \hyperpage{134}, \hyperpage{148}
-    \subitem geom\_line, \hyperpage{137}
-    \subitem geom\_qq, \hyperpage{131}, \hyperpage{148}
-    \subitem geom\_qq\_line, \hyperpage{131}, \hyperpage{148}
+    \subitem boxplot, \hyperpage{133}
+    \subitem facet\_grid, \hyperpage{131--134}, \hyperpage{148, 149}
+    \subitem geom\_boxplot, \hyperpage{133, 134}, \hyperpage{142}, 
+		\hyperpage{149}
+    \subitem geom\_histogram, \hyperpage{131}, \hyperpage{148}
+    \subitem geom\_jitter, \hyperpage{134}, \hyperpage{149}
+    \subitem geom\_line, \hyperpage{138}
+    \subitem geom\_qq, \hyperpage{132}, \hyperpage{149}
+    \subitem geom\_qq\_line, \hyperpage{132}, \hyperpage{149}
     \subitem ggtitle, \hyperpage{134}
-    \subitem patchwork, \hyperpage{148}
-    \subitem theme, \hyperpage{134}, \hyperpage{148}
+    \subitem hazard ratio plot, \hyperpage{269}
+    \subitem odds ratio, \hyperpage{251}
+    \subitem patchwork, \hyperpage{149}
+    \subitem theme, \hyperpage{134}, \hyperpage{149}
     \subitem xlab, \hyperpage{134}
     \subitem ylab, \hyperpage{134}
 
@@ -84,10 +157,28 @@
 
   \indexspace
 
-  \item \textbf{t-test}, \hyperpage{134}
-    \subitem one-sample, \hyperpage{139}
+  \item \textbf{t-test}, \hyperpage{135}
+    \subitem one-sample, \hyperpage{140}
     \subitem paired, \hyperpage{137}
-    \subitem two-sample, \hyperpage{134}
-  \item tranformations, \hyperpage{146}
+    \subitem two-sample, \hyperpage{135}
+  \item \textbf{time-to-event / survival}, \hyperpage{259}
+    \subitem assumptions, \hyperpage{266}
+    \subitem censoring, \hyperpage{261}
+    \subitem cluster, \hyperpage{268}
+    \subitem competing risks regression, \hyperpage{270}
+    \subitem correlated groups, \hyperpage{268}
+    \subitem Cox proportional hazards regression, \hyperpage{264}
+    \subitem frailty, \hyperpage{268}
+    \subitem hazard ratio plot, \hyperpage{269}
+    \subitem Kaplan Meier estimator, \hyperpage{262}
+    \subitem Kaplan Meier plot, \hyperpage{263}
+    \subitem life table, \hyperpage{263}
+    \subitem log-rank test, \hyperpage{262}
+    \subitem mixed effects, \hyperpage{268}
+    \subitem multilevel, \hyperpage{268}
+    \subitem random effects, \hyperpage{268}
+    \subitem stratified models, \hyperpage{267}
+    \subitem testing for proportional hazards, \hyperpage{266}
+  \item tranformations, \hyperpage{147}
 
 \end{theindex}

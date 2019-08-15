@@ -17,7 +17,7 @@ Similarly, Testing for categorical outcome variables (8) leads naturally to Logi
 Chapters 6 and 8 however do provide helpful reminders of how to prepare data for these analyses and shouldn't be skipped.
 Time-to-event data introduces survival analysis and includes sections on the manipulattion of dates. 
 
-# Working with continuous outcome variables{#ch06-h1}
+# Working with continuous outcome variables{#chap06-h1}
 \index{continuous data@\textbf{continuous data}}
 
 > Continuous data can be measured.  
@@ -53,23 +53,53 @@ library(gapminder)
 mydata = gapminder
 ```
 
-## Check the data
+## Check the data{#chap06-h2-check}
 
-It is vital that data is carefully inspected when first read (for help reading data into R see \@ref(ch02-h2-reading-data-into-r)).
+It is vital that data is carefully inspected when first read (for help reading data into R see \@ref(chap02-h2-reading-data-into-r)).
 The three functions below provide a clear summary allowing errors or miscoding to be quickly identified. 
-It is particularity important to ensure that any missing data is identified (see Chapter \@ref(ch13-h1}). 
+It is particularity important to ensure that any missing data is identified (see Chapter \@ref(chap13-h1). 
 If you don't do this you will regret it! 
 There are many times when an analysis has got to a relatively advanced stage before research realised the dataset was incomplete. 
 
 ```{r}
 glimpse(mydata) # each variable as line, variable type, first values
 missing_glimpse(mydata) # missing data for each variable
+```
+
+```{r eval = FALSE}
 ff_glimpse(mydata) # summary statistics for each variable
 ```
 
 \index{functions@\textbf{functions}!glimpse}
 \index{functions@\textbf{functions}!missing\_glimpse}
 \index{functions@\textbf{functions}!ff\_glimpse}
+
+```{r include=FALSE}
+sum_mydata = ff_glimpse(mydata) # summary statistics for each variable
+```
+
+```{r message=FALSE, echo=FALSE}
+sum_mydata = ff_glimpse(mydata) # summary statistics for each variable
+library(knitr)
+library(kableExtra)
+sum_mydata[[1]] %>%
+  select(-c(5, 8, 9, 11, 12)) %>% 
+  kable(row.names = FALSE, align = c("l", "l", "l", "r", "r", "r", "r", "r", "r", "r"), 
+        booktabs = TRUE, caption = "Gapminder dataset, ff\\_glimpse: continuous", 
+        linesep = c("", "", "\\addlinespace")) %>%
+  kable_styling(latex_options = c("scale_down", "hold_position")) %>% 
+  column_spec(1, width = "4cm")
+sum_mydata[[2]] %>% 
+  select(-c(5, 9)) %>% 
+  kable(row.names = FALSE, align = c("l", "l", "l", "r", "r", "r", "r", "r", "r", "r"), 
+        booktabs = TRUE, caption = "Gapminder dataset, ff\\_glimpse: categorical", 
+        linesep = c("", "", "\\addlinespace")) %>%
+  kable_styling(latex_options = c("scale_down", "hold_position")) %>%  
+  column_spec(6, width = "3cm") %>% 
+  column_spec(7, width = "3cm")
+```
+
+
 
 As can be seen, there are 6 variables, 4 are continuous and 2 are categorical. The categorical variables are already identified as `factors`. There are no missing data. 
 
@@ -87,18 +117,18 @@ Does it differ between regions and years?
 
 There are three useful plots which can help here: 
 
- - Histograms: examine shape of data and compare groups;
- - Q-Q plots: are data normally distributed?
- - Box-plots: identify outliers, compare shape and groups.
+- Histograms: examine shape of data and compare groups;
+- Q-Q plots: are data normally distributed?
+- Box-plots: identify outliers, compare shape and groups.
 
 ### Histogram
 
 ```{r chap06-fig-hist-life-year, fig.width=7, fig.height=3.5, fig.cap="Histogram: country life expectancy by continent and year"}
 mydata %>% 
-	filter(year %in% c(2002, 2007)) %>%
-	ggplot(aes(x = lifeExp)) +       # remember aes()
-	geom_histogram(bins = 20) +      # histogram with 20 bars
-	facet_grid(year ~ continent)     # add scale="free" for axes to vary                                 
+  filter(year %in% c(2002, 2007)) %>%
+  ggplot(aes(x = lifeExp)) +       # remember aes()
+  geom_histogram(bins = 20) +      # histogram with 20 bars
+  facet_grid(year ~ continent)     # add scale="free" for axes to vary                                 
 ```
 
 \index{functions@\textbf{functions}!filter}
@@ -111,7 +141,7 @@ That we have little data for Oceania given there are only two countries included
 That Africa and Asia have great variability in life expectancy by country than in the Americas or Europe. 
 That the data follow a reasonably normal shape, with Africa 2002 a little right skewed. 
 
-### Q-Q plot
+### Q-Q plot{#chap06-h3-qq-plot}
 
 A quantile-quantile sounds complicated but is not. 
 It is simply a graphical method for comparing the distribution (think shape) of our own data to a theoretical distribution, such as the normal distribution. 
@@ -153,7 +183,7 @@ Outliers are represented as points.
 
 Thus it contains information, not only on central tenancy (median), but on the variation in the data and the distribution of the data, for instance a skew should be obvious. 
 
-```{r, fig.width=7, fig.height=3, fig.cap="Boxplot: country life expectancy by continent and year"}
+```{r chap06-fig-boxplot-life-year, fig.width=7, fig.height=3, fig.cap="Boxplot: country life expectancy by continent and year"}
 mydata %>% 
   filter(year %in% c(2002, 2007)) %>%
   ggplot(aes(x = continent, y = lifeExp)) +
@@ -163,6 +193,7 @@ mydata %>%
 
 \index{functions@\textbf{functions}!filter}
 \index{plotting@\textbf{plotting}!geom\_boxplot}
+\index{plotting@\textbf{plotting}!boxplot}
 \index{plotting@\textbf{plotting}!facet\_grid}
 
 What can we see?
@@ -172,7 +203,7 @@ The data in Africa looks skewed, particularly in 2002 - the lines/whiskers are u
 
 We can add further arguments 
 
-```{r, fig.width=7, fig.height=3, fig.cap="Boxplot with jitter points: country life expectancy by continent and year"}
+```{r chap06-fig-boxplot-jitter, fig.width=7, fig.height=3, fig.cap="Boxplot with jitter points: country life expectancy by continent and year"}
 mydata %>%  
   filter(year %in% c(2002, 2007)) %>%
   ggplot(aes(x = factor(year), y = lifeExp)) +
@@ -203,8 +234,8 @@ A *t*-test is used to compare the means of two groups of continuous variables. V
 
 There are various variations on the *t*-test.
 We will use two here. 
-The most useful in our context is a two-sample test if independent groups (first figure). 
-Repeated-measures data such as comparing the same countries between years can be analysed using a paired *t*-test (second figure)  
+The most useful in our context is a two-sample test of independent groups. 
+Repeated-measures data, such as comparing the same countries between years, can be analysed using a paired *t*-test.
 
 <!-- Any more here? -->
 
@@ -276,7 +307,7 @@ The overall difference is not impressive in the boxplot.
 
 We can plot differences at the country level directly. 
 
-```{r fig.height=3, fig.width=3, fig.cap="Line plot: Change in life expectancy in Asian countries from 2002 to 2007"}
+```{r chap06-fig-line-life-asia, fig.height=3, fig.width=3, fig.cap="Line plot: Change in life expectancy in Asian countries from 2002 to 2007"}
 paired_data = mydata %>%               # save as object paired_data
   filter(year %in% c(2002, 2007)) %>%  # 2002 and 2007 only
   filter(continent == "Asia")          # Asia only
@@ -290,7 +321,7 @@ paired_data %>%
 \index{functions@\textbf{functions}!filter}
 \index{plotting@\textbf{plotting}!geom\_line}
 
-What is the difference in life expectancy for each individual country. 
+What is the difference in life expectancy for each individual country?
 We don't usually have to produce this directly, but here is one method. 
 
 ```{r fig.height=3, fig.width=3}
@@ -327,10 +358,11 @@ paired_data %>%
 The results show a highly significant difference. 
 As an exercise you can repeat this analysis simply comparing the means in an unpaired manner. 
 The resulting p-value is `R paired_data %>% t.test(lifeExp ~ year, data = .)$p.value`.
+
 Why is there such a difference between the two approaches?
 This emphasises just how important it is to plot the data first. 
-The average difference of 1.5 years is highly consistent between countries, as show on the line plot, and this differs from zero.
-It is up to you the investigator to interpret the effect size of 1.5 y in reporting the finding. 
+The average difference of 1.5 years is highly consistent between countries, as shown on the line plot, and this differs from zero.
+It is up to you the investigator to interpret the relevance of the effect size of 1.5 y in reporting the finding.
 
 ## Compare the mean of one group
 
@@ -342,7 +374,7 @@ We can use a *t*-test to determine whether the mean of a distribution is differe
 The paired *t*-test above is is equivalent to a one-sample *t*-test on the calculated difference in life expectancy being different to zero.
 
 ```{r}
-  t.test(paired_table$dlifeExp)
+t.test(paired_table$dlifeExp)
 ```
 
 We can compare to values other than zero. 
@@ -356,10 +388,10 @@ mydata %>%
   do(                               # dplyr function
     t.test(.$lifeExp, mu = 77) %>%  # compare mean to 77 years 
       tidy()                        # tidy into tibble
-    )
+  )
 ```
 
-<!-- group_modify option -->
+*group_modify option - decision on whether to switch to this needed*
 
 ```{r}
 mydata %>% 
@@ -368,7 +400,7 @@ mydata %>%
   group_modify(                      # dplyr function
     ~ t.test(.$lifeExp, mu = 77) %>% # compare mean to 77 years 
       tidy()                         # tidy into tibble
-    )
+  )
 ```
 
 \index{functions@\textbf{functions}!filter}
@@ -390,11 +422,11 @@ For example, we may be interested in comparing life expectancy across 3 continen
 
 ```{r, fig.width=3, fig.height=3, fig.cap="Boxplot: Life expectancy in selected continents for 2007"}
 mydata %>% 
-	filter(year == 2007) %>% 
-	filter(continent %in% 
-	         c("Americas", "Europe", "Asia")) %>% 
-	ggplot(aes(x = continent, y=lifeExp)) +
-	geom_boxplot()
+  filter(year == 2007) %>% 
+  filter(continent %in% 
+           c("Americas", "Europe", "Asia")) %>% 
+  ggplot(aes(x = continent, y=lifeExp)) +
+  geom_boxplot()
 ```
 
 \index{functions@\textbf{functions}!filter}
@@ -430,7 +462,7 @@ mydata %>%
   filter(year == 2007) %>% 
   filter(continent %in% c("Americas", "Europe", "Asia")) %>% 
   aov(lifeExp~continent, data = .) %>% 
-	tidy()
+  tidy()
 ```
 
 \index{functions@\textbf{functions}!filter}
@@ -468,11 +500,11 @@ Here we can that there is good evidence of a difference in means between Europe 
 
 The p-values are corrected for multiple comparisons. 
 When performing a hypothesis test at the 5% level (alpha = 0.05), there is a 5% chance of a type 1 error. 
-That is, a 1 in 20 chance of concluding a difference exists when it in fact does not (formally, this is rejection of a true null hypothesis). 
+That is, a 1 in 20 chance of concluding a difference exists when it in fact does not (formally, this is a 1 in 20 chance of rejecting a true null hypothesis). 
 As more simultaneous statistical tests are performed, the chance of a type 1 error increases. 
 
-There are three approaches to this. The first, is to no perform any correction at all. 
-Some advocate that the best approach is simply to present the results of all the tests that were performed, and let the sceptical reader make adjustments themselves. 
+There are three approaches to this. The first, is not to perform any correction at all. 
+Some advocate that the best approach is simply to present the results of all the tests that were performed, and let the sceptical reader make adjustments for themselves. 
 This is attractive, but presupposes a sophisticated readership who will take the time to consider the results in their entirety. 
 
 The second and classical approach, is to control for the so-called family-wise error rate. 
@@ -480,10 +512,12 @@ The "Bonferroni" correction is probably the most famous and most conservative, w
 For example, if three comparisons are made, the threshold for significance is lowered to 0.017. 
 Equivalently, any particular p-value can be multiples by 3 and the value compared to a threshold of 0.05, as is done above. 
 The Bonferroni method is particular conservative, meaning that type 2 errors may occur (failure to identify true differences, or false negatives) in favour or minimising type 1 errors (false positives).
+\index{Bonerroni correction}
 
 The third newer approach controls false-discovery rate. 
 The development of these methods has been driven in part by the needs of areas of science where many different statistical tests are performed at the same time, for instance, examining the influence of 1000 genes simultaneously. 
 In these hypothesis-generating settings, a higher tolerance to type 1 errors may be preferable to missing potential findings through type 2 errors. 
+\index{false discovery rate}
 You can see in our example, that the p-values are lower with the `fdr` correction when compared to the `Bonferroni` correction. 
 
 ```{r}
@@ -496,7 +530,8 @@ pairwise.t.test(aov_data$lifeExp, aov_data$continent,
 Try not to get too hung up on this. 
 Be sensible. 
 Plot the data and look for differences. 
-Focus on effect size, for instance, the actual difference in life expectancy in years, rather than the p-value of a comparison test. 
+Focus on effect size. 
+For instance, what is the actual difference in life expectancy in years, rather than the p-value of a comparison test. 
 Choose a method which fits with your overall aims. 
 If you are generating hypotheses which you will proceed to test with other methods, the `fdr` approach may be preferable.
 If you are trying to capture robust effect and want to minimise type 2 errors, use a family-wise approach. 
@@ -510,9 +545,9 @@ As always, be sensible!
 Would your data be expected to be normally distributed given the data-generating process?
 For instance, if you examining length of hospital stay it is likely that your data are highly right skewed - most patients are discharged from hospital in a few days while a smaller number stay for a long time. 
 Is a comparison of means ever going to be the correct approach here?
-Perhaps you should consider a time-to-event analysis for instance (see chapter x).
+Perhaps you should consider a time-to-event analysis for instance (see chapter \@ref(ch10-h1)).
 
-If a comparison of means approach is reasonable, but the normality assumption are not fulfilled there are two approaches, 
+If a comparison of means approach is reasonable, but the normality assumption is not fulfilled there are two approaches, 
 
 1. Transform the data;
 2. Perform non-parametric tests.
@@ -523,7 +558,24 @@ If a comparison of means approach is reasonable, but the normality assumption ar
 Remember, the Welch *t*-test is reasonably robust to divergence from the normality assumption, so small deviations can be safely ignored. 
 
 Otherwise, the data can be transformed to another scale to deal with a skew. 
-A natural `log` scale is most common. 
+A natural `log` scale is common. 
+
+```{r echo=FALSE, message=FALSE}
+library(kableExtra)
+data.frame(
+  Distribution = c("Moderate right skew (+)", "Substantial right skew (++)", "Substantial right skew (+++)"),
+  Transformation = c("Square-root", "Natural log*", "Base-10 log*"),
+  Function = c('sqrt()', 'log()', 'log10()')
+) %>% 
+  # mutate( 
+  #   Function = kableExtra::cell_spec(Function, monospace = TRUE)) %>% # Not working
+  knitr::kable(booktabs = TRUE,
+               caption = "Transformations that can be applied to skewed data") %>% 
+  footnote(general = "For left skewed data, subtract all values from a constant greater than the maximum value.",
+           symbol = "If data contain zero values, add a small constant to all values.") %>%
+  kable_styling(latex_options = c("scale_down", "hold_position"))
+```
+
 
 ```{r fig.height=3, fig.width=6, fig.cap="Histogram: Log transformation of life expectancy for countries in Africa 2002"}
 africa_data = mydata %>%                # save as africa_data
@@ -562,7 +614,7 @@ The Mann-Whitney U test is also called the Wilcoxon rank-sum test and uses a ran
 We can use if to test for a difference in life expectancies for African countries between 1982 and 2007.
 Let's do a histogram, Q-Q plot and boxplot first. 
 
-```{r fig.height=6, fig.width=6, fig.cap="Panels plots: histogram, Q-Q, boxplot for life expectancy in Africa 1992 v 2007"}
+```{r fig.height=4, fig.width=6, fig.cap="Panels plots: histogram, Q-Q, boxplot for life expectancy in Africa 1992 v 2007"}
 africa_plot = mydata %>%                          
   filter(year %in% c(1982, 2007)) %>%      # only 1982 and 2007
   filter(continent %in% c("Africa"))       # only Africa
@@ -621,7 +673,7 @@ mydata %>%
   filter(year == 2007) %>% 
   filter(continent %in% c("Americas", "Europe", "Asia")) %>% 
   kruskal.test(lifeExp~continent, data = .) %>% 
-	tidy()
+  tidy()
 ```
 
 \index{functions@\textbf{functions}!filter}
@@ -634,7 +686,20 @@ The finalfit package provides an easy to use interface for performing non-parame
 Any number of explanatory variables can be tested against a so-called dependent variable. 
 In this case, this is equivalent to a typical Table 1 in healthcare study. 
 
-```{r}
+```{r eval=FALSE}
+dependent = "year"
+explanatory = c("lifeExp", "pop", "gdpPercap")
+mydata %>%                          
+  filter(year %in% c(1982, 2007)) %>%       # only 1982 and 2007
+  filter(continent == "Africa") %>%         # only Africa
+  mutate(
+    year = factor(year)                     # change year to factor
+  ) %>% 
+  summary_factorlist(dependent, explanatory,
+                     cont = "median", p = TRUE)
+```
+
+```{r echo=FALSE}
 dependent = "year"
 explanatory = c("lifeExp", "pop", "gdpPercap")
 mydata %>%                          
@@ -647,7 +712,8 @@ mydata %>%
                      cont = "median", p = TRUE) %>% 
   knitr::kable(row.names = FALSE, booktabs = TRUE, 
                align = c("l", "l", "r", "r", "r", "r"),
-               caption = "Life expectancy, population and GDPperCap in Africa 1982 v 2007")
+               caption = "Life expectancy, population and GDPperCap in Africa 1982 v 2007") %>% 
+    kable_styling(latex_options = c("scale_down", "hold_position"))
 ```
 
 \index{functions@\textbf{functions}!filter}
@@ -686,8 +752,7 @@ In 2007, in which continents did mean life expectancy differ from 70.
 
 ## Exercise solutions
 
-```{r}
-
+```{r fig.height=3, fig.width=4}
 # Exerise 1 
 ## Make a histogram, Q-Q plot, and a box-plot for the life expectancy
 ## for a continent of your choice, but for all years. 
@@ -699,13 +764,13 @@ asia_plot = mydata %>%
 p1 = asia_plot %>%                              
   ggplot(aes(x = lifeExp)) + 
   geom_histogram(bins = 15) #+                 
-  #facet_grid(. ~ year)                         # no facet
+#facet_grid(. ~ year)                         # no facet
 
 p2 = asia_plot %>%                          
   ggplot(aes(sample = lifeExp)) +               # `sample` for Q-Q plot
   geom_qq() + 
   geom_qq_line() #+ 
-  #facet_grid(. ~ year)                         # no facet
+#facet_grid(. ~ year)                         # no facet
 
 p3 = asia_plot %>%                              
   ggplot(aes(x = factor(year), y = lifeExp)) +  # year as factor
@@ -717,8 +782,7 @@ library(patchwork)
 p1 / p2 | p3
 ```
 
-```{r}
-
+```{r fig.height=3, fig.width=4}
 # Exercise 2
 ## Select any 2 years in any continent and perform a *t*-test to 
 ## determine whether mean life expectancy is significantly different. 

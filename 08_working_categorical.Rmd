@@ -1,9 +1,11 @@
 # Working with categorical outcome variables
+\index{categorical data@\textbf{categorical data}}
 
 > Suddenly Christopher Robin began to tell Pooh about some of the things: People called Kings and Queens and something called Factors ... and Pooh said "Oh!" and thought how wonderful it would be to have a Real Brain which could tell you things.  
 > A.A. Milne, *The House at Pooh Corner* (1928)
 
 ## Factors
+\index{factors}
 
 ```{r echo=FALSE, message=FALSE}
 library(knitr)
@@ -98,6 +100,8 @@ mydata = mydata %>%
 ```
 
 ## Should I convert a continuous variable to a categorical variable?
+\index{categorical data@\textbf{categorical data}!convert from continuous}
+
 This is a common question and something which is frequently done. 
 Take for instance the variable years. 
 Is it better to leave it as a continuous variable, or to chop it into categories, e.g. 30 to 39 etc.?
@@ -153,6 +157,7 @@ knitr::include_graphics("images/chapter08/1_cut.pdf")
 ```
 
 ### Equal intervals vs quantiles
+\index{categorgical data@\textbf{categorical data}!quantiles}
 
 Be clear in your head whether you wish to cut the data so the intervals are of equal lent. 
 Or whether you wish to cut the data so there are equal proportions of cases (patients) in each level. 
@@ -286,7 +291,7 @@ mydata = mydata %>%
   )
 ```
 
-## Change the order of values within a factor - `fct_relevel()`
+## Change the order of values within a factor - `fct_relevel()`{#chap08-h2-fct-relevel}
 The default order for levels with `factor()` is alphabetical. 
 We often want to reorder the levels in a factor when plotting, or when performing an regression analysis and we want to specify the reference level.  
 
@@ -308,7 +313,9 @@ mydata = mydata %>%
 
 Any number of factor levels can be specified in `fct_relevel()`. 
 
-## Summarising factors with `Finalfit`
+## Summarising factors with **Finalfit**
+\index{categorgical data@\textbf{categorical data}!finalfit}
+\index{categorgical data@\textbf{categorical data}!summarising}
 
 Our own `Finalfit` package provides convenient functions to summarise and compare factors, producing final tables for publication. 
 
@@ -356,6 +363,10 @@ mydata %>%
 ```
 
 ## Pearson's chi-squared and Fisher's exact tests
+\index{categorgical data@\textbf{categorical data}!chi-squared test}
+\index{categorgical data@\textbf{categorical data}!Fisher's exact test}
+\index{chi-squared test}
+\index{Fisher's exact test}
 
 Pearson's chi-squared ($\chi^2$) test of independence is used to determine whether two categorical variables are independent in a given population.
 Independence here means that the relative frequencies of one variable are the same over all levels of another variable.

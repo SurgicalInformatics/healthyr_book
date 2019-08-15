@@ -1,4 +1,5 @@
-# Time-to-event data and survival
+# Time-to-event data and survival{}
+\index{time-to-event / survival@\textbf{time-to-event / survival}}
 
 > The reports of my death have been greatly exaggerated.  
 > Mark Twain
@@ -61,6 +62,7 @@ There are three options for coding this.
 * Competing risks: comparing 2 (alive) with 1 (died melanoma) accounting for 3 (died other); see more below. 
 
 ## Time and censoring
+\index{time-to-event / survival@\textbf{time-to-event / survival}!censoring}
 `time` is the number of days from surgery until either the occurrence of the event (death) or the last time the patient was known to be alive. 
 For instance, if a patient had surgery and was seen to be well in a clinic 30 days later, but there had been no contact since, then the patient's status would be considered 30 days. 
 This patient is censored from the analysis at day 30, an important feature of time-to-event analyses.    
@@ -99,8 +101,13 @@ melanoma = melanoma %>%
   )
 ```
 
-## Kaplan-Meier survival estimator
-We will use the excellent `survival` package to produce the Kaplan-Meier (KM) survival estimator. 
+## Kaplan Meier survival estimator
+\index{time-to-event / survival@\textbf{time-to-event / survival}!Kaplan Meier estimator}
+\index{Kaplan Meier estimator}
+\index{time-to-event / survival@\textbf{time-to-event / survival}!log-rank test}
+\index{log-rank test}
+
+We will use the excellent `survival` package to produce the Kaplan Meier (KM) survival estimator. 
 This is a non-parametric statistic used to estimate the survival function from time-to-event data.
 
 ```{r}
@@ -132,6 +139,7 @@ my_survfit # 205 patients, 71 events
 ```
 
 ### Life table
+\index{time-to-event / survival@\textbf{time-to-event / survival}!life table}
 
 A life table is the tabular form of a KM plot, which you may be familiar with. 
 It shows survival as a proportion, together with confidence limits. 
@@ -143,6 +151,7 @@ summary(my_survfit, times = c(0, 1, 2, 3, 4, 5))
 ```
 
 ## Kaplan Meier plot
+\index{time-to-event / survival@\textbf{time-to-event / survival}!Kaplan Meier plot}
 
 We can plot survival curves using the finalfit wrapper for the package excellent package `survminer`. 
 There are numerous options available on the help page. 
@@ -159,6 +168,8 @@ melanoma %>%
 ```
 
 ## Cox-proportional hazards regression
+\index{time-to-event / survival@\textbf{time-to-event / survival}!Cox proportional hazards regression}
+\index{Cox proportional hazards regression}
 
 CPH regression can be performed using the all-in-one `finalfit()` function. 
 It produces a table containing counts (proportions) for factors, mean (SD) for continuous variables and a univariable and multivariable CPH regression.
@@ -226,6 +237,8 @@ melanoma %>%
 ```
 
 ### Testing for proportional hazards
+\index{time-to-event / survival@\textbf{time-to-event / survival}!assumptions}
+\index{time-to-event / survival@\textbf{time-to-event / survival}!testing for proportional hazards}
 
 An assumption of CPH regression is that the hazard (think risk) associated with a particular variable does not change over time. 
 For example, is the magnitude of the increase in risk of death associated with tumour ulceration the same in the early post-operative period as it is in later years? 
@@ -244,6 +257,7 @@ zph_result
 ```
 
 ### Stratified models
+\index{time-to-event / survival@\textbf{time-to-event / survival}!stratified models}
 
 One approach to dealing with a violation of the proportional hazards assumption is to stratify by that variable. 
 Including a `strata()` term will result in a separate baseline hazard function being fit for each level in the stratification variable. It will be no longer possible to make direct inference on the effect associated with that variable. 
@@ -266,6 +280,12 @@ melanoma %>%
 ```
 
 ### Correlated groups of observations
+\index{time-to-event / survival@\textbf{time-to-event / survival}!correlated groups}
+\index{time-to-event / survival@\textbf{time-to-event / survival}!mixed effects}
+\index{time-to-event / survival@\textbf{time-to-event / survival}!random effects}
+\index{time-to-event / survival@\textbf{time-to-event / survival}!multilevel}
+\index{time-to-event / survival@\textbf{time-to-event / survival}!cluster}
+\index{time-to-event / survival@\textbf{time-to-event / survival}!frailty}
 
 As a general rule, you should always try to account for any higher structure in your data within the model. 
 For instance, patients may be clustered within particular hospitals. 
@@ -327,6 +347,8 @@ melanoma %>%
 The `frailty()` method here is being superseded by the `coxme` package, and we look forward to incorporating this in the future. 
 
 ### Hazard ratio plot
+\index{time-to-event / survival@\textbf{time-to-event / survival}!hazard ratio plot}
+\index{plotting@\textbf{plotting}!hazard ratio plot}
 
 A plot of any of the above models can be easily produced. 
 
@@ -344,6 +366,8 @@ melanoma %>%
 ```
 
 ## Competing risks regression
+\index{time-to-event / survival@\textbf{time-to-event / survival}!competing risks regression}
+
 Competing-risks regression is an alternative to CPH regression. 
 It can be useful if the outcome of interest may not be able to occur simply because something else (like death) has happened first. 
 For instance, in our example it is obviously not possible for a patient to die from melanoma if they have died from another disease first. 

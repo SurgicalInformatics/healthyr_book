@@ -1,75 +1,78 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces Example of a table (=tibble once read into R), including missing values denoted NA (Not applicable/Not available).\relax }}{10}{table.caption.9}
-\contentsline {table}{\numberline {2.2}{\ignorespaces Deaths per year from three broad disease categories (short version of the Global Burden of Disease example dataset).\relax }}{21}{table.caption.14}
-\contentsline {table}{\numberline {2.3}{\ignorespaces Filtering operators.\relax }}{26}{table.caption.16}
+\contentsline {table}{\numberline {2.1}{\ignorespaces Example of a table (=tibble once read into R), including missing values denoted NA (Not applicable/Not available).\relax }}{10}{table.caption.8}
+\contentsline {table}{\numberline {2.2}{\ignorespaces Deaths per year from three broad disease categories (short version of the Global Burden of Disease example dataset).\relax }}{21}{table.caption.13}
+\contentsline {table}{\numberline {2.3}{\ignorespaces Filtering operators.\relax }}{26}{table.caption.15}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Deaths per year (2017) from three broad disease categories, sex, and World Bank county-level income groups.\relax }}{56}{table.caption.17}
-\contentsline {table}{\numberline {3.2}{\ignorespaces Global Burden of Disease data in human-readable wide format. This is not tidy data.\relax }}{65}{table.caption.19}
-\contentsline {table}{\numberline {3.3}{\ignorespaces Global Burden of Disease data in analysis-friendly long format. This is tidy data.\relax }}{66}{table.caption.20}
-\contentsline {table}{\numberline {3.4}{\ignorespaces Exercise: putting the cause variable into the wide format using spread.\relax }}{78}{table.caption.22}
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {6.1}{\ignorespaces Life expectancy, population and GDPperCap in Africa 1982 v 2007\relax }}{151}{table.caption.32}
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {7.1}{\ignorespaces WCGS data, ff\_glimpse: continuous\relax }}{187}{table.caption.45}
-\contentsline {table}{\numberline {7.2}{\ignorespaces WCGS data, ff\_glimpse: categorical\relax }}{187}{table.caption.46}
-\contentsline {table}{\numberline {7.3}{\ignorespaces Linear regression: Systolic blood pressure by personality type.\relax }}{189}{table.caption.48}
-\contentsline {table}{\numberline {7.4}{\ignorespaces Model metrics: Systolic blood pressure by personality type.\relax }}{189}{table.caption.49}
-\contentsline {table}{\numberline {7.5}{\ignorespaces Multivariable linear regression: Systolic blood pressure by personality type and weight.\relax }}{190}{table.caption.50}
-\contentsline {table}{\numberline {7.6}{\ignorespaces Multivariable linear regression metrics: Systolic blood pressure by personality type and weight.\relax }}{190}{table.caption.51}
-\contentsline {table}{\numberline {7.7}{\ignorespaces Multivariable linear regression: Systolic blood pressure by available explanatory variables.\relax }}{191}{table.caption.52}
-\contentsline {table}{\numberline {7.8}{\ignorespaces Model metrics: Systolic blood pressure by available explanatory variables.\relax }}{191}{table.caption.53}
-\contentsline {table}{\numberline {7.9}{\ignorespaces Multivariable linear regression: Systolic blood pressure using BMI.\relax }}{192}{table.caption.54}
-\contentsline {table}{\numberline {7.10}{\ignorespaces Model metrics: Systolic blood pressure using BMI.\relax }}{192}{table.caption.55}
-\contentsline {table}{\numberline {7.11}{\ignorespaces Multivariable linear regression: Systolic blood pressure by available explanatory variables and reduced model.\relax }}{193}{table.caption.56}
-\contentsline {table}{\numberline {7.12}{\ignorespaces Model metrics: Systolic blood pressure by available explanatory variables (top) with reduced model (bottom).\relax }}{193}{table.caption.57}
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {8.1}{\ignorespaces CAPTION\relax }}{209}{table.caption.63}
-\contentsline {table}{\numberline {8.2}{\ignorespaces CAPTION\relax }}{210}{table.caption.64}
-\contentsline {table}{\numberline {8.3}{\ignorespaces CAPTION\relax }}{214}{table.caption.65}
-\contentsline {table}{\numberline {8.4}{\ignorespaces CAPTION\relax }}{215}{table.caption.66}
-\contentsline {table}{\numberline {8.5}{\ignorespaces CAPTION\relax }}{215}{table.caption.67}
-\contentsline {table}{\numberline {8.6}{\ignorespaces CAPTION\relax }}{216}{table.caption.68}
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {9.1}{\ignorespaces CAPTION\relax }}{235}{table.caption.76}
-\contentsline {table}{\numberline {9.2}{\ignorespaces CAPTION\relax }}{245}{table.caption.77}
-\contentsline {table}{\numberline {9.3}{\ignorespaces CAPTION\relax }}{245}{table.caption.78}
-\contentsline {table}{\numberline {9.4}{\ignorespaces CAPTION\relax }}{247}{table.caption.79}
-\contentsline {table}{\numberline {9.5}{\ignorespaces CAPTION\relax }}{247}{table.caption.80}
-\contentsline {table}{\numberline {9.6}{\ignorespaces CAPTION\relax }}{248}{table.caption.81}
-\contentsline {table}{\numberline {9.7}{\ignorespaces CAPTION\relax }}{248}{table.caption.82}
-\contentsline {table}{\numberline {9.8}{\ignorespaces CAPTION\relax }}{249}{table.caption.83}
-\contentsline {table}{\numberline {9.9}{\ignorespaces CAPTION\relax }}{249}{table.caption.84}
-\contentsline {table}{\numberline {9.10}{\ignorespaces CAPTION\relax }}{250}{table.caption.85}
-\contentsline {table}{\numberline {9.11}{\ignorespaces CAPTION\relax }}{250}{table.caption.86}
-\contentsline {table}{\numberline {9.12}{\ignorespaces CAPTION\relax }}{251}{table.caption.87}
-\contentsline {table}{\numberline {9.13}{\ignorespaces CAPTION\relax }}{251}{table.caption.88}
-\contentsline {table}{\numberline {9.14}{\ignorespaces CAPTION\relax }}{252}{table.caption.89}
-\contentsline {table}{\numberline {9.15}{\ignorespaces CAPTION\relax }}{252}{table.caption.90}
-\contentsline {table}{\numberline {9.16}{\ignorespaces CAPTION\relax }}{253}{table.caption.91}
-\contentsline {table}{\numberline {9.17}{\ignorespaces CAPTION\relax }}{258}{table.caption.92}
-\contentsline {table}{\numberline {9.18}{\ignorespaces CAPTION\relax }}{258}{table.caption.93}
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {10.1}{\ignorespaces CAPTION\relax }}{267}{table.caption.94}
-\contentsline {table}{\numberline {10.2}{\ignorespaces CAPTION\relax }}{267}{table.caption.95}
-\contentsline {table}{\numberline {10.3}{\ignorespaces CAPTION\relax }}{268}{table.caption.96}
-\contentsline {table}{\numberline {10.4}{\ignorespaces CAPTION\relax }}{270}{table.caption.97}
-\contentsline {table}{\numberline {10.5}{\ignorespaces CAPTION\relax }}{271}{table.caption.98}
-\contentsline {table}{\numberline {10.6}{\ignorespaces CAPTION\relax }}{273}{table.caption.99}
+\contentsline {table}{\numberline {3.1}{\ignorespaces Deaths per year (2017) from three broad disease categories, sex, and World Bank county-level income groups.\relax }}{56}{table.caption.16}
+\contentsline {table}{\numberline {3.2}{\ignorespaces Global Burden of Disease data in human-readable wide format. This is not tidy data.\relax }}{65}{table.caption.18}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Global Burden of Disease data in analysis-friendly long format. This is tidy data.\relax }}{66}{table.caption.19}
+\contentsline {table}{\numberline {3.4}{\ignorespaces Exercise: putting the cause variable into the wide format using spread.\relax }}{78}{table.caption.21}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {12.1}{\ignorespaces CAPTION\relax }}{285}{table.caption.100}
-\contentsline {table}{\numberline {12.2}{\ignorespaces CAPTION\relax }}{285}{table.caption.101}
-\contentsline {table}{\numberline {12.3}{\ignorespaces CAPTION\relax }}{286}{table.caption.102}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {13.1}{\ignorespaces CAPTION\relax }}{301}{table.caption.103}
-\contentsline {table}{\numberline {13.2}{\ignorespaces CAPTION\relax }}{304}{table.caption.104}
-\contentsline {table}{\numberline {13.3}{\ignorespaces CAPTION\relax }}{304}{table.caption.105}
-\contentsline {table}{\numberline {13.4}{\ignorespaces CAPTION\relax }}{307}{table.caption.106}
-\contentsline {table}{\numberline {13.5}{\ignorespaces CAPTION\relax }}{310}{table.caption.107}
-\contentsline {table}{\numberline {13.6}{\ignorespaces CAPTION\relax }}{311}{table.caption.108}
+\contentsline {table}{\numberline {6.1}{\ignorespaces Gapminder dataset, ff\_glimpse: continuous\relax }}{130}{table.caption.22}
+\contentsline {table}{\numberline {6.2}{\ignorespaces Gapminder dataset, ff\_glimpse: categorical\relax }}{130}{table.caption.23}
+\contentsline {table}{\numberline {6.3}{\ignorespaces Transformations that can be applied to skewed data\relax }}{147}{table.caption.31}
+\contentsline {table}{\numberline {6.4}{\ignorespaces Life expectancy, population and GDPperCap in Africa 1982 v 2007\relax }}{151}{table.caption.34}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {7.1}{\ignorespaces WCGS data, ff\_glimpse: continuous\relax }}{186}{table.caption.47}
+\contentsline {table}{\numberline {7.2}{\ignorespaces WCGS data, ff\_glimpse: categorical\relax }}{186}{table.caption.48}
+\contentsline {table}{\numberline {7.3}{\ignorespaces Linear regression: Systolic blood pressure by personality type.\relax }}{188}{table.caption.50}
+\contentsline {table}{\numberline {7.4}{\ignorespaces Model metrics: Systolic blood pressure by personality type.\relax }}{188}{table.caption.51}
+\contentsline {table}{\numberline {7.5}{\ignorespaces Multivariable linear regression: Systolic blood pressure by personality type and weight.\relax }}{189}{table.caption.52}
+\contentsline {table}{\numberline {7.6}{\ignorespaces Multivariable linear regression metrics: Systolic blood pressure by personality type and weight.\relax }}{189}{table.caption.53}
+\contentsline {table}{\numberline {7.7}{\ignorespaces Multivariable linear regression: Systolic blood pressure by available explanatory variables.\relax }}{190}{table.caption.54}
+\contentsline {table}{\numberline {7.8}{\ignorespaces Model metrics: Systolic blood pressure by available explanatory variables.\relax }}{190}{table.caption.55}
+\contentsline {table}{\numberline {7.9}{\ignorespaces Multivariable linear regression: Systolic blood pressure using BMI.\relax }}{191}{table.caption.56}
+\contentsline {table}{\numberline {7.10}{\ignorespaces Model metrics: Systolic blood pressure using BMI.\relax }}{192}{table.caption.57}
+\contentsline {table}{\numberline {7.11}{\ignorespaces Multivariable linear regression: Systolic blood pressure by available explanatory variables and reduced model.\relax }}{192}{table.caption.58}
+\contentsline {table}{\numberline {7.12}{\ignorespaces Model metrics: Systolic blood pressure by available explanatory variables (top) with reduced model (bottom).\relax }}{192}{table.caption.59}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {8.1}{\ignorespaces CAPTION\relax }}{207}{table.caption.65}
+\contentsline {table}{\numberline {8.2}{\ignorespaces CAPTION\relax }}{208}{table.caption.66}
+\contentsline {table}{\numberline {8.3}{\ignorespaces CAPTION\relax }}{212}{table.caption.67}
+\contentsline {table}{\numberline {8.4}{\ignorespaces CAPTION\relax }}{213}{table.caption.68}
+\contentsline {table}{\numberline {8.5}{\ignorespaces CAPTION\relax }}{213}{table.caption.69}
+\contentsline {table}{\numberline {8.6}{\ignorespaces CAPTION\relax }}{214}{table.caption.70}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {9.1}{\ignorespaces CAPTION\relax }}{233}{table.caption.78}
+\contentsline {table}{\numberline {9.2}{\ignorespaces CAPTION\relax }}{243}{table.caption.79}
+\contentsline {table}{\numberline {9.3}{\ignorespaces CAPTION\relax }}{243}{table.caption.80}
+\contentsline {table}{\numberline {9.4}{\ignorespaces CAPTION\relax }}{245}{table.caption.81}
+\contentsline {table}{\numberline {9.5}{\ignorespaces CAPTION\relax }}{245}{table.caption.82}
+\contentsline {table}{\numberline {9.6}{\ignorespaces CAPTION\relax }}{246}{table.caption.83}
+\contentsline {table}{\numberline {9.7}{\ignorespaces CAPTION\relax }}{246}{table.caption.84}
+\contentsline {table}{\numberline {9.8}{\ignorespaces CAPTION\relax }}{247}{table.caption.85}
+\contentsline {table}{\numberline {9.9}{\ignorespaces CAPTION\relax }}{247}{table.caption.86}
+\contentsline {table}{\numberline {9.10}{\ignorespaces CAPTION\relax }}{248}{table.caption.87}
+\contentsline {table}{\numberline {9.11}{\ignorespaces CAPTION\relax }}{248}{table.caption.88}
+\contentsline {table}{\numberline {9.12}{\ignorespaces CAPTION\relax }}{249}{table.caption.89}
+\contentsline {table}{\numberline {9.13}{\ignorespaces CAPTION\relax }}{249}{table.caption.90}
+\contentsline {table}{\numberline {9.14}{\ignorespaces CAPTION\relax }}{250}{table.caption.91}
+\contentsline {table}{\numberline {9.15}{\ignorespaces CAPTION\relax }}{250}{table.caption.92}
+\contentsline {table}{\numberline {9.16}{\ignorespaces CAPTION\relax }}{251}{table.caption.93}
+\contentsline {table}{\numberline {9.17}{\ignorespaces CAPTION\relax }}{256}{table.caption.94}
+\contentsline {table}{\numberline {9.18}{\ignorespaces CAPTION\relax }}{256}{table.caption.95}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {10.1}{\ignorespaces CAPTION\relax }}{265}{table.caption.96}
+\contentsline {table}{\numberline {10.2}{\ignorespaces CAPTION\relax }}{265}{table.caption.97}
+\contentsline {table}{\numberline {10.3}{\ignorespaces CAPTION\relax }}{266}{table.caption.98}
+\contentsline {table}{\numberline {10.4}{\ignorespaces CAPTION\relax }}{268}{table.caption.99}
+\contentsline {table}{\numberline {10.5}{\ignorespaces CAPTION\relax }}{269}{table.caption.100}
+\contentsline {table}{\numberline {10.6}{\ignorespaces CAPTION\relax }}{271}{table.caption.101}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {12.1}{\ignorespaces CAPTION\relax }}{283}{table.caption.102}
+\contentsline {table}{\numberline {12.2}{\ignorespaces CAPTION\relax }}{283}{table.caption.103}
+\contentsline {table}{\numberline {12.3}{\ignorespaces CAPTION\relax }}{284}{table.caption.104}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {13.1}{\ignorespaces CAPTION\relax }}{299}{table.caption.105}
+\contentsline {table}{\numberline {13.2}{\ignorespaces CAPTION\relax }}{302}{table.caption.106}
+\contentsline {table}{\numberline {13.3}{\ignorespaces CAPTION\relax }}{302}{table.caption.107}
+\contentsline {table}{\numberline {13.4}{\ignorespaces CAPTION\relax }}{305}{table.caption.108}
+\contentsline {table}{\numberline {13.5}{\ignorespaces CAPTION\relax }}{308}{table.caption.109}
+\contentsline {table}{\numberline {13.6}{\ignorespaces CAPTION\relax }}{309}{table.caption.110}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

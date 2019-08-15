@@ -1,63 +1,63 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces This is not a pipe. René Magritte inspired artwork by Stefan Milton Bache (creator of \texttt {\%\textgreater {}\%} in R). Image source: \url {https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html}\relax }}{17}{figure.caption.10}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces View or import a data file.\relax }}{18}{figure.caption.11}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Import: Some of the special settings your data file might have.\relax }}{19}{figure.caption.12}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces After using the Import Dataset window, copy-paste the resulting code into your script.\relax }}{19}{figure.caption.13}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Causes of death from the Global Burden of Disease dataset (Table \ref {tab:chap2-tab-gbd}). Data on (B) is the same as (A) but stacked to show the total (sum) of all causes.\relax }}{22}{figure.caption.15}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces This is not a pipe. René Magritte inspired artwork by Stefan Milton Bache (creator of \texttt {\%\textgreater {}\%} in R). Image source: \url {https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html}\relax }}{17}{figure.caption.9}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces View or import a data file.\relax }}{18}{figure.caption.10}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Import: Some of the special settings your data file might have.\relax }}{19}{figure.caption.11}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces After using the Import Dataset window, copy-paste the resulting code into your script.\relax }}{19}{figure.caption.12}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Causes of death from the Global Burden of Disease dataset (Table \ref {tab:chap2-tab-gbd}). Data on (B) is the same as (A) but stacked to show the total (sum) of all causes.\relax }}{22}{figure.caption.14}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Global Burden of Disease data with subgroups: cause, sex, World Bank income group.\relax }}{57}{figure.caption.18}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Same data in the long (`tidy', necessary for efficient analysis) and wide (easier for human-readability/presentation/manual data entry) formats. TODO: replace with updated data.\relax }}{66}{figure.caption.21}
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Histogram: country life expectancy by continent and year\relax }}{131}{figure.caption.23}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Q-Q plot: country life expectancy by continent and year\relax }}{132}{figure.caption.24}
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Boxplot: country life expectancy by continent and year\relax }}{133}{figure.caption.25}
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Boxplot with jitter points: country life expectancy by continent and year\relax }}{134}{figure.caption.26}
-\contentsline {figure}{\numberline {6.5}{\ignorespaces Line plot: Change in life expectancy in Asian countries from 2002 to 2007\relax }}{137}{figure.caption.27}
-\contentsline {figure}{\numberline {6.6}{\ignorespaces Boxplot: Life expectancy in selected continents for 2007\relax }}{142}{figure.caption.28}
-\contentsline {figure}{\numberline {6.7}{\ignorespaces Diagnostic plots: ANOVA model of life expectancy by continent for 2007\relax }}{144}{figure.caption.29}
-\contentsline {figure}{\numberline {6.8}{\ignorespaces Histogram: Log transformation of life expectancy for countries in Africa 2002\relax }}{147}{figure.caption.30}
-\contentsline {figure}{\numberline {6.9}{\ignorespaces Panels plots: histogram, Q-Q, boxplot for life expectancy in Africa 1992 v 2007\relax }}{149}{figure.caption.31}
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces The anatomy of a regression plot.\relax }}{159}{figure.caption.33}
-\contentsline {figure}{\numberline {7.2}{\ignorespaces How a regression line is fitted.\relax }}{161}{figure.caption.34}
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Regression diagnostics. Does this also appear in the contents. What about this?\relax }}{163}{figure.caption.35}
-\contentsline {figure}{\numberline {7.4}{\ignorespaces Linking the fitted line, regression equation and R output.\relax }}{165}{figure.caption.36}
-\contentsline {figure}{\numberline {7.5}{\ignorespaces Causal pathways, effect modification and confounding.\relax }}{167}{figure.caption.37}
-\contentsline {figure}{\numberline {7.6}{\ignorespaces Multivariable linear regression with additive and multiplicative effect modification.\relax }}{169}{figure.caption.38}
-\contentsline {figure}{\numberline {7.7}{\ignorespaces Multivariable linear regression with confounding of coffee drinking by smoking.\relax }}{171}{figure.caption.39}
-\contentsline {figure}{\numberline {7.8}{\ignorespaces Scatterplot with fitted line plot: Life expectancy by year in European countries\relax }}{173}{figure.caption.40}
-\contentsline {figure}{\numberline {7.9}{\ignorespaces Scatterplot: Life expectancy by year Turkey and Europe.\relax }}{174}{figure.caption.41}
-\contentsline {figure}{\numberline {7.10}{\ignorespaces Scatter and line plot. Life expectancy in Turkey and the UK - univariable fit.\relax }}{179}{figure.caption.42}
-\contentsline {figure}{\numberline {7.11}{\ignorespaces Scatter and line plot. Life expectancy in Turkey and the UK - multivariable additive fit.\relax }}{180}{figure.caption.43}
-\contentsline {figure}{\numberline {7.12}{\ignorespaces Scatter and line plot. Life expectancy in Turkey and the UK - multivariable multiplicative fit.\relax }}{181}{figure.caption.44}
-\contentsline {figure}{\numberline {7.13}{\ignorespaces Scatter and line plot. Systolic blood pressure by weight and personality type.\relax }}{188}{figure.caption.47}
-\contentsline {figure}{\numberline {7.14}{\ignorespaces Diagnostic plots: linear regression model of systolic blood pressure.\relax }}{194}{figure.caption.58}
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {8.1}{\ignorespaces \texttt {Cut} a continuous variable into a categorical variable.\relax }}{203}{figure.caption.59}
-\contentsline {figure}{\numberline {8.2}{\ignorespaces Bar chart: outcome after surgery for patients with ulcerated melanoma.\relax }}{205}{figure.caption.60}
-\contentsline {figure}{\numberline {8.3}{\ignorespaces Bar chart: outcome after surgery for patients with ulcerated melanoma, reversed levels.\relax }}{206}{figure.caption.61}
-\contentsline {figure}{\numberline {8.4}{\ignorespaces Facetted bar plot: outcome after surgery for patients with ulcerated melanoma aggregated by sex and age.\relax }}{208}{figure.caption.62}
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {9.1}{\ignorespaces Probability vs odds.\relax }}{221}{figure.caption.69}
-\contentsline {figure}{\numberline {9.2}{\ignorespaces Odds ratios.\relax }}{222}{figure.caption.70}
-\contentsline {figure}{\numberline {9.3}{\ignorespaces A logistic regression model of life-time cardiovascular event occurence by coffee consumption stratified by smoking (simulated data). Fitted lines plotted on the log-odds scale (A) and probability scale (B). *lines are straight when no polynomials or splines are included in regression.\relax }}{225}{figure.caption.71}
-\contentsline {figure}{\numberline {9.4}{\ignorespaces Linking the logistic regression fitted line, equation and R output.\relax }}{227}{figure.caption.72}
-\contentsline {figure}{\numberline {9.5}{\ignorespaces Multivariable logistic regression with additive and multiplicative effect modification.\relax }}{228}{figure.caption.73}
-\contentsline {figure}{\numberline {9.6}{\ignorespaces Multivariable logistic regression with interaction term. The exponential of the interaction term is a ratio-of-odds ratios (ROR).\relax }}{229}{figure.caption.74}
-\contentsline {figure}{\numberline {9.7}{\ignorespaces CAPTION\relax }}{234}{figure.caption.75}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Global Burden of Disease data with subgroups: cause, sex, World Bank income group.\relax }}{57}{figure.caption.17}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Same data in the long (`tidy', necessary for efficient analysis) and wide (easier for human-readability/presentation/manual data entry) formats. TODO: replace with updated data.\relax }}{66}{figure.caption.20}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Histogram: country life expectancy by continent and year\relax }}{131}{figure.caption.24}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Q-Q plot: country life expectancy by continent and year\relax }}{132}{figure.caption.25}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Boxplot: country life expectancy by continent and year\relax }}{134}{figure.caption.26}
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Boxplot with jitter points: country life expectancy by continent and year\relax }}{134}{figure.caption.27}
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Line plot: Change in life expectancy in Asian countries from 2002 to 2007\relax }}{138}{figure.caption.28}
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Boxplot: Life expectancy in selected continents for 2007\relax }}{142}{figure.caption.29}
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Diagnostic plots: ANOVA model of life expectancy by continent for 2007\relax }}{144}{figure.caption.30}
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Histogram: Log transformation of life expectancy for countries in Africa 2002\relax }}{148}{figure.caption.32}
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Panels plots: histogram, Q-Q, boxplot for life expectancy in Africa 1992 v 2007\relax }}{150}{figure.caption.33}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces The anatomy of a regression plot.\relax }}{159}{figure.caption.35}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces How a regression line is fitted.\relax }}{161}{figure.caption.36}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Regression diagnostics. Does this also appear in the contents. What about this?\relax }}{163}{figure.caption.37}
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Linking the fitted line, regression equation and R output.\relax }}{165}{figure.caption.38}
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Causal pathways, effect modification and confounding.\relax }}{166}{figure.caption.39}
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Multivariable linear regression with additive and multiplicative effect modification.\relax }}{168}{figure.caption.40}
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Multivariable linear regression with confounding of coffee drinking by smoking.\relax }}{171}{figure.caption.41}
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Scatterplot with fitted line plot: Life expectancy by year in European countries\relax }}{173}{figure.caption.42}
+\contentsline {figure}{\numberline {7.9}{\ignorespaces Scatterplot: Life expectancy by year Turkey and Europe.\relax }}{174}{figure.caption.43}
+\contentsline {figure}{\numberline {7.10}{\ignorespaces Scatter and line plot. Life expectancy in Turkey and the UK - univariable fit.\relax }}{179}{figure.caption.44}
+\contentsline {figure}{\numberline {7.11}{\ignorespaces Scatter and line plot. Life expectancy in Turkey and the UK - multivariable additive fit.\relax }}{180}{figure.caption.45}
+\contentsline {figure}{\numberline {7.12}{\ignorespaces Scatter and line plot. Life expectancy in Turkey and the UK - multivariable multiplicative fit.\relax }}{181}{figure.caption.46}
+\contentsline {figure}{\numberline {7.13}{\ignorespaces Scatter and line plot. Systolic blood pressure by weight and personality type.\relax }}{187}{figure.caption.49}
+\contentsline {figure}{\numberline {7.14}{\ignorespaces Diagnostic plots: linear regression model of systolic blood pressure.\relax }}{193}{figure.caption.60}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {8.1}{\ignorespaces \texttt {Cut} a continuous variable into a categorical variable.\relax }}{201}{figure.caption.61}
+\contentsline {figure}{\numberline {8.2}{\ignorespaces Bar chart: outcome after surgery for patients with ulcerated melanoma.\relax }}{203}{figure.caption.62}
+\contentsline {figure}{\numberline {8.3}{\ignorespaces Bar chart: outcome after surgery for patients with ulcerated melanoma, reversed levels.\relax }}{204}{figure.caption.63}
+\contentsline {figure}{\numberline {8.4}{\ignorespaces Facetted bar plot: outcome after surgery for patients with ulcerated melanoma aggregated by sex and age.\relax }}{206}{figure.caption.64}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {9.1}{\ignorespaces Probability vs odds.\relax }}{219}{figure.caption.71}
+\contentsline {figure}{\numberline {9.2}{\ignorespaces Odds ratios.\relax }}{220}{figure.caption.72}
+\contentsline {figure}{\numberline {9.3}{\ignorespaces A logistic regression model of life-time cardiovascular event occurence by coffee consumption stratified by smoking (simulated data). Fitted lines plotted on the log-odds scale (A) and probability scale (B). *lines are straight when no polynomials or splines are included in regression.\relax }}{223}{figure.caption.73}
+\contentsline {figure}{\numberline {9.4}{\ignorespaces Linking the logistic regression fitted line, equation and R output.\relax }}{225}{figure.caption.74}
+\contentsline {figure}{\numberline {9.5}{\ignorespaces Multivariable logistic regression with additive and multiplicative effect modification.\relax }}{226}{figure.caption.75}
+\contentsline {figure}{\numberline {9.6}{\ignorespaces Multivariable logistic regression with interaction term. The exponential of the interaction term is a ratio-of-odds ratios (ROR).\relax }}{227}{figure.caption.76}
+\contentsline {figure}{\numberline {9.7}{\ignorespaces CAPTION\relax }}{232}{figure.caption.77}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {15.1}{\ignorespaces SSH.\relax }}{322}{figure.caption.109}
-\contentsline {figure}{\numberline {15.2}{\ignorespaces CAPTION\relax }}{323}{figure.caption.110}
-\contentsline {figure}{\numberline {15.3}{\ignorespaces CAPTION\relax }}{325}{figure.caption.111}
-\contentsline {figure}{\numberline {15.4}{\ignorespaces CAPTION\relax }}{326}{figure.caption.112}
-\contentsline {figure}{\numberline {15.5}{\ignorespaces CAPTION\relax }}{327}{figure.caption.113}
-\contentsline {figure}{\numberline {15.6}{\ignorespaces CAPTION\relax }}{328}{figure.caption.114}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {15.1}{\ignorespaces SSH.\relax }}{320}{figure.caption.111}
+\contentsline {figure}{\numberline {15.2}{\ignorespaces CAPTION\relax }}{321}{figure.caption.112}
+\contentsline {figure}{\numberline {15.3}{\ignorespaces CAPTION\relax }}{323}{figure.caption.113}
+\contentsline {figure}{\numberline {15.4}{\ignorespaces CAPTION\relax }}{324}{figure.caption.114}
+\contentsline {figure}{\numberline {15.5}{\ignorespaces CAPTION\relax }}{325}{figure.caption.115}
+\contentsline {figure}{\numberline {15.6}{\ignorespaces CAPTION\relax }}{326}{figure.caption.116}
 \addvspace {10\p@ }

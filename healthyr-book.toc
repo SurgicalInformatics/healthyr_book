@@ -1,7 +1,7 @@
 \contentsline {fm}{List of Tables}{xiii}{chapter*.1}
 \contentsline {fm}{List of Figures}{xvii}{chapter*.2}
 \contentsline {fm}{Preface}{xxi}{chapter*.3}
-\contentsline {fm}{About the Authors}{xxv}{chapter*.8}
+\contentsline {fm}{About the Authors}{xxv}{chapter*.7}
 \contentsline {part}{I\hspace {1em}Data wrangling and visualisation}{1}{part.1}
 \contentsline {chapter}{\numberline {1}Why we love R - TODO}{3}{chapter.1}
 \contentsline {section}{\numberline {1.1}Help, what's a script}{3}{section.1.1}
@@ -96,30 +96,30 @@
 \contentsline {section}{\numberline {6.3}Get the data}{128}{section.6.3}
 \contentsline {section}{\numberline {6.4}Check the data}{128}{section.6.4}
 \contentsline {section}{\numberline {6.5}Plot the data}{130}{section.6.5}
-\contentsline {subsection}{\numberline {6.5.1}Histogram}{130}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.1}Histogram}{131}{subsection.6.5.1}
 \contentsline {subsection}{\numberline {6.5.2}Q-Q plot}{131}{subsection.6.5.2}
-\contentsline {subsection}{\numberline {6.5.3}Boxplot}{132}{subsection.6.5.3}
-\contentsline {section}{\numberline {6.6}Compare the means of two groups}{134}{section.6.6}
-\contentsline {subsection}{\numberline {6.6.1}T-test}{134}{subsection.6.6.1}
-\contentsline {subsection}{\numberline {6.6.2}Two-sample \emph {t}-tests}{134}{subsection.6.6.2}
-\contentsline {subsection}{\numberline {6.6.3}When pipe sends data to the wrong place: use \texttt {,\ data\ =\ .} to direct it}{136}{subsection.6.6.3}
+\contentsline {subsection}{\numberline {6.5.3}Boxplot}{133}{subsection.6.5.3}
+\contentsline {section}{\numberline {6.6}Compare the means of two groups}{135}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}T-test}{135}{subsection.6.6.1}
+\contentsline {subsection}{\numberline {6.6.2}Two-sample \emph {t}-tests}{135}{subsection.6.6.2}
+\contentsline {subsection}{\numberline {6.6.3}When pipe sends data to the wrong place: use \texttt {,\ data\ =\ .} to direct it}{137}{subsection.6.6.3}
 \contentsline {subsection}{\numberline {6.6.4}Paired \emph {t}-tests}{137}{subsection.6.6.4}
-\contentsline {section}{\numberline {6.7}Compare the mean of one group}{139}{section.6.7}
-\contentsline {subsection}{\numberline {6.7.1}One sample \emph {t}-tests}{139}{subsection.6.7.1}
+\contentsline {section}{\numberline {6.7}Compare the mean of one group}{140}{section.6.7}
+\contentsline {subsection}{\numberline {6.7.1}One sample \emph {t}-tests}{140}{subsection.6.7.1}
 \contentsline {section}{\numberline {6.8}Compare the means of more than two groups}{141}{section.6.8}
-\contentsline {subsection}{\numberline {6.8.1}Plot the data}{141}{subsection.6.8.1}
-\contentsline {subsection}{\numberline {6.8.2}ANOVA}{141}{subsection.6.8.2}
+\contentsline {subsection}{\numberline {6.8.1}Plot the data}{142}{subsection.6.8.1}
+\contentsline {subsection}{\numberline {6.8.2}ANOVA}{142}{subsection.6.8.2}
 \contentsline {subsection}{\numberline {6.8.3}Assumptions}{143}{subsection.6.8.3}
-\contentsline {subsection}{\numberline {6.8.4}Pairwise testing and multiple comparisons}{143}{subsection.6.8.4}
-\contentsline {section}{\numberline {6.9}Non-parametric data}{146}{section.6.9}
-\contentsline {subsection}{\numberline {6.9.1}Transforming data}{146}{subsection.6.9.1}
-\contentsline {subsection}{\numberline {6.9.2}Non-parametric test for comparing two groups}{148}{subsection.6.9.2}
-\contentsline {subsection}{\numberline {6.9.3}Non-parametric test for comparing more than two groups}{149}{subsection.6.9.3}
-\contentsline {section}{\numberline {6.10}Finalfit approach}{150}{section.6.10}
+\contentsline {subsection}{\numberline {6.8.4}Pairwise testing and multiple comparisons}{144}{subsection.6.8.4}
+\contentsline {section}{\numberline {6.9}Non-parametric data}{147}{section.6.9}
+\contentsline {subsection}{\numberline {6.9.1}Transforming data}{147}{subsection.6.9.1}
+\contentsline {subsection}{\numberline {6.9.2}Non-parametric test for comparing two groups}{149}{subsection.6.9.2}
+\contentsline {subsection}{\numberline {6.9.3}Non-parametric test for comparing more than two groups}{150}{subsection.6.9.3}
+\contentsline {section}{\numberline {6.10}Finalfit approach}{151}{section.6.10}
 \contentsline {section}{\numberline {6.11}Conclusions}{151}{section.6.11}
-\contentsline {section}{\numberline {6.12}Exercises}{151}{section.6.12}
-\contentsline {subsection}{\numberline {6.12.1}Exercise 1}{151}{subsection.6.12.1}
-\contentsline {subsection}{\numberline {6.12.2}Exercise 2}{151}{subsection.6.12.2}
+\contentsline {section}{\numberline {6.12}Exercises}{152}{section.6.12}
+\contentsline {subsection}{\numberline {6.12.1}Exercise 1}{152}{subsection.6.12.1}
+\contentsline {subsection}{\numberline {6.12.2}Exercise 2}{152}{subsection.6.12.2}
 \contentsline {subsection}{\numberline {6.12.3}Exercise 3}{152}{subsection.6.12.3}
 \contentsline {subsection}{\numberline {6.12.4}Exercise 4}{152}{subsection.6.12.4}
 \contentsline {section}{\numberline {6.13}Exercise solutions}{152}{section.6.13}
@@ -128,156 +128,156 @@
 \contentsline {subsection}{\numberline {7.1.1}The Question (1)}{158}{subsection.7.1.1}
 \contentsline {subsection}{\numberline {7.1.2}Fitting a regression line}{158}{subsection.7.1.2}
 \contentsline {subsection}{\numberline {7.1.3}When the line fits well}{160}{subsection.7.1.3}
-\contentsline {subsection}{\numberline {7.1.4}The fitted line and the linear equation}{164}{subsection.7.1.4}
-\contentsline {subsection}{\numberline {7.1.5}Effect modification}{166}{subsection.7.1.5}
-\contentsline {subsection}{\numberline {7.1.6}R-squared and model fit}{168}{subsection.7.1.6}
-\contentsline {subsection}{\numberline {7.1.7}Confounding}{170}{subsection.7.1.7}
+\contentsline {subsection}{\numberline {7.1.4}The fitted line and the linear equation}{162}{subsection.7.1.4}
+\contentsline {subsection}{\numberline {7.1.5}Effect modification}{164}{subsection.7.1.5}
+\contentsline {subsection}{\numberline {7.1.6}R-squared and model fit}{169}{subsection.7.1.6}
+\contentsline {subsection}{\numberline {7.1.7}Confounding}{169}{subsection.7.1.7}
 \contentsline {subsection}{\numberline {7.1.8}Summary}{170}{subsection.7.1.8}
-\contentsline {section}{\numberline {7.2}Fitting simple models}{172}{section.7.2}
-\contentsline {subsection}{\numberline {7.2.1}The Question (2)}{172}{subsection.7.2.1}
+\contentsline {section}{\numberline {7.2}Fitting simple models}{171}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}The Question (2)}{171}{subsection.7.2.1}
 \contentsline {subsection}{\numberline {7.2.2}Get the data}{172}{subsection.7.2.2}
 \contentsline {subsection}{\numberline {7.2.3}Check the data}{172}{subsection.7.2.3}
 \contentsline {subsection}{\numberline {7.2.4}Plot the data}{172}{subsection.7.2.4}
 \contentsline {subsection}{\numberline {7.2.5}Simple linear regression}{173}{subsection.7.2.5}
-\contentsline {subsection}{\numberline {7.2.6}Multivariable linear regression}{178}{subsection.7.2.6}
+\contentsline {subsection}{\numberline {7.2.6}Multivariable linear regression}{177}{subsection.7.2.6}
 \contentsline {subsection}{\numberline {7.2.7}Check assumptions}{182}{subsection.7.2.7}
 \contentsline {section}{\numberline {7.3}Fitting more complex models}{183}{section.7.3}
 \contentsline {subsection}{\numberline {7.3.1}The Question (3)}{183}{subsection.7.3.1}
-\contentsline {subsection}{\numberline {7.3.2}Model fitting principles}{184}{subsection.7.3.2}
-\contentsline {subsection}{\numberline {7.3.3}AIC}{186}{subsection.7.3.3}
-\contentsline {subsection}{\numberline {7.3.4}Get the data}{186}{subsection.7.3.4}
-\contentsline {subsection}{\numberline {7.3.5}Check the data}{186}{subsection.7.3.5}
+\contentsline {subsection}{\numberline {7.3.2}Model fitting principles}{183}{subsection.7.3.2}
+\contentsline {subsection}{\numberline {7.3.3}AIC}{185}{subsection.7.3.3}
+\contentsline {subsection}{\numberline {7.3.4}Get the data}{185}{subsection.7.3.4}
+\contentsline {subsection}{\numberline {7.3.5}Check the data}{185}{subsection.7.3.5}
 \contentsline {subsection}{\numberline {7.3.6}Plot the data}{186}{subsection.7.3.6}
 \contentsline {subsection}{\numberline {7.3.7}Linear regression with finalfit}{187}{subsection.7.3.7}
-\contentsline {subsection}{\numberline {7.3.8}Summary}{195}{subsection.7.3.8}
-\contentsline {chapter}{\numberline {8}Working with categorical outcome variables}{197}{chapter.8}
-\contentsline {section}{\numberline {8.1}Factors}{197}{section.8.1}
-\contentsline {section}{\numberline {8.2}The Question}{198}{section.8.2}
-\contentsline {section}{\numberline {8.3}Get the data}{198}{section.8.3}
-\contentsline {section}{\numberline {8.4}Check the data}{198}{section.8.4}
-\contentsline {section}{\numberline {8.5}Recode the data}{200}{section.8.5}
-\contentsline {section}{\numberline {8.6}Should I convert a continuous variable to a categorical variable?}{201}{section.8.6}
-\contentsline {subsection}{\numberline {8.6.1}Equal intervals vs quantiles}{203}{subsection.8.6.1}
-\contentsline {section}{\numberline {8.7}Plot the data}{205}{section.8.7}
-\contentsline {section}{\numberline {8.8}Group factor levels together - \texttt {fct\_collapse()}}{207}{section.8.8}
-\contentsline {section}{\numberline {8.9}Change the order of values within a factor - \texttt {fct\_relevel()}}{208}{section.8.9}
-\contentsline {section}{\numberline {8.10}Summarising factors with \texttt {Finalfit}}{209}{section.8.10}
-\contentsline {section}{\numberline {8.11}Pearson's chi-squared and Fisher's exact tests}{210}{section.8.11}
-\contentsline {subsection}{\numberline {8.11.1}Base R}{211}{subsection.8.11.1}
-\contentsline {section}{\numberline {8.12}Fisher's exact test}{213}{section.8.12}
-\contentsline {section}{\numberline {8.13}Chi-squared / Fisher's exact test using Finalfit}{214}{section.8.13}
-\contentsline {section}{\numberline {8.14}Exercise}{216}{section.8.14}
-\contentsline {section}{\numberline {8.15}Exercise}{217}{section.8.15}
-\contentsline {section}{\numberline {8.16}Exercise}{217}{section.8.16}
-\contentsline {section}{\numberline {8.17}Exercise}{217}{section.8.17}
-\contentsline {chapter}{\numberline {9}Logistic regression}{219}{chapter.9}
-\contentsline {section}{\numberline {9.1}Generalised linear modelling}{219}{section.9.1}
-\contentsline {section}{\numberline {9.2}Binary logistic regression}{219}{section.9.2}
-\contentsline {subsection}{\numberline {9.2.1}The Question (1)}{220}{subsection.9.2.1}
-\contentsline {subsection}{\numberline {9.2.2}Odds and probabilities}{221}{subsection.9.2.2}
-\contentsline {subsection}{\numberline {9.2.3}Odds ratios}{222}{subsection.9.2.3}
-\contentsline {subsection}{\numberline {9.2.4}Fitting a regression line}{223}{subsection.9.2.4}
-\contentsline {subsection}{\numberline {9.2.5}The fitted line and the logistic regression equation}{224}{subsection.9.2.5}
-\contentsline {subsection}{\numberline {9.2.6}Effect modification and confounding}{226}{subsection.9.2.6}
-\contentsline {section}{\numberline {9.3}Data preparation and exploratory analysis}{229}{section.9.3}
-\contentsline {subsection}{\numberline {9.3.1}The Question (2)}{229}{subsection.9.3.1}
-\contentsline {subsection}{\numberline {9.3.2}Get the data}{230}{subsection.9.3.2}
-\contentsline {subsection}{\numberline {9.3.3}Check the data}{230}{subsection.9.3.3}
-\contentsline {subsection}{\numberline {9.3.4}Recode the data}{230}{subsection.9.3.4}
-\contentsline {subsection}{\numberline {9.3.5}Plot the data}{233}{subsection.9.3.5}
-\contentsline {subsection}{\numberline {9.3.6}Tabulate data}{235}{subsection.9.3.6}
-\contentsline {section}{\numberline {9.4}Model assumptions}{236}{section.9.4}
-\contentsline {subsection}{\numberline {9.4.1}Linearity of continuous variables to the response}{236}{subsection.9.4.1}
-\contentsline {subsection}{\numberline {9.4.2}Multicollinearity}{237}{subsection.9.4.2}
-\contentsline {section}{\numberline {9.5}Fitting logistic regression models in base R}{241}{section.9.5}
-\contentsline {section}{\numberline {9.6}Modelling strategy for binary outcomes}{244}{section.9.6}
-\contentsline {section}{\numberline {9.7}Fitting logistic regression models with Finalfit}{244}{section.9.7}
-\contentsline {subsection}{\numberline {9.7.1}Criterion-based model fitting}{245}{subsection.9.7.1}
-\contentsline {section}{\numberline {9.8}Model fitting}{246}{section.9.8}
-\contentsline {subsection}{\numberline {9.8.1}Odds ratio plot}{253}{subsection.9.8.1}
-\contentsline {section}{\numberline {9.9}Correlated groups of observations}{253}{section.9.9}
-\contentsline {subsection}{\numberline {9.9.1}Simulate data}{254}{subsection.9.9.1}
-\contentsline {subsection}{\numberline {9.9.2}Plot the data}{255}{subsection.9.9.2}
-\contentsline {subsection}{\numberline {9.9.3}Mixed effects models in base R}{256}{subsection.9.9.3}
-\contentsline {subsection}{\numberline {9.9.4}Exercise}{259}{subsection.9.9.4}
-\contentsline {chapter}{\numberline {10}Time-to-event data and survival}{261}{chapter.10}
-\contentsline {section}{\numberline {10.1}The Question}{261}{section.10.1}
-\contentsline {section}{\numberline {10.2}Get and check data}{262}{section.10.2}
-\contentsline {section}{\numberline {10.3}Death status}{262}{section.10.3}
-\contentsline {section}{\numberline {10.4}Time and censoring}{263}{section.10.4}
-\contentsline {section}{\numberline {10.5}Recode the data}{263}{section.10.5}
-\contentsline {section}{\numberline {10.6}Kaplan-Meier survival estimator}{264}{section.10.6}
-\contentsline {subsection}{\numberline {10.6.1}KM analysis for whole cohort}{264}{subsection.10.6.1}
-\contentsline {subsection}{\numberline {10.6.2}Model}{264}{subsection.10.6.2}
-\contentsline {subsection}{\numberline {10.6.3}Life table}{265}{subsection.10.6.3}
-\contentsline {section}{\numberline {10.7}Kaplan Meier plot}{265}{section.10.7}
-\contentsline {section}{\numberline {10.8}Cox-proportional hazards regression}{266}{section.10.8}
-\contentsline {subsection}{\numberline {10.8.1}Univariable and multivariable models}{267}{subsection.10.8.1}
-\contentsline {subsection}{\numberline {10.8.2}Reduced model}{268}{subsection.10.8.2}
-\contentsline {subsection}{\numberline {10.8.3}Testing for proportional hazards}{268}{subsection.10.8.3}
-\contentsline {subsection}{\numberline {10.8.4}Stratified models}{269}{subsection.10.8.4}
-\contentsline {subsection}{\numberline {10.8.5}Correlated groups of observations}{270}{subsection.10.8.5}
-\contentsline {subsection}{\numberline {10.8.6}Hazard ratio plot}{271}{subsection.10.8.6}
-\contentsline {section}{\numberline {10.9}Competing risks regression}{272}{section.10.9}
-\contentsline {section}{\numberline {10.10}Summary}{274}{section.10.10}
-\contentsline {section}{\numberline {10.11}Exercise}{274}{section.10.11}
-\contentsline {subsection}{\numberline {10.11.1}Exercise}{275}{subsection.10.11.1}
-\contentsline {section}{\numberline {10.12}Dates in R}{276}{section.10.12}
-\contentsline {subsection}{\numberline {10.12.1}Converting dates to survival time}{276}{subsection.10.12.1}
-\contentsline {section}{\numberline {10.13}Solutions}{277}{section.10.13}
-\contentsline {part}{III\hspace {1em}Workflow}{279}{part.3}
-\contentsline {chapter}{\numberline {11}Notebooks and markdown}{281}{chapter.11}
-\contentsline {chapter}{\numberline {12}Exporting tables and plots}{283}{chapter.12}
-\contentsline {section}{\numberline {12.1}The Question}{283}{section.12.1}
-\contentsline {section}{\numberline {12.2}Get the data}{283}{section.12.2}
-\contentsline {section}{\numberline {12.3}Check the data}{284}{section.12.3}
-\contentsline {section}{\numberline {12.4}Demographics table}{284}{section.12.4}
-\contentsline {section}{\numberline {12.5}Logistic regression table}{286}{section.12.5}
-\contentsline {section}{\numberline {12.6}Odds ratio plot}{286}{section.12.6}
-\contentsline {section}{\numberline {12.7}MS Word via knitr/R Markdown}{287}{section.12.7}
-\contentsline {section}{\numberline {12.8}Create Word template file}{288}{section.12.8}
-\contentsline {section}{\numberline {12.9}PDF via knitr/R Markdown}{289}{section.12.9}
-\contentsline {chapter}{\numberline {13}Missing data}{293}{chapter.13}
-\contentsline {section}{\numberline {13.1}The problem of missing data}{293}{section.13.1}
-\contentsline {section}{\numberline {13.2}Some confusing terminology}{294}{section.13.2}
-\contentsline {subsection}{\numberline {13.2.1}Missing completely at random (MCAR)}{294}{subsection.13.2.1}
-\contentsline {subsection}{\numberline {13.2.2}Missing at random (MAR)}{294}{subsection.13.2.2}
-\contentsline {subsection}{\numberline {13.2.3}Missing not at random (MNAR)}{294}{subsection.13.2.3}
-\contentsline {section}{\numberline {13.3}Ensure your data are coded correctly: ff\_glimpse}{295}{section.13.3}
-\contentsline {section}{\numberline {13.4}The Question}{295}{section.13.4}
-\contentsline {section}{\numberline {13.5}2. Identify missing values in each variable: missing\_plot}{297}{section.13.5}
-\contentsline {section}{\numberline {13.6}3. Look for patterns of missingness: missing\_pattern}{298}{section.13.6}
-\contentsline {subsection}{\numberline {13.6.1}Make sure you include missing data in demographics tables}{300}{subsection.13.6.1}
-\contentsline {section}{\numberline {13.7}4. Check for associations between missing and observed data: missing\_pairs \textbar {} missing\_compare}{300}{section.13.7}
-\contentsline {section}{\numberline {13.8}For those who like an omnibus test}{304}{section.13.8}
-\contentsline {section}{\numberline {13.9}5. Decide how to handle missing data}{305}{section.13.9}
-\contentsline {section}{\numberline {13.10}MCAR, MAR, or MNAR}{306}{section.13.10}
-\contentsline {subsection}{\numberline {13.10.1}\textbf {MCAR} vs MAR}{306}{subsection.13.10.1}
-\contentsline {subsection}{\numberline {13.10.2}MCAR vs \textbf {MAR}}{307}{subsection.13.10.2}
-\contentsline {subsection}{\numberline {13.10.3}\textbf {MNAR} vs MAR}{311}{subsection.13.10.3}
-\contentsline {chapter}{\numberline {14}Encryption}{313}{chapter.14}
-\contentsline {section}{\numberline {14.1}Safe practice}{313}{section.14.1}
-\contentsline {section}{\numberline {14.2}\texttt {Encryptr} package}{314}{section.14.2}
-\contentsline {section}{\numberline {14.3}Get the package}{314}{section.14.3}
-\contentsline {section}{\numberline {14.4}Get the data}{315}{section.14.4}
-\contentsline {section}{\numberline {14.5}Generate private/public keys}{315}{section.14.5}
-\contentsline {section}{\numberline {14.6}Encrypt columns of data}{316}{section.14.6}
-\contentsline {section}{\numberline {14.7}Decrypt specific information only}{317}{section.14.7}
-\contentsline {section}{\numberline {14.8}Using a lookup table}{317}{section.14.8}
-\contentsline {section}{\numberline {14.9}Encrypting a file}{318}{section.14.9}
-\contentsline {section}{\numberline {14.10}Ciphertexts are no matchable}{319}{section.14.10}
-\contentsline {section}{\numberline {14.11}Providing a public key}{319}{section.14.11}
-\contentsline {section}{\numberline {14.12}Use in clinical trials}{320}{section.14.12}
-\contentsline {section}{\numberline {14.13}Caution}{320}{section.14.13}
-\contentsline {chapter}{\numberline {15}Version control}{321}{chapter.15}
-\contentsline {section}{\numberline {15.1}Setup Git on RStudio and Associate with GitHub}{321}{section.15.1}
-\contentsline {section}{\numberline {15.2}Create an SSH RSA key and add to your GitHub account}{321}{section.15.2}
-\contentsline {section}{\numberline {15.3}Create a project in RStudio and commit a file}{322}{section.15.3}
-\contentsline {section}{\numberline {15.4}Create a new repository on GitHub and link to RStudio project}{324}{section.15.4}
-\contentsline {section}{\numberline {15.5}Clone an existing GitHub project to new RStudio project}{324}{section.15.5}
-\contentsline {chapter}{\numberline {16}RStudio settings, good practise}{329}{chapter.16}
-\contentsline {section}{\numberline {16.1}Installation}{329}{section.16.1}
-\contentsline {section}{\numberline {16.2}Script vs Console}{330}{section.16.2}
-\contentsline {section}{\numberline {16.3}Starting with a blank canvas}{330}{section.16.3}
-\contentsline {chapter}{Index}{333}{section.16.3}
-\contentsline {section}{}{333}{section*.115}
+\contentsline {subsection}{\numberline {7.3.8}Summary}{194}{subsection.7.3.8}
+\contentsline {chapter}{\numberline {8}Working with categorical outcome variables}{195}{chapter.8}
+\contentsline {section}{\numberline {8.1}Factors}{195}{section.8.1}
+\contentsline {section}{\numberline {8.2}The Question}{196}{section.8.2}
+\contentsline {section}{\numberline {8.3}Get the data}{196}{section.8.3}
+\contentsline {section}{\numberline {8.4}Check the data}{196}{section.8.4}
+\contentsline {section}{\numberline {8.5}Recode the data}{198}{section.8.5}
+\contentsline {section}{\numberline {8.6}Should I convert a continuous variable to a categorical variable?}{199}{section.8.6}
+\contentsline {subsection}{\numberline {8.6.1}Equal intervals vs quantiles}{201}{subsection.8.6.1}
+\contentsline {section}{\numberline {8.7}Plot the data}{203}{section.8.7}
+\contentsline {section}{\numberline {8.8}Group factor levels together - \texttt {fct\_collapse()}}{205}{section.8.8}
+\contentsline {section}{\numberline {8.9}Change the order of values within a factor - \texttt {fct\_relevel()}}{206}{section.8.9}
+\contentsline {section}{\numberline {8.10}Summarising factors with \textbf {Finalfit}}{207}{section.8.10}
+\contentsline {section}{\numberline {8.11}Pearson's chi-squared and Fisher's exact tests}{208}{section.8.11}
+\contentsline {subsection}{\numberline {8.11.1}Base R}{209}{subsection.8.11.1}
+\contentsline {section}{\numberline {8.12}Fisher's exact test}{211}{section.8.12}
+\contentsline {section}{\numberline {8.13}Chi-squared / Fisher's exact test using Finalfit}{212}{section.8.13}
+\contentsline {section}{\numberline {8.14}Exercise}{214}{section.8.14}
+\contentsline {section}{\numberline {8.15}Exercise}{215}{section.8.15}
+\contentsline {section}{\numberline {8.16}Exercise}{215}{section.8.16}
+\contentsline {section}{\numberline {8.17}Exercise}{215}{section.8.17}
+\contentsline {chapter}{\numberline {9}Logistic regression}{217}{chapter.9}
+\contentsline {section}{\numberline {9.1}Generalised linear modelling}{217}{section.9.1}
+\contentsline {section}{\numberline {9.2}Binary logistic regression}{217}{section.9.2}
+\contentsline {subsection}{\numberline {9.2.1}The Question (1)}{218}{subsection.9.2.1}
+\contentsline {subsection}{\numberline {9.2.2}Odds and probabilities}{219}{subsection.9.2.2}
+\contentsline {subsection}{\numberline {9.2.3}Odds ratios}{220}{subsection.9.2.3}
+\contentsline {subsection}{\numberline {9.2.4}Fitting a regression line}{221}{subsection.9.2.4}
+\contentsline {subsection}{\numberline {9.2.5}The fitted line and the logistic regression equation}{222}{subsection.9.2.5}
+\contentsline {subsection}{\numberline {9.2.6}Effect modification and confounding}{224}{subsection.9.2.6}
+\contentsline {section}{\numberline {9.3}Data preparation and exploratory analysis}{227}{section.9.3}
+\contentsline {subsection}{\numberline {9.3.1}The Question (2)}{227}{subsection.9.3.1}
+\contentsline {subsection}{\numberline {9.3.2}Get the data}{228}{subsection.9.3.2}
+\contentsline {subsection}{\numberline {9.3.3}Check the data}{228}{subsection.9.3.3}
+\contentsline {subsection}{\numberline {9.3.4}Recode the data}{228}{subsection.9.3.4}
+\contentsline {subsection}{\numberline {9.3.5}Plot the data}{231}{subsection.9.3.5}
+\contentsline {subsection}{\numberline {9.3.6}Tabulate data}{233}{subsection.9.3.6}
+\contentsline {section}{\numberline {9.4}Model assumptions}{234}{section.9.4}
+\contentsline {subsection}{\numberline {9.4.1}Linearity of continuous variables to the response}{234}{subsection.9.4.1}
+\contentsline {subsection}{\numberline {9.4.2}Multicollinearity}{235}{subsection.9.4.2}
+\contentsline {section}{\numberline {9.5}Fitting logistic regression models in base R}{239}{section.9.5}
+\contentsline {section}{\numberline {9.6}Modelling strategy for binary outcomes}{242}{section.9.6}
+\contentsline {section}{\numberline {9.7}Fitting logistic regression models with Finalfit}{242}{section.9.7}
+\contentsline {subsection}{\numberline {9.7.1}Criterion-based model fitting}{243}{subsection.9.7.1}
+\contentsline {section}{\numberline {9.8}Model fitting}{244}{section.9.8}
+\contentsline {subsection}{\numberline {9.8.1}Odds ratio plot}{251}{subsection.9.8.1}
+\contentsline {section}{\numberline {9.9}Correlated groups of observations}{251}{section.9.9}
+\contentsline {subsection}{\numberline {9.9.1}Simulate data}{252}{subsection.9.9.1}
+\contentsline {subsection}{\numberline {9.9.2}Plot the data}{253}{subsection.9.9.2}
+\contentsline {subsection}{\numberline {9.9.3}Mixed effects models in base R}{254}{subsection.9.9.3}
+\contentsline {subsection}{\numberline {9.9.4}Exercise}{257}{subsection.9.9.4}
+\contentsline {chapter}{\numberline {10}Time-to-event data and survival}{259}{chapter.10}
+\contentsline {section}{\numberline {10.1}The Question}{259}{section.10.1}
+\contentsline {section}{\numberline {10.2}Get and check data}{260}{section.10.2}
+\contentsline {section}{\numberline {10.3}Death status}{260}{section.10.3}
+\contentsline {section}{\numberline {10.4}Time and censoring}{261}{section.10.4}
+\contentsline {section}{\numberline {10.5}Recode the data}{261}{section.10.5}
+\contentsline {section}{\numberline {10.6}Kaplan Meier survival estimator}{262}{section.10.6}
+\contentsline {subsection}{\numberline {10.6.1}KM analysis for whole cohort}{262}{subsection.10.6.1}
+\contentsline {subsection}{\numberline {10.6.2}Model}{262}{subsection.10.6.2}
+\contentsline {subsection}{\numberline {10.6.3}Life table}{263}{subsection.10.6.3}
+\contentsline {section}{\numberline {10.7}Kaplan Meier plot}{263}{section.10.7}
+\contentsline {section}{\numberline {10.8}Cox-proportional hazards regression}{264}{section.10.8}
+\contentsline {subsection}{\numberline {10.8.1}Univariable and multivariable models}{265}{subsection.10.8.1}
+\contentsline {subsection}{\numberline {10.8.2}Reduced model}{266}{subsection.10.8.2}
+\contentsline {subsection}{\numberline {10.8.3}Testing for proportional hazards}{266}{subsection.10.8.3}
+\contentsline {subsection}{\numberline {10.8.4}Stratified models}{267}{subsection.10.8.4}
+\contentsline {subsection}{\numberline {10.8.5}Correlated groups of observations}{268}{subsection.10.8.5}
+\contentsline {subsection}{\numberline {10.8.6}Hazard ratio plot}{269}{subsection.10.8.6}
+\contentsline {section}{\numberline {10.9}Competing risks regression}{270}{section.10.9}
+\contentsline {section}{\numberline {10.10}Summary}{272}{section.10.10}
+\contentsline {section}{\numberline {10.11}Exercise}{272}{section.10.11}
+\contentsline {subsection}{\numberline {10.11.1}Exercise}{273}{subsection.10.11.1}
+\contentsline {section}{\numberline {10.12}Dates in R}{274}{section.10.12}
+\contentsline {subsection}{\numberline {10.12.1}Converting dates to survival time}{274}{subsection.10.12.1}
+\contentsline {section}{\numberline {10.13}Solutions}{275}{section.10.13}
+\contentsline {part}{III\hspace {1em}Workflow}{277}{part.3}
+\contentsline {chapter}{\numberline {11}Notebooks and markdown}{279}{chapter.11}
+\contentsline {chapter}{\numberline {12}Exporting tables and plots}{281}{chapter.12}
+\contentsline {section}{\numberline {12.1}The Question}{281}{section.12.1}
+\contentsline {section}{\numberline {12.2}Get the data}{281}{section.12.2}
+\contentsline {section}{\numberline {12.3}Check the data}{282}{section.12.3}
+\contentsline {section}{\numberline {12.4}Demographics table}{282}{section.12.4}
+\contentsline {section}{\numberline {12.5}Logistic regression table}{284}{section.12.5}
+\contentsline {section}{\numberline {12.6}Odds ratio plot}{284}{section.12.6}
+\contentsline {section}{\numberline {12.7}MS Word via knitr/R Markdown}{285}{section.12.7}
+\contentsline {section}{\numberline {12.8}Create Word template file}{286}{section.12.8}
+\contentsline {section}{\numberline {12.9}PDF via knitr/R Markdown}{287}{section.12.9}
+\contentsline {chapter}{\numberline {13}Missing data}{291}{chapter.13}
+\contentsline {section}{\numberline {13.1}The problem of missing data}{291}{section.13.1}
+\contentsline {section}{\numberline {13.2}Some confusing terminology}{292}{section.13.2}
+\contentsline {subsection}{\numberline {13.2.1}Missing completely at random (MCAR)}{292}{subsection.13.2.1}
+\contentsline {subsection}{\numberline {13.2.2}Missing at random (MAR)}{292}{subsection.13.2.2}
+\contentsline {subsection}{\numberline {13.2.3}Missing not at random (MNAR)}{292}{subsection.13.2.3}
+\contentsline {section}{\numberline {13.3}Ensure your data are coded correctly: ff\_glimpse}{293}{section.13.3}
+\contentsline {section}{\numberline {13.4}The Question}{293}{section.13.4}
+\contentsline {section}{\numberline {13.5}2. Identify missing values in each variable: missing\_plot}{295}{section.13.5}
+\contentsline {section}{\numberline {13.6}3. Look for patterns of missingness: missing\_pattern}{296}{section.13.6}
+\contentsline {subsection}{\numberline {13.6.1}Make sure you include missing data in demographics tables}{298}{subsection.13.6.1}
+\contentsline {section}{\numberline {13.7}4. Check for associations between missing and observed data: missing\_pairs \textbar {} missing\_compare}{298}{section.13.7}
+\contentsline {section}{\numberline {13.8}For those who like an omnibus test}{302}{section.13.8}
+\contentsline {section}{\numberline {13.9}5. Decide how to handle missing data}{303}{section.13.9}
+\contentsline {section}{\numberline {13.10}MCAR, MAR, or MNAR}{304}{section.13.10}
+\contentsline {subsection}{\numberline {13.10.1}\textbf {MCAR} vs MAR}{304}{subsection.13.10.1}
+\contentsline {subsection}{\numberline {13.10.2}MCAR vs \textbf {MAR}}{305}{subsection.13.10.2}
+\contentsline {subsection}{\numberline {13.10.3}\textbf {MNAR} vs MAR}{309}{subsection.13.10.3}
+\contentsline {chapter}{\numberline {14}Encryption}{311}{chapter.14}
+\contentsline {section}{\numberline {14.1}Safe practice}{311}{section.14.1}
+\contentsline {section}{\numberline {14.2}\texttt {Encryptr} package}{312}{section.14.2}
+\contentsline {section}{\numberline {14.3}Get the package}{312}{section.14.3}
+\contentsline {section}{\numberline {14.4}Get the data}{313}{section.14.4}
+\contentsline {section}{\numberline {14.5}Generate private/public keys}{313}{section.14.5}
+\contentsline {section}{\numberline {14.6}Encrypt columns of data}{314}{section.14.6}
+\contentsline {section}{\numberline {14.7}Decrypt specific information only}{315}{section.14.7}
+\contentsline {section}{\numberline {14.8}Using a lookup table}{315}{section.14.8}
+\contentsline {section}{\numberline {14.9}Encrypting a file}{316}{section.14.9}
+\contentsline {section}{\numberline {14.10}Ciphertexts are no matchable}{317}{section.14.10}
+\contentsline {section}{\numberline {14.11}Providing a public key}{317}{section.14.11}
+\contentsline {section}{\numberline {14.12}Use in clinical trials}{318}{section.14.12}
+\contentsline {section}{\numberline {14.13}Caution}{318}{section.14.13}
+\contentsline {chapter}{\numberline {15}Version control}{319}{chapter.15}
+\contentsline {section}{\numberline {15.1}Setup Git on RStudio and Associate with GitHub}{319}{section.15.1}
+\contentsline {section}{\numberline {15.2}Create an SSH RSA key and add to your GitHub account}{319}{section.15.2}
+\contentsline {section}{\numberline {15.3}Create a project in RStudio and commit a file}{320}{section.15.3}
+\contentsline {section}{\numberline {15.4}Create a new repository on GitHub and link to RStudio project}{322}{section.15.4}
+\contentsline {section}{\numberline {15.5}Clone an existing GitHub project to new RStudio project}{322}{section.15.5}
+\contentsline {chapter}{\numberline {16}RStudio settings, good practise}{327}{chapter.16}
+\contentsline {section}{\numberline {16.1}Installation}{327}{section.16.1}
+\contentsline {section}{\numberline {16.2}Script vs Console}{328}{section.16.2}
+\contentsline {section}{\numberline {16.3}Starting with a blank canvas}{328}{section.16.3}
+\contentsline {chapter}{Index}{331}{section.16.3}
+\contentsline {section}{}{331}{section*.117}

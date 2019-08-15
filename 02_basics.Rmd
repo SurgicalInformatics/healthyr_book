@@ -242,7 +242,7 @@ mydata %>%
 
 
 
-## Reading data into R{#ch02-h2-reading-data-into-r}
+## Reading data into R{#chap02-h2-reading-data-into-r}
 
 We mentioned before that once a table (e.g. from spreadsheet or database) gets read into R we start calling it a `tibble`. 
 The most common format data comes to us in is CSV (comma separated values). 

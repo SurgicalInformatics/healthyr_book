@@ -1,4 +1,5 @@
-# Logistic regression
+# Logistic regression{#chap09-h1}
+\index{logistic regression@\textbf{logistic regression}}
 
 > All generalizations are false, including this one.  
 > Mark Twain
@@ -26,6 +27,8 @@ Generalised linear modelling is an extension to the linear modelling we are now 
 It allows the principles of linear regression to be applied when outcomes are not continuous numeric variables.  
 
 ## Binary logistic regression
+\index{logistic regression@\textbf{logistic regression}!binary data}
+\index{binary data}
 
 A regression analysis is a statistical approach to estimating the relationships between variables, often by drawing straight lines through data points. 
 For instance, we may try to predict blood pressure in a group of patients based on their coffee consumption (REF Chap 7 PLOT). 
@@ -57,6 +60,7 @@ But remember, the data are completely simulated and not based on anything in the
 It's just for fun!
 
 ### Odds and probabilities
+\index{logistic regression@\textbf{logistic regression}!odds and probabilities}
 
 To understand logistic regression we need to remind ourselves about odds and probability. 
 Odds and probabilities can get confusing so get them straight with Figure \@ref(fig:chap09-fig-odds).
@@ -84,6 +88,8 @@ $Probability = \frac{odds}{odds+1}$.
 
 
 ### Odds ratios
+\index{logistic regression@\textbf{logistic regression}!odds ratio}
+\index{odds ratio}
 
 Another important term to remind ourselves of is the 'odds ratio'. 
 Why?
@@ -102,6 +108,7 @@ We will continue to work with odds ratios given they are an important expression
 
 
 ### Fitting a regression line
+\index{logistic regression@\textbf{logistic regression}!fitted line}
 
 Let's return to the task at hand. 
 The difficulty in moving from a continuous to a binary outcome variable becomes obvious quickly. 
@@ -170,6 +177,9 @@ knitr::include_graphics("images/chapter09/4_equation.pdf")
 ```
 
 ### Effect modification and confounding
+\index{logistic regression@\textbf{logistic regression}!effect modification}
+\index{logistic regression@\textbf{logistic regression}!confounding}
+\index{logistic regression@\textbf{logistic regression}!interactions}
 
 As with all multivariable regression models, logistic regression allows the incorporation of multiple variables which all may have direct effects on outcome or may confound the effect of another varaible. 
 This is explored in detail in (SEE CHAPTER 7 confounding). 
@@ -313,7 +323,7 @@ We can also see that the status most of those who did not die is known beyond 5 
 Let's decide then to look at 5-year mortality from melanoma. 
 The definition of this will be at 5 years after surgery, who had died from melanoma and who had not. 
 
-```{r}
+```{r fig.height=3.5, fig.width=6, message=TRUE}
 library(ggplot2)
 melanoma %>% 
   ggplot(aes(x = time/365)) + 
@@ -390,6 +400,7 @@ It appears that patients with ulcerated tumours were older, more likely to be ma
 It is important therefore to consider inclusion of these variables in a regression model. 
 
 ## Model assumptions
+\index{logistic regression@\textbf{logistic regression}!assumptions}
 
 Binary logistic regression is robust many assumptions which can cause problems in other statistical analyses. 
 The main assumptions are:
@@ -400,6 +411,7 @@ The main assumptions are:
 4. No multicollinearity - explanatory variables should not be highly correlated with each other;
 
 ### Linearity of continuous variables to the response
+\index{logistic regression@\textbf{logistic regression}!loess}
 
 A graphical check of linearity can be performed using a best fit "loess" line. 
 This is on the probability scale, so it is not going to be straight. 
@@ -423,7 +435,8 @@ Age is interesting here, the relationship is u-shaped.
 The chance of death is higher in the young and the old compared with the middle-aged. 
 This will need to be accounted for in any model including age as a predictor. 
 
-### Multicollinearity
+### Multicollinearity{#chap09-h2-multicollinearity}
+\index{logistic regression@\textbf{logistic regression}!multicollinearity}
 
 Multicollinearity occurs when two highly correlated exlanatory variables are included in a model. 
 If both variables desribe the same thing, then their coefficients (ORs) can become unstable potentially leading to erroneous conclusions. 
@@ -494,6 +507,7 @@ Understand the underlying data using plotting and tables, and you are unlikely t
 <!-- We include the popular `variance inflation factor` test below.  -->
 
 ## Fitting logistic regression models in base R
+\index{logistic regression@\textbf{logistic regression}!model fitting}
 
 The `glm()` stands for `generalised linear model` and is the standard base R approach to logistic regression. 
 
@@ -546,6 +560,7 @@ fit1 %>%
 
 
 ## Modelling strategy for binary outcomes
+\index{logistic regression@\textbf{logistic regression}!model fitting principles}
 
 A statistical model is a tool to understand the world. 
 The better your model describes your data, the more useful it will be.
@@ -602,12 +617,16 @@ We recommend looking at three metrics:
 * Hosmer–Lemeshow test, which should be non-significant. 
 
 **AIC**
+\index{logistic regression@\textbf{logistic regression}!AIC}
+\index{AIC
 
 The AIC has been previous described (REF). 
 It provides a measure of model goodness-of-fit - or how well the model fits the available data. 
 It is penalised for each additional variable, so should be somewhat robust against over-fitting (when the model starts to describe noise).
 
 **C-statistic**
+\index{logistic regression@\textbf{logistic regression}!C-statistic}
+\index{C-statistic}
 
 The c-statistic or area under the reciever operator curve (ROC) provides a measure of model 'discrimination'. 
 It runs from 0.5 to 1.0, with 0.5 being no better than chance, and 1.0 being perfect fit. 
@@ -617,6 +636,9 @@ If you take a random patient who died and a random patient who did not die, then
 In our example above, the should get that correct 72% of the time.  
 
 **Hosmer-Lemeshow test**
+\index{logistic regression@\textbf{logistic regression}!Hosmer-Lemeshow test}
+\index{Hosmer-Lemeshow test}
+
 
 If you are interested in using your model for prediction, it is important that it is calibrated correctly. 
 Using our example, callibration means that the model accurately predicts death from melanoma when the risk to the patient is low and also accurately predicts death when the risk is high. 
@@ -627,6 +649,8 @@ If the model predcits equally well (or badly) at low probabilites compared with 
 
 
 ## Model fitting
+\index{logistic regression@\textbf{logistic regression}!model fitting}
+\index{logistic regression@\textbf{logistic regression}!finalfit}
 
 Engage with the data and the results when model fitting. 
 Do not use automated processes - you have to keep thinking. 
@@ -878,6 +902,8 @@ fit[[2]] %>% mykable(col.names = "") %>%
 ```
 
 ### Odds ratio plot
+\index{logistic regression@\textbf{logistic regression}!odds ratio plot}
+\index{plotting@\textbf{plotting}!odds ratio}
 
 ```{r fig.height=3, fig.width=7, message=FALSE, warnings=FALSE}
 dependent = "mort_5yr"
@@ -892,6 +918,11 @@ melanoma %>%
 We can conclude that there is evidence of an association between tumour ulceration and 5-year survival which is independent of the tumour depth as captured by T-stage.
 
 ## Correlated groups of observations
+\index{logistic regression@\textbf{logistic regression}!correlated groups}
+\index{logistic regression@\textbf{logistic regression}!mixed effects}
+\index{logistic regression@\textbf{logistic regression}!random effects}
+\index{logistic regression@\textbf{logistic regression}!multilevel}
+\index{logistic regression@\textbf{logistic regression}!hierarchical}
 
 In our modelling stratgey above, we mentioned the incorporation of population stratification if available.
 What does this mean. 
@@ -957,8 +988,6 @@ melanoma %>%
 #   count(mort_5yr) %>%
 #   spread(mort_5yr, n)
 ```
-
-
 
 ### Mixed effects models in base R
 

@@ -131,10 +131,6 @@ mydata %>%
   facet_grid(year ~ continent)     # add scale="free" for axes to vary                                 
 ```
 
-\index{functions@\textbf{functions}!filter}
-\index{plotting@\textbf{plotting}!geom\_histogram}
-\index{plotting@\textbf{plotting}!facet\_grid}
-
 What can we see? 
 That life expectancy in Africa is lower than in other regions. 
 That we have little data for Oceania given there are only two countries included, Australia and New Zealand. 
@@ -159,10 +155,8 @@ mydata %>%
   facet_grid(year ~ continent)
 ```
 
-\index{functions@\textbf{functions}!filter}
 \index{plotting@\textbf{plotting}!geom\_qq}
 \index{plotting@\textbf{plotting}!geom\_qq\_line}
-\index{plotting@\textbf{plotting}!facet\_grid}
 
 What can we see?
 We are looking to see if the data follow the 45 degree line which is included in the plot.
@@ -173,6 +167,8 @@ We do not recommend this, simply because it is often non-significant when the nu
 It is therefore not useful in practice - common sense should prevail.
 
 ### Boxplot
+\index{plotting@\textbf{plotting}!geom\_boxplot}
+\index{plotting@\textbf{plotting}!boxplot}
 
 Boxplots are our preferred method for comparing a continuous variable such as life expectancy with a categorical explanatory variable. 
 It is much better than a bar plot, or a bar plot with error bars, sometimes called a dynamite plot. 
@@ -190,11 +186,6 @@ mydata %>%
   geom_boxplot() +
   facet_grid(. ~ year)                    # spread by year, note `.`
 ```
-
-\index{functions@\textbf{functions}!filter}
-\index{plotting@\textbf{plotting}!geom\_boxplot}
-\index{plotting@\textbf{plotting}!boxplot}
-\index{plotting@\textbf{plotting}!facet\_grid}
 
 What can we see?
 The median life expectancy is lower in Africa than in any other continent. 
@@ -216,15 +207,6 @@ mydata %>%
   ggtitle(
     "Life expectancy by continent in 2002 v 2007") # add title
 ```
-
-\index{functions@\textbf{functions}!filter}
-\index{plotting@\textbf{plotting}!geom\_boxplot}
-\index{plotting@\textbf{plotting}!geom\_jitter}
-\index{plotting@\textbf{plotting}!facet\_grid}
-\index{plotting@\textbf{plotting}!theme}
-\index{plotting@\textbf{plotting}!xlab}
-\index{plotting@\textbf{plotting}!ylab}
-\index{plotting@\textbf{plotting}!ggtitle}
 
 ## Compare the means of two groups
 
@@ -258,7 +240,6 @@ ttest_result =
 ttest_result
 ```
 
-\index{functions@\textbf{functions}!filter}
 \index{functions@\textbf{functions}!t.test}
 
 The Welch two-sample t-test is the most flexible and copes with differences in variance (variability) between groups, as in this example. 
@@ -289,9 +270,6 @@ mydata %>%
 
 ```
 
-\index{functions@\textbf{functions}!filter}
-\index{functions@\textbf{functions}!tidy}
-
 ### When pipe sends data to the wrong place: use `, data = .` to direct it
 
 In the code above, the `, data = .` bit is necessary because the pipe usually sends data to the beginning of function brackets. So `mydata %>% t.test(lifeExp ~ continent)` would be equivalent to `t.test(mydata, lifeExp ~ continent`. 
@@ -318,7 +296,6 @@ paired_data %>%
   geom_line()
 ```
 
-\index{functions@\textbf{functions}!filter}
 \index{plotting@\textbf{plotting}!geom\_line}
 
 What is the difference in life expectancy for each individual country?
@@ -338,12 +315,6 @@ paired_table
 paired_table %>% summarise( mean(dlifeExp) )
 
 ```
-
-\index{functions@\textbf{functions}!select}
-\index{functions@\textbf{functions}!spread}
-\index{functions@\textbf{functions}!mutate}
-\index{functions@\textbf{functions}!summarise}
-
 
 On average, therefore, there is an increase in life expectancy of 1.5 years in Asian countries between 2002 and 2007. 
 Let's test whether this number differs from zero with a paired *t*-test. 
@@ -403,12 +374,6 @@ mydata %>%
   )
 ```
 
-\index{functions@\textbf{functions}!filter}
-\index{functions@\textbf{functions}!group\_by}
-\index{functions@\textbf{functions}!do}
-\index{functions@\textbf{functions}!t.test}
-\index{functions@\textbf{functions}!tidy}
-
 The mean life expectancy for Europe and Oceania do not differ from 77, while the others to to varying degrees. 
 In particular, look at the confidence intervals of the tables and whether they include or exclude 77.
 
@@ -429,9 +394,6 @@ mydata %>%
   geom_boxplot()
 ```
 
-\index{functions@\textbf{functions}!filter}
-\index{plotting@\textbf{plotting}!geom\_boxplot}
-
 ### ANOVA
 \index{analysis of variance (ANOVA)}
 
@@ -451,7 +413,6 @@ summary(fit)
 ```
 
 \index{functions@\textbf{functions}!aov}
-\index{functions@\textbf{functions}!summary}
 
 We can conclude from this, that there is a difference in the means between at least two pairs of the included continents. 
 As above, the output can be neatened up using the `tidy` function. 
@@ -464,10 +425,6 @@ mydata %>%
   aov(lifeExp~continent, data = .) %>% 
   tidy()
 ```
-
-\index{functions@\textbf{functions}!filter}
-\index{functions@\textbf{functions}!aov}
-\index{functions@\textbf{functions}!tidy}
 
 ### Assumptions
 
@@ -594,14 +551,6 @@ africa_data %>%
   facet_grid(. ~ key, scales = "free")   # facet & axes free to vary
 ```
 
-\index{functions@\textbf{functions}!filter}
-\index{functions@\textbf{functions}!select}
-\index{functions@\textbf{functions}!mutate}
-\index{functions@\textbf{functions}!head}
-\index{functions@\textbf{functions}!gather}
-\index{plotting@\textbf{plotting}!geom\_histogram}
-\index{plotting@\textbf{plotting}!facet\_grid}
-
 This has worked well here. 
 The right skew on the Africa data has been dealt with by the transformation. 
 A parametric test such as a *t*-test can now be performed. 
@@ -642,14 +591,7 @@ p1 / p2 | p3
 
 ```
 
-\index{functions@\textbf{functions}!filter}
-\index{plotting@\textbf{plotting}!geom\_boxplot}
-\index{plotting@\textbf{plotting}!facet\_grid}
-\index{plotting@\textbf{plotting}!geom\_qq}
-\index{plotting@\textbf{plotting}!geom\_qq\_line}
-\index{plotting@\textbf{plotting}!geom\_jitter}
 \index{plotting@\textbf{plotting}!patchwork}
-\index{plotting@\textbf{plotting}!theme}
 
 The data is a little skewed based on the histograms and Q-Q plots. 
 The difference between 1982 and 2007 is not particularly striking on the boxplot.
@@ -676,9 +618,7 @@ mydata %>%
   tidy()
 ```
 
-\index{functions@\textbf{functions}!filter}
 \index{functions@\textbf{functions}!kruskal.test}
-\index{functions@\textbf{functions}!tidy}
 
 ## Finalfit approach
 
@@ -716,8 +656,6 @@ mydata %>%
     kable_styling(latex_options = c("scale_down", "hold_position"))
 ```
 
-\index{functions@\textbf{functions}!filter}
-\index{functions@\textbf{functions}!mutate}
 \index{functions@\textbf{functions}!summary\_factorlist}
 
 ## Conclusions

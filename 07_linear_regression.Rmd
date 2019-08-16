@@ -291,6 +291,7 @@ p1 + p2
 ```
 
 ### Simple linear regression
+\index{functions@\textbf{functions}!lm}
 
 As you can see, `ggplot()` is very happy to run and plot linear regression models for us.
 While this is sometimes convenient, we usually want to build, run, and explore these models ourselves. 
@@ -376,6 +377,8 @@ Now, the updated results tell us that in year 1952, the life expectancy in the U
 Note that the slope (0.18) does not change. There was nothing wrong with the original model and the results were correct, the intercept was just not very useful.
 
 *Accessing all model information `tidy()` and `glance()`*
+\index{functions@\textbf{functions}!tidy}
+\index{functions@\textbf{functions}!glance}
 
 In the fit_uk and fit_turkey examples above, we were using `fit_uk %>% summary()` to get R to print out a summary of the model. This summary is not, however, in a rectangular shape so we can't easily access the values or put them in a table/use as information on plot labels.
 
@@ -480,6 +483,7 @@ list(fit_both1, fit_both2, fit_both3) %>%
   map_df(glance, .id = "fit")
 
 ```
+\index{functions@\textbf{functions}!purrr::map_df}
 
 ### Check assumptions
 
@@ -642,6 +646,7 @@ explanatory = c("personality_2L")
 fit_sbp1 = mydata %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
 ```
+\index{functions@\textbf{functions}!finalfit}
 
 ```{r, echo=FALSE}
 fit_sbp1[[1]] %>% mykable(caption = "Linear regression: Systolic blood pressure by personality type.") %>% 
@@ -806,6 +811,9 @@ This serves to emphasise our most important point.
 Our focus should be on understanding the underlying data itself, rather than relying on complex multidimensional modelling procedures. 
 By making liberal use of upfront plotting, together with further visualisation as you understand the data, you will likely be able to draw most of the important conclusions that the data has to offer. 
 Use modelling to quantify and confirm this, rather than the primary method of data exploration. 
+
+<!-- Coefficient plot -->
+<!-- Consider lmer / random effects -->
 
 ### Summary
 

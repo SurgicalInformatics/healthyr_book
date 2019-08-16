@@ -35,26 +35,39 @@
   \item Fisher's exact test, \hyperpage{208}
   \item \textbf{functions}
     \subitem aov, \hyperpage{143}
-    \subitem do, \hyperpage{141}
+    \subitem chisq.test, \hyperpage{210}
+    \subitem coef, \hyperpage{241}
+    \subitem confint, \hyperpage{241}
+    \subitem cox.zph, \hyperpage{267}
+    \subitem cut, \hyperpage{202}
+    \subitem factor, \hyperpage{198}
+    \subitem fct\_collapse, \hyperpage{206}
+    \subitem fct\_recode, \hyperpage{198}
+    \subitem fct\_relevel, \hyperpage{206}
     \subitem ff\_glimpse, \hyperpage{129}
-    \subitem filter, \hyperpage{131--134}, \hyperpage{136--138}, 
-		\hyperpage{141--143}, \hyperpage{148--151}
-    \subitem gather, \hyperpage{148}
+    \subitem ff\_label, \hyperpage{198}
+    \subitem finalfit, \hyperpage{188}
+    \subitem fisher.test, \hyperpage{211}
+    \subitem ggpairs, \hyperpage{236}
+    \subitem glance, \hyperpage{176}
     \subitem glimpse, \hyperpage{129}
-    \subitem group\_by, \hyperpage{141}
-    \subitem head, \hyperpage{148}
+    \subitem glm, \hyperpage{240}, \hyperpage{247}
+    \subitem glmer, \hyperpage{255}
+    \subitem hr\_plot, \hyperpage{270}
     \subitem kruskal.test, \hyperpage{150}
+    \subitem lm, \hyperpage{173}
     \subitem missing\_glimpse, \hyperpage{129}
-    \subitem mutate, \hyperpage{139}, \hyperpage{148}, \hyperpage{151}
+    \subitem or\_plot, \hyperpage{251}
     \subitem pairwise.t.test, \hyperpage{145, 146}
-    \subitem select, \hyperpage{139}, \hyperpage{148}
-    \subitem spread, \hyperpage{139}
-    \subitem summarise, \hyperpage{139}
-    \subitem summary, \hyperpage{143}
-    \subitem summary\_factorlist, \hyperpage{151}
-    \subitem t.test, \hyperpage{136}, \hyperpage{139}, \hyperpage{141}
-    \subitem tidy, \hyperpage{137}, \hyperpage{141}, \hyperpage{143}, 
-		\hyperpage{150}
+    \subitem purrr::map_df, \hyperpage{181}
+    \subitem quantile, \hyperpage{202}
+    \subitem strata, \hyperpage{268}
+    \subitem summary\_factorlist, \hyperpage{151}, \hyperpage{212}
+    \subitem Surv, \hyperpage{262}
+    \subitem surv_plot, \hyperpage{264}
+    \subitem survfit, \hyperpage{263}
+    \subitem t.test, \hyperpage{136}, \hyperpage{139}
+    \subitem tidy, \hyperpage{176}
     \subitem wilcox.test, \hyperpage{150}
 
   \indexspace
@@ -123,21 +136,16 @@
   \item pairwise testing, \hyperpage{144}
   \item \textbf{plotting}
     \subitem boxplot, \hyperpage{133}
-    \subitem facet\_grid, \hyperpage{131--134}, \hyperpage{148, 149}
-    \subitem geom\_boxplot, \hyperpage{133, 134}, \hyperpage{142}, 
-		\hyperpage{149}
-    \subitem geom\_histogram, \hyperpage{131}, \hyperpage{148}
-    \subitem geom\_jitter, \hyperpage{134}, \hyperpage{149}
+    \subitem geom\_boxplot, \hyperpage{133}
     \subitem geom\_line, \hyperpage{138}
-    \subitem geom\_qq, \hyperpage{132}, \hyperpage{149}
-    \subitem geom\_qq\_line, \hyperpage{132}, \hyperpage{149}
-    \subitem ggtitle, \hyperpage{134}
+    \subitem geom\_qq, \hyperpage{132}
+    \subitem geom\_qq\_line, \hyperpage{132}
     \subitem hazard ratio plot, \hyperpage{269}
+    \subitem hr\_plot, \hyperpage{270}
     \subitem odds ratio, \hyperpage{251}
+    \subitem or\_plot, \hyperpage{251}
     \subitem patchwork, \hyperpage{149}
-    \subitem theme, \hyperpage{134}, \hyperpage{149}
-    \subitem xlab, \hyperpage{134}
-    \subitem ylab, \hyperpage{134}
+    \subitem survplot, \hyperpage{264}
 
   \indexspace
 

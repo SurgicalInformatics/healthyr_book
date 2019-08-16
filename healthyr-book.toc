@@ -159,7 +159,7 @@
 \contentsline {section}{\numberline {8.6}Should I convert a continuous variable to a categorical variable?}{199}{section.8.6}
 \contentsline {subsection}{\numberline {8.6.1}Equal intervals vs quantiles}{201}{subsection.8.6.1}
 \contentsline {section}{\numberline {8.7}Plot the data}{203}{section.8.7}
-\contentsline {section}{\numberline {8.8}Group factor levels together - \texttt {fct\_collapse()}}{205}{section.8.8}
+\contentsline {section}{\numberline {8.8}Group factor levels together - \texttt {fct\_collapse()}}{206}{section.8.8}
 \contentsline {section}{\numberline {8.9}Change the order of values within a factor - \texttt {fct\_relevel()}}{206}{section.8.9}
 \contentsline {section}{\numberline {8.10}Summarising factors with \textbf {Finalfit}}{207}{section.8.10}
 \contentsline {section}{\numberline {8.11}Pearson's chi-squared and Fisher's exact tests}{208}{section.8.11}

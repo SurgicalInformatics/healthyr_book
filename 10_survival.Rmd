@@ -4,7 +4,6 @@
 > The reports of my death have been greatly exaggerated.  
 > Mark Twain
 
-
 In healthcare, we deal with a lot of binary outcomes. 
 Death yes/no, disease recurrence yes/no, for instance. 
 These outcomes are often easily analysed using binary logistic regression as described in the previous chapter. 
@@ -124,6 +123,8 @@ survival_object = melanoma %$%
 	Surv(time/365, status_os)
 ```
 
+\index{functions@\textbf{functions}!Surv}
+
 ### KM analysis for whole cohort
 
 ### Model
@@ -137,6 +138,8 @@ If you want to plot survival stratified by a single grouping variable, you can s
 my_survfit = survfit(survival_object ~ 1, data = melanoma)
 my_survfit # 205 patients, 71 events
 ```
+
+\index{functions@\textbf{functions}!survfit}
 
 ### Life table
 \index{time-to-event / survival@\textbf{time-to-event / survival}!life table}
@@ -166,6 +169,9 @@ explanatory = c("ulcer")
 melanoma %>% 
 	surv_plot(dependent_os, explanatory, pval = TRUE)
 ```
+
+\index{functions@\textbf{functions}!surv_plot}
+\index{plotting@\textbf{plotting}!survplot}
 
 ## Cox-proportional hazards regression
 \index{time-to-event / survival@\textbf{time-to-event / survival}!Cox proportional hazards regression}
@@ -256,6 +262,8 @@ melanoma %>%
 zph_result
 ```
 
+\index{functions@\textbf{functions}!cox.zph}
+
 ### Stratified models
 \index{time-to-event / survival@\textbf{time-to-event / survival}!stratified models}
 
@@ -278,6 +286,8 @@ melanoma %>%
 	finalfit(dependent_os, explanatory) %>% 
 	mykable()
 ```
+
+\index{functions@\textbf{functions}!strata}
 
 ### Correlated groups of observations
 \index{time-to-event / survival@\textbf{time-to-event / survival}!correlated groups}
@@ -364,6 +374,9 @@ melanoma %>%
 					 title_text_size = 16,
 					plot_opts=list(xlab("HR, 95% CI"), theme(axis.title = element_text(size=12))))
 ```
+
+\index{functions@\textbf{functions}!hr\_plot}
+\index{plotting@\textbf{plotting}!hr\_plot}
 
 ## Competing risks regression
 \index{time-to-event / survival@\textbf{time-to-event / survival}!competing risks regression}

@@ -99,6 +99,12 @@ mydata = mydata %>%
            ff_label("Status"))
 ```
 
+\index{functions@\textbf{functions}!factor}
+\index{functions@\textbf{functions}!fct\_recode}
+\index{functions@\textbf{functions}!ff\_label}
+
+
+
 ## Should I convert a continuous variable to a categorical variable?
 \index{categorical data@\textbf{categorical data}!convert from continuous}
 
@@ -128,7 +134,7 @@ If you do it, try not to throw away too much information.
 theme_set(theme_bw())
 ```
 
-```{r fig.height=4, fig.width=4, warning=FALSE}
+```{r fig.height=3, fig.width=4, warning=FALSE}
 # Summary of age
 mydata$age %>% 
   summary()
@@ -174,6 +180,8 @@ mydata$age.factor %>%
   summary()
 ```
 
+\index{functions@\textbf{functions}!cut}
+
 Quantiles:
 ```{r}
 mydata = mydata %>% 
@@ -190,6 +198,8 @@ mydata$age.factor %>%
 #  fct_count()
 
 ```
+
+\index{functions@\textbf{functions}!quantile}
 
 Using the cut function, a continuous variable can be converted 
 
@@ -277,6 +287,8 @@ p1 / p2
 ```
 
 ## Group factor levels together - `fct_collapse()`
+\index{functions@\textbf{functions}!fct\_collapse}
+
 Our question relates to the association between tumour ulceration and death from melanoma. 
 The outcome measure has three levels as can be seen. 
 There are a number of ways of approaching this, which are discussed in detail in chapter 10 (REF).
@@ -292,6 +304,8 @@ mydata = mydata %>%
 ```
 
 ## Change the order of values within a factor - `fct_relevel()`{#chap08-h2-fct-relevel}
+\index{functions@\textbf{functions}!fct\_relevel}
+
 The default order for levels with `factor()` is alphabetical. 
 We often want to reorder the levels in a factor when plotting, or when performing an regression analysis and we want to specify the reference level.  
 
@@ -415,6 +429,8 @@ mydata %$%        # note $ sign here
   chisq.test()
 ```
 
+\index{functions@\textbf{functions}!chisq.test}
+
 The result can be extracted into a tibble using the `tidy()` function from the `broom` package. 
 ```{r}
 library(broom)
@@ -451,6 +467,8 @@ mydata %$%        # note $ sign here
   fisher.test()
 ```
 
+\index{functions@\textbf{functions}!fisher.test}
+
 ## Chi-squared / Fisher's exact test using Finalfit
 
 It is easier using Finalfit. 
@@ -464,6 +482,8 @@ mydata %>%
                      explanatory = "ulcer.factor",
                      p = TRUE)
 ```
+
+\index{functions@\textbf{functions}!summary\_factorlist}
 
 ```{r echo=FALSE}
 library(finalfit)

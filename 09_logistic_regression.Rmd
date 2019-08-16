@@ -453,6 +453,9 @@ melanoma %>%
   ggpairs(columns = explanatory)
 ```
 
+\index{functions@\textbf{functions}!ggpairs}
+
+
 If you have many variables you want to check you can split them up. 
 
 **Continuous to continuous**
@@ -496,7 +499,6 @@ melanoma %>%
   ylab("proportion") +
   facet_wrap(~key, scale = "free", ncol = 2) +
   coord_flip()
-
 ```
 
 None of the explanatory variables are highly correlated with one another. 
@@ -525,6 +527,8 @@ fit1 = glm(mort_5yr ~ ulcer.factor, data = melanoma, family = binomial)
 summary(fit1)
 ```
 
+\index{functions@\textbf{functions}!glm}
+
 This is the standard R output which you should become familiar with. 
 It what is included in the previous figures. 
 The estimates of the coefficients (slopes) in this output are on the log-odds scale and always will be. 
@@ -538,6 +542,10 @@ The coefficients and their 95% confidence intervals can be extracted and exponen
 coef(fit1) %>% exp()
 confint(fit1) %>% exp()
 ```
+
+\index{functions@\textbf{functions}!coef}
+\index{functions@\textbf{functions}!confint}
+
 
 Note that the 95% confidence interval is between the 2.5% and 97.5% quantiles of the distribution, hence why the results appear in this way. 
 
@@ -735,6 +743,8 @@ glm(mort_5yr ~ ulcer.factor  +I(age^2) + age,
   summary()
 ```
 
+\index{functions@\textbf{functions}!glm}
+
 It can be done in `Finalfit` in a similar manner. 
 Note with default univariable model settings, the quadratic and linear term are considered in separate models, which doesn't make much sense. 
 
@@ -914,6 +924,8 @@ melanoma %>%
           table_text_size = 4)
 ```
 
+\index{functions@\textbf{functions}!or\_plot}
+\index{plotting@\textbf{plotting}!or\_plot}
 
 We can conclude that there is evidence of an association between tumour ulceration and 5-year survival which is independent of the tumour depth as captured by T-stage.
 
@@ -1000,6 +1012,8 @@ melanoma %>%
         data = ., family = "binomial") %>% 
   summary()
 ```
+
+\index{functions@\textbf{functions}!glmer}
 
 The base R output is similar to `glm()`. 
 It includes the standard deviation on the random effects intercept as well. 

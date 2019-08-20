@@ -170,8 +170,8 @@ melanoma %>%
 	surv_plot(dependent_os, explanatory, pval = TRUE)
 ```
 
-\index{functions@\textbf{functions}!surv_plot}
-\index{plotting@\textbf{plotting}!survplot}
+\index{functions@\textbf{functions}!surv\_plot}
+\index{plotting@\textbf{plotting}!surv\_plot}
 
 ## Cox-proportional hazards regression
 \index{time-to-event / survival@\textbf{time-to-event / survival}!Cox proportional hazards regression}
@@ -200,7 +200,7 @@ explanatory = c("age", "sex", "thickness", "ulcer")
 
 melanoma %>% 
 	finalfit(dependent_os, explanatory) %>% 
-	mykable()
+	mykable(caption = "Univariable and multivariable Cox Proportional Hazards: Overall survival following surgery for melanoma by patient and tumour variables.")
 ```
 
 The labelling of the final table can be easily adjusted as desired.
@@ -219,7 +219,7 @@ melanoma %>%
 	rename("Overall survival" = label) %>% 
 	rename(" " = levels) %>% 
 	rename(" " = all) %>% 
-	mykable()
+	mykable(caption = "Univariable and multivariable Cox Proportional Hazards: Overall survival following surgery for melanoma by patient and tumour variables (tidied).")
 ```
 
 ### Reduced model
@@ -239,7 +239,7 @@ explanatory_multi = c("age", "thickness", "ulcer")
 melanoma %>% 
 	finalfit(dependent_os, explanatory, 
 	         explanatory_multi, keep_models = TRUE) %>% 
-	mykable()
+	mykable(caption = "Cox Proportional Hazards: Overall survival following surgery for melanoma with reduced model.")
 ```
 
 ### Testing for proportional hazards
@@ -284,7 +284,7 @@ explanatory= c("age", "sex", "ulcer", "thickness",
                "strata(year)")
 melanoma %>% 
 	finalfit(dependent_os, explanatory) %>% 
-	mykable()
+	mykable(caption = "Cox Proportional Hazards: Overall survival following surgery for melanoma statified by year of surgery.")
 ```
 
 \index{functions@\textbf{functions}!strata}
@@ -321,7 +321,7 @@ explanatory = c("age", "sex", "thickness", "ulcer",
                 "cluster(hospital_id)")
 melanoma %>% 
 	finalfit(dependent_os, explanatory) %>% 
-	mykable()
+	mykable(caption = "Cox Proportional Hazards: Overall survival following surgery for melanoma with robust standard errors (cluster model)")
 ```
 
 
@@ -351,7 +351,7 @@ explanatory = c("age", "sex", "thickness", "ulcer",
                 "frailty(hospital_id)")
 melanoma %>% 
 	finalfit(dependent_os, explanatory) %>% 
-	mykable()
+	mykable(caption = "Cox Proportional Hazards: Overall survival following surgery for melanoma (frailty model)")
 ```
 
 The `frailty()` method here is being superseded by the `coxme` package, and we look forward to incorporating this in the future. 
@@ -367,12 +367,12 @@ melanoma %>%
 	hr_plot(dependent_os, explanatory)
 ```
 
-```{r echo=FALSE, fig.height=3, fig.width=7}
+```{r fig.height=3, fig.width=7, message=FALSE, warnings=FALSE, fig.cap="Hazard ratio plot"}
 library(ggplot2)
 melanoma %>% 
-	hr_plot(dependent_os, explanatory, table_text_size = 3.5,
-					 title_text_size = 16,
-					plot_opts=list(xlab("HR, 95% CI"), theme(axis.title = element_text(size=12))))
+  hr_plot(dependent_os, explanatory, table_text_size = 3.5,
+          title_text_size = 16,
+          plot_opts=list(xlab("HR, 95% CI"), theme(axis.title = element_text(size=12))))
 ```
 
 \index{functions@\textbf{functions}!hr\_plot}
@@ -462,7 +462,7 @@ melanoma %>%
 
   select(-fit_id, -index) %>%
   dependent_label(melanoma, "Survival") %>% 
-	mykable()
+	mykable(caption = "Cox Proportional Hazards and competing risks regression combined")
 ```
 
 ## Summary

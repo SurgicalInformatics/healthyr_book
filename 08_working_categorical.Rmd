@@ -345,7 +345,7 @@ library(finalfit)
 mydata %>% 
   summary_factorlist(dependent = "status_dss", 
                      explanatory = "ulcer.factor") %>% 
-  mykable()
+  mykable(caption = "Two-by-two table with Finalfit: Died with melanoma by tumour ulceration status.")
 ```
 
 
@@ -373,7 +373,7 @@ mydata %>%
                        c("ulcer.factor", "age.factor", 
                          "sex.factor", "thickness")
   ) %>% 
-  mykable()
+  mykable(caption = "Multiple variables by outcome: Outcome after surgeyr for melanoma by patient and disease factors.")
 ```
 
 ## Pearson's chi-squared and Fisher's exact tests
@@ -491,7 +491,7 @@ mydata %>%
   summary_factorlist(dependent = "status_dss", 
                      explanatory = "ulcer.factor",
                      p = TRUE) %>% 
-  mykable()
+  mykable(caption = "Two-by-two table with chi-squared test using final fit: Outcome after surgery for melanoma by tumour ulceration status.")
 ```
 
 Add further variables.
@@ -512,7 +512,7 @@ mydata %>%
                        c("ulcer.factor", "age.factor", 
                          "sex.factor", "thickness"),
                      p = TRUE) %>% 
-  mykable()
+  mykable(caption = "Multiple variables by outcome with hypothesis tests: Outcome after surgery for melanoma by patient and disease factors (chi-squared test).")
 ```
 
 Switch to Fisher's exact test.
@@ -535,7 +535,7 @@ mydata %>%
                          "sex.factor", "thickness"),
                      p = TRUE,
                      catTest = catTestfisher) %>% 
-  mykable()
+  mykable(caption = "Multiple variables by outcome with hypothesis tests: Outcome after surgery for melanoma by patient and disease factors (Fisher's exact test).")
 ```
 
 Other options can be included.
@@ -570,7 +570,7 @@ mydata %>%
                      na_include = TRUE, # include missing in table and tests
                      add_dependent_label = TRUE
   ) %>% 
-  mykable()
+  mykable(caption = "Multiple variables by outcome with hypothesis tests: options including missing data, rounding, and labels.")
 ```
 
 ## Exercise

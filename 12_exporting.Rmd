@@ -69,7 +69,7 @@ colon_s %>%
 colon_s %>% 
   summary_factorlist(dependent, explanatory, 
                      p=TRUE, na_include=TRUE) %>% 
-  mykable()
+  mykable(caption = "Exporting 'table 1': Tumour differentiation by patient and disease factors.")
 ```
 
 Note missing data in `obstruct.factor` (REF missing data). 
@@ -107,7 +107,7 @@ colon_s %>%
   summary_factorlist(dependent, explanatory, 
                      p=TRUE, na_include=TRUE, 
                      add_dependent_label=TRUE) %>% 
-  mykable() %>% 
+  mykable(caption = "Exporting 'table 1': adjusting labels and output.") %>% 
   column_spec(1, width = "3.5cm")
 ```
 
@@ -132,12 +132,12 @@ dependent = "mort_5yr"
 colon_s %>% 
   finalfit(dependent, explanatory, 
            dependent_label_prefix = "") %>% 
-  mykable()
+  mykable(caption = "Exporting a regression results table.")
 ```
 
 ## Odds ratio plot
 
-```{r fig.height=3.5, fig.width=7, message=FALSE, warning=FALSE}
+```{r fig.height=3.5, fig.width=7, message=FALSE, warning=FALSE, fig.cap="Odds ratio plot."}
 colon_s %>% 
   or_plot(dependent, explanatory, 
           breaks = c(0.5, 1, 5, 10, 20, 30),

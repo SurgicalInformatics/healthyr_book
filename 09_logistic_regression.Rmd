@@ -392,7 +392,7 @@ melanoma %>%
   summary_factorlist(dependent, explanatory, p = TRUE,
                      column = TRUE,       # proportions by column
                      add_dependent_label = TRUE) %>% 
-  mykable() %>% 
+  mykable(caption="Multiple variables by explanatory variable of interest: Malignant melanoma ulceration by patient and disease variables.") %>% 
   column_spec(1, width = "3.5cm")
 ```
 
@@ -608,9 +608,9 @@ dependent = "mort_5yr"
 explanatory = "ulcer.factor"
 fit = melanoma %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
-fit[[1]] %>% mykable() %>% 
+fit[[1]] %>% mykable(caption = "Univariable logistic regression: 5-year survival from malignant melanoma by tumour ulceration (fit 1).") %>% 
   column_spec(1, width = "3.5cm")
-fit[[2]] %>% mykable(col.names = "") %>% 
+fit[[2]] %>% mykable(caption = "Model metrics: 5-year survival from malignant melanoma by tumour ulceration (fit 1).", col.names = "") %>% 
   column_spec(1, width = "18cm")
 ```
 
@@ -685,9 +685,9 @@ dependent = "mort_5yr"
 explanatory = c("ulcer.factor", "age", "sex.factor", "t_stage.factor")
 fit = melanoma %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
-fit[[1]] %>% mykable() %>% 
+fit[[1]] %>% mykable(caption = "Multivariable logistic regression: 5-year survival from malignant melanoma (fit 2).") %>% 
   column_spec(1, width = "3.5cm")
-fit[[2]] %>% mykable(col.names = "") %>% 
+fit[[2]] %>% mykable(caption = "Model metrics: 5-year survival from malignant melanoma (fit 2).", col.names = "") %>% 
   column_spec(1, width = "18cm")
 ```
 
@@ -726,9 +726,9 @@ melanoma = melanoma %>%
 
 fit = melanoma %>% 
   finalfit(dependent, c("ulcer.factor", "age.factor"), metrics = TRUE)
-fit[[1]] %>% mykable() %>% 
+fit[[1]] %>% mykable(caption = "Multivariable logistic regression: using `cut` to convert a continuous variable as a factor (fit 3).") %>% 
   column_spec(1, width = "3.5cm")
-fit[[2]] %>% mykable(col.names = "") %>% 
+fit[[2]] %>% mykable(caption = "Model metrics: using `cut` to convert a continuous variable as a factor (fit 3).", col.names = "") %>% 
   column_spec(1, width = "18cm")
 ```
 
@@ -763,9 +763,9 @@ explanatory = c("ulcer.factor", "I(age^2)", "age")
 fit = melanoma %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
 
-fit[[1]] %>% mykable() %>% 
+fit[[1]] %>% mykable(caption = "Multivariable logistic regression: including a quadratic term (fit 4).") %>% 
   column_spec(1, width = "3.5cm")
-fit[[2]] %>% mykable(col.names = "") %>% 
+fit[[2]] %>% mykable(caption = "Model metrics: including a quadratic term (fit 4).", col.names = "") %>% 
   column_spec(1, width = "18cm")
 ```
 
@@ -793,9 +793,9 @@ explanatory_multi = c("ulcer.factor", "sex.factor", "t_stage.factor")
 fit = melanoma %>% 
   finalfit(dependent, explanatory, explanatory_multi, 
            keep_models = TRUE, metrics = TRUE)
-fit[[1]] %>% mykable() %>% 
+fit[[1]] %>% mykable(caption = "Multivariable logistic regression model: comparing a reduced model in one table (fit 5).") %>% 
   column_spec(1, width = "3.5cm")
-fit[[2]] %>% mykable(col.names = "") %>% 
+fit[[2]] %>% mykable(caption = "Model metrics: comparing a reduced model in one table (fit 5).", col.names = "") %>% 
   column_spec(1, width = "18cm")
 ```  
   
@@ -827,9 +827,9 @@ explanatory_multi = c("ulcer.factor", "t_stage.factor")
 fit = melanoma %>% 
   finalfit(dependent, explanatory, explanatory_multi, 
            keep_models = TRUE, metrics = TRUE)
-fit[[1]] %>% mykable() %>% 
+fit[[1]] %>% mykable(caption = "Multivariable logistic regression: further reducing the model (fit 6).") %>% 
   column_spec(1, width = "3.5cm")
-fit[[2]] %>% mykable(col.names = "") %>% 
+fit[[2]] %>% mykable(caption = "Model metrics: further reducing the model (fit 6).", col.names = "") %>% 
   column_spec(1, width = "18cm")
 ```  
   
@@ -879,7 +879,7 @@ melanoma %>%
   
   #na.omit() %>% 
 
-  mykable() %>% 
+  mykable(caption = "Multivariable logistic regression: including an interaction term (fit 7).") %>% 
   column_spec(1, width = "3.5cm")
 ```
 
@@ -905,9 +905,9 @@ explanatory_multi = c("ulcer.factor", "t_stage.factor")
 fit = melanoma %>% 
   finalfit(dependent, explanatory, explanatory_multi, metrics = TRUE)
 
-fit[[1]] %>% mykable() %>% 
+fit[[1]] %>% mykable(caption = "Multivariable logistic regression: final model (fit 8).") %>% 
   column_spec(1, width = "3.5cm")
-fit[[2]] %>% mykable(col.names = "") %>% 
+fit[[2]] %>% mykable(caption = "Model metrics: final model (fit 8).", col.names = "") %>% 
   column_spec(1, width = "18cm")
 ```
 
@@ -915,13 +915,14 @@ fit[[2]] %>% mykable(col.names = "") %>%
 \index{logistic regression@\textbf{logistic regression}!odds ratio plot}
 \index{plotting@\textbf{plotting}!odds ratio}
 
-```{r fig.height=3, fig.width=7, message=FALSE, warnings=FALSE}
+```{r fig.height=3, fig.width=7, message=FALSE, warnings=FALSE, fig.cap="Odds ratio plot"}
 dependent = "mort_5yr"
 explanatory_multi = c("ulcer.factor", "t_stage.factor")
 melanoma %>% 
   or_plot(dependent, explanatory_multi,
           breaks = c(0.5, 1, 2, 5, 10, 25),
-          table_text_size = 4)
+          table_text_size = 3.5,
+          title_text_size = 16)
 ```
 
 \index{functions@\textbf{functions}!or\_plot}
@@ -1061,9 +1062,9 @@ fit = melanoma %>%
            keep_models = TRUE,
            metrics = TRUE)
 
-fit[[1]] %>% mykable() %>% 
+fit[[1]] %>% mykable(caption = "Multilevel (mixed effects) logistic regression.") %>% 
   column_spec(1, width = "3.5cm")
-fit[[2]] %>% mykable(col.names = "") %>% 
+fit[[2]] %>% mykable(caption = "Model metrics: multilevel (mixed effects) logistic regression.", col.names = "") %>% 
   column_spec(1, width = "18cm")
 ```
 

@@ -181,7 +181,7 @@ table1 = colon_s %>%
 
 ```{r echo=FALSE}
 table1 %>% 
-  mykable()
+  mykable(caption = "Simulated missing completely at random (MCAR) and missing at random (MAR) dataset.")
 ```
 
 ## 4. Check for associations between missing and observed data: missing_pairs | missing_compare
@@ -196,7 +196,7 @@ And of course, death is more likely after emergency surgery.
 `missing_pairs()` uses functions from the excellent `GGally` package. 
 It produces pairs plots to show relationships between missing values and observed values in all variables.
 
-```{r fig.height=7.5, fig.width=7.5, message=FALSE, warning=FALSE}
+```{r fig.height=7.5, fig.width=7.5, message=FALSE, warning=FALSE, fig.cap="Missing data matrix with `missing_pairs()`."}
 explanatory = c("age", "sex.factor", 
   "nodes", "obstruct.factor",  
   "smoking_mcar", "smoking_mar")
@@ -211,7 +211,7 @@ Is there a difference between age and mortality above?
 For discrete, data, counts are presented by default. 
 It is often easier to compare proportions:
 
-```{r fig.height=7.5, fig.width=7.5, message=FALSE, warning=FALSE}
+```{r fig.height=7.5, fig.width=7.5, message=FALSE, warning=FALSE, fig.cap="Missing data matrix with `missing_pairs(position = 'fill')` ."}
 colon_s %>% 
   missing_pairs(dependent, explanatory, position = "fill")
 ```
@@ -232,7 +232,7 @@ missing_mcar = colon_s %>%
 
 ```{r echo=FALSE}
 missing_mcar %>% 
-  mykable()
+  mykable(caption = "Missing data comparison: Smoking (MCAR).")
 ```
 
 ```{r}
@@ -244,7 +244,7 @@ missing_mar = colon_s %>%
 
 ```{r echo=FALSE}
 missing_mar %>% 
-  mykable()
+  mykable(caption = "Missing data comparison: Smoking (MAR).")
 ```
 
 It takes dependent and explanatory variables, but in this context dependent just refers to the variable being tested for missingness against the explanatory variables.
@@ -297,7 +297,7 @@ fit = colon_s %>%
 
 ```{r echo=FALSE}
 fit %>% 
-  mykable()
+  mykable(caption = "Regression analysis with missing data: listwise deletion.")
 ```
 
 **Other considerations**
@@ -395,7 +395,7 @@ fit_impute = summary1 %>%
 
 ```{r echo=FALSE}
 fit_impute %>% 
-  mykable()
+  mykable(caption = "Regression analysis with missing data: multiple imputation using `mice()`.")
 ```
 
 By examining the coefficients, the effect of the imputation compared with the complete case analysis can be clearly seen.
@@ -423,7 +423,7 @@ fit_explicit_na = colon_s %>%
 
 ```{r echo=FALSE}
 fit_explicit_na %>% 
-  mykable()
+  mykable(caption = "Regression analysis with missing data: explicitly modelling missing data.")
 ```
 
 ### **MNAR** vs MAR

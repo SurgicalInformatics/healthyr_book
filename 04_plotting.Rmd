@@ -5,18 +5,31 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-# text width is 4.6 inch, but markdown will scale down nicely even if we include widths and heights greater than 4.6
-knitr::opts_chunk$set(fig.width = 2.5, fig.height = 2.5, cache = TRUE)
+library(tidyverse)
+library(gapminder)
+# text width is 4.6 inch, but markdown scales down nicely even if we include widths and heights greater than 4.6
+knitr::opts_chunk$set(fig.width = 2.8, fig.height = 2.8, cache = TRUE)
 ```
 
 # Different types of plots
 
-There are a few different plotting packages in R, but the most elegant and versatile one is `ggplot2`.
-**gg** stands for grammar of graphics which means that we make a plot by describing it one component at a time. 
-In other words, we build a plot by adding layers to it.
-Don't worry, this is not as scary as it sounds, the simplest `ggplot()` consist of just two components: the variables to be plotted, and a geometrical object (e.g., point, line, bar, box, etc.).
+> What I can not create, I do not understand.  
+> Richard Feynman
 
-## Building a plot
+
+There are a few different plotting packages in R, but the most elegant and versatile one is `ggplot2`^[The name of the package is `ggplot2`, but the function is called `ggplot()`. For everything you've ever wanted to know about the grammar of graphics in R, see @wickham2016 .].
+**gg** stands for **g**rammar of **g**raphics which means that we can make a plot by describing it one component at a time. 
+In other words, we build a plot by adding layers to it.
+
+This does not have to be many layers, the simplest `ggplot()` consist of just two components:
+
+* the variables to be plotted, 
+* a geometrical object (e.g., point, line, bar, box, etc.).
+
+`ggplot()` calls geometrical objects **geoms**.
+
+
+Figure \@ref(fig:chap04-fig-steps) shows some example steps for building a scatterplot, including changing its appearance ('theme') and faceting - an efficient way of creating separate plots for subgroups.
 
 
 ```{r, message=F, include = FALSE}
@@ -35,37 +48,37 @@ gapminder2007 = gapminder %>%
 ```
 
 
-```{r fig.height=10, fig.width=6, echo = FALSE, fig.cap = "Example steps for building and modiyfing a ggplot. (1) initialising the canvas, defining variables, (2) adding points, (3) colouring points by continent, (4) changing point type, (5) faceting, (6) changing theme."}
+```{r chap04-fig-steps, fig.height=10, fig.width=6, echo = FALSE, fig.cap = "Example steps for building and modiyfing a ggplot. (1) initialising the canvas, defining variables, (2) adding points, (3) colouring points by continent, (4) changing point type, (5) faceting, (6) changing the plot theme and the scale of the x variable."}
 library(patchwork)
 
 step1 = gapminder2007 %>% 
-  ggplot(aes(x = gdpPercap_thousands, y=lifeExp))
+  ggplot(aes(x = gdpPercap, y = lifeExp))
 
 step2 = gapminder2007 %>% 
-  ggplot(aes(x = gdpPercap_thousands, y=lifeExp)) +
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
   geom_point()
 
 step3 = gapminder2007 %>% 
-  ggplot(aes(x = gdpPercap_thousands, y=lifeExp, colour = continent)) +
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
   geom_point()   +
   theme(legend.position = "none")
 
 step4 = gapminder2007 %>% 
-  ggplot(aes(x = gdpPercap_thousands, y=lifeExp, colour = continent)) +
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
   geom_point(shape = 1)
 
 step5 = gapminder2007 %>% 
-  ggplot(aes(x = gdpPercap_thousands, y=lifeExp, colour = continent)) +
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
   geom_point(shape = 1) +
   facet_wrap(~continent)
 
 step5 = gapminder2007 %>% 
-  ggplot(aes(x = gdpPercap_thousands, y=lifeExp, colour = continent)) +
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
   geom_point(shape = 1) +
   facet_wrap(~continent)
 
 step6 = gapminder2007 %>% 
-  ggplot(aes(x = gdpPercap/1000, y=lifeExp, colour = continent)) +
+  ggplot(aes(x = gdpPercap/1000, y = lifeExp, colour = continent)) +
   geom_point(shape = 1) +
   facet_wrap(~continent) +
   theme_light()
@@ -76,169 +89,253 @@ step6 = gapminder2007 %>%
 
 \clearpage 
 
-## Anatomy of ggplot explained
+## Data - gapminder
 
-**1.** `ggplot(aes(x = var1, y = var2))` initialises a canvas...
+We are using the gapminder dataset (https://www.gapminder.org/data) that has been put into an R package by @bryan2017 so we can load it with `library(gapminder)`.
 
-`aes()` stands for aesthetics - things we can see.
-
-```{r, fig.keep = 'none'}
-gapminder2007 %>% 
-  ggplot(aes(x = gdpPercap, y=lifeExp))
-```
-
-**2.** ...a canvas to which we can add geoms
-
-geom stands for geometrical. Here we've added `geom_point()`:
-
-```{r, fig.keep = 'none'}
-
-gapminder2007 %>% 
-  ggplot(aes(x = gdpPercap, y=lifeExp)) +
-  geom_point()
-
-```
-
-Note that everything before a `ggplot()` is piped (here we're only using a `%>%`, but it can be very useful to add filters between your data and the `ggplot()`, e.g.
-
-```{r, eval = FALSE}
-gapminder %>%
-  filter(year == 2007) %>% 
-  ggplot(aes(...)) +
-  ...
-```
-
-3. specifying aesthetics inside `aes()`
-
-Let's use the variable `continent` to colour the points by (`colour = continent` inside `aes()`):
-
-```{r, fig.width=4, fig.keep = 'none'}
-
-gapminder2007 %>% 
-  ggplot(aes(x = gdpPercap, y=lifeExp, colour = continent)) +
-  geom_point()
-
-```
-
-There is no limit to the `aes()` you can include.^[There is a limit. Press F1 on `geom_point()` to see the list of aesthetics.]
-
-3. specifying aesthetics outside `aes()`
-
-It is very important to understand the difference between  including ggplot arguments inside our outside of the `aes()` function.
-
-The main aesthetics we use are: **x**, **y**, **colour**, **fill**, **shape**, but there are more of course. 
-Press F1 on, e.g., `geom_point()` to see see the full list of aesthetics that can be used on scatterplots.
-
-Let's make all points hollow: `shape = 1`
-
-```{r, fig.keep = 'none'}
-step4 = gapminder2007 %>% 
-  ggplot(aes(x = gdpPercap, y=lifeExp, colour = continent)) +
-  geom_point(shape = 1)
-
-```
-
-
-4. From 1 plot to 5 with `facet_wrap(~continent)`
-
-
-```{r fig.height=3.5, fig.width=7, fig.keep = 'none'}
-
-step5 = gapminder2007 %>% 
-  ggplot(aes(x = gdpPercap, y=lifeExp, colour = continent)) +
-  geom_point(shape = 1) +
-  facet_wrap(~continent)
-
-```
-
-5. White background - `theme_bw()`
-
-We can include calculations inside `aes()`: e.g., `x = gdpPercap/1000`
-  
-```{r fig.height=3.5, fig.width=7, fig.keep = 'none'}
-
-step6 = gapminder2007 %>% 
-  ggplot(aes(x = gdpPercap/1000, y=lifeExp, colour = continent)) +
-  geom_point(shape = 1) +
-  facet_wrap(~continent) +
-  theme_bw()
-
-```
-
-
-
-
-
-This is how `ggplot()` works - by adding or modifying things one at a time.
-
-\clearpage
-
-## Data
-We will be using the gapminder dataset (https://www.gapminder.org/):
-
-```{r, message=F, include = FALSE}
+```{r, message=F, include = TRUE}
 library(tidyverse)
 library(gapminder)
 
 mydata = gapminder
 
-glimpse(mydata)
-mydata$year %>% unique()
-
-gapminder2007 = mydata %>% 
-  filter(year == 2007)
-
+glimpse(gapminder)
 ```
 
 
-## Scatter plots/bubble plots - `geom_point()`
 
-Plot life expectancy against GDP per capita (`x = gdpPercap, y=lifeExp`) at year 2007:
+The dataset includes `r nrow(gapminder)` observations (rows) of `r ncol(gapminder)` variables (columns: `r colnames(gapminder)`).
+`country`, `continent`, and `year` could be though of as grouping variables, whereas lifeExp (life expectancy), pop (population), and gdpPercap (Gross Domestic Product per capita) are values.
+
+The years in this dataset span `r range(gapminder$year) %>% paste(collapse = " to ")` with 5-year intervals (so a total of `r gapminder$year %>% n_distinct()` different years).
+It includes `r gapminder$country %>% n_distinct()` countries from `r gapminder$continent %>% n_distinct()` continents (`r gapminder$continent %>% unique()`).
+
+The way for you to double check that all of the numbers we've quoted above are correct, run these lines:
+
+```{r, results = "hide"}
+library(tidyverse)
+library(gapminder)
+gapminder$year %>% unique()
+gapminder$country %>% n_distinct()
+gapminder$continent %>% unique()
+```
+
+Let's create a new shorter tibble called `gapminder2007` that only includes data for the year 2007.
 
 ```{r}
+gapminder2007 = gapminder %>% 
+  filter(year == 2007)
 
-mydata %>% 
-  filter(year == 2007) %>% 
-  ggplot(aes(x = gdpPercap, y=lifeExp)) +
-  geom_point()
-  
+gapminder2007
 ```
 
 
-### Exercise
+## Anatomy of ggplot explained
 
-Follow the step-by-step instructions to transform the grey plot just above into this:
+We will now explain the six steps shown in Figure \@ref(fig:chap04-fig-steps).
+Note that you only need the first two to make a plot, the rest are just to show you further functionality and optional customisations.
 
-```{r, echo = FALSE, fig.width=6}
 
-mydata %>% 
-  filter(year == 2007) %>% 
-  ggplot(  aes(x = gdpPercap/1000, #divide by 1000 to tidy the x-axis
-               y=lifeExp,
-               colour=continent,
-               size=pop)) +
+**(1)** Start by defining the variables, e.g., `ggplot(aes(x = var1, y = var2))`:
+
+```{r, fig.keep = 'none'}
+gapminder2007 %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp))
+```
+
+This creates the first plot in Figure \@ref(fig:chap04-fig-steps).
+
+Although the above code is equivalent to:
+
+```{r, fig.keep = 'none'}
+ggplot(gapminder2007, aes(x = gdpPercap, y = lifeExp))
+```
+
+we tend to put the data first and then use the pipe (`%>%`) to send it to the `ggplot()` function.
+This becomes useful when we add further data wrangling functions between the data and the `ggplot()`.
+For example, our plotting pipelines often look like this:
+
+```{r, fig.keep = 'none', eval = FALSE}
+data %>% 
+  filter(...) %>% 
+  mutate(...) %>% 
+  ggplot(aes(...)) +
+  ...
+```
+
+The lines that come before the `ggplot()` function are piped, whereas from `ggplot()` onwards you have to use +.
+This is because we are now adding different layers and customisations to the same plot.
+
+`aes()` stands for **aes**thetics - things we can see. Variables are always inside the `aes()` function, which in return is inside a `ggplot()`.
+Take a moment to appreciate the double closing brackets `))` - the first one belongs to `aes()`, the second one to `ggplot()`. 
+
+
+**(2)** Choose and add a geometrical object
+
+Let's ask `ggplot()` to draw a point for each observation by adding `geom_point()`:
+
+```{r, fig.keep = 'none'}
+gapminder2007 %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+  geom_point()
+```
+
+We have now created the second plot in Figure \@ref(fig:chap04-fig-steps), a scatterplot.
+
+If we copy the above code and change just one thing - the `x` variable from `gdpPercap` to `continent` (which is a categorical variable) - we get what's called a strip plot.
+This means we are now plotting a continuous variable (`lifeExp`) against a categorical one (`continent`).
+But the thing to note is that the rest of the code stays exactly the same, all we did was change the `x = `.
+
+
+```{r, fig.width=3}
+gapminder2007 %>% 
+  ggplot(aes(x = continent, y = lifeExp)) +
+  geom_point()
+```
+
+**(3)** specifying further variables inside `aes()`
+
+Going back to the scatterplot (`lifeExp` vs `gdpPercap`), let's use `continent` to give the points some colour.
+We can do this by adding `colour = continent` inside the `aes()`:
+
+```{r, fig.width=4, fig.keep = 'none'}
+gapminder2007 %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point()
+```
+
+This creates the third plot in Figure \@ref(fig:chap04-fig-steps). It uses the default colour scheme and will automatically include a legend.
+Still with just two lines of code (`ggplot(...)` + `geom_point()`).
+
+**(4)** specifying aesthetics outside `aes()`
+
+It is very important to understand the difference between including `ggplot` arguments inside or outside of the `aes()` function.
+
+The main aesthetics (things we can see) are: **x**, **y**, **colour**, **fill**, **shape**, **size**, and any of these could appear inside or outside the `aes()` function.
+Press F1 on, e.g., `geom_point()`, to see see the full list of aesthetics that can be used with this geom (this opens the Help tab).
+
+Variables  (so columns of your dataset) have to be defined inside `aes()`. Whereas to apply a modification on everything, we can set an aesthetic to constant value outside of `aes()`.
+
+For example, Figure \@ref(fig:chap04-fig-shapes) shows a selection of the point shapes built into R. The default shape used by `geom_point()` is number 16.
+
+```{r chap04-fig-shapes, echo = FALSE, fig.width = 6,  fig.cap="A selection of shapes for plotting. Shapes 0, 1, and 2 are hollow, whereas for shapes 21, 22, and 23 we can define both a colour and a fill (for thes shapes, colour is the border around the fill).", warning = FALSE}
+
+shapes = tibble(shape = c(0, 1, 2, 4, 8, 15, 16, 17, 21, 22, 23), x = 0:10)
+
+ggplot(shapes, aes(x, y = 1)) + 
+  geom_text(aes(label = shape), hjust = 0, nudge_x = -0.55) +
+  geom_point(aes(shape = shape), size = 5, fill = "#2171b5") +
+  scale_shape_identity() +
+  theme_void()
+```
+
+
+To make all of the points in our figure hollow, let's set their shape to 1.
+We do this by adding `shape = 1` inside the `geom_point()`:
+
+```{r, fig.keep = 'none'}
+
+gapminder2007 %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point(shape = 1)
+
+```
+
+This creates the fourth plot in Figure \@ref(fig:chap04-fig-steps).
+
+**(5)** From one plot to multiple with a single extra line
+
+Faceting is a way to efficiently create the same plot for subgroups within the dataset.
+For example, we can separate each continent on its own facet by adding `facet_wrap(~continent)` to our plot:
+
+
+```{r fig.height=3.5, fig.width=7, fig.keep = 'none'}
+
+gapminder2007 %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point(shape = 1) +
+  facet_wrap(~continent)
+
+```
+
+This creates the fifth plot in Figure \@ref(fig:chap04-fig-steps).
+Note that we have to use the tilde (~) in `facet_wrap()`.
+There is a similar function called `facet_grid()` that will create a grid of plots based on two grouping variables, e.g, `facet_grid(var1~var2)`.
+Furthermore, facets are happy to quickly separate data based on a condition (so something you would usually use in a filter).
+
+```{r, fig.width=6}
+gapminder2007 %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point(shape = 1) +
+  facet_wrap(~pop > 50000000)
+
+```
+
+On this plot, the facet `FALSE` includes countries with a population less than 50 million people, and the facet `TRUE` includes countries with a population greater than 50 million people.
+
+The tilde (~) in R denotes dependency. It is mostly used by statistical models to define dependent and explanatory variables, you will see it a lot in the second part of this book.
+
+**(6)** Grey to white background - changing the theme
+
+Overall, we can customise every single thing on a ggplot.
+Font type, colour, size or thickness or any lines or numbers, background, you name it.
+But a very quick way to change the appearance of a ggplot is to apply a different theme.
+The signature ggplot theme has a light grey background and white grid lines (Figure \@ref(fig:chap04-fig-themes)). 
+
+```{r chap04-fig-themes, echo = FALSE, fig.width=5, fig.height=3.5, fig.cap = "Some of the built-in ggplot themes (1) default (2) theme_bw(), (3) theme_dark(), (4) theme_classic()."}
+themeplot = gapminder %>% 
+  ggplot(aes(x = year, y = lifeExp)) +
+  facet_wrap(~"LABEL")
+
+(themeplot + (themeplot+theme_bw()))/((themeplot + theme_dark()) + (themeplot+theme_classic())) + plot_annotation(tag_levels = "1", tag_prefix = "(", tag_suffix = ")")
+
+```
+
+
+```{r fig.height=3.5, fig.width=7, fig.keep = 'none'}
+
+step6 = gapminder2007 %>% 
+  ggplot(aes(x = gdpPercap/1000, y = lifeExp, colour = continent)) +
   geom_point(shape = 1) +
   facet_wrap(~continent) +
   theme_bw()
 
 ```
 
+As a final step, we are adding `theme_bw()` ("background white") to give the plot a different look. 
+We have also divided the gdpPercap by 1000 (making the units "thousands of dollars per capita").
+Note that you can apply calculations directly on ggplot variables (so how we've done `x = gdpPercap/1000` here).
 
-* Add points: `geom_point()`
-    + Change point type: `shape = 1` (or any number from your Quickstart Sheet) inside the `geom_point()`
-* Colour each country point by its continent: `colour=continent` to aes()
-* Size each country point by its population: `size=pop` to aes()
-* Put the country points of each continent on a separate panel: `+ facet_wrap(~continent)`
-* Make the background white: `+ theme_bw()`
+This creates the last plot in Figure \@ref(fig:chap04-fig-steps).
+
+This is how `ggplot()` works - by adding or modifying things one by one.
+
+\clearpage
+
+
+
+## Scatter plots/bubble plots - `geom_point()`
+
+The ggplot anatomy section already covered both scatter and strip plots (both created with `geom_point()`).
+One last thing to note about this geom is that adding a size aesthetic makes it into a bubble plot.
+For example, let's size the points by population (we're also making them hollow and slightly transparent - `alpha = 0.4` to deal with overplotting):
+
+```{r, fig.width=5}
+
+gapminder2007 %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, size = pop)) +
+  geom_point(shape = 1, alpha = 0.4)
+  
+```
 
 
 ## Line chart/timeplot - `geom_line()`
 
-Plot life expectancy against year (`x = year, y=lifeExp`), add `geom_line()`:
+Plot life expectancy against year (`x = year, y = lifeExp`), add `geom_line()`:
 
 ```{r, fig.width = 4, fig.height=3}
 mydata %>% 
-  ggplot(aes(x = year, y=lifeExp)) +
+  ggplot(aes(x = year, y = lifeExp)) +
   geom_line()
 ```
 
@@ -247,7 +344,7 @@ Specify how you want data points grouped to lines: `group = country` in `aes()`:
 
 ```{r, fig.width = 4, fig.height=3}
 mydata %>% 
-  ggplot(aes(x = year, y=lifeExp, group = country)) +
+  ggplot(aes(x = year, y = lifeExp, group = country)) +
   geom_line()
 ```
 
@@ -260,7 +357,7 @@ Follow the step-by-step instructions to transform the grey plot just above into 
 ```{r, fig.width=10, echo = FALSE, fig.height=4}
 
 mydata %>% 
-  ggplot(  aes(x = year, y=lifeExp, group = country, colour=continent)) +
+  ggplot(  aes(x = year, y = lifeExp, group = country, colour=continent)) +
   geom_line() +
   facet_wrap(~continent) + 
   theme_bw() +
@@ -269,7 +366,7 @@ mydata %>%
 ```
 
 * Colour lines by continents: `colour=continent` to `aes()`
-* *Similarly to what we did in `geom_point()`, you can even size the line thicknesses by each country's population: `size=pop` to `aes()`*
+* *Similarly to what we did in `geom_point()`, you can even size the line thickness by each country's population: `size=pop` to `aes()`*
 * Continents on separate panels: `+ facet_wrap(~continent)`
 * Make the background white: `+ theme_bw()`
 * Use a nicer colour scheme: `+ scale_colour_brewer(palette = "Paired")`
@@ -284,7 +381,7 @@ For European countries only (`filter(continent == "Europe") %>%`), plot life exp
 
 mydata %>%
   filter(continent == "Europe") %>% #Europe only
-  ggplot(aes(x = year, y=lifeExp, group = country)) +
+  ggplot(aes(x = year, y = lifeExp, group = country)) +
   geom_line(colour = "grey") +
   theme_bw() +
   geom_line(data = filter(mydata, country == "United Kingdom"), colour = "red")
@@ -301,7 +398,7 @@ As previous, but add a line for France in blue:
 
 mydata %>%
   filter(continent == "Europe") %>% #Europe only
-  ggplot(aes(x = year, y=lifeExp, group = country)) +
+  ggplot(aes(x = year, y = lifeExp, group = country)) +
   geom_line(colour = "grey") +
   theme_bw() +
   geom_line(data = filter(mydata, country == "United Kingdom"), colour = "red") +
@@ -510,7 +607,7 @@ mydata %>%
 mydata %>% 
   filter(year == 2007) %>% 
   ggplot(  aes(x = gdpPercap/1000, #divide by 1000 to tidy the x-axis
-               y=lifeExp,
+               y = lifeExp,
                colour=continent,
                size=pop)) +
   geom_point(shape = 1) +
@@ -524,7 +621,7 @@ mydata %>%
 ```{r, fig.width=10, eval = FALSE, fig.height=4}
 
 mydata %>% 
-  ggplot(  aes(x = year, y=lifeExp, group = country, colour=continent)) +
+  ggplot(  aes(x = year, y = lifeExp, group = country, colour=continent)) +
   geom_line() +
   facet_wrap(~continent) + 
   theme_bw() +

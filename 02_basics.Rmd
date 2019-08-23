@@ -747,7 +747,7 @@ typesdata %>%
 ## Factor variables (categorical)
 
 **Factors** are fussy characters. 
-Factors are fussy because they have something called __levels.__ 
+Factors are fussy because they have something called **levels**. 
 Levels are all the unique values a factor variable could take - e.g. like when we looked at `typesdata$group %>% unique()`.
 Using factors rather than just characters can be useful because:
 

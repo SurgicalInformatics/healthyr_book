@@ -1,2 +1,66 @@
 # (PART) Workflow {-}
-# Notebooks and markdown
+
+Throughout this book we have tried to provide the most efficient approaches data analysis using R. 
+In this section, we will provide workflows, or ways-of-working, which maximise efficiency, incorpirate reporting of results within analyses, make exporting of tables and plots easy, and keep data safe, secured and backed up. 
+*consider a little more here*
+
+# Notebooks and Markdown
+
+## What is a Notebook?
+
+R is all-powerful for the manipulation, visualisation and analysis of data. 
+What is often be underappreciated is the flexibility in which analyses can be exported or reported.
+
+For instance, a full scientific paper, industry report, or monthly update can be easily written to accommodate a varying underlying dataset, and all tables and plots will be updated automatically. 
+
+This idea can be extended to a workflow in which all analyses are performed primarily within a document which represents doubles as the final report. 
+
+Enter "Data Notebooks"!
+Notebooks are documents which combine code and rich text elements, such as headings, paragraphs and links, in one document. 
+They combine analysis and reporting in one human-readable document to provide an intuitive interface between the researcher and their analysis (Figure \@ref(fig:chap11-fig-literate). 
+This sometimes gets called "literate programming", given the resulting logical structure of information can be easily read by human like a book.  
+
+```{r chap11-fig-literate, echo = FALSE, fig.cap="CAPTION"}
+knitr::include_graphics("images/chapter11/1_literate_programming.pdf")
+```
+
+In our own work, we have now moved to doing most of our analyses a Notebook environment, rather than a "script" file.  
+
+Some of the advantages of the Notebook format are:
+
+* code and output are adjacent to each other, so you are not constantly switching between "panes";
+* easier to work on smaller screen;
+* fully formated text elements can be included in documents;
+* documentation and reporting can be done beside the code;
+* the code itself can be outputted or hidden;
+* faciliate collaboration by easily sharing human-readable analysis documents;
+* can be outputted in a number of formats including html (web page), PDF, and Microsoft Word;
+* output can be extended to other formats such as presentations;
+* training/learning may be easier as course materials, examples, and student notes are all in same document.
+
+## What is markdown?
+
+Markdown is a lightweight language that can be used to write fully-formated documents. 
+It is plaintext and uses a simple set of rules to produce rather sophisticated output - we love it!
+
+It is easy to format headings, bold text, italics etc. 
+Within RStudio there is a Quick Reference guide (Figure \@ref(fig:chap11-fig-help)) and links to the [RStudio cheatsheets](https://www.rstudio.com/resources/cheatsheets).
+
+```{r chap11-fig-help, echo = FALSE, fig.cap="CAPTION"}
+knitr::include_graphics("images/chapter11/3_help.pdf")
+```
+
+## What is the difference between a Notebook and a Markdown file?
+
+The difference. 
+
+## The anatomy of a notebook / R Markdown file
+
+In RStudio a notebook can be easily created by going to File -> New File -> R Notebook.
+A helpful template is provided to get you started. 
+Figure \@ref(fig:chap11-fig-anatomy) shows the essential elements of a notebook file and how these translate to what is seen in the html preview. 
+
+```{r chap11-fig-anatomy, echo = FALSE, fig.cap="CAPTION"}
+knitr::include_graphics("images/chapter11/2_anatomy_rotated.pdf")
+```
+

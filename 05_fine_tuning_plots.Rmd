@@ -1,7 +1,7 @@
 # Fine tuning plots
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo=TRUE, message=FALSE, fig.width=4, fig.height=3)
+knitr::opts_chunk$set(echo=TRUE, message=FALSE, fig.width=8, fig.height=6)
 ```
 
 
@@ -13,17 +13,12 @@ This then appears in the Environment tab.
 To plot it it needs to be recalled on a separate line. 
 Saving a plot into a variable allows us to modify it later (e.g., `p + theme_bw()`).
 
-```{r, message = FALSE}
+```{r fig.height=3, fig.width=4, message=FALSE}
 
 library(gapminder)
 library(tidyverse)
 
-mydata = gapminder
-
-mydata$year %>% unique()
-
-
-p = mydata %>% 
+p0 = gapminder %>% 
   filter(year == 2007) %>% 
   group_by(continent, year) %>% 
   ggplot(aes(y = lifeExp, x = gdpPercap, colour = continent)) +
@@ -32,7 +27,7 @@ p = mydata %>%
   geom_smooth(method = "lm", se = FALSE) +
   scale_colour_brewer(palette = "Set1")
 
-p
+p0
 
 ```
 
@@ -44,9 +39,7 @@ p
 
 ```{r}
 
-p +
-  scale_x_log10()
-
+p1 = p0 + scale_x_log10()
 
 ```
 
@@ -56,19 +49,15 @@ Specify the value you want to be included:
 
 ```{r}
 
-p +
-  expand_limits(y = 0)
+p2 = p0 + expand_limits(y = 0)
 
 ```
-
-\newpage 
 
 Or two:
 
 ```{r}
 
-p +
-  expand_limits(y = c(0, 100))
+p3 = p0 + expand_limits(y = c(0, 100))
 
 ```
 
@@ -77,10 +66,15 @@ You can remove this padding with the expand option:
 
 ```{r}
 
-p +
+p4 = p0 +
   expand_limits(y = c(0, 100)) +
   coord_cartesian(expand = FALSE)
 
+```
+
+```{r}
+library(patchwork)
+p1 + p2 + p3 + p4 + plot_annotation(tag_levels = "1", tag_prefix = "(", tag_suffix = ")")
 ```
 
 
@@ -88,7 +82,7 @@ p +
 
 ```{r}
 
-p +
+p1 = p0 +
   coord_cartesian(ylim = c(70, 85), xlim = c(20000, 40000))
 
 ```
@@ -100,7 +94,7 @@ How is this one different to the previous?
 
 ```{r}
 
-p +
+p2 = p0 +
   scale_y_continuous(limits = c(70, 85)) +
   scale_x_continuous(limits = c(20000, 40000))
 
@@ -109,11 +103,15 @@ p +
 Answer: the first one zooms in, still retaining information about the excluded points when calculating the linear regression lines. 
 The second one removes the data (as the warnings say), calculating the linear regression lines only for the visible points.
 
+```{r, fig.height=3}
+p1 + p2
+```
+
 ### Axis ticks
 
 ```{r}
 
-p +
+p1 = p0 +
   coord_cartesian(ylim = c(0, 100), expand = 0) +
   scale_y_continuous(breaks = c(17, 35, 88))
 
@@ -124,19 +122,22 @@ p +
 
 ```{r}
 
-p +
+p2 = p0 +
   coord_flip()
 
 ```
 
+```{r, fig.height=3}
+p1 + p2
+```
 
 ## Colours
 
 ### Using the Brewer palettes:
 
-```{r}
+```{r fig.height=3, fig.width=4}
 
-p +
+p1 = p0 +
   scale_color_brewer(palette = "Paired")
 
 ```
@@ -144,16 +145,21 @@ p +
 
 ### Legend title
 
-`scale_colour_brewer()` is also a conventient place to change the legend title:
+`scale_colour_brewer()` is also a convenient place to change the legend title:
 
 ```{r}
 
-p +
+p2 = p0 +
   scale_color_brewer("Continent - \n one of 5", palette = "Paired")
 
 ```
 
 Note the `\n` inside the new legend title - new line.
+
+```{r, fig.height=3}
+p1 + p2
+```
+
 
 ### Choosing colours manually
 
@@ -161,7 +167,7 @@ Use words:
 
 ```{r}
 
-p +
+p1 = p0 +
   scale_color_manual(values = c("red", "green", "blue", "purple", "pink"))
 
 ```
@@ -171,11 +177,15 @@ Or HEX codes (either from http://colorbrewer2.org/ or any other resource):
 
 ```{r}
 
-p +
-  scale_color_manual(values = c("#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00"))
+p2 = p0 +
+  scale_color_manual(values = c("#8dd3c7", "#ffffb3", "#bebada",
+                                "#fb8072", "#80b1d3"))
 
 ```
 
+```{r, fig.height=3}
+p1 + p2
+```
 
 Note that http://colorbrewer2.org/ also has options for *Colourblind safe* and *Print friendly*.
 
@@ -183,9 +193,9 @@ Note that http://colorbrewer2.org/ also has options for *Colourblind safe* and *
 
 ## Titles and labels
 
-```{r}
+```{r fig.height=3, fig.width=4}
 
-p +
+p0 +
   labs(x = "Gross domestic product per capita",
          y = "Life expectancy",
          title = "Health and economics",
@@ -199,7 +209,7 @@ p +
 
 ```{r}
 
-p +
+p1 = p0 +
   annotate("text",
            x = 25000,
            y = 50,
@@ -210,7 +220,7 @@ p +
 
 ```{r}
 
-p +
+p2 = p0 +
   annotate("label",
            x = 25000,
            y = 50,
@@ -222,7 +232,7 @@ p +
 
 ```{r}
 
-p +
+p3 = p0 +
   annotate("label",
            x = 25000, 
            y = 50,
@@ -231,16 +241,19 @@ p +
 
 ```
 
+```{r, fig.height=3}
+p1 + p2 / p3
+```
 
 
-`hjust` stand for horizontal justification. It's default value is 0.5 (see how the label was centered at 25,000 - our chosen x location), 0 means the label goes to the right from 25,000, 1 would make it end at 25,000.
+`hjust` stands for horizontal justification. It's default value is 0.5 (see how the label was centered at 25,000 - our chosen x location), 0 means the label goes to the right from 25,000, 1 would make it end at 25,000.
 
 
 ### Annotation with a superscript and a variable
 
-```{r}
+```{r fig.height=3, fig.width=4}
 
-fit_glance = data.frame(r.squared = 0.7693465)
+fit_glance = tibble(r.squared = 0.7693465)
 
 
 plot_rsquared = paste0(
@@ -248,7 +261,7 @@ plot_rsquared = paste0(
   fit_glance$r.squared %>% round(2))
 
 
-p +
+p0 +
   annotate("text",
            x = 25000, 
            y = 50,
@@ -261,9 +274,9 @@ p +
 
 
 
-```{r}
+```{r fig.height=3, fig.width=4}
 
-p +
+p0 +
   theme(axis.text.y = element_text(size = 16),
         axis.text.x = element_text(colour = "red", angle = 45, vjust = 0.5),
         axis.title = element_text(size = 16, colour = "darkgreen")
@@ -278,7 +291,7 @@ p +
 Use the following words: `"right", "left", "top", "bottom"`, or `"none"` to remove the legend.
 ```{r}
 
-p +
+p1 = p0 +
   theme(legend.position = "none")
 
 ```
@@ -287,7 +300,7 @@ Or use relative coordinates (0--1) to give it an -y location:
 
 ```{r}
 
-p +
+p2 = p0 +
   theme(legend.position      = c(1,0),
         legend.justification = c(1,0)) #bottom-right corner
 
@@ -297,12 +310,20 @@ p +
 
 ```{r}
 
-p +
+p3 = p0 +
   theme(legend.position = "top") +
   guides(colour = guide_legend(ncol = 2))
 
 ```
 
+```{r, fig.height=3}
+p1 + p2
+```
+
+
+```{r fig.height=3, fig.width=4}
+p3
+```
 
 ## Saving your plot
 
@@ -310,7 +331,7 @@ p +
 ```{r}
 
 
-ggsave(p, file = "my_saved_plot.png", width = 5, height = 4)
+ggsave(p0, file = "my_saved_plot.png", width = 5, height = 4)
 
 
 ```

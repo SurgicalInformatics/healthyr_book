@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  26 AUG 2019 21:33
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  26 AUG 2019 21:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2978,106 +2978,77 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [111
 
-]
-File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-2-1.pdf Graphic fil
-e (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-2-1.pdf" > [112]
-File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-3-1.pdf Graphic fil
-e (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-3-1.pdf" > [113]
-File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-4-1.pdf Graphic fil
-e (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-4-1.pdf" >
-File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-5-1.pdf Graphic fil
-e (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-5-1.pdf" > [114]
+] [112]
 File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-6-1.pdf Graphic fil
 e (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-6-1.pdf" > [115]
-File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-7-1.pdf Graphic fil
-e (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-7-1.pdf" >
-File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-8-1.pdf Graphic fil
-e (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-8-1.pdf" > [116]
+<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-6-1.pdf" > [113]
 File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-9-1.pdf Graphic fil
 e (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-9-1.pdf" > [117]
-File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-10-1.pdf Graphic fi
-le (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-10-1.pdf" >
-File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-11-1.pdf Graphic fi
-le (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-11-1.pdf" > [118]
+<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-9-1.pdf" > [114]
 File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-12-1.pdf Graphic fi
 le (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-12-1.pdf" > [119]
-File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-13-1.pdf Graphic fi
-le (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-13-1.pdf" > [120]
-File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-14-1.pdf Graphic fi
-le (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-14-1.pdf" >
+<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-12-1.pdf" > [115]
 File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-15-1.pdf Graphic fi
 le (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-15-1.pdf" > [121]
-File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-16-1.pdf Graphic fi
-le (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-16-1.pdf" > [122]
-File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-17-1.pdf Graphic fi
-le (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-17-1.pdf" > [123]
+<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-15-1.pdf" >
 File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-18-1.pdf Graphic fi
 le (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-18-1.pdf" >
+<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-18-1.pdf" > [116] 
+[117]
 File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-19-1.pdf Graphic fi
 le (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-19-1.pdf" > [124]
-File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-20-1.pdf Graphic fi
+<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-19-1.pdf" > [118]
+File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-23-1.pdf Graphic fi
 le (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-20-1.pdf" > [125]
-File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-21-1.pdf Graphic fi
+<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-23-1.pdf" > [119]
+File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-24-1.pdf Graphic fi
 le (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-21-1.pdf" > [126]
-File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-22-1.pdf Graphic fi
+<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-24-1.pdf" >
+File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-25-1.pdf Graphic fi
 le (type QTm)
-<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-22-1.pdf" >
-Underfull \vbox (badness 10000) detected at line 4904
+<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-25-1.pdf" > [120]
+File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-29-1.pdf Graphic fi
+le (type QTm)
+<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-29-1.pdf" > [121]
+File: 05_fine_tuning_plots_files/figure-latex/unnamed-chunk-30-1.pdf Graphic fi
+le (type QTm)
+<use  "05_fine_tuning_plots_files/figure-latex/unnamed-chunk-30-1.pdf" >
+Underfull \vbox (badness 10000) detected at line 4917
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 4904
+Overfull \hbox (336.25pt too wide) detected at line 4917
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 4904
+Underfull \vbox (badness 10000) detected at line 4917
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 4904
+Overfull \hbox (336.25pt too wide) detected at line 4917
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 4904
+Underfull \vbox (badness 10000) detected at line 4917
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 4904
+Overfull \hbox (336.25pt too wide) detected at line 4917
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 4904
+Underfull \vbox (badness 10000) detected at line 4917
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 4904
+Overfull \hbox (336.25pt too wide) detected at line 4917
 []
  []
 
-[127]
+[122]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -3114,7 +3085,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[128
+[123
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -3153,7 +3124,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[129]
+[124] [125]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -3190,84 +3161,47 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[130] [131]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (336.25pt too wide) has occurred while \output is active
-[]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (336.25pt too wide) has occurred while \output is active
-[]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (336.25pt too wide) has occurred while \output is active
-[]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (336.25pt too wide) has occurred while \output is active
-[]
- []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
- [][][][] 
- []
-
-[132
+[126
 
 ]
-Underfull \vbox (badness 10000) detected at line 4919
+Underfull \vbox (badness 10000) detected at line 4932
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 4919
+Overfull \hbox (336.25pt too wide) detected at line 4932
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 4919
+Underfull \vbox (badness 10000) detected at line 4932
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 4919
+Overfull \hbox (336.25pt too wide) detected at line 4932
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 4919
+Underfull \vbox (badness 10000) detected at line 4932
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 4919
+Overfull \hbox (336.25pt too wide) detected at line 4932
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 4919
+Underfull \vbox (badness 10000) detected at line 4932
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 4919
+Overfull \hbox (336.25pt too wide) detected at line 4932
 []
  []
 
 Chapter 6.
 
-Overfull \hbox (30.0pt too wide) in paragraph at lines 4926--4926
+Overfull \hbox (30.0pt too wide) in paragraph at lines 4939--4939
 |  
  []
 
@@ -3276,204 +3210,204 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[133
+[127
 
-] [134]
-Overfull \hbox (3.57695pt too wide) in paragraph at lines 4987--4987
+] [128]
+Overfull \hbox (3.57695pt too wide) in paragraph at lines 5000--5000
 []\EU1/SourceCodePro(0)/m/n/12 ## $ country   <fct> Afghanistan, Afghanistan, A
 fghanistan, Afghanistan, ...[] 
  []
 
 
-Overfull \hbox (0.45695pt too wide) in paragraph at lines 4987--4987
+Overfull \hbox (0.45695pt too wide) in paragraph at lines 5000--5000
 []\EU1/SourceCodePro(0)/m/n/12 ## $ continent <fct> Asia, Asia, Asia, Asia, Asi
 a, Asia, Asia, Asia, Asia...[] 
  []
 
 
-Overfull \hbox (0.45702pt too wide) in paragraph at lines 4987--4987
+Overfull \hbox (0.45702pt too wide) in paragraph at lines 5000--5000
 []\EU1/SourceCodePro(0)/m/n/12 ## $ lifeExp   <dbl> 28.801, 30.332, 31.997, 34.
 020, 36.088, 38.438, 39.8...[] 
  []
 
 
-Overfull \hbox (5.13693pt too wide) in paragraph at lines 4987--4987
+Overfull \hbox (5.13693pt too wide) in paragraph at lines 5000--5000
 []\EU1/SourceCodePro(0)/m/n/12 ## $ gdpPercap <dbl> 779.4453, 820.8530, 853.100
 7, 836.1971, 739.9811, 78...[] 
  []
 
-[135] [136]
+[129] [130]
 File: 06_working_continuous_files/figure-latex/chap06-fig-hist-life-year-1.pdf 
 Graphic file (type QTm)
 
 <use  "06_working_continuous_files/figure-latex/chap06-fig-hist-life-year-1.pdf
-" > [137]
+" > [131]
 File: 06_working_continuous_files/figure-latex/chap06-fig-qq-life-year-1.pdf Gr
 aphic file (type QTm)
 
 <use  "06_working_continuous_files/figure-latex/chap06-fig-qq-life-year-1.pdf" 
-> [138]
+> [132]
 File: 06_working_continuous_files/figure-latex/chap06-fig-boxplot-life-year-1.p
 df Graphic file (type QTm)
 
 <use  "06_working_continuous_files/figure-latex/chap06-fig-boxplot-life-year-1.
-pdf" > [139]
+pdf" > [133]
 File: 06_working_continuous_files/figure-latex/chap06-fig-boxplot-jitter-1.pdf 
 Graphic file (type QTm)
 
 <use  "06_working_continuous_files/figure-latex/chap06-fig-boxplot-jitter-1.pdf
-" > [140] [141]
-Overfull \hbox (14.49686pt too wide) in paragraph at lines 5324--5324
+" > [134] [135]
+Overfull \hbox (14.49686pt too wide) in paragraph at lines 5337--5337
 []\EU1/SourceCodePro(0)/m/n/12 ##   ..- attr(*, "names")= chr [1:2] "mean in gr
 oup Asia" "mean in group Europe"[] 
  []
 
-[142] [143]
+[136] [137]
 File: 06_working_continuous_files/figure-latex/chap06-fig-line-life-asia-1.pdf 
 Graphic file (type QTm)
 
 <use  "06_working_continuous_files/figure-latex/chap06-fig-line-life-asia-1.pdf
-" > [144] [145] [146]
-Overfull \hbox (11.37688pt too wide) in paragraph at lines 5539--5539
+" > [138] [139] [140]
+Overfull \hbox (11.37688pt too wide) in paragraph at lines 5552--5552
 []\EU1/SourceCodePro(0)/m/n/12 ##   continent estimate statistic  p.value param
 eter conf.low conf.high method[] 
  []
 
 
-Overfull \hbox (11.37688pt too wide) in paragraph at lines 5566--5566
+Overfull \hbox (11.37688pt too wide) in paragraph at lines 5579--5579
 []\EU1/SourceCodePro(0)/m/n/12 ##   continent estimate statistic  p.value param
 eter conf.low conf.high method[] 
+ []
+
+[141]
+File: 06_working_continuous_files/figure-latex/unnamed-chunk-15-1.pdf Graphic f
+ile (type QTm)
+<use  "06_working_continuous_files/figure-latex/unnamed-chunk-15-1.pdf" > [142]
+[143]
+File: 06_working_continuous_files/figure-latex/unnamed-chunk-18-1.pdf Graphic f
+ile (type QTm)
+<use  "06_working_continuous_files/figure-latex/unnamed-chunk-18-1.pdf" > [144]
+[145]
+
+LaTeX Warning: Reference `ch10-h1' on page 146 undefined on input line 5787.
+
+[146]
+Underfull \hbox (badness 10000) detected at line 5795
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5795
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5797
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 5797
+[][][]
  []
 
 [147]
-File: 06_working_continuous_files/figure-latex/unnamed-chunk-15-1.pdf Graphic f
-ile (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-15-1.pdf" > [148]
-[149]
-File: 06_working_continuous_files/figure-latex/unnamed-chunk-18-1.pdf Graphic f
-ile (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-18-1.pdf" > [150]
-[151]
-
-LaTeX Warning: Reference `ch10-h1' on page 152 undefined on input line 5774.
-
-[152]
-Underfull \hbox (badness 10000) detected at line 5782
- [][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 5782
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 5784
- [][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 5784
-[][][]
- []
-
-[153]
 File: 06_working_continuous_files/figure-latex/unnamed-chunk-22-1.pdf Graphic f
 ile (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-22-1.pdf" > [154]
+<use  "06_working_continuous_files/figure-latex/unnamed-chunk-22-1.pdf" > [148]
 File: 06_working_continuous_files/figure-latex/unnamed-chunk-23-1.pdf Graphic f
 ile (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-23-1.pdf" > [155]
+<use  "06_working_continuous_files/figure-latex/unnamed-chunk-23-1.pdf" > [149]
 
-Underfull \hbox (badness 1024) in paragraph at lines 5930--5930
+Underfull \hbox (badness 1024) in paragraph at lines 5943--5943
 []\EU1/lmr/bx/n/11 Non-parametric test for comparing more than two
  []
 
-[156] [157]
-Underfull \hbox (badness 10000) detected at line 6020
+[150] [151]
+Underfull \hbox (badness 10000) detected at line 6033
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6020
+Underfull \hbox (badness 10000) detected at line 6033
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6023
+Underfull \hbox (badness 10000) detected at line 6036
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6023
+Underfull \hbox (badness 10000) detected at line 6036
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6038
+Underfull \hbox (badness 10000) detected at line 6051
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6038
+Underfull \hbox (badness 10000) detected at line 6051
 [][][]
  []
 
-[158]
+[152]
 File: 06_working_continuous_files/figure-latex/unnamed-chunk-28-1.pdf Graphic f
 ile (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-28-1.pdf" > [159]
+<use  "06_working_continuous_files/figure-latex/unnamed-chunk-28-1.pdf" > [153]
 File: 06_working_continuous_files/figure-latex/unnamed-chunk-29-1.pdf Graphic f
 ile (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-29-1.pdf" > [160]
+<use  "06_working_continuous_files/figure-latex/unnamed-chunk-29-1.pdf" > [154]
 
-Overfull \hbox (11.37688pt too wide) in paragraph at lines 6158--6158
+Overfull \hbox (11.37688pt too wide) in paragraph at lines 6171--6171
 []\EU1/SourceCodePro(0)/m/n/12 ##   continent estimate statistic  p.value param
 eter conf.low conf.high method[] 
  []
 
 File: 06_working_continuous_files/figure-latex/unnamed-chunk-31-1.pdf Graphic f
 ile (type QTm)
-<use  "06_working_continuous_files/figure-latex/unnamed-chunk-31-1.pdf" > [161]
-[162]
-Underfull \vbox (badness 10000) detected at line 6200
+<use  "06_working_continuous_files/figure-latex/unnamed-chunk-31-1.pdf" > [155]
+[156]
+Underfull \vbox (badness 10000) detected at line 6213
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 6200
+Overfull \hbox (336.25pt too wide) detected at line 6213
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 6200
+Underfull \vbox (badness 10000) detected at line 6213
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 6200
+Overfull \hbox (336.25pt too wide) detected at line 6213
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 6200
+Underfull \vbox (badness 10000) detected at line 6213
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 6200
+Overfull \hbox (336.25pt too wide) detected at line 6213
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 6200
+Underfull \vbox (badness 10000) detected at line 6213
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 6200
+Overfull \hbox (336.25pt too wide) detected at line 6213
 []
  []
 
 Chapter 7.
 
-Overfull \hbox (30.0pt too wide) in paragraph at lines 6207--6207
+Overfull \hbox (30.0pt too wide) in paragraph at lines 6220--6220
 |  
  []
 
@@ -3482,168 +3416,168 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[163
+[157
 
 
 ]
 File: images/chapter07/1_regression_terms.pdf Graphic file (type QTm)
-<use  "images/chapter07/1_regression_terms.pdf" > [164] [165]
+<use  "images/chapter07/1_regression_terms.pdf" > [158] [159]
 File: images/chapter07/2_residuals.pdf Graphic file (type QTm)
 <use  "images/chapter07/2_residuals.pdf" >
-Underfull \hbox (badness 10000) detected at line 6291
+Underfull \hbox (badness 10000) detected at line 6304
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6291
+Underfull \hbox (badness 10000) detected at line 6304
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6293
+Underfull \hbox (badness 10000) detected at line 6306
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6293
+Underfull \hbox (badness 10000) detected at line 6306
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6295
+Underfull \hbox (badness 10000) detected at line 6308
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6295
+Underfull \hbox (badness 10000) detected at line 6308
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6297
+Underfull \hbox (badness 10000) detected at line 6310
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6297
+Underfull \hbox (badness 10000) detected at line 6310
 [][][]
  []
 
-[166] [167]
+[160] [161]
 File: images/chapter07/3_diags.pdf Graphic file (type QTm)
 <use  "images/chapter07/3_diags.pdf" >
 
-LaTeX Warning: Float too large for page by 4.64066pt on input line 6336.
+LaTeX Warning: Float too large for page by 4.64066pt on input line 6349.
 
-[168] [169]
+[162] [163]
 File: images/chapter07/4_equation.pdf Graphic file (type QTm)
 <use  "images/chapter07/4_equation.pdf" >
 
-LaTeX Warning: Float too large for page by 13.53249pt on input line 6365.
+LaTeX Warning: Float too large for page by 13.53249pt on input line 6378.
 
-[170] [171]
+[164] [165]
 File: images/chapter07/5_dags.pdf Graphic file (type QTm)
-<use  "images/chapter07/5_dags.pdf" > [172]
+<use  "images/chapter07/5_dags.pdf" > [166]
 File: images/chapter07/6_types.pdf Graphic file (type QTm)
 <use  "images/chapter07/6_types.pdf" >
 
-LaTeX Warning: Float too large for page by 15.21854pt on input line 6438.
+LaTeX Warning: Float too large for page by 15.21854pt on input line 6451.
 
-[173] [174] [175]
+[167] [168] [169]
 File: images/chapter07/7_confounding.pdf Graphic file (type QTm)
-<use  "images/chapter07/7_confounding.pdf" > [176] [177]
+<use  "images/chapter07/7_confounding.pdf" > [170] [171]
 File: 07_linear_regression_files/figure-latex/unnamed-chunk-3-1.pdf Graphic fil
 e (type QTm)
-<use  "07_linear_regression_files/figure-latex/unnamed-chunk-3-1.pdf" > [178]
+<use  "07_linear_regression_files/figure-latex/unnamed-chunk-3-1.pdf" > [172]
 File: 07_linear_regression_files/figure-latex/unnamed-chunk-4-1.pdf Graphic fil
 e (type QTm)
-<use  "07_linear_regression_files/figure-latex/unnamed-chunk-4-1.pdf" > [179] [
-180] [181] [182] [183]
+<use  "07_linear_regression_files/figure-latex/unnamed-chunk-4-1.pdf" > [173] [
+174] [175] [176] [177]
 File: 07_linear_regression_files/figure-latex/unnamed-chunk-14-1.pdf Graphic fi
 le (type QTm)
-<use  "07_linear_regression_files/figure-latex/unnamed-chunk-14-1.pdf" > [184]
+<use  "07_linear_regression_files/figure-latex/unnamed-chunk-14-1.pdf" > [178]
 File: 07_linear_regression_files/figure-latex/unnamed-chunk-15-1.pdf Graphic fi
 le (type QTm)
-<use  "07_linear_regression_files/figure-latex/unnamed-chunk-15-1.pdf" > [185] 
-[186]
+<use  "07_linear_regression_files/figure-latex/unnamed-chunk-15-1.pdf" > [179] 
+[180]
 File: 07_linear_regression_files/figure-latex/unnamed-chunk-16-1.pdf Graphic fi
 le (type QTm)
 <use  "07_linear_regression_files/figure-latex/unnamed-chunk-16-1.pdf" >
-Overfull \hbox (0.45697pt too wide) in paragraph at lines 6940--6940
+Overfull \hbox (0.45697pt too wide) in paragraph at lines 6953--6953
 []\EU1/SourceCodePro(0)/m/n/12 ## # ... with 3 more variables: BIC <dbl>, devia
 nce <dbl>, df.residual <int>[] 
  []
 
-[187]
+[181]
 File: 07_linear_regression_files/figure-latex/unnamed-chunk-18-1.pdf Graphic fi
 le (type QTm)
-<use  "07_linear_regression_files/figure-latex/unnamed-chunk-18-1.pdf" > [188]
-Underfull \hbox (badness 10000) detected at line 6986
+<use  "07_linear_regression_files/figure-latex/unnamed-chunk-18-1.pdf" > [182]
+Underfull \hbox (badness 10000) detected at line 6999
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6986
+Underfull \hbox (badness 10000) detected at line 6999
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6988
+Underfull \hbox (badness 10000) detected at line 7001
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6988
+Underfull \hbox (badness 10000) detected at line 7001
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6990
+Underfull \hbox (badness 10000) detected at line 7003
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6990
+Underfull \hbox (badness 10000) detected at line 7003
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6992
+Underfull \hbox (badness 10000) detected at line 7005
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6992
+Underfull \hbox (badness 10000) detected at line 7005
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6994
+Underfull \hbox (badness 10000) detected at line 7007
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6994
+Underfull \hbox (badness 10000) detected at line 7007
 [][][]
  []
 
-[189]
-Underfull \hbox (badness 10000) detected at line 6996
+[183]
+Underfull \hbox (badness 10000) detected at line 7009
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 6996
+Underfull \hbox (badness 10000) detected at line 7009
 [][][]
  []
 
 
-Underfull \hbox (badness 1348) in paragraph at lines 6996--6997
+Underfull \hbox (badness 1348) in paragraph at lines 7009--7010
 []\EU1/lmr/m/n/12 Final model selection should be performed using a
  []
 
-[190]
-Underfull \hbox (badness 2707) in paragraph at lines 7044--7049
+[184]
+Underfull \hbox (badness 2707) in paragraph at lines 7057--7062
 \EU1/lmr/m/n/12 The Akaike Information Criterion (AIC) is an alternative
  []
 
@@ -3653,62 +3587,62 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[191]
+[185]
 File: 07_linear_regression_files/figure-latex/unnamed-chunk-23-1.pdf Graphic fi
 le (type QTm)
-<use  "07_linear_regression_files/figure-latex/unnamed-chunk-23-1.pdf" > [192] 
-[193]
+<use  "07_linear_regression_files/figure-latex/unnamed-chunk-23-1.pdf" > [186] 
+[187]
 
-LaTeX Warning: Reference `chap08-h2-fct-relevel' on page 194 undefined on input
- line 7186.
+LaTeX Warning: Reference `chap08-h2-fct-relevel' on page 188 undefined on input
+ line 7199.
 
-[194] [195] [196]
+[188] [189] [190]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[197] [198]
+[191] [192]
 File: 07_linear_regression_files/figure-latex/unnamed-chunk-35-1.pdf Graphic fi
 le (type QTm)
-<use  "07_linear_regression_files/figure-latex/unnamed-chunk-35-1.pdf" > [199] 
-[200]
-Underfull \vbox (badness 10000) detected at line 7479
+<use  "07_linear_regression_files/figure-latex/unnamed-chunk-35-1.pdf" > [193] 
+[194]
+Underfull \vbox (badness 10000) detected at line 7492
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 7479
+Overfull \hbox (336.25pt too wide) detected at line 7492
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 7479
+Underfull \vbox (badness 10000) detected at line 7492
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 7479
+Overfull \hbox (336.25pt too wide) detected at line 7492
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 7479
+Underfull \vbox (badness 10000) detected at line 7492
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 7479
+Overfull \hbox (336.25pt too wide) detected at line 7492
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 7479
+Underfull \vbox (badness 10000) detected at line 7492
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 7479
+Overfull \hbox (336.25pt too wide) detected at line 7492
 []
  []
 
 Chapter 8.
 
-Overfull \hbox (30.0pt too wide) in paragraph at lines 7486--7486
+Overfull \hbox (30.0pt too wide) in paragraph at lines 7499--7499
 |  
  []
 
@@ -3717,46 +3651,46 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[201
+[195
 
 
-] [202]
-Overfull \hbox (0.45697pt too wide) in paragraph at lines 7577--7577
+] [196]
+Overfull \hbox (0.45697pt too wide) in paragraph at lines 7590--7590
 []\EU1/SourceCodePro(0)/m/n/12 ## $ thickness <dbl> 6.76, 0.65, 1.34, 2.90, 12.
 08, 4.84, 5.16, 3.22, 12....[] 
  []
 
-[203] [204] [205]
+[197] [198] [199]
 File: 08_working_categorical_files/figure-latex/unnamed-chunk-6-1.pdf Graphic f
 ile (type QTm)
 <use  "08_working_categorical_files/figure-latex/unnamed-chunk-6-1.pdf" >
 File: images/chapter08/1_cut.pdf Graphic file (type QTm)
-<use  "images/chapter08/1_cut.pdf" > [206] [207] [208]
+<use  "images/chapter08/1_cut.pdf" > [200] [201] [202]
 File: 08_working_categorical_files/figure-latex/unnamed-chunk-10-1.pdf Graphic 
 file (type QTm)
-<use  "08_working_categorical_files/figure-latex/unnamed-chunk-10-1.pdf" > [209
+<use  "08_working_categorical_files/figure-latex/unnamed-chunk-10-1.pdf" > [203
 ]
 File: 08_working_categorical_files/figure-latex/unnamed-chunk-11-1.pdf Graphic 
 file (type QTm)
-<use  "08_working_categorical_files/figure-latex/unnamed-chunk-11-1.pdf" > [210
+<use  "08_working_categorical_files/figure-latex/unnamed-chunk-11-1.pdf" > [204
 ]
 File: 08_working_categorical_files/figure-latex/unnamed-chunk-12-1.pdf Graphic 
 file (type QTm)
-<use  "08_working_categorical_files/figure-latex/unnamed-chunk-12-1.pdf" > [211
+<use  "08_working_categorical_files/figure-latex/unnamed-chunk-12-1.pdf" > [205
 ]
-Underfull \hbox (badness 1803) in paragraph at lines 7926--7926
+Underfull \hbox (badness 1803) in paragraph at lines 7939--7939
 []\EU1/lmr/bx/n/12 Change the order of values within a factor -
  []
 
-[212] [213]
-Overfull \hbox (9.81685pt too wide) in paragraph at lines 8012--8012
+[206] [207]
+Overfull \hbox (9.81685pt too wide) in paragraph at lines 8025--8025
 []\EU1/SourceCodePro(0)/m/n/12 ## Warning in chisq.test(tab, correct = FALSE): 
 Chi-squared approximation may[] 
  []
 
 Missing character: There is no ≤ in font [lmroman12-regular]:mapping=tex-text!
-[214] [215] [216] [217]
-Overfull \hbox (9.81685pt too wide) in paragraph at lines 8256--8256
+[208] [209] [210] [211]
+Overfull \hbox (9.81685pt too wide) in paragraph at lines 8269--8269
 []\EU1/SourceCodePro(0)/m/n/12 ## Warning in chisq.test(tab, correct = FALSE): 
 Chi-squared approximation may[] 
  []
@@ -3765,67 +3699,67 @@ Missing character: There is no ≤ in font [lmroman12-regular]:mapping=tex-text!
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[218]
+[212]
 Missing character: There is no ≤ in font [lmroman12-regular]:mapping=tex-text!
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[219]
+[213]
 Missing character: There is no ≤ in font [lmroman12-regular]:mapping=tex-text!
 
-Underfull \hbox (badness 10000) in paragraph at lines 8385--8387
+Underfull \hbox (badness 10000) in paragraph at lines 8398--8400
 
  []
 
-[220]
-Underfull \hbox (badness 10000) in paragraph at lines 8387--8389
+[214]
+Underfull \hbox (badness 10000) in paragraph at lines 8400--8402
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8389--8391
+Underfull \hbox (badness 10000) in paragraph at lines 8402--8404
 
  []
 
-[221] [222]
-Underfull \vbox (badness 10000) detected at line 8426
+[215] [216]
+Underfull \vbox (badness 10000) detected at line 8439
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 8426
+Overfull \hbox (336.25pt too wide) detected at line 8439
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 8426
+Underfull \vbox (badness 10000) detected at line 8439
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 8426
+Overfull \hbox (336.25pt too wide) detected at line 8439
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 8426
+Underfull \vbox (badness 10000) detected at line 8439
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 8426
+Overfull \hbox (336.25pt too wide) detected at line 8439
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 8426
+Underfull \vbox (badness 10000) detected at line 8439
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 8426
+Overfull \hbox (336.25pt too wide) detected at line 8439
 []
  []
 
 Chapter 9.
 
-Overfull \hbox (30.0pt too wide) in paragraph at lines 8433--8433
+Overfull \hbox (30.0pt too wide) in paragraph at lines 8446--8446
 |  
  []
 
@@ -3834,212 +3768,212 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[223
+[217
 
 
-] [224]
+] [218]
 File: images/chapter09/0_odds.pdf Graphic file (type QTm)
-<use  "images/chapter09/0_odds.pdf" > [225]
+<use  "images/chapter09/0_odds.pdf" > [219]
 File: images/chapter09/1_or.pdf Graphic file (type QTm)
-<use  "images/chapter09/1_or.pdf" > [226]
-Underfull \hbox (badness 10000) in paragraph at lines 8558--8559
+<use  "images/chapter09/1_or.pdf" > [220]
+Underfull \hbox (badness 10000) in paragraph at lines 8571--8572
 []\EU1/lmr/m/n/12 A log-odds scale sounds incredibly off-putting to non-
  []
 
-[227]
+[221]
 File: images/chapter09/2_prob_logodds.pdf Graphic file (type QTm)
 <use  "images/chapter09/2_prob_logodds.pdf" >
 
-LaTeX Warning: Float too large for page by 53.22247pt on input line 8615.
+LaTeX Warning: Float too large for page by 53.22247pt on input line 8628.
 
-[228] [229]
+[222] [223]
 File: images/chapter09/4_equation.pdf Graphic file (type QTm)
 <use  "images/chapter09/4_equation.pdf" >
 
-LaTeX Warning: Float too large for page by 15.17053pt on input line 8638.
+LaTeX Warning: Float too large for page by 15.17053pt on input line 8651.
 
 
-LaTeX Warning: Reference `fig:chap9-fig-types' on page 230 undefined on input l
-ine 8653.
+LaTeX Warning: Reference `fig:chap9-fig-types' on page 224 undefined on input l
+ine 8666.
 
 
-LaTeX Warning: Reference `fig:chap7-fig-types' on page 230 undefined on input l
-ine 8654.
+LaTeX Warning: Reference `fig:chap7-fig-types' on page 224 undefined on input l
+ine 8667.
 
 File: images/chapter09/6_types.pdf Graphic file (type QTm)
 <use  "images/chapter09/6_types.pdf" >
 
-LaTeX Warning: Float too large for page by 15.21854pt on input line 8663.
+LaTeX Warning: Float too large for page by 15.21854pt on input line 8676.
 
-[230] [231] [232]
+[224] [225] [226]
 File: images/chapter09/7_interactions.pdf Graphic file (type QTm)
-<use  "images/chapter09/7_interactions.pdf" > [233] [234] [235]
+<use  "images/chapter09/7_interactions.pdf" > [227] [228] [229]
 File: 09_logistic_regression_files/figure-latex/unnamed-chunk-8-1.pdf Graphic f
 ile (type QTm)
-<use  "09_logistic_regression_files/figure-latex/unnamed-chunk-8-1.pdf" > [236]
-[237]
+<use  "09_logistic_regression_files/figure-latex/unnamed-chunk-8-1.pdf" > [230]
+[231]
 File: 09_logistic_regression_files/figure-latex/unnamed-chunk-10-1.pdf Graphic 
 file (type QTm)
-<use  "09_logistic_regression_files/figure-latex/unnamed-chunk-10-1.pdf" > [238
-] [239]
-Underfull \hbox (badness 10000) detected at line 8943
+<use  "09_logistic_regression_files/figure-latex/unnamed-chunk-10-1.pdf" > [232
+] [233]
+Underfull \hbox (badness 10000) detected at line 8956
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 8943
+Underfull \hbox (badness 10000) detected at line 8956
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 8945
+Underfull \hbox (badness 10000) detected at line 8958
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 8945
+Underfull \hbox (badness 10000) detected at line 8958
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 8947
+Underfull \hbox (badness 10000) detected at line 8960
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 8947
+Underfull \hbox (badness 10000) detected at line 8960
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 8949
+Underfull \hbox (badness 10000) detected at line 8962
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 8949
+Underfull \hbox (badness 10000) detected at line 8962
 [][][]
  []
 
-[240]
+[234]
 File: 09_logistic_regression_files/figure-latex/unnamed-chunk-13-1.pdf Graphic 
 file (type QTm)
-<use  "09_logistic_regression_files/figure-latex/unnamed-chunk-13-1.pdf" > [241
+<use  "09_logistic_regression_files/figure-latex/unnamed-chunk-13-1.pdf" > [235
 ]
 File: 09_logistic_regression_files/figure-latex/unnamed-chunk-14-1.pdf Graphic 
 file (type QTm)
-<use  "09_logistic_regression_files/figure-latex/unnamed-chunk-14-1.pdf" > [242
+<use  "09_logistic_regression_files/figure-latex/unnamed-chunk-14-1.pdf" > [236
 ]
 File: 09_logistic_regression_files/figure-latex/unnamed-chunk-15-1.pdf Graphic 
 file (type QTm)
 <use  "09_logistic_regression_files/figure-latex/unnamed-chunk-15-1.pdf" >
-Overfull \vbox (0.45079pt too high) detected at line 9043
+Overfull \vbox (0.45079pt too high) detected at line 9056
  []
 
-[243]
+[237]
 File: 09_logistic_regression_files/figure-latex/unnamed-chunk-16-1.pdf Graphic 
 file (type QTm)
 <use  "09_logistic_regression_files/figure-latex/unnamed-chunk-16-1.pdf" >
 File: 09_logistic_regression_files/figure-latex/unnamed-chunk-17-1.pdf Graphic 
 file (type QTm)
-<use  "09_logistic_regression_files/figure-latex/unnamed-chunk-17-1.pdf" > [244
-] [245]
-Overfull \hbox (6.69693pt too wide) in paragraph at lines 9118--9118
+<use  "09_logistic_regression_files/figure-latex/unnamed-chunk-17-1.pdf" > [238
+] [239]
+Overfull \hbox (6.69693pt too wide) in paragraph at lines 9131--9131
 []\EU1/SourceCodePro(0)/m/n/12 ## glm(formula = mort_5yr ~ ulcer.factor, family
  = binomial, data = melanoma)[] 
  []
 
-[246] [247]
-Underfull \hbox (badness 10000) detected at line 9213
+[240] [241]
+Underfull \hbox (badness 10000) detected at line 9226
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 9213
+Underfull \hbox (badness 10000) detected at line 9226
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 9215
+Underfull \hbox (badness 10000) detected at line 9228
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 9215
+Underfull \hbox (badness 10000) detected at line 9228
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 9217
+Underfull \hbox (badness 10000) detected at line 9230
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 9217
+Underfull \hbox (badness 10000) detected at line 9230
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 9219
+Underfull \hbox (badness 10000) detected at line 9232
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 9219
+Underfull \hbox (badness 10000) detected at line 9232
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 9221
+Underfull \hbox (badness 10000) detected at line 9234
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 9221
+Underfull \hbox (badness 10000) detected at line 9234
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 9223
+Underfull \hbox (badness 10000) detected at line 9236
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 9223
+Underfull \hbox (badness 10000) detected at line 9236
 [][][]
  []
 
 
-Underfull \hbox (badness 1348) in paragraph at lines 9223--9224
+Underfull \hbox (badness 1348) in paragraph at lines 9236--9237
 []\EU1/lmr/m/n/12 Final model selection should be performed using a
  []
 
-[248] [249] [250] [251]
-Overfull \hbox (9.81685pt too wide) in paragraph at lines 9430--9430
+[242] [243] [244] [245]
+Overfull \hbox (9.81685pt too wide) in paragraph at lines 9443--9443
 []\EU1/SourceCodePro(0)/m/n/12 ## Warning in chisq.test(tab, correct = FALSE): 
 Chi-squared approximation may[] 
  []
 
 
-Overfull \hbox (5.13696pt too wide) in paragraph at lines 9505--9505
+Overfull \hbox (5.13696pt too wide) in paragraph at lines 9518--9518
 []\EU1/SourceCodePro(0)/m/n/12 ## glm(formula = mort_5yr ~ ulcer.factor + I(age
 ^2) + age, family = binomial,[] 
  []
 
-[252]
-Underfull \hbox (badness 2229) in paragraph at lines 9524--9524
+[246]
+Underfull \hbox (badness 2229) in paragraph at lines 9537--9537
 []\EU1/lmr/bx/n/12 TABLE 9.8: |[]\EU1/lmr/m/n/12 Multivariable logistic regress
 ion: including a
  []
 
-[253]
-Overfull \hbox (9.81685pt too wide) in paragraph at lines 9575--9575
+[247]
+Overfull \hbox (9.81685pt too wide) in paragraph at lines 9588--9588
 []\EU1/SourceCodePro(0)/m/n/12 ## Warning in chisq.test(tab, correct = FALSE): 
 Chi-squared approximation may[] 
  []
 
-[254] [255]
-Overfull \hbox (9.81685pt too wide) in paragraph at lines 9745--9745
+[248] [249]
+Overfull \hbox (9.81685pt too wide) in paragraph at lines 9758--9758
 []\EU1/SourceCodePro(0)/m/n/12 ## Warning in chisq.test(tab, correct = FALSE): 
 Chi-squared approximation may[] 
  []
@@ -4050,59 +3984,59 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[256]
+[250]
 File: 09_logistic_regression_files/figure-latex/unnamed-chunk-39-1.pdf Graphic 
 file (type QTm)
-<use  "09_logistic_regression_files/figure-latex/unnamed-chunk-39-1.pdf" > [257
-] [258]
+<use  "09_logistic_regression_files/figure-latex/unnamed-chunk-39-1.pdf" > [251
+] [252]
 File: 09_logistic_regression_files/figure-latex/unnamed-chunk-41-1.pdf Graphic 
 file (type QTm)
-<use  "09_logistic_regression_files/figure-latex/unnamed-chunk-41-1.pdf" > [259
-] [260] [261]
-Overfull \hbox (9.81685pt too wide) in paragraph at lines 10020--10020
+<use  "09_logistic_regression_files/figure-latex/unnamed-chunk-41-1.pdf" > [253
+] [254] [255]
+Overfull \hbox (9.81685pt too wide) in paragraph at lines 10033--10033
 []\EU1/SourceCodePro(0)/m/n/12 ## Warning in chisq.test(tab, correct = FALSE): 
 Chi-squared approximation may[] 
  []
 
-[262] [263] [264]
-Underfull \vbox (badness 10000) detected at line 10110
+[256] [257] [258]
+Underfull \vbox (badness 10000) detected at line 10123
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 10110
+Overfull \hbox (336.25pt too wide) detected at line 10123
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 10110
+Underfull \vbox (badness 10000) detected at line 10123
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 10110
+Overfull \hbox (336.25pt too wide) detected at line 10123
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 10110
+Underfull \vbox (badness 10000) detected at line 10123
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 10110
+Overfull \hbox (336.25pt too wide) detected at line 10123
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 10110
+Underfull \vbox (badness 10000) detected at line 10123
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 10110
+Overfull \hbox (336.25pt too wide) detected at line 10123
 []
  []
 
 Chapter 10.
 
-Overfull \hbox (30.0pt too wide) in paragraph at lines 10117--10117
+Overfull \hbox (30.0pt too wide) in paragraph at lines 10130--10130
 |  
  []
 
@@ -4111,68 +4045,68 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[265
+[259
 
 
-] [266] [267] [268] [269]
+] [260] [261] [262] [263]
 File: 10_survival_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type Q
 Tm)
-<use  "10_survival_files/figure-latex/unnamed-chunk-8-1.pdf" > [270]
+<use  "10_survival_files/figure-latex/unnamed-chunk-8-1.pdf" > [264]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[271] [272]
+[265] [266]
 File: 10_survival_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type 
 QTm)
-<use  "10_survival_files/figure-latex/unnamed-chunk-15-1.pdf" > [273] [274]
+<use  "10_survival_files/figure-latex/unnamed-chunk-15-1.pdf" > [267] [268]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[275]
+[269]
 File: 10_survival_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (type 
 QTm)
-<use  "10_survival_files/figure-latex/unnamed-chunk-23-1.pdf" > [276] [277] [27
-8]
+<use  "10_survival_files/figure-latex/unnamed-chunk-23-1.pdf" > [270] [271] [27
+2]
 File: 10_survival_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type 
 QTm)
-<use  "10_survival_files/figure-latex/unnamed-chunk-26-1.pdf" > [279] [280] [28
-1] [282]
-Underfull \vbox (badness 10000) detected at line 10962
+<use  "10_survival_files/figure-latex/unnamed-chunk-26-1.pdf" > [273] [274] [27
+5] [276]
+Underfull \vbox (badness 10000) detected at line 10975
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 10962
+Overfull \hbox (336.25pt too wide) detected at line 10975
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 10962
+Underfull \vbox (badness 10000) detected at line 10975
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 10962
+Overfull \hbox (336.25pt too wide) detected at line 10975
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 10962
+Underfull \vbox (badness 10000) detected at line 10975
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 10962
+Overfull \hbox (336.25pt too wide) detected at line 10975
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 10962
+Underfull \vbox (badness 10000) detected at line 10975
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 10962
+Overfull \hbox (336.25pt too wide) detected at line 10975
 []
  []
 
-[283]
+[277]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -4209,7 +4143,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[284
+[278
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -4248,7 +4182,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[285]
+[279]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -4284,6 +4218,98 @@ Overfull \hbox (336.25pt too wide) has occurred while \output is active
 Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
+
+[280] [281]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[282
+
+]
+Underfull \vbox (badness 10000) detected at line 10982
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 10982
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 10982
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 10982
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 10982
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 10982
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 10982
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 10982
+[]
+ []
+
+Chapter 11.
+File: images/chapter11/1_literate_programming.pdf Graphic file (type QTm)
+<use  "images/chapter11/1_literate_programming.pdf" >
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[283
+
+]
+File: images/chapter11/3_help.pdf Graphic file (type QTm)
+<use  "images/chapter11/3_help.pdf" > [284] [285]
+File: images/chapter11/2_anatomy_rotated.pdf Graphic file (type QTm)
+<use  "images/chapter11/2_anatomy_rotated.pdf" >
+
+LaTeX Warning: Float too large for page by 3.50253pt on input line 11062.
 
 [286] [287]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -4325,130 +4351,38 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [288
 
 ]
-Underfull \vbox (badness 10000) detected at line 10969
+Underfull \vbox (badness 10000) detected at line 11065
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 10969
+Overfull \hbox (336.25pt too wide) detected at line 11065
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 10969
+Underfull \vbox (badness 10000) detected at line 11065
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 10969
+Overfull \hbox (336.25pt too wide) detected at line 11065
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 10969
+Underfull \vbox (badness 10000) detected at line 11065
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 10969
+Overfull \hbox (336.25pt too wide) detected at line 11065
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 10969
+Underfull \vbox (badness 10000) detected at line 11065
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 10969
-[]
- []
-
-Chapter 11.
-File: images/chapter11/1_literate_programming.pdf Graphic file (type QTm)
-<use  "images/chapter11/1_literate_programming.pdf" >
-Underfull \hbox (badness 10000) has occurred while \output is active
- [][][][] 
- []
-
-[289
-
-]
-File: images/chapter11/3_help.pdf Graphic file (type QTm)
-<use  "images/chapter11/3_help.pdf" > [290] [291]
-File: images/chapter11/2_anatomy_rotated.pdf Graphic file (type QTm)
-<use  "images/chapter11/2_anatomy_rotated.pdf" >
-
-LaTeX Warning: Float too large for page by 3.50253pt on input line 11049.
-
-[292] [293]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (336.25pt too wide) has occurred while \output is active
-[]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (336.25pt too wide) has occurred while \output is active
-[]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (336.25pt too wide) has occurred while \output is active
-[]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (336.25pt too wide) has occurred while \output is active
-[]
- []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
- [][][][] 
- []
-
-[294
-
-]
-Underfull \vbox (badness 10000) detected at line 11052
- []
-
-
-Overfull \hbox (336.25pt too wide) detected at line 11052
-[]
- []
-
-
-Underfull \vbox (badness 10000) detected at line 11052
- []
-
-
-Overfull \hbox (336.25pt too wide) detected at line 11052
-[]
- []
-
-
-Underfull \vbox (badness 10000) detected at line 11052
- []
-
-
-Overfull \hbox (336.25pt too wide) detected at line 11052
-[]
- []
-
-
-Underfull \vbox (badness 10000) detected at line 11052
- []
-
-
-Overfull \hbox (336.25pt too wide) detected at line 11052
+Overfull \hbox (336.25pt too wide) detected at line 11065
 []
  []
 
@@ -4458,17 +4392,17 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[295
+[289
 
 ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[296] [297]
+[290] [291]
 File: 12_exporting_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type
  QTm)
-<use  "12_exporting_files/figure-latex/unnamed-chunk-12-1.pdf" > [298] [299] [3
-00] [301] [302] [303]
+<use  "12_exporting_files/figure-latex/unnamed-chunk-12-1.pdf" > [292] [293] [2
+94] [295] [296] [297]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -4505,92 +4439,92 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[304
+[298
 
 ]
-Underfull \vbox (badness 10000) detected at line 11456
+Underfull \vbox (badness 10000) detected at line 11469
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 11456
+Overfull \hbox (336.25pt too wide) detected at line 11469
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 11456
+Underfull \vbox (badness 10000) detected at line 11469
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 11456
+Overfull \hbox (336.25pt too wide) detected at line 11469
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 11456
+Underfull \vbox (badness 10000) detected at line 11469
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 11456
+Overfull \hbox (336.25pt too wide) detected at line 11469
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 11456
+Underfull \vbox (badness 10000) detected at line 11469
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 11456
+Overfull \hbox (336.25pt too wide) detected at line 11469
 []
  []
 
 Chapter 13.
 
-Underfull \hbox (badness 10000) detected at line 11473
+Underfull \hbox (badness 10000) detected at line 11486
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 11473
+Underfull \hbox (badness 10000) detected at line 11486
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 11475
+Underfull \hbox (badness 10000) detected at line 11488
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 11475
+Underfull \hbox (badness 10000) detected at line 11488
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 11477
+Underfull \hbox (badness 10000) detected at line 11490
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 11477
+Underfull \hbox (badness 10000) detected at line 11490
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 11479
+Underfull \hbox (badness 10000) detected at line 11492
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 11479
+Underfull \hbox (badness 10000) detected at line 11492
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 11481
+Underfull \hbox (badness 10000) detected at line 11494
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 11481
+Underfull \hbox (badness 10000) detected at line 11494
 [][][]
  []
 
@@ -4599,65 +4533,65 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[305
+[299
 
-] [306]
-Underfull \hbox (badness 10000) detected at line 11539
+] [300]
+Underfull \hbox (badness 10000) detected at line 11552
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 11539
+Underfull \hbox (badness 10000) detected at line 11552
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 11541
+Underfull \hbox (badness 10000) detected at line 11554
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 11541
+Underfull \hbox (badness 10000) detected at line 11554
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 11543
+Underfull \hbox (badness 10000) detected at line 11556
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 11543
+Underfull \hbox (badness 10000) detected at line 11556
 [][][]
  []
 
-[307] [308]
+[301] [302]
 File: 13_missing_data_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (ty
 pe QTm)
-<use  "13_missing_data_files/figure-latex/unnamed-chunk-4-1.pdf" > [309]
-Underfull \hbox (badness 6961) in paragraph at lines 11648--11648
+<use  "13_missing_data_files/figure-latex/unnamed-chunk-4-1.pdf" > [303]
+Underfull \hbox (badness 6961) in paragraph at lines 11661--11661
 []\EU1/lmr/bx/n/12 3. Look for patterns of missingness: miss-
  []
 
 File: 13_missing_data_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (ty
 pe QTm)
-<use  "13_missing_data_files/figure-latex/unnamed-chunk-5-1.pdf" > [310] [311]
+<use  "13_missing_data_files/figure-latex/unnamed-chunk-5-1.pdf" > [304] [305]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[312]
+[306]
 File: 13_missing_data_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (ty
 pe QTm)
 <use  "13_missing_data_files/figure-latex/unnamed-chunk-8-1.pdf" >
 Overfull \hbox (108.02211pt too wide) has occurred while \output is active
  [][][][]  \EU1/lmr/m/it/10 13.74. Check for associations between missing and o
-bserved data: missing_pairs | missing_compare  \EU1/lmr/m/n/10 313
+bserved data: missing_pairs | missing_compare  \EU1/lmr/m/n/10 307
  []
 
-[313]
+[307]
 File: 13_missing_data_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (ty
 pe QTm)
-<use  "13_missing_data_files/figure-latex/unnamed-chunk-9-1.pdf" > [314]
+<use  "13_missing_data_files/figure-latex/unnamed-chunk-9-1.pdf" > [308]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -4667,28 +4601,28 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Overfull \hbox (108.02211pt too wide) has occurred while \output is active
  [][][][]  \EU1/lmr/m/it/10 13.74. Check for associations between missing and o
-bserved data: missing_pairs | missing_compare  \EU1/lmr/m/n/10 315
+bserved data: missing_pairs | missing_compare  \EU1/lmr/m/n/10 309
  []
 
-[315] [316]
-Overfull \hbox (33.21669pt too wide) in paragraph at lines 11910--11910
+[309] [310]
+Overfull \hbox (33.21669pt too wide) in paragraph at lines 11923--11923
 []\EU1/SourceCodePro(0)/m/n/12 ##     P-value for the Hawkins test of normality
  and homoscedasticity:  7.607252e-14[] 
  []
 
 
-Overfull \hbox (64.4164pt too wide) in paragraph at lines 11910--11910
+Overfull \hbox (64.4164pt too wide) in paragraph at lines 11923--11923
 []\EU1/SourceCodePro(0)/m/n/12 ##     Either the test of multivariate normality
  or homoscedasticity (or both) is rejected.[] 
  []
 
 
-Overfull \hbox (22.29677pt too wide) in paragraph at lines 11910--11910
+Overfull \hbox (22.29677pt too wide) in paragraph at lines 11923--11923
 []\EU1/SourceCodePro(0)/m/n/12 ##     There is not sufficient evidence to rejec
 t MCAR at 0.05 significance level.[] 
  []
 
-[317] [318] [319] [320] [321] [322] [323]
+[311] [312] [313] [314] [315] [316] [317]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -4725,41 +4659,41 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[324
+[318
 
 ]
-Underfull \vbox (badness 10000) detected at line 12199
+Underfull \vbox (badness 10000) detected at line 12212
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 12199
+Overfull \hbox (336.25pt too wide) detected at line 12212
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12199
+Underfull \vbox (badness 10000) detected at line 12212
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 12199
+Overfull \hbox (336.25pt too wide) detected at line 12212
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12199
+Underfull \vbox (badness 10000) detected at line 12212
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 12199
+Overfull \hbox (336.25pt too wide) detected at line 12212
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12199
+Underfull \vbox (badness 10000) detected at line 12212
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 12199
+Overfull \hbox (336.25pt too wide) detected at line 12212
 []
  []
 
@@ -4769,41 +4703,41 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[325
+[319
 
-] [326] [327] [328] [329] [330] [331] [332]
-Underfull \vbox (badness 10000) detected at line 12495
+] [320] [321] [322] [323] [324] [325] [326]
+Underfull \vbox (badness 10000) detected at line 12508
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 12495
+Overfull \hbox (336.25pt too wide) detected at line 12508
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12495
+Underfull \vbox (badness 10000) detected at line 12508
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 12495
+Overfull \hbox (336.25pt too wide) detected at line 12508
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12495
+Underfull \vbox (badness 10000) detected at line 12508
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 12495
+Overfull \hbox (336.25pt too wide) detected at line 12508
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12495
+Underfull \vbox (badness 10000) detected at line 12508
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 12495
+Overfull \hbox (336.25pt too wide) detected at line 12508
 []
  []
 
@@ -4813,14 +4747,14 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[333
+[327
 
 
 ]
 File: images/chapter14/1.pdf Graphic file (type QTm)
 <use  "images/chapter14/1.pdf" >
 File: images/chapter14/2.pdf Graphic file (type QTm)
-<use  "images/chapter14/2.pdf" > [334] [335]
+<use  "images/chapter14/2.pdf" > [328] [329]
 File: images/chapter14/4.pdf Graphic file (type QTm)
 <use  "images/chapter14/4.pdf" >
 File: images/chapter14/5.pdf Graphic file (type QTm)
@@ -4828,39 +4762,39 @@ File: images/chapter14/5.pdf Graphic file (type QTm)
 File: images/chapter14/6.pdf Graphic file (type QTm)
 <use  "images/chapter14/6.pdf" >
 File: images/chapter14/7.pdf Graphic file (type QTm)
-<use  "images/chapter14/7.pdf" > [336] [337] [338] [339] [340]
-Underfull \vbox (badness 10000) detected at line 12607
+<use  "images/chapter14/7.pdf" > [330] [331] [332] [333] [334]
+Underfull \vbox (badness 10000) detected at line 12620
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 12607
+Overfull \hbox (336.25pt too wide) detected at line 12620
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12607
+Underfull \vbox (badness 10000) detected at line 12620
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 12607
+Overfull \hbox (336.25pt too wide) detected at line 12620
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12607
+Underfull \vbox (badness 10000) detected at line 12620
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 12607
+Overfull \hbox (336.25pt too wide) detected at line 12620
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12607
+Underfull \vbox (badness 10000) detected at line 12620
  []
 
 
-Overfull \hbox (336.25pt too wide) detected at line 12607
+Overfull \hbox (336.25pt too wide) detected at line 12620
 []
  []
 
@@ -4870,10 +4804,10 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[341
+[335
 
 
-] [342] (./healthyr-book.bbl [343]
+] [336] (./healthyr-book.bbl [337]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -4910,7 +4844,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[344
+[338
 
 ]
 Underfull \vbox (badness 10000) detected at line 1
@@ -4958,7 +4892,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[345
+[339
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -4997,7 +4931,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[346
+[340
 
 ] (./healthyr-book.ind
 Underfull \hbox (badness 10000) detected at line 1
@@ -5013,32 +4947,32 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[347
+[341
 
 
-] [348] [349
+] [342] [343
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 12694.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 12694.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 12707.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 12707.
 (./healthyr-book.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 12694.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 12694.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 12707.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 12707.
 
 LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 12694.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 12707.
  ) 
 Here is how much of TeX's memory you used:
- 31921 strings out of 495579
- 556376 string characters out of 6187323
+ 31907 strings out of 495579
+ 555652 string characters out of 6187323
  776286 words of memory out of 5000000
- 34692 multiletter control sequences out of 15000+600000
+ 34682 multiletter control sequences out of 15000+600000
  12599 words of font info for 103 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  61i,14n,109p,10422b,833s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on healthyr-book.pdf (375 pages).
+Output written on healthyr-book.pdf (369 pages).

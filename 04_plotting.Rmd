@@ -430,7 +430,7 @@ gapminder %>%
 
 ## Bar plots
 
-There are two geoms for making bar plots - `geom_col()` and `geom_bar()`. In short: `geom_col()` plots values from your data directly (you define the `x` and `y` values), whereas `geom_bar()` will only take `x` values, the height of the bar (`y`) is the subgroups within `x` counted up. `geom_bar()` is basically a histogram for a categrical variable. 
+There are two geoms for making bar plots - `geom_col()` and `geom_bar()`. In short: `geom_col()` plots values from your data directly (you define the `x` and `y` values), whereas `geom_bar()` will only take `x` values, the height of the bar (`y`) is the subgroups within `x` counted up. `geom_bar()` is basically a histogram for a categorical variable. 
 
 **`geom_col()`**:
 
@@ -537,7 +537,7 @@ Colour is the border around a geom, whereas fill is inside it.
 Both can either be set based on a variable in your dataset (this means `colour = ` or `fill = ` needs to be inside the `aes()` function), or they could be set to a fixed colour.
 
 R has an amazing knowledge about different colours.
-In additon to knowing what is "white", "yellow", "red", "green" etc. (meaning we can simply do `geom_bar(fill = "green")`) it also knows what "aquamarine", "blanchedalmond", "coral", "deeppink", "lavender", "deepskyblue" look like (amongst many many others, search the internet for "R colours" for a full list).
+In addition to knowing what is "white", "yellow", "red", "green" etc. (meaning we can simply do `geom_bar(fill = "green")`) it also knows what "aquamarine", "blanchedalmond", "coral", "deeppink", "lavender", "deepskyblue" look like (amongst many many others, search the internet for "R colours" for a full list).
 
 
 We can also use HEX colour codes, for example, `geom_bar(fill = "#FF0099")` is a very pretty pink.

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  27 AUG 2019 14:05
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  27 AUG 2019 15:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2947,10 +2947,11 @@ Underfull \hbox (badness 3088) in paragraph at lines 4458--4459
 [106]
 File: 04_plotting_files/figure-latex/unnamed-chunk-29-1.pdf Graphic file (type 
 QTm)
-<use  "04_plotting_files/figure-latex/unnamed-chunk-29-1.pdf" > [107] [108]
+<use  "04_plotting_files/figure-latex/unnamed-chunk-29-1.pdf" > [107] [108] [10
+9]
 File: 04_plotting_files/figure-latex/unnamed-chunk-32-1.pdf Graphic file (type 
 QTm)
-<use  "04_plotting_files/figure-latex/unnamed-chunk-32-1.pdf" > [109]
+<use  "04_plotting_files/figure-latex/unnamed-chunk-32-1.pdf" >
 File: 04_plotting_files/figure-latex/unnamed-chunk-33-1.pdf Graphic file (type 
 QTm)
 <use  "04_plotting_files/figure-latex/unnamed-chunk-33-1.pdf" > [110] [111]

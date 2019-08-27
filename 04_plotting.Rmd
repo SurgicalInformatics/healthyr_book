@@ -649,21 +649,21 @@ p2 = gapminder2007 %>%
 p3 = gapminder2007 %>% 
   ggplot(aes(x = continent, y = lifeExp, colour = continent)) +
   geom_boxplot() +
-  geom_jitter() +
+  geom_jitter(position = position_jitter(seed = 1)) +
   theme(legend.position = "none")
 
 p4 = gapminder2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
   geom_boxplot() +
-  geom_jitter(aes(colour = continent))
+  geom_jitter(aes(colour = continent), position = position_jitter(seed = 1))
 
 p1 + p2 + p3 + p4 + plot_annotation(tag_levels = "1", tag_prefix = "(", tag_suffix = ")")
 
 ```
 
-The only thing we've changed in (2) is replacing `geom_point()` with `geom_jitter()` - this spread the points out to reduce overplotting.
+The only thing we've changed in (2) is replacing `geom_point()` with `geom_jitter()` - this spreads the points out to reduce overplotting.
 
-But what's really exciting is what happens in (3) and (4) of Figure \@ref(fig:chap04-fig-multigeoms).
+But what's really exciting is the difference between (3) and (4) in Figure \@ref(fig:chap04-fig-multigeoms). Spot it!
 
 ```{r, fig.keep = 'none'}
 # (3)
@@ -681,10 +681,10 @@ gapminder2007 %>%
 
 
 This is new: `aes()` inside a geom, not just at the top!
-In (4) we included the `aes()` in two places - at the top and inside the `geom_jitter()`.
+In the code for (4) you can see `aes()` in two places - at the top and inside the `geom_jitter()`.
 And `colour = continent` was only included in the second `aes()`.
 This means that the jittered points get a colour, but the box plots will be drawn without (so just black).
-An this is exactly what we see on \@ref(fig:chap04-fig-multigeoms).
+An this is exactly what we see on \@ref(fig:chap04-fig-multigeoms)^[Nerd alert: the variation added by `geom_jitter()` is random, which means that when you recreate the same plots the points will appear in slightly different locations to ours. To make identical ones, add `position = position_jitter(seed = 1)` inside `geom_jitter()`.].
 
 ### Worked example - three geoms together
 

@@ -542,11 +542,25 @@ In addition to knowing what is "white", "yellow", "red", "green" etc. (meaning w
 
 We can also use HEX colour codes, for example, `geom_bar(fill = "#FF0099")` is a very pretty pink.
 
+### Proportions {#chap04-proportions}
+
+Whether using `geom_bar()` or `geom_col()`, we can use fill to display proportions within bars.
+Furthermore, sometimes it's useful to set the x value to a constant - to get everything plotted together rather than separated by a variable.
+So we are using `aes(x = "Global", fill = continent)`, note that "Global" could be any word - since it's quoted `ggplot()` won't go looking for it in the dataset:
+
+```{r}
+gapminder2007 %>% 
+  ggplot(aes(x = "Global", fill = continent)) + 
+  geom_bar()
+```
+
+There are more examples of bar plots in Chapter \@ref(chap08-h1).
+
 ### Exercise
 
-Create this barplot of life expectancies in European countries (year 2007):
+Create Figure \@ref(fig:chap04-fig-bar-exercise) of life expectancies in European countries (year 2007).
 
-```{r, fig.width = 4.5, echo = FALSE, fig.height=5}
+```{r chap04-fig-bar-exercise, fig.width = 4.5, echo = FALSE, fig.height=5, fig.cap = "Barplot Exercise. Life expectancies in European countries in year 2007 from the Gapmminder dataset."}
 gapminder %>% 
   filter(year == 2007) %>%
   filter(continent == "Europe") %>% 
@@ -564,16 +578,38 @@ Hints:
 * `x = country` gets the country bars plotted in the alphabetical order, use `x = fct_reorder(country, lifeExp)` still inside the `aes()` to order the bars by their `lifeExp` values. Or try one of the other variables. (`pop`, `gdpPercap`) as the second argument to `fct_reorder()`.
 * when using `fill = NA` also need to include a colour, we're using `colour = "deepskyblue"` inside the `geom_col()`.
 
+\FloatBarrier
+
+## Histograms
+
+A histogram displays the distribution of values within a continuous variable. 
+In the example below, we are taking the life expectancy (`aes(x = lifeExp)`) and telling the histogram to count the observations up in "bins" of 10 years (`geom_histogram(binwidth = 10)`): 
+
+```{r fig.width=4}
+
+gapminder2007 %>% 
+  ggplot(aes(x = lifeExp)) +
+  geom_histogram(binwidth = 10)
+
+```
+
+We can see that most countries in the world have a life expectancy of ~70-80 years (in 2007), and that the distribution of life expectancies globally is not normally distributed.
+Setting the binwidth is optional, using just `geom_histogram()` works well too -by default, it will divide your data into 30 bins.
+
+There are more examples of histograms in Chapter \@ref(chap06-h1). There are two other geoms that are useful for plotting distributions: `geom_density()` and `geom_freqpoly()`.
 
 ## Box plots
 
-Plot the distribution of life expectancies within each continent at year 2007:
+Box plots are a way to quickly visualise summary statistics of a continuous outcome variable (such as life expectancy in the gapminder dataset).
 
-* `filter(year == 2007) %>%`
-* `x = continent, y = lifeExp`
-* `+ geom_boxplot()`
+Box plots include:
 
-```{r, fig.width=2.77, fig.height=2.75}
+* the median (middle line in the box)
+* inter-quartile range (IQR, top and bottom parts of the boxes - this is where 50% of your data is)
+* whiskers (the black lines extending to the lowest and highest values that are still within 1.5*IQR)
+* outliers (any observations outwith the whiskers)
+
+```{r, fig.width=3, fig.height=2.75}
 
 gapminder2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
@@ -582,152 +618,142 @@ gapminder2007 %>%
 ```
 
 
-### Exercise
+## Multiple geoms, multiple `aes()`?
 
-Add individual (country) points on top of the box plot:
+One of the coolest things about `ggplot()` is that we can plot multiple geoms on top of each other!
 
-```{r, echo=F, fig.width=5, fig.height=4}
+Let' add individual data points on top of the box plots:
 
-# optinal labels:
-label_data = mydata %>% 
-  filter(year == 2007) %>% 
-  group_by(continent) %>% 
-  filter(lifeExp == max(lifeExp) )
-
-
-mydata %>% 
-  filter(year == 2007) %>% 
+```{r, fig.keep = 'none'}
+gapminder2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
-  geom_boxplot(outlier.shape = NA) +
-  geom_label(data = label_data, aes(label=country), vjust = 0, size = 3) +
-  geom_jitter(aes(colour=continent), width=0.3, alpha=0.8) + #width defaults to 0.8 of box width
-  theme_bw()
+  geom_boxplot() +
+  geom_point()
+```
 
+This makes Figure \@ref(fig:chap04-fig-multigeoms):1.
+
+
+```{r chap04-fig-multigeoms, echo=FALSE, fig.width=0.8*10, fig.height=0.8*8, fig.cap = "Multiple geoms together. (1) `geom_boxplot() + geom_point()`, (2) `geom_boxplot() + geom_jitter()`, (3) colour aesthetic inside `ggplot(aes())`, (4) colour aesthetic inside `geom_jitter(aes())`."}
+
+p1 = gapminder2007 %>% 
+  ggplot(aes(x = continent, y = lifeExp)) +
+  geom_boxplot() +
+  geom_point()
+
+p2 = gapminder2007 %>% 
+  ggplot(aes(x = continent, y = lifeExp)) +
+  geom_boxplot() +
+  geom_jitter()
+
+p3 = gapminder2007 %>% 
+  ggplot(aes(x = continent, y = lifeExp, colour = continent)) +
+  geom_boxplot() +
+  geom_jitter() +
+  theme(legend.position = "none")
+
+p4 = gapminder2007 %>% 
+  ggplot(aes(x = continent, y = lifeExp)) +
+  geom_boxplot() +
+  geom_jitter(aes(colour = continent))
+
+p1 + p2 + p3 + p4 + plot_annotation(tag_levels = "1", tag_prefix = "(", tag_suffix = ")")
 
 ```
 
-Hint: Use `geom_jitter()` instead of `geom_point()` to reduce overlap by spreading the points horizontally. Include the `width=0.3` option to reduce the width of the jitter.
+The only thing we've changed in (2) is replacing `geom_point()` with `geom_jitter()` - this spread the points out to reduce overplotting.
 
-**Optional:**
+But what's really exciting is what happens in (3) and (4) of Figure \@ref(fig:chap04-fig-multigeoms).
 
-Include text labels for the highest life expectancy country of each continent.
+```{r, fig.keep = 'none'}
+# (3)
+gapminder2007 %>% 
+  ggplot(aes(x = continent, y = lifeExp, colour = continent)) +
+  geom_boxplot() +
+  geom_jitter()
 
-**Hint 1** Create a separate dataframe called `label_data` with the maximum countries for each continent:
+# (4)
+gapminder2007 %>% 
+  ggplot(aes(x = continent, y = lifeExp)) +
+  geom_boxplot() +
+  geom_jitter(aes(colour = continent))
+```
+
+
+This is new: `aes()` inside a geom, not just at the top!
+In (4) we included the `aes()` in two places - at the top and inside the `geom_jitter()`.
+And `colour = continent` was only included in the second `aes()`.
+This means that the jittered points get a colour, but the box plots will be drawn without (so just black).
+An this is exactly what we see on \@ref(fig:chap04-fig-multigeoms).
+
+### Worked example - three geoms together
+
+Let's combine three geoms by including text labels on top of the box plot + points from above.
+
+We are creating a new tibble called `label_data` filtering for the maximum life expectancy countries at each continent (`group_by(continent)`):
+
 ```{r}
-label_data = mydata %>% 
-  filter(year == max(year)) %>% # same as year == 2007
+label_data = gapminder2007 %>% 
   group_by(continent) %>% 
-  filter(lifeExp == max(lifeExp) )
+  filter(lifeExp == max(lifeExp)) %>% 
+  select(country, continent, lifeExp)
+
+# since we filtered for lifeExp == max(lifeExp)
+# these are the maximum life expectancy countries at each continent:
+label_data
 ```
 
-**Hint 2** Add `geom_label()` with appropriate `aes()`:
-```{r, eval = FALSE}
-+ geom_label(data = label_data, aes(label=country), vjust = 0)
+The first two geoms are from the previous example (`geom_boxplot()` and `geom_jitter()`).
+Note that `ggplot()` plots them in the order they are in the code  - so box plots at the bottom, jittered points on the top.
+We are then adding `geom_label()` with its own data option (`data = label_data`) as well as a new aesthetic (`aes(label = country)`):
+
+```{r, fig.width=5, fig.height=4}
+
+gapminder2007 %>% 
+  ggplot(aes(x = continent, y = lifeExp)) +
+  # First geom - boxplot
+  geom_boxplot() +
+  # Second geom - jitter with its own aes(colour = )
+  geom_jitter(aes(colour = continent)) +
+  # Third geom - label, with its own dataset (label_data) and aes(label = )
+  geom_label(data = label_data, aes(label = country))
+
 ```
+
+A few suggested experiments to try with the 3-geom plot code above:
+
+* remove `data = label_data, ` from `geom_label()` and you'll get all 142 labels (so it will plot a label for the whole `gapminder2007` dataset).
+* change from `geom_label()` to `geom_text()` - it works similarly but doesn't have the border and background behind the country name.
+* change `label = country` to `label = lifeExp`, this plots the maximum value, rather than the country name.
 
 
 
 
 ## All other types of plots
 
-These are just some of the main ones, see this gallery for more options: http://www.r-graph-gallery.com/portfolio/ggplot2-package/
+In this chapter we have introduced some of the most common geoms, as well as explained how `ggplot()` works.
+In fact, ggplot has 52 different geoms for you to use, see its documentation for a full list: https://ggplot2.tidyverse.org 
 
-And the `ggplot()` documentation: http://docs.ggplot2.org/
+And with the ability of combining multiple geoms together on the same plot, the possibilities really are endless.
+Furthermore, the plotly Graphic Library (https://plot.ly/ggplot2/) can make some of your ggplots interactive, meaning you can use your mouse to hover over the point or zoom and subset interactively.
 
-Remember that you can always combine different types of plots - i.e. add lines or points on bars, etc.
+The two most important things to understand about `ggplot()` are:
 
-
-## Specifying `aes()` variables
-
-The `aes()` variables wrapped inside `ggplot()` will be taken into account by all geoms. 
-If you put `aes(colour = lifeExp)` inside `geom_point()`, only points will be coloured:
-
-```{r, fig.width = 4, fig.height = 3}
-
-mydata %>% 
-  filter(continent == "Europe") %>% 
-  ggplot(aes(x = year, y = lifeExp, group = country)) +
-  geom_line() +
-  geom_point(aes(colour = lifeExp))
-
-```
-
-## Extra: Optional exercises
-
-### Exercise
-
-Make this:
-
-
-```{r, fig.height=10, fig.width=8}
-
-mydata$dummy = 1  # create a column called "dummy" that includes number 1 for each country
-
-mydata2007 = mydata %>% 
-  filter(year==max(year)) %>% 
-  group_by(continent) %>% 
-  mutate(country_number = cumsum(dummy))  # create a column called "country_number" that
-  # is a cumulative sum of the number of countries before it - basically indexing
-
-
-mydata2007 %>% 
-  ggplot(aes(x = continent)) +
-  geom_bar(aes(colour=continent), fill = NA) +
-  geom_text(aes(y = country_number, label=country), size=4, vjust=1, colour='black')+
-  theme_void()
-
-```
-
-\newpage
-
-### Exercise
-
-Make this:
-
-Hints: `coord_flip()`, `scale_color_gradient(...)`, `geom_segment(...)`, `annotate("text", ...)`
-
-```{r, fig.width=7, fig.height=5}
-
-mydata %>% 
-  filter(continent == "Europe") %>% 
-  ggplot(aes(y = fct_reorder(country, gdpPercap, .fun=max), x=lifeExp, colour=year)) +
-  geom_point(shape = 15, size = 2) +
-  theme_bw() +
-  scale_colour_distiller(palette = "Greens", direction = 1) +
-  geom_segment(aes(yend = "Switzerland", x = 85, y = "Bosnia and Herzegovina", xend = 85),
-               colour = "black", size=1,
-               arrow = arrow(length = unit(0.3, "cm"))) +
-  annotate("text", y = "Greece", x=83, label = "Higher GDP per capita", angle = 90)
-
-```
-
-
+* Variables (columns in your dataset) need to be inside `aes()`
+* `aes()` can be both at the top  - `data %>% ggplot(aes())` - as well as inside a geom (e.g., `geom_point(aes())`). This distinction is useful when combining multiple geoms. All your geoms will "know about" the top-level `aes()` variables, but including `aes()` variables inside a specific geom means it only applies to that one.
 
 
 ## Solutions
 
-**4.2.1**
+**4.4.1**
 
-```{r, eval = FALSE, fig.width=6}
+```{r, fig.keep = 'none'}
 
-mydata %>% 
-  filter(year == 2007) %>% 
-  ggplot(  aes(x = gdpPercap/1000, #divide by 1000 to tidy the x-axis
-               y = lifeExp,
-               colour=continent,
-               size=pop)) +
-  geom_point(shape = 1) +
-  facet_wrap(~continent) +
-  theme_bw()
-
-```
-
-**4.3.1**
-
-```{r, fig.width=10, eval = FALSE, fig.height=4}
-
-mydata %>% 
-  ggplot(  aes(x = year, y = lifeExp, group = country, colour=continent)) +
+gapminder %>% 
+  ggplot(aes(x      = year,
+             y      = lifeExp,
+             group  = country,
+             colour = continent)) +
   geom_line() +
   facet_wrap(~continent) + 
   theme_bw() +
@@ -735,48 +761,51 @@ mydata %>%
 
 ```
 
-**which**
-
-Add ` + 
-geom_line(data = filter(mydata, country == "France"), colour = "blue")`
-
-**4.4.1**
-
-```{r, eval=F, fig.width=5, fig.height=4}
-
-mydata %>% 
-  filter(year == 2007) %>% 
-  ggplot(aes(x = continent, y = lifeExp)) +
-  geom_boxplot(outlier.shape = NA) +
-  geom_jitter(aes(colour=continent), width=0.3, alpha=0.8) + #width defaults to 0.8 of box width
-  theme_bw()
-
-
-```
-
+**4.5.3**
 
 ```{r, eval = FALSE}
+gapminder %>% 
+  filter(year == 2007) %>%
+  filter(continent == "Europe") %>% 
+  ggplot(aes(x = fct_reorder(country, lifeExp), y = lifeExp)) +
+  geom_col(colour = "deepskyblue", fill = NA) +
+  coord_flip() +
+  theme_classic()
+```
 
-mydata %>% 
-  filter(year == 2007) %>% 
-  ggplot(aes(x = continent, y = lifeExp)) +
-  geom_boxplot(outlier.shape = NA) +
-  geom_jitter(aes(colour=continent), width=0.3, alpha=0.8)
+
+## Extra: Advanced examples
+
+There are two examples of how just a few lines of `ggplot()` code and the basic geoms introduced in this chapter can be used to make very different things.
+Let your imagination fly free when using `ggplot()`!
+
+The first one shows how the life expectancies in European countries have increased by plotting a square (`geom_point(shape = 15)`) for each observation (year) in the dataset. 
+
+```{r, fig.width=7, fig.height=5}
+
+gapminder %>% 
+  filter(continent == "Europe") %>% 
+  ggplot(aes(y      = fct_reorder(country, lifeExp, .fun=max),
+             x      = lifeExp,
+             colour = year)) +
+  geom_point(shape = 15, size = 2) +
+  scale_colour_distiller(palette = "Greens", direction = 1) +
   theme_bw()
-
 
 ```
 
-**4.5.1**
+In the second example, we're using `group_by(continent)` followed by `mutate(country_number = seq_along(country))` to create a new column with numbers 1, 2, 3, etc for countries within continents. 
+We are then using these as `y` coordinates for the text labels (`geom_text(aes(y = country_number...`).
 
-```{r, fig.width = 4, eval = FALSE}
-mydata %>% 
-  filter(year == 2007) %>%
-  filter(continent == "Europe") %>% 
-  ggplot(aes(x = country, y = lifeExp)) +
-  geom_col(colour = "#91bfdb", fill = NA) +
-  coord_flip() +
-  theme_classic()
-  
+```{r, fig.height=10, fig.width=8}
+gapminder2007 %>% 
+  group_by(continent) %>% 
+  mutate(country_number = seq_along(country)) %>% 
+  ggplot(aes(x = continent)) +
+  geom_bar(aes(colour = continent), fill = NA, show.legend = FALSE) +
+  geom_text(aes(y = country_number, label = country), vjust = 1)+
+  geom_label(aes(label = continent), y = -1) +
+  theme_void()
+
 ```
 

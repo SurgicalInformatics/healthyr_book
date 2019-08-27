@@ -1,4 +1,4 @@
-# Working with categorical outcome variables
+# Working with categorical outcome variables {#chap08-h1}
 \index{categorical data@\textbf{categorical data}}
 
 > Suddenly Christopher Robin began to tell Pooh about some of the things: People called Kings and Queens and something called Factors ... and Pooh said "Oh!" and thought how wonderful it would be to have a Real Brain which could tell you things.  

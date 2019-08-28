@@ -11,7 +11,6 @@ library(tidyverse)
 
 The aim of this chapter is to familiarise you with how R works. 
 We will read in data and start basic manipulations. 
-We will be working with a shorter version of the Global Burden of Disease dataset that we met earlier. 
 
 
 ## Getting help

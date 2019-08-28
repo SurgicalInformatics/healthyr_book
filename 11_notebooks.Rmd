@@ -269,7 +269,7 @@ Here is our suggested approach.
 
 All projects must reside within an RStudio Project that has a meaningful name (not MyProject!).
 Never work within the (Home) or root directory.
-Projects should be initiated with a Git repository for version control (see Chapter \ref(chap15-h1)).
+Projects should be initiated with a Git repository for version control (see Chapter \@ref(chap15-h1)).
 
 Structure your directory sensibly. 
 

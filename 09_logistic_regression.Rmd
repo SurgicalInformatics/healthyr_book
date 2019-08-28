@@ -656,7 +656,7 @@ By default, it assesses the predictive accuracy for death in deciles of risk.
 If the model predcits equally well (or badly) at low probabilites compared with high probabilites, the null hypothesis of a difference will be rejected (meaning you get a non-significant p-value).
 
 
-## Model fitting
+## Model fitting{#chap09-model-fitting}
 \index{logistic regression@\textbf{logistic regression}!model fitting}
 \index{logistic regression@\textbf{logistic regression}!finalfit}
 

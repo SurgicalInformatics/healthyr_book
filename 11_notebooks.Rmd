@@ -5,12 +5,15 @@ In this section, we will provide workflows, or ways-of-working, which maximise e
 
 We also include a section on dealing with missing data in R. Something that we both feel strongly about and which is often poorly described and dealt with in academic publishing. 
 
-# Notebooks and Markdown
+# Notebooks and Markdown{#chap11-h1}
+\index{notebooks@\textbf{notebooks}}
+\index{markdown@\textbf{markdown}}
+
 
 ## What is a Notebook?
 
 R is all-powerful for the manipulation, visualisation and analysis of data. 
-What is often be underappreciated is the flexibility in which analyses can be exported or reported.
+What is often be under-appreciated is the flexibility in which analyses can be exported or reported.
 
 For instance, a full scientific paper, industry report, or monthly update can be easily written to accommodate a varying underlying dataset, and all tables and plots will be updated automatically. 
 
@@ -21,7 +24,7 @@ Notebooks are documents which combine code and rich text elements, such as headi
 They combine analysis and reporting in one human-readable document to provide an intuitive interface between the researcher and their analysis (Figure \@ref(fig:chap11-fig-literate). 
 This sometimes gets called "literate programming", given the resulting logical structure of information can be easily read in the manner a human would read a book.  
 
-```{r chap11-fig-literate, echo = FALSE, fig.cap="CAPTION"}
+```{r chap11-fig-literate, echo = FALSE, fig.cap="Traditional versus literate programming using Notebooks."}
 knitr::include_graphics("images/chapter11/1_literate_programming.pdf")
 ```
 
@@ -32,26 +35,28 @@ Some of the advantages of the Notebook format are:
 
 * code and output are adjacent to each other, so you are not constantly switching between "panes";
 * easier to work on smaller screen;
-* fully formated text elements can be included in documents;
+* fully formatted text elements can be included in documents;
 * documentation and reporting can be done beside the code;
 * the code itself can be outputted or hidden;
 * the code is not limited to R - you can include Python, SQL etc.;
-* faciliate collaboration by easily sharing human-readable analysis documents;
+* facilitate collaboration by easily sharing human-readable analysis documents;
 * can be outputted in a number of formats including HTML (web page), PDF, and Microsoft Word;
 * output can be extended to other formats such as presentations;
 * training/learning may be easier as course materials, examples, and student notes are all in same document.
 
+
 ## What is Markdown?
 
-Markdown is a lightweight language that can be used to write fully-formated documents. 
-It is plaintext and uses a simple set of rules to produce rather sophisticated output - we love it!
+Markdown is a lightweight language that can be used to write fully-formates documents. 
+It is plain-text and uses a simple set of rules to produce rather sophisticated output - we love it!
 
 It is easy to format headings, bold text, italics etc. 
-Within RStudio there is a Quick Reference guide (Figure \@ref(fig:chap11-fig-help)) and links to the [RStudio cheatsheets](https://www.rstudio.com/resources/cheatsheets) can be found in the Help dropdown menu.
+Within RStudio there is a Quick Reference guide (Figure \@ref(fig:chap11-fig-help)) and links to the [RStudio cheatsheets](https://www.rstudio.com/resources/cheatsheets) can be found in the Help drop-down menu.
 
-```{r chap11-fig-help, echo = FALSE, fig.cap="CAPTION"}
+```{r chap11-fig-help, echo = FALSE, fig.cap="RStudio Markdown quick reference guide."}
 knitr::include_graphics("images/chapter11/3_help.pdf")
 ```
+
 
 ## What is the difference between a Notebook and a Markdown file?
 
@@ -65,7 +70,11 @@ Also, in the Notebook behind-the-scenes file (`.nb`) all the code is always incl
 Something to watch out for if your code contains sensitive information, such as a password (which it never should!).
 This is not the case in the R Markdown `.tex` file.    
 
+
 ## Notebook vs HTML vs PDF vs Word
+\index{Microsoft Word}
+\index{PDF}
+\index{HTML}
 
 In RStudio, a Notebook can be created by going to  
 File -> New File -> R Notebook.
@@ -75,17 +84,18 @@ File -> New File -> R Markdown... .
 
 Don't worry which you choose. 
 As mentioned above, they are essentially the same thing but just come with different options. 
-It is easy to swtich from a Notebook to a Markdown file if you wish to create a PDF or Word document for instance. 
+It is easy to switch from a Notebook to a Markdown file if you wish to create a PDF or Word document for instance. 
 
 If you are primarily doing analysis in the Notebook environment, choose Notebook. If you are primarily creating a PDF or Word document, choose R Markdown file. 
 
 
 ## The anatomy of a Notebook / R Markdown file
 
-When you create a file a helpful template is provided to get you started. 
+When you create a file, a helpful template is provided to get you started. 
 Figure \@ref(fig:chap11-fig-anatomy) shows the essential elements of a Notebook file and how these translate to what is seen in the `HTML` preview. 
 
 ### YAML header
+\index{YAML header}
 
 Every Notebook and Markdown files requires a "YAML header".
 Where do they get these terms you ask?
@@ -95,11 +105,12 @@ It was later repurposed as YAML Ain't Markup Language, a recursive acronym, to d
 This is simply where many of the settings/options for file creation are placed.
 In RStudio, these often update automatically as different settings are invoked in the Options menu. 
 
-```{r chap11-fig-anatomy, echo = FALSE, fig.cap="CAPTION"}
+```{r chap11-fig-anatomy, echo = FALSE, fig.cap="The Anatomy of a Notebook/Markdown file. Input (left) and output (right)"}
 knitr::include_graphics("images/chapter11/2_anatomy_rotated.pdf")
 ```
 
 ### R code chunks
+\index{chunks}
 
 R code within a Notebook or Markdown file can included in two ways:
 
@@ -109,11 +120,14 @@ R code within a Notebook or Markdown file can included in two ways:
 R chunks are flexible, come with lots of options, and you will soon get into the way of using them. 
 
 Figure \@ref(fig:chap11-fig-anatomy) shows how a chunk fits into the document. 
-They start with:
 
 ```` markdown
 `r ''````{r}
-And end with:
+# This is basic chunk. 
+# It always starts with ```{r}
+# And ends with ```
+# Code goes here
+sum(fruit$oranges)
 ```
 ````
 
@@ -122,9 +136,12 @@ You can type it manually, or use the `Insert` button and hit `R`.
 You will also notice that chunks are not limited to R code. 
 It is particularly helpful that Python can also be run in this way. 
 
+Chunks can be named which is sometimes useful for debugging, but is not essential for the code to run, e.g. `r ''````{r table1-demographics}.
+
 When doing an analysis in a Notebook you will almost always want to see the code and the output.
 When you are creating a final document you may wish to hide code.
-Chunk behaviour can be controlled via the Cog on the right of the chunk (Figure \@ref(fig:chap11-fig-anatomy)) which makes this very easy. 
+Chunk behaviour can be controlled via the `Chunk Cog` on the right of the chunk (Figure \@ref(fig:chap11-fig-anatomy)) which makes this very easy. 
+
 Table \@ref(tab:chap11-tab-chunk-output) shows the various permutations of code and output options that are available. 
 The code is placed in the chunk header but the options fly-out now does this automatically, e.g. 
 
@@ -160,7 +177,36 @@ data.frame(
                booktabs = TRUE)
 ```
 
-Chunks can be named which is sometimes useful for debugging, but is not essential for the code to run: `r ''````{r table1-demographics}.
+### Setting default chunk options
+
+We can set default options for all our chunks at the top of our document. by adding and editing `knitr::opts_chunk$set(echo = TRUE)` at the top of the document. 
+
+
+```` markdown
+`r ''````{r}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE)
+```
+````
+
+### Setting default figure options
+
+It is possible to set different default sizes for different output types by including these in the YAML header (or using the document cog):
+
+```` markdown
+---
+title: "R Notebook"
+output: 
+  pdf_document: 
+    fig_height: 3
+    fig_width: 4
+  html_document: 
+    fig_height: 6
+    fig_width: 9
+---
+````
+
+The YAML header is very sensitive to the spaces/tabs, so make sure these are correct. 
 
 ### Markdown elements
 
@@ -170,18 +216,198 @@ This is a great way of getting into the habit of explicitly documenting your ana
 When you come back to a file in 6 months time, all of your thinking is there in front of you. 
 Rather than having to work out what on Earth you were on about from a collection of random code!
 
-## Output = knitting
+## Output
+
+### Running code and chunks
+
+Figure \@ref(fig:chap11-fig-options) shows the various controls for running chunks and producing an output document. 
+Code can be run line line-by-line using `Ctrl+Enter` as you are perhaps used to. 
+There are options for running all the chunks above the current chunk you are working on. 
+This is useful as a chunk you are working on will  often rely on objects created in preceding chunks. 
+
+```{r chap11-fig-options, echo = FALSE, fig.cap="Chunk and document options in Notebook/Markdown files."}
+knitr::include_graphics("images/chapter11/4_notebook_options_rotated.pdf")
+```
+
+It is good practice to use the `Restart R and Run All Chunks` option in the `Run` menu every so often. 
+This ensures that all the code in your document is self-contained and is not relying on an object in the environment which you have created elsewhere.
+If this was the case, then it will fail when rendering a Markdown document.
+
+### Knitting
+\index{knitr}
 
 Probably the most important engine behind the RStudio Notebooks functionality is the **knitr** package by Yihui Xie.
 
 Not knitting like your Granny does, but rendering a Markdown document into an output file, such as HTML, PDF or Word. 
 
 There are many options which can be applied inorder to acheive the desired output. 
-Some of these have been specifically coded into RStudio (Figure \@ref(fig:chap11-fig-options))
+Some of these have been specifically coded into RStudio (Figure \@ref(fig:chap11-fig-options)).
 
-```{r chap11-fig-options, echo = FALSE, fig.cap="CAPTION"}
-knitr::include_graphics("images/chapter11/4_notebook_options_rotated.pdf")
+PDF and Word document creation require a `LaTeX` distribution to be installed on your computer. 
+Depending on what system you are using, this may be set-up already. 
+
+An easy way to do this is using the **tinytex** package. 
+We run courses on using Notebooks and this approach works on >95% of Windows and Mac machines. 
+
+```` markdown
+`r ''````{r}
+install.packages("tinytex")
+````
+
+This should allow you to knit all the differnt file options. 
+
+In the next chapter we will focus on the details of producing a polished final document. 
+
+## File structure and workflow
+\index{file structure@\textbf{file structure}}
+\index{workflow@\textbf{workflow}}
+
+As projects get bigger, it is really important that they are well organised. 
+This will avoid errors and make collaboration easier. 
+
+Here is our suggested approach. 
+
+All projects must reside within an RStudio Project that has a meaningful name (not MyProject!).
+Never work within the (Home) or root directory.
+Projects should be initiated with a Git repository for version control (see Chapter \ref(chap15-h1)).
+
+Structure your directory sensibly. 
+
+```
+proj/
+- R/
+- data/
+- doc/
+- figs/
+- 00_analysis.Rmd
 ```
 
-Environment and loading data?
-kableExtra?
+`R/` contains all the `.R` script files used for data cleaning/preparation.  
+`data/` contains all raw data, such as `.csv` files.   
+`doc/` contains all output documents and reports, such as `.doc` and `.PDF` files.   
+`figs/` contains all figures and plots.  
+`00_analysis.Rmd` or `00_analysis.R` is the actual main working file, and we keep this in the main project directory. 
+We prefix this with `00` so it is always obvious which is the main file. 
+
+### Data cleaning
+
+This is all done in specific `.R` files, which are kept in the `R/` folder, and are clearly labelled, e.g.
+
+```
+R/0_source_all.R
+R/01_data_upload.R
+R/02_make_factors.R
+R/03_duplicate_records.R
+```
+
+For instance, `01_data_upload.R` may look like this. 
+
+``` r
+# Melanoma project
+## Data upload
+
+# Get data
+library(readr)
+melanoma = read_csv(
+  here::here("data/melanoma.csv")
+)
+
+# Other arguments here
+
+# Save
+save(melanoma, file = 
+  here::here("data/melanoma_working.rda")
+)
+```
+
+Note use of the `here::here()`.
+This is a very useful package which "just works" when it comes to finding your files. 
+Do not change the working directory (using `setwd()`) from the project root - there is never a reason to do this. 
+`here::here()` is paricularly useful when sharing projects between Linux, Mac and Windows machines, which have different conventions for file paths. 
+
+`02_make_factors.R` is our example second file, but it could be anything you want. 
+It could look something like this. 
+
+``` r
+# Melanoma project
+## Create factors
+library(tidyverse)
+
+load(
+  here::here("data/melanoma_working.rda")
+)
+
+## Recode variables
+melanoma = melanoma %>%
+  mutate(
+    sex = factor(sex) %>% 
+      fct_recode("Male" = "1", 
+                 "Female" = "0")
+  )
+
+# Save
+save(melanoma, file = 
+  here::here("data/melanoma_working.rda")
+)
+```
+
+All these files can then be brought together in a single file to `source()`. 
+This function is used to run code from a file. 
+
+`0_source_all.R` might look like this:
+
+``` r
+# Melanoma project
+## Source all
+
+source( here::here("R/01_data_upload.R") )
+source( here::here("R/02_make_factors.R") ) 
+source( here::here("R/03_duplicate_records.R") ) 
+
+# Save
+save(melanoma, file = 
+  here::here("data/melanoma_all.rda")
+)
+```
+
+You can now bring your robustly prepared data into your analysis file, which can be `.R` or `.Rmd` if you are working in a Notebook.
+We call this `00_analysis.Rmd` and it always sits in the project root director. 
+You have two options in bringing in the data. 
+
+1. `source()` the data again
++ this is useful if the data is changing
++ may take a long time if it is a large dataset with lots of manipulations
+2. `load()` from the `data/` folder
++ usually quicker, but loads the static dataset which was created the last time your ran `0_soruce_all.R`
+
+The two options look like this:
+
+```` markdown
+---
+title: "Melanoma analysis"
+output: html_notebook
+---
+
+`r ''````{r get-data-option-1, echo=FALSE}
+load(
+  here:here("data/melanoma_all.rda")
+)
+```
+
+`r ''````{r get-data-option-2, echo=FALSE}
+source(
+  here:here("R/0_source_all.R")
+)
+
+````
+
+Why go to all this bother?
+
+It comes from many years of finding errors due to badly organised projects. 
+It is clearly not needed for a small quick project, but is essential for any major work. 
+
+Compartmentalising the data cleaning helps in debugging. 
+Sourced files can be 'commented out' (adding a # to a line in the `0_source_all.R` file) if you wish to exclude the manipulations in that particular file. 
+
+Most important, it helps with collaboration. 
+When multiple people are working on a project, it is essential that communication is good and everybody is working to the same overall plan. 

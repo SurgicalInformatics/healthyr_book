@@ -1,4 +1,4 @@
-# Time-to-event data and survival{}
+# Time-to-event data and survival{#chap10-h1}
 \index{time-to-event / survival@\textbf{time-to-event / survival}}
 
 > The reports of my death have been greatly exaggerated.  

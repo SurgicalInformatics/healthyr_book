@@ -1,8 +1,7 @@
-# Exporting tables and plots
+# Exporting and reporting{#chap12-h1}
 
-One of the little known strengths of R is the ease with which tables and plots can be exported to PDF, Microsoft Word, webpages and even Powerpoint. 
+In chapter \ref(chap11-h1) we emphasised one of the less well known strengths of R  - the ease with which reports can be written in HTML (web page), PDF, or Word documents. 
 
-**reference to markdown chapter and how this fits in with that.**
 
 ```{r echo=FALSE, message=FALSE}
 library(knitr)

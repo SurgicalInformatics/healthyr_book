@@ -36,11 +36,6 @@ Figure \@ref(fig:chap04-fig-steps) shows some example steps for building a scatt
 library(tidyverse)
 library(gapminder)
 
-mydata = gapminder
-
-glimpse(mydata)
-mydata$year %>% unique()
-
 gapminder2007 = gapminder %>% 
   filter(year == 2007) %>% 
   mutate(gdpPercap_thousands = gdpPercap/1000)
@@ -97,8 +92,6 @@ We are using the gapminder dataset (https://www.gapminder.org/data) that has bee
 library(tidyverse)
 library(gapminder)
 
-mydata = gapminder
-
 glimpse(gapminder)
 ```
 
@@ -129,6 +122,15 @@ gapminder2007 = gapminder %>%
 gapminder2007
 ```
 
+The new tibble - `gapminder2007` - now shows up in your Environment tab, whereas `gapminder` does not. Running `library(gapminder)` makes it available to use (so the funny line below is not necessary for any of the code in this chapter to work), but to have it appear in your normal Environment tab you'll need to run this funny looking line:
+
+```{r}
+# loads the gapminder dataset from the package environment
+# into your Global Environment
+gapminder = gapminder
+```
+
+Both `gapminder` and `gapminder2007` now show up in the Environment tab and can be clicked on/quickly viewed as usual.
 
 ## Anatomy of ggplot explained {#chap04-gganatomy}
 
@@ -294,7 +296,7 @@ themeplot = gapminder %>%
 
 ```{r fig.height=3.5, fig.width=7, fig.keep = 'none'}
 
-step6 = gapminder2007 %>% 
+gapminder2007 %>% 
   ggplot(aes(x = gdpPercap/1000, y = lifeExp, colour = continent)) +
   geom_point(shape = 1) +
   facet_wrap(~continent) +
@@ -310,7 +312,23 @@ This creates the last plot in Figure \@ref(fig:chap04-fig-steps).
 
 This is how `ggplot()` works - by adding or modifying things one by one.
 
-\clearpage
+## Set your theme - grey vs white
+
+If you find yourself always adding the same theme to your plot (i.e. we really like the `+ theme_bw()`), you can use `theme_set()` so your chosen theme is applied to every plot you draw:
+
+```{r}
+theme_set(theme_bw())
+```
+
+In fact, we usually have these two lines at the top of every script:
+
+```{r}
+library(tidyverse)
+theme_set(theme_bw())
+```
+
+Furthermore, we can customise anything that appears in a `ggplot()` from axis fonts to the exact grid lines, and much more. That's what Chapter \@ref(finetuning): Fine tuning plots is all about, but in here we are focussing on the basic functionality and how different geoms work. But from now on,`+ theme_bw()` is automatically applied on everything we make.
+
 
 ## Scatter plots/bubble plots
 
@@ -338,6 +356,9 @@ The resulting bubble plots are shown in Figure \@ref(fig:chap04-fig-bubble).
 
 
 ```{r chap04-fig-bubble, echo = FALSE, fig.width=0.6*10, fig.height = 0.6*4, fig.cap = "Turn the scatter plot from Figure \\@ref(fig:chap04-fig-steps):(2) to a bubble plot by (1) adding `size = pop` inside the `aes()`, (2) make the points hollow and transparent."}
+
+theme_set(theme_bw())
+
 p1 = gapminder2007 %>% 
   ggplot(aes(x = gdpPercap/1000, y = lifeExp, size = pop)) +
   geom_point()
@@ -387,17 +408,20 @@ Yes, you know you want a line for each country, but you haven't told it that.
 So for drawing multiple lines, we need to add a `group` aesthetic, in this case `group = country`:
 
 ```{r, fig.keep = 'none'}
-mydata %>% 
+gapminder %>% 
   ggplot(aes(x = year, y = lifeExp, group = country)) +
   geom_line()
 ```
 
 ```{r chap04-fig-zigzag, echo = FALSE, fig.width = 7, fig.height=3, fig.cap = "The 'zig-zag plot' is a common mistake: using `geom_line()` (1) without a `group = ` aesthetic, (2) after adding `group = country`."}
+
+theme_set(theme_bw())
+
 p1 = gapminder %>% 
   ggplot(aes(x = year, y = lifeExp)) +
   geom_line()
 
-p2 = mydata %>% 
+p2 = gapminder %>% 
   ggplot(aes(x = year, y = lifeExp, group = country)) +
   geom_line()
 
@@ -425,7 +449,6 @@ gapminder %>%
 
 * Colour lines by continents: add `colour = continent` inside `aes()`
 * Continents on separate facets: `+ facet_wrap(~continent)`
-* Make the background white: `+ theme_bw()`
 * Use a nicer colour scheme: `+ scale_colour_brewer(palette = "Paired")`
 
 ## Bar plots
@@ -450,6 +473,8 @@ This gives us Figure \@ref(fig:chap04-fig-col):1.
 We have also created another cheeky one using the same code but changing the scale of the y axis to be more dramatic (Figure \@ref(fig:chap04-fig-col):2).
 
 ```{r chap04-fig-col, echo = FALSE, fig.width=6.5, fig.cap = "Bar plots using `geom_col()`: (1) using the code example, (2) same plot but with `+ coord_cartesian(ylim=c(79, 81))` to manipulate the scale into something a lot more dramatic."}
+
+theme_set(theme_bw())
 
 p1 = gapminder2007 %>% 
   filter(country %in% c("United Kingdom", "France", "Germany")) %>% 
@@ -486,6 +511,9 @@ gapminder2007 %>%
 So `geom_bar()` basically runs the `count()` function and plots it (see how the bars on Figure \@ref(fig:chap04-fig-bar) are the same height as the values from `count(continent)`).
 
 ```{r chap04-fig-bar, fig.width=6.4, echo = FALSE, fig.cap = "`geom_bar()` counts up the number of observations for each group. (1) `gapminder2007 %>% ggplot(aes(x = continent)) + geom_bar()`, (2) same + a little bit of magic to reveal the underlying data."}
+
+theme_set(theme_bw())
+
 p1 = gapminder2007 %>% 
   ggplot(aes(x = continent)) +
   geom_bar()
@@ -636,6 +664,8 @@ This makes Figure \@ref(fig:chap04-fig-multigeoms):1.
 
 ```{r chap04-fig-multigeoms, echo=FALSE, fig.width=0.8*10, fig.height=0.8*8, fig.cap = "Multiple geoms together. (1) `geom_boxplot() + geom_point()`, (2) `geom_boxplot() + geom_jitter()`, (3) colour aesthetic inside `ggplot(aes())`, (4) colour aesthetic inside `geom_jitter(aes())`."}
 
+theme_set(theme_bw())
+
 p1 = gapminder2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
   geom_boxplot() +
@@ -748,6 +778,8 @@ The two most important things to understand about `ggplot()` are:
 **4.4.1**
 
 ```{r, fig.keep = 'none'}
+library(tidyverse)
+library(gapminder)
 
 gapminder %>% 
   ggplot(aes(x      = year,
@@ -764,6 +796,9 @@ gapminder %>%
 **4.5.3**
 
 ```{r, eval = FALSE}
+library(tidyverse)
+library(gapminder)
+
 gapminder %>% 
   filter(year == 2007) %>%
   filter(continent == "Europe") %>% 

@@ -1,4 +1,4 @@
-# Fine tuning plots
+# Fine tuning plots {#finetuning}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo=TRUE, message=FALSE, fig.width=8, fig.height=6)

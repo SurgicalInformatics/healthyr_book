@@ -11,6 +11,7 @@ The main reasons we love R are:
 * R is versatile and powerful - use it for
     - graphics 
     - all the statistics you can dream of
+    - machine learning, deep learning
     - automated reports 
     - websites 
     - books (yes, R can be used to make whole websites or books, this one is written in R)
@@ -31,7 +32,7 @@ The only thing you need to understand at this point is that what you're looking 
 You should also notice that some parts of the script looks like normal English.
 These are the lines that start with a # and they are called "comments".
 We can (and should) include these so called comments in everything we do.
-These are notes of what we were doing both for colleagues as well as our future self.
+These are notes of what we were doing, both for colleagues as well as our future self.
 
 ```{r chap01-fig-rscript, echo = FALSE, fig.cap="An example R script."}
 knitr::include_graphics("images/chapter01/example_script.png")
@@ -44,109 +45,93 @@ We will cover the details of this R code in the next few chapters, the purpose o
 For the impatient:
 
 * We interface R using RStudio
-* We use the tidyverse packages that are a substantial extension (we repeat, extension, not replacement) to base R functionality
+* We use the tidyverse packages that are a substantial extension to base R functionality (we repeat: extension, not replacement)
 
-Even though R is a language, don't think that after reading this book you should be able to create a new blank file and just start typing in R code like an evil computer genius from a move. This is not how programming works.
+Even though R is a language, don't think that after reading this book you should be able to create a new blank file and just start typing in R code like an evil computer genius from a movie. This is not what real world programming looks like.
 
-Firstly, you should be copy-pasting and adapting existing R code examples - whether from this book or your own previous scripts. Re-writing everything from scratch is simply not efficient. Yes, you will understand and eventually remember a lot of it. But to spend time memorising very specific things that can easily be looked up/copied is simply not necessary.
+Firstly, you should be copy-pasting and adapting existing R code examples - whether from this book or later from your own previous scripts.
+Re-writing everything from scratch is not efficient.
+Yes, you will understand and eventually remember a lot of it.
+But to spend time memorising very specific things that can easily be looked up/copied is simply not necessary.
 
 Secondly, R is an interactive language.
-Meaning that we "run" R code line by line and can get immediate feedback.
+Meaning that we "run" R code line by line and get immediate feedback.
 We would never write a whole script without trying everything out as we go along.
 
-Thirdly, do not worry about making mistakes. In programming, we get infinite re-do's.
+Thirdly, do not worry about making mistakes.
+In programming, we get infinite re-do's.
 The whole point of R and reproducibility is that manipulations are not applied directly on a dataset but a copy of it. 
 And that everything is in a script - so if we do make a wrong move (i.e. accidentally overwrite or remove some data) we can always reload it, rerun the steps that worked well and continue figuring our where we went wrong at the end.
-And since all of these steps are written down in a script, R will redo everything with a single push of a button (Run All).
+And since all of these steps are written down in a script, R will redo everything with a single push of a button.
 You do not have to redo anything, that's what R is for.
 
 ## What is RStudio
 
-```{r, out.width = "10cm", echo = FALSE}
-knitr::include_graphics("images/rstudio_vs_r.png")
+RStudio is a free program that makes working with R easier.
+An example screen shot of RStudio is shown in Figure \@ref(fig:chap01-fig-rstudio).
+We have already introduced the top-left pane - the script.
+
+```{r chap01-fig-rstudio, echo = FALSE, fig.cap = "We use RStudio to work with R."}
+knitr::include_graphics("images/chapter01/rstudio_interface.png")
 ```
 
-The part of RStudio that you are working in/editing is the script (top left in the standard layoout but feel free to rearrange the sections as you like).
+Now, look at the little Run and Source buttons at the top-right corner of the script pane.
+Clicking **Run** executes a line of R code. 
+Clicking **Source** executes all lines of R code in the script (it is essentially 'Run all lines').
+When you run R code, it gets sent to the Console which is the bottom-left panel.
+This is where R really lives.
 
-We have already explained what a script is, so we will now explain what some of the other panels do.
+> Keyboard Shortcuts!  
+> Run line: Control+Enter  
+> Run all lines (Source): Control+Shift+Enter  
+> (On a Mac, both Control or Command work)
 
-* Console (this is where R talks to us)
-* what is the Environment tab,
-* where do your plots appear.
+The Console is also where R speaks to us. 
+When we're lucky, we get results in there - in this example the results of a t-test (last line of the script).
+When we're less lucky, this where also where Errors or Warnings appear.
 
-**Data**
+R Errors are a lot less scary than they seem!
+Yes, if you're using using a regular computer program where all you do is click on some buttons, then getting a proper red error that stops everything is quite unusual.
+But in programming, Errors are just a way for R to communicate with us.
+We see Errors every single day, they are very normal and do not mean that everything is wrong or that you should give up. 
+Try to re-frame the word Error to mean "feedback", as in "Hello this is R. I can't continue, this is the feedback I am giving you."
+The most common Errors you'll see are along the lines of "Error: something not found". 
+This almost always means there's a typo or you've misspelled something.
+Furthermore, R is case sensitive so capitalisation matters (variable name `lifeExp` is not the same as `lifeexp`).
 
-Load the example dataset which is already saved as an R-Data file (recognisable by the file extension .rda or .RData):
+The Console can only print text, so any plots your create in your script appear in the Plots pane (bottom-right).
 
-```{r, message=F}
-library(ggplot2)
-
-source("1_source_theme.R")
-
-load("global_burden_disease_long.rda")
-
-```
-
-After loading the datasets, investigate your Environment tab (top-right). You will see two things listed: `mydata` and `mydata2013`, which is a subset of mydata.
-
-
-Click on the name `mydata` and it will pop up next to where your script is.
-Clicking on the blue button is not as useful (in this session), but it doesn't do any harm either.
-Try it.
-
-```{r}
-
-mydata %>% #press Control-Shift-M to insert this symbol (pipe)
-  ggplot(aes(x      = year,
-             y      = deaths_millions,
-             fill   = cause,
-             colour = cause)) +
-  geom_col()
-
-
-
-```
-
-
-`ggplot()` stands for **grammar of graphics plot** - a user friendly yet flexible alternative to `plot()`.
-
-`aes()` stands for **aesthetics** - things we can see.
-
-`geom_()` stands for **geometric**.
-
-### Exercise
-
-Plot the number of deaths in Developed and Developing countries for the year 2013:
-
-```{r, echo = FALSE}
-
-mydata2013 %>% 
-  ggplot(aes(x      = location,
-             y      = deaths_millions,
-             fill   = cause,
-             colour = cause)) +
-  geom_col()
-
-```
-
-
-
-## Tidyverse packages: ggplot2, dplyr, tidyr, etc.
-
-Most of the functions introduced in this book come from the tidyverse family (http://tidyverse.org/), rather than Base R. Including `library(tidyverse)` in your script loads a list of packages: ggplot2, dplyr, tidry, forcats, etc.
-
-
-```{r, echo = FALSE}
-knitr::include_graphics("images/library_vs_package.png")
-```
-
-```{r , message=F}
-
-library(tidyverse)
-
-```
-
+Similarly, datasets that you've loaded (or created/modified) appear in the Environment tab.
+When you click on a dataset there, it pops up in a really nice and fast viewer. 
+This means you can have a look and scroll through your rows and columns the same way you would in a spreadsheet.
 
 ## Getting started
+
+To start using R, you should do these two things:
+
+* Install R (from https://www.r-project.org/)
+* Install RStudio Desktop (from https://www.rstudio.com/)
+
+When you first open up RStudio, you'll also want to install some extra packages to extend base R's functionality.
+You can do this in the Packages tab (next to the Plots tab in the bottom-right in Figure \@ref(fig:chap01-fig-rstudio)).
+A lot of the functionality introduced in this book comes from the tidyverse family of R packages (http://tidyverse.org/).
+So when you go to Packages, click Install, type in tidyverse, a whole collection of useful and modern packages will be installed. 
+Even though you've installed the tidyverse packages, you'll still need to tell R when you're about to use them.
+We usually include `library(tidyverse)` at the top of our every script:
+
+```{r}
+library(tidyverse)
+```
+
+
+We can see that it has loaded 8 packages (ggplot2, tibble, tidyr, readr, purrr, dplyr, stringr, forcats), the number behind a package name is its version.
+
+The "Conflicts" message is expected and can safely be ignored.
+^[It just means that when we use `filter` or `lag`, they will come from the `dplyr` package, rather than the `stats` package.
+We've never needed to use `filter` and `lag` from `stats`, but if you do, then use the double colon, i.e., `stats::filter()` or `stats::lag()`, as just `filter()` will use the `dplyr` one.]
+
+There are a few other R packages that we use and are not part of the tidyverse, but we will introduce them as we go along. 
+If you are incredibly curious, take a peak at Chapter \@ref(install) for a full list.
+
 
 

@@ -1,4 +1,4 @@
-# RStudio settings, good practise
+# RStudio settings, good practise {#install}
 
 
 <!-- Moved installation here for now. -->
@@ -6,42 +6,66 @@
 ## Installation
 
 
+### R
 
-```{block}
-* Download R 
-```
+Download and install the latest version of R from:
 
-https://www.r-project.org/
+https://www.stats.bris.ac.uk/R/
 
-```{block}
-* Install RStudio
-```
+*Windows*: `Download R for Windows` - `base` - `Download R 3.6.0 for Windows`
 
-https://www.rstudio.com/products/rstudio/
+*Mac*: `Download R for (Mac) OS X` - `R-3.6.0.pkg`
 
-```{block}
+### RStudio
 
-* Install packages (copy these lines into the Console in RStudio):
-```
+Then download and install RStudio:
+
+https://www.rstudio.com/products/rstudio/download/#download
+
+*Windows*: `RStudio 1.2.1335 - Windows 7+`
+
+*Mac*: `RStudio 1.2.1335 - Mac OS X 10.12+ (64-bit)`
+
+### R packages
+
+Open RStudio and copy-paste the lines below into the Console and press Enter:
 
 ```{r, eval = FALSE}
-install.packages("tidyverse")
-
-install.packages("gapminder")
-
-install.packages("gmodels")
-
-install.packages("Hmisc")
-
-install.packages("devtools")
-
-devtools::install_github("ewenharrison/finalfit")
-
-install.packages("pROC")
-
-install.packages("survminer")
+healthyr_packages = c("tidyverse", "boot", "finalfit", "flexdashboard", "gapminder", "here", "kableExtra", "knitr", "remotes", "rmarkdown", "shiny", "survminer", "tinytex")
+install.packages(healthyr_packages)
 
 ```
+
+**Then Restart R** before running the next two lines (same as before, copy-paste to the Console):
+
+```{r, eval = FALSE}
+
+remotes::install_github("thomasp85/patchwork")
+tinytex::install_tinytex()
+
+```
+
+If it asks you "Do you want to restart your R session", press **Yes** the first time. If it immediately asks again, press **No**.
+
+Code to check tinyTex and Tex working as expected:
+
+```{r, eval = FALSE}
+
+tinytex:::is_tinytex()
+
+#  If installed should return `TRUE`.
+# Notice the triple colon, this is because it's an internal variable name.
+
+```
+
+### Troubleshooting 3.3
+
+1. ~"can't find remotes": try doing step 3.2 (restart) again.
+We only just installed `remotes::` in *3.1* so RStudio needs a restart before we can start using it.
+
+2. ~"TeX failed, you already have a TeX distribution...". 
+If you already have LaTex installed on your computer, the `tinytex::install_tinytex()` one is not necessary and might not work.  This is fine, there is no harm in copy-pasting in anyway if you are not sure.
+
 
 ```{block}
 When working with data, don't copy or type code directly into the Console. We will only be using the Console for viewing output, warnings, and errors (and installing packages as in the previous section). All code should be in a script and executed (=Run) using Control+Enter (line or section) or Control+Shift+Enter (whole script). Make sure you are always working in a project (the right-top corner of your RStudio interface should say "HealthyR").

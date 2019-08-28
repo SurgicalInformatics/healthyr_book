@@ -216,7 +216,7 @@ It is very important to understand the difference between including `ggplot` arg
 The main aesthetics (things we can see) are: **x**, **y**, **colour**, **fill**, **shape**, **size**, and any of these could appear inside or outside the `aes()` function.
 Press F1 on, e.g., `geom_point()`, to see see the full list of aesthetics that can be used with this geom (this opens the Help tab).
 
-Variables  (so columns of your dataset) have to be defined inside `aes()`. Whereas to apply a modification on everything, we can set an aesthetic to constant value outside of `aes()`.
+Variables  (so columns of your dataset) have to be defined inside `aes()`. Whereas to apply a modification on everything, we can set an aesthetic to a constant value outside of `aes()`.
 
 For example, Figure \@ref(fig:chap04-fig-shapes) shows a selection of the point shapes built into R. The default shape used by `geom_point()` is number 16.
 
@@ -248,7 +248,7 @@ This creates the fourth plot in Figure \@ref(fig:chap04-fig-steps).
 **(5)** From one plot to multiple with a single extra line
 
 Faceting is a way to efficiently create the same plot for subgroups within the dataset.
-For example, we can separate each continent on its own facet by adding `facet_wrap(~continent)` to our plot:
+For example, we can separate each continent into its own facet by adding `facet_wrap(~continent)` to our plot:
 
 
 ```{r fig.height=3.5, fig.width=7, fig.keep = 'none'}
@@ -265,7 +265,7 @@ Note that we have to use the tilde (~) in `facet_wrap()`.
 There is a similar function called `facet_grid()` that will create a grid of plots based on two grouping variables, e.g, `facet_grid(var1~var2)`.
 Furthermore, facets are happy to quickly separate data based on a condition (so something you would usually use in a filter).
 
-```{r chap04-fig-facetcond, fig.width=6, fig.cap = "Using a filtering condition (e.g., population > 5 million) directly inside a `facet_wrap()`."}
+```{r chap04-fig-facetcond, fig.width=6, fig.cap = "Using a filtering condition (e.g., population > 50 million) directly inside a `facet_wrap()`."}
 gapminder2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
   geom_point(shape = 1) +
@@ -294,6 +294,12 @@ themeplot = gapminder %>%
 ```
 
 
+
+
+As a final step, we are adding `theme_bw()` ("background white") to give the plot a different look. 
+We have also divided the gdpPercap by 1000 (making the units "thousands of dollars per capita").
+Note that you can apply calculations directly on ggplot variables (so how we've done `x = gdpPercap/1000` here).
+
 ```{r fig.height=3.5, fig.width=7, fig.keep = 'none'}
 
 gapminder2007 %>% 
@@ -304,13 +310,9 @@ gapminder2007 %>%
 
 ```
 
-As a final step, we are adding `theme_bw()` ("background white") to give the plot a different look. 
-We have also divided the gdpPercap by 1000 (making the units "thousands of dollars per capita").
-Note that you can apply calculations directly on ggplot variables (so how we've done `x = gdpPercap/1000` here).
-
 This creates the last plot in Figure \@ref(fig:chap04-fig-steps).
 
-This is how `ggplot()` works - by adding or modifying things one by one.
+This is how `ggplot()` works - you can build a plot by adding or modifying things one by one.
 
 ## Set your theme - grey vs white
 

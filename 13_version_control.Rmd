@@ -1,4 +1,4 @@
-# Version control{#chap15-h1}
+# Version control{#chap13-h1}
 
 Version control is essential for keeping track of data analysis projects, as well as collaborating. 
 It allows backup of scripts and easy collaboration on complex projects. 
@@ -28,11 +28,11 @@ Click Add SSH key.
 Paste in the public key you have copied from RStudio.
 
 ```{r chap14-fig-ssh, echo = FALSE, fig.cap="SSH."}
-knitr::include_graphics("images/chapter14/1.pdf")
+knitr::include_graphics("images/chapter13/1.pdf")
 ```
 
 ```{r echo = FALSE, fig.cap="CAPTION"}
-knitr::include_graphics("images/chapter14/2.pdf")
+knitr::include_graphics("images/chapter13/2.pdf")
 ```
 
 ## Create a project in RStudio and commit a file
@@ -58,7 +58,7 @@ You have now committed the current version of this file to your repository on yo
 In the future you may wish to create branches to organise your work and help when collaborating.
 
 ```{r echo = FALSE, fig.cap="CAPTION"}
-knitr::include_graphics("images/chapter14/4.pdf")
+knitr::include_graphics("images/chapter13/4.pdf")
 ```
 
 ## Create a new repository on GitHub and link to RStudio project
@@ -73,11 +73,11 @@ The Pull Push buttons in RStudio will now also work.
 Remember, after each Commit, you have to Push to GitHub, this doesn’t happen automatically.
 
 ```{r echo = FALSE, fig.cap="CAPTION"}
-knitr::include_graphics("images/chapter14/5.pdf")
+knitr::include_graphics("images/chapter13/5.pdf")
 ```
 
 ```{r echo = FALSE, fig.cap="CAPTION"}
-knitr::include_graphics("images/chapter14/6.pdf")
+knitr::include_graphics("images/chapter13/6.pdf")
 ```
 
 ## Clone an existing GitHub project to new RStudio project
@@ -89,6 +89,6 @@ In Clone Git Repository, enter the GitHub repository URL as per below. Change th
 remote origin
 
 ```{r echo = FALSE, fig.cap="CAPTION"}
-knitr::include_graphics("images/chapter14/7.pdf")
+knitr::include_graphics("images/chapter13/7.pdf")
 ```
 

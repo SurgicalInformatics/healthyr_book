@@ -2,6 +2,7 @@
 
 In chapter \ref(chap11-h1) we emphasised one of the less well known strengths of R  - the ease with which reports can be written in HTML (web page), PDF, or Word documents. 
 
+In this chapter we will 
 
 ```{r echo=FALSE, message=FALSE}
 library(knitr)

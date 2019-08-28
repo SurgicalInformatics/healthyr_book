@@ -309,14 +309,14 @@ For instance, `01_data_upload.R` may look like this.
 # Get data
 library(readr)
 melanoma = read_csv(
-  here::here("data/melanoma.csv")
+  here::here("data", "melanoma.csv")
 )
 
 # Other arguments here
 
 # Save
 save(melanoma, file = 
-  here::here("data/melanoma_working.rda")
+  here::here("data", "melanoma_working.rda")
 )
 ```
 
@@ -334,7 +334,7 @@ It could look something like this.
 library(tidyverse)
 
 load(
-  here::here("data/melanoma_working.rda")
+  here::here("data", "melanoma_working.rda")
 )
 
 ## Recode variables
@@ -347,7 +347,7 @@ melanoma = melanoma %>%
 
 # Save
 save(melanoma, file = 
-  here::here("data/melanoma_working.rda")
+  here::here("data", "melanoma_working.rda")
 )
 ```
 
@@ -360,13 +360,13 @@ This function is used to run code from a file.
 # Melanoma project
 ## Source all
 
-source( here::here("R/01_data_upload.R") )
-source( here::here("R/02_make_factors.R") ) 
-source( here::here("R/03_duplicate_records.R") ) 
+source( here::here("R", "01_data_upload.R") )
+source( here::here("R", "02_make_factors.R") ) 
+source( here::here("R", "03_duplicate_records.R") ) 
 
 # Save
 save(melanoma, file = 
-  here::here("data/melanoma_all.rda")
+  here::here("data", "melanoma_all.rda")
 )
 ```
 
@@ -390,13 +390,13 @@ output: html_notebook
 
 `r ''````{r get-data-option-1, echo=FALSE}
 load(
-  here:here("data/melanoma_all.rda")
+  here:here("data", "melanoma_all.rda")
 )
 ```
 
 `r ''````{r get-data-option-2, echo=FALSE}
 source(
-  here:here("R/0_source_all.R")
+  here:here("R", "0_source_all.R")
 )
 
 ````
@@ -406,8 +406,11 @@ Why go to all this bother?
 It comes from many years of finding errors due to badly organised projects. 
 It is clearly not needed for a small quick project, but is essential for any major work. 
 
+At the very start of an analysis (as in the first day), we will start working in a single file. 
+We will quickly move chunks of data cleaning / preparation code into single files as we go.  
+
 Compartmentalising the data cleaning helps in debugging. 
-Sourced files can be 'commented out' (adding a # to a line in the `0_source_all.R` file) if you wish to exclude the manipulations in that particular file. 
+Sourced files can be 'commented out' (adding a # to a line in the `0_source_all.R` file) if you wish to exclude the manipulations in that particular file.
 
 Most important, it helps with collaboration. 
 When multiple people are working on a project, it is essential that communication is good and everybody is working to the same overall plan. 

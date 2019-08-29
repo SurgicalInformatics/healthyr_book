@@ -72,9 +72,22 @@ p4 = p0 +
 
 ```
 
+We are now using a new library - **patchwork** - to print all 4 plots together.
+Installing **patchwork** is slightly different to how we install other packages (neither using the Packages tab or `install.packages("patchwork")` will not work).
+**patchwork** lives in GitHub (more about this in Chapter \@ref(chap13-h1)), not on CRAN like most R packages, so to install it, you'll need to run this (just once):
+
+```{r, eval = FALSE}
+remotes::install_github("thomasp85/patchwork")
+```
+
+You can then start using this package as usual by including `library(patchwork)` in your script.
+Its syntax is very simple - it allows us to add ggplot objects together.
+(Trying to do `p1 + p2` without loading the **patchwork** package will not work, R will say "Error: Don't know how to add p2 to a plot".)
+
+
 ```{r}
 library(patchwork)
-p1 + p2 + p3 + p4 + plot_annotation(tag_levels = "1", tag_prefix = "(", tag_suffix = ")")
+p1 + p2 + p3 + p4 + plot_annotation(tag_levels = "1", tag_prefix = "p")
 ```
 
 

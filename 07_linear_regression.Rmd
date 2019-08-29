@@ -18,12 +18,12 @@ Broadly, there are often two separate goals in regression:
 Figure \@ref(fig:chap07-fig-regression) unifies the terms we will use throughout. 
 A clear scientific question should define our `explanatory variable of interest` $(x)$, which sometimes gets called an exposure, predictor, or independent variable. 
 Our outcome of interest will be referred to as the `dependent` variable or outcome $(y)$; it is sometimes referred to as the response. 
-In simple linear regression, there is a single explanatory variable and a dependent variable, and we will sometimes refer to this as *univariable linear regression*. 
+In simple linear regression, there is a single explanatory variable and a single dependent variable, and we will sometimes refer to this as *univariable linear regression*. 
 When there is more than one explanatory variable, we will call this *multivariable regression*. 
-Avoid the term *multivariate regression*, which suggests more than one dependent variable. 
+Avoid the term *multivariate regression*, which means more than one dependent variable. 
 We don't use this method and we suggest you don't either!
 
-Note that the dependent variable is always continuous, it cannot be a categorical variable. 
+Note that in linear regression, the dependent variable is always continuous, it cannot be a categorical variable. 
 The explanatory variables can be either continuous or categorical. 
 
 ### The Question (1)
@@ -33,9 +33,9 @@ This is the relationship between coffee consumption and blood pressure (and ther
 There has been a lot of backwards and forwards over decades about whether coffee is harmful, has no effect, or is in fact beneficial. 
 Figure \@ref(fig:chap07-fig-regression) shows a linear regression example. 
 Each point is a person.
-The explanatory variable is average number of cups of coffee per day $(x)$ and systolic blood pressure as the dependent variable $(y)$. 
+The explanatory variable is average number of cups of coffee per day $(x)$ and systolic blood pressure is the dependent variable $(y)$. 
 This next bit is important!
-These data are made up, fake, randomly generated, fabricated, not real. 
+**These data are made up, fake, randomly generated, fabricated, not real.** 
 So please do not alter your coffee habit on the basis of these plots!
 
 ```{r chap07-fig-regression, echo = FALSE, fig.cap="The anatomy of a regression plot."}

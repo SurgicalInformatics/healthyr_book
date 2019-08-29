@@ -15,29 +15,32 @@ We will read in data and start basic manipulations.
 
 ## Getting help
 
-RStudio has a built in Help tab. 
+RStudio has a built in **Help** tab. 
 To use the Help tab, click your cursor on something in your code (e.g. `read_csv()`) and press F1. This will show you the definition and some examples. 
-However, the Help tab is only useful if you already know what you are looking for but can't remember exactly how it works. 
+
+However, the **Help** tab is only useful if you already know what you are looking for but can't remember exactly how it works. 
 For finding help on things you have not used before, it is best to Google it. 
 R has about 2 million users so someone somewhere has had the same question or problem.
 
 
 ## Objects and functions
 
-The two fundamental concepts to understand about statistical programming are objects and functions. 
-As usual, in this book, we prefer introducing new concepts using specific examples first.
-And then define things in general terms after examples.
+There are two fundamental concepts in statistical programming that it is important to get straight from the outset - objects and functions. 
+As throughout this book, we will introduce new concepts using specific examples first.
 
-The most common data object you will be working with is a table - so something with rows and columns. 
-It should be regular, e.g., the made-up example in Table \@ref(tab:chap2-tab-examp1).
-^[Regular does not mean it can't have missing values.
-Missing values are denoted `NA` which stands for either `Not available` or `Not applicable`. 
-In same contexts, these things can have a different meaning. 
-For example, since `var2` is `NA` for all male subjects, it may mean "Not applicable", i.e. something that can only be measured in females.
-Whereas in `var3`, `NA` is more likely to mean "Not available" so real missing data, e.g. lost to follow-up.]
+The most common data object you will be working with is a table.
+This is something with rows and columns much like the example in Table \@ref(tab:chap2-tab-examp1).
+
+<!-- Consider removing. Doesn't actually say what "regular" means. Not ragged? Differnt NA's too much for first few lines? -->
+
+<!-- It should be regular, e.g., the made-up example in Table \@ref(tab:chap2-tab-examp1). -->
+<!-- ^[Regular does not mean it can't have missing values. -->
+<!-- Missing values are denoted `NA` which stands for either `Not available` or `Not applicable`.  -->
+<!-- In same contexts, these things can have a different meaning.  -->
+<!-- For example, since `var2` is `NA` for all male subjects, it may mean "Not applicable", i.e. something that can only be measured in females. -->
+<!-- Whereas in `var3`, `NA` is more likely to mean "Not available" so real missing data, e.g. lost to follow-up.] -->
 
 ```{r chap2-tab-examp1, echo = FALSE}
-
 mydata = tibble(id   = 1:4,
        sex  = c("Male", "Female", "Female", "Male"),
        var1 = c(4, 1, 2, 3),
@@ -47,20 +50,28 @@ mydata = tibble(id   = 1:4,
 mydata %>% 
   knitr::kable(booktabs = TRUE, caption = "Example of a table (=tibble once read into R), including missing values denoted NA (Not applicable/Not available).") %>% 
   kableExtra::kable_styling(font_size=8)
-
 ```
 
-
 A table can live anywhere: on paper, in a Spreadsheet, in an SQL database, or it can live in your R Session's Environment. 
-And yes, R sessions are as fun as they sound, almost as fun as, e.g., music sessions. 
+And yes, R sessions are as fun as they sound, almost as fun as music sessions. 
+
 We usually initiate and interface R using RStudio, but everything we talk about here (objects, functions, sessions, environment) also work when RStudio is not available, but R is. 
 This can be the case if you are working on a supercomputer that can only serve the R Console, and not an RStudio IDE (reminder from first chapter: Integrated Development Environment). 
-So, regularly shaped data in rows and columns is called table when it lives outside R, but once you read it into R (import it), we call it a tibble.
-^[There used to be an older version of tables in R - they are called data frames. 
-In most cases, `data frames` and `tibbles` work interchangeably (and both are R objects), but `tibbles` are newer and better. 
-Another great alternative to base R's `data frames` are `data tables`. 
-In this book, and for most of our day-to-day work these days, we use `tibbles` though.]
-When you are in one of your very cool R sessions and read in some data, it goes into this session's Environment. Everything in your Environment needs to have a name as you can have multiple tibbles going on at the same time (`tibble` is not a name, it is the class of an object). To keep our code examples easy to follow, we call our example tibble `mydata`. In real analysis, you should give your tibbles meaningful names, e.g., `patient_data`, `lab_results`, `annual_totals`, etc.
+
+So, regularly shaped data in rows and columns is called a table when it lives outside R, but once you read it into R (import it), we call it a tibble.
+^[There is also the original version of tables in R - they are called data frames. 
+In most cases, `data frames` and `tibbles` work interchangeably, but `tibbles` often work better. 
+Another great alternative to base R `data frames` are `data tables`. 
+In this book, and for most of our day-to-day work these days, we will use `tibbles`.]
+
+When you are in one of your very cool R sessions and read in some data, it goes into this session's Environment. 
+Everything in your Environment needs to have a name. 
+You will likely have many objects such as tibbles going on at the same time. 
+Note that `tibble` is what the thing is, rather than its name. 
+This is the `class` of an object. 
+
+To keep our code examples easy to follow, we call our example tibble `mydata`. 
+In a real analysis, you should give your tibbles meaningful names, e.g., `patient_data`, `lab_results`, `annual_totals`, etc.
 
 So, the tibble named `mydata` is example of an object that can be in the Environment of your R Session:
 
@@ -68,13 +79,21 @@ So, the tibble named `mydata` is example of an object that can be in the Environ
 mydata
 ```
 
-An example of a function that can be applied on numeric data is `mean()`. 
+So what is a function?
+
+A function is a procedure which takes some information (input), does something to it, and passes back the modified information (output).
+
+A simple function that can be applied to numeric data for instance is `mean()`. 
+
 R functions always have round brackets after their name. 
 This is for two reasons. 
-First, to easily differentiate them from objects - which don't have round brackets after their name. 
-Second, and more important, we can put arguments in these brackets. 
-Arguments can also be thought of as input, and in data analysis, the most common input for a function is data: we need to give `mean()` some data to average over. 
-It does not make sense (nor will it work) to feed it the whole tibble that has multiple columns, including patient IDs and a categorical variable (`sex`). 
+First, it easily differentiates them as functions - you will get used to reading them like this.  
+Second, and more important, we can put **arguments** in these brackets. 
+
+Arguments can also be thought of as input.
+In data analysis, the most common input for a function is data - we need to give `mean()` some data to average over. 
+It does not make sense (nor will it work) to feed it the whole tibble with multiple columns, including patient IDs and a categorical variable (`sex`). 
+
 To quickly extract a single column, we use the `$` symbol like this:
 \index{symbols@\textbf{symbols}!select column \texttt{\$}}
 ```{r}
@@ -106,16 +125,17 @@ mean(mydata$sex)
 
 In fact, in this case, R also gives us a pretty clear warning suggesting it can't compute the mean of an argument that is not numeric or logical. 
 The sentence actually reads pretty fun, as if R was saying it was not logical to calculate the mean of something that is not numeric. 
-But what R is actually saying that it is happy to calculate the mean of two types of variables: numerics or logicals, but what you have passed it is neither.
-^[Logical is a data type with two potential values: TRUE or FALSE.
-We will come back to data types shortly.]
 
-So `mean(mydata$var2)` does not return an Error, but it also doesn't return the mean of the numeric values included in this column. 
-That is because the column includes missing values (`NAs`), and R does not want to average over NAs implicitly.
+But what R is actually saying that it is happy to calculate the mean of two types of variables: numerics or logicals, but what you have passed is neither.
+^[Logical is a data type with two potential values: TRUE or FALSE.
+We will come back to data types.]
+
+So why does `mean(mydata$var2)` return `NA` rather than the mean of the numeric values included in this column?
+That is because the column itself includes missing values (`NAs`), and R does not want to average over NAs implicitly.
 It is being cautious - what if you didn't know there were missing values for some patients?
-If you wanted to compare the means of `var1` and `var2` without any further filtering, you would be comparing samples of different size. 
-Which might be fine if the sample sizes are sufficiently representative and the values are missing at random. 
-Therefore, if you decide to ignore the NAs and want to calculate the mean anyway, you can do so by adding another argument to `mean()`:
+If you wanted to compare the means of `var1` and `var2` without any further filtering, you would be comparing samples of different sizes. 
+
+If you decide to ignore the NAs and want to calculate the mean anyway, you can do so by adding another argument to `mean()`:
 
 ```{r}
 mean(mydata$var2, na.rm = TRUE)
@@ -123,9 +143,10 @@ mean(mydata$var2, na.rm = TRUE)
 
 Adding `na.rm = TRUE` tells R that you are happy for it to calculate the mean of any existing values (but to remove - `rm` - the `NA` values).
 This 'removal' excludes the NAs from the calculation, it does not affect the actual tibble (`mydata`) holding the dataset. 
-R is case sensitive, so it has look exactly how the function expects it, so `na.rm`, not `NA.rm` etc. 
-There is, however, no need to memorize how the arguments of functions are exactly spelled - this is what the Help tab (press `F1` when the cursor is on the name of the function) can remind you of. 
-Functions' help pages are built into R, so an internet connection is not required for this.
+
+R is case sensitive, so `na.rm`, not `NA.rm` etc. 
+There is, however, no need to memorize how the arguments of functions are exactly spelled - this is what the Help tab is for (press `F1` when the cursor is on the name of the function). 
+Help pages are built into R, so an internet connection is not required for this.
 
 > Make sure to separate multiple arguments with commas or R will give you an error of `Error: unexpected symbol`.
 
@@ -140,35 +161,39 @@ Sys.time()
 
 To summarise, objects and functions work hand in hand. 
 Objects are both an input as well as the output of a function (what the function returns). 
-The data values input into a function are usually its first argument, further arguments can be used to specify a function's behaviour. 
+
+When passing data to a functon is is usually its first argument, with further arguments used to specify behaviour. 
+
 When we say "the function returns", we are referring to its output (or an Error if it's one of those days).
+
 The returned object can be different to its input object.
-In our `mean()` examples above, the input object was a column (`mydata$var1`: `r mydata$var1`), whereas the output was a single value: `r mean(mydata$var1)`.
+In our `mean()` example above, the input object was a column (`mydata$var1`: `r mydata$var1`), whereas the output was a single value: `r mean(mydata$var1)`.
 
 ## Working with Objects
 
-To create a new object into our Environment we use the equals sign:
+To create a new object in our Environment we use the equals sign:
 \index{symbols@\textbf{symbols}!assignment \texttt{=}}
 
 ```{r}
 a = 103
 ```
 
-This reads: the variable `a` is assigned value `r a`. You know that the assignment worked when it shows up in the Environment tab.
+This reads: the object `a` is assigned value `r a`. 
+You know that the assignment worked when it shows up in the Environment tab.
 If we now run `a` just on its own, it gets printed back to us:
 
 ```{r}
 a
 ```
 
-Similarly, if we run a function without assignment to a variable, it gets printed but not saved in your Environment:
+Similarly, if we run a function without assignment to an object, it gets printed but not saved in your Environment:
 
 ```{r}
 seq(15, 30)
 ```
 
 `seq()` is a function that creates a sequence of numbers (+1 by default) between the two arguments you pass to it in its brackets. 
-We can assign the result of `seq(15, 30)` into a variable, let's call it `example_sequence`:
+We can assign the result of `seq(15, 30)` into an object, let's call it `example_sequence`:
 
 ```{r}
 example_sequence = seq(15, 30)
@@ -176,13 +201,14 @@ example_sequence = seq(15, 30)
 
 Doing this creates `example_sequence` in our Environment, but it does not print it. 
 
-> If you save the results of an R function in a variable, it does not get printed. If you run a function without the assignment (`=`), its results get printed, but not saved in a variable.
+> If you save the results of an R function in an object, it does not get printed. 
+> If you run a function without the assignment (`=`), its results get printed, but not saved in an object.
 
-You can call your variables (where you assigns new objects or the output of functions in) pretty much anything you want, as long as it starts with a letter. 
-It can then include numbers as well, for example, we could have named the new variable `sequence_15_to_30`.
-Spaces in variable names are not easy to work with, we tend to use underscores in their place, but you could also use capitalization, e.g. `exampleSequence = seq(15, 30)`.
+You can call your object pretty much anything you want, as long as it starts with a letter. 
+It can then include numbers as well, for example, we could have named the new object `sequence_15_to_30`.
+Spaces in object names are not easy to work with, we tend to use underscores in their place, but you could also use capitalization, e.g. `exampleSequence = seq(15, 30)`.
 
-Finally, R doesn't mind overwriting an existing variable, for example (notice how we then include the variable on a new line to get it printed as well as overwritten):
+Finally, R doesn't mind overwriting an existing object, for example (notice how we then include the variable on a new line to get it printed as well as overwritten):
 
 ```{r}
 example_sequence = example_sequence/2
@@ -192,13 +218,16 @@ example_sequence
 
 
 >Note that many people use `<-` instead of `=`. 
->They mean the same thing in R: both `=` and `<-` save what is on the right into the variable name on the left. 
+>They mean the same thing in R: both `=` and `<-` save what is on the right into an object with the name on the left. 
 >There is also a left-to-right operator: `->`.
 
 ## Pipe - `%>%` 
 
 \index{symbols@\textbf{symbols}!pipe \texttt{\%>\%}}
-The pipe - denoted `%>%` - is probably the oddest looking thing you'll see in this book. But please bear with, it is not as scary as it looks! Furthermore, it is super useful. We use the pipe to send objects into functions.
+The pipe - denoted `%>%` - is probably the oddest looking thing you'll see in this book. 
+But please bear with, it is not as scary as it looks! 
+Furthermore, it is super useful. 
+We use the pipe to send objects into functions.
 
 In the above examples, we calculated the mean of column `var1` from `mydata` by `mean(mydata$var1)`. With the pipe, we can rewrite this as:
 
@@ -207,22 +236,21 @@ library(tidyverse)
 mydata$var1 %>% mean()
 ```
 
-Which reads: "Working with `mydata`, we select a single column called `var1` (with the `$`) **and then** calculate the `mean()`." The pipe becomes especially useful once the analysis includes multiple steps applied one after another. A good way to read and think of the pipe is **"and then"**.
-This piping business is not standard R functionality and before using it in a script, you need to tell R this is what you will be doing.
-The pipe comes from the "magrittr" package (Figure \@ref(fig:chap2-fig-pipe)), but loading the tidyverse will also load the pipe.
-So library(tidyverse) initialises everything you need (no need to include library(magrittr) explicitly).
+Which reads: "Working with `mydata`, we select a single column called `var1` (with the `$`) **and then** calculate the `mean()`." The pipe becomes especially useful once the analysis includes multiple steps applied one after another. 
+A good way to read and think of the pipe is **"and then"**.
 
+This piping business is not standard R functionality and before using it in a script, you need to tell R this is what you will be doing.
+The pipe comes from the **magrittr** package (Figure \@ref(fig:chap2-fig-pipe)), but loading the **tidyverse** will also load the pipe.
+So library(tidyverse) initialises everything you need (no need to include library(magrittr) explicitly).
 
 >To insert a pipe `%>%`, use the keyboard shortcut `Ctrl+Shift+M`.
 
-
-With or without the pipe, the general rule "if the result gets printed it doesn't get saved" still applies. To save the result of the function into a new variable (so it shows up in the Environment), you need to add the name of the new variable with the assignment operator (`=`):
+With or without the pipe, the general rule "if the result gets printed it doesn't get saved" still applies. 
+To save the result of the function into a new object (so it shows up in the Environment), you need to add the name of the new object with the assignment operator (`=`):
 
 ```{r}
 mean_result = mydata$var1 %>% mean()
 ```
-
-
 
 ```{r chap2-fig-pipe, echo = FALSE, fig.cap="This is not a pipe. René Magritte inspired artwork by Stefan Milton Bache (creator of `%>%` in R). Image source: https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html"}
 knitr::include_graphics("images/chapter02/magrittr.png")
@@ -230,8 +258,11 @@ knitr::include_graphics("images/chapter02/magrittr.png")
 
 ### When pipe sends data to the wrong place: use `, data = .` to direct it
 
-The pipe usually sends data to the beginning of function brackets (as most of the functions we use expect a tibble as the first argument). So `mydata %>% lm(dependent~explanatory)` is equivalent to `lm(mydata, dependent~explanatory)` (`lm()` stands for linear model introduced in detail in Chapter 7: linear regression). 
-However, tibble first is not the order the `lm()` function expects. `lm()` wants us to specify the variables first (`dependent~explanatory`), and then wants the tibble these columns are in.
+The pipe usually sends data to the beginning of function brackets (as most of the functions we use expect a tibble as the first argument). 
+So `mydata %>% lm(dependent~explanatory)` is equivalent to `lm(mydata, dependent~explanatory)` (`lm()` stands for linear model introduced in detail in Chapter \@ref(chap07-h1). 
+
+However, the `lm()` function does not expect data as its first argument. 
+`lm()` wants us to specify the variables first (`dependent~explanatory`), and then wants the tibble these columns are in.
 So we have to use the `.` to tell the pipe to send the data to the second argument of `lm()`, not the first, e.g.
 
 ```{r, eval = FALSE}
@@ -240,22 +271,22 @@ mydata %>%
 ```
 
 
-
 ## Reading data into R{#chap02-h2-reading-data-into-r}
 
 We mentioned before that once a table (e.g. from spreadsheet or database) gets read into R we start calling it a `tibble`. 
 The most common format data comes to us in is CSV (comma separated values). 
-CSV is basically an uncomplicated spreadsheet with no formatting or objects other than a single table with rows and columns (no worksheets or formulas).
+CSV is basically an uncomplicated spreadsheet with no formatting.
+It is just a single table with rows and columns (no worksheets or formulas).
 Furthermore, you don't need special software to quickly view a CSV file - a text editor will do, and that includes RStudio.
 
-For example, look at "example_data.csv" in the healthyr project's folder in Figure \@ref(fig:chap2-fig-examplecsv) (this is the Files pane at the bottom-right corner of your RStudio).
+For example, look at "example_data.csv" in the healthyr project's folder in Figure \@ref(fig:chap2-fig-examplecsv) (this is the **Files** pane at the bottom-right corner of your RStudio).
 
 ```{r chap2-fig-examplecsv, echo = FALSE, fig.cap="View or import a data file."}
 knitr::include_graphics("images/chapter02/files_csv_example.png")
 ```
 
 Clicking on a data file gives us two options: `View File` or `Import Dataset`. 
-For very standard CSV files, we don't usually bother with the Import interface and just type in (or copy from a previous script):
+For standard CSV files, we don't usually bother with the Import interface and just type in (or copy from a previous script):
 
 ```{r, eval = FALSE}
 library(tidyverse)
@@ -264,30 +295,37 @@ example_data = read_csv("example_data.csv")
 
 Without further arguments, `read_csv()` defaults to:
 
-* values are delimited by commas (e.g., `id, var1, var2, ...`)
-* numbers use decimal point (e.g., `4.12`), rather than decimal comma (e.g., `4,12`)
-* the first line has column names (it is a "header")
-* missing values are empty or denoted NA
+* values are delimited by commas (e.g., `id, var1, var2, ...`);
+* numbers use decimal point (e.g., `4.12`), rather than decimal comma (e.g., `4,12`);
+* the first line has column names (it is a "header");
+* and missing values are empty or denoted NA.
 
-If your file, however, is different to these, then the `Import Dataset` interface (Figure \@ref(fig:chap2-fig-examplecsv)) is very useful as it will give you the relevant `read_()` syntax with all the extra arguments filled in for you.
+If your file, however, is different to these, then the `Import Dataset` interface (Figure \@ref(fig:chap2-fig-examplecsv)) is very useful and will give you the relevant `read_()` syntax with extra arguments completed for you.
 
 ```{r chap02-fig-import-tool, echo = FALSE, fig.cap="Import: Some of the special settings your data file might have."}
 knitr::include_graphics("images/chapter02/import_options.png")
 ```
 
-
 ```{r chap02-fig-import-code, echo = FALSE, fig.cap="After using the Import Dataset window, copy-paste the resulting code into your script."}
 knitr::include_graphics("images/chapter02/code_preview.png")
 ```
 
-After selecting the specific options for your import file (there is a friendly preview window too, so you can immediately see whether R understands the format of the your data file), DO NOT BE tempted to press the `Import` button. 
-Yes, this will read in your dataset once, but means you have to redo the selections every time you come back to RStudio.
-Do copy-paste the code it gives you (e.g., Figure \@ref(fig:chap02-fig-import-code)) into your R script - this way you can use it over and over again. 
-Making sure all steps are recorded in scripts makes your workflow reproducible by your future self, colleagues, supervisors, extraterrestrials. 
+After selecting the specific options to import file, a friendly preview window will show whether R understands the format of the your data.
+DO NOT BE tempted to press the `Import` button.
+
+Yes, this will read in your dataset once, but means you have to reselect the options every time you come back to RStudio.
+Instead, copy-paste the code (e.g., Figure \@ref(fig:chap02-fig-import-code)) into your R script - this way you can use it over and over again. 
+
+Ensuring all steps are recorded in scripts make your workflow reproducible by your future self, colleagues, supervisors, and extraterrestrials. 
 
 >The `Import Dataset` button can also help you to read in Excel, SPSS, Stata, or SAS files (instead of `read_csv()`, it will give you `read_excel()`, `read_sav()`, `read_stata()`, or `read_sas()`).
 
-If you've used R before or are trying to make sense of legacy scripts passed on to you by colleagues, you might see `read.csv()` rather than `read_csv()`. In short: `read_csv()` is faster and better, and in all new scripts that's what you should use. But in existing scripts that work and are tested, do not just start replacing `read.csv()` with `read_csv()`. The thing is, `read_csv()` handles categorical variables slightly differently ^[It does not silently convert strings to factors, i.e., it defaults to `stringsAsFactors = FALSE`. For those not familiar with the terminology here - don't worry, we will cover this in just a few sections.]. This means that an R script written using the `read.csv()` might not work as expected any more if just replaced with `read_csv()`.
+If you've used R before or are using older scripts passed by colleagues, you might see `read.csv()` rather than `read_csv()`. 
+
+In short, `read_csv()` is faster and more predictable and in all new scripts this is what you should use. 
+In existing scripts that work and are tested, do not just start replacing `read.csv()` with `read_csv()`. 
+`read_csv()` handles categorical variables differently ^[It does not silently convert strings to factors, i.e., it defaults to `stringsAsFactors = FALSE`. For those not familiar with the terminology here - don't worry, we will cover this in just a few sections.]. 
+An R script written using the `read.csv()` might not work as expected any more if just replaced with `read_csv()`.
 
 > Do not start updating and possibly breaking existing R scripts by replacing base R functions with the tidyverse ones we show here. Do use the modern functions in any new code you write. 
 
@@ -302,7 +340,8 @@ Global Burden of Disease Study 2017 (GBD 2017) Results.
 Seattle, United States: Institute for Health Metrics and Evaluation (IHME), 2018.
 Available from http://ghdx.healthdata.org/gbd-results-tool.]
 
-GBD data are publicly available from their website. Table \@ref(tab:chap2-tab-gbd) and Figure \@ref(fig:chap2-fig-gbd) show a very high level version of the project's data with just 3 variables: cause, year, deaths_millions (number of people who die of each cause every year). Later, we will be using a longer dataset with different subgroups and we will show you how to summarise comprehensive datasets yourself.
+GBD data are publicly available from the website. 
+Table \@ref(tab:chap2-tab-gbd) and Figure \@ref(fig:chap2-fig-gbd) show a high level version of the project data with just 3 variables: `cause`, `year`, `deaths_millions` (number of people who die of each cause every year). Later, we will be using a longer dataset with different subgroups and we will show you how to summarise comprehensive datasets yourself.
 
 ```{r, message=F}
 library(tidyverse)
@@ -343,8 +382,6 @@ p2 = gbd_short %>%
   guides(fill=guide_legend(ncol=3))
 
 p1/p2 + plot_annotation(tag_levels = "A")
-
-
 ```
 
 \clearpage
@@ -382,15 +419,16 @@ gbd_short %>%
 
 Furthermore, the values either side of the operator could both be variables, e.g., `mydata %>% filter(var2 > var1)`.
 
-To filter for values that are equal to something, we use the `==` operator. For example, the first filtering example was actually equivalent to:
+To filter for values that are equal to something, we use the `==` operator. 
 
 ```{r}
 gbd_short %>% 
   filter(year == 1995)
 ```
 
-Accidentally using the single equals (`=` so the assignment operator) is a very common mistake and still occasionally happens to the best of us.
-In fact, it happens so often that the error the `filter()` function gives when using the wrong one also reminds us what the correct one was
+This reads, take the GBD dataset, send if to the filter and keep rows where year is equal to 1995.
+
+Accidentally using the single equals `=` when double equals is necessary `==` is a very common mistake and still happens to the best of us. It happens so often that the error the `filter()` function gives when using the wrong one also reminds us what the correct one was:
 
 ```{r, error = TRUE}
 gbd_short %>% 
@@ -399,9 +437,9 @@ gbd_short %>%
 
 > The answer to 'do you need ==?" is almost always "Yes R, I do, thank you".
 
-But that's just because `filter()` is a clever cookie and used to this very common mistake.
+But that's just because `filter()` is a clever cookie and is used to this very common mistake. 
 There are other useful functions we use these operators in, but they don't always know to tell us that we've just confused `=` for `==`.
-So whenever checking for equality of variables but the result is not what you expect (you'll get an Error, but not necessary with the same wording as above), remember to check your `==` operators first.
+So if you get an error when checking for an equality between variables, always check your `==` operators first.
 
 R also has two operators for combining multiple comparisons: & and |, which stand for AND and OR, respectively.
 For example, we can filter to only keep the earliest and latest years in the dataset:
@@ -411,15 +449,15 @@ gbd_short %>%
   filter(year == 1995 | year == 2017)
 ```
 
-This reads: take the GBD dataset, send it to the filter to keep rows where year is equal to 1995 or year is equal to 2017.
-Using specific values like we've done there (1995/2017) is called "hard-coding", which is fine if we know for sure we don't want to apply the same script on an updated dataset. But a cleverer way of achieving the same thing is to use the `min()` and `max()` functions:
+This reads: take the GBD dataset, send it to the filter and keep rows where year is equal to 1995 OR year is equal to 2017.
+
+Using specific values like we've done here (1995/2017) is called "hard-coding", which is fine if we know for sure that we will not want to use the same script on an updated dataset. 
+But a cleverer way of achieving the same thing is to use the `min()` and `max()` functions:
 
 ```{r}
 gbd_short %>% 
   filter(year == max(year) | year == min(year))
 ```
-
-
 
 ```{r chap2-tab-filtering-operators, echo = FALSE}
 Operators = c("==", "!=" ,"<", ">", "<=", ">=", "&", "|")
@@ -433,19 +471,17 @@ testdata %>%
                align = c("l", "c", "r"),
                caption = "Filtering operators.") %>% 
   kableExtra::kable_styling(font_size=8)
-
 ```
 
 
 ### Worked examples
 
-Filter the dataset to only include the year 2000. Save this in a new variable using the assignment operator.
+Filter the dataset to only include the year 2000. 
+Save this in a new variable using the assignment operator.
 
 ```{r, echo = TRUE}
-
 mydata_year2000 = gbd_short %>% 
   filter(year == 2000)
-
 ```
 
 Let's practice combining multiple selections together.
@@ -455,7 +491,6 @@ Reminder: '|' means OR and '&' means AND.
 From `gbd_short`, select the lines where year is either 1990 or 2017 and cause is "Communicable diseases":
 
 ```{r}
-
 new_data_selection = gbd_short %>% 
   filter((year == 1990 | year == 2013) & cause == "Communicable diseases")
 
@@ -468,12 +503,14 @@ new_data_selection = gbd_short %>%
 ```
 
 \index{symbols@\textbf{symbols}!comment \texttt{\#}}
-The hash symbol (`#`) is used to add free text comments to R code. R will not try to run these lines, they will be ignored.
-Comments are an essential part of any programming code - these are notes for your future self on what and why you did.
+The hash symbol (`#`) is used to add free text comments to R code. 
+R will not try to run these lines, they will be ignored.
+Comments are an essential part of any programming code and these are "Dear Diary" notes to your future self.
 
-## The combine function: c()
+## The combine function: `c()`
 
-The combine function is used to list several values. It is especially useful together with the `%in%` operator which can be used to filter for multiple values. 
+The combine function as it's name implies is used to combine several values. 
+It is especially useful when used with the `%in%` operator to filter for multiple values. 
 Remember how the gbd_short cause column had three different causes in it:
 
 ```{r}
@@ -481,7 +518,7 @@ gbd_short$cause %>% unique()
 ```
 
 Say we wanted to filter for communicable and non-communicable diseases.
-^[In this example, it would just be  easier to filter(cause `!=` "Injuries") but imagine your column had more than just three different values in it.] We could use the OR operator - `|` like this:
+^[In this example, it would just be easier to used the "not equal" operator, filter(cause `!=` "Injuries"), but imagine your column had more than just three different values in it.] We could use the OR operator `|` like this:
 
 ```{r}
 gbd_short %>% 
@@ -490,8 +527,8 @@ gbd_short %>%
   filter(cause == "Communicable diseases" | cause == "Non-communicable diseases")
 ```
 
-But that means we have to type in `cause` twice (and even more time if we had more different values we wanted to include).
-This where the `%in%` operator together with the `c()` function come in handy:
+But that means we have to type in `cause` twice (and more if we had other values we wanted to include).
+This is where the `%in%` operator together with the `c()` function come in handy:
 
 ```{r}
 gbd_short %>% 
@@ -499,19 +536,17 @@ gbd_short %>%
   filter(cause %in% c("Communicable diseases", "Non-communicable diseases"))
 ```
 
-
-
 ## Missing values (NAs) and filters
 
-Filtering for missing values (NAs) needs your special attention and care.
+Filtering for missing values (NAs) needs special attention and care.
 Remember the small example tibble from Table \@ref(tab:chap2-tab-examp1) - it has some NAs in columns `var2` and `var3`:
 
 ```{r}
 mydata
 ```
 
-
 If we now want to filter for rows where `var2` is missing, `filter(var2 == NA)` is not the way to do it, it will not work. 
+
 Since R is a programming language, it can be a bit stubborn with things like these.
 When you ask R to do a comparison using `==` (or `<`, `>`, etc.) it expects a value on each side, but NA is not a value, it is the lack thereof.
 The way to filter for missing values is using the `is.na()` function:
@@ -522,18 +557,20 @@ mydata %>%
 ```
 We send `mydata` to the filter and keep rows where `var2` is `NA`. 
 Note the double brackets at the end: that's because the inner one belongs to `is.na()`, and the outer one to `filter()`.
-Missing out a closing bracket is also a very common source of (minor, easily fixed) mistakes, and it still happens to the best of us.
+Missing out a closing bracket is also a common source of errors, and still happens to the best of us.
 
 If filtering for rows where `var2` is not missing, we do this^[In this simple example, `mydata %>% filter(! is.na(var2))` could be replace by a shorthand: `mydata %>% drop_na(var2)`, but it is important to understand how the ! and `is.na()` work as there will be more complex situations where using these is necessary.]
 
 ```{r}
 mydata %>% 
-  filter(! is.na(var2))
+  filter(!is.na(var2))
 ```
 
 In R, the exclamation mark (!) means "not".
 
-Sometimes you want to drop a specific value (e.g. an outlier) from the dataset like this. The small example tibble `mydata` has 4 rows, with the values for `var2` as follows: `r mydata$var2`. We can exclude the row where `var2` is equal to 5 by using the "not equals" (`!=`)^[ `filter(var2 != 5) is equivalent to filter(! var2 == 5)`]:
+Sometimes you want to drop a specific value (e.g. an outlier) from the dataset like this. 
+The small example tibble `mydata` has 4 rows, with the values for `var2` as follows: `r mydata$var2`. 
+We can exclude the row where `var2` is equal to 5 by using the "not equals" (`!=`)^[ `filter(var2 != 5) is equivalent to filter(! var2 == 5)`]:
 
 ```{r}
 mydata %>% 
@@ -549,7 +586,8 @@ mydata %>%
   filter(var2 != 5 | is.na(var2))
 ```
 
-Being caught out by missing values, either in filters or other functions is very common (remember mydata$var2 %>% mean() returns NA unless you add `na.rm = TRUE`). This is also why we insist that you always plot your data first - outliers will reveal themselves and NA values usually become obvious too.
+Being caught out by missing values, either in filters or other functions is very common (remember mydata$var2 %>% mean() returns NA unless you add `na.rm = TRUE`). 
+This is also why we insist that you always plot your data first - outliers will reveal themselves and NA values usually become obvious too.
 
 Another thing we do to stay safe around filters and missing values is saving the results and making sure the number of rows still add up:
 
@@ -564,7 +602,7 @@ subset1
 subset2
 ```
 
-If the numbers are small, you can now quickly look at RStudio's Environment tab and figure out whether the number of observations (rows) in `subset1` and `subset2` add up to the whole dataset (`mydata`). Or use the `nrow()` function to as R to tell you what the number of rows is in each dataset:
+If the numbers are small, you can now quickly look at RStudio's **Environment** tab and figure out whether the number of observations (rows) in `subset1` and `subset2` add up to the whole dataset (`mydata`). Or use the `nrow()` function to as R to tell you what the number of rows is in each dataset:
 
 Rows in `mydata`:
 
@@ -600,18 +638,17 @@ nrow(subset1) + nrow(subset2) + nrow(subset3) == nrow(mydata)
 ```
 
 
-
 ## Variable types and why we care
 
 There are three broad types of data: 
 
 * continuous (numbers), in R: numeric, double, or integer; 
 * categorical, in R: character, factor, or logical (TRUE/FALSE); 
-* date/time, in R: POSIXct date-time^[Portable Operating System Interface (POSIX) is a set of computing standards. There's nothing more to understand about this other than when R starts shouting "POSIXct this and POSIXlt that" at you, check your date and time variables].
-
+* date/time, in R: POSIXct date-time^[Portable Operating System Interface (POSIX) is a set of computing standards. There's nothing more to understand about this other than when R starts shouting "POSIXct this or POSIXlt that" at you, check your date and time variables].
 
 Values within a column all have to be the same type, but a tibble can of course hold columns of different types.
-Generally, R is very good at figuring out what the type your data is (in programming, this 'figuring out' is called 'parsing').
+Generally, R is very good at figuring out what type of data you have (in programming, this 'figuring out' is called 'parsing').
+
 For example, when reading in data, it will tell you what it assumed for the columns:
 
 ```{r}
@@ -632,13 +669,20 @@ typesdata_faulty = read_csv("data/typesdata_faulty.csv")
 typesdata_faulty
 ```
 
-Notice R now parsed both measurement and date as characters. The first one is a data entry issue: the person taking the measurement couldn't decide which value to note down (maybe the scale was shifting between the two values) so they included both values and text "or" in the cell. A will also get parsed as a categorical variable because of a small typo, e.g., if entered as "3..7" instead of "3.7". And the reason R didn't automatically make sense of the date column is that it can't know whether which one is the month and which one year: __02-Jan-17__ could stand for _02-Jan-2017_ as well as _2002-Jan-17_.
+Notice R parsed both measurement and date as characters. 
+The first one is a data entry issue: the person taking the measurement couldn't decide which value to note down (maybe the scale was shifting between the two values) so they included both values and text "or" in the cell. 
 
-Therefore, while a lot of the time you do not have to worry about variable types and can just get on with your analysis, but it is important to understand what the different types are to be ready to deal with them when issues arise. 
+A numeric variable will also get parsed as a categorical variable if it contains certain typos, e.g., if entered as "3..7" instead of "3.7". 
 
->Furthermore, since health data is generally full of categorical data, it is crucial that you do understand the difference between characters and factors (both are types of categorical variables in R with their pros and cons).
+The reason R didn't automatically make sense of the date column is that it can't tell which is the date and which is the year: __02-Jan-17__ could stand for _02-Jan-2017_ as well as _2002-Jan-17_.
+
+Therefore, while a lot of the time you do not have to worry about variable types and can just get on with your analysis, it is important to understand what the different types are to be ready to deal with them when issues arise. 
+
+>Since health datasets are generally full of categorical data, it is crucial to understand the difference between characters and factors (both are types of categorical variables in R with pros and cons).
 
 So here we go.
+
+<!-- EMH to here -->
 
 ## Numeric variables (continuous)
 

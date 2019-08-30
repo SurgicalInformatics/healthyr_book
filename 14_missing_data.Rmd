@@ -1,4 +1,5 @@
 # Missing data{#chap14-h1}
+\index{missing data@\textbf{missing data}}
 
 ```{r echo=FALSE, message=FALSE}
 library(knitr)
@@ -33,6 +34,7 @@ But first there are some terms which easy to mix up.
 These are important as they describe the mechanism of missingness and this determines how you can handle the missing data.
 
 ### Missing completely at random (MCAR)
+\index{missing data@\textbf{missing data}!missing completely at random}
 As it says, values are randomly missing from your dataset. Missing data values do not relate to any other data in the dataset and there is no pattern to the actual values of the missing data themselves.
 
 For instance, when smoking status is not recorded in a random subset of patients.
@@ -40,6 +42,7 @@ For instance, when smoking status is not recorded in a random subset of patients
 This is easy to handle, but unfortunately, data are almost never missing completely at random.
 
 ### Missing at random (MAR)
+\index{missing data@\textbf{missing data}!missing at random}
 This is confusing and would be better stated as missing conditionally at random. 
 Here, missing data do have a relationship with other variables in the dataset. 
 However, the actual values that are missing are random.
@@ -48,6 +51,7 @@ For example, smoking status is not documented in female patients because the doc
 Yes ok, not that realistic!
 
 ### Missing not at random (MNAR)
+\index{missing data@\textbf{missing data}!missing not at random}
 The pattern of missingness is related to other variables in the dataset, but in addition, the values of the missing data are not random.
 
 For example, when smoking status is not recorded in patients admitted as an emergency, who are also more likely to have worse outcomes from surgery.
@@ -61,7 +65,7 @@ Once you know this, then you can sort it.
 
 More on this below.
 
-## Ensure your data are coded correctly: ff_glimpse
+## 1. Ensure your data are coded correctly: `ff_glimpse()`
 While clearly obvious, this step is often ignored in the rush to get results. 
 The first step in any analysis is robust data cleaning and coding. 
 Lots of packages have a glimpse-type function and our own Finalfit is no different. 
@@ -71,7 +75,7 @@ This function has three specific goals:
 2. Ensure you know which variables have missing data. This presumes missing values are correctly assigned `NA`. 
 3. Ensure factor levels and variable labels are assigned correctly.
 
-## The Question
+### The Question
 Using the `colon_s` colon cancer dataset, we are interested in exploring the association between a cancer obstructing the bowel and 5-year survival, accounting for other patient and disease characteristics.
 
 For demonstration purposes, we will create random MCAR and MAR smoking variables to the dataset.
@@ -126,6 +130,8 @@ colon_s %>%
 Use this to check that the variables are all assigned and behaving as expected. The proportion of missing data can be seen, e.g. smoking_mar has `r round(sum(100*is.na(colon_s$smoking_mar))/dim(colon_s)[1], 0)`% missing data.
 
 ## 2. Identify missing values in each variable: missing_plot
+\index{missing data@\textbf{missing data}!missingness plot}
+
 In detecting patterns of missingness, this plot is useful. 
 Row number is on the x-axis and all included variables are on the y-axis. 
 Associations between missingness and observations can be easily seen, as can relationships of missingness between variables.
@@ -138,6 +144,8 @@ colon_s %>%
 Further visualisations of missingness are available via the [naniar](http://naniar.njtierney.com) package. 
 
 ## 3. Look for patterns of missingness: missing_pattern
+\index{missing data@\textbf{missing data}!missingness pattern}
+
 Using `finalfit`, `missing_pattern()` wraps a function from the `mice` package, `md.pattern()`. 
 This produces a table and a plot showing the pattern of missingness between variables.
 
@@ -156,6 +164,8 @@ There are 11 patterns in these data.
 The number and pattern of missingness help us to determine the likelihood of it being random rather than systematic.
 
 ### Make sure you include missing data in demographics tables
+\index{missing data@\textbf{missing data}!demographics table}
+
 Table 1 in a healthcare study is often a demographics table of an “explanatory variable of interest” against other explanatory variables/confounders. 
 Do not silently drop missing values in this table. 
 It is easy to do this correctly with `summary_factorlist()`. 
@@ -185,6 +195,8 @@ table1 %>%
 ```
 
 ## 4. Check for associations between missing and observed data: missing_pairs | missing_compare
+\index{missing data@\textbf{missing data}!associations}
+
 In deciding whether data is MCAR or MAR, one approach is to explore patterns of missingness between levels of included variables. 
 This is particularly important (we would say absolutely required) for a primary outcome measure / dependent variable.
 
@@ -253,7 +265,7 @@ Comparisons for continuous data use a Kruskal Wallis and for discrete data a chi
 
 As expected, a relationship is seen between Sex and Smoking (MAR) but not Smoking (MCAR).
 
-## For those who like an omnibus test
+### For those who like an omnibus test
 If you are work predominately with continous rather than categorical data, you may find these tests from the `MissMech` package useful. The package and output is well documented, and provides two tests which can be used to determine whether data are MCAR.
 
 ```{r}
@@ -267,14 +279,14 @@ colon_s %>%
 ```
 
 ## 5. Decide how to handle missing data
+\index{missing data@\textbf{missing data}!handling}
+
 Prior to a standard regression analysis, we can either:
 
 * Delete the variable with the missing data
 * Delete the cases with the missing data
 * Impute (fill in) the missing data
 * Model the missing data
-
-## MCAR, MAR, or MNAR
 
 ### **MCAR** vs MAR
 Using the examples, we identify that Smoking (MCAR) is missing completely at random.
@@ -321,6 +333,11 @@ Consider that the smoking variable is more likely to be missing if the patient i
 If we simply drop all the cases (patients) in which smoking is missing (list-wise deletion), then proportionally we drop more females than men. This may have consequences for our conclusions if sex is associated with our explanatory variable of interest or outcome.
 
 **Common solution**
+\index{missing data@\textbf{missing data}!imputation}
+\index{missing data@\textbf{missing data}!multiple imputation}
+\index{imputation}
+\index{multiple imputation}
+
 `mice` is our go to package for multiple imputation. That’s the process of filling in missing data using a best-estimate from all the other data that exists. When first encountered, this may not sound like a good idea.
 
 However, taking our simple example, if missingness in smoking is predicted strongly by sex (and other observed variables), and the values of the missing data are random, then we can impute (best-guess) the missing smoking values using sex and other variables in the dataset.

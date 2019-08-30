@@ -1,4 +1,5 @@
 # Encryption
+\index{encryption@\textbf{encryption}}
 
 Health data is precious and often sensitive. 
 Datasets may contain information patient identifiable information. 
@@ -6,7 +7,7 @@ Information may be clearly disclosive, such as a patient's data of birth, post/z
 
 Other datasets may have been processed to remove the most obviously confidential information. 
 These still require great care, as the data is usually only 'pseudoanonymised'. 
-This may mean that the data of an individual patient is disclosive when considered as a whole - perhaps the patient had a particuarly rare diagnosis. 
+This may mean that the data of an individual patient is disclosive when considered as a whole - perhaps the patient had a particularly rare diagnosis. 
 Or it may mean that the data can be combined with other datasets and in combination, individual patients can be identified. 
 
 The governance around safe data handling is one of the greatest issues facing health data scientists today.
@@ -27,6 +28,7 @@ A study ID can be used, but that still requires the confidential data to be stor
 * A formal short section on data governance best practice here?* 
 
 ## `Encryptr` package
+\index{encryption@\textbf{encryption}!encryptr}
 
 The `encryptr` package allows users to store confidential data in a pseudoanonymised form, which is far less likely to result in re-identification.
 
@@ -42,7 +44,7 @@ If lost, it cannot be recovered.
 
 ## Get the package
 
-The `encryptr` package can be installed in the standard manner or the development version can be obtained from Github. 
+The `encryptr` package can be installed in the standard manner or the development version can be obtained from GitHub. 
 
 Full documentation is maintained separately at [encrypt-r.org](https://encrypt-r.org).
 
@@ -55,7 +57,7 @@ devtools::install_github("SurgicalInformatics/encryptr")
 
 ## Get the data
 
-An example dataset containing the addresses general practioners (family doctors) in Scotland is included in the package.
+An example dataset containing the addresses general practitioners (family doctors) in Scotland is included in the package.
 
 ```{r eval=FALSE}
 library(encryptr)
@@ -68,6 +70,7 @@ gp
 ```
 
 ## Generate private/public keys
+\index{encryption@\textbf{encryption}!public/private keys}
 
 The `genkeys()` function generates a public and private key pair. 
 A password is required to be set in the dialogue box for the private key. 
@@ -92,6 +95,7 @@ genkeys()
 ```
 
 ## Encrypt columns of data
+\index{encryption@\textbf{encryption}!columns, encrypt}
 
 Once the keys are created, it is possible to encrypt one or more columns of data in a data frame/tibble using the public key. 
 Every time RSA encryption is used it will generate a unique output. 
@@ -119,6 +123,7 @@ gp_encrypt
 ```
 
 ## Decrypt specific information only
+\index{encryption@\textbf{encryption}!columns, decrypt}
 
 Decryption requires the private key generated using `genkeys()` and the password set at the time. 
 The password and file are not replaceable so need to be kept safe and secure. 
@@ -138,11 +143,12 @@ gp_encrypt %>%
 ```
 
 ## Using a lookup table
+\index{encryption@\textbf{encryption}!lookup table}
 
-Rather than storing the ciphertext in the working dataframe, a lookup table can be used as an alternative. 
+Rather than storing the ciphertext in the working data frame, a lookup table can be used as an alternative. 
 Using `lookup = TRUE` has the following effects:
 
-* returns the dataframe / tibble with encrypted columns removed and a `key` column included;
+* returns the data frame / tibble with encrypted columns removed and a `key` column included;
 * returns the lookup table as an object in the R environment;
 * creates a lookup table `.csv` file in the active directory. file of the lookup 
 
@@ -184,6 +190,7 @@ gp_encrypt %>%
 ```
 
 ## Encrypting a file
+\index{encryption@\textbf{encryption}!file, encrypt}
 
 Encrypting the object within R has little point if a file with the disclosive information is still present on the system. 
 Files can be encrypted and decrypted using the same set of keys. 
@@ -199,7 +206,10 @@ encrypt_file("gp.csv")
 
 Check that the file can be decrypted prior to removing the original file from your system. 
 
-Warning: it is strongly suggested that the original unencrypted data file is stored as a back-up in case unencryption is not possible, e.g., the private key file or password is lost
+Warning: it is strongly suggested that the original unencrypted data file is stored as a back-up in case de-encryption is not possible, e.g., the private key file or password is lost.
+
+## Decrypting a file
+\index{encryption@\textbf{encryption}!file, decrypt}
 
 The `decrypt_file` function will not allow the original file to be overwritten, therefore use the option to specify a new name for the unencrypted file. 
 
@@ -209,7 +219,7 @@ decrypt_file("gp.csv.encryptr.bin", file_name = "gp2.csv")
 #> Decrypted file written with name 'gp2.csv'
 ```
 
-## Ciphertexts are no matchable
+## Ciphertexts are not matchable
 
 The ciphertext produced for a given input will change with each encryption. 
 This is a feature of the RSA algorithm. 
@@ -217,6 +227,7 @@ Ciphertexts should not therefore be attempted to be matched between datasets enc
 This is a conscious decision given the risks associated with sharing the necessary details.
 
 ## Providing a public key
+\index{encryption@\textbf{encryption}!public key sharing}
 
 In collaborative projects where data may be pooled, a public key can be made available by you via a link to enable collaborators to encrypt sensitive data.
 This provides a robust method for sharing potentially disclosive data points. 
@@ -228,6 +239,7 @@ gp_encrypt = gp %>%
 ```
 
 ## Use in clinical trials
+\index{encryption@\textbf{encryption}!clinical trials}
 
 Another potential application is maintaining blinding / allocation concealment in randomised controlled clinical trials. 
 Using the same method of encryption, it is possible to encrypt the participant allocation group, allowing the sharing of data without compromising blinding. 

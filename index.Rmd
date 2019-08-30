@@ -23,7 +23,7 @@ cover-image: images/healthyr_book_cover.png
 
 ```{r setup, include=FALSE}
 
-# Above to disable PDF download, pasted here as breaks if pasted and commented above:
+# Above to disable PDF download, pasted here as breaks if pasted and commented out above:
 # output:
 #   bookdown::gitbook:
 #     config:

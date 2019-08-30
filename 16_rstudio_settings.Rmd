@@ -1,12 +1,13 @@
 # RStudio settings, good practise {#install}
-
+\index{RStudio@\textbf{RStudio}}
 
 <!-- Moved installation here for now. -->
 
 ## Installation
-
+\index{RStudio@\textbf{RStudio}!installation}
 
 ### R
+\index{RStudio@\textbf{RStudio}!base R}
 
 Download and install the latest version of R from:
 
@@ -27,6 +28,7 @@ https://www.rstudio.com/products/rstudio/download/#download
 *Mac*: `RStudio 1.2.1335 - Mac OS X 10.12+ (64-bit)`
 
 ### R packages
+\index{RStudio@\textbf{RStudio}!R packages}
 
 Open RStudio and copy-paste the lines below into the Console and press Enter:
 
@@ -59,6 +61,8 @@ tinytex:::is_tinytex()
 ```
 
 ### Troubleshooting 3.3
+<!-- Definitely want to make this version specific? -->
+\index{RStudio@\textbf{RStudio}!Troubleshooting}
 
 1. ~"can't find remotes": try doing step 3.2 (restart) again.
 We only just installed `remotes::` in *3.1* so RStudio needs a restart before we can start using it.
@@ -71,14 +75,14 @@ If you already have LaTex installed on your computer, the `tinytex::install_tiny
 When working with data, don't copy or type code directly into the Console. We will only be using the Console for viewing output, warnings, and errors (and installing packages as in the previous section). All code should be in a script and executed (=Run) using Control+Enter (line or section) or Control+Shift+Enter (whole script). Make sure you are always working in a project (the right-top corner of your RStudio interface should say "HealthyR").
 ```
 
-
 ## Script vs Console
+\index{RStudio@\textbf{RStudio}!script}
+\index{RStudio@\textbf{RStudio}!console}
 
 Throughout this course, don't copy or type code directly into the Console. 
 We will only be using the Console for viewing output, warnings, and errors. 
 All code should be in a script and executed (=run) using Ctrl+Enter (line or section) or Ctrl+Shift+Enter (whole script). 
 Make sure you are always working in a project (the right-top corner of your RStudio interface should say "HealthyR").
-
 
 ## Starting with a blank canvas
 
@@ -95,4 +99,3 @@ RStudio has a default setting that is no longer considered best practice. You sh
 * Go to Tools -> Global Options -> General and set "Save .RData on exit" to Never. 
 This does not mean you can't or shouldn't save your work in .RData files. 
 But it is best to do it consciously and load exactly what you need to load, rather than letting R always save and load everything for you, as this could also include broken data or objects.
-

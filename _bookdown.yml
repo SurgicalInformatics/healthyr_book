@@ -22,8 +22,8 @@ output_dir: "docs"
 #rmd_files: ["index.Rmd", "10_survival.Rmd"]
 #rmd_files: ["index.Rmd", "10_survival.Rmd", "11_notebooks.Rmd"]
 #rmd_files: ["index.Rmd", "12_exporting.Rmd"]
-#rmd_files: ["index.Rmd", "13_missing_data.Rmd"]
-#rmd_files: ["index.Rmd", "14_encryption.Rmd"]
+#rmd_files: ["index.Rmd", "12_exporting.Rmd", "13_version_control.Rmd"]
+#rmd_files: ["index.Rmd", "14_missing_data.Rmd", "15_encryption.Rmd", "16_rstudio_settings.Rmd"]
 #rmd_files: ["index.Rmd", "15_version_control.Rmd"]
 #rmd_files: ["index.Rmd", "16_rstudio_settings.Rmd"]
 #

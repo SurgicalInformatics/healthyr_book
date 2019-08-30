@@ -235,7 +235,8 @@ This provides a robust method for sharing potentially disclosive data points.
 ```{r eval=FALSE}
 gp_encrypt = gp %>% 
   select(-c(name, address1, address2, address3)) %>% 
-  encrypt(postcode, telephone, public_key_path = "https://argonaut.is.ed.ac.uk/public/id_rsa.pub")
+  encrypt(postcode, telephone, public_key_path = 
+            "https://argonaut.is.ed.ac.uk/public/id_rsa.pub")
 ```
 
 ## Use in clinical trials

@@ -32,7 +32,10 @@ https://www.rstudio.com/products/rstudio/download/#download
 Open RStudio and copy-paste the lines below into the Console and press Enter:
 
 ```{r, eval = FALSE}
-healthyr_packages = c("tidyverse", "boot", "finalfit", "flexdashboard", "gapminder", "here", "kableExtra", "knitr", "remotes", "rmarkdown", "shiny", "survminer", "tinytex")
+healthyr_packages = c("tidyverse", "boot", "finalfit", 
+                      "flexdashboard", "gapminder", "here", 
+                      "kableExtra", "knitr", "remotes", "rmarkdown", 
+                      "shiny", "survminer", "tinytex")
 install.packages(healthyr_packages)
 
 ```

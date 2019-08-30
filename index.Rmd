@@ -3,7 +3,10 @@ title: "HealthyR: R for health data analysis"
 author: "Ewen Harrison and Riinu Ots"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+output: 
+  bookdown::gitbook:
+    config:
+      download: no
 documentclass: krantz
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike

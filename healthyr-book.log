@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  30 AUG 2019 20:16
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  30 AUG 2019 20:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2295,18 +2295,6 @@ Overfull \hbox (30.0pt too wide) in paragraph at lines 410--410
 LaTeX Font Info:    Font shape `EU1/SourceCodePro(0)/bx/n' will be
 (Font)              scaled to size 7.79993pt on input line 455.
 Font mapping `tex-ansi.tec' for font `Source Code Pro Bold' not found.
-
-Overfull \hbox (214.1754pt too wide) in paragraph at lines 461--461
-[]\EU1/SourceCodePro(0)/m/n/12 ## -- Attaching packages -----------------------
------------------------------------------------------ tidyverse 1.2.1 --[] 
- []
-
-
-Overfull \hbox (217.29536pt too wide) in paragraph at lines 474--474
-[]\EU1/SourceCodePro(0)/m/n/12 ## -- Conflicts --------------------------------
------------------------------------------------ tidyverse_conflicts() --[] 
- []
-
 LaTeX Font Info:    Font shape `EU1/latinmodern-math.otf(0)/m/n' will be
 (Font)              scaled to size 10.0pt on input line 480.
 LaTeX Font Info:    Font shape `EU1/latinmodern-math.otf(0)/m/n' will be
@@ -2728,12 +2716,12 @@ File: 04_plotting_files/figure-latex/chap04-fig-bar-exercise-1.pdf Graphic file
  (type QTm)
 <use  "04_plotting_files/figure-latex/chap04-fig-bar-exercise-1.pdf" > [102] [1
 03]
-File: 04_plotting_files/figure-latex/unnamed-chunk-27-1.pdf Graphic file (type 
-QTm)
-<use  "04_plotting_files/figure-latex/unnamed-chunk-27-1.pdf" > [104]
 File: 04_plotting_files/figure-latex/unnamed-chunk-28-1.pdf Graphic file (type 
 QTm)
-<use  "04_plotting_files/figure-latex/unnamed-chunk-28-1.pdf" > [105]
+<use  "04_plotting_files/figure-latex/unnamed-chunk-28-1.pdf" > [104]
+File: 04_plotting_files/figure-latex/unnamed-chunk-29-1.pdf Graphic file (type 
+QTm)
+<use  "04_plotting_files/figure-latex/unnamed-chunk-29-1.pdf" > [105]
 File: 04_plotting_files/figure-latex/chap04-fig-multigeoms-1.pdf Graphic file (
 type QTm)
 <use  "04_plotting_files/figure-latex/chap04-fig-multigeoms-1.pdf" > [106]
@@ -2748,16 +2736,16 @@ Underfull \hbox (badness 3088) in paragraph at lines 4807--4808
  []
 
 [107]
-File: 04_plotting_files/figure-latex/unnamed-chunk-32-1.pdf Graphic file (type 
-QTm)
-<use  "04_plotting_files/figure-latex/unnamed-chunk-32-1.pdf" > [108] [109] [11
-0]
 File: 04_plotting_files/figure-latex/unnamed-chunk-35-1.pdf Graphic file (type 
 QTm)
-<use  "04_plotting_files/figure-latex/unnamed-chunk-35-1.pdf" > [111]
-File: 04_plotting_files/figure-latex/unnamed-chunk-36-1.pdf Graphic file (type 
+<use  "04_plotting_files/figure-latex/unnamed-chunk-35-1.pdf" > [108] [109] [11
+0]
+File: 04_plotting_files/figure-latex/unnamed-chunk-38-1.pdf Graphic file (type 
 QTm)
-<use  "04_plotting_files/figure-latex/unnamed-chunk-36-1.pdf" > [112]
+<use  "04_plotting_files/figure-latex/unnamed-chunk-38-1.pdf" > [111]
+File: 04_plotting_files/figure-latex/unnamed-chunk-39-1.pdf Graphic file (type 
+QTm)
+<use  "04_plotting_files/figure-latex/unnamed-chunk-39-1.pdf" > [112]
 Underfull \vbox (badness 10000) detected at line 4967
  []
 
@@ -4977,8 +4965,8 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 13683.
  ) 
 Here is how much of TeX's memory you used:
- 31944 strings out of 495579
- 556303 string characters out of 6187323
+ 31943 strings out of 495579
+ 556285 string characters out of 6187323
  780306 words of memory out of 5000000
  34711 multiletter control sequences out of 15000+600000
  12607 words of font info for 104 fonts, out of 8000000 for 9000

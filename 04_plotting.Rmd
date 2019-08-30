@@ -606,6 +606,12 @@ Hints:
 A histogram displays the distribution of values within a continuous variable. 
 In the example below, we are taking the life expectancy (`aes(x = lifeExp)`) and telling the histogram to count the observations up in "bins" of 10 years (`geom_histogram(binwidth = 10)`): 
 
+```{r include=FALSE}
+# don't understand what keeps resetting it! patchwork?
+theme_set(theme_bw())
+```
+
+
 ```{r fig.width=4}
 gapminder2007 %>% 
   ggplot(aes(x = lifeExp)) +
@@ -640,6 +646,11 @@ gapminder2007 %>%
 One of the coolest things about `ggplot()` is that we can plot multiple geoms on top of each other!
 
 Let' add individual data points on top of the box plots:
+
+```{r include=FALSE}
+# don't understand what keeps resetting it! patchwork?
+theme_set(theme_bw())
+```
 
 ```{r, fig.keep = 'none'}
 gapminder2007 %>% 
@@ -726,6 +737,11 @@ label_data
 The first two geoms are from the previous example (`geom_boxplot()` and `geom_jitter()`).
 Note that `ggplot()` plots them in the order they are in the code  - so box plots at the bottom, jittered points on the top.
 We are then adding `geom_label()` with its own data option (`data = label_data`) as well as a new aesthetic (`aes(label = country)`):
+
+```{r include=FALSE}
+# don't understand what keeps resetting it! patchwork?
+theme_set(theme_bw())
+```
 
 ```{r, fig.width=5, fig.height=4}
 gapminder2007 %>% 

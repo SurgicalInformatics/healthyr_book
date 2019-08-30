@@ -29,7 +29,7 @@ An example R script is shown in Figure \@ref(fig:chap01-fig-rscript).
 **Don't panic!**
 The only thing you need to understand at this point is that what you're looking at is a list of instructions written in the R language.
 
-You should also notice that some parts of the script looks like normal English.
+You should also notice that some parts of the script look like normal English.
 These are the lines that start with a # and they are called "comments".
 We can (and should) include these comments in everything we do.
 These are notes of what we were doing, both for colleagues as well as our future self.

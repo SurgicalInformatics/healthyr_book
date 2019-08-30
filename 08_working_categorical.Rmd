@@ -289,7 +289,6 @@ p1 / p2
 
 Our question relates to the association between tumour ulceration and death from melanoma. 
 The outcome measure has three levels as can be seen. 
-There are a number of ways of approaching this, which are discussed in detail in chapter 10 (REF).
 For our purposes here, we will generate a disease-specific mortality variable (`status_dss`), by combining "Died - other causes" and "Alive". 
 
 ```{r}
@@ -339,7 +338,7 @@ mydata %>%
                      explanatory = "ulcer.factor")
 ```
 
-```{r echo=FALSE}
+```{r chap08-tab-2x2, echo=FALSE}
 library(finalfit)
 mydata %>% 
   summary_factorlist(dependent   = "status_dss", 
@@ -385,7 +384,7 @@ Pearson's chi-squared ($\chi^2$) test of independence is used to determine wheth
 Independence here means that the relative frequencies of one variable are the same over all levels of another variable.
 
 A common setting for this is the classic 2x2 table. 
-This refers to two categorise variables each with two levels, such as is show in Table REF above. 
+This refers to two categorical variables with exactly two levels each, such as is show in Table \@ref(tab:chap08-tab-2x2) above. 
 The null hypothesis of independence for this particular question is no difference in the proportion of patients with ulcerated tumours who die (45.6%) compared with non-ulcerated tumours (13.9%).
 From the raw frequencies, there seems to be a large difference, as we noted in the plot we made above. 
 

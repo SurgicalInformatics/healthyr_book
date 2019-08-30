@@ -573,7 +573,7 @@ Finally, we want to assess how well our models fit the data with 'model checking
 The effect of adding or removing one variable to the coefficients of the other variables in the model is very important, and will be discussed later. 
 Measures of goodness-of-fit such as the `AIC`, can also be of great use when deciding which model choice is most valid. 
 
-### AIC
+### AIC {#chap07-aic}
 \index{linear regression@\textbf{linear regression}!AIC}
 \index{AIC}
 

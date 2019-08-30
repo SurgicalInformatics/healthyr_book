@@ -621,7 +621,7 @@ We recommend looking at three metrics:
 \index{logistic regression@\textbf{logistic regression}!AIC}
 \index{AIC
 
-The AIC has been previous described (REF). 
+The AIC has been previous described (Section \@ref(chap07-aic)). 
 It provides a measure of model goodness-of-fit - or how well the model fits the available data. 
 It is penalised for each additional variable, so should be somewhat robust against over-fitting (when the model starts to describe noise).
 

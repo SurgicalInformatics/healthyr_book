@@ -269,20 +269,20 @@ Here is our suggested approach.
 
 All projects must reside within an RStudio Project that has a meaningful name (not MyProject!).
 Never work within the (Home) or root directory.
-Projects should be initiated with a Git repository for version control (see Chapter \@ref(chap15-h1)).
+Projects should be initiated with a Git repository for version control (see Chapter \@ref(chap13-h1)).
 
 Structure your directory sensibly. 
 
 ```
 proj/
-- R/
+- scripts/
 - data/
 - doc/
 - figs/
 - 00_analysis.Rmd
 ```
 
-`R/` contains all the `.R` script files used for data cleaning/preparation.  
+`scripts/` contains all the `.R` script files used for data cleaning/preparation.  
 `data/` contains all raw data, such as `.csv` files.   
 `doc/` contains all output documents and reports, such as `.doc` and `.PDF` files.   
 `figs/` contains all figures and plots.  
@@ -291,13 +291,13 @@ We prefix this with `00` so it is always obvious which is the main file.
 
 ### Data cleaning
 
-This is all done in specific `.R` files, which are kept in the `R/` folder, and are clearly labelled, e.g.
+This is all done in specific `.R` files, which are kept in the `scripts/` folder, and are clearly labelled, e.g.
 
 ```
-R/0_source_all.R
-R/01_data_upload.R
-R/02_make_factors.R
-R/03_duplicate_records.R
+scripts/0_source_all.R
+scripts/01_data_upload.R
+scripts/02_make_factors.R
+scripts/03_duplicate_records.R
 ```
 
 For instance, `01_data_upload.R` may look like this. 

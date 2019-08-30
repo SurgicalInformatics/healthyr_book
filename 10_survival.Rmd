@@ -173,18 +173,47 @@ melanoma %>%
 \index{functions@\textbf{functions}!surv\_plot}
 \index{plotting@\textbf{plotting}!surv\_plot}
 
-## Cox-proportional hazards regression
+## Cox proportional hazards regression
 \index{time-to-event / survival@\textbf{time-to-event / survival}!Cox proportional hazards regression}
 \index{Cox proportional hazards regression}
 
-**Details of the Cox Proportional Hazards model still to be added here**.
+The Cox proportional hazards model is regression model similar to those we have already dealt with. 
+It is commonly used to investigate the association between the time to an event (such as death) and a set of explanatory variables. 
 
 Cox Proportional Hazards regression can be performed using `survival::coxph()` or the all-in-one `finalfit()` function. 
 The latter produces a table containing counts (proportions) for factors, mean (SD) for continuous variables and a univariable and multivariable CPH regression.
 
-** Add base R example first, as per lm() and glm() **
+**A further paragraph of explanation +/- figure akin to chap 7 and chap 9 **
 
-### Univariable and multivariable models
+### `coxph()`
+
+CPH using the `coxph()` function produces a similar output to `lm()` and `glm()`, so it should be familiar to you now. 
+It can be passed to `summary()` as below, and also to `broom::tidy()` if you want to get the results into a tibble. 
+
+```{r}
+library(survival)
+coxph(Surv(time, status_os) ~ age + sex + thickness + ulcer, data = melanoma) %>% 
+  summary()
+```
+
+The output shows the number of patients and the number of events. 
+The coefficient can be exponentiated and interpreted as a **hazard ratio**, `exp(coef)`. 
+Helpfully, 95% confidence intervals are also provided. 
+
+A hazard is the term given to the rate at which events happen.
+The probability that an event will happen over a period of time is the hazard multiplied by the time interval. 
+An assumption of CPH is that hazards are constant over time (see below).
+
+For a given predictor then, the hazard in one group (say men) would be expected to be a constant proportion of the hazard in another group (say female). 
+The ratio of these hazards is unsurprisingly, the hazard ratio. 
+
+The hazard ratio differs from the relative risk and odds ratio. 
+The hazard ratio represents the difference in the risk of an event at any given time, whereas the relative risk or odds ratio usually represent the cumulative risk over a period of time. 
+
+### `finalfit()`
+
+Alternatively, the a CPH regression can be run with **finalfit** functions. 
+This is convenient for model fitting, exploration and the export of results. 
 
 ```{r eval=FALSE}
 dependent_os = "Surv(time, status_os)"
@@ -288,7 +317,7 @@ explanatory= c("age", "sex", "ulcer", "thickness",
                "strata(year)")
 melanoma %>% 
 	finalfit(dependent_os, explanatory) %>% 
-	mykable(caption = "Cox Proportional Hazards: Overall survival following surgery for melanoma statified by year of surgery.")
+	mykable(caption = "Cox Proportional Hazards: Overall survival following surgery for melanoma stratified by year of surgery.")
 ```
 
 \index{functions@\textbf{functions}!strata}
@@ -537,7 +566,7 @@ Are CPH assumptions maintained?
 
 ### Converting dates to survival time
 
-In the melanoma example dataset, we already had the time in a convenient format for survial analysis - survival time in days since the operation. 
+In the melanoma example dataset, we already had the time in a convenient format for survival analysis - survival time in days since the operation. 
 This section shows how to convert dates into "days from event". 
 First we will generate a dummy operation date and censoring date based on the melanoma data. 
 

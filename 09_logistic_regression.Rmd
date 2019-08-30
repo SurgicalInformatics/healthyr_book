@@ -187,8 +187,8 @@ This was explored in detail in Section \@ref(chap07-confound), all of the same p
 Adjusting for effect modifciation and confounding allows us to isolate the direct effect of an explanatory variable of interest upon an outcome. 
 In our example, we are interested in direct effect of coffee drinking on the occurence of cardiovascular disease, independent of any association between coffee drinking and smoking. 
 
-Figure \@ref(fig:chap9-fig-types) demonstrates simple, additive and multiplicative models. 
-Think back to Figure \@ref(fig:chap7-fig-types) and the discussion around it as these terms are easier to think about when looking at the linear regression example, but essentially they work the same way in logistic regression.
+Figure \@ref(fig:chap09-fig-types) demonstrates simple, additive and multiplicative models. 
+Think back to Figure \@ref(fig:chap07-fig-types) and the discussion around it as these terms are easier to think about when looking at the linear regression example, but essentially they work the same way in logistic regression.
 
 Presented on the probability scale, the effect of the interaction is difficult to see. 
 It is obvious on the log-odds scale that the fitted lines are no longer constrained to be parallel. 

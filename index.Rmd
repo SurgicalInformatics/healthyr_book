@@ -3,10 +3,7 @@ title: "HealthyR: R for health data analysis"
 author: "Ewen Harrison and Riinu Ots"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-output: 
-  bookdown::gitbook:
-    config:
-      download: no
+output: bookdown::gitbook
 documentclass: krantz
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
@@ -25,6 +22,13 @@ cover-image: images/healthyr_book_cover.png
 ---
 
 ```{r setup, include=FALSE}
+
+# Above to disable PDF download, pasted here as breaks if pasted and commented above:
+# output:
+#   bookdown::gitbook:
+#     config:
+#       download: no
+
 options(
   htmltools.dir.version = FALSE, formatR.indent = 2, width = 55, digits = 4, tinytex.verbose = TRUE
 )

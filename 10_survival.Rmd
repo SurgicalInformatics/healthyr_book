@@ -13,7 +13,7 @@ For instance, in patients with cancer, the time taken until recurrence of the ca
 
 ## The Question
 
-We will again use the classic "Survival from Malignant Melanoma" dataset included in the `boot` package which we have used in REF. 
+We will again use the classic "Survival from Malignant Melanoma" dataset included in the `boot` package which we have used previously. 
 The data consist of measurements made on patients with malignant melanoma. 
 Each patient had their tumour removed by surgery at the Department of Plastic Surgery, University Hospital of Odense, Denmark during the period 1962 to 1977.
 
@@ -106,7 +106,7 @@ melanoma = melanoma %>%
 \index{time-to-event / survival@\textbf{time-to-event / survival}!log-rank test}
 \index{log-rank test}
 
-We will use the excellent `survival` package to produce the Kaplan Meier (KM) survival estimator. 
+We will use the excellent **survival** package to produce the Kaplan Meier (KM) survival estimator. 
 This is a non-parametric statistic used to estimate the survival function from time-to-event data.
 
 ```{r}
@@ -177,8 +177,12 @@ melanoma %>%
 \index{time-to-event / survival@\textbf{time-to-event / survival}!Cox proportional hazards regression}
 \index{Cox proportional hazards regression}
 
-CPH regression can be performed using the all-in-one `finalfit()` function. 
-It produces a table containing counts (proportions) for factors, mean (SD) for continuous variables and a univariable and multivariable CPH regression.
+**Details of the Cox Proportional Hazards model still to be added here**.
+
+Cox Proportional Hazards regression can be performed using `survival::coxph()` or the all-in-one `finalfit()` function. 
+The latter produces a table containing counts (proportions) for factors, mean (SD) for continuous variables and a univariable and multivariable CPH regression.
+
+** Add base R example first, as per lm() and glm() **
 
 ### Univariable and multivariable models
 
@@ -192,7 +196,7 @@ melanoma %>%
 	finalfit(dependent_os, explanatory)
 ```
 
-```{r echi=FALSE}
+```{r echo=FALSE}
 dependent_os = "Surv(time, status_os)"
 dependent_dss = "Surv(time, status_dss)"
 dependent_crr = "Surv(time, status_crr)"
@@ -203,7 +207,7 @@ melanoma %>%
 	mykable(caption = "Univariable and multivariable Cox Proportional Hazards: Overall survival following surgery for melanoma by patient and tumour variables.")
 ```
 
-The labelling of the final table can be easily adjusted as desired.
+The labelling of the final table can be adjusted as desired.
 
 ```{r eval=FALSE}
 melanoma %>% 
@@ -249,7 +253,7 @@ melanoma %>%
 An assumption of CPH regression is that the hazard (think risk) associated with a particular variable does not change over time. 
 For example, is the magnitude of the increase in risk of death associated with tumour ulceration the same in the early post-operative period as it is in later years? 
 
-The `cox.zph()` function from the survival package allows us to test this assumption for each variable. 
+The `cox.zph()` function from the **survival** package allows us to test this assumption for each variable. 
 The plot of scaled Schoenfeld residuals should be a horizontal line. The included hypothesis test identifies whether the gradient differs from zero for each variable. No variable significantly differs from zero at the 5% significance level.  
 
 ```{r, fig.width = 4, fig.height = 4}
@@ -307,7 +311,8 @@ Here, a standard CPH model is fitted but the standard errors of the estimated ha
 
 A `frailty()` term implies a mixed effects model, where specific random effects term(s) are directly incorporated into the model. 
 
-Both approaches achieve the same goal in different ways. Volumes have been written on GEE vs mixed effects models. 
+Both approaches achieve the same goal in different ways. 
+Volumes have been written on GEE vs mixed effects models and we won't rehearse them in this introductory book. 
 We favour the latter approach because of its flexibility and our preference for mixed effects modelling in generalised linear modelling. 
 Note `cluster()` and `frailty()` terms cannot be combined in the same model.    
 
@@ -323,7 +328,6 @@ melanoma %>%
 	finalfit(dependent_os, explanatory) %>% 
 	mykable(caption = "Cox Proportional Hazards: Overall survival following surgery for melanoma with robust standard errors (cluster model)")
 ```
-
 
 ```{r echo=FALSE}
 # Simulate random hospital identifier
@@ -358,9 +362,9 @@ The `frailty()` method here is being superseded by the `coxme` package, and we l
 
 ### Hazard ratio plot
 \index{time-to-event / survival@\textbf{time-to-event / survival}!hazard ratio plot}
-\index{plotting@\textbf{plotting}!hazard ratio plot}
+\index{plots@\textbf{plots}!hazard ratio plot}
 
-A plot of any of the above models can be easily produced. 
+A plot of any of the above models can be produced using the `hr_plot()` function. 
 
 ```{r eval=FALSE}
 melanoma %>% 
@@ -374,9 +378,6 @@ melanoma %>%
           title_text_size = 16,
           plot_opts=list(xlab("HR, 95% CI"), theme(axis.title = element_text(size=12))))
 ```
-
-\index{functions@\textbf{functions}!hr\_plot}
-\index{plotting@\textbf{plotting}!hr\_plot}
 
 ## Competing risks regression
 \index{time-to-event / survival@\textbf{time-to-event / survival}!competing risks regression}
@@ -475,9 +476,6 @@ Hierarchical structure in your data can be accommodated with cluster or frailty 
 
 Competing risks regression may be useful if your outcome is in competition with another, such as all-cause death, but is currently limited in its ability to accommodate hierarchical structures. 
 
-
-
-
 ## Exercise
 
 Using the above scripts, perform a univariable Kaplan Meier analysis to determine if `ulcer` influences overall survival. Hint: `survival_object ~ ulcer`. 
@@ -528,7 +526,6 @@ my_survplot.solution
 
 ```
 
-
 ### Exercise
 
 Create a new CPH model, but now include the variable `thickness` as a variable. 
@@ -564,29 +561,24 @@ Now we will to create a 'censoring' date by adding `time` from the melanoma data
 Remember the censoring date is either when an event occurred (e.g. death) or the last known alive status of the patient. 
 
 ```{r}
-
 melanoma = melanoma %>% 
   mutate(censoring_date = operation_date + days(time))
 
 # (Same as doing:):
 melanoma$censoring_date = melanoma$operation_date + days(melanoma$time)
-
 ```
 
 Now consider if we only had the `operation date` and `censoring date`. 
 We want to create the `time` variable. 
 
 ```{r}
-
 melanoma = melanoma %>% 
   mutate(time_days = censoring_date - operation_date)
-
 ```
 The `Surv()` function expects a number (`numeric` variable), rather than a `date` object, so we'll convert it:
 
 ```{r}
 # Surv(melanoma$time_days, melanoma$status==1) # this doesn't work
-
 melanoma %>% 
   mutate(time_days_numeric = as.numeric(time_days))  ->
   melanoma

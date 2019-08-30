@@ -1,7 +1,6 @@
 # RStudio settings, good practise {#install}
 \index{RStudio@\textbf{RStudio}}
 
-<!-- Moved installation here for now. -->
 
 ## Installation
 \index{RStudio@\textbf{RStudio}!installation}
@@ -71,25 +70,10 @@ We only just installed `remotes::` in *3.1* so RStudio needs a restart before we
 If you already have LaTex installed on your computer, the `tinytex::install_tinytex()` one is not necessary and might not work.  This is fine, there is no harm in copy-pasting in anyway if you are not sure.
 
 
-```{block}
-When working with data, don't copy or type code directly into the Console. We will only be using the Console for viewing output, warnings, and errors (and installing packages as in the previous section). All code should be in a script and executed (=Run) using Control+Enter (line or section) or Control+Shift+Enter (whole script). Make sure you are always working in a project (the right-top corner of your RStudio interface should say "HealthyR").
-```
-
-## Script vs Console
-\index{RStudio@\textbf{RStudio}!script}
-\index{RStudio@\textbf{RStudio}!console}
-
-Throughout this course, don't copy or type code directly into the Console. 
-We will only be using the Console for viewing output, warnings, and errors. 
-All code should be in a script and executed (=run) using Ctrl+Enter (line or section) or Ctrl+Shift+Enter (whole script). 
-Make sure you are always working in a project (the right-top corner of your RStudio interface should say "HealthyR").
-
 ## Starting with a blank canvas
 
-In the first session we loaded some data that we then plotted. 
-When we import data, R stores it and displays it in the Environment tab.
-
-It's good practice to restart R before commencing new work. This is to avoid accidentally using the wrong data or functions stored in the environment.  
+It's good practice to restart R before commencing new work.
+This is to avoid accidentally using the wrong data or functions stored in the environment.  
 Restarting R only takes a second!
 
 * Restart R (Ctrl+Shift+F10 or select it from Session -> Restart R).
@@ -99,3 +83,11 @@ RStudio has a default setting that is no longer considered best practice. You sh
 * Go to Tools -> Global Options -> General and set "Save .RData on exit" to Never. 
 This does not mean you can't or shouldn't save your work in .RData files. 
 But it is best to do it consciously and load exactly what you need to load, rather than letting R always save and load everything for you, as this could also include broken data or objects.
+
+## Script vs Console
+\index{RStudio@\textbf{RStudio}!script}
+\index{RStudio@\textbf{RStudio}!console}
+
+We don't usually don't copy or type code directly into the Console. 
+We will only be using the Console for viewing output, warnings, and errors. 
+All code should be in a script and executed (=run) using Ctrl+Enter (line or section) or Ctrl+Shift+Enter (whole script). 

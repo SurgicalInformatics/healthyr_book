@@ -38,9 +38,7 @@ lapply(healthyr_notebooks, function(pkg) {
 
 # Preface {-}
 
-Version 0.3.1
-
-Contributors: Riinu Ots, Ewen Harrison, Tom Drake, Peter Hall, Kenneth McLean.
+Version 0.8.1
 
 This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 United States License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/us/
 
@@ -72,19 +70,19 @@ Ewen Harrison and Riinu Ots
 
 August 2019
 
-## Structure of the book {-}
+<!-- ## Structure of the book {-} -->
 
-Chapter \@ref(r-basics) introduces a new topic, and ...
+<!-- Chapter \@ref(r-basics) introduces a new topic, and ... -->
 
 
 ## Acknowledgments {-}
 
 A lot of people helped us when we were writing the book.
 
-```{block2, type='flushright', html.tag='p'}
-This is how to 
-Write on the right
-```
+<!-- ```{block2, type='flushright', html.tag='p'} -->
+<!-- This is how to  -->
+<!-- Write on the right -->
+<!-- ``` -->
 
 
 # About the Authors {-}
@@ -92,10 +90,13 @@ Write on the right
 Ewen is a surgeon and Riinu is a physicist.
 And they're both data scientists too. 
 They dabble with a few programming languages and are generally all over technology. 
-But they are most enthusiastic about the R statistical programming language, and know that you will be too. 
+They are most enthusiastic about the R statistical programming language and have a combined experience of 25 years using it.
 They work at The University of Edinburgh and have taught R to hundreds of healthcare professionals and researchers.
 
-They believe that the first introduction to R and statistical programming should be relatively jargon free and outcome oriented (get those pretty plots out). 
-The understanding of complicated concepts will come over time with practise and experience, not by us defining the history of computing bit-by-byte, or by presenting the equations of every statistical test (although Ewen has sneaked a few equations in).
+They believe a first introduction to R and statistical programming should be relatively jargon-free and outcome-oriented (get those pretty plots out). 
+The understanding of complicated concepts will come over time with practise and experience, not through a re-telling of the history of computing bit-by-byte, or with the inclusion of the equations of every statistical test (although Ewen has sneaked a few equations in).
+
+Overall, they hope to make the text fun and accessible. 
+Just like them. 
 
 \mainmatter

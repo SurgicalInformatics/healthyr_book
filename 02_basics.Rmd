@@ -14,6 +14,7 @@ We will read in data and start basic manipulations.
 
 
 ## Getting help
+\index{help}
 
 RStudio has a built in **Help** tab. 
 To use the Help tab, click your cursor on something in your code (e.g. `read_csv()`) and press F1. This will show you the definition and some examples. 
@@ -22,8 +23,14 @@ However, the **Help** tab is only useful if you already know what you are lookin
 For finding help on things you have not used before, it is best to Google it. 
 R has about 2 million users so someone somewhere has had the same question or problem.
 
+Another useful source in the RStudio **Help** dropdown menu is **Cheatsheets**. 
+These tightly packed two-pagers include many of the most useful functions from **tidyverse** packages. 
+They are not particularly useful to learn from, but invaluable as an *aide-smemoire*. 
+
 
 ## Objects and functions
+\index{objects}
+\index{functions@\textbf{functions}}
 
 There are two fundamental concepts in statistical programming that it is important to get straight from the outset - objects and functions. 
 As throughout this book, we will introduce new concepts using specific examples first.
@@ -31,7 +38,7 @@ As throughout this book, we will introduce new concepts using specific examples 
 The most common data object you will be working with is a table.
 This is something with rows and columns much like the example in Table \@ref(tab:chap2-tab-examp1).
 
-<!-- Consider removing. Doesn't actually say what "regular" means. Not ragged? Differnt NA's too much for first few lines? -->
+<!-- Consider removing. Bit confusing and too much for first few paragraphs in-->
 
 <!-- It should be regular, e.g., the made-up example in Table \@ref(tab:chap2-tab-examp1). -->
 <!-- ^[Regular does not mean it can't have missing values. -->
@@ -96,6 +103,7 @@ It does not make sense (nor will it work) to feed it the whole tibble with multi
 
 To quickly extract a single column, we use the `$` symbol like this:
 \index{symbols@\textbf{symbols}!select column \texttt{\$}}
+
 ```{r}
 mydata$var1
 ```
@@ -137,6 +145,8 @@ If you wanted to compare the means of `var1` and `var2` without any further filt
 
 If you decide to ignore the NAs and want to calculate the mean anyway, you can do so by adding another argument to `mean()`:
 
+\index{missing values remove \texttt{na.rm}}}
+
 ```{r}
 mean(mydata$var2, na.rm = TRUE)
 ```
@@ -154,6 +164,9 @@ Finally, some functions do not need any arguments to work.
 A good example is the `Sys.time()` which returns the current time and date. 
 This is very useful when using R to generate and update reports automatically.
 Including this means you can always be clear on when the results were last updated.
+
+\index{functions@\textbf{functions}!Sys.time}
+\index{system time}
 
 ```{r}
 Sys.time()
@@ -187,6 +200,7 @@ a
 ```
 
 Similarly, if we run a function without assignment to an object, it gets printed but not saved in your Environment:
+\index{functions@\textbf{functions}!seq}
 
 ```{r}
 seq(15, 30)
@@ -222,8 +236,9 @@ example_sequence
 >There is also a left-to-right operator: `->`.
 
 ## Pipe - `%>%` 
-
 \index{symbols@\textbf{symbols}!pipe \texttt{\%>\%}}
+\index{pipe@\textbf{pipe}}
+
 The pipe - denoted `%>%` - is probably the oddest looking thing you'll see in this book. 
 But please bear with, it is not as scary as it looks! 
 Furthermore, it is super useful. 
@@ -270,8 +285,9 @@ mydata %>%
   lm(var1~var2, data = .)
 ```
 
-
 ## Reading data into R{#chap02-h2-reading-data-into-r}
+\index{import data}
+\index{reading data}
 
 We mentioned before that once a table (e.g. from spreadsheet or database) gets read into R we start calling it a `tibble`. 
 The most common format data comes to us in is CSV (comma separated values). 
@@ -287,6 +303,7 @@ knitr::include_graphics("images/chapter02/files_csv_example.png")
 
 Clicking on a data file gives us two options: `View File` or `Import Dataset`. 
 For standard CSV files, we don't usually bother with the Import interface and just type in (or copy from a previous script):
+\index{functions@\textbf{functions}!read\_csv}
 
 ```{r, eval = FALSE}
 library(tidyverse)
@@ -387,6 +404,8 @@ p1/p2 + plot_annotation(tag_levels = "A")
 \clearpage
 
 ## Operators for filtering data
+\index{operators}
+\index{functions@\textbf{functions}!filter}
 \index{symbols@\textbf{symbols}!less than \texttt{<}}
 \index{symbols@\textbf{symbols}!greater than \texttt{>}}
 \index{symbols@\textbf{symbols}!less or equal \texttt{<=}}
@@ -473,7 +492,6 @@ testdata %>%
   kableExtra::kable_styling(font_size=8)
 ```
 
-
 ### Worked examples
 
 Filter the dataset to only include the year 2000. 
@@ -508,6 +526,7 @@ R will not try to run these lines, they will be ignored.
 Comments are an essential part of any programming code and these are "Dear Diary" notes to your future self.
 
 ## The combine function: `c()`
+\index{functions@\textbf{functions}!c() combine}
 
 The combine function as it's name implies is used to combine several values. 
 It is especially useful when used with the `%in%` operator to filter for multiple values. 
@@ -537,6 +556,7 @@ gbd_short %>%
 ```
 
 ## Missing values (NAs) and filters
+\index{missing values}
 
 Filtering for missing values (NAs) needs special attention and care.
 Remember the small example tibble from Table \@ref(tab:chap2-tab-examp1) - it has some NAs in columns `var2` and `var3`:
@@ -637,8 +657,11 @@ subset3 = mydata %>%
 nrow(subset1) + nrow(subset2) + nrow(subset3) == nrow(mydata)
 ```
 
-
 ## Variable types and why we care
+\index{variable types@\textbf{variable types}}
+\index{continuous data@\textbf{continuous data}!variable types}
+\index{categorical data@\textbf{categorical data}!variable types}
+\index{date-time@\textbf{date-time}}
 
 There are three broad types of data: 
 
@@ -682,16 +705,16 @@ Therefore, while a lot of the time you do not have to worry about variable types
 
 So here we go.
 
-<!-- EMH to here -->
-
 ## Numeric variables (continuous)
+\index{variable types@\textbf{variable types}!continuous / numeric}
 
 Number are straightforward to handle and don't usually cause trouble. 
 R usually refers to numbers as `numeric` (or `num`), but sometimes it really gets its nerd on and also calls numbers `integer` or `double`.
-^[ Integers are numbers without decimal places (e.g., `1, 2, 3`), whereas `double` stands for "Double-precision floating-point" format (e.g., `1.234, 5.67890`).] 
+Integers are numbers without decimal places (e.g., `1, 2, 3`), whereas `double` stands for "Double-precision floating-point" format (e.g., `1.234, 5.67890`).
+
 It doesn't usually matter whether R is classifying your continuous data `numeric/num/double/int`, but it is good to be aware of these different terms as you will see them in R messages.
 
-> FRIENDLY WARNING: What's about to follow is a bit dry. Furthermore, it is not essential for complete beginners - you might want to continue reading from __Characters__.
+> FRIENDLY WARNING: What's about to follow is a bit dry. Furthermore, it is not essential for complete beginners - you might want to continue reading from __Characters variables__.
 Before you leave, take a mental note that sometimes numbers in R have more decimal places than it seems, and that can cause funny behaviour when using the double equals operator (`==`).
 
 Something to note about numbers is that R doesn't usually print more than 6 decimal places, but that doesn't mean they don't exist.
@@ -719,6 +742,8 @@ The reason the above statement is `FALSE` is because `measurement_mean` is quiet
  
 One way to go about this is to round the mean to a reasonable number of decimal places:
 
+\index{functions@\textbf{functions}!round}
+
 ```{r}
 round(measurement_mean, 3)
 ```
@@ -735,14 +760,18 @@ Which is usually fine, especially if you've finished applying calculations on th
 But when you indent to use it if further calculations, then rounding should be left to the very end - to minimise rounding errors. 
 This is where the `near()` function comes in handy:
 
+\index{functions@\textbf{functions}!near}
+
 ```{r}
 library(tidyverse)
 near(measurement_mean, 3.333, 0.001)
 ```
 
-The first two arguments for `near()` are the numbers you are comparing, the third argument is the precision you are interested in. So if the numbers are equal within that precision, it returns `TRUE`. This means you get the expected result without having to round the numbers off.
+The first two arguments for `near()` are the numbers you are comparing, the third argument is the precision you are interested in. So if the numbers are equal within that precision, it returns `TRUE`. 
+This means you get the expected result without having to round the numbers off.
 
-## Character variables (categorical, IDs, free text)
+## Character variables
+\index{variable types@\textbf{variable types}!character}
 
 **Characters** (sometimes referred to as *strings* or *character strings*) in R are letters, words, or even whole sentences (an example of this may be free text comments). 
 Characters are displayed in-between `""` (or `''`).
@@ -764,14 +793,15 @@ typesdata %>%
   count(group, sort = TRUE)
 ```
 
-`count()` and its `sort = TRUE` option are also useful for identifying duplicate IDs or misspellings in your data.
+`count()`with the `sort = TRUE` option is also useful for identifying duplicate IDs or misspellings in your data.
 With this example `tibble` (`typesdata`) that only has three rows, it is easy to see that the `id` column is a unique identifier whereas the `group` column is a categorical variable.
+
 You can check everything by just eyeballing the `tibble` using the built in Viewer tab (click on the dataset in the Environment tab).
 
-But for larger datasets, you need to know how to check and then clean data programmatically - can't go through 1000s of values checking if they're all the way you expect without unexpected duplicates or typos.
+But for larger datasets, you need to know how to check and then clean data programmatically - you can't go through thousands of values checking they are all as intended without unexpected duplicates or typos.
+
 For most variables (categorical or numeric) we recommend always plotting your data before starting analysis.
 But to check for duplicates in a unique identifier, use `count()` with `sort = TRUE`:
-
 
 ```{r}
 # all ids are unique:
@@ -788,34 +818,36 @@ typesdata %>%
 
 
 ## Factor variables (categorical)
+\index{variable types@\textbf{variable types}!categorical / factor}
 
 **Factors** are fussy characters. 
 Factors are fussy because they have something called **levels**. 
-Levels are all the unique values a factor variable could take - e.g. like when we looked at `typesdata$group %>% unique()`.
+Levels are all the unique values a factor variable could take, e.g. like when we looked at `typesdata$group %>% unique()`.
 Using factors rather than just characters can be useful because:
 
-
 * The values factor levels can take is fixed. 
-For example, once you tell R that `typesdata$group` is a factor with two levels: Control and Treatment, combining it with other datasets with different spellings are abbreviations for the same variable would get you a warning.
-This can be very helpful and useful, but it can also be a nuisance when you really do want to add in another option for a `factor` variable.
+For example, once you tell R that `typesdata$group` is a factor with two levels: Control and Treatment, combining it with other datasets with different spellings or abbreviations for the same variable will generate a warning.
+This can be helpful but can also be a nuisance when you really do want to add in another level to a `factor` variable.
 * Levels have an order. 
 When running statistical tests on grouped data (e.g., Control vs Treatment, Adult vs Child) and the variable is just a character, not a factor, R will use the alphabetically first as the reference level. 
 Converting a character column into a factor column enables us to define and change the order of its levels. 
-Level order also affect plots: by default, categorical variables (i.e., think of a barplot) get ordered alphabetically, but if this is not the order we want them in, we have to make it into a factor before we plot it. The plot will then know how the order it better.
-
+Level order affects many things including regression results and plots: by default, categorical variables are ordered alphabetically. 
+If we want a different order in say a bar plot, we need to convert to a factor and reorder before we plot it. 
+The plot will then know how the order it better.
 
 So overall, since health data is often categorical and has a reference (comparison) level, then factors are an essential way to work with these data in R.
 Nevertheless, the fussiness of factors can sometimes be unhelpful or even frustrating.
-It takes experience as an R user to know when is it easiest to keep your variables as characters and when to convert them to factors.
 A lot more about factor handling will be covered later in the book.
 
 ## Date/time variables
+\index{variable types@\textbf{variable types}!date-time}
+\index{functions@\textbf{functions}!dmy}
+\index{functions@\textbf{functions}!ymd}
 
 R is very good for working with dates. 
-For example, it can calculate the number of days/weeks/months between two dates, or it can be used to find a future date is (i.e., "what's the date exactly 60 days from now?").
+For example, it can calculate the number of days/weeks/months between two dates, or it can be used to find a future date is (e.g., "what's the date exactly 60 days from now?").
 It also knows about time zones and is happy to parse dates in pretty much any format - as long as you tell R how your date is formatted (e.g., day before month, month name abbreviated, year in 2 or 4 digits, etc.).
 Since R displays dates and times between quotes (""), they look similar to characters. However, it is important to know whether R has understood which of your columns contain date/time information, as which are just normal characters.
-
 
 ```{r, message = FALSE}
 library(lubridate) # lubridate makes working with dates easier
@@ -824,7 +856,6 @@ current_datetime
 
 my_datetime = "2020-12-01 12:00"
 my_datetime
-
 ```
 
 When printed, the two objects - `current_datetime` and `my_datetime` seem to have the a very similar format.
@@ -919,10 +950,9 @@ You can even add plain text into the `format()` function, R will know to put the
 Sys.time() %>% format("Happy days, the current time is %H:%M %B-%d (%Y)!")
 ```
 
-
-
 ## Creating new columns - `mutate()`
-
+\index{column, create}
+\index{functions@\textbf{functions}!mutate}
 
 The function for adding new columns (or making changes to existing ones) to a tibble is called `mutate()`.
 As a reminder, this is what `typesdata` looked like:
@@ -931,7 +961,7 @@ As a reminder, this is what `typesdata` looked like:
 typesdata
 ```
 
-Let's say we decide to divide the column measurement by 2.
+Let's say we decide to divide the column `measurement` by 2.
 A very quick way to see these values would be to pull them out using the `$` operator and then divide by 2:
 
 ```{r}
@@ -946,14 +976,17 @@ typesdata %>%
   mutate(measurement/2)
 ```
 
-Notice how the `mutate()` above returns the whole tibble with a new column called `measurement/2`. This is quite nice of `mutate()` already, but it would be best to give columns names that don't include characters other than underscores (`_`) or dots (`.`). So let's assign a more standard name for this new column:
+Notice how the `mutate()` above returns the whole tibble with a new column called `measurement/2`. 
+This is quite nice of `mutate()`, but it would be best to give columns names that don't include characters other than underscores (`_`) or dots (`.`). 
+So let's assign a more standard name for this new column:
 
 ```{r}
 typesdata %>% 
   mutate(measurement_half = measurement/2)
 ```
 
-Better. You can see that R likes the name we gave it a bit better as it's now removed the back-ticks from around it.
+Better. 
+You can see that R likes the name we gave it a bit better as it's now removed the back-ticks from around it.
 Overall, back-ticks can be used to call out non-standard column names, so if you are forced to read in data with, e.g., spaces in column names, then the back-ticks enable calling column names that would otherwise error^[If this happens to you a lot, then check out `library(janitor)` and its function `clean_names()` for automatically tidying non-standard column names.]:
 
 ```{r, eval = FALSE}
@@ -965,8 +998,8 @@ mydata %>%
   select(`Nasty column name`)
 ```
 
-
-But as usual, if it gets printed, it doesn't get saved. We have two options - we can either overwrite the `typesdata` tibble (by changing the first line to `typesdata = typesdata %>% `), or we can create a new one (that appears in your Environment):
+But as usual, if it gets printed, it doesn't get saved.
+We have two options - we can either overwrite the `typesdata` tibble (by changing the first line to `typesdata = typesdata %>% `), or we can create a new one (that appears in your Environment):
 
 ```{r}
 typesdata_modified = typesdata %>% 
@@ -974,7 +1007,6 @@ typesdata_modified = typesdata %>%
 
 typesdata_modified
 ```
-
 
 The `mutate()` function can also be used to create a new column with a single constant value, which in return can be used to calculate a difference for each of the existing dates:
 
@@ -1006,7 +1038,10 @@ typesdata %>%
 
 ### Worked example/exercise
 
-Round the difference to 0 decimal places using the `round()` function inside a `mutate()`. Then add a clever `matches("date")` inside the `select()` function to choose all matching columns.
+Round the difference to 0 decimal places using the `round()` function inside a `mutate()`. 
+Then add a clever `matches("date")` inside the `select()` function to choose all matching columns.
+
+\index{functions@\textbf{functions}!matches}
 
 Solution:
 ```{r}
@@ -1017,10 +1052,11 @@ typesdata %>%
   select(matches("date"))
 ```
 
-You can shorten this by adding the `round()` function directly around the subtraction, so the third line becomes `dates_difference = round(reference_date - date)) %>%`. But sometimes writing calculations out longer than the absolute minimum can make them easier to understand when you return to an old script months later.
+You can shorten this by adding the `round()` function directly around the subtraction, so the third line becomes `dates_difference = round(reference_date - date)) %>%`. 
+But sometimes writing calculations out longer than the absolute minimum can make them easier to understand when you return to an old script months later.
+
 Furthermore, we didn't have to save the `reference_date` as a new column, the calculation could have used the value directly: `mutate(dates_difference = ymd_hm("2020-01-01 12:00") - date) %>%`.
 But again, defining it makes it clearer for future self what was done. And it makes `reference_date` available for reuse in more complicated calculations within the tibble.
-
 
 ## Conditional calculations - `if_else()`
 And finally, we combine the filtering operators (`==`, `>`, `<`, etc) with the `if_else()` function to create new columns based on a condition.
@@ -1034,13 +1070,19 @@ typesdata %>%
 
 We are sending `typesdata` into a `mutate()` function, we are creating a new column called `above_threshold` based on whether `measurement` is greater or less than 3. 
 The first argument to `if_else()` is a condition (in this case that measurement is greater than 3), the second argument is the value if the condition is TRUE, and the third argument is the value if the condition is FALSE.
-Look at each line in the tibble above and convince yourself that the `threshold` variable worked as expected. 
-Then look at the two closing brackets - `))` - at the end of the code and convince yourself they both need to be there.
 
->`if_else()` and missing values tip: for rows with missing values (NAs), the condition returns neither TRUE or FALSE, it returns NA. 
+It reads, "if this condition is met, return this, else return that". 
+
+Look at each line in the tibble above and convince yourself that the `threshold` variable worked as expected. 
+Then look at the two closing brackets - `))` - at the end and convince yourself that they are both needed. 
+
+>`if_else()` and missing values tip: for rows with missing values (NAs), the condition returns neither TRUE nor FALSE, it returns NA. 
 And that might be fine, but if you want to assign a specific group/label for missing values in the new variable, you can add a fourth argument to `if_else()`, e.g., `if_else(measurement > 3, "Above three", "Below three", "Value missing")`.
 
 ## Create labels - `paste()`
+\index{functions@\textbf{functions}!paste}
+\index{paste}
+\index{labels}
 
 The `paste()` function is used to add characters together.
 It also works with numbers and dates which will automatically be converted to characters before being pasted together into a single label.
@@ -1054,7 +1096,8 @@ typesdata %>%
   select(plot_label)
 ```
 
-The paste is also useful when pieces of information are stored in different columns. For example, consider this made-up tibble:
+The paste is also useful when pieces of information are stored in different columns. 
+For example, consider this made-up tibble:
 
 ```{r}
 pastedata = tibble(year  = c(2007, 2008, 2009),
@@ -1084,12 +1127,16 @@ pastedata %>%
   mutate(date = dmy(date))
 ```
 
-
 ## Joining multiple datasets
+\index{functions@\textbf{functions}!join}
+\index{functions@\textbf{functions}!full\_join}
+\index{functions@\textbf{functions}!inner\_join}
+\index{functions@\textbf{functions}!left\_join}
+\index{functions@\textbf{functions}!right\_join}
+\index{join datasets@\textbf{join datasets}}
 
-It is common that different pieces of information might be kept in different files or tables and that you want to combine them together.
+It is common for different pieces of information to be kept in different files or tables and you often want to combine them together.
 For example, consider you have some demographic information (`id`, `sex`, `age`) in one file:
-
 
 ```{r, message = FALSE}
 library(tidyverse)
@@ -1126,7 +1173,7 @@ left_join(patientdata, labsdata)
 right_join(patientdata, labsdata)
 ```
 
-### Further notes about the joins
+### Further notes about joins
 
 * The joins functions (`full_join()`, `inner_join()`, `left_join()`, `right_join()`) will automatically look for matching column names. You can use the `by = ` argument to specify by hand. This is especially useful if the columns are named differently in the datasets, e.g. `left_join(data1, data2, by = c("id" = "patient_id"))`.
 
@@ -1150,12 +1197,8 @@ labsdata_updated
 
 When we now do a `left_join()` with our main `tibble` - `patientdata`:
 
-
 ```{r}
 left_join(patientdata, labsdata_updated)
 ```
 
 We get 7 rows, instead of 6 - as patient id 5 now appears twice with the two different measurements. So it is important to keep either know your datasets very well or keep an eye on the number of rows to make sure any increases/decreases in the tibble sizes are as you expect them to be.
-
-
-

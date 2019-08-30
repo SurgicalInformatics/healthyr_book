@@ -9,8 +9,9 @@ options(pillar.sigfig = 4)
 ```
 
 # Summarising data
+\index{summarising data@\textbf{summarising data}}
 
->“The Answer to the Great Question... Of Life, the Universe and Everything... Is... Forty-two," said Deep Thought, with infinite majesty and calm. 
+>“The Answer to the Great Question ... Of Life, the Universe and Everything ... Is ... Forty-two," said Deep Thought, with infinite majesty and calm. 
 >Douglas Adams, The Hitchhiker's Guide to the Galaxy
 
 In this chapter you will find out how to:
@@ -21,16 +22,18 @@ In this chapter you will find out how to:
 
 The exercises at the end of this chapter combine all of the above to give context and show you more worked examples.
 
-### Dataset: Global Burden of Disease (year, cause, sex, income, deaths)
+## Get the data
 
 ```{r, include = FALSE}
 source("healthyr_theme.R")
 gbd_short = read_csv("data/global_burden_disease_cause-year.csv")
 ```
 
+Dataset: Global Burden of Disease (year, cause, sex, income, deaths)
 
-The Global Burden of Disease dataset used in this chapter is more detailed than the one we used previously. For each year, the total number of deaths from the three broad disease categories are also separated into sex and World Bank income categories. This means that we have 24 rows for each year, and that the total number of deaths per year is the sum of these 24 rows:
-
+The Global Burden of Disease dataset used in this chapter is more detailed than the one we used previously. 
+For each year, the total number of deaths from the three broad disease categories are also separated into sex and World Bank income categories. 
+This means that we have 24 rows for each year, and that the total number of deaths per year is the sum of these 24 rows:
 
 ```{r, message=F}
 library(tidyverse)
@@ -55,7 +58,11 @@ gbd2017 %>%
 
 \clearpage
 
-The best way to investigate a dataset is of course to plot it. We have added a couple of notes as comments (the lines starting with a `#`) for those who can't wait to get to the next chapter where the code for plotting will be introduced and explained in detail. Overall, you shouldn't waste time trying to understand this code here but to look at the different groups within this new dataset.
+## Plot the data
+
+The best way to investigate a dataset is of course to plot it. 
+We have added a couple of notes as comments (the lines starting with a `#`) for those who can't wait to get to the next chapter where the code for plotting will be introduced and explained in detail. 
+Overall, you shouldn't waste time trying to understand this code here but to look at the different groups within this new dataset.
 
 ```{r  chap03-fig-gbd, fig.height=3, fig.width=6, fig.cap="Global Burden of Disease data with subgroups: cause, sex, World Bank income group."}
 gbd2017 %>% 
@@ -77,6 +84,17 @@ gbd2017 %>%
 ```
 
 ## Aggregating: `group_by()`, `summarise()`
+\index{summarising data@\textbf{summarising data}!aggregation}
+\index{functions@\textbf{functions}!group\_by}
+\index{functions@\textbf{functions}!summarise}
+
+Health data analysis is frequently concerned with making comparisons between groups. 
+Groups of genes, or diseases, or patients, or populations etc.
+An easy approach to the comparison of data by a categorical grouping is therefore essential. 
+
+We will introduce very flexible functions from **tidyverse** that you can apply in any setting. 
+The examples intentionally get quite involved to demonstrate the different approaches that can be used. 
+<!-- We finish by showing how to quickly and easily create summary tables that can be used in your work.  -->
 
 To quickly calculate the total number of deaths in 2017, we can select the column and send it into the `sum()` function:
 
@@ -91,9 +109,16 @@ gbd2017 %>%
   summarise(sum(deaths_millions))
 ```
 
-And this is indeed equal to the number of deaths per year we were looking at in the shorter version of this data (Deaths from the three causes were `r gbd_short %>%filter(year == 2017) %>% pull(deaths_millions)` which adds to `r gbd_short %>%filter(year == 2017) %>% pull(deaths_millions) %>% sum()`).
+This is indeed equal to the number of deaths per year we saw in the previous chapter using the shorter version of this data (Deaths from the three causes were `r gbd_short %>%filter(year == 2017) %>% pull(deaths_millions)` which adds to `r gbd_short %>%filter(year == 2017) %>% pull(deaths_millions) %>% sum()`).
 
-`sum()` is a function that adds numbers together, whereas `summarise()` is a clever and efficient way of creating summarised tibbles. The main strength of `sumarise()` is how it works together with the `group_by()` function. We use `group_by()` to tell `summarise()` which subgroups to apply the calculations on. In the above example, without `group_by()`, summarise just works on the whole dataset, yielding the same result as just sending a single column into the `sum()` function. But if we add `group_by()` like this, e.g., for the `cause` variable:
+`sum()` is a function that adds numbers together, whereas `summarise()` is a clever and efficient way of creating summarised tibbles. 
+The main strength of `summarise()` is how it works with the `group_by()` function. 
+`group_by()` and `summarise()` are like cheese and wine, a perfect complement for each other, seldom seen apart. 
+
+We use `group_by()` to tell `summarise()` which subgroups to apply the calculations on. 
+In the above example, without `group_by()`, summarise just works on the whole dataset, yielding the same result as just sending a single column into the `sum()` function. 
+
+We can subset on the cause variable using `group_by()`:
 
 ```{r}
 gbd2017 %>% 
@@ -101,7 +126,8 @@ gbd2017 %>%
   summarise(sum(deaths_millions))
 ```
 
-Furthermore, `group_by()` is happy accept multiple grouping variables. So by just copying and editing the above code, we can quickly get summarised totals across multiple grouping variables (by just adding `sex` inside the `group_by()` after `cause`):
+Furthermore, `group_by()` is happy accept multiple grouping variables. 
+So by just copying and editing the above code, we can quickly get summarised totals across multiple grouping variables (by just adding `sex` inside the `group_by()` after `cause`):
 
 ```{r}
 gbd2017 %>% 
@@ -110,8 +136,12 @@ gbd2017 %>%
 ```
 
 ## Add new columns: `mutate()`
+\index{summarising data@\textbf{summarising data}!create columns}
+\index{functions@\textbf{functions}!mutate}
 
-Let's give the summarised column a better name, e.g. `deaths_pergroup`. And, if we use `ungroup()` we can use `mutate()` to add a total deaths column, and we can then use it to calculate a percentage:
+We met `mutate()` in the last chapter. 
+Let's first give the summarised column a better name, e.g. `deaths_pergroup`. 
+We can then use `ungroup()` and `mutate()` to add a total deaths column, which will be used below to calculate a percentage:
 
 ```{r}
 gbd2017 %>% 
@@ -121,10 +151,11 @@ gbd2017 %>%
   mutate(deaths_total = sum(deaths_pergroups))
 ```
 
+### Percentages formatting: `percent()`
+\index{functions@\textbf{functions}!percent}
 
-### percentages formatting: `percent()`
-
-So `summarise()` condenses a tibble, whereas `mutate()` retains it's current size and adds columns. We can also further lines to `mutate()` to calculate the percentage of each group:
+So `summarise()` condenses a tibble, whereas `mutate()` retains it's current size and adds columns. 
+We can also further lines to `mutate()` to calculate the percentage of each group:
 
 ```{r, message = FALSE}
 # percent() function for formatting percentages come from library(scales)
@@ -137,8 +168,9 @@ gbd2017 %>%
          deaths_relative = percent(deaths_pergroups/deaths_total))
 ```
 
-
-The `percent()` function that comes from `library(scales)` is a very handy way of formatting percentages, but you have to keep in mind that it changes the column from a number (denoted `<dbl>`) to a character (`<chr>`). The `percent()` function is basically equivalent to:
+The `percent()` function comes from `library(scales)` and is a very handy way of formatting percentages
+You must keep in mind that it changes the column from a number (denoted `<dbl>`) to a character (`<chr>`). 
+The `percent()` function is equivalent to:
 
 ```{r}
 # using values from the first row as an example:
@@ -159,17 +191,16 @@ mydata %>%
   mutate(deaths_percentage = percent(deaths_relative))
 ```
 
-
 ## `summarise()` vs `mutate()`
 
 So far we've shown you examples of using `summarise()` on grouped data (so following `group_by()`) and `mutate()` on the whole dataset (either without using `group_by()` at all, or resetting the grouping information with `ungroup()`).
 
-But here's the thing: `mutate()` is also happy to work on grouped data!
+But here's the thing: `mutate()` is also happy to work on grouped data.
 
-Let's save the aggregated (one of the `summarise()` examples from above) in a new tibble, and let's `arrange()` the rows based on `sex`, just for easier viewing (it was previously sorted/arranged by `cause`).
+Let's save the aggregated example from above in a new tibble.
+We will then sort the rows using `arrange()` based on `sex`, just for easier viewing (it was previously sorted by `cause`).
 
 The `arrange()` function sorts the rows within a tibble:
-
 
 ```{r}
 gbd_summarised = gbd2017 %>% 
@@ -180,10 +211,11 @@ gbd_summarised = gbd2017 %>%
 gbd_summarised
 ```
 
-You should also notice that `summarise()` drops all variables that are not listed in `group_by()` or created inside it. So `year`, `income`, and `deaths_millions` exist in `gbd2017`, but they do not exist in `gbd_summarised`.
+You should also notice that `summarise()` drops all variables that are not listed in `group_by()` or created inside it. 
+So `year`, `income`, and `deaths_millions` exist in `gbd2017`, but they do not exist in `gbd_summarised`.
 
-
-We now want to calculate the percentage of deaths from each cause for each gender. We could use `summarise()` to calculate the totals:
+We now want to calculate the percentage of deaths from each cause for each gender. 
+We could use `summarise()` to calculate the totals:
 
 ```{r}
 gbd_summarised_sex =
@@ -194,17 +226,17 @@ gbd_summarised_sex =
 gbd_summarised_sex
 ```
 
-But that drops the `cause` and `deaths_pergroups` columns. One way would be to now use a join on `gbd_summarised` and `gbd_summarised_sex`:
+But that drops the `cause` and `deaths_pergroups` columns. 
+One way would be to now use a join on `gbd_summarised` and `gbd_summarised_sex`:
 
 ```{r}
 full_join(gbd_summarised, gbd_summarised_sex)
 ```
 
-And joining different summaries together is a good idea, especially if the individual pipelines are quite long (e.g., over 5 lines of `%>%`) - as it is reasonable to save the interim results in separate tibbles (like we've saved `gbd_summarised` and `gbd_summarised_sex`), check that they have worked as expected, and then join together.
+Joining different summaries together can be useful, especially if the individual pipelines are quite long (e.g., over 5 lines of `%>%`).
+However, it does increase the chance of mistakes creeping in and is best avoided if possible. 
 
-
-
-But in simpler examples, we can use `mutate()` with `group_by()` to achieve the same result as the `full_join()` above:
+An alternative is to use `mutate()` with `group_by()` to achieve the same result as the `full_join()` above:
 
 ```{r}
 gbd_summarised %>% 
@@ -212,11 +244,9 @@ gbd_summarised %>%
   mutate(deaths_persex = sum(deaths_pergroups))
 ```
 
-
 So `mutate()` calculates the sums within each grouping variable (in this example just `group_by(sex)`) and puts the results in a new column without condensing the tibble down or removing any of the existing columns.
 
 Let's combine all of this together into a single pipeline and calculate the percentages per cause for each gender:
-
 
 ```{r}
 gbd2017 %>% 
@@ -229,6 +259,8 @@ gbd2017 %>%
 ```
 
 ## Common arithmetic functions - `sum()`, `mean()`, `median()`, etc.
+\index{functions@\textbf{functions}!arithmetic}
+\index{summarising data@\textbf{summarising data}!arithmetic functions}
 
 Statistics is what R does, so if there is a statistical function you can think of, it will exist in R.
 
@@ -253,15 +285,20 @@ sum(mynumbers, na.rm = TRUE)
 ```
 
 Overall, R's unwillingness to implicitly average over observations with missing values should be considered helpful, not an unnecessary pain. 
-Thing is, if you don't know exactly where your missing values are/how many, you might end up comparing the averages of very different groups (if the values are not missing and random or the sample size is small). 
+If you don't know exactly where your missing values are/how many, you might end up comparing the averages of very different groups (if the values are not missing and random or the sample size is small). 
 So the `na.rm = TRUE` is fine to use if quickly exploring and cleaning data, or you've already investigated missing values and are convinced the existing ones are representative.
 But it is rightfully not a default so get used to typing `na.rm = TRUE` when using these functions.
 
 ## Reshaping data - long vs wide format
+\index{summarising data@\textbf{summarising data}!long vs wide data}
 
-So far, all of the example we've shown you have been using 'tidy' data. Data is 'tidy' where each variable is in its own column, and each observation is in its own row. 
-This long looking format is efficient to use in data analysis and visualisation, it can also be referred to as "computer readable". 
-But sometimes when presenting data in tables for humans to have a look, or when collecting data directly into a Spreadsheet, it can be convenient to have data in a wide format. 
+So far, all of the example we've shown you have been using 'tidy' data. 
+Data is 'long' when *each variable is in its own column*, and *each observation is in its own row*. 
+This long format is efficient to use in data analysis and visualisation and can also be considered "computer readable".
+
+But sometimes when presenting data in tables for humans to read, or when collecting data directly into a spreadsheet, it can be convenient to have data in a wide format. 
+Data is 'wide' when *some or all of columns are levels of a factor*.
+An example makes this easier to see. 
 
 ```{r, message = FALSE}
 gbd_wide = read_csv("data/global_burden_disease_wide-format.csv")
@@ -298,6 +335,8 @@ knitr::include_graphics("images/wide_long.png")
 \clearpage 
 
 ### `spread()` values from rows into columns
+\index{summarising data@\textbf{summarising data}!convert long to wide}
+\index{functions@\textbf{functions}!spread}
 
 If we want to take the data from \@ref(tab:chap3-tab-gbd-long) and put some of the numbers next to each other for easier comparison, then `spread()` is the function to do it. 
 It means we want to spread a variable into columns, and it needs just two arguments: the column we want to spread, and the column where the values are.
@@ -310,6 +349,7 @@ gbd_long %>%
 
 
 In this example, we are sending `gbd_long` into the `spread(year, deaths_millions)` to put the year variable into different columns, the values to fill the new columns with are `deaths_millions`.
+
 This means we can quickly eyeball how the number of deaths have changed from 1990 to 2017 for each cause category and sex.
 Whereas if we wanted to quickly look at the difference in the number of deaths for Females and Males, we can just the `sex` variable instead, so `spread(sex, deaths_millions)`. Furthermore, we can now add a `mutate()` to show this difference in a new column:
 
@@ -321,10 +361,13 @@ gbd_long %>%
 ```
 
 All of these differences are positive which means every year, more men die than women.
-Which make sense, as more boys are also born than girls.
+Which make sense, as more boys are born than girls.
 
 And what if we want to spread both `year` and `sex` at the same time, so to create table \@ref(tab:chap3-tab-gbd-wide) from  Table \@ref(tab:chap3-tab-gbd-long)?
-Since `spread()` can only accept two columns - first that is to be spread into columns, second where the values come from, we need to combine something beforehand.
+`spread()` can only accept two arguments. 
+First is the variable to be spread to columns. 
+Second is the values to used. 
+Therefore, to spread by two columns we need to combine them beforehand.
 This is what the `unite()` function is for:
 
 ```{r}
@@ -343,15 +386,14 @@ gbd_long %>%
   spread(sex_year, deaths_millions)
 ```
 
-
 Both `spread()` and `unite()` have a few optional arguments that you may be useful for you. 
-For example, spread(..., fill = 0) is used to fill empty cells (default is `fill = NA`).
+For example, `spread(..., fill = 0)` is used to fill empty cells (default is `fill = NA`).
 Or `unite(..., sep = " ")` can be used to change the separator that gets put between the values (e.g. you may want "Female-1990" or "Female: 1990" instead of the default "_").
 Remember that pressing F1 when your cursor is on a function opens it up in the Help tab where these extra options are listed.
 
-The `unite()` is a very convenient function for pasting values from multiple columns together, but if you want to do something more special (i.e. also round numbers or add different separators between multiple different columns), then the `paste()` function inside `mutate()` will give you that extra flexibility and control.
+The `unite()` is a very convenient function for pasting values from multiple columns together, but if you want to do something more special (e.g. also round numbers or add different separators between multiple different columns), then the `paste()` function inside `mutate()` will give you that extra flexibility and control.
 
-So for example, this:
+For example, this:
 ```{r}
 gbd_long %>% 
   unite(sex_year, c(sex, year)) %>% 
@@ -361,20 +403,20 @@ gbd_long %>%
 is similar to:
 ```{r}
 gbd_long %>% 
-   mutate(sex_year = paste(sex, year, sep = "_")) %>% 
+  mutate(sex_year = paste(sex, year, sep = "_")) %>% 
   slice(1)
 ```
 
-
 They're similar but not exactly the same as `unite()` drops the original columns (and only keeps the new united one), whereas `mutate()` creates a new column and keeps all existing ones as well. 
+
 To make them equivalent, you could either add `drop = FALSE` inside `unite()` (keeping all columns) or `%>% select(-sex, -year)` after the `mutate()` (to drop/deselect these).
 
-
-
-
 ### `gather()` values from columns to rows
+\index{summarising data@\textbf{summarising data}!convert wide to long}
+\index{functions@\textbf{functions}!gather}
 
-The opposite of `spread()` is `gather()`. If you're lucky enough, your data comes from a proper database (e.g., REDCap) and is already in the long and tidy format. 
+The opposite of `spread()` is `gather()`. 
+If you're lucky enough, your data comes from a proper database and is already in the long and tidy format. 
 But if you do get landed with something that looks like the Table \@ref(tab:chap3-tab-gbd-wide), you'll need to know how to gather and separate the variables currently spread across different columns into the tidy format (each column is a variable, each row is an observation).
 
 We could try and run `gather()` without any extra arguments (again, using slice(1:6) just for shorter printing, the first 6 lines this time):
@@ -383,7 +425,6 @@ gbd_wide %>%
   gather() %>% 
   slice(1:6)
 ```
-
 
 So it gathers all column names into a new variable called `key`, and puts everything in the rows into a column called `value`.
 However, the `cause` variable already was how we wanted it - in a column of its own, so we don't want this gathered together the `deaths_millions` values.
@@ -406,15 +447,17 @@ gbd_wide %>%
   slice(1:6)
 ```
 
-
 It is important to notice the quotes around the new column names: `into = c("sex", "year")`. Most tidyverse functions don't want to use use quotes around column names, so this can be confusing.
-But these columns don't exist yet, so in this case, `sex` and `year` and not variables, they are new names.
+
 We've also added `convert = TRUE` to `separate()` so `year` would get converted into a numeric variable.
-The combination of, e.g., "Female-1990" is a character variable, so after separating them both `sex` and `year` would still be classified as characters. But the `convert = TRUE` recognises that `year` is a number and will appropriately convert it into an integer.
+The combination of, e.g., "Female-1990" is a character variable, so after separating them both `sex` and `year` would still be classified as characters. 
+But the `convert = TRUE` recognises that `year` is a number and will appropriately convert it into an integer.
 
 When working with large datasets with a lot of columns that need gathering, then the `select()` helpers are extremely useful.
 
-## select() columns
+## `select()` columns
+\index{summarising data@\textbf{summarising data}!select columns}
+\index{functions@\textbf{functions}!select}
 
 The `select()` function can be used to choose, rename or reorder columns of a tibble.
 
@@ -442,7 +485,6 @@ gbd_2rows %>%
 ```
 
 There function `rename()` is similar to `select()`, but it keeps all variables whereas `select()` only kept the ones we mentioned:
-
 
 ```{r}
 gbd_2rows %>% 
@@ -482,7 +524,8 @@ gbd_2rows %>%
 
 Note how "deaths" needs to be quoted inside `starts_with()` - as it's a word to look for, not the real name of a column/variable.
 
-### using select helpers in other functions
+### Using select helpers in other functions
+\index{summarising data@\textbf{summarising data}!select helpers}
 
 The select helpers may seem a bit extra in the simple example above, but they become invaluable when working with, for example, biobank data - as you'll be landed with hundreds of columns, often named something like `r paste0("hosp_ep_", formatC(1:6, width=2, flag="0"))`..., so `starts_with("hosp_ep")` can really become your new best friend.
 
@@ -504,10 +547,11 @@ gather_helperdata %>%
   gather(episode, diagnosis, starts_with("hosp_ep"))
 ```
 
+## `arrange()` rows
+\index{summarising data@\textbf{summarising data}!arrange / order rows}
+\index{functions@\textbf{functions}!arrange}
 
-## arrange() rows
-
-The `arrange()` functions sorts rows based on the column(s) you want. By default, it arranges the tibble ascendingly:
+The `arrange()` functions sorts rows based on the column(s) you want. By default, it arranges the tibble ascending order:
 
 ```{r}
 gbd_long %>% 
@@ -516,7 +560,7 @@ gbd_long %>%
   slice(1:3)
 ```
 
-For numeric variables, we can just use a - to sort descendingly:
+For numeric variables, we can just use a `-` to sort in descending order:
 
 ```{r}
 gbd_long %>% 
@@ -524,7 +568,7 @@ gbd_long %>%
   slice(1:3)
 ```
 
-Whereas the - doesn't work for categorical variables, they need to be put in `desc()` for arranging descendingly:
+Whereas the `-` doesn't work for categorical variables, they need to be put in `desc()` for arranging in descending order:
 
 ```{r}
 gbd_long %>% 
@@ -534,6 +578,9 @@ gbd_long %>%
 ```
 
 ### factor levels
+\index{summarising data@\textbf{summarising data}!factor levels}
+\index{functions@\textbf{functions}!fct\_relevel}
+\index{functions@\textbf{functions}!levels}
 
 `arrange()` sorts characters alphabetically, whereas factors will be sorted by the order of their levels. 
 Let's make the cause column into a factor:
@@ -565,11 +612,10 @@ gbd_factored$cause %>% levels()
 So if we use `arrange()` on `gbd_factored`, the `cause` column will be sorted based on the order of its levels, not alphabetically.
 This is especially useful in two places:
 
-* plotting - categorical variables that are characters will be ordered alphabetically (e.g., think barplots), regardless of whether the rows are arranged or not.
+* plotting - categorical variables that are characters will be ordered alphabetically (e.g., think barplots), regardless of whether the rows are arranged or not;
 * statistical tests - the reference level of categorical variables that are characters is the alphabetically first (e.g., what the odds ratio is relative to).
 
 However, making a character column into a factor gives us power to give its levels a non-alphabetical order, giving us control over plotting order or defining our reference levels for use in statistical tests.
-
 
 ## Exercise - `spread()`
 
@@ -584,7 +630,7 @@ Spread the `cause` variable into columns using the `deaths_millions` as values:
 ```{r, echo = FALSE}
 gbd_long %>% 
   spread(cause, deaths_millions) %>% 
-    knitr::kable(booktabs = TRUE,
+  knitr::kable(booktabs = TRUE,
                linesep = c(rep("", 3), "\\addlinespace"),
                align = c("l", "c", "c", "c", "c"),
                caption = "Exercise: putting the cause variable into the wide format using spread.") %>% 
@@ -598,7 +644,6 @@ gbd_long = read_csv("data/global_burden_disease_cause-year-sex.csv")
 gbd_long %>% 
   spread(cause, deaths_millions) 
 ```
-
 
 ## Exercise - `group_by()`, `summarise()`
 
@@ -733,7 +778,3 @@ gbd_full %>%
   summarise(total_deaths = sum(deaths_millions)) %>% 
   spread(income, total_deaths)
 ```
-
-
-
-

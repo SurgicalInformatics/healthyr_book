@@ -520,7 +520,7 @@ If a comparison of means approach is reasonable, but the normality assumption is
 1. Transform the data;
 2. Perform non-parametric tests.
 
-### Transforming data
+### Transforming data {#chap06-transform}
 \index{tranformations}
 
 Remember, the Welch *t*-test is reasonably robust to divergence from the normality assumption, so small deviations can be safely ignored. 
@@ -546,11 +546,11 @@ tibble(
 
 ```{r fig.height=3, fig.width=6, fig.cap="Histogram: Log transformation of life expectancy for countries in Africa 2002"}
 africa2002 = mydata %>%                # save as africa_data
-  filter(year == 2002) %>%              # only 2002
-  filter(continent == "Africa") %>%     # only Africa
-  select(country, lifeExp) %>%          # only these variables
+  filter(year == 2002) %>%             # only 2002
+  filter(continent == "Africa") %>%    # only Africa
+  select(country, lifeExp) %>%         # only these variables
   mutate(
-    lifeExp_log = log(lifeExp)          # log life expectancy
+    lifeExp_log = log(lifeExp)         # log life expectancy
   )
 head(africa2002)                       # inspect
 

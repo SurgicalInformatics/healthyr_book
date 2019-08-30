@@ -10,7 +10,7 @@ language:
     chapter_name: "Chapter "
 new_session: yes
 output_dir: "docs"
-rmd_files: ["index.Rmd", "01_introduction.Rmd"]
+#rmd_files: ["index.Rmd", "01_introduction.Rmd"]
 #rmd_files: ["index.Rmd", "02_basics.Rmd"]
 #rmd_files: ["index.Rmd", "03_summarising.Rmd"]
 #rmd_files: ["index.Rmd", "04_plotting.Rmd"]

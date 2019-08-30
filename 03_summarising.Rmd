@@ -276,7 +276,7 @@ The most common ones are:
 
 The import thing to remember about all of these is that if any of the values is NA (not applicable/not available), these functions will return an NA. 
 Either deal with your missing values beforehand (recommended) or add the `na.rm = TRUE` argument into any of the above functions to ask R to ignore missing values. 
-More discussion and examples around missing data can be found in Chapters \@ref(r-basics) and \@ref(missing-data).
+More discussion and examples around missing data can be found in Chapters \@ref(r-basics) and \@ref(chap14-h1).
 
 ```{r}
 mynumbers = c(1, 2, NA)

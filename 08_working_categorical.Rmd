@@ -45,7 +45,7 @@ We are interested in the association between tumour ulceration and death from me
 
 ## Get the data
 
-Its Help page (F1 on `boot::melanoma`) gives us the data dictionary including the definition of each variable and the coding used.
+The Help page (F1 on `boot::melanoma`) gives us its data dictionary including the definition of each variable and the coding used.
 
 ```{r, message = F}
 mydata = boot::melanoma
@@ -65,7 +65,7 @@ mydata %>% ff_glimpse()
 As can be seen, all of the variables are currently coded as continuous/numeric.
 The `<dbl>` stands for 'double', meaning numeric which comes from 'double-precision floating point', an awkward computer science term. 
 
-## Recode the data
+## Recode the data {#chap08-recode}
 It is really important that variables are correctly coded for all plotting and analysis functions. 
 Using the data dictionary, we will convert the categorical variables to factors. 
 
@@ -82,24 +82,24 @@ mydata = mydata %>%
            fct_recode(            # forcats function
              "Female" = "0",      # new on left, old on right
              "Male"   = "1") %>% 
-           ff_label("Sex"),       # Label for finalfit tables
+           ff_label("Sex"),       # Optional label for finalfit
          
-         ulcer.factor = 
-           ulcer %>% 
-           factor() %>% 
-           fct_recode(
-             "Present" = "1",
-             "Absent"  = "0") %>% 
+         # same thing but more condensed code:
+         ulcer.factor = factor(ulcer) %>% 
+           fct_recode("Present" = "1",
+                      "Absent"  = "0") %>% 
            ff_label("Ulcerated tumour"),
          
-         status.factor = 
-           status %>% 
-           factor() %>% 
+         status.factor = factor(status) %>% 
            fct_recode("Died melanoma"       = "1",
                       "Alive"               = "2",
                       "Died - other causes" = "3") %>% 
            ff_label("Status"))
 ```
+
+We have formatted the recode of the `sex` variables to be on multiple lines - to make it easier for you to see the exact steps included.
+We have condensed for the other recodes (e.g., `ulcer.factor = factor(ulcer) %>%`), but it does the exact same thing as the first one.
+
 
 \index{functions@\textbf{functions}!factor}
 \index{functions@\textbf{functions}!fct\_recode}
@@ -301,7 +301,7 @@ mydata = mydata %>%
   )
 ```
 
-## Change the order of values within a factor - `fct_relevel()`{#chap08-h2-fct-relevel}
+## Change the order of values within a factor - `fct_relevel()` {#chap08-h2-fct-relevel}
 \index{functions@\textbf{functions}!fct\_relevel}
 
 The default order for levels with `factor()` is alphabetical. 
@@ -564,7 +564,7 @@ mydata %>%
                      catTest = catTestfisher,
                      digits = 
                        c(1, 1, 4, 2), #1: mean/median, 2: SD/IQR 
-                                      # 3: p-value, 4: count percentage
+                                      #3: p-value, 4: count percentage
                      na_include = TRUE, # include missing in table and tests
                      add_dependent_label = TRUE
   ) %>% 
@@ -573,15 +573,9 @@ mydata %>%
 
 ## Exercise
 
-Using `finalfit`, create a summary table with "status.factor" as the dependent variable and the following as explanatory variables:  
+Using `finalfit`, create a summary table with "status.factor" as the dependent variable and the following as explanatory variables: `sex.factor, ulcer.factor, age.factor, thickness`.
 
-* `sex.factor`  
-* `ulcer.factor`  
-* `age.factor`   
-* `thickness`   
-
-
-Try changing the table to show `median` and `interquartile range` instead of mean and sd.  
+Change the continuous variable summary statsics from to `median` and `interquartile range` instead of `mean` and `sd`.  
 
 ## Exercise
 

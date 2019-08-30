@@ -21,7 +21,7 @@ theme_set(theme_bw())
 ## Generalised linear modelling
 
 Do not start here! 
-The material covered in this chapter is best understood after having read linear regression (REF Chapter 7) and working with categorical outcome variables (chapter 8).
+The material covered in this chapter is best understood after having read linear regression (Chapter \@ref(chap07-h1)) and working with categorical outcome variables (Chapter \@ref(chap08-h1)).
 
 Generalised linear modelling is an extension to the linear modelling we are now familiar with. 
 It allows the principles of linear regression to be applied when outcomes are not continuous numeric variables.  
@@ -31,7 +31,7 @@ It allows the principles of linear regression to be applied when outcomes are no
 \index{binary data}
 
 A regression analysis is a statistical approach to estimating the relationships between variables, often by drawing straight lines through data points. 
-For instance, we may try to predict blood pressure in a group of patients based on their coffee consumption (REF Chap 7 PLOT). 
+For instance, we may try to predict blood pressure in a group of patients based on their coffee consumption (Figure fig:chap07-fig-regression from Chapter\@ref(chap07-h1)) . 
 As blood pressure and coffee consumption can be considered on a continuous scale, this is an example of simple linear regression. 
 
 Logistic regression is an extension of this, where the variable being predicted is *categorical*. 
@@ -48,7 +48,7 @@ Although in binary logistic regression the outcome must have two levels, remembe
 ### The Question (1)
 
 As in previous chapters, we will use concrete examples when discussing the principles of the approach. 
-We return to our example of coffee drinking (REF The Question (1) chapter 7). 
+We return to our example of coffee drinking. 
 Yes, we are a little obsessed with coffee. 
 
 Our outcome variable was previously blood pressure. 
@@ -69,12 +69,12 @@ Odds and probabilities can get confusing so get them straight with Figure \@ref(
 knitr::include_graphics("images/chapter09/0_odds.pdf")
 ```
 
-In many situation, there is no particular reason to prefer one to the other. 
+In many situations, there is no particular reason to prefer one to the other. 
 However, humans seem to have a preference for expressing chance in terms of probabilities, while odds have particular mathematical properties which makes them useful in regression.
 
 When a probability is 0, the odds are 0. 
-When a probability is between 0 and 0.5, the odds are less than 1.0. 
-As a probability increases from 0.5 to 1.0, the odds increase from 1.0 to approach infinity. 
+When a probability is between 0 and 0.5, the odds are less than 1.0 (i.e., less than "1 to 1"). 
+As probability increases from 0.5 to 1.0, the odds increase from 1.0 to approach infinity. 
 
 Thus the range of probability is 0 to 1 and the range of odds is 0 to $+\infty$.
 
@@ -144,7 +144,7 @@ log(0.5)
 I'm sure some are shouting 'obviously' at the page. 
 That is good!
 
-This is wrapped up in a transformation (REF working with continuous data transform bit) using the so-called logit function. 
+This is wrapped up in a transformation (a bit like the transformations shown in Section \@ref(chap06-transform)) using the so-called logit function. 
 This can be skipped with no loss of understanding, but for those who just-gots-to-see, the logit function is, 
 
 $\log_e (\frac{p}{1-p})$, where $p$ is the probability of the outcome occuring. 
@@ -182,13 +182,13 @@ knitr::include_graphics("images/chapter09/4_equation.pdf")
 \index{logistic regression@\textbf{logistic regression}!interactions}
 
 As with all multivariable regression models, logistic regression allows the incorporation of multiple variables which all may have direct effects on outcome or may confound the effect of another varaible. 
-This is explored in detail in (SEE CHAPTER 7 confounding). 
+This was explored in detail in Section \@ref(chap07-confound), all of the same principles apply.
 
 Adjusting for effect modifciation and confounding allows us to isolate the direct effect of an explanatory variable of interest upon an outcome. 
 In our example, we are interested in direct effect of coffee drinking on the occurence of cardiovascular disease, independent of any association between coffee drinking and smoking. 
 
 Figure \@ref(fig:chap9-fig-types) demonstrates simple, additive and multiplicative models. 
-Refer to Figure \@ref(fig:chap7-fig-types) and the discussion around it if this doesn't make sense. 
+Think back to Figure \@ref(fig:chap7-fig-types) and the discussion around it as these terms are easier to think about when looking at the linear regression example, but essentially they work the same way in logistic regression.
 
 Presented on the probability scale, the effect of the interaction is difficult to see. 
 It is obvious on the log-odds scale that the fitted lines are no longer constrained to be parallel. 
@@ -212,7 +212,7 @@ knitr::include_graphics("images/chapter09/7_interactions.pdf")
 
 ### The Question (2)
 
-We will go on to explore the `boot::melanoma` dataset introduced in Chapter 8 (REF). 
+We will go on to explore the `boot::melanoma` dataset introduced in Chapter \@ref(chap08-h1). 
 The data consist of measurements made on patients after surgery to remove the melanoma in the University Hospital of Odense, Denmark between 1962 and 1977.
 
 Malignant melanoma is aggressive and highly invasive, making it difficult to treat.
@@ -231,8 +231,7 @@ Using logistic regression, we will investigate factors associated with death fro
 
 ### Get the data
 
-The help page (`?boot::melanoma`) gives us the data dictionary.
-This includes the definition of each variable and the coding used.
+The Help page (F1 on `boot::melanoma`) gives us its data dictionary including the definition of each variable and the coding used.
 
 ```{r, message = F}
 melanoma = boot::melanoma
@@ -244,38 +243,32 @@ As before, always carefully check and clean new dataset before you start the ana
 ```{r eval=FALSE}
 library(tidyverse)
 library(finalfit)
-mydata %>% glimpse()
-mydata %>% ff_glimpse()
+melanoma %>% glimpse()
+melanoma %>% ff_glimpse()
 ```
 
 ### Recode the data
-We have done some of this already, but for this particular analysis we will recode some further variables. 
+
+We have seen some of this already (Section \@ref(chap08-recode): Recode data), but for this particular analysis we will recode some further variables. 
+
 ```{r message=FALSE}
 library(tidyverse)
 library(finalfit)
 melanoma = melanoma %>% 
-  mutate(sex.factor =             # Make new variable  
-           sex %>%                # from existing variable
-           factor() %>%           # convert to factor
-           fct_recode(            # forcats function
-             "Female" = "0",      # new on left, old on right
-             "Male"   = "1") %>% 
-           ff_label("Sex"),       # Label for finalfit tables
+  mutate(sex.factor = factor(sex) %>%          
+           fct_recode("Female" = "0",
+                      "Male"   = "1") %>% 
+           ff_label("Sex"),   
          
-         ulcer.factor = 
-           ulcer %>% 
-           factor() %>% 
-           fct_recode(
-             "Present" = "1",
-             "Absent"  = "0") %>% 
+         ulcer.factor = factor(ulcer) %>% 
+           fct_recode("Present" = "1",
+                      "Absent"  = "0") %>% 
            ff_label("Ulcerated tumour"),
          
-         age = ff_label(age, "Age (years)"),
+         age  = ff_label(age,  "Age (years)"),
          year = ff_label(year, "Year"),
          
-         status.factor =
-           status %>% 
-           factor() %>% 
+         status.factor = factor(status) %>% 
            fct_recode("Died melanoma"  = "1",
                       "Alive" = "2",
                       "Died - other" = "3") %>% 
@@ -290,7 +283,7 @@ melanoma = melanoma %>%
   )
 ```
 
-Check the `cut()` function has worked. 
+Check the `cut()` function has worked:
 
 ```{r}
 melanoma$t_stage.factor %>% levels()
@@ -349,7 +342,7 @@ melanoma = melanoma %>%
 
 We are interested in the association between tumour ulceration and outcome.
 
-```{r fig.height=5, fig.width=4, fig.cap = "CAPTION"}
+```{r fig.height=3, fig.width=5}
 p1 = melanoma %>% 
   ggplot(aes(x = ulcer.factor, fill = mort_5yr)) + 
   geom_bar() + 
@@ -361,7 +354,7 @@ p2 = melanoma %>%
   ylab("proportion")
 
 library(patchwork)
-p1 / p2
+p1 + p2
 ```
 
 As we might have anticipated from our work in chapter 8, 5-year mortality is higher in patients with ulcerated tumours compared with those with non-ulcerated tumours. 
@@ -588,7 +581,7 @@ We will use these principles through the next section.
 
 ## Fitting logistic regression models with Finalfit
 
-Our preference in model fitting is now to use our own `Finalfit` package. 
+Our preference in model fitting is now to use our own **Finalfit** package. 
 It gets us to our results quicker and more easily, and produces our final model tables which go directly into manuscripts for publication (we hope). 
 
 The approach is the same as in linear regression. 
@@ -1082,7 +1075,6 @@ Mixed effects modelling is a book in itself and the purpose here is to introduce
 Clearly much is written else where for those who are enthusiastic to learn more. 
 
 
-**Don't include diagnostic plots and collinearity testing** 
 
 ```{r eval=FALSE}
 library(ggfortify)
@@ -1097,7 +1089,6 @@ melanoma %>%
   car::vif()
 ```
 
-Exercies need sorted 
 
 ### Exercise
 
@@ -1106,5 +1097,3 @@ Repeat this for all the variables contained within the data, particular:
 `t_stage.factor`, `age`, `ulcer.factor`, `thickness` and `age.factor`.
 
 Write their odds ratios and 95% confidence intervals down for the next section!
-
-Congratulations on building your first regression model in R!

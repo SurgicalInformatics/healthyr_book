@@ -214,7 +214,7 @@ Adding smoking to the model improves the fit as can be seen by the fitted lines 
 But a true interaction exists in the actual data. 
 By including this interaction in the model, the fit is very good indeed (0.93).
 
-### Confounding
+### Confounding {#chap07-confound}
 \index{linear regression@\textbf{linear regression}!confounding}
 \index{confounding}
 

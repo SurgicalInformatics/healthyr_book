@@ -1,4 +1,4 @@
-# Linear regression
+# Linear regression {#chap07-h1}
 \index{linear regression@\textbf{linear regression}}
 
 > Smoking is one of the leading causes of statistics.  
@@ -48,11 +48,11 @@ knitr::include_graphics("images/chapter07/1_regression_terms.pdf")
 Simple linear regression uses the *ordinary least squares* method for fitting. 
 The details are beyond the scope here, but if you want to get out the linear algebra/matrix maths you did in high school, an enjoyable afternoon can be spent proving to yourself how it actually works. 
 
-Figure \@ref(fig:chap07-fig-residuals) aims to make this easy to understand. 
+Figure \@ref(fig:chap07-fig-residuals) aims to make this easy to understand.
 The maths defines a line which best fits the data provided. 
 For the line to fit best, the distances between it and the observed data should be as small as possible. 
 The distance from each observed point to the line is called a *residual* - one of those statistical terms that bring on the sweats. 
-It just refers to the "residual error" left over after the line is fitted. 
+It refers to the residual difference left over after the line is fitted. 
 
 You can use the [simple regression shiny app](https://argoshare.is.ed.ac.uk/simple_regression) to explore the concept. 
 We want the residuals to be as small as possible. 
@@ -63,6 +63,8 @@ Or in more formal language, we want to minimise the sum of squared residuals.
 ```{r chap07-fig-residuals, echo = FALSE, fig.cap="How a regression line is fitted."}
 knitr::include_graphics("images/chapter07/2_residuals.pdf")
 ```
+
+The regression apps and example figures in this chapter have been adapted from https://github.com/mwaskom/ShinyApps and https://github.com/ShinyEd/intro-stats with permission.
 
 ### When the line fits well
 
@@ -93,19 +95,19 @@ This is more commonly a problem in time series data, where observations may be c
 
 The observations should be normally distributed around the fitted line. 
 This means that the residuals should show a normal distribution with a mean of zero (figure \@ref(fig:chap07-fig-diags)A).
-If the observations are not equally distributed around the line, the histogram of residuals will be skewed and a normal Q-Q plot will show residuals diverging from the 45 degree line (figure \@ref(fig:chap07-fig-diags)B) (see section \@ref(chap06-h3-qq-plot)).
+If the observations are not equally distributed around the line, the histogram of residuals will be skewed and a normal Q-Q plot will show residuals diverging from the straight line (figure \@ref(fig:chap07-fig-diags)B) (see Section \@ref(chap06-h3-qq-plot)).
 
 *Equal variance of residuals*
 
-The distribution (spread) of the observations around the fitted line should be the same on the left side as on the right side. 
+The distance of the observations from the fitted line should be the same on the left side as on the right side. 
 Look at the fan-shaped data on the [simple regression diagnostics shiny app](https://argoshare.is.ed.ac.uk/simple_regression_diagnostics). 
-This should be obvious on the residuals vs. fitted values plot, as well as the histogram and normal Q-Q plot. 
+This fan shape can be seen on the residuals vs. fitted values plot. 
 
-This is really all about making sure that the line you draw through your data points is valid.
+Everything we talk about in this chapter is really about making sure that the line you draw through your data points is valid.
 It is about ensuring that the regression line is appropriate across the range of the explanatory variable and dependent variable.
 It is about understanding the underlying data, rather than relying on a fancy statistical test that gives you a *p*-value. 
 
-```{r chap07-fig-diags, echo = FALSE, fig.cap="Regression diagnostics. Does this also appear in the contents. What about this?"}
+```{r chap07-fig-diags, echo = FALSE, fig.cap="Regression diagnostics. A - this is what a linear fit should look like. B - this is not approriate, a non-linear model should be used instead."}
 knitr::include_graphics("images/chapter07/3_diags.pdf")
 ```
 
@@ -123,13 +125,13 @@ The app allows us to specify "the truth" with the sliders on the left hand side.
 For instance, we can set the $intercept=1$, meaning that when all $x=0$, the value of the dependent variable, $y=1$.  
 
 Our model has a continuous explanatory variable of interest (average coffee consumption) and a further categorical variable (smoking). 
-In the example the truth is set as $intercept=1$, $\beta_1=1$ (true effect of coffee on blood pressure, gradient/slope of line), and $\beta_2=2$ (true effect of smoking on blood pressure).
-The points on the plot are simulated following the addition of random noise. 
+In the example the truth is set as $intercept=1$, $\beta_1=1$ (true effect of coffee on blood pressure, slope of line), and $\beta_2=2$ (true effect of smoking on blood pressure).
+The points on the plot are simulated and include random noise. 
 
 Figure \@ref(fig:chap07-fig-equation)B shows the default output in R for this linear regression model. 
 Look carefully and make sure you are clear how the fitted lines, the linear equation, and the R output fit together. 
 In this example, the random sample from our true population specified above shows $intercept=0.67$, $\beta_1=1.00$ (coffee), and $\beta_2=2.48$ (smoking). 
-A *p*-value is provided ($Pr(> \left| t \right|)$), which is the result of a null hypothesis significance test for the gradient of the line being equal to zero. 
+A *p*-value is provided ($Pr(> \left| t \right|)$), which is the result of a null hypothesis significance test for the slope of the line being equal to zero. 
 
 ```{r chap07-fig-equation, echo = FALSE, fig.cap="Linking the fitted line, regression equation and R output."}
 knitr::include_graphics("images/chapter07/4_equation.pdf")
@@ -142,9 +144,8 @@ knitr::include_graphics("images/chapter07/4_equation.pdf")
 Effect modification occurs when the size of the effect of the explanatory variable of interest (exposure) on the outcome (dependent variable) differs depending on the level of a third variable. 
 Said another way, this is a situation in which an explanatory variable differentially (positively or negatively) modifies the observed effect of another explanatory variable on the outcome.
 
-Again, this is best thought about using the concrete example provided in the [multivariable regression shiny app](https://argoshare.is.ed.ac.uk/multi_regression/).
 
-Figure \@ref(fig:chap07-fig-dags) shows three potential causal pathways. 
+Figure \@ref(fig:chap07-fig-dags) shows three potential causal pathways using examples from the [multivariable regression shiny app](https://argoshare.is.ed.ac.uk/multi_regression/). 
 
 In the first, smoking is not associated with the outcome (blood pressure) or our explanatory variable of interest (coffee consumption). 
 
@@ -162,12 +163,12 @@ knitr::include_graphics("images/chapter07/5_dags.pdf")
 \index{linear regression@\textbf{linear regression}!interactions}
 \index{interaction terms}
 
-Depending on the field you work, will depend on which set of terms you use. 
+Which set of terms you use can depend on the field you work in. 
 Effect modification can be additive or multiplicative. 
-We refer to multiplicative effect modification as simply including a statistical interaction. 
+We refer to multiplicative effect modification as "including a statistical interaction". 
 
 Figure \@ref(fig:chap07-fig-types) should make it clear exactly how these work. 
-The data have been set-up to include an interaction term. 
+The data have been set-up to include an interaction between the two explanatory variables. 
 What does this mean? 
 
 * $intercept=1$: the blood pressure ($\hat{y}$) for non-smokers who drink no coffee (all $x=0$);
@@ -186,7 +187,7 @@ In other words using our example, the fitted lines are no longer constrained to 
 If we had not checked for an interaction effect, we would have inadequately described the true relationship between these three variables. 
 
 What does this mean back in reality? 
-Well it may be biologically plausible for the effect of smoking on blood pressure to increase multiplicatively due to a a chemical interaction between cigarette smoke and caffeine, for example.
+Well it may be biologically plausible for the effect of smoking on blood pressure to increase multiplicatively due to a chemical interaction between cigarette smoke and caffeine, for example.
 
 Note, we are just trying to find a model which best describes the underlying data. 
 All models are approximations of reality. 
@@ -197,7 +198,6 @@ knitr::include_graphics("images/chapter07/6_types.pdf")
 
 ### R-squared and model fit
 \index{linear regression@\textbf{linear regression}!r-squared}
-\index{r-squared
 
 Figure \@ref(fig:chap07-fig-types) includes a further metric from the R output: `Adjusted R-squared`. 
 
@@ -210,7 +210,8 @@ The adjusted R-squared includes a penalty the more explanatory variables are inc
 So if the model includes variables which do not contribute to the description of the dependent variable, the adjusted R-squared will be lower. 
 
 Looking again at Figure \@ref(fig:chap07-fig-types), in A, a simple model of coffee alone does not describe the data well (adjusted R-squared 0.38). 
-Add smoking to the model improves the fit as can be seen by the fitted lines (0.87). But a true interaction exists in the actual data. 
+Adding smoking to the model improves the fit as can be seen by the fitted lines (0.87).
+But a true interaction exists in the actual data. 
 By including this interaction in the model, the fit is very good indeed (0.93).
 
 ### Confounding
@@ -221,19 +222,19 @@ The last important concept to mention here is confounding.
 Confounding is a situation in which the association between an explanatory variable (exposure) and outcome (dependent variable) is distorted by the presence of another explanatory variable.
 
 In our example, confounding exists if there is an association between smoking and blood pressure AND smoking and coffee consumption (Figure \@ref(fig:chap07-fig-dags)C). 
-This exists simply if smokers drink more coffee than non-smokers. 
+This exists if smokers drink more coffee than non-smokers. 
 
 Figure \@ref(fig:chap07-fig-confounding) shows this really clearly. 
-The underlying data have been altered so that those who drink more than two cups of coffee per day also smoke and those who drink fewer than two cups per day do not smoke. 
-A true effect of smoking on blood pressure is entered, but NO effect of coffee on blood pressure. 
+The underlying data have now been altered so that those who drink more than two cups of coffee per day also smoke and those who drink fewer than two cups per day do not smoke. 
+A true effect of smoking on blood pressure is simulated, but there is NO effect of coffee on blood pressure in this example. 
 
-If we simply fit blood pressure by coffee consumption (Figure \@ref(fig:chap07-fig-confounding)A), then we may mistakenly conclude a relationship between coffee consumption and blood pressure. 
+If we only fit blood pressure by coffee consumption (Figure \@ref(fig:chap07-fig-confounding)A), then we may mistakenly conclude a relationship between coffee consumption and blood pressure. 
 But this does not exist, because the ground truth we have set is that no relationship exists between coffee and blood pressure. 
-We are simply seeing the effect of smoking on blood pressure, which is confounding the effect of coffee on blood pressure. 
+We are actually looking at the effect of smoking on blood pressure, which is confounding the effect of coffee on blood pressure. 
 
 If we include the confounder in the model by adding smoking, the true relationship becomes apparent. 
 Two parallel flat lines indicating no effect of coffee on blood pressure, but a relationship between smoking and blood pressure. 
-This procedure is often referred to as controlling for or adjusting for confounders. 
+This procedure is referred to as controlling for or adjusting for confounders. 
 
 ```{r chap07-fig-confounding, echo = FALSE, fig.cap="Multivariable linear regression with confounding of coffee drinking by smoking."}
 knitr::include_graphics("images/chapter07/7_confounding.pdf")
@@ -241,9 +242,9 @@ knitr::include_graphics("images/chapter07/7_confounding.pdf")
 
 ### Summary
 We have intentionally spent some time going through the principles and applications of linear regression because it is so important. 
-A firm grasp of these concepts lead to an easy understanding of other regression procedures, such as logistic regression and Cox Proportional Hazards regression. 
+A firm grasp of these concepts leads to an understanding of other regression procedures, such as logistic regression and Cox Proportional Hazards regression. 
 
-We will now perform all this ourselves in R using a gapminder dataset which you are familiar with from preceding chapters. 
+We will now perform all this ourselves in R using the gapminder dataset which you are familiar with from preceding chapters. 
 
 ## Fitting simple models
 
@@ -254,7 +255,6 @@ We are interested in modelling the change in life expectancy for different count
 ```{r, message=F}
 library(tidyverse)
 library(gapminder) # dataset
-library(lubridate) # handles dates
 library(finalfit)
 library(broom)
 
@@ -263,7 +263,7 @@ mydata = gapminder
 ```
 
 ### Check the data
-Always check a new dataset, as described in section \@ref{chap06-h2-check}.
+Always check a new dataset, as described in Section \@ref{chap06-h2-check}.
 
 ```{r eval=FALSE}
 glimpse(mydata) # each variable as line, variable type, first values
@@ -273,33 +273,31 @@ ff_glimpse(mydata) # summary statistics for each variable
 
 ### Plot the data
 
-Let's plot the life expectancies in European countries over the past 60 years, focussing on the UK and Turkey. We can add in simple best fit lines using `ggplot` directly.
+Let's plot the life expectancies in European countries over the past 60 years, focussing on the UK and Turkey. 
+We can add in simple best fit lines using `geom_smooth()`.
 
-```{r, fig.height=4, fig.width=7, fig.cap="Scatterplot with fitted line plot: Life expectancy by year in European countries"}
-p1 = mydata %>%                        # save as object p1
+```{r, fig.height=5, fig.width=7, fig.cap="Scatterplots with linear regression lines: Life expectancy by year in European countries"}
+mydata %>%                        
   filter(continent == "Europe") %>%    # Europe only
   ggplot(aes(x = year, y = lifeExp)) + # lifeExp~year  
   geom_point() +                       # plot points
   facet_wrap(~ country) +              # facet by country
   scale_x_continuous(
-    breaks = c(1960, 2000))      # adjust x-axis 
+    breaks = c(1960, 2000)) +          # adjust x-axis 
+  geom_smooth(method = "lm")           # add regression lines
 
-p2 = p1 + geom_smooth(method = "lm")   # add regression line
-
-library(patchwork)
-p1 + p2
 ```
 
 ### Simple linear regression
 \index{functions@\textbf{functions}!lm}
 
 As you can see, `ggplot()` is very happy to run and plot linear regression models for us.
-While this is sometimes convenient, we usually want to build, run, and explore these models ourselves. 
+While this is convenient for a quick look, we usually want to build, run, and explore these models ourselves. 
 We can then investigate the intercepts and the slope coefficients (linear increase per year):
 
-First let's plot two countries to compare, Turkey and United Kingdom
+First let's plot two countries to compare, Turkey and United Kingdom:
 
-```{r fig.height=3, fig.width=4.5, fig.cap="Scatterplot: Life expectancy by year Turkey and Europe."}
+```{r fig.height=3, fig.width=4.5, fig.cap="Scatterplot: Life expectancy by year: Turkey and United Kingdom"}
 mydata %>% 
   filter(country %in% c("Turkey", "United Kingdom")) %>% 
   ggplot(aes(x = year, y = lifeExp, colour = country)) + 
@@ -336,7 +334,7 @@ fit_turkey %>%
 \index{linear regression@\textbf{linear regression}!coefficients}
 
 A simple linear regression model will return two coefficients - the intercept and the slope (the second returned value). 
-Compare this to the `summary()` output above.
+Compare these coefficients to the `summary()` output above to see where these numbers came from.
 
 ```{r}
 fit_uk$coefficients
@@ -346,7 +344,11 @@ fit_uk$coefficients
 fit_turkey$coefficients
 ```
 
-In this example, the intercept is telling us that life expectancy at year 0 in the United Kingdom (some 2000 years ago) was -294 years. While this is mathematically correct (based on the data we have), it obviously makes no sense in practice. It is important at all stages of data analysis, to keep "sense checking" your results.
+The slopes make sense - the results of the linear regression say that in the UK, life expectancy increases by `r fit_uk$coefficients[2] %>% round(3)` every year, whereas in Turkey the change is `r fit_turkey$coefficients[3] %>% round(2)` per year.
+The negative intercepts, however, are less obvious to think about.
+In this example, the intercept is telling us that life expectancy at year 0 in the United Kingdom (some 2000 years ago) was `r fit_uk$coefficients[1] %>% round(0)` years.
+While this is mathematically correct (based on the data we have), it obviously makes no sense in practice.
+It is important to think about the ranges you can extend your model prediction, and where they just become unrealistic. 
 
 To make the intercepts meaningful, we will add in a new column called `year_from1952` and re-run `fit_uk` and `fit_turkey` using `year_from1952` instead of `year`.
 
@@ -373,16 +375,18 @@ fit_uk$coefficients
 fit_turkey$coefficients
 ```
 
-Now, the updated results tell us that in year 1952, the life expectancy in the United Kingdom was 68 years. 
-Note that the slope (0.18) does not change. There was nothing wrong with the original model and the results were correct, the intercept was just not very useful.
+Now, the updated results tell us that in year 1952, the life expectancy in the United Kingdom was `r fit_uk$coefficients[1] %>% round(0)` years. 
+Note that the slopes do not change.
+There was nothing wrong with the original model and the results were correct, the intercept was just not very meaningful.
 
 *Accessing all model information `tidy()` and `glance()`*
 \index{functions@\textbf{functions}!tidy}
 \index{functions@\textbf{functions}!glance}
 
-In the fit_uk and fit_turkey examples above, we were using `fit_uk %>% summary()` to get R to print out a summary of the model. This summary is not, however, in a rectangular shape so we can't easily access the values or put them in a table/use as information on plot labels.
+In the fit_uk and fit_turkey examples above, we were using `fit_uk %>% summary()` to get R to print out a summary of the model.
+This summary is not, however, in a rectangular shape so we can't easily access the values or put them in a table/use as information on plot labels.
 
-We use the `tidy()` function from `library(broom)` to get the explanatory variable specific values in a nice tibble:
+We use the `tidy()` function from `library(broom)` to get the variable(s) specific values in a nice tibble:
 
 ```{r}
 fit_uk %>% tidy()
@@ -398,7 +402,8 @@ fit_uk %>% glance()
 ### Multivariable linear regression
 \index{linear regression@\textbf{linear regression}!multivariable}
 
-Multivariable linear regression includes more than one explanatory variable. There are a few ways to include more variables, depending on whether they should share the intercept and how they interact:
+Multivariable linear regression includes more than one explanatory variable.
+There are a few ways to include more variables, depending on whether they should share the intercept and how they interact:
 
 Simple linear regression (exactly one predictor variable):
 
@@ -417,11 +422,13 @@ This equivalent to:
 
 These examples of multivariable regression include two variables: `year` and `country`, but we could include more by adding them with `+`.
 
-In this particular setting, it will become obvious which model is appropriate. So we have complete control over the model being fitted, we will use the `predict()` function directly to obtain our fitted line, rather than leaving it up to `ggplot`.  
+In this particular setting, it will become obvious which model is appropriate.
+So we have complete control over the model being fitted, we will use the `predict()` function directly to obtain our fitted line (rather than the `geom_smooth()` as before).  
 
 *Model 1: year only*
 
 ```{r fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Life expectancy in Turkey and the UK - univariable fit."}
+# UK and Turkey dataset
 mydata_UK_T = mydata %>% 
   filter(country %in% c("Turkey", "United Kingdom"))
 
@@ -438,7 +445,10 @@ mydata_UK_T %>%
   geom_line(aes(x = year, y = pred_both))
 ```
 
-By fitting year only, the model ignores country. This gives us a fitted line which is the average of life expectancy in the UK and Turkey. This may be desirable, depending on the question. But here we want to best describe the data. 
+By fitting to year only (`lifeExp ~ year_from1952`), the model ignores country.
+This gives us a fitted line which is the average of life expectancy in the UK and Turkey.
+This may be desirable, depending on the question.
+But here we want to best describe the data. 
 
 *Model 2: year + country*
 ```{r fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Life expectancy in Turkey and the UK - multivariable additive fit."}
@@ -455,7 +465,10 @@ mydata_UK_T %>%
   geom_line(aes(x = year, y = pred_both, colour = country))
 ```
 
-This is better, by including country in the model, we now have fitted lines better represent the data. However, the lines are constrained to be parallel. This is discussed in detail above. We need to include an interaction term to allow the effect of year on life expectancy to vary by country in a non-additive manner. 
+This is better, by including country in the model, we now have fitted lines better represent the data.
+However, the lines are constrained to be parallel. 
+This is the additive model that was discussed above.
+We need to include an interaction term to allow the effect of year on life expectancy to vary by country in a non-additive manner. 
 
 *Model 3: year &ast; country*
 
@@ -473,7 +486,8 @@ mydata_UK_T %>%
   geom_line(aes(x = year, y = pred_both, colour = country))
 ```
 
-This fits the data much better than the previous two models. You can check the R-squared using `summary(fit_both1)`.
+This fits the data much better than the previous two models.
+You can check the R-squared using `summary(fit_both1)`.
 
 *Pro tip*
 
@@ -487,7 +501,7 @@ list(fit_both1, fit_both2, fit_both3) %>%
 
 The assumptions of linear regression can be checked with diagnostic plots, either by passing the fitted object (`lm()` output) to base R `plot()`, or by using the more convenient function below. 
 
-```{r fig.height=5, fig.width=5}
+```{r fig.height=5, fig.width=5.4}
 library(ggfortify)
 autoplot(fit_both3)
 ```
@@ -498,16 +512,19 @@ There is no clear problem with the residuals, as we would expect from the scatte
 
 ### The Question (3)
 
-Finally in this chapter, we are going to fit a more complex linear regression model. Here, we will discuss variable selection and introduce the Akaike Information Criterion (AIC). 
+Finally in this section, we are going to fit a more complex linear regression model.
+Here, we will discuss variable selection and introduce the Akaike Information Criterion (AIC). 
 
-We will introduce a new dataset: The Western Collaborative Group Study. This classic includes data from 3154 healthy young men aged 39-59 from the San Francisco area who were assessed for their personality type. It aimed to capture the occurrence of coronary heart disease over the following 8.5 years. 
+We will introduce a new dataset: The Western Collaborative Group Study. 
+This classic dataset includes observations of 3154 healthy young men aged 39-59 from the San Francisco area who were assessed for their personality type.
+It aimed to capture the occurrence of coronary heart disease over the following 8.5 years. 
 
-We will use it however to explore the relationship between systolic blood pressure (`sbp`) and personality type (`personality_2L`), accounting for potential confounders such as weight (`weight`). 
+We will use it, however, to explore the relationship between systolic blood pressure (`sbp`) and personality type (`personality_2L`), accounting for potential confounders such as weight (`weight`). 
 Now this is just for fun - don't write in!
 The study was designed to look at cardiovascular events as the outcome, not blood pressure. 
 But it is a convenient to use blood pressure as a continuous outcome from this dataset, even if that was not the intention of the study.
 
-Personality type is A: aggressive and B: passive. 
+The included personality types are A: aggressive and B: passive. 
 
 ### Model fitting principles
 \index{linear regression@\textbf{linear regression}!model fitting principles}
@@ -533,7 +550,7 @@ These are often "forward selection" or "backward elimination" methods for includ
 In certain settings, these approaches may be found to work. 
 However, they create an artificial distance between you and the problem you are working on. 
 They give you a false sense of certainty that the model you have created is in some sense valid. 
-And quite frequently, they will get it wrong. 
+And quite frequently, they will just get it wrong. 
 
 Alternatively, you can follow the six principles above.
 
@@ -542,11 +559,11 @@ This should give you good reason to consider it in your model.
 But perhaps you think that previous studies were incorrect, or that the variable is confounded by another. 
 All this is fair, but it will be expected that this new knowledge is clearly demonstrated by you, so do not omit these variables before you start.
 
-There are particular variables that are so commonly associated with particular outcomes in healthcare that they should almost always be included at the start. 
-Age, sex, social class, and co-morbidity for instance are commonly associated with  survival, before you start looking at your explanatory variable of interest or checking that your randomised controlled trial is indeed balanced. 
+There are some variables that are so commonly associated with particular outcomes in healthcare that they should almost always be included at the start. 
+Age, sex, social class, and co-morbidity for instance are commonly associated with  survival. These need to be assessed before you start looking at your explanatory variable of interest.
 
-Patients are often clustered by a particular grouping variable, such as treating hospital. 
-There will be commonalities between these patients that are likely not fully explained by your observed variables. 
+Furthermore, patients are often clustered by a particular grouping variable, such as treating hospital. 
+There will be commonalities between these patients that may not be fully explained by your observed variables. 
 To estimate the coefficients of your variables of interest most accurately, clustering should be accounted for in the analysis. 
 
 As demonstrated above, the purpose of the model is to provide a best fit approximation of the underlying data. 
@@ -564,12 +581,12 @@ The Akaike Information Criterion (AIC) is an alternative goodness-of-fit measure
 In that sense, it is similar to the R-squared, but it has a different statistical basis. 
 It is useful because it can be used to help guide the best fit in generalised linear models such as logistic regression (see chapter \@ref(chap09-h1). 
 It is based on the likelihood but is also penalised for the number of variables present in the model. We aim to have as small an AIC as possible. 
-The value of the number itself has no inherent meaning, but it is used to compare different models. 
+The value of the number itself has no inherent meaning, but it is used to compare different models of the same data. 
 
 ### Get the data
 
 ```{r}
-mydata = finalfit::wcgs #F1 here for details
+mydata = finalfit::wcgs #press F1 here for details
 ```
 
 ### Check the data
@@ -625,22 +642,22 @@ mydata %>%
 
 From this plot we can see that there is a weak relationship between weight and blood pressure. 
 In addition, there is really no meaningful effect of personality type on blood pressure. 
-This is really important because, as you will see below, we are about to find some highly statistically significant effects in a model.
+This is really important because, as you will see below, we are about to "find" some highly statistically significant effects in a model.
 
 ### Linear regression with finalfit
 \index{linear regression@\textbf{linear regression}!finalfit}
 
-**Finalfit** is our own package and provides a convenient set of functions for fitting regression models with results presented in final tables.
+**finalfit** is our own package and provides a convenient set of functions for fitting regression models with results presented in final tables.
 
 There are a host of features with example code at the [finalfit website](https://finalfit.org).
 
 Here we will use the all-in-one `finalfit()` function, which takes a dependent variable and one or more explanatory variables. 
-The appropriate regression for the dependent variable is performed, from a choice of linear, logistic, and Cox Proportional Hazards regression. 
+The appropriate regression for the dependent variable is performed, from a choice of linear, logistic, and Cox Proportional Hazards regression models. 
 Summary statistics, together with a univariable and a multivariable regression analysis are produced in a final results table. 
 
 ```{r message=FALSE}
 dependent = "sbp"
-explanatory = c("personality_2L")
+explanatory = "personality_2L"
 fit_sbp1 = mydata %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
 ```
@@ -655,8 +672,8 @@ fit_sbp1[[2]] %>% mykable(caption = "Model metrics: Systolic blood pressure by p
 
 Let's look first at our explanatory variable of interest, personality type.
 When a factor is entered into a regression model, the default is to compare each level of the factor with a "reference level".
-This reference level can be easily changed (see section \@ref(chap08-h2-fct-relevel).
-Alternatives methods are available (sometimes called *contrasts*), but the default method is likely to be what you want almost all the time. 
+What you choose as the reference level can be easily changed (see section \@ref(chap08-h2-fct-relevel).
+Alternative methods are available (sometimes called *contrasts*), but the default method is likely to be what you want almost all the time. 
 Note this is sometimes referred to as creating a "dummy variable". 
 
 It can be seen that the mean blood pressure for type A is higher than for type B. 
@@ -664,7 +681,7 @@ As there is only one variable, the univariable and multivariable analyses are th
 
 Although the difference is numerically quite small (2.3 mmHg), it is statistically significant partly because of the large number of patients in the study. 
 The optional `metrics = TRUE` output gives us the number of rows (in this case subjects) included in the model. 
-This is important as frequently people forget that in standard regression models, missing data from any variable results in the that entire row  being excluded from the analysis (see chapter \@ref(chap13-h1). 
+This is important as frequently people forget that in standard regression models, missing data from any variable results in the that entire row being excluded from the analysis (see chapter \@ref(chap13-h1). 
 
 Note the `AIC` and `Adjusted R-squared` results. 
 The adjusted R-squared is very low - the model only explains only 0.6% of the variation in systolic blood pressure. 
@@ -688,7 +705,7 @@ fit_sbp2[[2]] %>% mykable(caption = "Multivariable linear regression metrics: Sy
 
 The output shows us the range for weight (78 to 320 pounds) and the mean (standard deviation) systolic blood pressure for the whole cohort. 
 
-The coefficient and 95% confidence interval are provided by default. 
+The coefficient with 95% confidence interval is provided by default. 
 This is interpreted as: for each pound increase in weight, there is on average a corresponding increase of 0.18 mmHg in systolic blood pressure.  
 
 Note the difference in the interpretation of continuous and categorical variables in the regression model output (Figure \@ref(fig:chap07-fig-types)). 
@@ -726,12 +743,14 @@ Look out for variables that show large changes in effect size or a change in the
 This means that the other variables in the model are having a large effect on this variable and the cause of this should be explored. 
 For instance, in this example the effect of height changes size and direction. 
 This is because of the close association between weight and height. 
-For instance, it may be more sensible to work with body mass index ($weight / height^2$) rather than the two septate variables. 
-This can be created easily. 
+For instance, it may be more sensible to work with body mass index ($weight / height^2$) rather than the two separate variables. 
 
 In general, variables that are highly correlated with each other should be treated carefully in regression analysis. 
 This is called collinearity and can lead to unstable estimates of coefficients. 
 For more on this, see section \@ref(chap09-h2-multicollinearity).
+
+Let's create a new variable called `bmi`, note the conversion from pounds and inches to kg and m:
+
 
 ```{r}
 mydata = mydata %>% 
@@ -741,7 +760,7 @@ mydata = mydata %>%
   )
 ```
 
-Weight and height can be replaced in the model with BMI. 
+Weight and height can now be replaced in the model with BMI. 
 
 ```{r message=FALSE}
 explanatory = c("personality_2L", "bmi", "age", 
@@ -764,8 +783,8 @@ This can be easily done using the `finalfit` `explanatory_multi` option.
 
 ```{r message=FALSE}
 dependent = "sbp"
-explanatory = c("personality_2L", "bmi", "age", 
-                "chol", "smoking") 
+explanatory       = c("personality_2L", "bmi", "age", 
+                      "chol", "smoking") 
 explanatory_multi = c("bmi", "personality_2L", "age", 
                       "chol") 
 fit_sbp5 = mydata %>% 
@@ -802,13 +821,12 @@ mydata %>%
 An important message in the results relates to the highly significant *p*-values in the table above. 
 Should we conclude that in a "multivariable regression model controlling for BMI, age, and serum cholesterol, blood pressure was significantly elevated in those with a Type A personality (1.56 (0.57 to 2.56, p=0.002) compared with Type B?
 The *p*-value looks impressive, but the actual difference in blood pressure is only 1.6 mmHg. 
-Even at a population level, that seems unlikely to be clinically significant. 
-Which fits with our first thoughts when we saw the scatter plot. 
+Even at a population level, that seems unlikely to be clinically significant, fitting with our first thoughts when we saw the scatter plot. 
 
 This serves to emphasise our most important point.
 Our focus should be on understanding the underlying data itself, rather than relying on complex multidimensional modelling procedures. 
 By making liberal use of upfront plotting, together with further visualisation as you understand the data, you will likely be able to draw most of the important conclusions that the data has to offer. 
-Use modelling to quantify and confirm this, rather than the primary method of data exploration. 
+Use modelling to quantify and confirm this, rather than as the primary method of data exploration. 
 
 <!-- Coefficient plot -->
 <!-- Consider lmer / random effects -->
@@ -819,7 +837,7 @@ Time spent truly understanding linear regression is well spent.
 Not because you will spend a lot of time making linear regression models in health data science (we rarely do), but because it the essential foundation for understanding more advanced statistical models. 
 
 It can even be argued that all [common statistical tests are linear models](https://lindeloev.github.io/tests-as-linear).
-This great post demonstrates beautifully how the statistical tests we are most familiar with (such as t-test, Mann-Whitney U test, ANOVA, chi-squared test) can simply be considered as special cases of linear models, or a close approximations. 
+This great post demonstrates beautifully how the statistical tests we are most familiar with (such as t-test, Mann-Whitney U test, ANOVA, chi-squared test) can simply be considered as special cases of linear models, or close approximations. 
 
 Regression is fitting lines, preferably straight, through data points. 
 Make $\hat{y} = \beta_0 + \beta_1 x_1$ a close friend.

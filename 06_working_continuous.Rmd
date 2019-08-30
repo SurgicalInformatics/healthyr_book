@@ -53,7 +53,7 @@ library(gapminder)
 mydata = gapminder
 ```
 
-## Check the data{#chap06-h2-check}
+## Check the data {#chap06-h2-check}
 
 It is vital that data is carefully inspected when first read (for help reading data into R see \@ref(chap02-h2-reading-data-into-r)).
 The three functions below provide a clear summary allowing errors or miscoding to be quickly identified. 
@@ -162,7 +162,7 @@ mydata %>%
 
 What can we see?
 We are looking to see if the data follow the 45 degree line which is included in the plot.
-These do reasonably, except for Africa which is curved upwards at each end, which is the right scew we could see on the histograms too.
+These do reasonably, except for Africa which is curved upwards at each end, which is the right skew we could see on the histograms too.
 
 We are frequently asked about performing a hypothesis test to check the assumption of normality, such as the Shapiro-Wilk normality test. 
 We do not recommend this, simply because it is often non-significant when the number of observations is small but the data look skewed, and often significant when the number of observations is high but the data look reasonably normal on inspection of plots. 

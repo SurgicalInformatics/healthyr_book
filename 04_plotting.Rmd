@@ -22,7 +22,7 @@ There are a few different plotting packages in R, but the most elegant and versa
 **gg** stands for **g**rammar of **g**raphics which means that we can make a plot by describing it one component at a time. 
 In other words, we build a plot by adding layers to it.
 
-This does not have to be many layers, the simplest `ggplot()` consist of just two components:
+This does not have to be many layers, the simplest `ggplot()` consists of just two components:
 
 * the variables to be plotted;
 * a geometrical object (e.g., point, line, bar, box, etc.).
@@ -42,7 +42,7 @@ gapminder2007 = gapminder %>%
 
 \index{functions@\textbf{functions}!ggplot}
 
-```{r chap04-fig-steps, fig.height=10, fig.width=6, echo = FALSE, fig.cap = "Example steps for building and modiyfing a ggplot. (1) initialising the canvas, defining variables, (2) adding points, (3) colouring points by continent, (4) changing point type, (5) faceting, (6) changing the plot theme and the scale of the x variable."}
+```{r chap04-fig-steps, fig.height=10, fig.width=6, echo = FALSE, fig.cap = "Example steps for building and modiyfing a ggplot. (1) initialising the canvas and defining variables, (2) adding points, (3) colouring points by continent, (4) changing point type, (5) faceting, (6) changing the plot theme and the scale of the x variable."}
 library(patchwork)
 
 step1 = gapminder2007 %>% 
@@ -95,7 +95,7 @@ glimpse(gapminder)
 ```
 
 The dataset includes `r nrow(gapminder)` observations (rows) of `r ncol(gapminder)` variables (columns: `r colnames(gapminder)`).
-`country`, `continent`, and `year` could be though of as grouping variables, whereas lifeExp (life expectancy), pop (population), and gdpPercap (Gross Domestic Product per capita) are values.
+`country`, `continent`, and `year` could be thought of as grouping variables, whereas lifeExp (life expectancy), pop (population), and gdpPercap (Gross Domestic Product per capita) are values.
 
 The years in this dataset span `r range(gapminder$year) %>% paste(collapse = " to ")` with 5-year intervals (so a total of `r gapminder$year %>% n_distinct()` different years).
 It includes `r gapminder$country %>% n_distinct()` countries from `r gapminder$continent %>% n_distinct()` continents (`r gapminder$continent %>% unique()`).
@@ -212,6 +212,8 @@ Still with just two lines of code (`ggplot(...)` + `geom_point()`).
 
 It is very important to understand the difference between including `ggplot` arguments inside or outside of the `aes()` function.
 
+<!-- Graphical example of the following suggested by SK in comments -->
+
 The main aesthetics (things we can see) are: **x**, **y**, **colour**, **fill**, **shape**, **size**, and any of these could appear inside or outside the `aes()` function.
 Press F1 on, e.g., `geom_point()`, to see see the full list of aesthetics that can be used with this geom (this opens the **Help** tab).
 
@@ -240,6 +242,8 @@ gapminder2007 %>%
 ```
 
 This creates the fourth plot in Figure \@ref(fig:chap04-fig-steps).
+
+<!-- This doesn't flow nicely to my eye, perhaps an extra space before (5)? SK -->
 
 **(5)** From one plot to multiple with a single extra line
 
@@ -385,7 +389,7 @@ As a recap, the steps in the code above are:
 * Using the `gapminder` data send into a `filter()`;
 * inside the `filter()`, our condition is `country == "United Kingdom"`;
 * We initialise `ggplot()` and define our main variables: `aes(x = year, y = lifeExp)`;
-* we are using a new geom - `geom_point()`.
+* we are using a new geom - `geom_line()`.
 
 This is identical to how we used `geom_point()`.
 In fact, by just changing `line` to `point` in the code above works - and instead of a continuous line you'll get a point at every 5 years as in the dataset.
@@ -399,7 +403,9 @@ gapminder %>%
   geom_line()
 ```
 
-The reason you see this weird zigzag in Figure \@ref(fig:chap04-fig-zigzag):1 is that, using the above code, `ggplot()` does not know which points to connect with which.
+<!-- EMH: I've used A, B, C for plot facet labels. Please can we change here as mine are in Illustrator -->
+
+The reason you see this weird zigzag in Figure \@ref(fig:chap04-fig-zigzag) (1) is that, using the above code, `ggplot()` does not know which points to connect with which.
 Yes, you know you want a line for each country, but you haven't told it that.
 So for drawing multiple lines, we need to add a `group` aesthetic, in this case `group = country`:
 
@@ -409,7 +415,7 @@ gapminder %>%
   geom_line()
 ```
 
-```{r chap04-fig-zigzag, echo = FALSE, fig.width = 7, fig.height=3, fig.cap = "The 'zig-zag plot' is a common mistake: using `geom_line()` (1) without a `group = ` aesthetic, (2) after adding `group = country`."}
+```{r chap04-fig-zigzag, echo = FALSE, fig.width = 7, fig.height=3, fig.cap = "The 'zig-zag plot' is a common mistake: using `geom_line()` (1) without a `group` specified, (2) after adding `group = country`."}
 
 theme_set(theme_bw())
 
@@ -425,7 +431,7 @@ p1 + p2 + plot_annotation(tag_levels = "1", tag_prefix = "(", tag_suffix = ")")
 
 ```
 
-This code works as expected (Figure \@ref(fig:chap04-fig-zigzag):2) - yes there is a lot of overplotting but that's just because we've included `r gapminder$country %>% n_distinct()` lines on a single plot.
+This code works as expected (Figure \@ref(fig:chap04-fig-zigzag) (2)) - yes there is a lot of overplotting but that's just because we've included `r gapminder$country %>% n_distinct()` lines on a single plot.
 
 ### Exercise
 
@@ -448,8 +454,11 @@ gapminder %>%
 \index{plots@\textbf{plots}!bar}
 \index{plots@\textbf{plots}!column}
 
+<!-- Could the below be clearer- SK -->
+
 There are two geoms for making bar plots - `geom_col()` and `geom_bar()`. 
-In short: `geom_col()` plots values from your data directly (you define the `x` and `y` values), whereas `geom_bar()` will only take `x` values, the height of the bar (`y`) is the subgroups within `x` counted up. `geom_bar()` is basically a histogram for a categorical variable. 
+In short: `geom_col()` plots values from your data directly (you define the `x` and `y` values), whereas `geom_bar()` will only take `x` values, the height of the bar (`y`) is the subgroups within `x` counted up. 
+`geom_bar()` is basically a histogram for a categorical variable. 
 
 **`geom_col()`**:
 
@@ -560,6 +569,8 @@ Both can either be set based on a variable in your dataset (this means `colour =
 R has an amazing knowledge of colour.
 In addition to knowing what is "white", "yellow", "red", "green" etc. (meaning we can simply do `geom_bar(fill = "green")`) it also knows what "aquamarine", "blanchedalmond", "coral", "deeppink", "lavender", "deepskyblue" look like (amongst many many others, search the internet for "R colours" for a full list).
 
+<!-- HEX code website for reference include? -->
+
 We can also use HEX colour codes, for example, `geom_bar(fill = "#FF0099")` is a very pretty pink.
 
 ### Proportions {#chap04-proportions}
@@ -595,8 +606,8 @@ Hints:
 
 * If `geom_bar()` doesn't work try `geom_col()` or vice versa.
 * `coord_flip()` to make the bars horizontal (it flips the `x` and `y` axes).
-* `x = country` gets the country bars plotted in the alphabetical order, use `x = fct_reorder(country, lifeExp)` still inside the `aes()` to order the bars by their `lifeExp` values. Or try one of the other variables. (`pop`, `gdpPercap`) as the second argument to `fct_reorder()`.
-* when using `fill = NA` also need to include a colour, we're using `colour = "deepskyblue"` inside the `geom_col()`.
+* `x = country` gets the country bars plotted in the alphabetical order, use `x = fct_reorder(country, lifeExp)` still inside the `aes()` to order the bars by their `lifeExp` values. Or try one of the other variables (`pop`, `gdpPercap`) as the second argument to `fct_reorder()`.
+* when using `fill = NA`, you also need to include a colour, we're using `colour = "deepskyblue"` inside the `geom_col()`.
 
 \FloatBarrier
 
@@ -816,6 +827,8 @@ There are two examples of how just a few lines of `ggplot()` code and the basic 
 Let your imagination fly free when using `ggplot()`!
 
 The first one shows how the life expectancies in European countries have increased by plotting a square (`geom_point(shape = 15)`) for each observation (year) in the dataset. 
+
+<!-- Explain `fun=max` below? -->
 
 ```{r, fig.width=7, fig.height=5}
 gapminder %>% 

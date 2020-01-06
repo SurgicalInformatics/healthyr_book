@@ -2,8 +2,8 @@
 \index{encryption@\textbf{encryption}}
 
 Health data is precious and often sensitive. 
-Datasets may contain information patient identifiable information. 
-Information may be clearly disclosive, such as a patient's data of birth, post/zip code, or social security number. 
+Datasets may contain patient identifiable information. 
+Information may be clearly disclosive, such as a patient's date of birth, post/zip code, or social security number. 
 
 Other datasets may have been processed to remove the most obviously confidential information. 
 These still require great care, as the data is usually only 'pseudoanonymised'. 
@@ -21,7 +21,7 @@ This is true even when you are working in a 'safe' environment, such as a secure
 It is best to simply remove as much confidential information from records whenever possible.
 If the data is not present, then it cannot be compromised.
 
-This may not be possible if the data can never be re-associated with an individual. 
+This might not be a good idea if the data might, one day, need to be linked back to the individual.
 This may be a problem if, for example, auditors of a clinical trial need to re-identify an individual from the trial data.
 A study ID can be used, but that still requires the confidential data to be stored and available in a lookup table in another file. 
 
@@ -40,7 +40,7 @@ The public key can be shared and is used to encrypt the information.
 The private key is sensitive and should not be shared. 
 The private key requires a password to be set, which should follow modern rules on password complexity. 
 You know what you should do! 
-If lost, it cannot be recovered. 
+If the password is lost, it cannot be recovered. 
 
 ## Get the package
 

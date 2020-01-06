@@ -5,6 +5,12 @@ editor_options:
 ---
 # R Basics
 
+
+<!-- Need to do TD corrections from file: -->
+<!-- \HealthyR\Book\draft -->
+
+
+
 ```{r, include = FALSE}
 library(tidyverse)
 ```
@@ -32,6 +38,9 @@ They are not particularly useful to learn from, but invaluable as an *aide-smemo
 \index{objects}
 \index{functions@\textbf{functions}}
 
+<!-- Please see Tom's comments in additional file in draft folder. -->
+<!-- Move tibble description out of footnotes etc. -->
+
 There are two fundamental concepts in statistical programming that it is important to get straight from the outset - objects and functions. 
 As throughout this book, we will introduce new concepts using specific examples first.
 
@@ -55,7 +64,7 @@ mydata = tibble(id   = 1:4,
        var3 = c(2, 1, NA, NA))
 
 mydata %>% 
-  knitr::kable(booktabs = TRUE, caption = "Example of a table (=tibble once read into R), including missing values denoted NA (Not applicable/Not available).") %>% 
+  knitr::kable(booktabs = TRUE, caption = "Example of a table including missing values denoted NA (Not applicable/Not available).") %>% 
   kableExtra::kable_styling(font_size=8)
 ```
 

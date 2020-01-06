@@ -30,7 +30,7 @@ The explanatory variables can be either continuous or categorical.
 
 We will illustrate our examples of linear regression using a classical question which is important to many of us!
 This is the relationship between coffee consumption and blood pressure (and therefore cardiovascular events, such as myocardial infarction and stroke).
-There has been a lot of backwards and forwards over decades about whether coffee is harmful, has no effect, or is in fact beneficial. 
+There has been a lot of backwards and forwards over the decades about whether coffee is harmful, has no effect, or is in fact beneficial. 
 Figure \@ref(fig:chap07-fig-regression) shows a linear regression example. 
 Each point is a person.
 The explanatory variable is average number of cups of coffee per day $(x)$ and systolic blood pressure is the dependent variable $(y)$. 
@@ -46,7 +46,7 @@ knitr::include_graphics("images/chapter07/1_regression_terms.pdf")
 \index{linear regression@\textbf{linear regression}!fitted line}
 
 Simple linear regression uses the *ordinary least squares* method for fitting. 
-The details are beyond the scope here, but if you want to get out the linear algebra/matrix maths you did in high school, an enjoyable afternoon can be spent proving to yourself how it actually works. 
+The details are beyond the scope of this book, but if you want to get out the linear algebra/matrix maths you did in high school, an enjoyable afternoon can be spent proving to yourself how it actually works. 
 
 Figure \@ref(fig:chap07-fig-residuals) aims to make this easy to understand.
 The maths defines a line which best fits the data provided. 
@@ -70,7 +70,7 @@ The regression apps and example figures in this chapter have been adapted from h
 
 Linear regression modelling has four main assumptions:
 
-1. Linear relationship between between predictors and outcome;
+1. Linear relationship between predictors and outcome;
 2. Independence of residuals;
 3. Normal distribution of residuals;
 4. Equal variance of residuals. 
@@ -78,7 +78,7 @@ Linear regression modelling has four main assumptions:
 
 You can use the [simple regression diagnostics shiny app](https://argoshare.is.ed.ac.uk/simple_regression_diagnostics) to get a handle on these. 
 
-Figure \@ref(fig:chap07-fig-diags) shows diagnostic plots from the app, which we will run ourselves below. 
+Figure \@ref(fig:chap07-fig-diags) shows diagnostic plots from the app, which we will run ourselves below Figure \@ref(fig:chap07-fig-diags-example). 
 
 *Linear relationship*
 
@@ -168,7 +168,7 @@ Effect modification can be additive or multiplicative.
 We refer to multiplicative effect modification as "including a statistical interaction". 
 
 Figure \@ref(fig:chap07-fig-types) should make it clear exactly how these work. 
-The data have been set-up to include an interaction between the two explanatory variables. 
+The data have been set up to include an interaction between the two explanatory variables. 
 What does this mean? 
 
 * $intercept=1$: the blood pressure ($\hat{y}$) for non-smokers who drink no coffee (all $x=0$);
@@ -202,7 +202,7 @@ knitr::include_graphics("images/chapter07/6_types.pdf")
 Figure \@ref(fig:chap07-fig-types) includes a further metric from the R output: `Adjusted R-squared`. 
 
 R-squared is another measure of how close the data are to the fitted line. 
-It is also known as the coefficient of determination and represents proportion of the dependent variable which is explained by the explanatory variable(s). 
+It is also known as the coefficient of determination and represents the proportion of the dependent variable which is explained by the explanatory variable(s). 
 So 0.0 indicates that none of the variability in the dependent is explained by the explanatory (no relationship between data points and fitted line) and 1.0 indicates that the model explains all of the variability in the dependent (fitted line follows data points exactly).
 
 R provides the `R-squared` and the `Adjusted R-squared`. 
@@ -263,7 +263,7 @@ mydata = gapminder
 ```
 
 ### Check the data
-Always check a new dataset, as described in Section \@ref{chap06-h2-check}.
+Always check a new dataset, as described in Section \@ref(chap06-h2-check).
 
 ```{r eval=FALSE}
 glimpse(mydata) # each variable as line, variable type, first values
@@ -304,7 +304,7 @@ mydata %>%
   geom_point()
 ```
 
-The two non-parallel lines may make you think of what has been discussed above. 
+The two non-parallel lines may make you think of what has been discussed above (Figure \@ref(chap07-fig-types)). 
 
 First, let's model the two countries separately. 
 
@@ -344,11 +344,11 @@ fit_uk$coefficients
 fit_turkey$coefficients
 ```
 
-The slopes make sense - the results of the linear regression say that in the UK, life expectancy increases by `r fit_uk$coefficients[2] %>% round(3)` every year, whereas in Turkey the change is `r fit_turkey$coefficients[3] %>% round(2)` per year.
+The slopes make sense - the results of the linear regression say that in the UK, life expectancy increases by `r fit_uk$coefficients[2] %>% round(3)` every year, whereas in Turkey the change is `r fit_turkey$coefficients[2] %>% round(3)` per year.
 The negative intercepts, however, are less obvious to think about.
 In this example, the intercept is telling us that life expectancy at year 0 in the United Kingdom (some 2000 years ago) was `r fit_uk$coefficients[1] %>% round(0)` years.
 While this is mathematically correct (based on the data we have), it obviously makes no sense in practice.
-It is important to think about the ranges you can extend your model prediction, and where they just become unrealistic. 
+It is important to think about the range over which you can extend your model predictions, and where they just become unrealistic. 
 
 To make the intercepts meaningful, we will add in a new column called `year_from1952` and re-run `fit_uk` and `fit_turkey` using `year_from1952` instead of `year`.
 
@@ -386,7 +386,7 @@ There was nothing wrong with the original model and the results were correct, th
 In the fit_uk and fit_turkey examples above, we were using `fit_uk %>% summary()` to get R to print out a summary of the model.
 This summary is not, however, in a rectangular shape so we can't easily access the values or put them in a table/use as information on plot labels.
 
-We use the `tidy()` function from `library(broom)` to get the variable(s) specific values in a nice tibble:
+We use the `tidy()` function from `library(broom)` to get the variable(s) and specific values in a nice tibble:
 
 ```{r}
 fit_uk %>% tidy()
@@ -465,7 +465,7 @@ mydata_UK_T %>%
   geom_line(aes(x = year, y = pred_both, colour = country))
 ```
 
-This is better, by including country in the model, we now have fitted lines better represent the data.
+This is better, by including country in the model, we now have fitted lines more closely representing the data.
 However, the lines are constrained to be parallel. 
 This is the additive model that was discussed above.
 We need to include an interaction term to allow the effect of year on life expectancy to vary by country in a non-additive manner. 
@@ -487,7 +487,7 @@ mydata_UK_T %>%
 ```
 
 This fits the data much better than the previous two models.
-You can check the R-squared using `summary(fit_both1)`.
+You can check the R-squared using `summary(fit_both3)`.
 
 *Pro tip*
 
@@ -501,7 +501,7 @@ list(fit_both1, fit_both2, fit_both3) %>%
 
 The assumptions of linear regression can be checked with diagnostic plots, either by passing the fitted object (`lm()` output) to base R `plot()`, or by using the more convenient function below. 
 
-```{r fig.height=5, fig.width=5.4}
+```{r fig:chap07-diags-example, fig.height=5, fig.width=5.4, fig.cap="Diagnostic plots. Life expectancy in Turkey and the UK - multivariable multiplicative fit"}
 library(ggfortify)
 autoplot(fit_both3)
 ```
@@ -579,7 +579,7 @@ Measures of goodness-of-fit such as the `AIC`, can also be of great use when dec
 
 The Akaike Information Criterion (AIC) is an alternative goodness-of-fit measure. 
 In that sense, it is similar to the R-squared, but it has a different statistical basis. 
-It is useful because it can be used to help guide the best fit in generalised linear models such as logistic regression (see chapter \@ref(chap09-h1). 
+It is useful because it can be used to help guide the best fit in generalised linear models such as logistic regression (see chapter \@ref(chap09-h1)). 
 It is based on the likelihood but is also penalised for the number of variables present in the model. We aim to have as small an AIC as possible. 
 The value of the number itself has no inherent meaning, but it is used to compare different models of the same data. 
 
@@ -632,7 +632,7 @@ mykable = function(x, caption = "CAPTION", ...){
 }
 ```
 
-```{r fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Systolic blood pressure by weight and personality type."}
+```{r chap07-fig-bp-personality_type, fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Systolic blood pressure by weight and personality type."}
 mydata %>%
   ggplot(aes(y = sbp, x = weight,
              colour = personality_2L)) +   # Personality type
@@ -640,7 +640,7 @@ mydata %>%
   geom_smooth(method = "lm", se = FALSE)
 ```
 
-From this plot we can see that there is a weak relationship between weight and blood pressure. 
+From Figure \@ref(fig:chap07-fig-bp-personality_type)), we can see that there is a weak relationship between weight and blood pressure. 
 In addition, there is really no meaningful effect of personality type on blood pressure. 
 This is really important because, as you will see below, we are about to "find" some highly statistically significant effects in a model.
 
@@ -680,8 +680,8 @@ It can be seen that the mean blood pressure for type A is higher than for type B
 As there is only one variable, the univariable and multivariable analyses are the same (the multivariable column can be removed if desired by including `select(-5) #5th column` in the piped function). 
 
 Although the difference is numerically quite small (2.3 mmHg), it is statistically significant partly because of the large number of patients in the study. 
-The optional `metrics = TRUE` output gives us the number of rows (in this case subjects) included in the model. 
-This is important as frequently people forget that in standard regression models, missing data from any variable results in the that entire row being excluded from the analysis (see chapter \@ref(chap13-h1). 
+The optional `metrics = TRUE` output gives us the number of rows (in this case, subjects) included in the model. 
+This is important as frequently people forget that in standard regression models, missing data from any variable results in the that entire row being excluded from the analysis (see chapter \@ref(chap13-h1)). 
 
 Note the `AIC` and `Adjusted R-squared` results. 
 The adjusted R-squared is very low - the model only explains only 0.6% of the variation in systolic blood pressure. 
@@ -696,7 +696,7 @@ fit_sbp2 = mydata %>%
   finalfit(dependent, explanatory, metrics = TRUE)
 ```
 
-```{r, echo=FALSE}
+```{r chap07-tab-bp-personality-weight, echo=FALSE}
 fit_sbp2[[1]] %>% mykable(caption = "Multivariable linear regression: Systolic blood pressure by personality type and weight.") %>% 
   column_spec(1, width = "4cm")
 fit_sbp2[[2]] %>% mykable(caption = "Multivariable linear regression metrics: Systolic blood pressure by personality type and weight.", col.names = "") %>% 
@@ -706,9 +706,9 @@ fit_sbp2[[2]] %>% mykable(caption = "Multivariable linear regression metrics: Sy
 The output shows us the range for weight (78 to 320 pounds) and the mean (standard deviation) systolic blood pressure for the whole cohort. 
 
 The coefficient with 95% confidence interval is provided by default. 
-This is interpreted as: for each pound increase in weight, there is on average a corresponding increase of 0.18 mmHg in systolic blood pressure.  
+This is interpreted as: for each pound increase in weight, there is on average a corresponding increase of 0.18 mmHg in systolic blood pressure.
 
-Note the difference in the interpretation of continuous and categorical variables in the regression model output (Figure \@ref(fig:chap07-fig-types)). 
+Note the difference in the interpretation of continuous and categorical variables in the regression model output (Figure \@ref(tab:chap07-tab-bp-personality-weight)). 
 
 The adjusted R-squared is now higher - the personality and weight together explain 6.8% of the variation in blood pressure.  
 The AIC is also slightly lower meaning this new model better fits the data. 

@@ -31,7 +31,7 @@ It allows the principles of linear regression to be applied when outcomes are no
 \index{binary data}
 
 A regression analysis is a statistical approach to estimating the relationships between variables, often by drawing straight lines through data points. 
-For instance, we may try to predict blood pressure in a group of patients based on their coffee consumption (Figure fig:chap07-fig-regression from Chapter\@ref(chap07-h1)) . 
+For instance, we may try to predict blood pressure in a group of patients based on their coffee consumption (Figure \@ref(fig:chap07-fig-regression) from Chapter\@ref(chap07-h1)) . 
 As blood pressure and coffee consumption can be considered on a continuous scale, this is an example of simple linear regression. 
 
 Logistic regression is an extension of this, where the variable being predicted is *categorical*. 
@@ -45,6 +45,8 @@ Binary logistic regression can tell us the probability of this outcome occurring
 
 Although in binary logistic regression the outcome must have two levels, remember that the predictors (explanatory variables) can be either continuous or categorical.
 
+<!-- Consider making all "Questions" specific in title, e.g. Coffee and CV event etc -->
+
 ### The Question (1)
 
 As in previous chapters, we will use concrete examples when discussing the principles of the approach. 
@@ -54,7 +56,7 @@ Yes, we are a little obsessed with coffee.
 Our outcome variable was previously blood pressure. 
 We will now consider our outcome as the occurrence of a cardiovascular (CV) event over a 10-year period. 
 A cardiovascular event includes the diagnosis of ischemic heart disease, a heart attack (myocardial infarction), or a stroke (cerebrovascular accident). 
-The occurrence of a cardiovascular event is clearly a binary condition, it either happens or it does not. 
+The diagnosis of a cardiovascular event is clearly a binary condition, it either happens or it does not. 
 This is ideal therefore for modelling using binary logistic regression. 
 But remember, the data are completely simulated and not based on anything in the real world. 
 It's just for fun!
@@ -172,7 +174,7 @@ Remember that if the odds ratio for 1 unit of change is 1.5, then the odds ratio
 
 For a categorical variable such as smoking, the odds ratio is the change in odds of a CV event associated with smoking compared with not smoking (the reference level). 
 
-```{r chap09-fig-equation, echo = FALSE, fig.cap="Linking the logistic regression fitted line, equation and R output."}
+```{r chap09-fig-equation, echo = FALSE, fig.cap="Linking the logistic regression fitted line and equation (A) with the R output (B)."}
 knitr::include_graphics("images/chapter09/4_equation.pdf")
 ```
 
@@ -193,7 +195,7 @@ Think back to Figure \@ref(fig:chap07-fig-types) and the discussion around it as
 Presented on the probability scale, the effect of the interaction is difficult to see. 
 It is obvious on the log-odds scale that the fitted lines are no longer constrained to be parallel. 
 
-```{r chap09-fig-types, echo = FALSE, fig.cap="Multivariable logistic regression with additive and multiplicative effect modification."}
+```{r chap09-fig-types, echo = FALSE, fig.cap="Multivariable logistic regression (A) with additive (B) and multiplicative (C) effect modification."}
 knitr::include_graphics("images/chapter09/6_types.pdf")
 ```
 
@@ -213,11 +215,11 @@ knitr::include_graphics("images/chapter09/7_interactions.pdf")
 ### The Question (2)
 
 We will go on to explore the `boot::melanoma` dataset introduced in Chapter \@ref(chap08-h1). 
-The data consist of measurements made on patients after surgery to remove the melanoma in the University Hospital of Odense, Denmark between 1962 and 1977.
+The data consist of measurements made on patients after surgery to remove the melanoma skin cancer in the University Hospital of Odense, Denmark between 1962 and 1977.
 
-Malignant melanoma is aggressive and highly invasive, making it difficult to treat.
+Malignant melanoma is an aggressive and highly invasive cancer, making it difficult to treat.
 
-It's classically staged based on the depth of the tumour.
+To determine how advanced it is, staging is based on the depth of the tumour.
 The current TNM classification cut-offs are:
 
 - T1: $\leq$ 1.0 mm depth
@@ -619,7 +621,7 @@ We recommend looking at three metrics:
 
 **AIC**
 \index{logistic regression@\textbf{logistic regression}!AIC}
-\index{AIC
+\index{AIC}
 
 The AIC has been previous described (Section \@ref(chap07-aic)). 
 It provides a measure of model goodness-of-fit - or how well the model fits the available data. 
@@ -668,7 +670,7 @@ We're going to start by including the variables from above which we think are re
 library(finalfit)
 dependent = "mort_5yr"
 explanatory = c("ulcer.factor", "age", "sex.factor", "t_stage.factor")
-melanoma %>% 
+fit2 = melanoma %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
 ```
 
@@ -976,7 +978,7 @@ The simplest random effects approach is a 'random intercept model'.
 This allows the intercept of fitted lines to vary by hospital. 
 The random intercept model constrains lines to be parallel, in a similar way to the additive models discussed above and in chapter 7. 
 
-It is harder to demonstrate with binomial data, but we can stratify the 5 year mortality by t-stage (considered as a continuous variable for this purpose).
+It is harder to demonstrate with binomial data, but we can stratify the 5 year mortality by T-stage (considered as a continuous variable for this purpose).
 Note there were no deaths in 'hospital 4'.
 We can model this accounting for interhospital variation below. 
 
@@ -1063,7 +1065,7 @@ fit[[2]] %>% mykable(caption = "Model metrics: multilevel (mixed effects) logist
 
 As can be seen, incorporating the (made-up) hospital identifier has altered our coefficients. 
 It has also improved the model discrminiation with a c-statistic of 0.830 from 0.802. 
-Note that the AIC should not be used to compare mixed effects models estimated in this way with `glm()' models (the former uses a restricted maximum likelihood [REML] approach by default, while `glm()` uses maximum likelihood).
+Note that the AIC should not be used to compare mixed effects models estimated in this way with `glm()` models (the former uses a restricted maximum likelihood [REML] approach by default, while `glm()` uses maximum likelihood).
 
 Random slope models are an extension of the random intercept model. 
 Here the gradient of the response to a particular variable is allowed to vary by hospital. 

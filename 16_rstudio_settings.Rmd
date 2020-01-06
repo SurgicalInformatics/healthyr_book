@@ -1,4 +1,4 @@
-# RStudio settings, good practise {#install}
+# RStudio settings, good practice {#install}
 \index{RStudio@\textbf{RStudio}}
 
 

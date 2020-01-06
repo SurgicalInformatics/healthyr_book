@@ -18,7 +18,7 @@ First, we will show what you might do if you were working in standard R script f
 
 Second, we will talk about the approach if you were primarily working in a Notebook, which makes things easier. 
 
-We presume that the data has been cleaned and carefully the `Get the data`, `Check the data`, `Data exploration` and `Model building` steps have already been completed. 
+We presume that the data have been cleaned carefully and the `Get the data`, `Check the data`, `Data exploration` and `Model building` steps have already been completed. 
 
 ```{r echo=FALSE, message=FALSE}
 library(knitr)
@@ -33,7 +33,7 @@ mykable = function(x, caption = "CAPTION", ...){
 
 ## Demographics table
 
-Look at associations between our explanatory variable of interest (exposure) and other explanatory variables. 
+First, let's look at associations between our explanatory variable of interest (exposure) and other explanatory variables. 
 
 ```{r, eval=FALSE}
 library(tidyverse)
@@ -64,11 +64,13 @@ colon_s %>%
   mykable(caption = "Exporting 'table 1': Tumour differentiation by patient and disease factors.")
 ```
 
-Note that we include missing data in this table (see Chapter \@ref(chap14-h1).
+Note that we include missing data in this table (see Chapter \@ref(chap14-h1)).
 
 Also note that `nodes` has not been labelled properly. 
-There are small numbers in some variables generating `chisq.test()` warnings (expected fewer than 5 in any cell). 
-Generate final table.
+
+In addition, there are small numbers in some variables generating `chisq.test()` warnings (expected fewer than 5 in any cell). 
+
+Now generate a final table.
 
 ```{r, eval=FALSE}
 colon_s = colon_s %>% 
@@ -130,6 +132,8 @@ table2 %>%
 ```
 
 ## Odds ratio plot
+It is often preferable to express the coefficients from a regression model as a forest plot. 
+For instance, a plot of odds ratios can be produced thus:
 
 ```{r fig.height=3.5, fig.width=7, message=FALSE, warning=FALSE, fig.cap="Odds ratio plot."}
 colon_s %>% 
@@ -151,7 +155,8 @@ save(table1, table2, dependent, explanatory,
      file = here::here("data", "out.rda"))
 ```
 
-In RStudio, select File > New File > R Markdown.
+In RStudio, select:  
+File > New File > R Markdown
 
 A useful template file is produced by default. Try hitting knit to Word on the knitr button at the top of the .Rmd script window.
 If you have difficulties at this stage, refer to chapter \@ref(chap11-h1).
@@ -206,14 +211,16 @@ knitr::include_graphics("images/chapter12/1_word_knit.pdf")
 
 Now, edit your Word file to create a new template. 
 Click on a table. 
-The style should be `compact`. Right click > Modify... > font size = 9. 
+The style should be `compact`:
+Right click > Modify... > font size = 9
+
 Alter heading and text styles in the same way as desired. 
 Save this as `colonTemplate.docx` (avoid underscores in the name). 
 Upload the file to your project folder. 
 Add this reference to the `.Rmd` YAML heading, as below. 
 Make sure you get the spacing correct.
 
-Also, the plot look correct and the warning messages is printed. 
+Also, ensure the plot looks correct and the warning messages is printed. 
 Experiment with `fig.width` to get it looking right.
 
 Now paste this into your `.Rmd` file and run:
@@ -326,7 +333,7 @@ This now looks better (Figure \@ref(fig:chap12-fig-pdf)B).
 We now perform almost all our anlyses in a Notebook / Markdown file as described in the previous chapter. 
 This means running all analyses within the document, without the requirement to save and reload table or plot objects. 
 
-As mentioned earlier, A Notebook document can be rendered as a PDF or a Word document. 
+As mentioned earlier, a Notebook document can be rendered as a PDF or a Word document. 
 Some refining is usually needed to move from an 'analysis' document to a final 'report' document, but it is often minimal. 
 
 Figure \@ref(fig:chap12-fig-report) demonstrates a report-type document rendered as a PDF.

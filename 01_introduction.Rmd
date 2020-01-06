@@ -6,10 +6,10 @@ We are extremely pleased that you have picked up this book to learn R for health
 Even if you're already familiar with the R language, you will probably find new approaches here as we make the most of the latest R packages and tools including some we've developed ourselves.
 Those already familiar with R are encouraged to still skim through the first two chapters to familiarise with the style of R we recommend.
 
-Here are the main reasons we love R are:
+Here are the main reasons we love R:
 
 * R is versatile and powerful - use it for
-    - graphics 
+    - graphics
     - all the statistics you can dream of
     - machine learning, deep learning
     - automated reports 
@@ -34,7 +34,7 @@ These are the lines that start with a # and they are called "comments".
 We can (and should) include these comments in everything we do.
 These are notes of what we were doing, both for colleagues as well as our future self.
 
-```{r chap01-fig-rscript, echo = FALSE, fig.cap="An example R script."}
+```{r chap01-fig-rscript, echo = FALSE, fig.cap="An example R script from RStudio."}
 knitr::include_graphics("images/chapter01/example_script.png")
 ```
 

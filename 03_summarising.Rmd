@@ -11,7 +11,7 @@ options(pillar.sigfig = 4)
 # Summarising data
 \index{summarising data@\textbf{summarising data}}
 
->“The Answer to the Great Question ... Of Life, the Universe and Everything ... Is ... Forty-two," said Deep Thought, with infinite majesty and calm. 
+>“The Answer to the Great Question ... Of Life, the Universe and Everything ... Is ... Forty-two," said Deep Thought, with infinite majesty and calm.  
 >Douglas Adams, The Hitchhiker's Guide to the Galaxy
 
 In this chapter you will find out how to:
@@ -141,7 +141,9 @@ gbd2017 %>%
 
 We met `mutate()` in the last chapter. 
 Let's first give the summarised column a better name, e.g. `deaths_pergroup`. 
-We can then use `ungroup()` and `mutate()` to add a total deaths column, which will be used below to calculate a percentage:
+We can remove groupings by using `ungroup()`. 
+This is important to remember if you want to manipulate the dataset in its original format.
+We can combine `ungroup()` with `mutate()` to add a total deaths column, which will be used below to calculate a percentage:
 
 ```{r}
 gbd2017 %>% 
@@ -338,7 +340,7 @@ knitr::include_graphics("images/wide_long.png")
 \index{summarising data@\textbf{summarising data}!convert long to wide}
 \index{functions@\textbf{functions}!spread}
 
-If we want to take the data from \@ref(tab:chap3-tab-gbd-long) and put some of the numbers next to each other for easier comparison, then `spread()` is the function to do it. 
+If we want to take the long data from \@ref(tab:chap3-tab-gbd-long) and put some of the numbers next to each other for easier visualisation, then `spread()` is the function to do it. 
 It means we want to spread a variable into columns, and it needs just two arguments: the column we want to spread, and the column where the values are.
 
 
@@ -348,7 +350,7 @@ gbd_long %>%
 ```
 
 
-In this example, we are sending `gbd_long` into the `spread(year, deaths_millions)` to put the year variable into different columns, the values to fill the new columns with are `deaths_millions`.
+In this example, we are sending `gbd_long` into the `spread(year, deaths_millions)` to put the year variable into different columns. The values to fill the new columns with are `deaths_millions`.
 
 This means we can quickly eyeball how the number of deaths have changed from 1990 to 2017 for each cause category and sex.
 Whereas if we wanted to quickly look at the difference in the number of deaths for Females and Males, we can just the `sex` variable instead, so `spread(sex, deaths_millions)`. Furthermore, we can now add a `mutate()` to show this difference in a new column:
@@ -514,6 +516,8 @@ In addition to listing the columns explicitly (e.g., `mydata %>% select(year, ca
 These special functions are called select helpers, and the first select helper we used is `everything()`.
 
 The most common select helpers are `starts_with()`/`ends_with()` and `matches()` (but there are several others that may be useful to you, so press F1 on `select()` for a full list, or search the web for more examples).
+
+<!-- ADD contains() above? -->
 
 Let's say you can remember, whether the deaths column was called `deaths_millions` or just `deaths` or `deaths_mil`, or maybe there are other columns that include the word "deaths" that you want to `select()`:
 

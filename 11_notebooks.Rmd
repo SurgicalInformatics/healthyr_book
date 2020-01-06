@@ -13,7 +13,7 @@ We also include a section on dealing with missing data in R. Something that we b
 ## What is a Notebook?
 
 R is all-powerful for the manipulation, visualisation and analysis of data. 
-What is often be under-appreciated is the flexibility in which analyses can be exported or reported.
+What is often be under-appreciated is the flexibility with which analyses can be exported or reported.
 
 For instance, a full scientific paper, industry report, or monthly update can be easily written to accommodate a varying underlying dataset, and all tables and plots will be updated automatically. 
 
@@ -22,7 +22,7 @@ This idea can be extended to a workflow in which all analyses are performed prim
 Enter "Data Notebooks"!
 Notebooks are documents which combine code and rich text elements, such as headings, paragraphs and links, in one document. 
 They combine analysis and reporting in one human-readable document to provide an intuitive interface between the researcher and their analysis (Figure \@ref(fig:chap11-fig-literate). 
-This sometimes gets called "literate programming", given the resulting logical structure of information can be easily read in the manner a human would read a book.  
+This is sometimes called "literate programming", given the resulting logical structure of information can be easily read in the manner a human would read a book.  
 
 ```{r chap11-fig-literate, echo = FALSE, fig.cap="Traditional versus literate programming using Notebooks."}
 knitr::include_graphics("images/chapter11/1_literate_programming.pdf")
@@ -65,7 +65,7 @@ They are documents in which markdown is combined with code to produce a fully-fo
 
 An important difference is in the execution of code. 
 In R Markdown, when the file is `Run`, all the elements (chunks) are also run. 
-In a Notebook, when the file is `Preview`ed, no code is re-run, only that which has already been run in and is present in the document is included in the output. 
+In a Notebook, when the file rendered with the `Preview` button, no code is re-run, only that which has already been run in and is present in the document is included in the output. 
 Also, in the Notebook behind-the-scenes file (`.nb`) all the code is always included. 
 Something to watch out for if your code contains sensitive information, such as a password (which it never should!).
 This is not the case in the R Markdown `.tex` file.    
@@ -76,11 +76,11 @@ This is not the case in the R Markdown `.tex` file.
 \index{PDF}
 \index{HTML}
 
-In RStudio, a Notebook can be created by going to  
-File -> New File -> R Notebook.
+In RStudio, a Notebook can be created by going to:  
+File -> New File -> R Notebook
 
-Alternatively, you can create a Markdown file  
-File -> New File -> R Markdown... .
+Alternatively, you can create a Markdown file using:  
+File -> New File -> R Markdown...
 
 Don't worry which you choose. 
 As mentioned above, they are essentially the same thing but just come with different options. 
@@ -92,7 +92,7 @@ If you are primarily doing analysis in the Notebook environment, choose Notebook
 ## The anatomy of a Notebook / R Markdown file
 
 When you create a file, a helpful template is provided to get you started. 
-Figure \@ref(fig:chap11-fig-anatomy) shows the essential elements of a Notebook file and how these translate to what is seen in the `HTML` preview. 
+Figure \@ref(fig:chap11-fig-anatomy) shows the essential elements of a Notebook file and how these translate to the `HTML` preview. 
 
 ### YAML header
 \index{YAML header}
@@ -147,6 +147,7 @@ The code is placed in the chunk header but the options fly-out now does this aut
 
 ```` markdown
 `r ''````{r echo=FALSE}
+```
 ````
 
 ```{r chap11-tab-chunk-output, echo=FALSE, message=FALSE}
@@ -213,8 +214,7 @@ The YAML header is very sensitive to the spaces/tabs, so make sure these are cor
 Markdown text can be included as you wish around your chunks. 
 Figure \@ref(fig:chap11-fig-anatomy) shows an example of how this can be done.  
 This is a great way of getting into the habit of explicitly documenting your analysis. 
-When you come back to a file in 6 months time, all of your thinking is there in front of you. 
-Rather than having to work out what on Earth you were on about from a collection of random code!
+When you come back to a file in 6 months time, all of your thinking is there in front of you, rather than having to work out what on Earth you were on about from a collection of random code!
 
 ## Output
 
@@ -231,7 +231,7 @@ knitr::include_graphics("images/chapter11/4_notebook_options_rotated.pdf")
 
 It is good practice to use the `Restart R and Run All Chunks` option in the `Run` menu every so often. 
 This ensures that all the code in your document is self-contained and is not relying on an object in the environment which you have created elsewhere.
-If this was the case, then it will fail when rendering a Markdown document.
+If this was the case, it will fail when rendering a Markdown document.
 
 ### Knitting
 \index{knitr}
@@ -252,6 +252,7 @@ We run courses on using Notebooks and this approach works on >95% of Windows and
 ```` markdown
 `r ''````{r}
 install.packages("tinytex")
+```
 ````
 
 This should allow you to knit all the differnt file options. 

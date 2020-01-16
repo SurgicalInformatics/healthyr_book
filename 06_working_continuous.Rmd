@@ -15,7 +15,7 @@ Testing for continuous outcome variables (6) leads naturally into Linear regress
 We would expect the majority of actual analysis done by readers to be using the methods in chapter 7 rather than 6. 
 Similarly, Testing for categorical outcome variables (8) leads naturally to Logistic regression (9), where we would expect the majority of work to focus. 
 Chapters 6 and 8 however do provide helpful reminders of how to prepare data for these analyses and shouldn't be skipped.
-Time-to-event data introduces survival analysis and includes sections on the manipulattion of dates. 
+Time-to-event data introduces survival analysis and includes sections on the manipulation of dates. 
 
 # Working with continuous outcome variables{#chap06-h1}
 \index{continuous data@\textbf{continuous data}}
@@ -121,7 +121,7 @@ There are three useful plots which can help here:
 - Q-Q plots: are data normally distributed?
 - Box-plots: identify outliers, compare shape and groups.
 
-### Histogram
+### Histogram{#chap06-h3-hist-plot}
 
 ```{r chap06-fig-hist-life-year, fig.width=7, fig.height=3.5, fig.cap="Histogram: country life expectancy by continent and year"}
 mydata %>% 
@@ -164,6 +164,7 @@ What can we see?
 We are looking to see if the data follow the 45 degree line which is included in the plot.
 These do reasonably, except for Africa which is curved upwards at each end. 
 This is the right skew we could see on the histograms too.
+If your data is not follow a normal distribution, then you can not use the t-test or the ANOVA, but have to use a non-parametric test as shown in Section \@ref(chap06-non-param-tests).
 
 We are frequently asked about performing a hypothesis test to check the assumption of normality, such as the Shapiro-Wilk normality test. 
 We do not recommend this, simply because it is often non-significant when the number of observations is small but the data look skewed, and often significant when the number of observations is high but the data look reasonably normal on inspection of plots. 
@@ -173,13 +174,13 @@ It is therefore not useful in practice - common sense should prevail.
 \index{plotting@\textbf{plotting}!geom\_boxplot}
 \index{plotting@\textbf{plotting}!boxplot}
 
-Boxplots are our preferred method for comparing a continuous variable such as life expectancy with a categorical explanatory variable. 
+Boxplots are our preferred method for comparing a continuous variable such as life expectancy across a categorical explanatory variable. 
 For continuous data, box plots are a lot more appropriate than bar plots with error bars (also known as dynamite plots).
 We intentionally do not even show you how to make dynamite plots.
 
-The box represents the median and interquartile range (where 50% of the data sits). 
+The box represents the median (bold horizontal line in the middle) and interquartile range (where 50% of the data sits). 
 The lines (whiskers) extend to the lowest and highest values that are still within 1.5 times the interquartile range.
-Outliers are represented as points. 
+Outliers (anything outwidth the whiskers) are represented as points. 
 
 Thus it contains information, not only on central tendency (median), but on the variation in the data and the distribution of the data, for instance a skew should be obvious. 
 
@@ -218,7 +219,7 @@ mydata %>%
 
 ## Compare the means of two groups
 
-### *T*-test
+### *t*-test
 \index{t-test@\textbf{t-test}}
 A *t*-test is used to compare the means of two groups of continuous variables. 
 Volumes have been written about this elsewhere, and we won't rehearse it here. 
@@ -239,15 +240,24 @@ What is imperative, is that you decide what sort of difference exists by looking
 The median for Europe is clearly higher than in Asia. 
 The distributions overlap, but it looks likely that Europe has a higher life expectancy than Asia. 
 
+By running the the two-sample t-test on these data we assume that each country is an independent measurement of the life expectancy of that continent.
+You could also imagine two rooms full of people - and you measure the height of each person.
+You then run a two-sample t-test to see if the mean height of people in one room is statistically significantly different to the mean height of people in the other room.
+Each measurement has to be independent of each other.
+For example, none of the people can be related to each other.
+
+So in our example of countries and continents, you have to assume that the mean life expectancy of each country does not depend on the life expectancies of other countries in the group. In other words, that each measurement is independent.
+
 ```{r}
 ttest_data = mydata %>%                      # save as object ttest_data
   filter(year == 2007) %>%                   # 2007 only
   filter(continent %in% c("Asia", "Europe")) # Asia/Europe only
 
 ttest_result = 
-  t.test(lifeExp ~ continent, data = ttest_data) # base R t.test
+  t.test(lifeExp ~ continent, data = ttest_data)
 ttest_result
 ```
+
 
 \index{functions@\textbf{functions}!t.test}
 
@@ -256,26 +266,43 @@ The difference in means is provided at the bottom of the output.
 The *t*-value, degrees of freedom (df) and p-value are all provided. 
 The p-value is `r ttest_result$p.value %>% round_tidy(5)`. 
 
-The base R output is not that easy to utilise as this is its structure (it is a list rather than a tibble):
+We used the assignent operator to save the results of the t-test into a new object called `ttest_result`.
+If you look at the Environment tab, you should see `ttest_result there`.
+If you click on it - to view it - you'll realise that it's not structured like a table, but a list of different pieces of information.
+The structure of the t-test object is shown in Figure \@ref(fig:chap06-ttest-object).
 
+
+```{r chap06-ttest-object, echo = FALSE, out.width = "100%", fig.cap="A list object that is the result of a t-test in R. We will show you ways to access these numbers and how to wrangle them more familiar tables/tibbles."}
+knitr::include_graphics("images/chapter06/ttest-object.png")
+```
+
+The p-value, for instance, can be accessed like this:
 
 ```{r}
-names(ttest_result)  # Names of elements of result object
-str(ttest_result)    # Details of result object
 ttest_result$p.value # Extracted element of result object
 ```
 
-The `broom` package provides useful methods for 'tidying' common model outputs into a `tibble`. 
-The whole analysis can be constructed as a single piped function. 
+The confidence interval of the difference in mean life expectancy between the two continents:
 
 ```{r}
-library(broom)
-mydata %>%
-  filter(year == 2007) %>%                        # 2007 only
-  filter(continent %in% c("Asia", "Europe")) %>%  # Asia/Europe only
-  t.test(lifeExp ~ continent, data = .) %>%  
-  tidy()
+ttest_result$conf.int # Extracted element of result object
+```
 
+
+The `broom` package provides useful methods for 'tidying' common model outputs into a `tibble`. 
+So instead of accessing the various bits of information by checking the `names()` and then using the `$` operator, we can use functions called `tidy()` and `glance()` to wrangle the statistical output into a table:
+
+```{r include=FALSE}
+library(broom)
+tidy(ttest_result)
+```
+
+
+```{r chap06-tab-ttest, echo=FALSE}
+tidy(ttest_result) %>% 
+  select(-method, -alternative) %>% # removing the last 2 columns, just doesn't fit on the PDF page
+  knitr::kable(booktabs = TRUE, caption = "Results of a t-test wrangled into a table using library(broom).") %>% 
+  kableExtra::kable_styling(font_size=9)
 ```
 
 **Reminder: When pipe sends data to the wrong place: use `data = .` to direct it**
@@ -285,7 +312,7 @@ However, this is not an order that `t.test()` will accept.
 `t.test()` wants us to specify the formula first, and then wants the data these variables are present in. 
 So we have to use the `.` to tell the pipe to send the data to the second argument of `t.test()`, not the first.
 
-### Paired *t*-tests
+### Paired *t*-tests {#ttest_paired}
 \index{t-test@\textbf{t-test}!paired}
 
 Consider that we want to compare the difference in life expectancy in Asian countries between 2002 and 2007.
@@ -312,7 +339,8 @@ We don't usually have to produce this directly, but here is one method.
 ```{r fig.height=3, fig.width=3}
 paired_table = paired_data %>%        # save object paired_data
   select(country, year, lifeExp) %>%  # select vars interest
-  spread (year, lifeExp) %>%          # make wide table
+  pivot_wider(names_from = year,      # put years in columns
+              values_from = lifeExp) %>% 
   mutate(
     dlifeExp = `2007` - `2002`        # difference in means
   )
@@ -325,7 +353,7 @@ paired_table %>% summarise( mean(dlifeExp) )
 ```
 
 On average, therefore, there is an increase in life expectancy of 1.5 years in Asian countries between 2002 and 2007. 
-Let's test whether this number differs from zero with a paired *t*-test. 
+Let's test whether this number differs from zero with a paired *t*-test: 
 
 ```{r}
 paired_data %>% 
@@ -334,31 +362,27 @@ paired_data %>%
 
 \index{functions@\textbf{functions}!t.test}
 
-The results show a highly significant difference (p-value = `r (paired_data %>% t.test(lifeExp ~ year, data = ., paired = TRUE))$p.value %>% round_tidy(15)`). 
-As an exercise you can repeat this analysis comparing these data in an unpaired manner. 
-The resulting (unpaired) p-value is `r (paired_data %>% t.test(lifeExp ~ year, data = .))$p.value %>% round_tidy(3)`.
-
-Why is there such a difference between the two approaches?
-This emphasises just how important it is to plot the data first. 
+The results show a highly significant difference (p-value = `r (paired_data %>% t.test(lifeExp ~ year, data = ., paired = TRUE))$p.value %>% round_tidy(15)`).
 The average difference of 1.5 years is highly consistent between countries, as shown on the line plot, and this differs from zero.
 It is up to you the investigator to interpret the relevance of the effect size of 1.5 years in reporting the finding.
+A highly significant p-value does not necessarily mean there is a (clinically) significant change between the two groups (or in this example, two times).
+
+### What if I run the wrong one?
+
+As an exercise, we can repeat this analysis comparing these data in an unpaired manner. 
+The resulting (unpaired) p-value is `r (paired_data %>% t.test(lifeExp ~ year, data = .))$p.value %>% round_tidy(3)`.
+Remember, a paired t-test of the same data (life expectancies of Asian countries in 2002 and 2007) showed a very different, significant result.
+In this case, running an unpaired two-sample t-test is just wrong - as the data are indeed paired.
+It is important that the investigator really understands the data and the underlying processes/relationships within it.
+R will not know and therefore can not warn you if you run the wrong test.
+
 
 ## Compare the mean of one group: one sample *t*-tests
 
 \index{t-test@\textbf{t-test}!one-sample}
 
 We can use a *t*-test to determine whether the mean of a distribution is different to a specific value. 
-
-The paired *t*-test above is equivalent to a one-sample *t*-test on the calculated difference in life expectancy being different to zero.
-
-```{r}
-# note that we're using dlifeExp
-# so the differences we calculated above
-t.test(paired_table$dlifeExp)
-```
-
-We can compare to values other than zero. 
-For instance, we can test whether the mean life expectancy in each continent was significantly different to 77 years in 2007.
+For instance, we can test whether the mean life expectancy in each continent was significantly different from 77 years in 2007.
 We have included some extra code here to demonstrate how to run multiple tests in one pipe function. 
 
 ```{r}
@@ -374,7 +398,24 @@ mydata %>%
 
 The mean life expectancy for Europe and Oceania do not significantly differ from 77, while the others do.
 In particular, look at the confidence intervals of the results above (`conf.low` and `conf.high` columns) and whether they include or exclude 77.
+For instance, Oceania's confidence intervals are especially wide as the dataset only includes two countries. 
+Therefore, we can't conclude that it's value isn't different to 77, but that we don't have enough observations and the estimate is uncertain. 
+It doesn't make sense to report the results of a statistical test - whether the p-value is significant or not - without assessing the confidence intervals.
 
+### Interchangeability of t-tests
+
+Furthermore, rember how we calculated the table of differences in the paired t-test section?
+We can use these differences for each pair of observations (country's life expectancy in 2002 and 2007) to run a simple one-sample t-test instead:
+
+```{r}
+# note that we're using dlifeExp
+# so the differences we calculated above
+t.test(paired_table$dlifeExp, mu = 0)
+```
+
+<!-- Riinu: I know `mu = 0` is the default, but I think it makes sense to make it excplicitclear in the code example, rather than add another sentence here to say that "we did not include mu = 0 as that's the default?" We should say that we could omit the mu = 0? Don't feel strongly, can also remove it from the code and explain. -->
+
+Notice how this result is identical to the paired t-test.
 
 ## Compare the means of more than two groups
 
@@ -425,26 +466,21 @@ mydata %>%
   tidy()
 ```
 
+The residuals can't statistic (which in the case of ANOVA is an F-value) or a p-value, which is why those cells are `NA`.
+
 ### Assumptions
 
-As with the normality assumption of the *t*-test, there are assumptions of the ANOVA model. 
-These are covered in detail in the linear regression chapter and will not be repeated here. 
+As with the normality assumption of the *t*-test (for example, Sections \@ref(chap06-h3-hist-plot) and \@ref(chap06-h3-qq-plot)), there are assumptions of the ANOVA model. 
+These assumptions are shared with linear regression and are covered in the next chapter, as linear regression lends itself to illustrate and explain these concepts very well. 
 Suffice to say that diagnostic plots can be produced to check that the assumptions are fulfilled. 
+`library(ggfortify)` incldues a function called `autoplot()` that can be used to quickly create diagnostic plots, including the Q-Q plot that we showed before:
 
 ```{r fig.height=6, fig.width=6, fig.cap="Diagnostic plots: ANOVA model of life expectancy by continent for 2007"}
-# par(mfrow=...) is base R's way
-# of combining multiple plots together
-par(mfrow=c(2,2))
-plot(fit)
+library(ggfortify)
+autoplot(fit)
 ```
 
 \FloatBarrier
-
-```{r}
-# back to normal settings:
-par(mfrow=c(1,1))
-```
-
 
 ## Multiple testing
 \index{multiple testing}
@@ -467,12 +503,12 @@ pairwise.t.test(aov_data$lifeExp, aov_data$continent,
 A matrix of pairwise p-values is produced.
 Here we can see that there is good evidence of a difference in means between Europe and Asia. 
 
-The p-values are corrected for multiple comparisons. 
-When performing a hypothesis test at the 5% level (alpha = 0.05), there is a 5% chance of a type 1 error. 
-That is, a 1 in 20 chance of concluding a difference exists when it in fact does not (formally, this is a 1 in 20 chance of rejecting a true null hypothesis). 
-As more simultaneous statistical tests are performed, the chance of a type 1 error increases. 
+When running a pairwise t-test, the p-values are already corrected for multiple comparisons.
+We have to keep in mind that the p-value's significance level of 0.05 means we have a 5% chance of getting a significant result in our sample, but not necessarily in other samples/greater population.
+Therefore, the more statistical tests you perform, the chances of finding a false positive result increases.
+This is also known as Type I error.
 
-There are three approaches to this. The first, is not to perform any correction at all. 
+There are three approaches to deadling with this. The first, is not to perform any correction at all. 
 Some advocate that the best approach is simply to present the results of all the tests that were performed, and let the sceptical reader make adjustments for themselves. 
 This is attractive, but presupposes a sophisticated readership who will take the time to consider the results in their entirety. 
 
@@ -507,7 +543,7 @@ If you are generating hypotheses which you will proceed to test with other metho
 If you are trying to capture robust effects and want to minimise type 2 errors, use a family-wise approach. 
 
 
-## Non-parametric data
+## Non-parametric tests{#chap06-non-param-tests}
 \index{non-parametric tests@\textbf{non-parametric tests}}
 
 What if your data is a different shape to normal, or the ANOVA assumptions are not fulfilled (see linear regression chapter). 
@@ -523,7 +559,7 @@ If a comparison of means approach is reasonable, but the normality assumption is
 2. Perform non-parametric tests.
 
 ### Transforming data {#chap06-transform}
-\index{tranformations}
+\index{transformations}
 
 Remember, the Welch *t*-test is reasonably robust to divergence from the normality assumption, so small deviations can be safely ignored. 
 
@@ -663,8 +699,8 @@ africa_data %>%
                      cont = "median", p = TRUE) %>% 
   knitr::kable(row.names = FALSE, booktabs = TRUE, 
                align = c("l", "l", "r", "r", "r", "r"),
-               caption = "Life expectancy, population and GDPperCap in Africa 1982 v 2007") %>% 
-    kable_styling(latex_options = c("scale_down", "hold_position"))
+               caption = "Life expectancy, population and GDPperCap in Africa 1982 vs 2007") %>% 
+  kable_styling(latex_options = c("scale_down", "hold_position"))
 ```
 
 \index{functions@\textbf{functions}!summary\_factorlist}

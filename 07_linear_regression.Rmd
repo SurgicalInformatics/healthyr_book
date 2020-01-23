@@ -35,14 +35,16 @@ Figure \@ref(fig:chap07-fig-regression) shows a linear regression example.
 Each point is a person.
 The explanatory variable is average number of cups of coffee per day $(x)$ and systolic blood pressure is the dependent variable $(y)$. 
 This next bit is important!
-**These data are made up, fake, randomly generated, fabricated, not real.** 
+**These data are made up, fake, randomly generated, fabricated, not real.^[These data are created on the fly by the Shiny apps that are linked and explained in this chapter. This enables you to explore the different concepts using the same variables.
+For example, if you tell the multivariable app that coffee and smoking should be confounded, it will change the underlying dataset to conform. 
+You can then investigate the output of the regression model to see how that corresponds to the "truth" (that in this case, you control).]** 
 So please do not alter your coffee habit on the basis of these plots!
 
-```{r chap07-fig-regression, echo = FALSE, fig.cap="The anatomy of a regression plot."}
-knitr::include_graphics("images/chapter07/1_regression_terms.pdf")
+```{r chap07-fig-regression, echo = FALSE, fig.cap="The anatomy of a regression plot. A - univariable linear regression, B - multivariable linear regression."}
+knitr::include_graphics("images/chapter07/1_regression_terms.png", auto_pdf = TRUE)
 ```
 
-### Fitting a regression line
+### Fitting a regression line {#chap07-linreg-fit}
 \index{linear regression@\textbf{linear regression}!fitted line}
 
 Simple linear regression uses the *ordinary least squares* method for fitting. 
@@ -54,17 +56,19 @@ For the line to fit best, the distances between it and the observed data should 
 The distance from each observed point to the line is called a *residual* - one of those statistical terms that bring on the sweats. 
 It refers to the residual difference left over after the line is fitted. 
 
-You can use the [simple regression shiny app](https://argoshare.is.ed.ac.uk/simple_regression) to explore the concept. 
+You can use the [simple regression Shiny app](https://argoshare.is.ed.ac.uk/simple_regression) to explore the concept.
 We want the residuals to be as small as possible. 
 We can square each residual (to get rid of minuses and make the algebra more convenient) and add them up. 
 If this number is as small as possible, the line is fitting as best it can. 
-Or in more formal language, we want to minimise the sum of squared residuals. 
+Or in more formal language, we want to minimise the sum of squared residuals.
 
-```{r chap07-fig-residuals, echo = FALSE, fig.cap="How a regression line is fitted."}
-knitr::include_graphics("images/chapter07/2_residuals.pdf")
+The regression apps and example figures in this chapter have been adapted from https://github.com/mwaskom/ShinyApps and https://github.com/ShinyEd/intro-stats with permission from Michael Waskom and Mine Çetinkaya-Rundel, respectively.
+
+```{r chap07-fig-residuals, echo = FALSE, fig.cap="How a regression line is fitted. A - residuals are the green lines: the distance between each data point and the fitted line. B - the green circle indicates the minimum for these data, its absolute value is not meaningful or comparable with other datasets. Follow the \"simple regression Shiny app\" link to interact with the fitted line. A new sum of squares of residuals (the black cross) is calculated every time you move the line. C - Distribution of the residuals. App and plots adapted from https://github.com/mwaskom/ShinyApps with permission." }
+knitr::include_graphics("images/chapter07/2_residuals.png", auto_pdf = TRUE)
 ```
 
-The regression apps and example figures in this chapter have been adapted from https://github.com/mwaskom/ShinyApps and https://github.com/ShinyEd/intro-stats with permission.
+
 
 ### When the line fits well
 
@@ -100,15 +104,15 @@ If the observations are not equally distributed around the line, the histogram o
 *Equal variance of residuals*
 
 The distance of the observations from the fitted line should be the same on the left side as on the right side. 
-Look at the fan-shaped data on the [simple regression diagnostics shiny app](https://argoshare.is.ed.ac.uk/simple_regression_diagnostics). 
+Look at the fan-shaped data on the simple regression diagnostics Shiny app. 
 This fan shape can be seen on the residuals vs. fitted values plot. 
 
 Everything we talk about in this chapter is really about making sure that the line you draw through your data points is valid.
 It is about ensuring that the regression line is appropriate across the range of the explanatory variable and dependent variable.
 It is about understanding the underlying data, rather than relying on a fancy statistical test that gives you a *p*-value. 
 
-```{r chap07-fig-diags, echo = FALSE, fig.cap="Regression diagnostics. A - this is what a linear fit should look like. B - this is not approriate, a non-linear model should be used instead."}
-knitr::include_graphics("images/chapter07/3_diags.pdf")
+```{r chap07-fig-diags, echo = FALSE, fig.cap="Regression diagnostics. A - this is what a linear fit should look like. B - this is not approriate, a non-linear model should be used instead. App and plots adapted from adapted from https://github.com/ShinyEd/intro-stats with permission."}
+knitr::include_graphics("images/chapter07/3_diags.png", auto_pdf = TRUE)
 ```
 
 ### The fitted line and the linear equation
@@ -118,7 +122,7 @@ We promised to keep the equations to a minimum, but this one is so important it 
 Figure \@ref(fig:chap07-fig-equation) links the fitted line, the linear equation, and the output from R. Some of this will likely be already familiar to you. 
 
 Figure \@ref(fig:chap07-fig-equation)A shows a scatter plot with fitted lines from a multivariable linear regression model. 
-The plot is taken from the [multivariable regression shiny app](https://argoshare.is.ed.ac.uk/multi_regression/). 
+The plot is taken from the [multivariable regression Shiny app](https://argoshare.is.ed.ac.uk/multi_regression/). 
 Remember, these data are simulated and are not real. 
 This app will really help you understand different regression models, more on this below. 
 The app allows us to specify "the truth" with the sliders on the left hand side. 
@@ -134,7 +138,7 @@ In this example, the random sample from our true population specified above show
 A *p*-value is provided ($Pr(> \left| t \right|)$), which is the result of a null hypothesis significance test for the slope of the line being equal to zero. 
 
 ```{r chap07-fig-equation, echo = FALSE, fig.cap="Linking the fitted line, regression equation and R output."}
-knitr::include_graphics("images/chapter07/4_equation.pdf")
+knitr::include_graphics("images/chapter07/4_equation.png", auto_pdf = TRUE)
 ```
 
 ### Effect modification
@@ -145,7 +149,7 @@ Effect modification occurs when the size of the effect of the explanatory variab
 Said another way, this is a situation in which an explanatory variable differentially (positively or negatively) modifies the observed effect of another explanatory variable on the outcome.
 
 
-Figure \@ref(fig:chap07-fig-dags) shows three potential causal pathways using examples from the [multivariable regression shiny app](https://argoshare.is.ed.ac.uk/multi_regression/). 
+Figure \@ref(fig:chap07-fig-dags) shows three potential causal pathways using examples from the [multivariable regression Shiny app](https://argoshare.is.ed.ac.uk/multi_regression/). 
 
 In the first, smoking is not associated with the outcome (blood pressure) or our explanatory variable of interest (coffee consumption). 
 
@@ -156,7 +160,7 @@ In the third, smoking is associated with elevated blood pressure and with coffee
 This is an example of confounding. 
 
 ```{r chap07-fig-dags, echo = FALSE, fig.cap="Causal pathways, effect modification and confounding."}
-knitr::include_graphics("images/chapter07/5_dags.pdf")
+knitr::include_graphics("images/chapter07/5_dags.png", auto_pdf = TRUE)
 ```
 
 *Additive vs. multiplicative effect modification (interaction)*
@@ -193,7 +197,7 @@ Note, we are just trying to find a model which best describes the underlying dat
 All models are approximations of reality. 
 
 ```{r chap07-fig-types, echo = FALSE, fig.cap="Multivariable linear regression with additive and multiplicative effect modification."}
-knitr::include_graphics("images/chapter07/6_types.pdf")
+knitr::include_graphics("images/chapter07/6_types.png", auto_pdf = TRUE)
 ```
 
 ### R-squared and model fit
@@ -237,7 +241,7 @@ Two parallel flat lines indicating no effect of coffee on blood pressure, but a 
 This procedure is referred to as controlling for or adjusting for confounders. 
 
 ```{r chap07-fig-confounding, echo = FALSE, fig.cap="Multivariable linear regression with confounding of coffee drinking by smoking."}
-knitr::include_graphics("images/chapter07/7_confounding.pdf")
+knitr::include_graphics("images/chapter07/7_confounding.png", auto_pdf = TRUE)
 ```
 
 ### Summary
@@ -420,10 +424,9 @@ Multivariable linear regression (interaction):
 This equivalent to:
 `myfit = lm(lifeExp ~ year + country + year:country, data = mydata)`
 
-These examples of multivariable regression include two variables: `year` and `country`, but we could include more by adding them with `+`.
+These examples of multivariable regression include two variables: `year` and `country`, but we could include more by adding them with `+`, it does not just have to be two.
 
-In this particular setting, it will become obvious which model is appropriate.
-So we have complete control over the model being fitted, we will use the `predict()` function directly to obtain our fitted line (rather than the `geom_smooth()` as before).  
+We will now create three different linear regression models to further illustrate the difference between a simple model, additive model, and multiplicative model.
 
 *Model 1: year only*
 
@@ -436,13 +439,11 @@ fit_both1 = mydata_UK_T %>%
   lm(lifeExp ~ year_from1952, data = .)
 fit_both1
 
-pred_both1 = predict(fit_both1)
-
 mydata_UK_T %>% 
-  bind_cols(pred_both = pred_both1) %>% 
+  mutate(pred_lifeExp = predict(fit_both1)) %>% 
   ggplot() + 
   geom_point(aes(x = year, y = lifeExp, colour = country)) +
-  geom_line(aes(x = year, y = pred_both))
+  geom_line(aes(x = year, y = pred_lifeExp))
 ```
 
 By fitting to year only (`lifeExp ~ year_from1952`), the model ignores country.
@@ -450,19 +451,36 @@ This gives us a fitted line which is the average of life expectancy in the UK an
 This may be desirable, depending on the question.
 But here we want to best describe the data. 
 
+
+**How we made the plot and what does `predict()` do?**
+Previously, we were using `geom_smooth(method = "lm")` to conveniently add linear regression lines on a scatterplot.
+When a scatterplot includes categorical value (e.g., the points are coloured by a variable), the regression lines `geom_smooth()` draws are multiplicative.
+That is great, and almost always exactly what we want. 
+Here, however, to illustrate the difference between the different models, we will have to use the `predict()` model and `geom_line()` to have full control over the plotted regression lines.
+
+```{r}
+mydata_UK_T %>% 
+  mutate(pred_lifeExp = predict(fit_both1)) %>% 
+  select(country, year, lifeExp, pred_lifeExp) %>% 
+  group_by(country) %>%
+  slice(1, 6, 12)
+```
+
+Note how the `slice()` function recognises group_by() and in this case shows us the 1st, 6th, and 12th observation within each group.
+
+
+
 *Model 2: year + country*
 ```{r fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Life expectancy in Turkey and the UK - multivariable additive fit."}
 fit_both2 = mydata_UK_T %>% 
   lm(lifeExp ~ year_from1952 + country, data = .)
 fit_both2
 
-pred_both2 = predict(fit_both2)
-
 mydata_UK_T %>% 
-  bind_cols(pred_both = pred_both2) %>% 
+  mutate(pred_lifeExp = predict(fit_both2)) %>% 
   ggplot() + 
   geom_point(aes(x = year, y = lifeExp, colour = country)) +
-  geom_line(aes(x = year, y = pred_both, colour = country))
+  geom_line(aes(x = year, y = pred_lifeExp, colour = country))
 ```
 
 This is better, by including country in the model, we now have fitted lines more closely representing the data.
@@ -477,36 +495,43 @@ fit_both3 = mydata_UK_T %>%
   lm(lifeExp ~ year_from1952 * country, data = .)
 fit_both3
 
-pred_both3 = predict(fit_both3)
-
 mydata_UK_T %>% 
-  bind_cols(pred_both = pred_both3) %>% 
+  mutate(pred_lifeExp = predict(fit_both2)) %>% 
   ggplot() + 
   geom_point(aes(x = year, y = lifeExp, colour = country)) +
-  geom_line(aes(x = year, y = pred_both, colour = country))
+  geom_line(aes(x = year, y = pred_lifeExp, colour = country))
 ```
 
 This fits the data much better than the previous two models.
 You can check the R-squared using `summary(fit_both3)`.
 
-*Pro tip*
+**Advanced tip:** we can apply a function on multiple objects at once by putting them in a `list()` and using a `map_()` function from the **purrr** package. `library(purrr)` gets installed and loaded with `library(tidyverse)`, but it is outwith the scope of this book. Do look it up once you get a little more comfortable with using R, and realise that you are starting to do similar things over and over again. For example, this code:
 
-```{r}
-library(purrr)
-list(fit_both1, fit_both2, fit_both3) %>% 
-  map_df(glance, .id = "fit")
+```{r results = 'hide'}
+mod_stats1 = glance(fit_both1)
+mod_stats2 = glance(fit_both2)
+mod_stats3 = glance(fit_both3)
+
+bind_rows(mod_stats1, mod_stats2, mod_stats3)
 ```
+
+returns the exact same thing as:
+```{r}
+list(fit_both1, fit_both2, fit_both3) %>% 
+  map_df(glance)
+```
+
+What happens here is that `map_df()` applies a function on each object in the list it gets passed, and returns a df (data frame). In this case, the function is `glance()` (note that once inside `map_df()`, `glance` does not have its own brackets.
 
 ### Check assumptions
 
 The assumptions of linear regression can be checked with diagnostic plots, either by passing the fitted object (`lm()` output) to base R `plot()`, or by using the more convenient function below. 
 
-```{r fig:chap07-diags-example, fig.height=5, fig.width=5.4, fig.cap="Diagnostic plots. Life expectancy in Turkey and the UK - multivariable multiplicative fit"}
+```{r chap07-diags-example, fig.height=5, fig.width=5.4, fig.cap="Diagnostic plots. Life expectancy in Turkey and the UK - multivariable multiplicative model."}
 library(ggfortify)
 autoplot(fit_both3)
 ```
 
-There is no clear problem with the residuals, as we would expect from the scatterplot with fitted lines. 
 
 ## Fitting more complex models
 

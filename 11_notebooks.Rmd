@@ -25,7 +25,7 @@ They combine analysis and reporting in one human-readable document to provide an
 This is sometimes called "literate programming", given the resulting logical structure of information can be easily read in the manner a human would read a book.  
 
 ```{r chap11-fig-literate, echo = FALSE, fig.cap="Traditional versus literate programming using Notebooks."}
-knitr::include_graphics("images/chapter11/1_literate_programming.pdf")
+knitr::include_graphics("images/chapter11/1_literate_programming.png", auto_pdf = TRUE)
 ```
 
 In our own work, we have now moved to doing most of our analyses in a Notebook file, rather than using a "script" file.  
@@ -54,7 +54,7 @@ It is easy to format headings, bold text, italics etc.
 Within RStudio there is a Quick Reference guide (Figure \@ref(fig:chap11-fig-help)) and links to the [RStudio cheatsheets](https://www.rstudio.com/resources/cheatsheets) can be found in the Help drop-down menu.
 
 ```{r chap11-fig-help, echo = FALSE, fig.cap="RStudio Markdown quick reference guide."}
-knitr::include_graphics("images/chapter11/3_help.pdf")
+knitr::include_graphics("images/chapter11/3_help.png", auto_pdf = TRUE)
 ```
 
 
@@ -106,7 +106,7 @@ This is simply where many of the settings/options for file creation are placed.
 In RStudio, these often update automatically as different settings are invoked in the Options menu. 
 
 ```{r chap11-fig-anatomy, echo = FALSE, fig.cap="The Anatomy of a Notebook/Markdown file. Input (left) and output (right)"}
-knitr::include_graphics("images/chapter11/2_anatomy_rotated.pdf")
+knitr::include_graphics("images/chapter11/2_anatomy_rotated.png", auto_pdf = TRUE)
 ```
 
 ### R code chunks
@@ -226,7 +226,7 @@ There are options for running all the chunks above the current chunk you are wor
 This is useful as a chunk you are working on will  often rely on objects created in preceding chunks. 
 
 ```{r chap11-fig-options, echo = FALSE, fig.cap="Chunk and document options in Notebook/Markdown files."}
-knitr::include_graphics("images/chapter11/4_notebook_options_rotated.pdf")
+knitr::include_graphics("images/chapter11/4_notebook_options_rotated.png", auto_pdf = TRUE)
 ```
 
 It is good practice to use the `Restart R and Run All Chunks` option in the `Run` menu every so often. 

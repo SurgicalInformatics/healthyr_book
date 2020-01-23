@@ -543,6 +543,11 @@ If you are generating hypotheses which you will proceed to test with other metho
 If you are trying to capture robust effects and want to minimise type 2 errors, use a family-wise approach. 
 
 
+If your head is spinning at this point, do not worry - there is more to come.
+The rest of the book will continuously revisit these and other similar concepts, e.g., "know your data", "be sensible, look at the effect size", using several different examples and dataset.
+So do not feel like you should be able to understand everything immediately.
+Furthermore, these things are even easier to conceptualise using your own dataset - especially if that's something you've put your sweat and tears into collecting/applying for.
+
 ## Non-parametric tests{#chap06-non-param-tests}
 \index{non-parametric tests@\textbf{non-parametric tests}}
 

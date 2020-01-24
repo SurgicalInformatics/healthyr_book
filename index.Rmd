@@ -46,10 +46,12 @@ lapply(healthyr_notebooks, function(pkg) {
 
 # Preface {-}
 
-This is the electronic version of the HealthyR book that is published by CRC Press/Chapman & Hall in summer 2020.
-The electronic version will always be freely and fully available.
+**DRAFT**
 
-HealthyR resources: [healthyr.surgicalinformatics.orgs](https://healthyr.surgicalinformatics.org/)
+This is the electronic version of the HealthyR book to be published by CRC Press/Chapman & Hall in summer 2020.
+The electronic version will always be freely available.
+
+HealthyR resources: [healthyr.surgicalinformatics.org](https://healthyr.surgicalinformatics.org/)
 
 
 Version 0.9.7

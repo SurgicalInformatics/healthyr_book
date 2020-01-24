@@ -82,7 +82,7 @@ Linear regression modelling has four main assumptions:
 
 You can use the [simple regression diagnostics shiny app](https://argoshare.is.ed.ac.uk/simple_regression_diagnostics) to get a handle on these. 
 
-Figure \@ref(fig:chap07-fig-diags) shows diagnostic plots from the app, which we will run ourselves below Figure \@ref(fig:chap07-fig-diags-example). 
+Figure \@ref(fig:chap07-fig-diags) shows diagnostic plots from the app, which we will run ourselves below Figure \@ref(fig:chap07-diags-example). 
 
 *Linear relationship*
 

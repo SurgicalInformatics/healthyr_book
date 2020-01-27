@@ -124,8 +124,13 @@ So when you go to **Packages**, click **Install**, type in `tidyverse`, a whole 
 Even though you've installed the `tidyverse` packages, you'll still need to tell R when you're about to use them.
 We usually include `library(tidyverse)` at the top of every script:
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(tidyverse)
+```
+
+
+```{r, echo = FALSE}
+knitr::include_graphics("images/chapter01/tidyverse_loading_messages.png")
 ```
 
 We can see that it has loaded 8 packages (`ggplot2`, `tibble`, `tidyr`, `readr`, `purrr`, `dplyr`, `stringr`, `forcats`), the number behind a package name is its version.

@@ -9,290 +9,35 @@ editor_options:
 <!-- Need to do TD corrections from file: -->
 <!-- \HealthyR\Book\draft -->
 
-
-
 ```{r, include = FALSE}
 library(tidyverse)
 ```
 
+Throughout this book, we are conscious of the balance between theory and practice.
+For example, some learners may prefer to get all definitions laid out before they are shown an example making use of the new concepts.
+Others, however, would much rather see piecemealed sections of practical examples and explanations.
+We strike a balance between these two approaches that works well for most people in our audience.
+
+This means that sometimes we will show you an example that may use words that have not been formally introduced yet.
+For example, we start this chapter with data import -  as R is nothing without data.
+But doing so, we have to use the word "argument" that is only defined two sections later (in \@ref(chap02-objects-functions) "Objects and functions").
+A few similar instances arise around statistical concepts in the Data Analysis part of the book. 
+You will come across sentences along the lines of "this concept will be explained further or become clearer in the next section/chapter".
+Trust us and just go with it.
+
+
 The aim of this chapter is to familiarise you with how R works. 
-We will read in data and start basic manipulations. 
+We will read in data and start basic manipulations. You may want to skip parts of this chapter if you already:
 
+* have found the Import Dataset interface
+* know what numbers, characters, factors, and dates look like in R
+* are familiar with the terminology around objects, functions, arguments
+* have used the pipe: `%>%`
+* know the filtering operators (e.g., `==, >, <, &, |`, etc,)
+* know how to handle NAs, and why they can behave weirdly in a filter
+* have used `mutate()`, `c()`, `paste()`, `if_else()`, and the joins
 
-## Getting help
-\index{help}
 
-RStudio has a built in **Help** tab. 
-To use the Help tab, click your cursor on something in your code (e.g. `read_csv()`) and press F1. This will show you the definition and some examples. 
-
-However, the **Help** tab is only useful if you already know what you are looking for but can't remember exactly how it works. 
-For finding help on things you have not used before, it is best to Google it. 
-R has about 2 million users so someone somewhere has had the same question or problem.
-
-Another useful source in the RStudio **Help** dropdown menu is **Cheatsheets**. 
-These tightly packed two-pagers include many of the most useful functions from **tidyverse** packages. 
-They are not particularly useful to learn from, but invaluable as an *aide-smemoire*. 
-
-
-## Objects and functions
-\index{objects}
-\index{functions@\textbf{functions}}
-
-<!-- Please see Tom's comments in additional file in draft folder. -->
-<!-- Move tibble description out of footnotes etc. -->
-
-There are two fundamental concepts in statistical programming that it is important to get straight from the outset - objects and functions. 
-As throughout this book, we will introduce new concepts using specific examples first.
-
-The most common data object you will be working with is a table.
-This is something with rows and columns much like the example in Table \@ref(tab:chap2-tab-examp1).
-
-<!-- Consider removing. Bit confusing and too much for first few paragraphs in-->
-
-<!-- It should be regular, e.g., the made-up example in Table \@ref(tab:chap2-tab-examp1). -->
-<!-- ^[Regular does not mean it can't have missing values. -->
-<!-- Missing values are denoted `NA` which stands for either `Not available` or `Not applicable`.  -->
-<!-- In same contexts, these things can have a different meaning.  -->
-<!-- For example, since `var2` is `NA` for all male subjects, it may mean "Not applicable", i.e. something that can only be measured in females. -->
-<!-- Whereas in `var3`, `NA` is more likely to mean "Not available" so real missing data, e.g. lost to follow-up.] -->
-
-```{r chap2-tab-examp1, echo = FALSE}
-mydata = tibble(id   = 1:4,
-       sex  = c("Male", "Female", "Female", "Male"),
-       var1 = c(4, 1, 2, 3),
-       var2 = c(NA, 4, 5, NA),
-       var3 = c(2, 1, NA, NA))
-
-mydata %>% 
-  knitr::kable(booktabs = TRUE, caption = "Example of a table including missing values denoted NA (Not applicable/Not available).") %>% 
-  kableExtra::kable_styling(font_size=8)
-```
-
-A table can live anywhere: on paper, in a Spreadsheet, in an SQL database, or it can live in your R Session's Environment. 
-And yes, R sessions are as fun as they sound, almost as fun as music sessions. 
-
-We usually initiate and interface R using RStudio, but everything we talk about here (objects, functions, sessions, environment) also work when RStudio is not available, but R is. 
-This can be the case if you are working on a supercomputer that can only serve the R Console, and not an RStudio IDE (reminder from first chapter: Integrated Development Environment). 
-
-So, regularly shaped data in rows and columns is called a table when it lives outside R, but once you read it into R (import it), we call it a tibble.
-^[There is also the original version of tables in R - they are called data frames. 
-In most cases, `data frames` and `tibbles` work interchangeably, but `tibbles` often work better. 
-Another great alternative to base R `data frames` are `data tables`. 
-In this book, and for most of our day-to-day work these days, we will use `tibbles`.]
-
-When you are in one of your very cool R sessions and read in some data, it goes into this session's Environment. 
-Everything in your Environment needs to have a name. 
-You will likely have many objects such as tibbles going on at the same time. 
-Note that `tibble` is what the thing is, rather than its name. 
-This is the `class` of an object. 
-
-To keep our code examples easy to follow, we call our example tibble `mydata`. 
-In a real analysis, you should give your tibbles meaningful names, e.g., `patient_data`, `lab_results`, `annual_totals`, etc.
-
-So, the tibble named `mydata` is example of an object that can be in the Environment of your R Session:
-
-```{r}
-mydata
-```
-
-So what is a function?
-
-A function is a procedure which takes some information (input), does something to it, and passes back the modified information (output).
-
-A simple function that can be applied to numeric data for instance is `mean()`. 
-
-R functions always have round brackets after their name. 
-This is for two reasons. 
-First, it easily differentiates them as functions - you will get used to reading them like this.  
-Second, and more important, we can put **arguments** in these brackets. 
-
-Arguments can also be thought of as input.
-In data analysis, the most common input for a function is data - we need to give `mean()` some data to average over. 
-It does not make sense (nor will it work) to feed it the whole tibble with multiple columns, including patient IDs and a categorical variable (`sex`). 
-
-To quickly extract a single column, we use the `$` symbol like this:
-\index{symbols@\textbf{symbols}!select column \texttt{\$}}
-
-```{r}
-mydata$var1
-```
-
-You can ignore the `## [1]` at the beginning of the extracted values - this is something that becomes more useful when printing multiple lines of data as the number in the square brackets keeps count on how many values we are seeing.
-
-We can then use `mydata$var1` as the first argument of `mean()` by putting it inside its brackets:
-
-```{r}
-mean(mydata$var1)
-```
-
-Which tells us that the mean of `var1` (`r mydata$var1`) is `r mean(mydata$var1)`.
-In this example, `mydata$var1` is the first and only argument to `mean()`.
-But what happens if we try to calculate the average value of `var2` (`r mydata$var2`)?
-
-```{r}
-mean(mydata$var2)
-```
-
-We get an `NA` ("Not applicable").
-We would expect to see an `NA` if we tried to, for example, calculate the average of `sex`:
-
-```{r, error=TRUE}
-mean(mydata$sex)
-```
-
-In fact, in this case, R also gives us a pretty clear warning suggesting it can't compute the mean of an argument that is not numeric or logical. 
-The sentence actually reads pretty fun, as if R was saying it was not logical to calculate the mean of something that is not numeric. 
-
-But what R is actually saying that it is happy to calculate the mean of two types of variables: numerics or logicals, but what you have passed is neither.
-^[Logical is a data type with two potential values: TRUE or FALSE.
-We will come back to data types.]
-
-So why does `mean(mydata$var2)` return `NA` rather than the mean of the numeric values included in this column?
-That is because the column itself includes missing values (`NAs`), and R does not want to average over NAs implicitly.
-It is being cautious - what if you didn't know there were missing values for some patients?
-If you wanted to compare the means of `var1` and `var2` without any further filtering, you would be comparing samples of different sizes. 
-
-If you decide to ignore the NAs and want to calculate the mean anyway, you can do so by adding another argument to `mean()`:
-
-\index{missing values remove \texttt{na.rm}}}
-
-```{r}
-mean(mydata$var2, na.rm = TRUE)
-```
-
-Adding `na.rm = TRUE` tells R that you are happy for it to calculate the mean of any existing values (but to remove - `rm` - the `NA` values).
-This 'removal' excludes the NAs from the calculation, it does not affect the actual tibble (`mydata`) holding the dataset. 
-
-R is case sensitive, so `na.rm`, not `NA.rm` etc. 
-There is, however, no need to memorize how the arguments of functions are exactly spelled - this is what the Help tab is for (press `F1` when the cursor is on the name of the function). 
-Help pages are built into R, so an internet connection is not required for this.
-
-> Make sure to separate multiple arguments with commas or R will give you an error of `Error: unexpected symbol`.
-
-Finally, some functions do not need any arguments to work.
-A good example is the `Sys.time()` which returns the current time and date. 
-This is very useful when using R to generate and update reports automatically.
-Including this means you can always be clear on when the results were last updated.
-
-\index{functions@\textbf{functions}!Sys.time}
-\index{system time}
-
-```{r}
-Sys.time()
-```
-
-To summarise, objects and functions work hand in hand. 
-Objects are both an input as well as the output of a function (what the function returns). 
-
-When passing data to a functon is is usually its first argument, with further arguments used to specify behaviour. 
-
-When we say "the function returns", we are referring to its output (or an Error if it's one of those days).
-
-The returned object can be different to its input object.
-In our `mean()` example above, the input object was a column (`mydata$var1`: `r mydata$var1`), whereas the output was a single value: `r mean(mydata$var1)`.
-
-## Working with Objects
-
-To create a new object in our Environment we use the equals sign:
-\index{symbols@\textbf{symbols}!assignment \texttt{=}}
-
-```{r}
-a = 103
-```
-
-This reads: the object `a` is assigned value `r a`. 
-You know that the assignment worked when it shows up in the Environment tab.
-If we now run `a` just on its own, it gets printed back to us:
-
-```{r}
-a
-```
-
-Similarly, if we run a function without assignment to an object, it gets printed but not saved in your Environment:
-\index{functions@\textbf{functions}!seq}
-
-```{r}
-seq(15, 30)
-```
-
-`seq()` is a function that creates a sequence of numbers (+1 by default) between the two arguments you pass to it in its brackets. 
-We can assign the result of `seq(15, 30)` into an object, let's call it `example_sequence`:
-
-```{r}
-example_sequence = seq(15, 30)
-```
-
-Doing this creates `example_sequence` in our Environment, but it does not print it. 
-
-> If you save the results of an R function in an object, it does not get printed. 
-> If you run a function without the assignment (`=`), its results get printed, but not saved in an object.
-
-You can call your object pretty much anything you want, as long as it starts with a letter. 
-It can then include numbers as well, for example, we could have named the new object `sequence_15_to_30`.
-Spaces in object names are not easy to work with, we tend to use underscores in their place, but you could also use capitalization, e.g. `exampleSequence = seq(15, 30)`.
-
-Finally, R doesn't mind overwriting an existing object, for example (notice how we then include the variable on a new line to get it printed as well as overwritten):
-
-```{r}
-example_sequence = example_sequence/2
-
-example_sequence
-```
-
-
->Note that many people use `<-` instead of `=`. 
->They mean the same thing in R: both `=` and `<-` save what is on the right into an object with the name on the left. 
->There is also a left-to-right operator: `->`.
-
-## Pipe - `%>%` 
-\index{symbols@\textbf{symbols}!pipe \texttt{\%>\%}}
-\index{pipe@\textbf{pipe}}
-
-The pipe - denoted `%>%` - is probably the oddest looking thing you'll see in this book. 
-But please bear with, it is not as scary as it looks! 
-Furthermore, it is super useful. 
-We use the pipe to send objects into functions.
-
-In the above examples, we calculated the mean of column `var1` from `mydata` by `mean(mydata$var1)`. With the pipe, we can rewrite this as:
-
-```{r}
-library(tidyverse)
-mydata$var1 %>% mean()
-```
-
-Which reads: "Working with `mydata`, we select a single column called `var1` (with the `$`) **and then** calculate the `mean()`." The pipe becomes especially useful once the analysis includes multiple steps applied one after another. 
-A good way to read and think of the pipe is **"and then"**.
-
-This piping business is not standard R functionality and before using it in a script, you need to tell R this is what you will be doing.
-The pipe comes from the **magrittr** package (Figure \@ref(fig:chap2-fig-pipe)), but loading the **tidyverse** will also load the pipe.
-So library(tidyverse) initialises everything you need (no need to include library(magrittr) explicitly).
-
->To insert a pipe `%>%`, use the keyboard shortcut `Ctrl+Shift+M`.
-
-With or without the pipe, the general rule "if the result gets printed it doesn't get saved" still applies. 
-To save the result of the function into a new object (so it shows up in the Environment), you need to add the name of the new object with the assignment operator (`=`):
-
-```{r}
-mean_result = mydata$var1 %>% mean()
-```
-
-```{r chap2-fig-pipe, echo = FALSE, fig.cap="This is not a pipe. René Magritte inspired artwork by Stefan Milton Bache (creator of `%>%` in R). Image source: https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html"}
-knitr::include_graphics("images/chapter02/magrittr.png")
-```
-
-### When pipe sends data to the wrong place: use `, data = .` to direct it
-
-The pipe usually sends data to the beginning of function brackets (as most of the functions we use expect a tibble as the first argument). 
-So `mydata %>% lm(dependent~explanatory)` is equivalent to `lm(mydata, dependent~explanatory)` (`lm()` stands for linear model introduced in detail in Chapter \@ref(chap07-h1). 
-
-However, the `lm()` function does not expect data as its first argument. 
-`lm()` wants us to specify the variables first (`dependent~explanatory`), and then wants the tibble these columns are in.
-So we have to use the `.` to tell the pipe to send the data to the second argument of `lm()`, not the first, e.g.
-
-```{r, eval = FALSE}
-mydata %>% 
-  lm(var1~var2, data = .)
-```
 
 ## Reading data into R{#chap02-h2-reading-data-into-r}
 \index{import data}
@@ -410,7 +155,560 @@ p2 = gbd_short %>%
 p1/p2 + plot_annotation(tag_levels = "A")
 ```
 
-\clearpage
+## Variable types and why we care
+\index{variable types@\textbf{variable types}}
+\index{continuous data@\textbf{continuous data}!variable types}
+\index{categorical data@\textbf{categorical data}!variable types}
+\index{date-time@\textbf{date-time}}
+
+There are three broad types of data: 
+
+* continuous (numbers), in R: numeric, double, or integer; 
+* categorical, in R: character, factor, or logical (TRUE/FALSE); 
+* date/time, in R: POSIXct date-time^[Portable Operating System Interface (POSIX) is a set of computing standards. There's nothing more to understand about this other than when R starts shouting "POSIXct this or POSIXlt that" at you, check your date and time variables].
+
+Values within a column all have to be the same type, but a tibble can of course hold columns of different types.
+Generally, R is very good at figuring out what type of data you have (in programming, this 'figuring out' is called 'parsing').
+
+For example, when reading in data, it will tell you what it assumed for the columns:
+
+```{r}
+library(tidyverse)
+typesdata = read_csv("data/typesdata.csv")
+
+typesdata
+```
+
+This means that a lot of the time you do not have to worry about those little `<chr>` vs `<dbl>` vs `<S3: POSIXct>` labels, R knows what its doing.
+But in cases of irregular or faulty input data, or when doing a lot of calculations and modifications your data, we need to be aware of these different types to be able to find and fix mistakes.
+
+For example, consider a very similar file as above but with a couple of data entry issues:
+
+```{r}
+typesdata_faulty = read_csv("data/typesdata_faulty.csv")
+
+typesdata_faulty
+```
+
+Notice R parsed both measurement and date as characters. 
+The first one is a data entry issue: the person taking the measurement couldn't decide which value to note down (maybe the scale was shifting between the two values) so they included both values and text "or" in the cell. 
+
+A numeric variable will also get parsed as a categorical variable if it contains certain typos, e.g., if entered as "3..7" instead of "3.7". 
+
+The reason R didn't automatically make sense of the date column is that it can't tell which is the date and which is the year: __02-Jan-17__ could stand for _02-Jan-2017_ as well as _2002-Jan-17_.
+
+Therefore, while a lot of the time you do not have to worry about variable types and can just get on with your analysis, it is important to understand what the different types are to be ready to deal with them when issues arise. 
+
+>Since health datasets are generally full of categorical data, it is crucial to understand the difference between characters and factors (both are types of categorical variables in R with pros and cons).
+
+So here we go.
+
+### Numeric variables (continuous)
+\index{variable types@\textbf{variable types}!continuous / numeric}
+
+Number are straightforward to handle and don't usually cause trouble. 
+R usually refers to numbers as `numeric` (or `num`), but sometimes it really gets its nerd on and also calls numbers `integer` or `double`.
+Integers are numbers without decimal places (e.g., `1, 2, 3`), whereas `double` stands for "Double-precision floating-point" format (e.g., `1.234, 5.67890`).
+
+It doesn't usually matter whether R is classifying your continuous data `numeric/num/double/int`, but it is good to be aware of these different terms as you will see them in R messages.
+
+> FRIENDLY WARNING: What's about to follow is a bit dry. Furthermore, it is not essential for complete beginners - you might want to continue reading from __Characters variables__.
+Before you leave, take a mental note that sometimes numbers in R have more decimal places than it seems, and that can cause funny behaviour when using the double equals operator (`==`).
+
+Something to note about numbers is that R doesn't usually print more than 6 decimal places, but that doesn't mean they don't exist.
+For example, from the `typedata` tibble, we're taking the `measurement` column and sending it to the `mean()` function. 
+R then calculates the mean and tells us what it is with 6 decimal places:
+
+
+```{r}
+typesdata$measurement %>% mean()
+```
+Let' save that in a new object:
+
+```{r}
+measurement_mean = typesdata$measurement %>% mean()
+```
+
+But when using the double equals operator to check if this is equivalent to a fixed value (you might do this when comparing to a threshold, or even another mean value), R returns `FALSE`:
+
+```{r}
+measurement_mean == 3.333333
+```
+
+Now this doesn't seem right, does it - R clearly told us just above that the mean of this variable is 3.333333 (reminder: the actual values in the measurement column are `r typesdata$measurement`). 
+The reason the above statement is `FALSE` is because `measurement_mean` is quietly holding more than 6 decimal places.
+ 
+One way to go about this is to round the mean to a reasonable number of decimal places:
+
+\index{functions@\textbf{functions}!round}
+
+```{r}
+round(measurement_mean, 3)
+```
+
+The second argument of `round()` specifies the number of decimal places you want your number(s) rounded to.
+So when using `round()` in the equality statement like this, we get the expected `TRUE`:
+
+```{r}
+round(measurement_mean, 3) == 3.333
+```
+
+
+Which is usually fine, especially if you've finished applying calculations on that number. 
+But when you indent to use it if further calculations, then rounding should be left to the very end - to minimise rounding errors. 
+This is where the `near()` function comes in handy:
+
+\index{functions@\textbf{functions}!near}
+
+```{r}
+library(tidyverse)
+near(measurement_mean, 3.333, 0.001)
+```
+
+The first two arguments for `near()` are the numbers you are comparing, the third argument is the precision you are interested in. So if the numbers are equal within that precision, it returns `TRUE`. 
+This means you get the expected result without having to round the numbers off.
+
+### Character variables
+\index{variable types@\textbf{variable types}!character}
+
+**Characters** (sometimes referred to as *strings* or *character strings*) in R are letters, words, or even whole sentences (an example of this may be free text comments). 
+Characters are displayed in-between `""` (or `''`).
+
+A very useful function for quickly investigating categorical variables is the `count()` function:
+
+```{r}
+library(tidyverse)
+typesdata %>%
+  count(group)
+```
+
+`count()` can accept multiple variables and will count up the number of observations in each subgroup, e.g., `mydata %>% count(var1, var2)`.
+
+Another helpful option to count is `sort = TRUE`, which will order the result putting the highest count (`n`) to the top.
+
+```{r}
+typesdata %>%
+  count(group, sort = TRUE)
+```
+
+`count()`with the `sort = TRUE` option is also useful for identifying duplicate IDs or misspellings in your data.
+With this example `tibble` (`typesdata`) that only has three rows, it is easy to see that the `id` column is a unique identifier whereas the `group` column is a categorical variable.
+
+You can check everything by just eyeballing the `tibble` using the built in Viewer tab (click on the dataset in the Environment tab).
+
+But for larger datasets, you need to know how to check and then clean data programmatically - you can't go through thousands of values checking they are all as intended without unexpected duplicates or typos.
+
+For most variables (categorical or numeric) we recommend always plotting your data before starting analysis.
+But to check for duplicates in a unique identifier, use `count()` with `sort = TRUE`:
+
+```{r}
+# all ids are unique:
+typesdata %>% 
+  count(id, sort = TRUE)
+
+# we add in a duplicate row where id = ID3,
+# then count again:
+typesdata %>% 
+  add_row(id = "ID3") %>% 
+  count(id, sort = TRUE)
+
+```
+
+
+### Factor variables (categorical)
+\index{variable types@\textbf{variable types}!categorical / factor}
+
+**Factors** are fussy characters. 
+Factors are fussy because they have something called **levels**. 
+Levels are all the unique values a factor variable could take, e.g. like when we looked at `typesdata$group %>% unique()`.
+Using factors rather than just characters can be useful because:
+
+* The values factor levels can take is fixed. 
+For example, once you tell R that `typesdata$group` is a factor with two levels: Control and Treatment, combining it with other datasets with different spellings or abbreviations for the same variable will generate a warning.
+This can be helpful but can also be a nuisance when you really do want to add in another level to a `factor` variable.
+* Levels have an order. 
+When running statistical tests on grouped data (e.g., Control vs Treatment, Adult vs Child) and the variable is just a character, not a factor, R will use the alphabetically first as the reference level. 
+Converting a character column into a factor column enables us to define and change the order of its levels. 
+Level order affects many things including regression results and plots: by default, categorical variables are ordered alphabetically. 
+If we want a different order in say a bar plot, we need to convert to a factor and reorder before we plot it. 
+The plot will then know how the order it better.
+
+So overall, since health data is often categorical and has a reference (comparison) level, then factors are an essential way to work with these data in R.
+Nevertheless, the fussiness of factors can sometimes be unhelpful or even frustrating.
+A lot more about factor handling will be covered later in the book.
+
+### Date/time variables
+\index{variable types@\textbf{variable types}!date-time}
+\index{functions@\textbf{functions}!dmy}
+\index{functions@\textbf{functions}!ymd}
+
+R is very good for working with dates. 
+For example, it can calculate the number of days/weeks/months between two dates, or it can be used to find a future date is (e.g., "what's the date exactly 60 days from now?").
+It also knows about time zones and is happy to parse dates in pretty much any format - as long as you tell R how your date is formatted (e.g., day before month, month name abbreviated, year in 2 or 4 digits, etc.).
+Since R displays dates and times between quotes (""), they look similar to characters. However, it is important to know whether R has understood which of your columns contain date/time information, as which are just normal characters.
+
+```{r, message = FALSE}
+library(lubridate) # lubridate makes working with dates easier
+current_datetime = Sys.time()
+current_datetime
+
+my_datetime = "2020-12-01 12:00"
+my_datetime
+```
+
+When printed, the two objects - `current_datetime` and `my_datetime` seem to have the a very similar format.
+But if we try to calculate the difference between these two dates, we get an error:
+
+```{r, error = TRUE}
+my_datetime - current_datetime
+```
+
+That's because when we assigned a value to `my_datetime`, R assumed the simpler type for it - so a character.
+We can check what the type of an object or variable is using the `class()` function:
+
+```{r}
+current_datetime %>% class()
+my_datetime %>% class()
+```
+
+
+So we need to tell R that `my_datetime` does indeed include date/time information so we can then use it in calculations:
+
+```{r}
+my_datetime_converted = ymd_hm(my_datetime)
+my_datetime_converted
+```
+
+Calculating the difference will now work:
+```{r}
+my_datetime_converted - current_datetime
+```
+
+Since R knows this is a difference between two date/time objects, it prints the in a nicely readable way.
+Furthermore, the result has its own type, it is a "difftime".
+```{r}
+my_datesdiff = my_datetime_converted - current_datetime
+my_datesdiff %>% class()
+```
+
+This is useful if we want to apply this time difference on another date, e.g.:
+
+```{r}
+ymd_hm("2021-01-02 12:00") + my_datesdiff
+```
+
+But if we want to use the number of days in a normal calculation, e.g., what if a measurement increased by 560 arbitrary units during this time period.
+We might want to calculate the increase per day like this:
+
+
+```{r, error = TRUE}
+560/my_datesdiff
+```
+
+Doesn't work, does it.
+We need to convert `my_datesdiff` (which is a difftime value) into a numeric value by using the `as.numeric()` function:
+
+```{r}
+560/as.numeric(my_datesdiff)
+```
+
+The lubridate package comes with several convenient functions for parsing dates, e.g., `ymd()`, `mdy()`, `ymd_hm()`, etc. - for a full list see lubridate.tidyverse.org.
+
+However, if your date/time variable comes in an extra special format, then use the `parse_date_time()` function where the second argument specifies the format using these helpers:
+
+| Notation | Meaning             | Example |
+|----------|---------            |---------|
+|`%d`        |day as number        |01-31|
+|`%m`        |month as number      |01-12|
+|`%B`        |month name           |January-December|
+|`%b`        |abbreviated month    |Jan-Dec|
+|`%Y`        |4-digit year         |2019|
+|`%y`        |2-digit year         |19|
+|`%H`        |hours                |12|
+|`%M`        |minutes              |01|
+|`%A`        |weekday              |Monday-Sunday|
+|`%a`        |abbreviated weekday  |Mon-Sun|
+
+
+For example:
+
+```{r}
+parse_date_time("12:34 07/Jan'20", "%H:%M %d/%b'%y")
+```
+
+Furthermore, the same date/time helpers can be used to rearrange your date and time for printing:
+
+```{r}
+Sys.time()
+Sys.time() %>% format("%H:%M on %B-%d (%Y)")
+```
+You can even add plain text into the `format()` function, R will know to put the right date/time values where the `%` are:
+
+```{r}
+Sys.time() %>% format("Happy days, the current time is %H:%M %B-%d (%Y)!")
+```
+
+
+## Objects and functions {#chap02-objects-functions}
+\index{objects}
+\index{functions@\textbf{functions}}
+
+<!-- Please see Tom's comments in additional file in draft folder. -->
+<!-- Move tibble description out of footnotes etc. -->
+
+There are two fundamental concepts in statistical programming that it is important to get straight from the outset - objects and functions. 
+As throughout this book, we will introduce new concepts using specific examples first.
+
+The most common data object you will be working with is a table.
+This is something with rows and columns much like the example in Table \@ref(tab:chap2-tab-examp1).
+
+<!-- Consider removing. Bit confusing and too much for first few paragraphs in-->
+
+<!-- It should be regular, e.g., the made-up example in Table \@ref(tab:chap2-tab-examp1). -->
+<!-- ^[Regular does not mean it can't have missing values. -->
+<!-- Missing values are denoted `NA` which stands for either `Not available` or `Not applicable`.  -->
+<!-- In same contexts, these things can have a different meaning.  -->
+<!-- For example, since `var2` is `NA` for all male subjects, it may mean "Not applicable", i.e. something that can only be measured in females. -->
+<!-- Whereas in `var3`, `NA` is more likely to mean "Not available" so real missing data, e.g. lost to follow-up.] -->
+
+```{r chap2-tab-examp1, echo = FALSE}
+mydata = tibble(id   = 1:4,
+       sex  = c("Male", "Female", "Female", "Male"),
+       var1 = c(4, 1, 2, 3),
+       var2 = c(NA, 4, 5, NA),
+       var3 = c(2, 1, NA, NA))
+
+mydata %>% 
+  knitr::kable(booktabs = TRUE, caption = "Example of a table including missing values denoted NA (Not applicable/Not available).") %>% 
+  kableExtra::kable_styling(font_size=8)
+```
+
+A table can live anywhere: on paper, in a Spreadsheet, in an SQL database, or it can live in your R Session's Environment. 
+And yes, R sessions are as fun as they sound, almost as fun as music sessions. 
+
+We usually initiate and interface R using RStudio, but everything we talk about here (objects, functions, sessions, environment) also work when RStudio is not available, but R is. 
+This can be the case if you are working on a supercomputer that can only serve the R Console, and not an RStudio IDE (reminder from first chapter: Integrated Development Environment). 
+
+So, regularly shaped data in rows and columns is called a table when it lives outside R, but once you read it into R (import it), we call it a tibble.
+^[There is also the original version of tables in R - they are called data frames. 
+In most cases, `data frames` and `tibbles` work interchangeably, but `tibbles` often work better. 
+Another great alternative to base R `data frames` are `data tables`. 
+In this book, and for most of our day-to-day work these days, we will use `tibbles`.]
+
+When you are in one of your very cool R sessions and read in some data, it goes into this session's Environment. 
+Everything in your Environment needs to have a name. 
+You will likely have many objects such as tibbles going on at the same time. 
+Note that `tibble` is what the thing is, rather than its name. 
+This is the `class` of an object. 
+
+To keep our code examples easy to follow, we call our example tibble `mydata`. 
+In a real analysis, you should give your tibbles meaningful names, e.g., `patient_data`, `lab_results`, `annual_totals`, etc.
+
+So, the tibble named `mydata` is example of an object that can be in the Environment of your R Session:
+
+```{r}
+mydata
+```
+
+So what is a function?
+
+A function is a procedure which takes some information (input), does something to it, and passes back the modified information (output).
+
+A simple function that can be applied to numeric data for instance is `mean()`. 
+
+R functions always have round brackets after their name. 
+This is for two reasons. 
+First, it easily differentiates them as functions - you will get used to reading them like this.  
+Second, and more important, we can put **arguments** in these brackets. 
+
+Arguments can also be thought of as input.
+In data analysis, the most common input for a function is data - we need to give `mean()` some data to average over. 
+It does not make sense (nor will it work) to feed `mean()` the whole tibble with multiple columns, including patient IDs and a categorical variable (`sex`). 
+
+To quickly extract a single column, we use the `$` symbol like this:
+\index{symbols@\textbf{symbols}!select column \texttt{\$}}
+
+```{r}
+mydata$var1
+```
+
+You can ignore the `## [1]` at the beginning of the extracted values - this is something that becomes more useful when printing multiple lines of data as the number in the square brackets keeps count on how many values we are seeing.
+
+We can then use `mydata$var1` as the first argument of `mean()` by putting it inside its brackets:
+
+```{r}
+mean(mydata$var1)
+```
+
+Which tells us that the mean of `var1` (`r mydata$var1`) is `r mean(mydata$var1)`.
+In this example, `mydata$var1` is the first and only argument to `mean()`.
+But what happens if we try to calculate the average value of `var2` (`r mydata$var2`)?
+
+```{r}
+mean(mydata$var2)
+```
+
+We get an `NA` ("Not applicable").
+We would expect to see an `NA` if we tried to, for example, calculate the average of `sex`:
+
+```{r, error=TRUE}
+mean(mydata$sex)
+```
+
+In fact, in this case, R also gives us a pretty clear warning suggesting it can't compute the mean of an argument that is not numeric or logical. 
+The sentence actually reads pretty fun, as if R was saying it was not logical to calculate the mean of something that is not numeric. 
+
+But what R is actually saying that it is happy to calculate the mean of two types of variables: numerics or logicals, but what you have passed is neither.
+^[Logical is a data type with two potential values: TRUE or FALSE.
+We will come back to data types.]
+
+So why does `mean(mydata$var2)` return `NA` rather than the mean of the numeric values included in this column?
+That is because the column itself includes missing values (`NAs`), and R does not want to average over NAs implicitly.
+It is being cautious - what if you didn't know there were missing values for some patients?
+If you wanted to compare the means of `var1` and `var2` without any further filtering, you would be comparing samples of different sizes. 
+
+If you decide to ignore the NAs and want to calculate the mean anyway, you can do so by adding another argument to `mean()`:
+
+\index{missing values remove \texttt{na.rm}}}
+
+```{r}
+mean(mydata$var2, na.rm = TRUE)
+```
+
+Adding `na.rm = TRUE` tells R that you are happy for it to calculate the mean of any existing values (but to remove - `rm` - the `NA` values).
+This 'removal' excludes the NAs from the calculation, it does not affect the actual tibble (`mydata`) holding the dataset. 
+
+R is case sensitive, so `na.rm`, not `NA.rm` etc. 
+There is, however, no need to memorize how the arguments of functions are exactly spelled - this is what the Help tab is for (press `F1` when the cursor is on the name of the function). 
+Help pages are built into R, so an internet connection is not required for this.
+
+> Make sure to separate multiple arguments with commas or R will give you an error of `Error: unexpected symbol`.
+
+Finally, some functions do not need any arguments to work.
+A good example is the `Sys.time()` which returns the current time and date. 
+This is very useful when using R to generate and update reports automatically.
+Including this means you can always be clear on when the results were last updated.
+
+\index{functions@\textbf{functions}!Sys.time}
+\index{system time}
+
+```{r}
+Sys.time()
+```
+
+To summarise, objects and functions work hand in hand. 
+Objects are both an input as well as the output of a function (what the function returns). 
+
+When passing data to a functon is is usually its first argument, with further arguments used to specify behaviour. 
+
+When we say "the function returns", we are referring to its output (or an Error if it's one of those days).
+
+The returned object can be different to its input object.
+In our `mean()` example above, the input object was a column (`mydata$var1`: `r mydata$var1`), whereas the output was a single value: `r mean(mydata$var1)`.
+
+### Working with Objects
+
+To create a new object in our Environment we use the equals sign:
+\index{symbols@\textbf{symbols}!assignment \texttt{=}}
+
+```{r}
+a = 103
+```
+
+This reads: the object `a` is assigned value `r a`. 
+You know that the assignment worked when it shows up in the Environment tab.
+If we now run `a` just on its own, it gets printed back to us:
+
+```{r}
+a
+```
+
+Similarly, if we run a function without assignment to an object, it gets printed but not saved in your Environment:
+\index{functions@\textbf{functions}!seq}
+
+```{r}
+seq(15, 30)
+```
+
+`seq()` is a function that creates a sequence of numbers (+1 by default) between the two arguments you pass to it in its brackets. 
+We can assign the result of `seq(15, 30)` into an object, let's call it `example_sequence`:
+
+```{r}
+example_sequence = seq(15, 30)
+```
+
+Doing this creates `example_sequence` in our Environment, but it does not print it. 
+
+> If you save the results of an R function in an object, it does not get printed. 
+> If you run a function without the assignment (`=`), its results get printed, but not saved in an object.
+
+You can call your object pretty much anything you want, as long as it starts with a letter. 
+It can then include numbers as well, for example, we could have named the new object `sequence_15_to_30`.
+Spaces in object names are not easy to work with, we tend to use underscores in their place, but you could also use capitalization, e.g. `exampleSequence = seq(15, 30)`.
+
+Finally, R doesn't mind overwriting an existing object, for example (notice how we then include the variable on a new line to get it printed as well as overwritten):
+
+```{r}
+example_sequence = example_sequence/2
+
+example_sequence
+```
+
+
+>Note that many people use `<-` instead of `=`. 
+>They mean the same thing in R: both `=` and `<-` save what is on the right into an object with the name on the left. 
+>There is also a left-to-right operator: `->`.
+
+## Pipe - `%>%` 
+\index{symbols@\textbf{symbols}!pipe \texttt{\%>\%}}
+\index{pipe@\textbf{pipe}}
+
+The pipe - denoted `%>%` - is probably the oddest looking thing you'll see in this book. 
+But please bear with, it is not as scary as it looks! 
+Furthermore, it is super useful. 
+We use the pipe to send objects into functions.
+
+In the above examples, we calculated the mean of column `var1` from `mydata` by `mean(mydata$var1)`. With the pipe, we can rewrite this as:
+
+```{r}
+library(tidyverse)
+mydata$var1 %>% mean()
+```
+
+Which reads: "Working with `mydata`, we select a single column called `var1` (with the `$`) **and then** calculate the `mean()`." The pipe becomes especially useful once the analysis includes multiple steps applied one after another. 
+A good way to read and think of the pipe is **"and then"**.
+
+This piping business is not standard R functionality and before using it in a script, you need to tell R this is what you will be doing.
+The pipe comes from the **magrittr** package (Figure \@ref(fig:chap2-fig-pipe)), but loading the **tidyverse** will also load the pipe.
+So library(tidyverse) initialises everything you need (no need to include library(magrittr) explicitly).
+
+>To insert a pipe `%>%`, use the keyboard shortcut `Ctrl+Shift+M`.
+
+With or without the pipe, the general rule "if the result gets printed it doesn't get saved" still applies. 
+To save the result of the function into a new object (so it shows up in the Environment), you need to add the name of the new object with the assignment operator (`=`):
+
+```{r}
+mean_result = mydata$var1 %>% mean()
+```
+
+```{r chap2-fig-pipe, echo = FALSE, fig.cap="This is not a pipe. René Magritte inspired artwork by Stefan Milton Bache (creator of `%>%` in R). Image source: https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html"}
+knitr::include_graphics("images/chapter02/magrittr.png")
+```
+
+### When pipe sends data to the wrong place: use . to direct it
+
+The pipe usually sends data to the beginning of function brackets (as most of the functions we use expect a tibble as the first argument). 
+So `mydata %>% lm(dependent~explanatory)` is equivalent to `lm(mydata, dependent~explanatory)`. `lm()` - linear model - will be introduced in detail in Chapter \@ref(chap07-h1). 
+
+However, the `lm()` function does not expect data as its first argument. 
+`lm()` wants us to specify the variables first (`dependent~explanatory`), and then wants the tibble these columns are in.
+So we have to use the `.` to tell the pipe to send the data to the second argument of `lm()`, not the first, e.g.
+
+```{r, eval = FALSE}
+mydata %>% 
+  lm(var1~var2, data = .)
+```
+
 
 ## Operators for filtering data
 \index{operators}
@@ -666,298 +964,6 @@ subset3 = mydata %>%
 nrow(subset1) + nrow(subset2) + nrow(subset3) == nrow(mydata)
 ```
 
-## Variable types and why we care
-\index{variable types@\textbf{variable types}}
-\index{continuous data@\textbf{continuous data}!variable types}
-\index{categorical data@\textbf{categorical data}!variable types}
-\index{date-time@\textbf{date-time}}
-
-There are three broad types of data: 
-
-* continuous (numbers), in R: numeric, double, or integer; 
-* categorical, in R: character, factor, or logical (TRUE/FALSE); 
-* date/time, in R: POSIXct date-time^[Portable Operating System Interface (POSIX) is a set of computing standards. There's nothing more to understand about this other than when R starts shouting "POSIXct this or POSIXlt that" at you, check your date and time variables].
-
-Values within a column all have to be the same type, but a tibble can of course hold columns of different types.
-Generally, R is very good at figuring out what type of data you have (in programming, this 'figuring out' is called 'parsing').
-
-For example, when reading in data, it will tell you what it assumed for the columns:
-
-```{r}
-library(tidyverse)
-typesdata = read_csv("data/typesdata.csv")
-
-typesdata
-```
-
-This means that a lot of the time you do not have to worry about those little `<chr>` vs `<dbl>` vs `<S3: POSIXct>` labels, R knows what its doing.
-But in cases of irregular or faulty input data, or when doing a lot of calculations and modifications your data, we need to be aware of these different types to be able to find and fix mistakes.
-
-For example, consider a very similar file as above but with a couple of data entry issues:
-
-```{r}
-typesdata_faulty = read_csv("data/typesdata_faulty.csv")
-
-typesdata_faulty
-```
-
-Notice R parsed both measurement and date as characters. 
-The first one is a data entry issue: the person taking the measurement couldn't decide which value to note down (maybe the scale was shifting between the two values) so they included both values and text "or" in the cell. 
-
-A numeric variable will also get parsed as a categorical variable if it contains certain typos, e.g., if entered as "3..7" instead of "3.7". 
-
-The reason R didn't automatically make sense of the date column is that it can't tell which is the date and which is the year: __02-Jan-17__ could stand for _02-Jan-2017_ as well as _2002-Jan-17_.
-
-Therefore, while a lot of the time you do not have to worry about variable types and can just get on with your analysis, it is important to understand what the different types are to be ready to deal with them when issues arise. 
-
->Since health datasets are generally full of categorical data, it is crucial to understand the difference between characters and factors (both are types of categorical variables in R with pros and cons).
-
-So here we go.
-
-## Numeric variables (continuous)
-\index{variable types@\textbf{variable types}!continuous / numeric}
-
-Number are straightforward to handle and don't usually cause trouble. 
-R usually refers to numbers as `numeric` (or `num`), but sometimes it really gets its nerd on and also calls numbers `integer` or `double`.
-Integers are numbers without decimal places (e.g., `1, 2, 3`), whereas `double` stands for "Double-precision floating-point" format (e.g., `1.234, 5.67890`).
-
-It doesn't usually matter whether R is classifying your continuous data `numeric/num/double/int`, but it is good to be aware of these different terms as you will see them in R messages.
-
-> FRIENDLY WARNING: What's about to follow is a bit dry. Furthermore, it is not essential for complete beginners - you might want to continue reading from __Characters variables__.
-Before you leave, take a mental note that sometimes numbers in R have more decimal places than it seems, and that can cause funny behaviour when using the double equals operator (`==`).
-
-Something to note about numbers is that R doesn't usually print more than 6 decimal places, but that doesn't mean they don't exist.
-For example, from the `typedata` tibble, we're taking the `measurement` column and sending it to the `mean()` function. 
-R then calculates the mean and tells us what it is with 6 decimal places:
-
-
-```{r}
-typesdata$measurement %>% mean()
-```
-Let' save that in a new object:
-
-```{r}
-measurement_mean = typesdata$measurement %>% mean()
-```
-
-But when using the double equals operator to check if this is equivalent to a fixed value (you might do this when comparing to a threshold, or even another mean value), R returns `FALSE`:
-
-```{r}
-measurement_mean == 3.333333
-```
-
-Now this doesn't seem right, does it - R clearly told us just above that the mean of this variable is 3.333333 (reminder: the actual values in the measurement column are `r typesdata$measurement`). 
-The reason the above statement is `FALSE` is because `measurement_mean` is quietly holding more than 6 decimal places.
- 
-One way to go about this is to round the mean to a reasonable number of decimal places:
-
-\index{functions@\textbf{functions}!round}
-
-```{r}
-round(measurement_mean, 3)
-```
-
-The second argument of `round()` specifies the number of decimal places you want your number(s) rounded to.
-So when using `round()` in the equality statement like this, we get the expected `TRUE`:
-
-```{r}
-round(measurement_mean, 3) == 3.333
-```
-
-
-Which is usually fine, especially if you've finished applying calculations on that number. 
-But when you indent to use it if further calculations, then rounding should be left to the very end - to minimise rounding errors. 
-This is where the `near()` function comes in handy:
-
-\index{functions@\textbf{functions}!near}
-
-```{r}
-library(tidyverse)
-near(measurement_mean, 3.333, 0.001)
-```
-
-The first two arguments for `near()` are the numbers you are comparing, the third argument is the precision you are interested in. So if the numbers are equal within that precision, it returns `TRUE`. 
-This means you get the expected result without having to round the numbers off.
-
-## Character variables
-\index{variable types@\textbf{variable types}!character}
-
-**Characters** (sometimes referred to as *strings* or *character strings*) in R are letters, words, or even whole sentences (an example of this may be free text comments). 
-Characters are displayed in-between `""` (or `''`).
-
-A very useful function for quickly investigating categorical variables is the `count()` function:
-
-```{r}
-library(tidyverse)
-typesdata %>%
-  count(group)
-```
-
-`count()` can accept multiple variables and will count up the number of observations in each subgroup, e.g., `mydata %>% count(var1, var2)`.
-
-Another helpful option to count is `sort = TRUE`, which will order the result putting the highest count (`n`) to the top.
-
-```{r}
-typesdata %>%
-  count(group, sort = TRUE)
-```
-
-`count()`with the `sort = TRUE` option is also useful for identifying duplicate IDs or misspellings in your data.
-With this example `tibble` (`typesdata`) that only has three rows, it is easy to see that the `id` column is a unique identifier whereas the `group` column is a categorical variable.
-
-You can check everything by just eyeballing the `tibble` using the built in Viewer tab (click on the dataset in the Environment tab).
-
-But for larger datasets, you need to know how to check and then clean data programmatically - you can't go through thousands of values checking they are all as intended without unexpected duplicates or typos.
-
-For most variables (categorical or numeric) we recommend always plotting your data before starting analysis.
-But to check for duplicates in a unique identifier, use `count()` with `sort = TRUE`:
-
-```{r}
-# all ids are unique:
-typesdata %>% 
-  count(id, sort = TRUE)
-
-# we add in a duplicate row where id = ID3,
-# then count again:
-typesdata %>% 
-  add_row(id = "ID3") %>% 
-  count(id, sort = TRUE)
-
-```
-
-
-## Factor variables (categorical)
-\index{variable types@\textbf{variable types}!categorical / factor}
-
-**Factors** are fussy characters. 
-Factors are fussy because they have something called **levels**. 
-Levels are all the unique values a factor variable could take, e.g. like when we looked at `typesdata$group %>% unique()`.
-Using factors rather than just characters can be useful because:
-
-* The values factor levels can take is fixed. 
-For example, once you tell R that `typesdata$group` is a factor with two levels: Control and Treatment, combining it with other datasets with different spellings or abbreviations for the same variable will generate a warning.
-This can be helpful but can also be a nuisance when you really do want to add in another level to a `factor` variable.
-* Levels have an order. 
-When running statistical tests on grouped data (e.g., Control vs Treatment, Adult vs Child) and the variable is just a character, not a factor, R will use the alphabetically first as the reference level. 
-Converting a character column into a factor column enables us to define and change the order of its levels. 
-Level order affects many things including regression results and plots: by default, categorical variables are ordered alphabetically. 
-If we want a different order in say a bar plot, we need to convert to a factor and reorder before we plot it. 
-The plot will then know how the order it better.
-
-So overall, since health data is often categorical and has a reference (comparison) level, then factors are an essential way to work with these data in R.
-Nevertheless, the fussiness of factors can sometimes be unhelpful or even frustrating.
-A lot more about factor handling will be covered later in the book.
-
-## Date/time variables
-\index{variable types@\textbf{variable types}!date-time}
-\index{functions@\textbf{functions}!dmy}
-\index{functions@\textbf{functions}!ymd}
-
-R is very good for working with dates. 
-For example, it can calculate the number of days/weeks/months between two dates, or it can be used to find a future date is (e.g., "what's the date exactly 60 days from now?").
-It also knows about time zones and is happy to parse dates in pretty much any format - as long as you tell R how your date is formatted (e.g., day before month, month name abbreviated, year in 2 or 4 digits, etc.).
-Since R displays dates and times between quotes (""), they look similar to characters. However, it is important to know whether R has understood which of your columns contain date/time information, as which are just normal characters.
-
-```{r, message = FALSE}
-library(lubridate) # lubridate makes working with dates easier
-current_datetime = Sys.time()
-current_datetime
-
-my_datetime = "2020-12-01 12:00"
-my_datetime
-```
-
-When printed, the two objects - `current_datetime` and `my_datetime` seem to have the a very similar format.
-But if we try to calculate the difference between these two dates, we get an error:
-
-```{r, error = TRUE}
-my_datetime - current_datetime
-```
-
-That's because when we assigned a value to `my_datetime`, R assumed the simpler type for it - so a character.
-We can check what the type of an object or variable is using the `class()` function:
-
-```{r}
-current_datetime %>% class()
-my_datetime %>% class()
-```
-
-
-So we need to tell R that `my_datetime` does indeed include date/time information so we can then use it in calculations:
-
-```{r}
-my_datetime_converted = ymd_hm(my_datetime)
-my_datetime_converted
-```
-
-Calculating the difference will now work:
-```{r}
-my_datetime_converted - current_datetime
-```
-
-Since R knows this is a difference between two date/time objects, it prints the in a nicely readable way.
-Furthermore, the result has its own type, it is a "difftime".
-```{r}
-my_datesdiff = my_datetime_converted - current_datetime
-my_datesdiff %>% class()
-```
-
-This is useful if we want to apply this time difference on another date, e.g.:
-
-```{r}
-ymd_hm("2021-01-02 12:00") + my_datesdiff
-```
-
-But if we want to use the number of days in a normal calculation, e.g., what if a measurement increased by 560 arbitrary units during this time period.
-We might want to calculate the increase per day like this:
-
-
-```{r, error = TRUE}
-560/my_datesdiff
-```
-
-Doesn't work, does it.
-We need to convert `my_datesdiff` (which is a difftime value) into a numeric value by using the `as.numeric()` function:
-
-```{r}
-560/as.numeric(my_datesdiff)
-```
-
-The lubridate package comes with several convenient functions for parsing dates, e.g., `ymd()`, `mdy()`, `ymd_hm()`, etc. - for a full list see lubridate.tidyverse.org.
-
-However, if your date/time variable comes in an extra special format, then use the `parse_date_time()` function where the second argument specifies the format using these helpers:
-
-| Notation | Meaning             | Example |
-|----------|---------            |---------|
-|`%d`        |day as number        |01-31|
-|`%m`        |month as number      |01-12|
-|`%B`        |month name           |January-December|
-|`%b`        |abbreviated month    |Jan-Dec|
-|`%Y`        |4-digit year         |2019|
-|`%y`        |2-digit year         |19|
-|`%H`        |hours                |12|
-|`%M`        |minutes              |01|
-|`%A`        |weekday              |Monday-Sunday|
-|`%a`        |abbreviated weekday  |Mon-Sun|
-
-
-For example:
-
-```{r}
-parse_date_time("12:34 07/Jan'20", "%H:%M %d/%b'%y")
-```
-
-Furthermore, the same date/time helpers can be used to rearrange your date and time for printing:
-
-```{r}
-Sys.time()
-Sys.time() %>% format("%H:%M on %B-%d (%Y)")
-```
-You can even add plain text into the `format()` function, R will know to put the right date/time values where the `%` are:
-
-```{r}
-Sys.time() %>% format("Happy days, the current time is %H:%M %B-%d (%Y)!")
-```
 
 ## Creating new columns - `mutate()`
 \index{column, create}
@@ -1211,3 +1217,20 @@ left_join(patientdata, labsdata_updated)
 ```
 
 We get 7 rows, instead of 6 - as patient id 5 now appears twice with the two different measurements. So it is important to keep either know your datasets very well or keep an eye on the number of rows to make sure any increases/decreases in the tibble sizes are as you expect them to be.
+
+
+## Getting help
+\index{help}
+
+RStudio has a built in **Help** tab. 
+To use the Help tab, click your cursor on something in your code (e.g. `read_csv()`) and press F1. This will show you the definition and some examples. 
+
+However, the **Help** tab is only useful if you already know what you are looking for but can't remember exactly how it works. 
+For finding help on things you have not used before, it is best to Google it. 
+R has about 2 million users so someone somewhere has had the same question or problem.
+
+Another useful source in the RStudio **Help** dropdown menu is **Cheatsheets**. 
+These tightly packed two-pagers include many of the most useful functions from **tidyverse** packages. 
+They are not particularly useful to learn from, but invaluable as an *aide-smemoire*. 
+
+

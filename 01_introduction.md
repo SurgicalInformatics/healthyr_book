@@ -35,9 +35,10 @@ These are the lines that start with a # and they are called "comments".
 We can (and should) include these comments in everything we do.
 These are notes of what we were doing, both for colleagues as well as our future selves.
 
-```{r chap01-fig-rscript, echo = FALSE, fig.cap="An example R script from RStudio."}
-knitr::include_graphics("images/chapter01/example_script.png")
-```
+<div class="figure">
+<img src="images/chapter01/example_script.png" alt="An example R script from RStudio." width="285" />
+<p class="caption">(\#fig:chap01-fig-rscript)An example R script from RStudio.</p>
+</div>
 
 Lines that do not start with a # are R code.
 This is where the number crunching really happens.
@@ -74,9 +75,10 @@ RStudio is a free program that makes working with R easier.
 An example screen shot of RStudio is shown in Figure \@ref(fig:chap01-fig-rstudio).
 We have already introduced what is in the top-left pane - the **Script**.
 
-```{r chap01-fig-rstudio, echo = FALSE, fig.cap = "We use RStudio to work with R."}
-knitr::include_graphics("images/chapter01/rstudio_interface.png")
-```
+<div class="figure">
+<img src="images/chapter01/rstudio_interface.png" alt="We use RStudio to work with R." width="1472" />
+<p class="caption">(\#fig:chap01-fig-rstudio)We use RStudio to work with R.</p>
+</div>
 
 Now, look at the little **Run** and **Source** buttons at the top-right corner of the script pane.
 Clicking **Run** executes a line of R code. 
@@ -124,14 +126,13 @@ So when you go to **Packages**, click **Install**, type in `tidyverse`, a whole 
 Even though you've installed the `tidyverse` packages, you'll still need to tell R when you're about to use them.
 We usually include `library(tidyverse)` at the top of every script:
 
-```{r message=FALSE, warning=FALSE}
+
+```r
 library(tidyverse)
 ```
 
 
-```{r, echo = FALSE}
-knitr::include_graphics("images/chapter01/tidyverse_loading_messages.png")
-```
+<img src="images/chapter01/tidyverse_loading_messages.png" width="895" />
 
 We can see that it has loaded 8 packages (`ggplot2`, `tibble`, `tidyr`, `readr`, `purrr`, `dplyr`, `stringr`, `forcats`), the number behind a package name is its version.
 
@@ -153,9 +154,15 @@ Lines of R output start with a double ## - this will be numbers or text that R g
 When printing this output, R also adds a counter at the beginning of every new line, look at the numbers in the square brackets [] below:
 
 
-```{r}
+
+```r
 # colon between two numbers creates a sequence
 1001:1017
+```
+
+```
+##  [1] 1001 1002 1003 1004 1005 1006 1007 1008 1009 1010 1011 1012 1013 1014 1015
+## [16] 1016 1017
 ```
 
 Remember, lines of R code that start with # are called comments.
@@ -163,18 +170,30 @@ We already introduced comments as notes about the R code earlier in this chapter
 When you make R code a comment, by adding a # in front of it, it gets 'commented out'.
 For example, let's say your R script does two things, prints number from 1 to 4, and then numbers from 1001 to 1004:
 
-```{r}
+
+```r
 # Let's print small numbers:
 1:4
+```
 
+```
+## [1] 1 2 3 4
+```
+
+```r
 # Now we're printing bigger numbers:
 1001:1004
+```
+
+```
+## [1] 1001 1002 1003 1004
 ```
 
 
 If you decide to 'comment out' the printing of big numbers, the code will look like this:
 
-```{r, results='hold'}
+
+```r
 # Let's print small numbers:
 1:4
 
@@ -182,9 +201,14 @@ If you decide to 'comment out' the printing of big numbers, the code will look l
 # 1001:1004
 ```
 
+```
+## [1] 1 2 3 4
+```
+
 You may even want to add another real comment to explain why the latter was commented out:
 
-```{r}
+
+```r
 # Now commented out as not required any more
 # Now we're printing bigger numbers:
 # 1001:1004

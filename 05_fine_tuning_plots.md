@@ -27,7 +27,7 @@ p0 = gapminder %>%
 p0
 ```
 
-![](05_fine_tuning_plots_files/figure-latex/unnamed-chunk-1-1.pdf)<!-- --> 
+<img src="05_fine_tuning_plots_files/figure-html/unnamed-chunk-1-1.png" width="384" />
 
 ## Scales
 \index{plots@\textbf{plots}!scales}
@@ -89,7 +89,7 @@ library(patchwork)
 p1 + p2 + p3 + p4 + plot_annotation(tag_levels = "1", tag_prefix = "p")
 ```
 
-![](05_fine_tuning_plots_files/figure-latex/unnamed-chunk-7-1.pdf)<!-- --> 
+<img src="05_fine_tuning_plots_files/figure-html/unnamed-chunk-7-1.png" width="768" />
 
 ### Zoom in
 \index{plots@\textbf{plots}!zoom}
@@ -127,7 +127,7 @@ p1 + p2
 ## Warning: Removed 114 rows containing missing values (geom_point).
 ```
 
-![](05_fine_tuning_plots_files/figure-latex/unnamed-chunk-10-1.pdf)<!-- --> 
+<img src="05_fine_tuning_plots_files/figure-html/unnamed-chunk-10-1.png" width="768" />
 
 ### Axis ticks
 \index{plots@\textbf{plots}!axes}
@@ -152,7 +152,7 @@ p2 = p0 +
 p1 + p2
 ```
 
-![](05_fine_tuning_plots_files/figure-latex/unnamed-chunk-13-1.pdf)<!-- --> 
+<img src="05_fine_tuning_plots_files/figure-html/unnamed-chunk-13-1.png" width="768" />
 
 ## Colours
 \index{plots@\textbf{plots}!colours}
@@ -183,7 +183,7 @@ Note the `\n` inside the new legend title - new line.
 p1 + p2
 ```
 
-![](05_fine_tuning_plots_files/figure-latex/unnamed-chunk-16-1.pdf)<!-- --> 
+<img src="05_fine_tuning_plots_files/figure-html/unnamed-chunk-16-1.png" width="768" />
 
 ### Choosing colours manually
 
@@ -210,7 +210,7 @@ p2 = p0 +
 p1 + p2
 ```
 
-![](05_fine_tuning_plots_files/figure-latex/unnamed-chunk-19-1.pdf)<!-- --> 
+<img src="05_fine_tuning_plots_files/figure-html/unnamed-chunk-19-1.png" width="768" />
 
 Note that http://colorbrewer2.org/ also has options for *Colourblind safe* and *Print friendly*.
 
@@ -229,7 +229,7 @@ p0 +
          subtitle = "Gapminder dataset, 2007")
 ```
 
-![](05_fine_tuning_plots_files/figure-latex/unnamed-chunk-20-1.pdf)<!-- --> 
+<img src="05_fine_tuning_plots_files/figure-html/unnamed-chunk-20-1.png" width="384" />
 
 ### Annotation
 \index{plots@\textbf{plots}!annotate}
@@ -267,7 +267,7 @@ p3 = p0 +
 p1 + p2 / p3
 ```
 
-![](05_fine_tuning_plots_files/figure-latex/unnamed-chunk-24-1.pdf)<!-- --> 
+<img src="05_fine_tuning_plots_files/figure-html/unnamed-chunk-24-1.png" width="768" />
 
 `hjust` stands for horizontal justification. It's default value is 0.5 (see how the label was centred at 25,000 - our chosen x location), 0 means the label goes to the right from 25,000, 1 would make it end at 25,000.
 
@@ -292,7 +292,7 @@ p0 +
            hjust = 0)
 ```
 
-![](05_fine_tuning_plots_files/figure-latex/unnamed-chunk-25-1.pdf)<!-- --> 
+<img src="05_fine_tuning_plots_files/figure-html/unnamed-chunk-25-1.png" width="384" />
 
 ## Text size
 \index{plots@\textbf{plots}!text size}
@@ -306,7 +306,7 @@ p0 +
         )
 ```
 
-![](05_fine_tuning_plots_files/figure-latex/unnamed-chunk-26-1.pdf)<!-- --> 
+<img src="05_fine_tuning_plots_files/figure-html/unnamed-chunk-26-1.png" width="384" />
 
 ### Legend position
 \index{plots@\textbf{plots}!legend}
@@ -341,14 +341,14 @@ p3 = p0 +
 p1 + p2
 ```
 
-![](05_fine_tuning_plots_files/figure-latex/unnamed-chunk-30-1.pdf)<!-- --> 
+<img src="05_fine_tuning_plots_files/figure-html/unnamed-chunk-30-1.png" width="768" />
 
 
 ```r
 p3
 ```
 
-![](05_fine_tuning_plots_files/figure-latex/unnamed-chunk-31-1.pdf)<!-- --> 
+<img src="05_fine_tuning_plots_files/figure-html/unnamed-chunk-31-1.png" width="384" />
 
 ## Saving your plot
 \index{plots@\textbf{plots}!saving}

@@ -30,7 +30,10 @@ Figure \@ref(fig:chap04-fig-steps) shows some example steps for building a scatt
 
 \index{functions@\textbf{functions}!ggplot}
 
-![(\#fig:chap04-fig-steps)Example steps for building and modiyfing a ggplot. (1) initialising the canvas and defining variables, (2) adding points, (3) colouring points by continent, (4) changing point type, (5) faceting, (6) changing the plot theme and the scale of the x variable.](04_plotting_files/figure-latex/chap04-fig-steps-1.pdf) 
+<div class="figure">
+<img src="04_plotting_files/figure-html/chap04-fig-steps-1.png" alt="Example steps for building and modiyfing a ggplot. (1) initialising the canvas and defining variables, (2) adding points, (3) colouring points by continent, (4) changing point type, (5) faceting, (6) changing the plot theme and the scale of the x variable." width="576" />
+<p class="caption">(\#fig:chap04-fig-steps)Example steps for building and modiyfing a ggplot. (1) initialising the canvas and defining variables, (2) adding points, (3) colouring points by continent, (4) changing point type, (5) faceting, (6) changing the plot theme and the scale of the x variable.</p>
+</div>
 
 \clearpage 
 
@@ -49,12 +52,12 @@ glimpse(gapminder)
 ```
 ## Observations: 1,704
 ## Variables: 6
-## $ country   <fct> Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afgha...
-## $ continent <fct> Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asi...
-## $ year      <int> 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 199...
-## $ lifeExp   <dbl> 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 4...
-## $ pop       <int> 8425333, 9240934, 10267083, 11537966, 13079460, 14880372,...
-## $ gdpPercap <dbl> 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.113...
+## $ country   <fct> Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afghani…
+## $ continent <fct> Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia,…
+## $ year      <int> 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997,…
+## $ lifeExp   <dbl> 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.…
+## $ pop       <int> 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 1…
+## $ gdpPercap <dbl> 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134,…
 ```
 
 The dataset includes 1704 observations (rows) of 6 variables (columns: country, continent, year, lifeExp, pop, gdpPercap).
@@ -98,7 +101,7 @@ gapminder2007
 ##  8 Bahrain     Asia       2007    75.6    708573    29796.
 ##  9 Bangladesh  Asia       2007    64.1 150448339     1391.
 ## 10 Belgium     Europe     2007    79.4  10392226    33693.
-## # ... with 132 more rows
+## # … with 132 more rows
 ```
 
 The new tibble - `gapminder2007` - now shows up in your **Environment** tab, whereas `gapminder` does not. 
@@ -182,7 +185,10 @@ gapminder2007 %>%
   geom_point()
 ```
 
-![(\#fig:chap04-fig-stripplot)A stip plot using `geom_point()`.](04_plotting_files/figure-latex/chap04-fig-stripplot-1.pdf) 
+<div class="figure">
+<img src="04_plotting_files/figure-html/chap04-fig-stripplot-1.png" alt="A stip plot using `geom_point()`." width="288" />
+<p class="caption">(\#fig:chap04-fig-stripplot)A stip plot using `geom_point()`.</p>
+</div>
 
 **(3)** specifying further variables inside `aes()`
 
@@ -212,7 +218,10 @@ Variables  (so columns of your dataset) have to be defined inside `aes()`. Where
 
 For example, Figure \@ref(fig:chap04-fig-shapes) shows a selection of the point shapes built into R. The default shape used by `geom_point()` is number 16.
 
-![(\#fig:chap04-fig-shapes)A selection of shapes for plotting. Shapes 0, 1, and 2 are hollow, whereas for shapes 21, 22, and 23 we can define both a colour and a fill (for thes shapes, colour is the border around the fill).](04_plotting_files/figure-latex/chap04-fig-shapes-1.pdf) 
+<div class="figure">
+<img src="04_plotting_files/figure-html/chap04-fig-shapes-1.png" alt="A selection of shapes for plotting. Shapes 0, 1, and 2 are hollow, whereas for shapes 21, 22, and 23 we can define both a colour and a fill (for thes shapes, colour is the border around the fill)." width="576" />
+<p class="caption">(\#fig:chap04-fig-shapes)A selection of shapes for plotting. Shapes 0, 1, and 2 are hollow, whereas for shapes 21, 22, and 23 we can define both a colour and a fill (for thes shapes, colour is the border around the fill).</p>
+</div>
 
 To make all of the points in our figure hollow, let's set their shape to 1.
 We do this by adding `shape = 1` inside the `geom_point()`:
@@ -254,7 +263,10 @@ gapminder2007 %>%
   facet_wrap(~pop > 50000000)
 ```
 
-![(\#fig:chap04-fig-facetcond)Using a filtering condition (e.g., population > 50 million) directly inside a `facet_wrap()`.](04_plotting_files/figure-latex/chap04-fig-facetcond-1.pdf) 
+<div class="figure">
+<img src="04_plotting_files/figure-html/chap04-fig-facetcond-1.png" alt="Using a filtering condition (e.g., population &gt; 50 million) directly inside a `facet_wrap()`." width="576" />
+<p class="caption">(\#fig:chap04-fig-facetcond)Using a filtering condition (e.g., population > 50 million) directly inside a `facet_wrap()`.</p>
+</div>
 
 On this plot, the facet `FALSE` includes countries with a population less than 50 million people, and the facet `TRUE` includes countries with a population greater than 50 million people.
 
@@ -268,7 +280,10 @@ Font type, colour, size or thickness or any lines or numbers, background, you na
 But a very quick way to change the appearance of a ggplot is to apply a different theme.
 The signature ggplot theme has a light grey background and white grid lines (Figure \@ref(fig:chap04-fig-themes)). 
 
-![(\#fig:chap04-fig-themes)Some of the built-in ggplot themes (1) default (2) `theme_bw()`, (3) `theme_dark()`, (4) `theme_classic()`.](04_plotting_files/figure-latex/chap04-fig-themes-1.pdf) 
+<div class="figure">
+<img src="04_plotting_files/figure-html/chap04-fig-themes-1.png" alt="Some of the built-in ggplot themes (1) default (2) `theme_bw()`, (3) `theme_dark()`, (4) `theme_classic()`." width="480" />
+<p class="caption">(\#fig:chap04-fig-themes)Some of the built-in ggplot themes (1) default (2) `theme_bw()`, (3) `theme_dark()`, (4) `theme_classic()`.</p>
+</div>
 
 As a final step, we are adding `theme_bw()` ("background white") to give the plot a different look. 
 We have also divided the gdpPercap by 1000 (making the units "thousands of dollars per capita").
@@ -336,7 +351,10 @@ gapminder2007 %>%
 
 The resulting bubble plots are shown in Figure \@ref(fig:chap04-fig-bubble).
 
-![(\#fig:chap04-fig-bubble)Turn the scatter plot from Figure \@ref(fig:chap04-fig-steps):(2) to a bubble plot by (1) adding `size = pop` inside the `aes()`, (2) make the points hollow and transparent.](04_plotting_files/figure-latex/chap04-fig-bubble-1.pdf) 
+<div class="figure">
+<img src="04_plotting_files/figure-html/chap04-fig-bubble-1.png" alt="Turn the scatter plot from Figure \@ref(fig:chap04-fig-steps):(2) to a bubble plot by (1) adding `size = pop` inside the `aes()`, (2) make the points hollow and transparent." width="576" />
+<p class="caption">(\#fig:chap04-fig-bubble)Turn the scatter plot from Figure \@ref(fig:chap04-fig-steps):(2) to a bubble plot by (1) adding `size = pop` inside the `aes()`, (2) make the points hollow and transparent.</p>
+</div>
 
 Alpha is an aesthetic to make geoms transparent, its values can range from 0 (invisible) to 1 (solid).
 
@@ -355,7 +373,7 @@ gapminder %>%
   geom_line()
 ```
 
-![](04_plotting_files/figure-latex/unnamed-chunk-18-1.pdf)<!-- --> 
+<img src="04_plotting_files/figure-html/unnamed-chunk-18-1.png" width="384" />
 
 As a recap, the steps in the code above are:
 
@@ -390,7 +408,10 @@ gapminder %>%
   geom_line()
 ```
 
-![(\#fig:chap04-fig-zigzag)The 'zig-zag plot' is a common mistake: using `geom_line()` (1) without a `group` specified, (2) after adding `group = country`.](04_plotting_files/figure-latex/chap04-fig-zigzag-1.pdf) 
+<div class="figure">
+<img src="04_plotting_files/figure-html/chap04-fig-zigzag-1.png" alt="The 'zig-zag plot' is a common mistake: using `geom_line()` (1) without a `group` specified, (2) after adding `group = country`." width="672" />
+<p class="caption">(\#fig:chap04-fig-zigzag)The 'zig-zag plot' is a common mistake: using `geom_line()` (1) without a `group` specified, (2) after adding `group = country`.</p>
+</div>
 
 This code works as expected (Figure \@ref(fig:chap04-fig-zigzag) (2)) - yes there is a lot of overplotting but that's just because we've included 142 lines on a single plot.
 
@@ -398,7 +419,7 @@ This code works as expected (Figure \@ref(fig:chap04-fig-zigzag) (2)) - yes ther
 
 Follow the step-by-step instructions to transform (Figure \@ref(fig:chap04-fig-zigzag):2) into this:
 
-![](04_plotting_files/figure-latex/unnamed-chunk-21-1.pdf)<!-- --> 
+<img src="04_plotting_files/figure-html/unnamed-chunk-21-1.png" width="768" />
 
 * Colour lines by continents: add `colour = continent` inside `aes()`;
 * Continents on separate facets: `+ facet_wrap(~continent)`;
@@ -432,7 +453,10 @@ gapminder2007 %>%
 This gives us Figure \@ref(fig:chap04-fig-col):1.
 We have also created another cheeky one using the same code but changing the scale of the y axis to be more dramatic (Figure \@ref(fig:chap04-fig-col):2).
 
-![(\#fig:chap04-fig-col)Bar plots using `geom_col()`: (1) using the code example, (2) same plot but with `+ coord_cartesian(ylim=c(79, 81))` to manipulate the scale into something a lot more dramatic.](04_plotting_files/figure-latex/chap04-fig-col-1.pdf) 
+<div class="figure">
+<img src="04_plotting_files/figure-html/chap04-fig-col-1.png" alt="Bar plots using `geom_col()`: (1) using the code example, (2) same plot but with `+ coord_cartesian(ylim=c(79, 81))` to manipulate the scale into something a lot more dramatic." width="624" />
+<p class="caption">(\#fig:chap04-fig-col)Bar plots using `geom_col()`: (1) using the code example, (2) same plot but with `+ coord_cartesian(ylim=c(79, 81))` to manipulate the scale into something a lot more dramatic.</p>
+</div>
 
 \FloatBarrier
 
@@ -464,7 +488,10 @@ gapminder2007 %>%
 
 So `geom_bar()` basically runs the `count()` function and plots it (see how the bars on Figure \@ref(fig:chap04-fig-bar) are the same height as the values from `count(continent)`).
 
-![(\#fig:chap04-fig-bar)`geom_bar()` counts up the number of observations for each group. (1) `gapminder2007 %>% ggplot(aes(x = continent)) + geom_bar()`, (2) same + a little bit of magic to reveal the underlying data.](04_plotting_files/figure-latex/chap04-fig-bar-1.pdf) 
+<div class="figure">
+<img src="04_plotting_files/figure-html/chap04-fig-bar-1.png" alt="`geom_bar()` counts up the number of observations for each group. (1) `gapminder2007 %&gt;% ggplot(aes(x = continent)) + geom_bar()`, (2) same + a little bit of magic to reveal the underlying data." width="614.4" />
+<p class="caption">(\#fig:chap04-fig-bar)`geom_bar()` counts up the number of observations for each group. (1) `gapminder2007 %>% ggplot(aes(x = continent)) + geom_bar()`, (2) same + a little bit of magic to reveal the underlying data.</p>
+</div>
 
 The first barplot in Figure \@ref(fig:chap04-fig-bar) is produced with just this:
 
@@ -520,7 +547,7 @@ gapminder2007 %>%
   geom_bar()
 ```
 
-![](04_plotting_files/figure-latex/unnamed-chunk-26-1.pdf)<!-- --> 
+<img src="04_plotting_files/figure-html/unnamed-chunk-26-1.png" width="268.8" />
 
 There are more examples of bar plots in Chapter \@ref(chap08-h1).
 
@@ -528,7 +555,10 @@ There are more examples of bar plots in Chapter \@ref(chap08-h1).
 
 Create Figure \@ref(fig:chap04-fig-bar-exercise) of life expectancies in European countries (year 2007).
 
-![(\#fig:chap04-fig-bar-exercise)Barplot Exercise. Life expectancies in European countries in year 2007 from the Gapmminder dataset.](04_plotting_files/figure-latex/chap04-fig-bar-exercise-1.pdf) 
+<div class="figure">
+<img src="04_plotting_files/figure-html/chap04-fig-bar-exercise-1.png" alt="Barplot Exercise. Life expectancies in European countries in year 2007 from the Gapmminder dataset." width="432" />
+<p class="caption">(\#fig:chap04-fig-bar-exercise)Barplot Exercise. Life expectancies in European countries in year 2007 from the Gapmminder dataset.</p>
+</div>
 
 Hints:
 
@@ -555,7 +585,7 @@ gapminder2007 %>%
   geom_histogram(binwidth = 10)
 ```
 
-![](04_plotting_files/figure-latex/unnamed-chunk-28-1.pdf)<!-- --> 
+<img src="04_plotting_files/figure-html/unnamed-chunk-28-1.png" width="384" />
 
 We can see that most countries in the world have a life expectancy of ~70-80 years (in 2007), and that the distribution of life expectancies globally is not normally distributed.
 Setting the binwidth is optional, using just `geom_histogram()` works well too -by default, it will divide your data into 30 bins.
@@ -581,7 +611,7 @@ gapminder2007 %>%
   geom_boxplot()
 ```
 
-![](04_plotting_files/figure-latex/unnamed-chunk-29-1.pdf)<!-- --> 
+<img src="04_plotting_files/figure-html/unnamed-chunk-29-1.png" width="288" />
 
 ## Multiple geoms, multiple `aes()`?
 
@@ -601,7 +631,10 @@ gapminder2007 %>%
 
 This makes Figure \@ref(fig:chap04-fig-multigeoms):1.
 
-![(\#fig:chap04-fig-multigeoms)Multiple geoms together. (1) `geom_boxplot() + geom_point()`, (2) `geom_boxplot() + geom_jitter()`, (3) colour aesthetic inside `ggplot(aes())`, (4) colour aesthetic inside `geom_jitter(aes())`.](04_plotting_files/figure-latex/chap04-fig-multigeoms-1.pdf) 
+<div class="figure">
+<img src="04_plotting_files/figure-html/chap04-fig-multigeoms-1.png" alt="Multiple geoms together. (1) `geom_boxplot() + geom_point()`, (2) `geom_boxplot() + geom_jitter()`, (3) colour aesthetic inside `ggplot(aes())`, (4) colour aesthetic inside `geom_jitter(aes())`." width="768" />
+<p class="caption">(\#fig:chap04-fig-multigeoms)Multiple geoms together. (1) `geom_boxplot() + geom_point()`, (2) `geom_boxplot() + geom_jitter()`, (3) colour aesthetic inside `ggplot(aes())`, (4) colour aesthetic inside `geom_jitter(aes())`.</p>
+</div>
 
 The only thing we've changed in (2) is replacing `geom_point()` with `geom_jitter()` - this spreads the points out to reduce overplotting.
 
@@ -679,7 +712,7 @@ gapminder2007 %>%
   geom_label(data = label_data, aes(label = country))
 ```
 
-![](04_plotting_files/figure-latex/unnamed-chunk-35-1.pdf)<!-- --> 
+<img src="04_plotting_files/figure-html/unnamed-chunk-35-1.png" width="480" />
 
 A few suggested experiments to try with the 3-geom plot code above:
 
@@ -759,7 +792,7 @@ gapminder %>%
   theme_bw()
 ```
 
-![](04_plotting_files/figure-latex/unnamed-chunk-38-1.pdf)<!-- --> 
+<img src="04_plotting_files/figure-html/unnamed-chunk-38-1.png" width="672" />
 
 In the second example, we're using `group_by(continent)` followed by `mutate(country_number = seq_along(country))` to create a new column with numbers 1, 2, 3, etc for countries within continents. 
 We are then using these as `y` coordinates for the text labels (`geom_text(aes(y = country_number...`).
@@ -776,4 +809,4 @@ gapminder2007 %>%
   theme_void()
 ```
 
-![](04_plotting_files/figure-latex/unnamed-chunk-39-1.pdf)<!-- --> 
+<img src="04_plotting_files/figure-html/unnamed-chunk-39-1.png" width="768" />

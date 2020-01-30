@@ -1,0 +1,51 @@
+\indexentry{import data|hyperpage}{1}
+\indexentry{reading data|hyperpage}{1}
+\indexentry{functions@\textbf{functions}!read\_csv|hyperpage}{2}
+\indexentry{variable types@\textbf{variable types}|hyperpage}{4}
+\indexentry{continuous data@\textbf{continuous data}!variable types|hyperpage}{4}
+\indexentry{categorical data@\textbf{categorical data}!variable types|hyperpage}{4}
+\indexentry{date-time@\textbf{date-time}|hyperpage}{4}
+\indexentry{variable types@\textbf{variable types}!continuous / numeric|hyperpage}{8}
+\indexentry{functions@\textbf{functions}!round|hyperpage}{9}
+\indexentry{functions@\textbf{functions}!near|hyperpage}{9}
+\indexentry{variable types@\textbf{variable types}!character|hyperpage}{10}
+\indexentry{variable types@\textbf{variable types}!categorical / factor|hyperpage}{11}
+\indexentry{variable types@\textbf{variable types}!date-time|hyperpage}{12}
+\indexentry{functions@\textbf{functions}!dmy|hyperpage}{12}
+\indexentry{functions@\textbf{functions}!ymd|hyperpage}{12}
+\indexentry{objects|hyperpage}{15}
+\indexentry{functions@\textbf{functions}|hyperpage}{15}
+\indexentry{symbols@\textbf{symbols}!select column \texttt{\$}|hyperpage}{17}
+\indexentry{missing values remove \texttt{na.rm}|hyperpage}{18}
+\indexentry{functions@\textbf{functions}!Sys.time|hyperpage}{18}
+\indexentry{system time|hyperpage}{18}
+\indexentry{symbols@\textbf{symbols}!assignment \texttt{=}|hyperpage}{19}
+\indexentry{functions@\textbf{functions}!seq|hyperpage}{19}
+\indexentry{symbols@\textbf{symbols}!pipe \texttt{\%>\%}|hyperpage}{20}
+\indexentry{pipe@\textbf{pipe}|hyperpage}{20}
+\indexentry{operators|hyperpage}{22}
+\indexentry{functions@\textbf{functions}!filter|hyperpage}{22}
+\indexentry{symbols@\textbf{symbols}!less than \texttt{<}|hyperpage}{22}
+\indexentry{symbols@\textbf{symbols}!greater than \texttt{>}|hyperpage}{22}
+\indexentry{symbols@\textbf{symbols}!less or equal \texttt{<=}|hyperpage}{22}
+\indexentry{symbols@\textbf{symbols}!greater or equal \texttt{>=}|hyperpage}{22}
+\indexentry{symbols@\textbf{symbols}!equal \texttt{=}|hyperpage}{22}
+\indexentry{symbols@\textbf{symbols}!not \texttt{"!}|hyperpage}{22}
+\indexentry{symbols@\textbf{symbols}!AND \texttt{\&}|hyperpage}{22}
+\indexentry{symbols@\textbf{symbols}!OR \texttt{"|}|hyperpage}{22}
+\indexentry{symbols@\textbf{symbols}!comment \texttt{\#}|hyperpage}{25}
+\indexentry{functions@\textbf{functions}!c() combine|hyperpage}{26}
+\indexentry{missing values|hyperpage}{27}
+\indexentry{column, create|hyperpage}{30}
+\indexentry{functions@\textbf{functions}!mutate|hyperpage}{30}
+\indexentry{functions@\textbf{functions}!matches|hyperpage}{33}
+\indexentry{functions@\textbf{functions}!paste|hyperpage}{35}
+\indexentry{paste|hyperpage}{35}
+\indexentry{labels|hyperpage}{35}
+\indexentry{functions@\textbf{functions}!join|hyperpage}{36}
+\indexentry{functions@\textbf{functions}!full\_join|hyperpage}{36}
+\indexentry{functions@\textbf{functions}!inner\_join|hyperpage}{36}
+\indexentry{functions@\textbf{functions}!left\_join|hyperpage}{36}
+\indexentry{functions@\textbf{functions}!right\_join|hyperpage}{36}
+\indexentry{join datasets@\textbf{join datasets}|hyperpage}{36}
+\indexentry{help|hyperpage}{40}

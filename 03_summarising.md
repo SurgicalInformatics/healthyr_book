@@ -40,47 +40,43 @@ gbd2017 = gbd_full %>%
   filter(year == 2017)
 ```
 
-\begin{table}[!h]
 
-\caption{(\#tab:chap3-tab-gbd2017)Deaths per year (2017) from three broad disease categories, sex, and World Bank county-level income groups.}
-\centering
-\fontsize{10}{12}\selectfont
-\begin{tabular}[t]{lcrlc}
-\toprule
-cause & year & sex & income & deaths\_millions\\
-\midrule
-Communicable diseases & 2017 & Female & High & 0.26\\
-Communicable diseases & 2017 & Female & Upper-Middle & 0.55\\
-Communicable diseases & 2017 & Female & Lower-Middle & 2.92\\
-Communicable diseases & 2017 & Female & Low & 1.18\\
-\addlinespace
-Communicable diseases & 2017 & Male & High & 0.29\\
-Communicable diseases & 2017 & Male & Upper-Middle & 0.73\\
-Communicable diseases & 2017 & Male & Lower-Middle & 3.10\\
-Communicable diseases & 2017 & Male & Low & 1.35\\
-\addlinespace
-Injuries & 2017 & Female & High & 0.21\\
-Injuries & 2017 & Female & Upper-Middle & 0.43\\
-Injuries & 2017 & Female & Lower-Middle & 0.66\\
-Injuries & 2017 & Female & Low & 0.12\\
-\addlinespace
-Injuries & 2017 & Male & High & 0.40\\
-Injuries & 2017 & Male & Upper-Middle & 1.16\\
-Injuries & 2017 & Male & Lower-Middle & 1.23\\
-Injuries & 2017 & Male & Low & 0.26\\
-\addlinespace
-Non-communicable diseases & 2017 & Female & High & 4.68\\
-Non-communicable diseases & 2017 & Female & Upper-Middle & 7.28\\
-Non-communicable diseases & 2017 & Female & Lower-Middle & 6.27\\
-Non-communicable diseases & 2017 & Female & Low & 0.92\\
-\addlinespace
-Non-communicable diseases & 2017 & Male & High & 4.65\\
-Non-communicable diseases & 2017 & Male & Upper-Middle & 8.79\\
-Non-communicable diseases & 2017 & Male & Lower-Middle & 7.30\\
-Non-communicable diseases & 2017 & Male & Low & 1.00\\
-\bottomrule
-\end{tabular}
-\end{table}
+```
+## Warning in kableExtra::kable_styling(., latex_options = c("hold_position"), :
+## Please specify format in kable. kableExtra can customize either HTML or LaTeX
+## outputs. See https://haozhu233.github.io/kableExtra/ for details.
+```
+
+
+
+Table: (\#tab:chap3-tab-gbd2017)Deaths per year (2017) from three broad disease categories, sex, and World Bank county-level income groups.
+
+cause                        year       sex  income          deaths_millions 
+--------------------------  ------  -------  -------------  -----------------
+Communicable diseases        2017    Female  High                 0.26       
+Communicable diseases        2017    Female  Upper-Middle         0.55       
+Communicable diseases        2017    Female  Lower-Middle         2.92       
+Communicable diseases        2017    Female  Low                  1.18       
+Communicable diseases        2017      Male  High                 0.29       
+Communicable diseases        2017      Male  Upper-Middle         0.73       
+Communicable diseases        2017      Male  Lower-Middle         3.10       
+Communicable diseases        2017      Male  Low                  1.35       
+Injuries                     2017    Female  High                 0.21       
+Injuries                     2017    Female  Upper-Middle         0.43       
+Injuries                     2017    Female  Lower-Middle         0.66       
+Injuries                     2017    Female  Low                  0.12       
+Injuries                     2017      Male  High                 0.40       
+Injuries                     2017      Male  Upper-Middle         1.16       
+Injuries                     2017      Male  Lower-Middle         1.23       
+Injuries                     2017      Male  Low                  0.26       
+Non-communicable diseases    2017    Female  High                 4.68       
+Non-communicable diseases    2017    Female  Upper-Middle         7.28       
+Non-communicable diseases    2017    Female  Lower-Middle         6.27       
+Non-communicable diseases    2017    Female  Low                  0.92       
+Non-communicable diseases    2017      Male  High                 4.65       
+Non-communicable diseases    2017      Male  Upper-Middle         8.79       
+Non-communicable diseases    2017      Male  Lower-Middle         7.30       
+Non-communicable diseases    2017      Male  Low                  1.00       
 
 \clearpage
 
@@ -110,7 +106,10 @@ gbd2017 %>%
   theme(legend.position = "top")
 ```
 
-![(\#fig:chap03-fig-gbd)Global Burden of Disease data with subgroups: cause, sex, World Bank income group.](03_summarising_files/figure-latex/chap03-fig-gbd-1.pdf) 
+<div class="figure">
+<img src="03_summarising_files/figure-html/chap03-fig-gbd-1.png" alt="Global Burden of Disease data with subgroups: cause, sex, World Bank income group." width="576" />
+<p class="caption">(\#fig:chap03-fig-gbd)Global Burden of Disease data with subgroups: cause, sex, World Bank income group.</p>
+</div>
 
 ## Aggregating: `group_by()`, `summarise()`
 \index{summarising data@\textbf{summarising data}!aggregation}
@@ -489,55 +488,135 @@ gbd_long = read_csv("data/global_burden_disease_cause-year-sex.csv")
 ```
 
 
-\begin{table}[!h]
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>(\#tab:chap3-tab-gbd-wide)Global Burden of Disease data in human-readable wide format. This is not tidy data.</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> cause </th>
+   <th style="text-align:center;"> Female-1990 </th>
+   <th style="text-align:center;"> Female-2017 </th>
+   <th style="text-align:center;"> Male-1990 </th>
+   <th style="text-align:center;"> Male-2017 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Communicable diseases </td>
+   <td style="text-align:center;"> 7.30 </td>
+   <td style="text-align:center;"> 4.91 </td>
+   <td style="text-align:center;"> 8.06 </td>
+   <td style="text-align:center;"> 5.47 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Injuries </td>
+   <td style="text-align:center;"> 1.41 </td>
+   <td style="text-align:center;"> 1.42 </td>
+   <td style="text-align:center;"> 2.84 </td>
+   <td style="text-align:center;"> 3.05 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Non-communicable diseases </td>
+   <td style="text-align:center;"> 12.80 </td>
+   <td style="text-align:center;"> 19.15 </td>
+   <td style="text-align:center;"> 13.91 </td>
+   <td style="text-align:center;"> 21.74 </td>
+  </tr>
+</tbody>
+</table>
 
-\caption{(\#tab:chap3-tab-gbd-wide)Global Burden of Disease data in human-readable wide format. This is not tidy data.}
-\centering
-\resizebox{\linewidth}{!}{
-\begin{tabular}[t]{lcccc}
-\toprule
-cause & Female-1990 & Female-2017 & Male-1990 & Male-2017\\
-\midrule
-Communicable diseases & 7.30 & 4.91 & 8.06 & 5.47\\
-Injuries & 1.41 & 1.42 & 2.84 & 3.05\\
-Non-communicable diseases & 12.80 & 19.15 & 13.91 & 21.74\\
-\bottomrule
-\end{tabular}}
-\end{table}
-
-\begin{table}[!h]
-
-\caption{(\#tab:chap3-tab-gbd-long)Global Burden of Disease data in analysis-friendly long format. This is tidy data.}
-\centering
-\fontsize{10}{12}\selectfont
-\begin{tabular}[t]{lccc}
-\toprule
-cause & year & sex & deaths\_millions\\
-\midrule
-Communicable diseases & 1990 & Female & 7.30\\
-Communicable diseases & 2017 & Female & 4.91\\
-Communicable diseases & 1990 & Male & 8.06\\
-Communicable diseases & 2017 & Male & 5.47\\
-\addlinespace
-Injuries & 1990 & Female & 1.41\\
-Injuries & 2017 & Female & 1.42\\
-Injuries & 1990 & Male & 2.84\\
-Injuries & 2017 & Male & 3.05\\
-\addlinespace
-Non-communicable diseases & 1990 & Female & 12.80\\
-Non-communicable diseases & 2017 & Female & 19.15\\
-Non-communicable diseases & 1990 & Male & 13.91\\
-Non-communicable diseases & 2017 & Male & 21.74\\
-\bottomrule
-\end{tabular}
-\end{table}
+<table class="table" style="font-size: 10px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">(\#tab:chap3-tab-gbd-long)Global Burden of Disease data in analysis-friendly long format. This is tidy data.</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> cause </th>
+   <th style="text-align:center;"> year </th>
+   <th style="text-align:center;"> sex </th>
+   <th style="text-align:center;"> deaths_millions </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Communicable diseases </td>
+   <td style="text-align:center;"> 1990 </td>
+   <td style="text-align:center;"> Female </td>
+   <td style="text-align:center;"> 7.30 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Communicable diseases </td>
+   <td style="text-align:center;"> 2017 </td>
+   <td style="text-align:center;"> Female </td>
+   <td style="text-align:center;"> 4.91 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Communicable diseases </td>
+   <td style="text-align:center;"> 1990 </td>
+   <td style="text-align:center;"> Male </td>
+   <td style="text-align:center;"> 8.06 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Communicable diseases </td>
+   <td style="text-align:center;"> 2017 </td>
+   <td style="text-align:center;"> Male </td>
+   <td style="text-align:center;"> 5.47 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Injuries </td>
+   <td style="text-align:center;"> 1990 </td>
+   <td style="text-align:center;"> Female </td>
+   <td style="text-align:center;"> 1.41 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Injuries </td>
+   <td style="text-align:center;"> 2017 </td>
+   <td style="text-align:center;"> Female </td>
+   <td style="text-align:center;"> 1.42 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Injuries </td>
+   <td style="text-align:center;"> 1990 </td>
+   <td style="text-align:center;"> Male </td>
+   <td style="text-align:center;"> 2.84 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Injuries </td>
+   <td style="text-align:center;"> 2017 </td>
+   <td style="text-align:center;"> Male </td>
+   <td style="text-align:center;"> 3.05 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Non-communicable diseases </td>
+   <td style="text-align:center;"> 1990 </td>
+   <td style="text-align:center;"> Female </td>
+   <td style="text-align:center;"> 12.80 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Non-communicable diseases </td>
+   <td style="text-align:center;"> 2017 </td>
+   <td style="text-align:center;"> Female </td>
+   <td style="text-align:center;"> 19.15 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Non-communicable diseases </td>
+   <td style="text-align:center;"> 1990 </td>
+   <td style="text-align:center;"> Male </td>
+   <td style="text-align:center;"> 13.91 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Non-communicable diseases </td>
+   <td style="text-align:center;"> 2017 </td>
+   <td style="text-align:center;"> Male </td>
+   <td style="text-align:center;"> 21.74 </td>
+  </tr>
+</tbody>
+</table>
 
 Tables \@ref(tab:chap3-tab-gbd-long) and \@ref(tab:chap3-tab-gbd-wide) contain the exact same information, but in long (tidy) and wide formats, respectively.
 
 
-\begin{figure}
-\includegraphics[width=40.46in]{images/wide_long} \caption{Same data in the long ('tidy', necessary for efficient analysis) and wide (easier for human-readability/presentation/manual data entry) formats. TODO: replace with updated data.}(\#fig:unnamed-chunk-20)
-\end{figure}
+<div class="figure">
+<img src="images/wide_long.png" alt="Same data in the long ('tidy', necessary for efficient analysis) and wide (easier for human-readability/presentation/manual data entry) formats. TODO: replace with updated data." width="1456" />
+<p class="caption">(\#fig:unnamed-chunk-20)Same data in the long ('tidy', necessary for efficient analysis) and wide (easier for human-readability/presentation/manual data entry) formats. TODO: replace with updated data.</p>
+</div>
 
 \clearpage 
 
@@ -1064,22 +1143,48 @@ gbd_long = read_csv("data/global_burden_disease_cause-year-sex.csv")
 
 Spread the `cause` variable into columns using the `deaths_millions` as values:
 
-\begin{table}[!h]
-
-\caption{(\#tab:unnamed-chunk-45)Exercise: putting the cause variable into the wide format using spread.}
-\centering
-\resizebox{\linewidth}{!}{
-\begin{tabular}[t]{lcccc}
-\toprule
-year & sex & Communicable diseases & Injuries & Non-communicable diseases\\
-\midrule
-1990 & Female & 7.30 & 1.41 & 12.80\\
-1990 & Male & 8.06 & 2.84 & 13.91\\
-2017 & Female & 4.91 & 1.42 & 19.15\\
-2017 & Male & 5.47 & 3.05 & 21.74\\
-\bottomrule
-\end{tabular}}
-\end{table}
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>(\#tab:unnamed-chunk-45)Exercise: putting the cause variable into the wide format using spread.</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> year </th>
+   <th style="text-align:center;"> sex </th>
+   <th style="text-align:center;"> Communicable diseases </th>
+   <th style="text-align:center;"> Injuries </th>
+   <th style="text-align:center;"> Non-communicable diseases </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 1990 </td>
+   <td style="text-align:center;"> Female </td>
+   <td style="text-align:center;"> 7.30 </td>
+   <td style="text-align:center;"> 1.41 </td>
+   <td style="text-align:center;"> 12.80 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1990 </td>
+   <td style="text-align:center;"> Male </td>
+   <td style="text-align:center;"> 8.06 </td>
+   <td style="text-align:center;"> 2.84 </td>
+   <td style="text-align:center;"> 13.91 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2017 </td>
+   <td style="text-align:center;"> Female </td>
+   <td style="text-align:center;"> 4.91 </td>
+   <td style="text-align:center;"> 1.42 </td>
+   <td style="text-align:center;"> 19.15 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2017 </td>
+   <td style="text-align:center;"> Male </td>
+   <td style="text-align:center;"> 5.47 </td>
+   <td style="text-align:center;"> 3.05 </td>
+   <td style="text-align:center;"> 21.74 </td>
+  </tr>
+</tbody>
+</table>
 
 **Solution**
 
@@ -1104,11 +1209,11 @@ glimpse(gbd_full)
 ```
 ## Observations: 168
 ## Variables: 5
-## $ cause           <chr> "Communicable diseases", "Communicable diseases", "...
-## $ year            <dbl> 1990, 1990, 1990, 1990, 1990, 1990, 1990, 1990, 199...
-## $ sex             <chr> "Female", "Female", "Female", "Female", "Male", "Ma...
-## $ income          <chr> "High", "Upper-Middle", "Lower-Middle", "Low", "Hig...
-## $ deaths_millions <dbl> 0.21, 1.15, 4.43, 1.51, 0.26, 1.35, 4.73, 1.72, 0.2...
+## $ cause           <chr> "Communicable diseases", "Communicable diseases", "Co…
+## $ year            <dbl> 1990, 1990, 1990, 1990, 1990, 1990, 1990, 1990, 1990,…
+## $ sex             <chr> "Female", "Female", "Female", "Female", "Male", "Male…
+## $ income          <chr> "High", "Upper-Middle", "Lower-Middle", "Low", "High"…
+## $ deaths_millions <dbl> 0.21, 1.15, 4.43, 1.51, 0.26, 1.35, 4.73, 1.72, 0.20,…
 ```
 
 Year 2017 of this dataset was shown in Table \@ref(tab:chap3-tab-gbd2017), the full dataset has seven times as many observations as Table \@ref(tab:chap3-tab-gbd2017) since it includes information about multiple years: 1990, 1995, 2000, 2005, 2010, 2015, 2017.
@@ -1162,7 +1267,7 @@ summary_data2
 ##  8  2000 Injuries                             4.56
 ##  9  2000 Non-communicable diseases           31.01
 ## 10  2005 Communicable diseases               13.89
-## # ... with 11 more rows
+## # … with 11 more rows
 ```
 
 You should recognise that:
@@ -1236,7 +1341,7 @@ Example result for a single year:
 ##  8  2000          50.38 Injuries                             4.56 9.051%    
 ##  9  2000          50.38 Non-communicable diseases           31.01 61.552%   
 ## 10  2005          51.25 Communicable diseases               13.89 27.102%   
-## # ... with 11 more rows
+## # … with 11 more rows
 ```
 
 ## Exercise - `mutate()`, `summarise()`

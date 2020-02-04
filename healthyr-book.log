@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  30 JAN 2020 16:06
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  4 FEB 2020 16:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1655,7 +1655,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `EU1/SourceCodePro(0)/m/n' will be
-(Font)              scaled to size 7.79993pt on input line 15.
+(Font)              scaled to size 7.79993pt on input line 16.
 Font mapping `tex-ansi.tec' for font `Source Code Pro' not found.
 
 Underfull \hbox (badness 10000) has occurred while \output is active
@@ -2073,111 +2073,149 @@ File: images/chapter02/files_csv_example.png Graphic file (type QTm)
 LaTeX Font Info:    Font shape `EU1/SourceCodePro(0)/bx/n' will be
 (Font)              scaled to size 7.79993pt on input line 378.
 Font mapping `tex-ansi.tec' for font `Source Code Pro Bold' not found.
+[2]
 File: images/chapter02/import_options.png Graphic file (type QTm)
 <use  "images/chapter02/import_options.png" >
 File: images/chapter02/code_preview.png Graphic file (type QTm)
-<use  "images/chapter02/code_preview.png" > [2]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 427--427
-|  
- []
-
-[3]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 438--438
+<use  "images/chapter02/code_preview.png" > [3]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 442--442
 |  
  []
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Overfull \hbox (30.0pt too wide) in paragraph at lines 453--453
+|  
+ []
 
+[4]
 File: 02_basics_files/figure-latex/chap2-fig-gbd-1.pdf Graphic file (type QTm)
-<use  "02_basics_files/figure-latex/chap2-fig-gbd-1.pdf" > [4] [5] [6] [7]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 614--614
+<use  "02_basics_files/figure-latex/chap2-fig-gbd-1.pdf" > [5] [6] [7]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 629--629
 |  
  []
 
-
-Overfull \hbox (30.0pt too wide) in paragraph at lines 632--632
+[8]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 647--647
 |  
  []
 
-[8] [9] [10]
+[9] [10]
 LaTeX Font Info:    Font shape `EU1/SourceCodePro(0)/m/it' will be
-(Font)              scaled to size 7.79993pt on input line 775.
+(Font)              scaled to size 7.79993pt on input line 790.
 Font mapping `tex-ansi.tec' for font `Source Code Pro Italic' not found.
-[11]
-Overfull \hbox (28.31612pt too wide) in paragraph at lines 884--884
+[11] [12]
+Overfull \hbox (28.31612pt too wide) in paragraph at lines 899--899
 []\EU1/SourceCodePro(0)/m/n/12 ## Error in `-.POSIXt`(my_datetime, current_date
 time): can only subtract from "POSIXt" objects[] 
  []
 
-[12]
-Overfull \hbox (28.31618pt too wide) in paragraph at lines 971--971
+[13]
+Overfull \hbox (28.31618pt too wide) in paragraph at lines 986--986
 []\EU1/SourceCodePro(0)/m/n/12 ## Error in `/.difftime`(560, my_datesdiff): sec
 ond argument of / cannot be a "difftime" object[] 
  []
 
-[13] [14]
+
+Overfull \vbox (6.55443pt too high) has occurred while \output is active []
+
+[14]
 LaTeX Font Info:    Font shape `EU1/latinmodern-math.otf(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 1069.
+(Font)              scaled to size 8.0pt on input line 1084.
 LaTeX Font Info:    Font shape `EU1/latinmodern-math.otf(0)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 1069.
+(Font)              scaled to size 6.0pt on input line 1084.
 LaTeX Font Info:    Font shape `EU1/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 8.00012pt on input line 1069.
+(Font)              scaled to size 8.00012pt on input line 1084.
 LaTeX Font Info:    Font shape `EU1/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.00009pt on input line 1069.
+(Font)              scaled to size 6.00009pt on input line 1084.
 LaTeX Font Info:    Font shape `EU1/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.99988pt on input line 1069.
+(Font)              scaled to size 7.99988pt on input line 1084.
 LaTeX Font Info:    Font shape `EU1/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.99991pt on input line 1069.
+(Font)              scaled to size 5.99991pt on input line 1084.
+[15]
 LaTeX Font Info:    Font shape `EU1/SourceCodePro(0)/bx/n' will be
-(Font)              scaled to size 7.14993pt on input line 1086.
+(Font)              scaled to size 7.14993pt on input line 1117.
 Font mapping `tex-ansi.tec' for font `Source Code Pro Bold' not found.
-[15] [16] [17]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 1237--1237
-|  
- []
-
-[18] [19]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 1323--1323
+[16] [17] [18]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 1267--1267
 |  
  []
 
 
-Overfull \hbox (30.0pt too wide) in paragraph at lines 1348--1348
+Overfull \hbox (30.0pt too wide) in paragraph at lines 1306--1306
 |  
  []
 
-[20]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 1383--1383
+[19]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 1359--1359
+|  
+ []
+
+[20] [21]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 1445--1445
 |  
  []
 
 File: images/chapter02/magrittr.png Graphic file (type QTm)
 <use  "images/chapter02/magrittr.png" >
-Overfull \hbox (9.06108pt too wide) in paragraph at lines 1396--1397
- []\EU1/lmr/m/n/12 {[] 
+
+LaTeX Warning: Reference `chap07-h1' on page 22 undefined on input line 1469.
+
+[22] [23] [24]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 1581--1581
+|  
  []
 
+[25] [26]
 LaTeX Font Info:    Font shape `EU1/SourceCodePro(0)/m/it' will be
-(Font)              scaled to size 6.49994pt on input line 1400.
+(Font)              scaled to size 6.49994pt on input line 1760.
 Font mapping `tex-ansi.tec' for font `Source Code Pro Italic' not found.
-[21]
-
-LaTeX Warning: Reference `chap07-h1' on page 22 undefined on input line 1407.
-
-[22] [23]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 1519--1519
-| 
+[27] [28] [29] [30] [31] [32] [33] [34]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 2214--2214
+|  
  []
 
-[24] [25] [26] [27] [28] [29] [30] [31] [32] [33]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 2152--2152
-| 
- []
-
-[34] [35] [36] [37] [38] [39]
+[35] [36] [37] [38] [39] [40]
 No file healthyr-book.bbl.
-[40] (./healthyr-book.ind
+[41]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (395.75pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (395.75pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (395.75pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (395.75pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[42
+
+] (./healthyr-book.ind
 Underfull \hbox (badness 10000) detected at line 1
 []
  []
@@ -2191,28 +2229,27 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  [][][][] 
  []
 
-[41
-
+[43
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2508.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2508.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2572.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2572.
 (./healthyr-book.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2508.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 2508.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2572.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 2572.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2508.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2572.
  ) 
 Here is how much of TeX's memory you used:
- 31520 strings out of 495579
- 542093 string characters out of 6187323
- 721539 words of memory out of 5000000
- 34372 multiletter control sequences out of 15000+600000
+ 31522 strings out of 495579
+ 542066 string characters out of 6187323
+ 718644 words of memory out of 5000000
+ 34374 multiletter control sequences out of 15000+600000
  12559 words of font info for 98 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  61i,9n,109p,10422b,622s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on healthyr-book.pdf (53 pages).
+Output written on healthyr-book.pdf (55 pages).

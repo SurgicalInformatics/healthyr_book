@@ -35,7 +35,7 @@ We will read in data and start basic manipulations. You may want to skip parts o
 * know what numbers, characters, factors, and dates look like in R
 * are familiar with the terminology around objects, functions, arguments
 * have used the pipe: `%>%`
-* know the filtering operators (e.g., `==, >, <, &, |`, etc,)
+* know how to filter data with operators such as `==, >, <, &, |`
 * know how to handle NAs, and why they can behave weirdly in a filter
 * have used `mutate()`, `c()`, `paste()`, `if_else()`, and the joins
 
@@ -53,27 +53,43 @@ Furthermore, you don't need special software to quickly view a CSV file - a text
 
 For example, look at "example_data.csv" in the healthyr project's folder in Figure \@ref(fig:chap2-fig-examplecsv) (this is the Files pane at the bottom-right corner of your RStudio).
 
+
+
 ```{r chap2-fig-examplecsv, echo = FALSE, fig.cap="View or import a data file.", out.width="70%"}
 knitr::include_graphics("images/chapter02/files_csv_example.png")
 ```
 
-Clicking on a data file gives us two options: `View File` or `Import Dataset`. 
-For standard CSV files, we don't usually bother with the Import interface and just type in (or copy from a previous script):
+Clicking on a data file gives us two options: "View File" or "Import Dataset". 
+We will show you how to use the Import Dataset interface in a bit, but for standard CSV files, we don't usually bother with the Import interface and just type in (or copy from a previous script):
 \index{functions@\textbf{functions}!read\_csv}
 
-```{r, eval = FALSE}
+```{r, eval=FALSE}
 library(tidyverse)
-example_data = read_csv("example_data.csv")
+example_data <- read_csv("example_data.csv")
+View(example_data)
 ```
 
-Without further arguments, `read_csv()` defaults to:
+There are a couple of things we can say about the first R code chunk of this book. First and foremost: do not panic.
+Yes, if you're used to interacting with data by double-clicking on a Spreadsheet that then just opens up, then the above R code does seem a bit involved.
+However, running the example above also has an immediate visual effect.
+As soon as you click Run (or press Control+Enter/Command+Enter) the code above, the dataset immediately shows up in your Environment and opens up - so you can have a look and scroll through the same way you would in Excel or similar.
 
-* values are delimited by commas (e.g., `id, var1, var2, ...`);
-* numbers use decimal point (e.g., `4.12`), rather than decimal comma (e.g., `4,12`);
-* the first line has column names (it is a "header");
-* and missing values are empty or denoted NA.
+So what's actually going on in the R code above is:
 
-If your file, however, is different to these, then the `Import Dataset` interface (Figure \@ref(fig:chap2-fig-examplecsv)) is very useful and will give you the relevant `read_()` syntax with extra arguments completed for you.
+* We load the `tidyverse` packages (as covered in the first chapter of this book)
+* We have a CSV file called "example_data.csv", we are using `read_csv()` to read it into R.
+* We are using the assignment arrow `<-` to save it into our Environment using the same name: `example_data`.
+* The `View(example_data)` line makes it pop up for us to view it. Alternatively, click on `example_data` in the Environment to achieve the exact same thing.
+
+More about the assignment arrow (`<-`) and naming things in R are covered later in this Chapter. Do not worry if everything is not crystal clear just now. 
+Bear with.
+
+### Import Dataset interface
+
+In the `read_csv()` example above, we read in a file that is in a specific (but common) CSV format. 
+
+If your file, however, uses semicolons instead of commas, or commas instead of dots, includes a special number such as 999 to denote missing values, or anything else that makes you think reading it into R is complicated, then...it is not!
+RStudio's `Import Dataset` interface (Figure \@ref(fig:chap2-fig-examplecsv)) can handle all of these and more.
 
 ```{r chap02-fig-import-tool, echo = FALSE, fig.cap="Import: Some of the special settings your data file might have.", out.width="13cm"}
 knitr::include_graphics("images/chapter02/import_options.png")
@@ -103,7 +119,7 @@ An R script written using the `read.csv()` might not work as expected any more i
 > Do not start updating and possibly breaking existing R scripts by replacing base R functions with the tidyverse ones we show here. Do use the modern functions in any new code you write. 
 
 
-### Reading in the Global Burden of Disease example dataset (short version)
+### Reading in the Global Burden of Disease example dataset
 
 In the next few chapters of this book, we will be using the Global Burden of Disease datasets. 
 The Global Burden of Disease Study (GBD) is the most comprehensive worldwide observational epidemiological study to date. 
@@ -118,7 +134,7 @@ Table \@ref(tab:chap2-tab-gbd) and Figure \@ref(fig:chap2-fig-gbd) show a high l
 
 ```{r, message=F}
 library(tidyverse)
-gbd_short = read_csv("data/global_burden_disease_cause-year.csv")
+gbd_short <- read_csv("data/global_burden_disease_cause-year.csv")
 ```
 
 ```{r chap2-tab-gbd, echo = FALSE}
@@ -134,7 +150,7 @@ gbd_short %>%
 ```{r chap2-fig-gbd, echo = FALSE, fig.cap="Causes of death from the Global Burden of Disease dataset (Table \\@ref(tab:chap2-tab-gbd)). Data on (B) is the same as (A) but stacked to show the total (sum) of all causes.", fig.height=6, fig.width=6}
 source("1_source_theme.R")
 library(patchwork)
-p1 = gbd_short %>% 
+p1 <- gbd_short %>% 
   ggplot(aes(x = year, y = deaths_millions, fill = cause, colour = cause)) +
   geom_point() +
   geom_line() +
@@ -144,7 +160,7 @@ p1 = gbd_short %>%
   scale_y_continuous(limits = c(0, 50), expand = c(0, 0)) +
   geom_text(aes(label = (deaths_millions %>% round(0))), colour = "#525252", size = 3, vjust = -0.5)
 
-p2 = gbd_short %>% 
+p2 <- gbd_short %>% 
   ggplot(aes(x = year, y = deaths_millions, fill = cause, colour = cause)) +
   geom_col() +
   labs(x = "Year", y = "Deaths per year (millions)") +
@@ -176,7 +192,7 @@ For example, when reading in data, it will tell you what it assumed for the colu
 
 ```{r}
 library(tidyverse)
-typesdata = read_csv("data/typesdata.csv")
+typesdata <- read_csv("data/typesdata.csv")
 
 typesdata
 ```
@@ -187,7 +203,7 @@ But in cases of irregular or faulty input data, or when doing a lot of calculati
 For example, consider a very similar file as above but with a couple of data entry issues:
 
 ```{r}
-typesdata_faulty = read_csv("data/typesdata_faulty.csv")
+typesdata_faulty <- read_csv("data/typesdata_faulty.csv")
 
 typesdata_faulty
 ```
@@ -228,10 +244,11 @@ typesdata$measurement %>% mean()
 Let' save that in a new object:
 
 ```{r}
-measurement_mean = typesdata$measurement %>% mean()
+measurement_mean <- typesdata$measurement %>% mean()
 ```
 
 But when using the double equals operator to check if this is equivalent to a fixed value (you might do this when comparing to a threshold, or even another mean value), R returns `FALSE`:
+
 
 ```{r}
 measurement_mean == 3.333333
@@ -351,10 +368,10 @@ Since R displays dates and times between quotes (""), they look similar to chara
 
 ```{r, message = FALSE}
 library(lubridate) # lubridate makes working with dates easier
-current_datetime = Sys.time()
+current_datetime <- Sys.time()
 current_datetime
 
-my_datetime = "2020-12-01 12:00"
+my_datetime <- "2020-12-01 12:00"
 my_datetime
 ```
 
@@ -377,7 +394,7 @@ my_datetime %>% class()
 So we need to tell R that `my_datetime` does indeed include date/time information so we can then use it in calculations:
 
 ```{r}
-my_datetime_converted = ymd_hm(my_datetime)
+my_datetime_converted <- ymd_hm(my_datetime)
 my_datetime_converted
 ```
 
@@ -389,7 +406,7 @@ my_datetime_converted - current_datetime
 Since R knows this is a difference between two date/time objects, it prints the in a nicely readable way.
 Furthermore, the result has its own type, it is a "difftime".
 ```{r}
-my_datesdiff = my_datetime_converted - current_datetime
+my_datesdiff <- my_datetime_converted - current_datetime
 my_datesdiff %>% class()
 ```
 
@@ -465,22 +482,42 @@ This is usually something with rows and columns much like the example in Table \
 
 
 ```{r chap2-tab-examp1, echo = FALSE}
-mydata = tibble(id   = 1:4,
-       sex  = c("Male", "Female", "Female", "Male"),
-       var1 = c(4, 1, 2, 3),
-       var2 = c(NA, 4, 5, NA),
-       var3 = c(2, 1, NA, NA))
+
+# TIBBLE hardcoded again in the next chunk, make sure to change in both places!
+mydata <- tibble(
+  id   = 1:4,
+  sex  = c("Male", "Female", "Female", "Male"),
+  var1 = c(4, 1, 2, 3),
+  var2 = c(NA, 4, 5, NA),
+  var3 = c(2, 1, NA, NA)
+)
 
 mydata %>% 
   knitr::kable(booktabs = TRUE, caption = "Example of data in columns and rows, including missing values denoted `NA` (Not applicable/Not available). Once this dataset has been read into R it gets called dataframe/tibble.") %>% 
   kableExtra::kable_styling(font_size=8)
 ```
 
+\FloatBarrier
+
+To get the very small and made-up "dataset" into your Environment, copy and run this code^[`c()` stands for combine and will be introduced in more detail later in this chapter]:
+
+```{r}
+mydata <- tibble(
+  id   = 1:4,
+  sex  = c("Male", "Female", "Female", "Male"),
+  var1 = c(4, 1, 2, 3),
+  var2 = c(NA, 4, 5, NA),
+  var3 = c(2, 1, NA, NA)
+)
+```
+
+
+
 Data can live anywhere: on paper, in a Spreadsheet, in an SQL database, or it can live in your R Environment. 
 We usually initiate and interface R using RStudio, but everything we talk about here (objects, functions, environment) also work when RStudio is not available, but R is.
 This can be the case if you are working on a supercomputer that can only serve the R Console, and not an RStudio IDE (reminder from first chapter: Integrated Development Environment). 
 
-### `data frame` and `tibble` 
+### `data frame/tibble` 
 
 So, regularly shaped data in rows and columns is called a table when it lives outside R, but once you read it into R (import it) it gets called a tibble.
 If you've used R before, or get given a piece of code that uses `read.csv()` instead of `read_csv()`, you'll have come across the term `data frame`.^[`read.csv()` comes with base R, whereas `read_csv()` comes from the `readr` package within the `tidyverse`. We recommend using `read_csv()`.]
@@ -500,6 +537,8 @@ This is the 'class' of an object.
 
 To keep our code examples easy to follow, we call our example tibble `mydata`. 
 In a real analysis, you should give your tibbles meaningful names, e.g., `patient_data`, `lab_results`, `annual_totals`, etc.
+Object names can't have spaces in it, which is why we use the underscore (`_`) to separate words.
+Object names can include numbers, but they can't start with a number: so `labdata2019` works, `2019labdata` does not.
 
 So, the tibble named `mydata` is example of an object that can be in the Environment of your R Session:
 
@@ -591,28 +630,25 @@ Including this means you can always be clear on when the results were last updat
 Sys.time()
 ```
 
-### Recap: object, function, input, argument, return
 
-To summarise, objects and functions work hand in hand. 
-Objects are both an input as well as the output of a function (what the function returns). 
 
-When passing data to a function is is usually its first argument, with further arguments used to specify behaviour. 
+### Working with objects
 
-When we say "the function returns", we are referring to its output (or an Error if it's one of those days).
-
-The returned object can be different to its input object.
-In our `mean()` example above, the input object was a column (`mydata$var1`: `r mydata$var1`), whereas the output was a single value: `r mean(mydata$var1)`.
-
-### Working with Objects
-
-To create a new object in our Environment we use the equals sign:
-\index{symbols@\textbf{symbols}!assignment \texttt{=}}
+To save an object in our Environment we use the assignment arrow:
+\index{symbols@\textbf{symbols}!assignment \texttt{<-}}
 
 ```{r}
-a = 103
+a <- 103
+
 ```
 
-This reads: the object `a` is assigned value `r a`. 
+This reads: the object `a` is assigned value `r a`.
+`<-` is called "the arrow assignment operator", or "assigment arrow" for short.
+
+> Keyboard shortcuts to insert `<-`:  
+> Windows: Alt-  
+> macOS: Option-  
+
 You know that the assignment worked when it shows up in the Environment tab.
 If we now run `a` just on its own, it gets printed back to us:
 
@@ -631,30 +667,58 @@ seq(15, 30)
 We can assign the result of `seq(15, 30)` into an object, let's call it `example_sequence`:
 
 ```{r}
-example_sequence = seq(15, 30)
+example_sequence <- seq(15, 30)
 ```
 
-Doing this creates `example_sequence` in our Environment, but it does not print it. 
-
-> If you save the results of an R function in an object, it does not get printed. 
-> If you run a function without the assignment (`=`), its results get printed, but not saved in an object.
-
-You can call your object pretty much anything you want, as long as it starts with a letter. 
-It can then include numbers as well, for example, we could have named the new object `sequence_15_to_30`.
-Spaces in object names are not easy to work with, we tend to use underscores in their place, but you could also use capitalization, e.g. `exampleSequence = seq(15, 30)`.
-
-Finally, R doesn't mind overwriting an existing object, for example (notice how we then include the variable on a new line to get it printed as well as overwritten):
+Doing this creates `example_sequence` in our Environment, but it does not print it.
+To get it printed, Run it on a separate line like this:
 
 ```{r}
-example_sequence = example_sequence/2
-
 example_sequence
 ```
 
 
->Note that many people use `<-` instead of `=`. 
->They mean the same thing in R: both `=` and `<-` save what is on the right into an object with the name on the left. 
->There is also a left-to-right operator: `->`.
+> If you save the results of an R function in an object, it does not get printed. 
+> If you run a function without the assignment (`<-`), its results get printed, but not saved as an object.
+
+
+Finally, R doesn't mind overwriting an existing object, for example (notice how we then include the variable on a new line to get it printed as well as overwritten):
+
+```{r}
+example_sequence <- example_sequence/2
+
+example_sequence
+```
+
+### `<-` and `=`
+
+Note that many people use `=` instead of `<-`.
+Both `<-` and `=` can save what is on the right into an object with named on the left. 
+Although `<-` and `=` are interchangeable when saving an object into your Environment, they are not interchangeable when used as function argument.
+For example, remember how we used the `na.rm` argument in the `mean()` function, and the result got printed immediately.
+If we want to save the result into an object, we'll do this, where `mean_result` could be any name you choose:
+
+```{r}
+mean_result <- mean(mydata$var2, na.rm = TRUE)
+```
+
+
+Note how the example above uses both operators: the assignment arrow for saving the result to the Environment, the `=` equals operator for setting an argument in the `mean()` function (`na.rm = TRUE`).
+
+### Recap: object, function, input, argument
+
+* To summarise, objects and functions work hand in hand. 
+Objects are both an input as well as the output of a function (what the function returns). 
+
+* When passing data to a function is is usually its first argument, with further arguments used to specify behaviour. 
+
+* When we say "the function returns", we are referring to its output (or an Error if it's one of those days).
+
+* The returned object can be different to its input object.
+In our `mean()` examples above, the input object was a column (`mydata$var1`: `r mydata$var1`), whereas the output was a single value: `r mean(mydata$var1)`.
+
+* If you've written a line of code that doesn't include the assigment arrow (`<-`), its results would get printed.
+If you use the assignment arrow, an object holding the results will get saved into the Environment.
 
 ## Pipe - `%>%` 
 \index{symbols@\textbf{symbols}!pipe \texttt{\%>\%}}
@@ -675,6 +739,8 @@ mydata$var1 %>% mean()
 Which reads: "Working with `mydata`, we select a single column called `var1` (with the `$`) **and then** calculate the `mean()`." The pipe becomes especially useful once the analysis includes multiple steps applied one after another. 
 A good way to read and think of the pipe is "and then".
 
+
+
 This piping business is not standard R functionality and before using it in a script, you need to tell R this is what you will be doing.
 The pipe comes from the `magrittr` package (Figure \@ref(fig:chap2-fig-pipe)), but loading the `tidyverse` will also load the pipe.
 So library(tidyverse) initialises everything you need (no need to include library(magrittr) explicitly).
@@ -682,17 +748,17 @@ So library(tidyverse) initialises everything you need (no need to include librar
 >To insert a pipe `%>%`, use the keyboard shortcut `Ctrl+Shift+M`.
 
 With or without the pipe, the general rule "if the result gets printed it doesn't get saved" still applies. 
-To save the result of the function into a new object (so it shows up in the Environment), you need to add the name of the new object with the assignment operator (`=`):
+To save the result of the function into a new object (so it shows up in the Environment), you need to add the name of the new object with the assignment arow (`<-`):
 
 ```{r}
-mean_result = mydata$var1 %>% mean()
+mean_result <- mydata$var1 %>% mean()
 ```
 
-```{r chap2-fig-pipe, echo = FALSE, fig.cap="This is not a pipe. René Magritte inspired artwork by Stefan Milton Bache (creator of `%>%` in R). Image source: https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html"}
+```{r chap2-fig-pipe, out.width="70%", echo = FALSE, fig.cap="This is not a pipe. René Magritte inspired artwork by Stefan Milton Bache."}
 knitr::include_graphics("images/chapter02/magrittr.png")
 ```
 
-### When pipe sends data to the wrong place: use . to direct it
+### Using . to direct the pipe
 
 The pipe usually sends data to the beginning of function brackets (as most of the functions we use expect a tibble as the first argument). 
 So `mydata %>% lm(dependent~explanatory)` is equivalent to `lm(mydata, dependent~explanatory)`. `lm()` - linear model - will be introduced in detail in Chapter \@ref(chap07-h1). 
@@ -720,9 +786,9 @@ mydata %>%
 \index{symbols@\textbf{symbols}!OR \texttt{"|}}
 
 Operators are symbols that tell R how to handle different pieces of data or objects.
-We have already introduced three: `$` (selects a column), `=` (assigns values or results to a variable), and the pipe - `%>%` (sends data into a function).
+We have already introduced three: `$` (selects a column), `<-` (assigns values or results to a variable), and the pipe - `%>%` (sends data into a function).
 
-Other common operators are the ones we use for filtering data - these are called comparison and logical operators.
+Other common operators are the ones we use for filtering data - these are arithmetic comparison and logical operators.
 This may be for creating subgroups, or for excluding outliers or incomplete cases.
 
 The comparison operators that work with numeric data are relatively straightforward: `>, <, >=, <=`.
@@ -802,7 +868,7 @@ Filter the dataset to only include the year 2000.
 Save this in a new variable using the assignment operator.
 
 ```{r, echo = TRUE}
-mydata_year2000 = gbd_short %>% 
+mydata_year2000 <- gbd_short %>% 
   filter(year == 2000)
 ```
 
@@ -813,13 +879,13 @@ Reminder: '|' means OR and '&' means AND.
 From `gbd_short`, select the lines where year is either 1990 or 2017 and cause is "Communicable diseases":
 
 ```{r}
-new_data_selection = gbd_short %>% 
+new_data_selection <- gbd_short %>% 
   filter((year == 1990 | year == 2013) & cause == "Communicable diseases")
 
 # Or we can get rid of the extra brackets around the years
 # by moving cause into a new filter on a new line:
 
-new_data_selection = gbd_short %>% 
+new_data_selection <- gbd_short %>% 
   filter(year == 1990 | year == 2013) %>% 
   filter(cause == "Communicable diseases")
 ```
@@ -916,10 +982,10 @@ This is also why we insist that you always plot your data first - outliers will 
 Another thing we do to stay safe around filters and missing values is saving the results and making sure the number of rows still add up:
 
 ```{r}
-subset1 = mydata %>% 
+subset1 <- mydata %>% 
   filter(var2 == 5)
 
-subset2 = mydata %>% 
+subset2 <- mydata %>% 
   filter(! var2 == 5)
 
 subset1
@@ -955,7 +1021,7 @@ Let's create a third subset only including rows where `var3` is NA:
 
 Rows in `subset2`:
 ```{r}
-subset3 = mydata %>% 
+subset3 <- mydata %>% 
   filter(is.na(var2))
 
 nrow(subset1) + nrow(subset2) + nrow(subset3) == nrow(mydata)
@@ -1014,7 +1080,7 @@ But as usual, if it gets printed, it doesn't get saved.
 We have two options - we can either overwrite the `typesdata` tibble (by changing the first line to `typesdata = typesdata %>% `), or we can create a new one (that appears in your Environment):
 
 ```{r}
-typesdata_modified = typesdata %>% 
+typesdata_modified <- typesdata %>% 
   mutate(measurement_half = measurement/2)
 
 typesdata_modified
@@ -1112,7 +1178,7 @@ The paste is also useful when pieces of information are stored in different colu
 For example, consider this made-up tibble:
 
 ```{r}
-pastedata = tibble(year  = c(2007, 2008, 2009),
+pastedata <- tibble(year  = c(2007, 2008, 2009),
                    month = c("Jan", "Feb", "March"),
                    day   = c(1, 2, 3))
 
@@ -1152,14 +1218,14 @@ For example, consider you have some demographic information (`id`, `sex`, `age`)
 
 ```{r, message = FALSE}
 library(tidyverse)
-patientdata = read_csv("data/patient_data.csv")
+patientdata <- read_csv("data/patient_data.csv")
 patientdata
 ```
 
 And another one with some lab results (`id`, `measurement`):
 
 ```{r, message = FALSE}
-labsdata = read_csv("data/labs_data.csv")
+labsdata <- read_csv("data/labs_data.csv")
 labsdata
 ```
 
@@ -1194,7 +1260,7 @@ right_join(patientdata, labsdata)
 * Joins are used to combine different variables (columns) into a single tibble. __If you are getting more data of the same variables, use `bind_rows()` instead__:
 
 ```{r, message = FALSE}
-patientdata_new = read_csv("data/patient_data_updated.csv")
+patientdata_new <- read_csv("data/patient_data_updated.csv")
 patientdata_new
 bind_rows(patientdata, patientdata_new)
 ```
@@ -1202,7 +1268,7 @@ bind_rows(patientdata, patientdata_new)
 Finally, it is important to understand how joins behave if there are multiple matches within the tibbles. For example, if patient id 4 had a second measurement as well:
 
 ```{r}
-labsdata_updated = labsdata %>% 
+labsdata_updated <- labsdata %>% 
   add_row(id = 5, measurement = 2.49)
 labsdata_updated
 ```
@@ -1220,13 +1286,15 @@ We get 7 rows, instead of 6 - as patient id 5 now appears twice with the two dif
 \index{help}
 
 RStudio has a built in Help tab. 
-To use the Help tab, click your cursor on something in your code (e.g. `read_csv()`) and press F1. This will show you the definition and some examples. 
+To use the Help tab, click your cursor on something in your code (e.g. `read_csv()`) and press F1.
+This will show you the definition and some examples. 
+F1 can be hard to find on some keyboards, an alternative is to type in, e.g.,  `?read_csv` - this will also open the Help tab for this function.
 
 However, the Help tab is only useful if you already know what you are looking for but can't remember exactly how it works. 
 For finding help on things you have not used before, it is best to Google it. 
 R has about 2 million users so someone somewhere has had the same question or problem.
 
-In addition to the Help tab, RStudio also has a Help dropdown menu at the very top (same row where you find "File", "Edit, etc.). The most notable thing in the Help dropdown menu are the Cheatsheets. 
+In addition to the Help tab, RStudio also has a Help drop-down menu at the very top (same row where you find "File", "Edit, etc.). The most notable thing in the Help drop-down menu are the Cheatsheets. 
 These tightly packed two-pagers include many of the most useful functions from `tidyverse` packages. 
 They are not particularly useful to learn from, but invaluable as an *aide-mémoire*. 
 

@@ -1,34 +1,34 @@
 \begin{theindex}
 
   \item \textbf{categorical data}
-    \subitem variable types, \hyperpage{4}
-  \item column, create, \hyperpage{30}
+    \subitem variable types, \hyperpage{5}
+  \item column, create, \hyperpage{31}
   \item \textbf{continuous data}
-    \subitem variable types, \hyperpage{4}
+    \subitem variable types, \hyperpage{5}
 
   \indexspace
 
-  \item \textbf{date-time}, \hyperpage{4}
+  \item \textbf{date-time}, \hyperpage{5}
 
   \indexspace
 
   \item \textbf{functions}, \hyperpage{15}
-    \subitem c() combine, \hyperpage{26}
+    \subitem c() combine, \hyperpage{27}
     \subitem dmy, \hyperpage{12}
-    \subitem filter, \hyperpage{22}
-    \subitem full\_join, \hyperpage{36}
-    \subitem inner\_join, \hyperpage{36}
-    \subitem join, \hyperpage{36}
-    \subitem left\_join, \hyperpage{36}
-    \subitem matches, \hyperpage{33}
-    \subitem mutate, \hyperpage{30}
-    \subitem near, \hyperpage{9}
+    \subitem filter, \hyperpage{23}
+    \subitem full\_join, \hyperpage{37}
+    \subitem inner\_join, \hyperpage{37}
+    \subitem join, \hyperpage{37}
+    \subitem left\_join, \hyperpage{37}
+    \subitem matches, \hyperpage{34}
+    \subitem mutate, \hyperpage{31}
+    \subitem near, \hyperpage{10}
     \subitem paste, \hyperpage{35}
     \subitem read\_csv, \hyperpage{2}
-    \subitem right\_join, \hyperpage{36}
+    \subitem right\_join, \hyperpage{37}
     \subitem round, \hyperpage{9}
-    \subitem seq, \hyperpage{19}
-    \subitem Sys.time, \hyperpage{18}
+    \subitem seq, \hyperpage{20}
+    \subitem Sys.time, \hyperpage{19}
     \subitem ymd, \hyperpage{12}
 
   \indexspace
@@ -41,7 +41,7 @@
 
   \indexspace
 
-  \item \textbf{join datasets}, \hyperpage{36}
+  \item \textbf{join datasets}, \hyperpage{37}
 
   \indexspace
 
@@ -49,18 +49,18 @@
 
   \indexspace
 
-  \item missing values, \hyperpage{27}
+  \item missing values, \hyperpage{28}
   \item missing values remove \texttt{na.rm}, \hyperpage{18}
 
   \indexspace
 
   \item objects, \hyperpage{15}
-  \item operators, \hyperpage{22}
+  \item operators, \hyperpage{23}
 
   \indexspace
 
   \item paste, \hyperpage{35}
-  \item \textbf{pipe}, \hyperpage{20}
+  \item \textbf{pipe}, \hyperpage{22}
 
   \indexspace
 
@@ -69,24 +69,24 @@
   \indexspace
 
   \item \textbf{symbols}
-    \subitem AND \texttt{\&}, \hyperpage{22}
+    \subitem AND \texttt{\&}, \hyperpage{23}
     \subitem assignment \texttt{=}, \hyperpage{19}
-    \subitem comment \texttt{\#}, \hyperpage{25}
-    \subitem equal \texttt{=}, \hyperpage{22}
-    \subitem greater or equal \texttt{>=}, \hyperpage{22}
-    \subitem greater than \texttt{>}, \hyperpage{22}
-    \subitem less or equal \texttt{<=}, \hyperpage{22}
-    \subitem less than \texttt{<}, \hyperpage{22}
-    \subitem not \texttt{!}, \hyperpage{22}
-    \subitem OR \texttt{|}, \hyperpage{22}
-    \subitem pipe \texttt{\%>\%}, \hyperpage{20}
+    \subitem comment \texttt{\#}, \hyperpage{26}
+    \subitem equal \texttt{=}, \hyperpage{23}
+    \subitem greater or equal \texttt{>=}, \hyperpage{23}
+    \subitem greater than \texttt{>}, \hyperpage{23}
+    \subitem less or equal \texttt{<=}, \hyperpage{23}
+    \subitem less than \texttt{<}, \hyperpage{23}
+    \subitem not \texttt{!}, \hyperpage{23}
+    \subitem OR \texttt{|}, \hyperpage{23}
+    \subitem pipe \texttt{\%>\%}, \hyperpage{22}
     \subitem select column \texttt{\$}, \hyperpage{17}
-  \item system time, \hyperpage{18}
+  \item system time, \hyperpage{19}
 
   \indexspace
 
-  \item \textbf{variable types}, \hyperpage{4}
-    \subitem categorical / factor, \hyperpage{11}
+  \item \textbf{variable types}, \hyperpage{5}
+    \subitem categorical / factor, \hyperpage{12}
     \subitem character, \hyperpage{10}
     \subitem continuous / numeric, \hyperpage{8}
     \subitem date-time, \hyperpage{12}

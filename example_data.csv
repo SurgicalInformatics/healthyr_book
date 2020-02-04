@@ -1,0 +1,4 @@
+id,group, measurement,date
+ID1,"Control",1.8,2017-01-02 12:00
+ID2,"Treatment",4.5,2018-02-03 13:00
+ID3,"Treatment", 3.7,2019-03-04 14:00

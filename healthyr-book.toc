@@ -4,30 +4,32 @@
 \contentsline {fm}{About the Authors}{xi}{chapter*.6}
 \contentsline {chapter}{\numberline {1}R Basics}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Reading data into R}{1}{section.1.1}
-\contentsline {subsection}{\numberline {1.1.1}Reading in the Global Burden of Disease example dataset (short version)}{4}{subsection.1.1.1}
-\contentsline {section}{\numberline {1.2}Variable types and why we care}{4}{section.1.2}
+\contentsline {subsection}{\numberline {1.1.1}Import Dataset interface}{3}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Reading in the Global Burden of Disease example dataset}{4}{subsection.1.1.2}
+\contentsline {section}{\numberline {1.2}Variable types and why we care}{5}{section.1.2}
 \contentsline {subsection}{\numberline {1.2.1}Numeric variables (continuous)}{8}{subsection.1.2.1}
 \contentsline {subsection}{\numberline {1.2.2}Character variables}{10}{subsection.1.2.2}
-\contentsline {subsection}{\numberline {1.2.3}Factor variables (categorical)}{11}{subsection.1.2.3}
+\contentsline {subsection}{\numberline {1.2.3}Factor variables (categorical)}{12}{subsection.1.2.3}
 \contentsline {subsection}{\numberline {1.2.4}Date/time variables}{12}{subsection.1.2.4}
 \contentsline {section}{\numberline {1.3}Objects and functions}{15}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}\texttt {data\ frame} and \texttt {tibble}}{15}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.1}\texttt {data\ frame/tibble}}{16}{subsection.1.3.1}
 \contentsline {subsection}{\numberline {1.3.2}Naming objects}{16}{subsection.1.3.2}
-\contentsline {subsection}{\numberline {1.3.3}Function and its arguments}{16}{subsection.1.3.3}
-\contentsline {subsection}{\numberline {1.3.4}Recap: object, function, input, argument, return}{19}{subsection.1.3.4}
-\contentsline {subsection}{\numberline {1.3.5}Working with Objects}{19}{subsection.1.3.5}
-\contentsline {section}{\numberline {1.4}Pipe - \texttt {\%\textgreater {}\%}}{20}{section.1.4}
-\contentsline {subsection}{\numberline {1.4.1}When pipe sends data to the wrong place: use . to direct it}{22}{subsection.1.4.1}
-\contentsline {section}{\numberline {1.5}Operators for filtering data}{22}{section.1.5}
-\contentsline {subsection}{\numberline {1.5.1}Worked examples}{25}{subsection.1.5.1}
-\contentsline {section}{\numberline {1.6}The combine function: \texttt {c()}}{26}{section.1.6}
-\contentsline {section}{\numberline {1.7}Missing values (NAs) and filters}{27}{section.1.7}
-\contentsline {section}{\numberline {1.8}Creating new columns - \texttt {mutate()}}{30}{section.1.8}
-\contentsline {subsection}{\numberline {1.8.1}Worked example/exercise}{33}{subsection.1.8.1}
+\contentsline {subsection}{\numberline {1.3.3}Function and its arguments}{17}{subsection.1.3.3}
+\contentsline {subsection}{\numberline {1.3.4}Working with objects}{19}{subsection.1.3.4}
+\contentsline {subsection}{\numberline {1.3.5}\texttt {\textless {}-} and \texttt {=}}{21}{subsection.1.3.5}
+\contentsline {subsection}{\numberline {1.3.6}Recap: object, function, input, argument}{21}{subsection.1.3.6}
+\contentsline {section}{\numberline {1.4}Pipe - \texttt {\%\textgreater {}\%}}{22}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Using . to direct the pipe}{22}{subsection.1.4.1}
+\contentsline {section}{\numberline {1.5}Operators for filtering data}{23}{section.1.5}
+\contentsline {subsection}{\numberline {1.5.1}Worked examples}{26}{subsection.1.5.1}
+\contentsline {section}{\numberline {1.6}The combine function: \texttt {c()}}{27}{section.1.6}
+\contentsline {section}{\numberline {1.7}Missing values (NAs) and filters}{28}{section.1.7}
+\contentsline {section}{\numberline {1.8}Creating new columns - \texttt {mutate()}}{31}{section.1.8}
+\contentsline {subsection}{\numberline {1.8.1}Worked example/exercise}{34}{subsection.1.8.1}
 \contentsline {section}{\numberline {1.9}Conditional calculations - \texttt {if\_else()}}{34}{section.1.9}
 \contentsline {section}{\numberline {1.10}Create labels - \texttt {paste()}}{35}{section.1.10}
-\contentsline {section}{\numberline {1.11}Joining multiple datasets}{36}{section.1.11}
-\contentsline {subsection}{\numberline {1.11.1}Further notes about joins}{38}{subsection.1.11.1}
+\contentsline {section}{\numberline {1.11}Joining multiple datasets}{37}{section.1.11}
+\contentsline {subsection}{\numberline {1.11.1}Further notes about joins}{39}{subsection.1.11.1}
 \contentsline {section}{\numberline {1.12}Getting help}{40}{section.1.12}
-\contentsline {chapter}{Index}{41}{section.1.12}
-\contentsline {section}{}{41}{section*.14}
+\contentsline {chapter}{Index}{43}{section.1.12}
+\contentsline {section}{}{43}{section*.15}

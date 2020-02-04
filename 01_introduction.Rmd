@@ -78,7 +78,7 @@ We have already introduced what is in the top-left pane - the **Script**.
 knitr::include_graphics("images/chapter01/rstudio_interface.png")
 ```
 
-Now, look at the little **Run** and **Source** buttons at the top-right corner of the script pane.
+Now, look at the little Run and Source buttons at the top-right corner of the script pane.
 Clicking **Run** executes a line of R code. 
 Clicking **Source** executes all lines of R code in the script (it is essentially 'Run all lines').
 When you run R code, it gets sent to the **Console** which is the bottom-left panel.
@@ -122,7 +122,7 @@ A lot of the functionality introduced in this book comes from the `tidyverse` fa
 So when you go to **Packages**, click **Install**, type in `tidyverse`, a whole collection of useful and modern packages will be installed. 
 
 Even though you've installed the `tidyverse` packages, you'll still need to tell R when you're about to use them.
-We usually include `library(tidyverse)` at the top of every script:
+We include `library(tidyverse)` at the top of every script we write:
 
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)

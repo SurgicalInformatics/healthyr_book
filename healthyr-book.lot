@@ -1,4 +1,4 @@
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {1.1}{\ignorespaces Deaths per year from three broad disease categories (short version of the Global Burden of Disease example dataset).\relax }}{6}{table.caption.10}
+\contentsline {table}{\numberline {1.1}{\ignorespaces Deaths per year from three broad disease categories (short version of the Global Burden of Disease example dataset).\relax }}{5}{table.caption.10}
 \contentsline {table}{\numberline {1.3}{\ignorespaces Example of data in columns and rows, including missing values denoted `NA` (Not applicable/Not available). Once this dataset has been read into R it gets called dataframe/tibble.\relax }}{15}{table.caption.12}
-\contentsline {table}{\numberline {1.4}{\ignorespaces Filtering operators.\relax }}{25}{table.caption.13}
+\contentsline {table}{\numberline {1.4}{\ignorespaces Filtering operators.\relax }}{26}{table.caption.14}

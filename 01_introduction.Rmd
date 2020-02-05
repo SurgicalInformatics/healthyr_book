@@ -21,6 +21,7 @@ Here are the main reasons we love R:
 ![R logo, &copy; 2016 The R Foundation.](images/chapter01/Rlogo.png){width=150px}
 
 ## Help, what's a script? {#chap01-what-script}
+\index{RStudio@\textbf{RStudio}!script}
 
 A script is a list of instructions. 
 It is just a text file and no special software is required to view one.
@@ -109,6 +110,9 @@ When you click on a dataset, it pops up in a really nice and fast viewer.
 This means you can have a look and scroll through your rows and columns the same way you would in a spreadsheet.
 
 ## Getting started
+\index{installation@\textbf{installation}!tidyverse}
+\index{installation@\textbf{installation}!packages}
+\index{installation@\textbf{installation}!RStudio}
 
 To start using R, you should do these two things:
 
@@ -141,6 +145,36 @@ We've never needed to use `filter` and `lag` from `stats`, but if you do, then u
 
 There are a few other R packages that we use and are not part of the tidyverse, but we will introduce them as we go along. 
 If you are incredibly curious, take a peak at Chapter \@ref(install) for a full list.
+
+## Getting help
+\index{help}
+\index{errors}
+
+The best way to troubleshoot R Errors is to copy-paste them into a search engine (e.g., Google).
+Furthermore, searching online is also a great way to learn how to do new specific things or to find code examples.
+You should copy-paste solutions into your R script to then modify to match what you're trying to do.
+We are constantly copying code from online forums or from other's scripts/our own prior scripts.
+
+However, there a many different ways to achieve the same thing in R.
+Therefore, sometimes you'll search for help and come across R code that looks nothing like what you've seen in this book. 
+That's because the `tidyverse` packages as well as using the pipe (` %>%`) are a relatively new way of doing things, but search engines will often prioritise results that have had more views. 
+So older solutions may come up at the top. 
+Don't get discouraged if you see R code that looks completely different to what you were expecting.
+Just keep scrolling down or clicking through different answers until you find something that looks a little bit more familiar.
+
+
+If you're working offline, then RStudio's built in Help tab can help.
+To use the Help tab, click your cursor on something in your code (e.g. `read_csv()`) and press F1.
+This will show you the definition and some examples. 
+F1 can be hard to find on some keyboards, an alternative is to type in, e.g.,  `?read_csv` - this will also open the Help tab for this function.
+
+However, the Help tab is only useful if you already know what you are looking for but can't remember exactly how it works. 
+For finding help on things you have not used before, it is best to Google it. 
+R has about 2 million users so someone somewhere has had the same question or problem.
+
+In addition to the Help tab, RStudio also has a Help drop-down menu at the very top (same row where you find "File", "Edit, etc.). The most notable thing in the Help drop-down menu are the Cheatsheets. 
+These tightly packed two-pagers include many of the most useful functions from `tidyverse` packages. 
+They are not particularly useful to learn from, but invaluable as an *aide-mémoire*. 
 
 
 ## Notation throughout this book

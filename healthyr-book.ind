@@ -1,351 +1,355 @@
 \begin{theindex}
 
-  \item AIC, \hyperpage{174}, \hyperpage{223}
-  \item analysis of variance (ANOVA), \hyperpage{134}
+  \item AIC, \hyperpage{176}, \hyperpage{225}
+  \item analysis of variance (ANOVA), \hyperpage{136}
 
   \indexspace
 
-  \item binary data, \hyperpage{201}
-  \item Bonferroni correction, \hyperpage{138}
+  \item binary data, \hyperpage{203}
+  \item Bonferroni correction, \hyperpage{140}
 
   \indexspace
 
-  \item C-statistic, \hyperpage{223}
-  \item \textbf{categorical data}, \hyperpage{183}
-    \subitem chi-squared test, \hyperpage{195}
-    \subitem convert from continuous, \hyperpage{186}
-    \subitem finalfit, \hyperpage{193}
-    \subitem Fisher's exact test, \hyperpage{195}
-    \subitem quantiles, \hyperpage{188}
-    \subitem summarising, \hyperpage{193}
-    \subitem variable types, \hyperpage{15}
-  \item chi-squared test, \hyperpage{195}
-  \item chunks, \hyperpage{264}
-  \item column, create, \hyperpage{41}
+  \item C-statistic, \hyperpage{225}
+  \item \textbf{categorical data}, \hyperpage{185}
+    \subitem chi-squared test, \hyperpage{197}
+    \subitem convert from continuous, \hyperpage{188}
+    \subitem finalfit, \hyperpage{195}
+    \subitem Fisher's exact test, \hyperpage{197}
+    \subitem quantiles, \hyperpage{190}
+    \subitem summarising, \hyperpage{195}
+    \subitem variable types, \hyperpage{17}
+  \item chi-squared test, \hyperpage{197}
+  \item chunks, \hyperpage{266}
+  \item column, create, \hyperpage{43}
   \item comments, \hyperpage{4}
-  \item confounding, \hyperpage{160}
-  \item \textbf{continuous data}, \hyperpage{121}
-    \subitem variable types, \hyperpage{15}
-  \item Cox proportional hazards regression, \hyperpage{242}
+  \item confounding, \hyperpage{162}
+  \item \textbf{continuous data}, \hyperpage{123}
+    \subitem variable types, \hyperpage{17}
+  \item Cox proportional hazards regression, \hyperpage{244}
 
   \indexspace
 
-  \item \textbf{date-time}, \hyperpage{15}
+  \item \textbf{date-time}, \hyperpage{17}
 
   \indexspace
 
-  \item effect modification, \hyperpage{157}
-  \item \textbf{encryption}, \hyperpage{311}
-    \subitem clinical trials, \hyperpage{317}
-    \subitem columns, decrypt, \hyperpage{314}
-    \subitem columns, encrypt, \hyperpage{313}
-    \subitem encryptr, \hyperpage{312}
-    \subitem file, decrypt, \hyperpage{316}
-    \subitem file, encrypt, \hyperpage{315}
-    \subitem lookup table, \hyperpage{314}
-    \subitem public key sharing, \hyperpage{317}
-    \subitem public/private keys, \hyperpage{313}
-  \item \textbf{exporting}, \hyperpage{273}
+  \item effect modification, \hyperpage{159}
+  \item \textbf{encryption}, \hyperpage{313}
+    \subitem clinical trials, \hyperpage{319}
+    \subitem columns, decrypt, \hyperpage{316}
+    \subitem columns, encrypt, \hyperpage{315}
+    \subitem encryptr, \hyperpage{314}
+    \subitem file, decrypt, \hyperpage{318}
+    \subitem file, encrypt, \hyperpage{317}
+    \subitem lookup table, \hyperpage{316}
+    \subitem public key sharing, \hyperpage{319}
+    \subitem public/private keys, \hyperpage{315}
+  \item errors, \hyperpage{9}
+  \item \textbf{exporting}, \hyperpage{275}
 
   \indexspace
 
-  \item factors, \hyperpage{183}
-  \item false discovery rate, \hyperpage{139}
-  \item \textbf{file structure}, \hyperpage{268}
-  \item Fisher's exact test, \hyperpage{195}
-  \item \textbf{functions}, \hyperpage{25}
-    \subitem aov, \hyperpage{135}
-    \subitem arithmetic, \hyperpage{59}
-    \subitem arrange, \hyperpage{70}
-    \subitem c() combine, \hyperpage{36}
-    \subitem chisq.test, \hyperpage{196}
-    \subitem coef, \hyperpage{221}
-    \subitem confint, \hyperpage{221}
-    \subitem cox.zph, \hyperpage{245}
-    \subitem cut, \hyperpage{189}
-    \subitem dmy, \hyperpage{22}
-    \subitem factor, \hyperpage{186}
-    \subitem fct\_collapse, \hyperpage{192}
-    \subitem fct\_recode, \hyperpage{186}
-    \subitem fct\_relevel, \hyperpage{71}, \hyperpage{193}
-    \subitem ff\_glimpse, \hyperpage{123}
-    \subitem ff\_label, \hyperpage{186}
-    \subitem filter, \hyperpage{33}
-    \subitem finalfit, \hyperpage{177}
-    \subitem fisher.test, \hyperpage{197}
-    \subitem full\_join, \hyperpage{47}
-    \subitem gather, \hyperpage{65}
-    \subitem ggpairs, \hyperpage{217}
-    \subitem ggplot, \hyperpage{79}
-    \subitem glance, \hyperpage{166}
-    \subitem glimpse, \hyperpage{123}
-    \subitem glm, \hyperpage{220}, \hyperpage{226}
-    \subitem glmer, \hyperpage{233}
-    \subitem group\_by, \hyperpage{54}
-    \subitem inner\_join, \hyperpage{47}
-    \subitem join, \hyperpage{47}
-    \subitem kruskal.test, \hyperpage{143}
-    \subitem left\_join, \hyperpage{47}
-    \subitem levels, \hyperpage{71}
-    \subitem lm, \hyperpage{163}
-    \subitem matches, \hyperpage{43}
-    \subitem missing\_glimpse, \hyperpage{123}
-    \subitem mutate, \hyperpage{41}, \hyperpage{55}
-    \subitem near, \hyperpage{19}
-    \subitem or\_plot, \hyperpage{230}
-    \subitem pairwise.t.test, \hyperpage{138, 139}
-    \subitem paste, \hyperpage{45}
-    \subitem percent, \hyperpage{56}
-    \subitem quantile, \hyperpage{189}
-    \subitem read\_csv, \hyperpage{12}
-    \subitem right\_join, \hyperpage{47}
-    \subitem round, \hyperpage{19}
-    \subitem select, \hyperpage{67}
-    \subitem seq, \hyperpage{29}
-    \subitem spread, \hyperpage{63}
-    \subitem strata, \hyperpage{246}
-    \subitem summarise, \hyperpage{54}
-    \subitem summary\_factorlist, \hyperpage{143}, \hyperpage{198}
-    \subitem Surv, \hyperpage{240}
-    \subitem surv\_plot, \hyperpage{241}
-    \subitem survfit, \hyperpage{240}
-    \subitem Sys.time, \hyperpage{29}
-    \subitem t.test, \hyperpage{129}, \hyperpage{132}
-    \subitem tidy, \hyperpage{166}
-    \subitem wilcox.test, \hyperpage{143}
-    \subitem ymd, \hyperpage{22}
+  \item factors, \hyperpage{185}
+  \item false discovery rate, \hyperpage{141}
+  \item \textbf{file structure}, \hyperpage{270}
+  \item Fisher's exact test, \hyperpage{197}
+  \item \textbf{functions}, \hyperpage{27}
+    \subitem aov, \hyperpage{137}
+    \subitem arithmetic, \hyperpage{61}
+    \subitem arrange, \hyperpage{72}
+    \subitem c() combine, \hyperpage{38}
+    \subitem chisq.test, \hyperpage{198}
+    \subitem coef, \hyperpage{223}
+    \subitem confint, \hyperpage{223}
+    \subitem cox.zph, \hyperpage{247}
+    \subitem cut, \hyperpage{191}
+    \subitem dmy, \hyperpage{24}
+    \subitem factor, \hyperpage{188}
+    \subitem fct\_collapse, \hyperpage{194}
+    \subitem fct\_recode, \hyperpage{188}
+    \subitem fct\_relevel, \hyperpage{73}, \hyperpage{195}
+    \subitem ff\_glimpse, \hyperpage{125}
+    \subitem ff\_label, \hyperpage{188}
+    \subitem filter, \hyperpage{35}
+    \subitem finalfit, \hyperpage{179}
+    \subitem fisher.test, \hyperpage{199}
+    \subitem full\_join, \hyperpage{49}
+    \subitem gather, \hyperpage{67}
+    \subitem ggpairs, \hyperpage{219}
+    \subitem ggplot, \hyperpage{81}
+    \subitem glance, \hyperpage{168}
+    \subitem glimpse, \hyperpage{125}
+    \subitem glm, \hyperpage{222}, \hyperpage{228}
+    \subitem glmer, \hyperpage{235}
+    \subitem group\_by, \hyperpage{56}
+    \subitem inner\_join, \hyperpage{49}
+    \subitem join, \hyperpage{49}
+    \subitem kruskal.test, \hyperpage{145}
+    \subitem left\_join, \hyperpage{49}
+    \subitem levels, \hyperpage{73}
+    \subitem lm, \hyperpage{165}
+    \subitem matches, \hyperpage{45}
+    \subitem missing\_glimpse, \hyperpage{125}
+    \subitem mutate, \hyperpage{43}, \hyperpage{57}
+    \subitem near, \hyperpage{21}
+    \subitem or\_plot, \hyperpage{232}
+    \subitem pairwise.t.test, \hyperpage{140, 141}
+    \subitem paste, \hyperpage{47}
+    \subitem percent, \hyperpage{58}
+    \subitem quantile, \hyperpage{191}
+    \subitem read\_csv, \hyperpage{14}
+    \subitem right\_join, \hyperpage{49}
+    \subitem round, \hyperpage{21}
+    \subitem select, \hyperpage{69}
+    \subitem seq, \hyperpage{31}
+    \subitem spread, \hyperpage{65}
+    \subitem strata, \hyperpage{248}
+    \subitem summarise, \hyperpage{56}
+    \subitem summary\_factorlist, \hyperpage{145}, \hyperpage{200}
+    \subitem Surv, \hyperpage{242}
+    \subitem surv\_plot, \hyperpage{243}
+    \subitem survfit, \hyperpage{242}
+    \subitem Sys.time, \hyperpage{31}
+    \subitem t.test, \hyperpage{131}, \hyperpage{134}
+    \subitem tidy, \hyperpage{168}
+    \subitem wilcox.test, \hyperpage{145}
+    \subitem ymd, \hyperpage{24}
 
   \indexspace
 
-  \item help, \hyperpage{50}
-  \item Hosmer-Lemeshow test, \hyperpage{223}
-  \item HTML, \hyperpage{262}
+  \item help, \hyperpage{9}
+  \item Hosmer-Lemeshow test, \hyperpage{225}
+  \item HTML, \hyperpage{264}
 
   \indexspace
 
-  \item import data, \hyperpage{11}
-  \item imputation, \hyperpage{306}
-  \item interaction terms, \hyperpage{157}
+  \item import data, \hyperpage{13}
+  \item imputation, \hyperpage{308}
+  \item \textbf{installation}
+    \subitem packages, \hyperpage{7}
+    \subitem RStudio, \hyperpage{7}
+    \subitem tidyverse, \hyperpage{7}
+  \item interaction terms, \hyperpage{159}
 
   \indexspace
 
-  \item \textbf{join datasets}, \hyperpage{47}
+  \item \textbf{join datasets}, \hyperpage{49}
 
   \indexspace
 
-  \item Kaplan Meier estimator, \hyperpage{239}
-  \item knitr, \hyperpage{266}, \hyperpage{276}
+  \item Kaplan Meier estimator, \hyperpage{241}
+  \item knitr, \hyperpage{268}, \hyperpage{278}
 
   \indexspace
 
-  \item labels, \hyperpage{45}
-  \item \textbf{linear regression}, \hyperpage{149}
-    \subitem AIC, \hyperpage{174}
-    \subitem assumptions, \hyperpage{152}
-    \subitem coefficients, \hyperpage{165}
-    \subitem confounding, \hyperpage{160}
-    \subitem effect modification, \hyperpage{157}
-    \subitem finalfit, \hyperpage{176}
-    \subitem fitted line, \hyperpage{150}
-    \subitem interactions, \hyperpage{157}
-    \subitem model fitting principles, \hyperpage{173}
-    \subitem multivariable, \hyperpage{167}
-    \subitem r-squared, \hyperpage{158}
-  \item log-rank test, \hyperpage{239}
-  \item \textbf{logistic regression}, \hyperpage{201}
-    \subitem AIC, \hyperpage{223}
-    \subitem assumptions, \hyperpage{215}
-    \subitem binary data, \hyperpage{201}
-    \subitem C-statistic, \hyperpage{223}
-    \subitem confounding, \hyperpage{207}
-    \subitem correlated groups, \hyperpage{230}
-    \subitem effect modification, \hyperpage{207}
-    \subitem finalfit, \hyperpage{224}
-    \subitem fitted line, \hyperpage{204}
-    \subitem hierarchical, \hyperpage{230}
-    \subitem Hosmer-Lemeshow test, \hyperpage{223}
-    \subitem interactions, \hyperpage{207}
-    \subitem loess, \hyperpage{215}
-    \subitem mixed effects, \hyperpage{230}
-    \subitem model fitting, \hyperpage{220}, \hyperpage{224}
-    \subitem model fitting principles, \hyperpage{222}
-    \subitem multicollinearity, \hyperpage{216}
-    \subitem multilevel, \hyperpage{230}
-    \subitem odds and probabilities, \hyperpage{202}
-    \subitem odds ratio, \hyperpage{203}
-    \subitem odds ratio plot, \hyperpage{230}
-    \subitem random effects, \hyperpage{230}
+  \item labels, \hyperpage{47}
+  \item \textbf{linear regression}, \hyperpage{151}
+    \subitem AIC, \hyperpage{176}
+    \subitem assumptions, \hyperpage{154}
+    \subitem coefficients, \hyperpage{167}
+    \subitem confounding, \hyperpage{162}
+    \subitem effect modification, \hyperpage{159}
+    \subitem finalfit, \hyperpage{178}
+    \subitem fitted line, \hyperpage{152}
+    \subitem interactions, \hyperpage{159}
+    \subitem model fitting principles, \hyperpage{175}
+    \subitem multivariable, \hyperpage{169}
+    \subitem r-squared, \hyperpage{160}
+  \item log-rank test, \hyperpage{241}
+  \item \textbf{logistic regression}, \hyperpage{203}
+    \subitem AIC, \hyperpage{225}
+    \subitem assumptions, \hyperpage{217}
+    \subitem binary data, \hyperpage{203}
+    \subitem C-statistic, \hyperpage{225}
+    \subitem confounding, \hyperpage{209}
+    \subitem correlated groups, \hyperpage{232}
+    \subitem effect modification, \hyperpage{209}
+    \subitem finalfit, \hyperpage{226}
+    \subitem fitted line, \hyperpage{206}
+    \subitem hierarchical, \hyperpage{232}
+    \subitem Hosmer-Lemeshow test, \hyperpage{225}
+    \subitem interactions, \hyperpage{209}
+    \subitem loess, \hyperpage{217}
+    \subitem mixed effects, \hyperpage{232}
+    \subitem model fitting, \hyperpage{222}, \hyperpage{226}
+    \subitem model fitting principles, \hyperpage{224}
+    \subitem multicollinearity, \hyperpage{218}
+    \subitem multilevel, \hyperpage{232}
+    \subitem odds and probabilities, \hyperpage{204}
+    \subitem odds ratio, \hyperpage{205}
+    \subitem odds ratio plot, \hyperpage{232}
+    \subitem random effects, \hyperpage{232}
 
   \indexspace
 
-  \item \textbf{markdown}, \hyperpage{259}
-  \item Microsoft Word, \hyperpage{262}, \hyperpage{276}
-  \item \textbf{missing data}, \hyperpage{293}
-    \subitem associations, \hyperpage{299}
-    \subitem demographics table, \hyperpage{299}
-    \subitem handling, \hyperpage{304}
-    \subitem imputation, \hyperpage{306}
-    \subitem missing at random, \hyperpage{294}
-    \subitem missing completely at random, \hyperpage{294}
-    \subitem missing not at random, \hyperpage{294}
-    \subitem missingness pattern, \hyperpage{298}
-    \subitem missingness plot, \hyperpage{297}
-    \subitem multiple imputation, \hyperpage{306}
-  \item missing values, \hyperpage{37}
-  \item missing values remove \texttt{na.rm}, \hyperpage{28}
-  \item multiple imputation, \hyperpage{306}
-  \item multiple testing, \hyperpage{137}
+  \item \textbf{markdown}, \hyperpage{261}
+  \item Microsoft Word, \hyperpage{264}, \hyperpage{278}
+  \item \textbf{missing data}, \hyperpage{295}
+    \subitem associations, \hyperpage{301}
+    \subitem demographics table, \hyperpage{301}
+    \subitem handling, \hyperpage{306}
+    \subitem imputation, \hyperpage{308}
+    \subitem missing at random, \hyperpage{296}
+    \subitem missing completely at random, \hyperpage{296}
+    \subitem missing not at random, \hyperpage{296}
+    \subitem missingness pattern, \hyperpage{300}
+    \subitem missingness plot, \hyperpage{299}
+    \subitem multiple imputation, \hyperpage{308}
+  \item missing values, \hyperpage{39}
+  \item missing values remove \texttt{na.rm}, \hyperpage{30}
+  \item multiple imputation, \hyperpage{308}
+  \item multiple testing, \hyperpage{139}
 
   \indexspace
 
-  \item \textbf{non-parametric tests}, \hyperpage{139}
-    \subitem Mann-Whitney U, \hyperpage{141}
-    \subitem Wilcoxon rank sum, \hyperpage{141}
-  \item \textbf{notebooks}, \hyperpage{259}
+  \item \textbf{non-parametric tests}, \hyperpage{141}
+    \subitem Mann-Whitney U, \hyperpage{143}
+    \subitem Wilcoxon rank sum, \hyperpage{143}
+  \item \textbf{notebooks}, \hyperpage{261}
 
   \indexspace
 
-  \item objects, \hyperpage{25}
-  \item odds ratio, \hyperpage{203}
-  \item operators, \hyperpage{33}
+  \item objects, \hyperpage{27}
+  \item odds ratio, \hyperpage{205}
+  \item operators, \hyperpage{35}
 
   \indexspace
 
-  \item pairwise testing, \hyperpage{137}
-  \item paste, \hyperpage{45}
-  \item PDF, \hyperpage{262}, \hyperpage{276}
-  \item \textbf{pipe}, \hyperpage{31}
-  \item \textbf{plots}, \hyperpage{79}
-    \subitem aes, \hyperpage{82}
-    \subitem anatomy of a plot, \hyperpage{82}
-    \subitem annotate, \hyperpage{111}
-    \subitem axes, \hyperpage{108}
-    \subitem bar, \hyperpage{90}
-    \subitem boxplot, \hyperpage{96}
-    \subitem bubble, \hyperpage{87}
-    \subitem colour, \hyperpage{93}
-    \subitem colours, \hyperpage{109}
-    \subitem column, \hyperpage{90}
-    \subitem expand limits, \hyperpage{106}
-    \subitem fill, \hyperpage{93}
-    \subitem finetuning, \hyperpage{105}
-    \subitem ggplot2, \hyperpage{79}
-    \subitem hazard ratio plot, \hyperpage{247}
-    \subitem histogram, \hyperpage{95}
-    \subitem jitter, \hyperpage{97}
-    \subitem labels, \hyperpage{111}
-    \subitem legend, \hyperpage{109}, \hyperpage{114}
-    \subitem line, \hyperpage{88}
-    \subitem log scales, \hyperpage{106}
-    \subitem path, \hyperpage{88}
-    \subitem saving, \hyperpage{115}
-    \subitem scales, \hyperpage{106}
-    \subitem scatter, \hyperpage{87}
-    \subitem sub, \hyperpage{106}
-    \subitem superscript, \hyperpage{112}
-    \subitem text size, \hyperpage{113}
-    \subitem time-series, \hyperpage{88}
-    \subitem titles, \hyperpage{111}
-    \subitem transformations, \hyperpage{106}
-    \subitem zoom, \hyperpage{107}
+  \item pairwise testing, \hyperpage{139}
+  \item paste, \hyperpage{47}
+  \item PDF, \hyperpage{264}, \hyperpage{278}
+  \item \textbf{pipe}, \hyperpage{33}
+  \item \textbf{plots}, \hyperpage{81}
+    \subitem aes, \hyperpage{84}
+    \subitem anatomy of a plot, \hyperpage{84}
+    \subitem annotate, \hyperpage{113}
+    \subitem axes, \hyperpage{110}
+    \subitem bar, \hyperpage{92}
+    \subitem boxplot, \hyperpage{98}
+    \subitem bubble, \hyperpage{89}
+    \subitem colour, \hyperpage{95}
+    \subitem colours, \hyperpage{111}
+    \subitem column, \hyperpage{92}
+    \subitem expand limits, \hyperpage{108}
+    \subitem fill, \hyperpage{95}
+    \subitem finetuning, \hyperpage{107}
+    \subitem ggplot2, \hyperpage{81}
+    \subitem hazard ratio plot, \hyperpage{249}
+    \subitem histogram, \hyperpage{97}
+    \subitem jitter, \hyperpage{99}
+    \subitem labels, \hyperpage{113}
+    \subitem legend, \hyperpage{111}, \hyperpage{116}
+    \subitem line, \hyperpage{90}
+    \subitem log scales, \hyperpage{108}
+    \subitem path, \hyperpage{90}
+    \subitem saving, \hyperpage{117}
+    \subitem scales, \hyperpage{108}
+    \subitem scatter, \hyperpage{89}
+    \subitem sub, \hyperpage{108}
+    \subitem superscript, \hyperpage{114}
+    \subitem text size, \hyperpage{115}
+    \subitem time-series, \hyperpage{90}
+    \subitem titles, \hyperpage{113}
+    \subitem transformations, \hyperpage{108}
+    \subitem zoom, \hyperpage{109}
   \item \textbf{plotting}
-    \subitem boxplot, \hyperpage{126}
-    \subitem geom\_boxplot, \hyperpage{126}
-    \subitem geom\_line, \hyperpage{131}
-    \subitem geom\_qq, \hyperpage{125}
-    \subitem geom\_qq\_line, \hyperpage{125}
-    \subitem odds ratio, \hyperpage{230}
-    \subitem or\_plot, \hyperpage{230}
-    \subitem patchwork, \hyperpage{142}
-    \subitem surv\_plot, \hyperpage{241}
+    \subitem boxplot, \hyperpage{128}
+    \subitem geom\_boxplot, \hyperpage{128}
+    \subitem geom\_line, \hyperpage{133}
+    \subitem geom\_qq, \hyperpage{127}
+    \subitem geom\_qq\_line, \hyperpage{127}
+    \subitem odds ratio, \hyperpage{232}
+    \subitem or\_plot, \hyperpage{232}
+    \subitem patchwork, \hyperpage{144}
+    \subitem surv\_plot, \hyperpage{243}
 
   \indexspace
 
-  \item reading data, \hyperpage{11}
+  \item reading data, \hyperpage{13}
   \item RStudio, \hyperpage{6}
-  \item \textbf{RStudio}, \hyperpage{319}
-    \subitem base R, \hyperpage{319}
+  \item \textbf{RStudio}, \hyperpage{321}
+    \subitem base R, \hyperpage{322}
     \subitem console, \hyperpage{321}
-    \subitem installation, \hyperpage{319}
-    \subitem R packages, \hyperpage{319}
-    \subitem script, \hyperpage{321}
-    \subitem Troubleshooting, \hyperpage{320}
+    \subitem installation, \hyperpage{322}
+    \subitem R packages, \hyperpage{322}
+    \subitem script, \hyperpage{4}, \hyperpage{321}
 
   \indexspace
 
-  \item \textbf{summarising data}, \hyperpage{51}
-    \subitem aggregation, \hyperpage{54}
-    \subitem arithmetic functions, \hyperpage{59}
-    \subitem arrange / order rows, \hyperpage{70}
-    \subitem convert long to wide, \hyperpage{63}
-    \subitem convert wide to long, \hyperpage{65}
-    \subitem create columns, \hyperpage{55}
-    \subitem factor levels, \hyperpage{71}
-    \subitem long vs wide data, \hyperpage{60}
-    \subitem select columns, \hyperpage{67}
-    \subitem select helpers, \hyperpage{69}
+  \item \textbf{summarising data}, \hyperpage{53}
+    \subitem aggregation, \hyperpage{56}
+    \subitem arithmetic functions, \hyperpage{61}
+    \subitem arrange / order rows, \hyperpage{72}
+    \subitem convert long to wide, \hyperpage{65}
+    \subitem convert wide to long, \hyperpage{67}
+    \subitem create columns, \hyperpage{57}
+    \subitem factor levels, \hyperpage{73}
+    \subitem long vs wide data, \hyperpage{62}
+    \subitem select columns, \hyperpage{69}
+    \subitem select helpers, \hyperpage{71}
   \item \textbf{symbols}
-    \subitem AND \texttt{\&}, \hyperpage{33}
-    \subitem assignment \texttt{<-}, \hyperpage{29}
-    \subitem comment \texttt{\#}, \hyperpage{36}
-    \subitem equal \texttt{=}, \hyperpage{33}
-    \subitem greater or equal \texttt{>=}, \hyperpage{33}
-    \subitem greater than \texttt{>}, \hyperpage{33}
-    \subitem less or equal \texttt{<=}, \hyperpage{33}
-    \subitem less than \texttt{<}, \hyperpage{33}
-    \subitem not \texttt{!}, \hyperpage{33}
-    \subitem OR \texttt{|}, \hyperpage{33}
-    \subitem pipe \texttt{\%>\%}, \hyperpage{31}
-    \subitem select column \texttt{\$}, \hyperpage{27}
-  \item system time, \hyperpage{29}
+    \subitem AND \texttt{\&}, \hyperpage{35}
+    \subitem assignment \texttt{<-}, \hyperpage{31}
+    \subitem comment \texttt{\#}, \hyperpage{38}
+    \subitem equal \texttt{=}, \hyperpage{35}
+    \subitem greater or equal \texttt{>=}, \hyperpage{35}
+    \subitem greater than \texttt{>}, \hyperpage{35}
+    \subitem less or equal \texttt{<=}, \hyperpage{35}
+    \subitem less than \texttt{<}, \hyperpage{35}
+    \subitem not \texttt{!}, \hyperpage{35}
+    \subitem OR \texttt{|}, \hyperpage{35}
+    \subitem pipe \texttt{\%>\%}, \hyperpage{33}
+    \subitem select column \texttt{\$}, \hyperpage{29}
+  \item system time, \hyperpage{31}
 
   \indexspace
 
-  \item \textbf{t-test}, \hyperpage{127}
-    \subitem one-sample, \hyperpage{133}
-    \subitem paired, \hyperpage{130}
-    \subitem two-sample, \hyperpage{128}
-  \item \textbf{time-to-event / survival}, \hyperpage{237}
-    \subitem assumptions, \hyperpage{244}
-    \subitem censoring, \hyperpage{238}
-    \subitem cluster, \hyperpage{246}
-    \subitem competing risks regression, \hyperpage{248}
-    \subitem correlated groups, \hyperpage{246}
-    \subitem Cox proportional hazards regression, \hyperpage{242}
-    \subitem frailty, \hyperpage{246}
-    \subitem hazard ratio plot, \hyperpage{247}
-    \subitem Kaplan Meier estimator, \hyperpage{239}
-    \subitem Kaplan Meier plot, \hyperpage{241}
-    \subitem life table, \hyperpage{240}
-    \subitem log-rank test, \hyperpage{239}
-    \subitem mixed effects, \hyperpage{246}
-    \subitem multilevel, \hyperpage{246}
-    \subitem random effects, \hyperpage{246}
-    \subitem stratified models, \hyperpage{245}
-    \subitem testing for proportional hazards, \hyperpage{244}
-  \item transformations, \hyperpage{140}
+  \item \textbf{t-test}, \hyperpage{129}
+    \subitem one-sample, \hyperpage{135}
+    \subitem paired, \hyperpage{132}
+    \subitem two-sample, \hyperpage{130}
+  \item \textbf{time-to-event / survival}, \hyperpage{239}
+    \subitem assumptions, \hyperpage{246}
+    \subitem censoring, \hyperpage{240}
+    \subitem cluster, \hyperpage{248}
+    \subitem competing risks regression, \hyperpage{250}
+    \subitem correlated groups, \hyperpage{248}
+    \subitem Cox proportional hazards regression, \hyperpage{244}
+    \subitem frailty, \hyperpage{248}
+    \subitem hazard ratio plot, \hyperpage{249}
+    \subitem Kaplan Meier estimator, \hyperpage{241}
+    \subitem Kaplan Meier plot, \hyperpage{243}
+    \subitem life table, \hyperpage{242}
+    \subitem log-rank test, \hyperpage{241}
+    \subitem mixed effects, \hyperpage{248}
+    \subitem multilevel, \hyperpage{248}
+    \subitem random effects, \hyperpage{248}
+    \subitem stratified models, \hyperpage{247}
+    \subitem testing for proportional hazards, \hyperpage{246}
+  \item transformations, \hyperpage{142}
 
   \indexspace
 
-  \item \textbf{variable types}, \hyperpage{15}
-    \subitem categorical / factor, \hyperpage{21}
-    \subitem character, \hyperpage{20}
-    \subitem continuous / numeric, \hyperpage{18}
-    \subitem date-time, \hyperpage{22}
-  \item \textbf{version control}, \hyperpage{285}
-    \subitem clone, \hyperpage{291}
-    \subitem Commit, \hyperpage{286}
-    \subitem Git and Github, \hyperpage{285}
-    \subitem pull and push, \hyperpage{290}
-    \subitem repository, \hyperpage{289}
-    \subitem SSH RSA key, \hyperpage{285}
+  \item \textbf{variable types}, \hyperpage{17}
+    \subitem categorical / factor, \hyperpage{23}
+    \subitem character, \hyperpage{22}
+    \subitem continuous / numeric, \hyperpage{20}
+    \subitem date-time, \hyperpage{24}
+  \item \textbf{version control}, \hyperpage{287}
+    \subitem clone, \hyperpage{293}
+    \subitem Commit, \hyperpage{288}
+    \subitem Git and Github, \hyperpage{287}
+    \subitem pull and push, \hyperpage{292}
+    \subitem repository, \hyperpage{291}
+    \subitem SSH RSA key, \hyperpage{287}
 
   \indexspace
 
-  \item \textbf{workflow}, \hyperpage{268}
+  \item \textbf{workflow}, \hyperpage{270}
 
   \indexspace
 
-  \item YAML header, \hyperpage{262}
+  \item YAML header, \hyperpage{264}
 
 \end{theindex}

@@ -1,298 +1,302 @@
+\indexentry{RStudio@\textbf{RStudio}!script|hyperpage}{4}
 \indexentry{comments|hyperpage}{4}
 \indexentry{RStudio|hyperpage}{6}
-\indexentry{import data|hyperpage}{11}
-\indexentry{reading data|hyperpage}{11}
-\indexentry{functions@\textbf{functions}!read\_csv|hyperpage}{12}
-\indexentry{variable types@\textbf{variable types}|hyperpage}{15}
-\indexentry{continuous data@\textbf{continuous data}!variable types|hyperpage}{15}
-\indexentry{categorical data@\textbf{categorical data}!variable types|hyperpage}{15}
-\indexentry{date-time@\textbf{date-time}|hyperpage}{15}
-\indexentry{variable types@\textbf{variable types}!continuous / numeric|hyperpage}{18}
-\indexentry{functions@\textbf{functions}!round|hyperpage}{19}
-\indexentry{functions@\textbf{functions}!near|hyperpage}{19}
-\indexentry{variable types@\textbf{variable types}!character|hyperpage}{20}
-\indexentry{variable types@\textbf{variable types}!categorical / factor|hyperpage}{21}
-\indexentry{variable types@\textbf{variable types}!date-time|hyperpage}{22}
-\indexentry{functions@\textbf{functions}!dmy|hyperpage}{22}
-\indexentry{functions@\textbf{functions}!ymd|hyperpage}{22}
-\indexentry{objects|hyperpage}{25}
-\indexentry{functions@\textbf{functions}|hyperpage}{25}
-\indexentry{symbols@\textbf{symbols}!select column \texttt{\$}|hyperpage}{27}
-\indexentry{missing values remove \texttt{na.rm}|hyperpage}{28}
-\indexentry{functions@\textbf{functions}!Sys.time|hyperpage}{29}
-\indexentry{system time|hyperpage}{29}
-\indexentry{symbols@\textbf{symbols}!assignment \texttt{<-}|hyperpage}{29}
-\indexentry{functions@\textbf{functions}!seq|hyperpage}{29}
-\indexentry{symbols@\textbf{symbols}!pipe \texttt{\%>\%}|hyperpage}{31}
-\indexentry{pipe@\textbf{pipe}|hyperpage}{31}
-\indexentry{operators|hyperpage}{33}
-\indexentry{functions@\textbf{functions}!filter|hyperpage}{33}
-\indexentry{symbols@\textbf{symbols}!less than \texttt{<}|hyperpage}{33}
-\indexentry{symbols@\textbf{symbols}!greater than \texttt{>}|hyperpage}{33}
-\indexentry{symbols@\textbf{symbols}!less or equal \texttt{<=}|hyperpage}{33}
-\indexentry{symbols@\textbf{symbols}!greater or equal \texttt{>=}|hyperpage}{33}
-\indexentry{symbols@\textbf{symbols}!equal \texttt{=}|hyperpage}{33}
-\indexentry{symbols@\textbf{symbols}!not \texttt{"!}|hyperpage}{33}
-\indexentry{symbols@\textbf{symbols}!AND \texttt{\&}|hyperpage}{33}
-\indexentry{symbols@\textbf{symbols}!OR \texttt{"|}|hyperpage}{33}
-\indexentry{symbols@\textbf{symbols}!comment \texttt{\#}|hyperpage}{36}
-\indexentry{functions@\textbf{functions}!c() combine|hyperpage}{36}
-\indexentry{missing values|hyperpage}{37}
-\indexentry{column, create|hyperpage}{41}
-\indexentry{functions@\textbf{functions}!mutate|hyperpage}{41}
-\indexentry{functions@\textbf{functions}!matches|hyperpage}{43}
-\indexentry{functions@\textbf{functions}!paste|hyperpage}{45}
-\indexentry{paste|hyperpage}{45}
-\indexentry{labels|hyperpage}{45}
-\indexentry{functions@\textbf{functions}!join|hyperpage}{47}
-\indexentry{functions@\textbf{functions}!full\_join|hyperpage}{47}
-\indexentry{functions@\textbf{functions}!inner\_join|hyperpage}{47}
-\indexentry{functions@\textbf{functions}!left\_join|hyperpage}{47}
-\indexentry{functions@\textbf{functions}!right\_join|hyperpage}{47}
-\indexentry{join datasets@\textbf{join datasets}|hyperpage}{47}
-\indexentry{help|hyperpage}{50}
-\indexentry{summarising data@\textbf{summarising data}|hyperpage}{51}
-\indexentry{summarising data@\textbf{summarising data}!aggregation|hyperpage}{54}
-\indexentry{functions@\textbf{functions}!group\_by|hyperpage}{54}
-\indexentry{functions@\textbf{functions}!summarise|hyperpage}{54}
-\indexentry{summarising data@\textbf{summarising data}!create columns|hyperpage}{55}
-\indexentry{functions@\textbf{functions}!mutate|hyperpage}{55}
-\indexentry{functions@\textbf{functions}!percent|hyperpage}{56}
-\indexentry{functions@\textbf{functions}!arithmetic|hyperpage}{59}
-\indexentry{summarising data@\textbf{summarising data}!arithmetic functions|hyperpage}{59}
-\indexentry{summarising data@\textbf{summarising data}!long vs wide data|hyperpage}{60}
-\indexentry{summarising data@\textbf{summarising data}!convert long to wide|hyperpage}{63}
-\indexentry{functions@\textbf{functions}!spread|hyperpage}{63}
-\indexentry{summarising data@\textbf{summarising data}!convert wide to long|hyperpage}{65}
-\indexentry{functions@\textbf{functions}!gather|hyperpage}{65}
-\indexentry{summarising data@\textbf{summarising data}!select columns|hyperpage}{67}
-\indexentry{functions@\textbf{functions}!select|hyperpage}{67}
-\indexentry{summarising data@\textbf{summarising data}!select helpers|hyperpage}{69}
-\indexentry{summarising data@\textbf{summarising data}!arrange / order rows|hyperpage}{70}
-\indexentry{functions@\textbf{functions}!arrange|hyperpage}{70}
-\indexentry{summarising data@\textbf{summarising data}!factor levels|hyperpage}{71}
-\indexentry{functions@\textbf{functions}!fct\_relevel|hyperpage}{71}
-\indexentry{functions@\textbf{functions}!levels|hyperpage}{71}
-\indexentry{plots@\textbf{plots}|hyperpage}{79}
-\indexentry{plots@\textbf{plots}!ggplot2|hyperpage}{79}
-\indexentry{functions@\textbf{functions}!ggplot|hyperpage}{79}
-\indexentry{plots@\textbf{plots}!anatomy of a plot|hyperpage}{82}
-\indexentry{plots@\textbf{plots}!aes|hyperpage}{82}
-\indexentry{plots@\textbf{plots}!scatter|hyperpage}{88}
-\indexentry{plots@\textbf{plots}!bubble|hyperpage}{88}
-\indexentry{plots@\textbf{plots}!line|hyperpage}{89}
-\indexentry{plots@\textbf{plots}!path|hyperpage}{89}
-\indexentry{plots@\textbf{plots}!time-series|hyperpage}{89}
-\indexentry{plots@\textbf{plots}!bar|hyperpage}{91}
-\indexentry{plots@\textbf{plots}!column|hyperpage}{91}
-\indexentry{plots@\textbf{plots}!colour|hyperpage}{93}
-\indexentry{plots@\textbf{plots}!fill|hyperpage}{93}
-\indexentry{plots@\textbf{plots}!histogram|hyperpage}{95}
-\indexentry{plots@\textbf{plots}!boxplot|hyperpage}{96}
-\indexentry{plots@\textbf{plots}!jitter|hyperpage}{97}
-\indexentry{plots@\textbf{plots}!finetuning|hyperpage}{105}
-\indexentry{plots@\textbf{plots}!scales|hyperpage}{106}
-\indexentry{plots@\textbf{plots}!log scales|hyperpage}{106}
-\indexentry{plots@\textbf{plots}!transformations|hyperpage}{106}
-\indexentry{plots@\textbf{plots}!sub|hyperpage}{106}
-\indexentry{plots@\textbf{plots}!expand limits|hyperpage}{106}
-\indexentry{plots@\textbf{plots}!zoom|hyperpage}{107}
-\indexentry{plots@\textbf{plots}!axes|hyperpage}{108}
-\indexentry{plots@\textbf{plots}!colours|hyperpage}{109}
-\indexentry{plots@\textbf{plots}!legend|hyperpage}{109}
-\indexentry{plots@\textbf{plots}!titles|hyperpage}{111}
-\indexentry{plots@\textbf{plots}!labels|hyperpage}{111}
-\indexentry{plots@\textbf{plots}!annotate|hyperpage}{111}
-\indexentry{plots@\textbf{plots}!superscript|hyperpage}{112}
-\indexentry{plots@\textbf{plots}!text size|hyperpage}{113}
-\indexentry{plots@\textbf{plots}!legend|hyperpage}{114}
-\indexentry{plots@\textbf{plots}!saving|hyperpage}{115}
-\indexentry{continuous data@\textbf{continuous data}|hyperpage}{121}
-\indexentry{functions@\textbf{functions}!glimpse|hyperpage}{123}
-\indexentry{functions@\textbf{functions}!missing\_glimpse|hyperpage}{123}
-\indexentry{functions@\textbf{functions}!ff\_glimpse|hyperpage}{123}
-\indexentry{plotting@\textbf{plotting}!geom\_qq|hyperpage}{125}
-\indexentry{plotting@\textbf{plotting}!geom\_qq\_line|hyperpage}{125}
-\indexentry{plotting@\textbf{plotting}!geom\_boxplot|hyperpage}{126}
-\indexentry{plotting@\textbf{plotting}!boxplot|hyperpage}{126}
-\indexentry{t-test@\textbf{t-test}|hyperpage}{127}
-\indexentry{t-test@\textbf{t-test}!two-sample|hyperpage}{128}
-\indexentry{functions@\textbf{functions}!t.test|hyperpage}{129}
-\indexentry{t-test@\textbf{t-test}!paired|hyperpage}{130}
-\indexentry{plotting@\textbf{plotting}!geom\_line|hyperpage}{131}
-\indexentry{functions@\textbf{functions}!t.test|hyperpage}{132}
-\indexentry{t-test@\textbf{t-test}!one-sample|hyperpage}{133}
-\indexentry{analysis of variance (ANOVA)|hyperpage}{134}
-\indexentry{functions@\textbf{functions}!aov|hyperpage}{135}
-\indexentry{multiple testing|hyperpage}{137}
-\indexentry{pairwise testing|hyperpage}{137}
-\indexentry{functions@\textbf{functions}!pairwise.t.test|hyperpage}{138}
-\indexentry{Bonferroni correction|hyperpage}{138}
-\indexentry{false discovery rate|hyperpage}{139}
-\indexentry{functions@\textbf{functions}!pairwise.t.test|hyperpage}{139}
-\indexentry{non-parametric tests@\textbf{non-parametric tests}|hyperpage}{139}
-\indexentry{transformations|hyperpage}{140}
-\indexentry{non-parametric tests@\textbf{non-parametric tests}!Mann-Whitney U|hyperpage}{141}
-\indexentry{non-parametric tests@\textbf{non-parametric tests}!Wilcoxon rank sum|hyperpage}{141}
-\indexentry{plotting@\textbf{plotting}!patchwork|hyperpage}{142}
-\indexentry{functions@\textbf{functions}!wilcox.test|hyperpage}{143}
-\indexentry{non-parametric tests@\textbf{non-parametric tests}!!Kruskal-Wallis|hyperpage}{143}
-\indexentry{functions@\textbf{functions}!kruskal.test|hyperpage}{143}
-\indexentry{functions@\textbf{functions}!summary\_factorlist|hyperpage}{143}
-\indexentry{linear regression@\textbf{linear regression}|hyperpage}{149}
-\indexentry{linear regression@\textbf{linear regression}!fitted line|hyperpage}{150}
-\indexentry{linear regression@\textbf{linear regression}!assumptions|hyperpage}{152}
-\indexentry{linear regression@\textbf{linear regression}!effect modification|hyperpage}{157}
-\indexentry{effect modification|hyperpage}{157}
-\indexentry{linear regression@\textbf{linear regression}!interactions|hyperpage}{157}
-\indexentry{interaction terms|hyperpage}{157}
-\indexentry{linear regression@\textbf{linear regression}!r-squared|hyperpage}{158}
-\indexentry{linear regression@\textbf{linear regression}!confounding|hyperpage}{160}
-\indexentry{confounding|hyperpage}{160}
-\indexentry{functions@\textbf{functions}!lm|hyperpage}{163}
-\indexentry{linear regression@\textbf{linear regression}!coefficients|hyperpage}{165}
-\indexentry{functions@\textbf{functions}!tidy|hyperpage}{166}
-\indexentry{functions@\textbf{functions}!glance|hyperpage}{166}
-\indexentry{linear regression@\textbf{linear regression}!multivariable|hyperpage}{167}
-\indexentry{linear regression@\textbf{linear regression}!model fitting principles|hyperpage}{173}
-\indexentry{linear regression@\textbf{linear regression}!AIC|hyperpage}{174}
-\indexentry{AIC|hyperpage}{174}
-\indexentry{linear regression@\textbf{linear regression}!finalfit|hyperpage}{176}
-\indexentry{functions@\textbf{functions}!finalfit|hyperpage}{177}
-\indexentry{categorical data@\textbf{categorical data}|hyperpage}{183}
-\indexentry{factors|hyperpage}{183}
-\indexentry{functions@\textbf{functions}!factor|hyperpage}{186}
-\indexentry{functions@\textbf{functions}!fct\_recode|hyperpage}{186}
-\indexentry{functions@\textbf{functions}!ff\_label|hyperpage}{186}
-\indexentry{categorical data@\textbf{categorical data}!convert from continuous|hyperpage}{186}
-\indexentry{categorical data@\textbf{categorical data}!quantiles|hyperpage}{188}
-\indexentry{functions@\textbf{functions}!cut|hyperpage}{189}
-\indexentry{functions@\textbf{functions}!quantile|hyperpage}{189}
-\indexentry{functions@\textbf{functions}!fct\_collapse|hyperpage}{192}
-\indexentry{functions@\textbf{functions}!fct\_relevel|hyperpage}{193}
-\indexentry{categorical data@\textbf{categorical data}!finalfit|hyperpage}{193}
-\indexentry{categorical data@\textbf{categorical data}!summarising|hyperpage}{193}
-\indexentry{categorical data@\textbf{categorical data}!chi-squared test|hyperpage}{195}
-\indexentry{categorical data@\textbf{categorical data}!Fisher's exact test|hyperpage}{195}
-\indexentry{chi-squared test|hyperpage}{195}
-\indexentry{Fisher's exact test|hyperpage}{195}
-\indexentry{functions@\textbf{functions}!chisq.test|hyperpage}{196}
-\indexentry{functions@\textbf{functions}!fisher.test|hyperpage}{197}
-\indexentry{functions@\textbf{functions}!summary\_factorlist|hyperpage}{198}
-\indexentry{logistic regression@\textbf{logistic regression}|hyperpage}{201}
-\indexentry{logistic regression@\textbf{logistic regression}!binary data|hyperpage}{201}
-\indexentry{binary data|hyperpage}{201}
-\indexentry{logistic regression@\textbf{logistic regression}!odds and probabilities|hyperpage}{202}
-\indexentry{logistic regression@\textbf{logistic regression}!odds ratio|hyperpage}{203}
-\indexentry{odds ratio|hyperpage}{203}
-\indexentry{logistic regression@\textbf{logistic regression}!fitted line|hyperpage}{204}
-\indexentry{logistic regression@\textbf{logistic regression}!effect modification|hyperpage}{207}
-\indexentry{logistic regression@\textbf{logistic regression}!confounding|hyperpage}{207}
-\indexentry{logistic regression@\textbf{logistic regression}!interactions|hyperpage}{207}
-\indexentry{logistic regression@\textbf{logistic regression}!assumptions|hyperpage}{215}
-\indexentry{logistic regression@\textbf{logistic regression}!loess|hyperpage}{215}
-\indexentry{logistic regression@\textbf{logistic regression}!multicollinearity|hyperpage}{216}
-\indexentry{functions@\textbf{functions}!ggpairs|hyperpage}{217}
-\indexentry{logistic regression@\textbf{logistic regression}!model fitting|hyperpage}{220}
-\indexentry{functions@\textbf{functions}!glm|hyperpage}{220}
-\indexentry{functions@\textbf{functions}!coef|hyperpage}{221}
-\indexentry{functions@\textbf{functions}!confint|hyperpage}{221}
-\indexentry{logistic regression@\textbf{logistic regression}!model fitting principles|hyperpage}{222}
-\indexentry{logistic regression@\textbf{logistic regression}!AIC|hyperpage}{223}
-\indexentry{AIC|hyperpage}{223}
-\indexentry{logistic regression@\textbf{logistic regression}!C-statistic|hyperpage}{223}
-\indexentry{C-statistic|hyperpage}{223}
-\indexentry{logistic regression@\textbf{logistic regression}!Hosmer-Lemeshow test|hyperpage}{223}
-\indexentry{Hosmer-Lemeshow test|hyperpage}{223}
-\indexentry{logistic regression@\textbf{logistic regression}!model fitting|hyperpage}{224}
-\indexentry{logistic regression@\textbf{logistic regression}!finalfit|hyperpage}{224}
-\indexentry{functions@\textbf{functions}!glm|hyperpage}{226}
-\indexentry{logistic regression@\textbf{logistic regression}!odds ratio plot|hyperpage}{230}
-\indexentry{plotting@\textbf{plotting}!odds ratio|hyperpage}{230}
-\indexentry{functions@\textbf{functions}!or\_plot|hyperpage}{230}
-\indexentry{plotting@\textbf{plotting}!or\_plot|hyperpage}{230}
-\indexentry{logistic regression@\textbf{logistic regression}!correlated groups|hyperpage}{230}
-\indexentry{logistic regression@\textbf{logistic regression}!mixed effects|hyperpage}{230}
-\indexentry{logistic regression@\textbf{logistic regression}!random effects|hyperpage}{230}
-\indexentry{logistic regression@\textbf{logistic regression}!multilevel|hyperpage}{230}
-\indexentry{logistic regression@\textbf{logistic regression}!hierarchical|hyperpage}{230}
-\indexentry{functions@\textbf{functions}!glmer|hyperpage}{233}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}|hyperpage}{237}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!censoring|hyperpage}{238}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!Kaplan Meier estimator|hyperpage}{239}
-\indexentry{Kaplan Meier estimator|hyperpage}{239}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!log-rank test|hyperpage}{239}
-\indexentry{log-rank test|hyperpage}{239}
-\indexentry{functions@\textbf{functions}!Surv|hyperpage}{240}
-\indexentry{functions@\textbf{functions}!survfit|hyperpage}{240}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!life table|hyperpage}{240}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!Kaplan Meier plot|hyperpage}{241}
-\indexentry{functions@\textbf{functions}!surv\_plot|hyperpage}{241}
-\indexentry{plotting@\textbf{plotting}!surv\_plot|hyperpage}{241}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!Cox proportional hazards regression|hyperpage}{242}
-\indexentry{Cox proportional hazards regression|hyperpage}{242}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!assumptions|hyperpage}{244}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!testing for proportional hazards|hyperpage}{244}
-\indexentry{functions@\textbf{functions}!cox.zph|hyperpage}{245}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!stratified models|hyperpage}{245}
-\indexentry{functions@\textbf{functions}!strata|hyperpage}{246}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!correlated groups|hyperpage}{246}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!mixed effects|hyperpage}{246}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!random effects|hyperpage}{246}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!multilevel|hyperpage}{246}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!cluster|hyperpage}{246}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!frailty|hyperpage}{246}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!hazard ratio plot|hyperpage}{247}
-\indexentry{plots@\textbf{plots}!hazard ratio plot|hyperpage}{247}
-\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!competing risks regression|hyperpage}{248}
-\indexentry{notebooks@\textbf{notebooks}|hyperpage}{259}
-\indexentry{markdown@\textbf{markdown}|hyperpage}{259}
-\indexentry{Microsoft Word|hyperpage}{262}
-\indexentry{PDF|hyperpage}{262}
-\indexentry{HTML|hyperpage}{262}
-\indexentry{YAML header|hyperpage}{262}
-\indexentry{chunks|hyperpage}{264}
-\indexentry{knitr|hyperpage}{266}
-\indexentry{file structure@\textbf{file structure}|hyperpage}{268}
-\indexentry{workflow@\textbf{workflow}|hyperpage}{268}
-\indexentry{exporting@\textbf{exporting}|hyperpage}{273}
-\indexentry{Microsoft Word|hyperpage}{276}
-\indexentry{PDF|hyperpage}{276}
-\indexentry{knitr|hyperpage}{276}
-\indexentry{version control@\textbf{version control}|hyperpage}{285}
-\indexentry{version control@\textbf{version control}!Git and Github|hyperpage}{285}
-\indexentry{version control@\textbf{version control}!SSH RSA key|hyperpage}{285}
-\indexentry{version control@\textbf{version control}!Commit|hyperpage}{286}
-\indexentry{version control@\textbf{version control}!repository|hyperpage}{289}
-\indexentry{version control@\textbf{version control}!pull and push|hyperpage}{290}
-\indexentry{version control@\textbf{version control}!clone|hyperpage}{291}
-\indexentry{missing data@\textbf{missing data}|hyperpage}{293}
-\indexentry{missing data@\textbf{missing data}!missing completely at random|hyperpage}{294}
-\indexentry{missing data@\textbf{missing data}!missing at random|hyperpage}{294}
-\indexentry{missing data@\textbf{missing data}!missing not at random|hyperpage}{294}
-\indexentry{missing data@\textbf{missing data}!missingness plot|hyperpage}{297}
-\indexentry{missing data@\textbf{missing data}!missingness pattern|hyperpage}{298}
-\indexentry{missing data@\textbf{missing data}!demographics table|hyperpage}{299}
-\indexentry{missing data@\textbf{missing data}!associations|hyperpage}{299}
-\indexentry{missing data@\textbf{missing data}!handling|hyperpage}{304}
-\indexentry{missing data@\textbf{missing data}!imputation|hyperpage}{306}
-\indexentry{missing data@\textbf{missing data}!multiple imputation|hyperpage}{306}
-\indexentry{imputation|hyperpage}{306}
-\indexentry{multiple imputation|hyperpage}{306}
-\indexentry{encryption@\textbf{encryption}|hyperpage}{311}
-\indexentry{encryption@\textbf{encryption}!encryptr|hyperpage}{312}
-\indexentry{encryption@\textbf{encryption}!public/private keys|hyperpage}{313}
-\indexentry{encryption@\textbf{encryption}!columns, encrypt|hyperpage}{313}
-\indexentry{encryption@\textbf{encryption}!columns, decrypt|hyperpage}{314}
-\indexentry{encryption@\textbf{encryption}!lookup table|hyperpage}{314}
-\indexentry{encryption@\textbf{encryption}!file, encrypt|hyperpage}{315}
-\indexentry{encryption@\textbf{encryption}!file, decrypt|hyperpage}{316}
-\indexentry{encryption@\textbf{encryption}!public key sharing|hyperpage}{317}
-\indexentry{encryption@\textbf{encryption}!clinical trials|hyperpage}{317}
-\indexentry{RStudio@\textbf{RStudio}|hyperpage}{319}
-\indexentry{RStudio@\textbf{RStudio}!installation|hyperpage}{319}
-\indexentry{RStudio@\textbf{RStudio}!base R|hyperpage}{319}
-\indexentry{RStudio@\textbf{RStudio}!R packages|hyperpage}{319}
-\indexentry{RStudio@\textbf{RStudio}!Troubleshooting|hyperpage}{320}
+\indexentry{installation@\textbf{installation}!tidyverse|hyperpage}{7}
+\indexentry{installation@\textbf{installation}!packages|hyperpage}{7}
+\indexentry{installation@\textbf{installation}!RStudio|hyperpage}{7}
+\indexentry{help|hyperpage}{9}
+\indexentry{errors|hyperpage}{9}
+\indexentry{import data|hyperpage}{13}
+\indexentry{reading data|hyperpage}{13}
+\indexentry{functions@\textbf{functions}!read\_csv|hyperpage}{14}
+\indexentry{variable types@\textbf{variable types}|hyperpage}{17}
+\indexentry{continuous data@\textbf{continuous data}!variable types|hyperpage}{17}
+\indexentry{categorical data@\textbf{categorical data}!variable types|hyperpage}{17}
+\indexentry{date-time@\textbf{date-time}|hyperpage}{17}
+\indexentry{variable types@\textbf{variable types}!continuous / numeric|hyperpage}{20}
+\indexentry{functions@\textbf{functions}!round|hyperpage}{21}
+\indexentry{functions@\textbf{functions}!near|hyperpage}{21}
+\indexentry{variable types@\textbf{variable types}!character|hyperpage}{22}
+\indexentry{variable types@\textbf{variable types}!categorical / factor|hyperpage}{23}
+\indexentry{variable types@\textbf{variable types}!date-time|hyperpage}{24}
+\indexentry{functions@\textbf{functions}!dmy|hyperpage}{24}
+\indexentry{functions@\textbf{functions}!ymd|hyperpage}{24}
+\indexentry{objects|hyperpage}{27}
+\indexentry{functions@\textbf{functions}|hyperpage}{27}
+\indexentry{symbols@\textbf{symbols}!select column \texttt{\$}|hyperpage}{29}
+\indexentry{missing values remove \texttt{na.rm}|hyperpage}{30}
+\indexentry{functions@\textbf{functions}!Sys.time|hyperpage}{31}
+\indexentry{system time|hyperpage}{31}
+\indexentry{symbols@\textbf{symbols}!assignment \texttt{<-}|hyperpage}{31}
+\indexentry{functions@\textbf{functions}!seq|hyperpage}{31}
+\indexentry{symbols@\textbf{symbols}!pipe \texttt{\%>\%}|hyperpage}{33}
+\indexentry{pipe@\textbf{pipe}|hyperpage}{33}
+\indexentry{operators|hyperpage}{35}
+\indexentry{functions@\textbf{functions}!filter|hyperpage}{35}
+\indexentry{symbols@\textbf{symbols}!less than \texttt{<}|hyperpage}{35}
+\indexentry{symbols@\textbf{symbols}!greater than \texttt{>}|hyperpage}{35}
+\indexentry{symbols@\textbf{symbols}!less or equal \texttt{<=}|hyperpage}{35}
+\indexentry{symbols@\textbf{symbols}!greater or equal \texttt{>=}|hyperpage}{35}
+\indexentry{symbols@\textbf{symbols}!equal \texttt{=}|hyperpage}{35}
+\indexentry{symbols@\textbf{symbols}!not \texttt{"!}|hyperpage}{35}
+\indexentry{symbols@\textbf{symbols}!AND \texttt{\&}|hyperpage}{35}
+\indexentry{symbols@\textbf{symbols}!OR \texttt{"|}|hyperpage}{35}
+\indexentry{symbols@\textbf{symbols}!comment \texttt{\#}|hyperpage}{38}
+\indexentry{functions@\textbf{functions}!c() combine|hyperpage}{38}
+\indexentry{missing values|hyperpage}{39}
+\indexentry{column, create|hyperpage}{43}
+\indexentry{functions@\textbf{functions}!mutate|hyperpage}{43}
+\indexentry{functions@\textbf{functions}!matches|hyperpage}{45}
+\indexentry{functions@\textbf{functions}!paste|hyperpage}{47}
+\indexentry{paste|hyperpage}{47}
+\indexentry{labels|hyperpage}{47}
+\indexentry{functions@\textbf{functions}!join|hyperpage}{49}
+\indexentry{functions@\textbf{functions}!full\_join|hyperpage}{49}
+\indexentry{functions@\textbf{functions}!inner\_join|hyperpage}{49}
+\indexentry{functions@\textbf{functions}!left\_join|hyperpage}{49}
+\indexentry{functions@\textbf{functions}!right\_join|hyperpage}{49}
+\indexentry{join datasets@\textbf{join datasets}|hyperpage}{49}
+\indexentry{summarising data@\textbf{summarising data}|hyperpage}{53}
+\indexentry{summarising data@\textbf{summarising data}!aggregation|hyperpage}{56}
+\indexentry{functions@\textbf{functions}!group\_by|hyperpage}{56}
+\indexentry{functions@\textbf{functions}!summarise|hyperpage}{56}
+\indexentry{summarising data@\textbf{summarising data}!create columns|hyperpage}{57}
+\indexentry{functions@\textbf{functions}!mutate|hyperpage}{57}
+\indexentry{functions@\textbf{functions}!percent|hyperpage}{58}
+\indexentry{functions@\textbf{functions}!arithmetic|hyperpage}{61}
+\indexentry{summarising data@\textbf{summarising data}!arithmetic functions|hyperpage}{61}
+\indexentry{summarising data@\textbf{summarising data}!long vs wide data|hyperpage}{62}
+\indexentry{summarising data@\textbf{summarising data}!convert long to wide|hyperpage}{65}
+\indexentry{functions@\textbf{functions}!spread|hyperpage}{65}
+\indexentry{summarising data@\textbf{summarising data}!convert wide to long|hyperpage}{67}
+\indexentry{functions@\textbf{functions}!gather|hyperpage}{67}
+\indexentry{summarising data@\textbf{summarising data}!select columns|hyperpage}{69}
+\indexentry{functions@\textbf{functions}!select|hyperpage}{69}
+\indexentry{summarising data@\textbf{summarising data}!select helpers|hyperpage}{71}
+\indexentry{summarising data@\textbf{summarising data}!arrange / order rows|hyperpage}{72}
+\indexentry{functions@\textbf{functions}!arrange|hyperpage}{72}
+\indexentry{summarising data@\textbf{summarising data}!factor levels|hyperpage}{73}
+\indexentry{functions@\textbf{functions}!fct\_relevel|hyperpage}{73}
+\indexentry{functions@\textbf{functions}!levels|hyperpage}{73}
+\indexentry{plots@\textbf{plots}|hyperpage}{81}
+\indexentry{plots@\textbf{plots}!ggplot2|hyperpage}{81}
+\indexentry{functions@\textbf{functions}!ggplot|hyperpage}{81}
+\indexentry{plots@\textbf{plots}!anatomy of a plot|hyperpage}{84}
+\indexentry{plots@\textbf{plots}!aes|hyperpage}{84}
+\indexentry{plots@\textbf{plots}!scatter|hyperpage}{90}
+\indexentry{plots@\textbf{plots}!bubble|hyperpage}{90}
+\indexentry{plots@\textbf{plots}!line|hyperpage}{91}
+\indexentry{plots@\textbf{plots}!path|hyperpage}{91}
+\indexentry{plots@\textbf{plots}!time-series|hyperpage}{91}
+\indexentry{plots@\textbf{plots}!bar|hyperpage}{93}
+\indexentry{plots@\textbf{plots}!column|hyperpage}{93}
+\indexentry{plots@\textbf{plots}!colour|hyperpage}{95}
+\indexentry{plots@\textbf{plots}!fill|hyperpage}{95}
+\indexentry{plots@\textbf{plots}!histogram|hyperpage}{97}
+\indexentry{plots@\textbf{plots}!boxplot|hyperpage}{98}
+\indexentry{plots@\textbf{plots}!jitter|hyperpage}{99}
+\indexentry{plots@\textbf{plots}!finetuning|hyperpage}{107}
+\indexentry{plots@\textbf{plots}!scales|hyperpage}{108}
+\indexentry{plots@\textbf{plots}!log scales|hyperpage}{108}
+\indexentry{plots@\textbf{plots}!transformations|hyperpage}{108}
+\indexentry{plots@\textbf{plots}!sub|hyperpage}{108}
+\indexentry{plots@\textbf{plots}!expand limits|hyperpage}{108}
+\indexentry{plots@\textbf{plots}!zoom|hyperpage}{109}
+\indexentry{plots@\textbf{plots}!axes|hyperpage}{110}
+\indexentry{plots@\textbf{plots}!colours|hyperpage}{111}
+\indexentry{plots@\textbf{plots}!legend|hyperpage}{111}
+\indexentry{plots@\textbf{plots}!titles|hyperpage}{113}
+\indexentry{plots@\textbf{plots}!labels|hyperpage}{113}
+\indexentry{plots@\textbf{plots}!annotate|hyperpage}{113}
+\indexentry{plots@\textbf{plots}!superscript|hyperpage}{114}
+\indexentry{plots@\textbf{plots}!text size|hyperpage}{115}
+\indexentry{plots@\textbf{plots}!legend|hyperpage}{116}
+\indexentry{plots@\textbf{plots}!saving|hyperpage}{117}
+\indexentry{continuous data@\textbf{continuous data}|hyperpage}{123}
+\indexentry{functions@\textbf{functions}!glimpse|hyperpage}{125}
+\indexentry{functions@\textbf{functions}!missing\_glimpse|hyperpage}{125}
+\indexentry{functions@\textbf{functions}!ff\_glimpse|hyperpage}{125}
+\indexentry{plotting@\textbf{plotting}!geom\_qq|hyperpage}{127}
+\indexentry{plotting@\textbf{plotting}!geom\_qq\_line|hyperpage}{127}
+\indexentry{plotting@\textbf{plotting}!geom\_boxplot|hyperpage}{128}
+\indexentry{plotting@\textbf{plotting}!boxplot|hyperpage}{128}
+\indexentry{t-test@\textbf{t-test}|hyperpage}{129}
+\indexentry{t-test@\textbf{t-test}!two-sample|hyperpage}{130}
+\indexentry{functions@\textbf{functions}!t.test|hyperpage}{131}
+\indexentry{t-test@\textbf{t-test}!paired|hyperpage}{132}
+\indexentry{plotting@\textbf{plotting}!geom\_line|hyperpage}{133}
+\indexentry{functions@\textbf{functions}!t.test|hyperpage}{134}
+\indexentry{t-test@\textbf{t-test}!one-sample|hyperpage}{135}
+\indexentry{analysis of variance (ANOVA)|hyperpage}{136}
+\indexentry{functions@\textbf{functions}!aov|hyperpage}{137}
+\indexentry{multiple testing|hyperpage}{139}
+\indexentry{pairwise testing|hyperpage}{139}
+\indexentry{functions@\textbf{functions}!pairwise.t.test|hyperpage}{140}
+\indexentry{Bonferroni correction|hyperpage}{140}
+\indexentry{false discovery rate|hyperpage}{141}
+\indexentry{functions@\textbf{functions}!pairwise.t.test|hyperpage}{141}
+\indexentry{non-parametric tests@\textbf{non-parametric tests}|hyperpage}{141}
+\indexentry{transformations|hyperpage}{142}
+\indexentry{non-parametric tests@\textbf{non-parametric tests}!Mann-Whitney U|hyperpage}{143}
+\indexentry{non-parametric tests@\textbf{non-parametric tests}!Wilcoxon rank sum|hyperpage}{143}
+\indexentry{plotting@\textbf{plotting}!patchwork|hyperpage}{144}
+\indexentry{functions@\textbf{functions}!wilcox.test|hyperpage}{145}
+\indexentry{non-parametric tests@\textbf{non-parametric tests}!!Kruskal-Wallis|hyperpage}{145}
+\indexentry{functions@\textbf{functions}!kruskal.test|hyperpage}{145}
+\indexentry{functions@\textbf{functions}!summary\_factorlist|hyperpage}{145}
+\indexentry{linear regression@\textbf{linear regression}|hyperpage}{151}
+\indexentry{linear regression@\textbf{linear regression}!fitted line|hyperpage}{152}
+\indexentry{linear regression@\textbf{linear regression}!assumptions|hyperpage}{154}
+\indexentry{linear regression@\textbf{linear regression}!effect modification|hyperpage}{159}
+\indexentry{effect modification|hyperpage}{159}
+\indexentry{linear regression@\textbf{linear regression}!interactions|hyperpage}{159}
+\indexentry{interaction terms|hyperpage}{159}
+\indexentry{linear regression@\textbf{linear regression}!r-squared|hyperpage}{160}
+\indexentry{linear regression@\textbf{linear regression}!confounding|hyperpage}{162}
+\indexentry{confounding|hyperpage}{162}
+\indexentry{functions@\textbf{functions}!lm|hyperpage}{165}
+\indexentry{linear regression@\textbf{linear regression}!coefficients|hyperpage}{167}
+\indexentry{functions@\textbf{functions}!tidy|hyperpage}{168}
+\indexentry{functions@\textbf{functions}!glance|hyperpage}{168}
+\indexentry{linear regression@\textbf{linear regression}!multivariable|hyperpage}{169}
+\indexentry{linear regression@\textbf{linear regression}!model fitting principles|hyperpage}{175}
+\indexentry{linear regression@\textbf{linear regression}!AIC|hyperpage}{176}
+\indexentry{AIC|hyperpage}{176}
+\indexentry{linear regression@\textbf{linear regression}!finalfit|hyperpage}{178}
+\indexentry{functions@\textbf{functions}!finalfit|hyperpage}{179}
+\indexentry{categorical data@\textbf{categorical data}|hyperpage}{185}
+\indexentry{factors|hyperpage}{185}
+\indexentry{functions@\textbf{functions}!factor|hyperpage}{188}
+\indexentry{functions@\textbf{functions}!fct\_recode|hyperpage}{188}
+\indexentry{functions@\textbf{functions}!ff\_label|hyperpage}{188}
+\indexentry{categorical data@\textbf{categorical data}!convert from continuous|hyperpage}{188}
+\indexentry{categorical data@\textbf{categorical data}!quantiles|hyperpage}{190}
+\indexentry{functions@\textbf{functions}!cut|hyperpage}{191}
+\indexentry{functions@\textbf{functions}!quantile|hyperpage}{191}
+\indexentry{functions@\textbf{functions}!fct\_collapse|hyperpage}{194}
+\indexentry{functions@\textbf{functions}!fct\_relevel|hyperpage}{195}
+\indexentry{categorical data@\textbf{categorical data}!finalfit|hyperpage}{195}
+\indexentry{categorical data@\textbf{categorical data}!summarising|hyperpage}{195}
+\indexentry{categorical data@\textbf{categorical data}!chi-squared test|hyperpage}{197}
+\indexentry{categorical data@\textbf{categorical data}!Fisher's exact test|hyperpage}{197}
+\indexentry{chi-squared test|hyperpage}{197}
+\indexentry{Fisher's exact test|hyperpage}{197}
+\indexentry{functions@\textbf{functions}!chisq.test|hyperpage}{198}
+\indexentry{functions@\textbf{functions}!fisher.test|hyperpage}{199}
+\indexentry{functions@\textbf{functions}!summary\_factorlist|hyperpage}{200}
+\indexentry{logistic regression@\textbf{logistic regression}|hyperpage}{203}
+\indexentry{logistic regression@\textbf{logistic regression}!binary data|hyperpage}{203}
+\indexentry{binary data|hyperpage}{203}
+\indexentry{logistic regression@\textbf{logistic regression}!odds and probabilities|hyperpage}{204}
+\indexentry{logistic regression@\textbf{logistic regression}!odds ratio|hyperpage}{205}
+\indexentry{odds ratio|hyperpage}{205}
+\indexentry{logistic regression@\textbf{logistic regression}!fitted line|hyperpage}{206}
+\indexentry{logistic regression@\textbf{logistic regression}!effect modification|hyperpage}{209}
+\indexentry{logistic regression@\textbf{logistic regression}!confounding|hyperpage}{209}
+\indexentry{logistic regression@\textbf{logistic regression}!interactions|hyperpage}{209}
+\indexentry{logistic regression@\textbf{logistic regression}!assumptions|hyperpage}{217}
+\indexentry{logistic regression@\textbf{logistic regression}!loess|hyperpage}{217}
+\indexentry{logistic regression@\textbf{logistic regression}!multicollinearity|hyperpage}{218}
+\indexentry{functions@\textbf{functions}!ggpairs|hyperpage}{219}
+\indexentry{logistic regression@\textbf{logistic regression}!model fitting|hyperpage}{222}
+\indexentry{functions@\textbf{functions}!glm|hyperpage}{222}
+\indexentry{functions@\textbf{functions}!coef|hyperpage}{223}
+\indexentry{functions@\textbf{functions}!confint|hyperpage}{223}
+\indexentry{logistic regression@\textbf{logistic regression}!model fitting principles|hyperpage}{224}
+\indexentry{logistic regression@\textbf{logistic regression}!AIC|hyperpage}{225}
+\indexentry{AIC|hyperpage}{225}
+\indexentry{logistic regression@\textbf{logistic regression}!C-statistic|hyperpage}{225}
+\indexentry{C-statistic|hyperpage}{225}
+\indexentry{logistic regression@\textbf{logistic regression}!Hosmer-Lemeshow test|hyperpage}{225}
+\indexentry{Hosmer-Lemeshow test|hyperpage}{225}
+\indexentry{logistic regression@\textbf{logistic regression}!model fitting|hyperpage}{226}
+\indexentry{logistic regression@\textbf{logistic regression}!finalfit|hyperpage}{226}
+\indexentry{functions@\textbf{functions}!glm|hyperpage}{228}
+\indexentry{logistic regression@\textbf{logistic regression}!odds ratio plot|hyperpage}{232}
+\indexentry{plotting@\textbf{plotting}!odds ratio|hyperpage}{232}
+\indexentry{functions@\textbf{functions}!or\_plot|hyperpage}{232}
+\indexentry{plotting@\textbf{plotting}!or\_plot|hyperpage}{232}
+\indexentry{logistic regression@\textbf{logistic regression}!correlated groups|hyperpage}{232}
+\indexentry{logistic regression@\textbf{logistic regression}!mixed effects|hyperpage}{232}
+\indexentry{logistic regression@\textbf{logistic regression}!random effects|hyperpage}{232}
+\indexentry{logistic regression@\textbf{logistic regression}!multilevel|hyperpage}{232}
+\indexentry{logistic regression@\textbf{logistic regression}!hierarchical|hyperpage}{232}
+\indexentry{functions@\textbf{functions}!glmer|hyperpage}{235}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}|hyperpage}{239}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!censoring|hyperpage}{240}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!Kaplan Meier estimator|hyperpage}{241}
+\indexentry{Kaplan Meier estimator|hyperpage}{241}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!log-rank test|hyperpage}{241}
+\indexentry{log-rank test|hyperpage}{241}
+\indexentry{functions@\textbf{functions}!Surv|hyperpage}{242}
+\indexentry{functions@\textbf{functions}!survfit|hyperpage}{242}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!life table|hyperpage}{242}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!Kaplan Meier plot|hyperpage}{243}
+\indexentry{functions@\textbf{functions}!surv\_plot|hyperpage}{243}
+\indexentry{plotting@\textbf{plotting}!surv\_plot|hyperpage}{243}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!Cox proportional hazards regression|hyperpage}{244}
+\indexentry{Cox proportional hazards regression|hyperpage}{244}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!assumptions|hyperpage}{246}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!testing for proportional hazards|hyperpage}{246}
+\indexentry{functions@\textbf{functions}!cox.zph|hyperpage}{247}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!stratified models|hyperpage}{247}
+\indexentry{functions@\textbf{functions}!strata|hyperpage}{248}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!correlated groups|hyperpage}{248}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!mixed effects|hyperpage}{248}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!random effects|hyperpage}{248}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!multilevel|hyperpage}{248}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!cluster|hyperpage}{248}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!frailty|hyperpage}{248}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!hazard ratio plot|hyperpage}{249}
+\indexentry{plots@\textbf{plots}!hazard ratio plot|hyperpage}{249}
+\indexentry{time-to-event / survival@\textbf{time-to-event / survival}!competing risks regression|hyperpage}{250}
+\indexentry{notebooks@\textbf{notebooks}|hyperpage}{261}
+\indexentry{markdown@\textbf{markdown}|hyperpage}{261}
+\indexentry{Microsoft Word|hyperpage}{264}
+\indexentry{PDF|hyperpage}{264}
+\indexentry{HTML|hyperpage}{264}
+\indexentry{YAML header|hyperpage}{264}
+\indexentry{chunks|hyperpage}{266}
+\indexentry{knitr|hyperpage}{268}
+\indexentry{file structure@\textbf{file structure}|hyperpage}{270}
+\indexentry{workflow@\textbf{workflow}|hyperpage}{270}
+\indexentry{exporting@\textbf{exporting}|hyperpage}{275}
+\indexentry{Microsoft Word|hyperpage}{278}
+\indexentry{PDF|hyperpage}{278}
+\indexentry{knitr|hyperpage}{278}
+\indexentry{version control@\textbf{version control}|hyperpage}{287}
+\indexentry{version control@\textbf{version control}!Git and Github|hyperpage}{287}
+\indexentry{version control@\textbf{version control}!SSH RSA key|hyperpage}{287}
+\indexentry{version control@\textbf{version control}!Commit|hyperpage}{288}
+\indexentry{version control@\textbf{version control}!repository|hyperpage}{291}
+\indexentry{version control@\textbf{version control}!pull and push|hyperpage}{292}
+\indexentry{version control@\textbf{version control}!clone|hyperpage}{293}
+\indexentry{missing data@\textbf{missing data}|hyperpage}{295}
+\indexentry{missing data@\textbf{missing data}!missing completely at random|hyperpage}{296}
+\indexentry{missing data@\textbf{missing data}!missing at random|hyperpage}{296}
+\indexentry{missing data@\textbf{missing data}!missing not at random|hyperpage}{296}
+\indexentry{missing data@\textbf{missing data}!missingness plot|hyperpage}{299}
+\indexentry{missing data@\textbf{missing data}!missingness pattern|hyperpage}{300}
+\indexentry{missing data@\textbf{missing data}!demographics table|hyperpage}{301}
+\indexentry{missing data@\textbf{missing data}!associations|hyperpage}{301}
+\indexentry{missing data@\textbf{missing data}!handling|hyperpage}{306}
+\indexentry{missing data@\textbf{missing data}!imputation|hyperpage}{308}
+\indexentry{missing data@\textbf{missing data}!multiple imputation|hyperpage}{308}
+\indexentry{imputation|hyperpage}{308}
+\indexentry{multiple imputation|hyperpage}{308}
+\indexentry{encryption@\textbf{encryption}|hyperpage}{313}
+\indexentry{encryption@\textbf{encryption}!encryptr|hyperpage}{314}
+\indexentry{encryption@\textbf{encryption}!public/private keys|hyperpage}{315}
+\indexentry{encryption@\textbf{encryption}!columns, encrypt|hyperpage}{315}
+\indexentry{encryption@\textbf{encryption}!columns, decrypt|hyperpage}{316}
+\indexentry{encryption@\textbf{encryption}!lookup table|hyperpage}{316}
+\indexentry{encryption@\textbf{encryption}!file, encrypt|hyperpage}{317}
+\indexentry{encryption@\textbf{encryption}!file, decrypt|hyperpage}{318}
+\indexentry{encryption@\textbf{encryption}!public key sharing|hyperpage}{319}
+\indexentry{encryption@\textbf{encryption}!clinical trials|hyperpage}{319}
+\indexentry{RStudio@\textbf{RStudio}|hyperpage}{321}
 \indexentry{RStudio@\textbf{RStudio}!script|hyperpage}{321}
 \indexentry{RStudio@\textbf{RStudio}!console|hyperpage}{321}
+\indexentry{RStudio@\textbf{RStudio}!installation|hyperpage}{322}
+\indexentry{RStudio@\textbf{RStudio}!base R|hyperpage}{322}
+\indexentry{RStudio@\textbf{RStudio}!R packages|hyperpage}{322}

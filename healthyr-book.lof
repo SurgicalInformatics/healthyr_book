@@ -3,88 +3,88 @@
 \contentsline {figure}{\numberline {1.2}{\ignorespaces An example R script from RStudio.\relax }}{5}{figure.caption.8}
 \contentsline {figure}{\numberline {1.3}{\ignorespaces We use RStudio to work with R.\relax }}{6}{figure.caption.9}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces View or import a data file.\relax }}{12}{figure.caption.10}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Import: Some of the special settings your data file might have.\relax }}{13}{figure.caption.11}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces After using the Import Dataset window, copy-paste the resulting code into your script.\relax }}{13}{figure.caption.12}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Causes of death from the Global Burden of Disease dataset (Table ref{tab:chap2-tab-gbd}). Data on (B) is the same as (A) but stacked to show the total (sum) of all causes.\relax }}{16}{figure.caption.14}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces This is not a pipe. René Magritte inspired artwork by Stefan Milton Bache.\relax }}{32}{figure.caption.16}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces View or import a data file.\relax }}{14}{figure.caption.10}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Import: Some of the special settings your data file might have.\relax }}{15}{figure.caption.11}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces After using the Import Dataset window, copy-paste the resulting code into your script.\relax }}{15}{figure.caption.12}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Causes of death from the Global Burden of Disease dataset (Table ref{tab:chap2-tab-gbd}). Data on (B) is the same as (A) but stacked to show the total (sum) of all causes.\relax }}{18}{figure.caption.14}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces This is not a pipe. René Magritte inspired artwork by Stefan Milton Bache.\relax }}{34}{figure.caption.16}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Global Burden of Disease data with subgroups: cause, sex, World Bank income group.\relax }}{53}{figure.caption.19}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Same data in the long ('tidy', necessary for efficient analysis) and wide (easier for human-readability/presentation/manual data entry) formats. TODO: replace with updated data.\relax }}{61}{figure.caption.22}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Global Burden of Disease data with subgroups: cause, sex, World Bank income group.\relax }}{55}{figure.caption.19}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Same data in the long ('tidy', necessary for efficient analysis) and wide (easier for human-readability/presentation/manual data entry) formats. TODO: replace with updated data.\relax }}{63}{figure.caption.22}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Example steps for building and modiyfing a ggplot. (1) initialising the canvas and defining variables, (2) adding points, (3) colouring points by continent, (4) changing point type, (5) faceting, (6) changing the plot theme and the scale of the x variable.\relax }}{80}{figure.caption.24}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces A stip plot using \texttt {geom\_point()}.\relax }}{84}{figure.caption.25}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces A selection of shapes for plotting. Shapes 0, 1, and 2 are hollow, whereas for shapes 21, 22, and 23 we can define both a colour and a fill (for thes shapes, colour is the border around the fill).\relax }}{85}{figure.caption.26}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Using a filtering condition (e.g., population \textgreater {} 50 million) directly inside a \texttt {facet\_wrap()}.\relax }}{86}{figure.caption.27}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Some of the built-in ggplot themes (1) default (2) \texttt {theme\_bw()}, (3) \texttt {theme\_dark()}, (4) \texttt {theme\_classic()}.\relax }}{86}{figure.caption.28}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Turn the scatter plot from Figure \ref {fig:chap04-fig-steps}:(2) to a bubble plot by (1) adding \texttt {size\ =\ pop} inside the \texttt {aes()}, (2) make the points hollow and transparent.\relax }}{88}{figure.caption.29}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces The `zig-zag plot' is a common mistake: using \texttt {geom\_line()} (1) without a \texttt {group} specified, (2) after adding \texttt {group\ =\ country}.\relax }}{90}{figure.caption.30}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Bar plots using \texttt {geom\_col()}: (1) using the code example, (2) same plot but with \texttt {+\ coord\_cartesian(ylim=c(79,\ 81))} to manipulate the scale into something a lot more dramatic.\relax }}{91}{figure.caption.31}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces \texttt {geom\_bar()} counts up the number of observations for each group. (1) \texttt {gapminder2007\ \%\textgreater {}\%\ ggplot(aes(x\ =\ continent))\ +\ geom\_bar()}, (2) same + a little bit of magic to reveal the underlying data.\relax }}{92}{figure.caption.32}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Barplot Exercise. Life expectancies in European countries in year 2007 from the Gapmminder dataset.\relax }}{95}{figure.caption.33}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Multiple geoms together. (1) \texttt {geom\_boxplot()\ +\ geom\_point()}, (2) \texttt {geom\_boxplot()\ +\ geom\_jitter()}, (3) colour aesthetic inside \texttt {ggplot(aes())}, (4) colour aesthetic inside \texttt {geom\_jitter(aes())}.\relax }}{98}{figure.caption.34}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Example steps for building and modiyfing a ggplot. (1) initialising the canvas and defining variables, (2) adding points, (3) colouring points by continent, (4) changing point type, (5) faceting, (6) changing the plot theme and the scale of the x variable.\relax }}{82}{figure.caption.24}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces A stip plot using \texttt {geom\_point()}.\relax }}{86}{figure.caption.25}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces A selection of shapes for plotting. Shapes 0, 1, and 2 are hollow, whereas for shapes 21, 22, and 23 we can define both a colour and a fill (for thes shapes, colour is the border around the fill).\relax }}{87}{figure.caption.26}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Using a filtering condition (e.g., population \textgreater {} 50 million) directly inside a \texttt {facet\_wrap()}.\relax }}{88}{figure.caption.27}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Some of the built-in ggplot themes (1) default (2) \texttt {theme\_bw()}, (3) \texttt {theme\_dark()}, (4) \texttt {theme\_classic()}.\relax }}{88}{figure.caption.28}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Turn the scatter plot from Figure \ref {fig:chap04-fig-steps}:(2) to a bubble plot by (1) adding \texttt {size\ =\ pop} inside the \texttt {aes()}, (2) make the points hollow and transparent.\relax }}{90}{figure.caption.29}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces The `zig-zag plot' is a common mistake: using \texttt {geom\_line()} (1) without a \texttt {group} specified, (2) after adding \texttt {group\ =\ country}.\relax }}{92}{figure.caption.30}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Bar plots using \texttt {geom\_col()}: (1) using the code example, (2) same plot but with \texttt {+\ coord\_cartesian(ylim=c(79,\ 81))} to manipulate the scale into something a lot more dramatic.\relax }}{93}{figure.caption.31}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces \texttt {geom\_bar()} counts up the number of observations for each group. (1) \texttt {gapminder2007\ \%\textgreater {}\%\ ggplot(aes(x\ =\ continent))\ +\ geom\_bar()}, (2) same + a little bit of magic to reveal the underlying data.\relax }}{94}{figure.caption.32}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Barplot Exercise. Life expectancies in European countries in year 2007 from the Gapmminder dataset.\relax }}{97}{figure.caption.33}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Multiple geoms together. (1) \texttt {geom\_boxplot()\ +\ geom\_point()}, (2) \texttt {geom\_boxplot()\ +\ geom\_jitter()}, (3) colour aesthetic inside \texttt {ggplot(aes())}, (4) colour aesthetic inside \texttt {geom\_jitter(aes())}.\relax }}{100}{figure.caption.34}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Histogram: country life expectancy by continent and year\relax }}{125}{figure.caption.37}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Q-Q plot: country life expectancy by continent and year\relax }}{126}{figure.caption.38}
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Boxplot: country life expectancy by continent and year\relax }}{127}{figure.caption.39}
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Boxplot with jitter points: country life expectancy by continent and year\relax }}{128}{figure.caption.40}
-\contentsline {figure}{\numberline {6.5}{\ignorespaces A list object that is the result of a t-test in R. We will show you ways to access these numbers and how to wrangle them more familiar tables/tibbles.\relax }}{130}{figure.caption.41}
-\contentsline {figure}{\numberline {6.6}{\ignorespaces Line plot: Change in life expectancy in Asian countries from 2002 to 2007\relax }}{131}{figure.caption.43}
-\contentsline {figure}{\numberline {6.7}{\ignorespaces Boxplot: Life expectancy in selected continents for 2007\relax }}{135}{figure.caption.44}
-\contentsline {figure}{\numberline {6.8}{\ignorespaces Diagnostic plots: ANOVA model of life expectancy by continent for 2007\relax }}{137}{figure.caption.45}
-\contentsline {figure}{\numberline {6.9}{\ignorespaces Histogram: Log transformation of life expectancy for countries in Africa 2002\relax }}{141}{figure.caption.47}
-\contentsline {figure}{\numberline {6.10}{\ignorespaces Panels plots: histogram, Q-Q, boxplot for life expectancy in Africa 1992 v 2007\relax }}{142}{figure.caption.48}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Histogram: country life expectancy by continent and year\relax }}{127}{figure.caption.37}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Q-Q plot: country life expectancy by continent and year\relax }}{128}{figure.caption.38}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Boxplot: country life expectancy by continent and year\relax }}{129}{figure.caption.39}
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Boxplot with jitter points: country life expectancy by continent and year\relax }}{130}{figure.caption.40}
+\contentsline {figure}{\numberline {6.5}{\ignorespaces A list object that is the result of a t-test in R. We will show you ways to access these numbers and how to wrangle them more familiar tables/tibbles.\relax }}{132}{figure.caption.41}
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Line plot: Change in life expectancy in Asian countries from 2002 to 2007\relax }}{133}{figure.caption.43}
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Boxplot: Life expectancy in selected continents for 2007\relax }}{137}{figure.caption.44}
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Diagnostic plots: ANOVA model of life expectancy by continent for 2007\relax }}{139}{figure.caption.45}
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Histogram: Log transformation of life expectancy for countries in Africa 2002\relax }}{143}{figure.caption.47}
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Panels plots: histogram, Q-Q, boxplot for life expectancy in Africa 1992 v 2007\relax }}{144}{figure.caption.48}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces The anatomy of a regression plot. A - univariable linear regression, B - multivariable linear regression.\relax }}{151}{figure.caption.50}
-\contentsline {figure}{\numberline {7.2}{\ignorespaces How a regression line is fitted. A - residuals are the green lines: the distance between each data point and the fitted line. B - the green circle indicates the minimum for these data, its absolute value is not meaningful or comparable with other datasets. Follow the ``simple regression Shiny app'' link to interact with the fitted line. A new sum of squares of residuals (the black cross) is calculated every time you move the line. C - Distribution of the residuals. App and plots adapted from \url {https://github.com/mwaskom/ShinyApps} with permission.\relax }}{153}{figure.caption.51}
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Regression diagnostics. A - this is what a linear fit should look like. B - this is not approriate, a non-linear model should be used instead. App and plots adapted from adapted from \url {https://github.com/ShinyEd/intro-stats} with permission.\relax }}{155}{figure.caption.52}
-\contentsline {figure}{\numberline {7.4}{\ignorespaces Linking the fitted line, regression equation and R output.\relax }}{156}{figure.caption.53}
-\contentsline {figure}{\numberline {7.5}{\ignorespaces Causal pathways, effect modification and confounding.\relax }}{157}{figure.caption.54}
-\contentsline {figure}{\numberline {7.6}{\ignorespaces Multivariable linear regression with additive and multiplicative effect modification.\relax }}{159}{figure.caption.55}
-\contentsline {figure}{\numberline {7.7}{\ignorespaces Multivariable linear regression with confounding of coffee drinking by smoking.\relax }}{161}{figure.caption.56}
-\contentsline {figure}{\numberline {7.8}{\ignorespaces Scatterplots with linear regression lines: Life expectancy by year in European countries\relax }}{163}{figure.caption.57}
-\contentsline {figure}{\numberline {7.9}{\ignorespaces Scatterplot: Life expectancy by year: Turkey and United Kingdom\relax }}{164}{figure.caption.58}
-\contentsline {figure}{\numberline {7.10}{\ignorespaces Scatter and line plot. Life expectancy in Turkey and the UK - univariable fit.\relax }}{168}{figure.caption.59}
-\contentsline {figure}{\numberline {7.11}{\ignorespaces Scatter and line plot. Life expectancy in Turkey and the UK - multivariable additive fit.\relax }}{170}{figure.caption.60}
-\contentsline {figure}{\numberline {7.12}{\ignorespaces Scatter and line plot. Life expectancy in Turkey and the UK - multivariable multiplicative fit.\relax }}{171}{figure.caption.61}
-\contentsline {figure}{\numberline {7.13}{\ignorespaces Diagnostic plots. Life expectancy in Turkey and the UK - multivariable multiplicative model.\relax }}{172}{figure.caption.62}
-\contentsline {figure}{\numberline {7.14}{\ignorespaces (\#fig:chap07-fig-bp-personality\_type)Scatter and line plot. Systolic blood pressure by weight and personality type.\relax }}{176}{figure.caption.65}
-\contentsline {figure}{\numberline {7.15}{\ignorespaces Diagnostic plots: linear regression model of systolic blood pressure.\relax }}{182}{figure.caption.76}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces The anatomy of a regression plot. A - univariable linear regression, B - multivariable linear regression.\relax }}{153}{figure.caption.50}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces How a regression line is fitted. A - residuals are the green lines: the distance between each data point and the fitted line. B - the green circle indicates the minimum for these data, its absolute value is not meaningful or comparable with other datasets. Follow the ``simple regression Shiny app'' link to interact with the fitted line. A new sum of squares of residuals (the black cross) is calculated every time you move the line. C - Distribution of the residuals. App and plots adapted from \url {https://github.com/mwaskom/ShinyApps} with permission.\relax }}{155}{figure.caption.51}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Regression diagnostics. A - this is what a linear fit should look like. B - this is not approriate, a non-linear model should be used instead. App and plots adapted from adapted from \url {https://github.com/ShinyEd/intro-stats} with permission.\relax }}{157}{figure.caption.52}
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Linking the fitted line, regression equation and R output.\relax }}{158}{figure.caption.53}
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Causal pathways, effect modification and confounding.\relax }}{159}{figure.caption.54}
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Multivariable linear regression with additive and multiplicative effect modification.\relax }}{161}{figure.caption.55}
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Multivariable linear regression with confounding of coffee drinking by smoking.\relax }}{163}{figure.caption.56}
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Scatterplots with linear regression lines: Life expectancy by year in European countries\relax }}{165}{figure.caption.57}
+\contentsline {figure}{\numberline {7.9}{\ignorespaces Scatterplot: Life expectancy by year: Turkey and United Kingdom\relax }}{166}{figure.caption.58}
+\contentsline {figure}{\numberline {7.10}{\ignorespaces Scatter and line plot. Life expectancy in Turkey and the UK - univariable fit.\relax }}{170}{figure.caption.59}
+\contentsline {figure}{\numberline {7.11}{\ignorespaces Scatter and line plot. Life expectancy in Turkey and the UK - multivariable additive fit.\relax }}{172}{figure.caption.60}
+\contentsline {figure}{\numberline {7.12}{\ignorespaces Scatter and line plot. Life expectancy in Turkey and the UK - multivariable multiplicative fit.\relax }}{173}{figure.caption.61}
+\contentsline {figure}{\numberline {7.13}{\ignorespaces Diagnostic plots. Life expectancy in Turkey and the UK - multivariable multiplicative model.\relax }}{174}{figure.caption.62}
+\contentsline {figure}{\numberline {7.14}{\ignorespaces (\#fig:chap07-fig-bp-personality\_type)Scatter and line plot. Systolic blood pressure by weight and personality type.\relax }}{178}{figure.caption.65}
+\contentsline {figure}{\numberline {7.15}{\ignorespaces Diagnostic plots: linear regression model of systolic blood pressure.\relax }}{184}{figure.caption.76}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {8.1}{\ignorespaces \texttt {Cut} a continuous variable into a categorical variable.\relax }}{188}{figure.caption.77}
-\contentsline {figure}{\numberline {8.2}{\ignorespaces Bar chart: outcome after surgery for patients with ulcerated melanoma.\relax }}{190}{figure.caption.78}
-\contentsline {figure}{\numberline {8.3}{\ignorespaces Bar chart: outcome after surgery for patients with ulcerated melanoma, reversed levels.\relax }}{191}{figure.caption.79}
-\contentsline {figure}{\numberline {8.4}{\ignorespaces Facetted bar plot: outcome after surgery for patients with ulcerated melanoma aggregated by sex and age.\relax }}{192}{figure.caption.80}
+\contentsline {figure}{\numberline {8.1}{\ignorespaces \texttt {Cut} a continuous variable into a categorical variable.\relax }}{190}{figure.caption.77}
+\contentsline {figure}{\numberline {8.2}{\ignorespaces Bar chart: outcome after surgery for patients with ulcerated melanoma.\relax }}{192}{figure.caption.78}
+\contentsline {figure}{\numberline {8.3}{\ignorespaces Bar chart: outcome after surgery for patients with ulcerated melanoma, reversed levels.\relax }}{193}{figure.caption.79}
+\contentsline {figure}{\numberline {8.4}{\ignorespaces Facetted bar plot: outcome after surgery for patients with ulcerated melanoma aggregated by sex and age.\relax }}{194}{figure.caption.80}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {9.1}{\ignorespaces Probability vs odds.\relax }}{203}{figure.caption.87}
-\contentsline {figure}{\numberline {9.2}{\ignorespaces Odds ratios.\relax }}{204}{figure.caption.88}
-\contentsline {figure}{\numberline {9.3}{\ignorespaces A logistic regression model of life-time cardiovascular event occurence by coffee consumption stratified by smoking (simulated data). Fitted lines plotted on the log-odds scale (A) and probability scale (B). *lines are straight when no polynomials or splines are included in regression.\relax }}{206}{figure.caption.89}
-\contentsline {figure}{\numberline {9.4}{\ignorespaces Linking the logistic regression fitted line and equation (A) with the R output (B).\relax }}{208}{figure.caption.90}
-\contentsline {figure}{\numberline {9.5}{\ignorespaces Multivariable logistic regression (A) with additive (B) and multiplicative (C) effect modification.\relax }}{209}{figure.caption.91}
-\contentsline {figure}{\numberline {9.6}{\ignorespaces Multivariable logistic regression with interaction term. The exponential of the interaction term is a ratio-of-odds ratios (ROR).\relax }}{210}{figure.caption.92}
-\contentsline {figure}{\numberline {9.7}{\ignorespaces Odds ratio plot\relax }}{230}{figure.caption.109}
+\contentsline {figure}{\numberline {9.1}{\ignorespaces Probability vs odds.\relax }}{205}{figure.caption.87}
+\contentsline {figure}{\numberline {9.2}{\ignorespaces Odds ratios.\relax }}{206}{figure.caption.88}
+\contentsline {figure}{\numberline {9.3}{\ignorespaces A logistic regression model of life-time cardiovascular event occurence by coffee consumption stratified by smoking (simulated data). Fitted lines plotted on the log-odds scale (A) and probability scale (B). *lines are straight when no polynomials or splines are included in regression.\relax }}{208}{figure.caption.89}
+\contentsline {figure}{\numberline {9.4}{\ignorespaces Linking the logistic regression fitted line and equation (A) with the R output (B).\relax }}{210}{figure.caption.90}
+\contentsline {figure}{\numberline {9.5}{\ignorespaces Multivariable logistic regression (A) with additive (B) and multiplicative (C) effect modification.\relax }}{211}{figure.caption.91}
+\contentsline {figure}{\numberline {9.6}{\ignorespaces Multivariable logistic regression with interaction term. The exponential of the interaction term is a ratio-of-odds ratios (ROR).\relax }}{212}{figure.caption.92}
+\contentsline {figure}{\numberline {9.7}{\ignorespaces Odds ratio plot\relax }}{232}{figure.caption.109}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {10.1}{\ignorespaces Hazard ratio plot\relax }}{248}{figure.caption.117}
+\contentsline {figure}{\numberline {10.1}{\ignorespaces Hazard ratio plot\relax }}{250}{figure.caption.117}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {11.1}{\ignorespaces Traditional versus literate programming using Notebooks.\relax }}{260}{figure.caption.119}
-\contentsline {figure}{\numberline {11.2}{\ignorespaces RStudio Markdown quick reference guide.\relax }}{261}{figure.caption.120}
-\contentsline {figure}{\numberline {11.3}{\ignorespaces The Anatomy of a Notebook/Markdown file. Input (left) and output (right)\relax }}{263}{figure.caption.121}
-\contentsline {figure}{\numberline {11.4}{\ignorespaces Chunk and document options in Notebook/Markdown files.\relax }}{267}{figure.caption.123}
+\contentsline {figure}{\numberline {11.1}{\ignorespaces Traditional versus literate programming using Notebooks.\relax }}{262}{figure.caption.119}
+\contentsline {figure}{\numberline {11.2}{\ignorespaces RStudio Markdown quick reference guide.\relax }}{263}{figure.caption.120}
+\contentsline {figure}{\numberline {11.3}{\ignorespaces The Anatomy of a Notebook/Markdown file. Input (left) and output (right)\relax }}{265}{figure.caption.121}
+\contentsline {figure}{\numberline {11.4}{\ignorespaces Chunk and document options in Notebook/Markdown files.\relax }}{269}{figure.caption.123}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {12.1}{\ignorespaces Odds ratio plot.\relax }}{276}{figure.caption.127}
-\contentsline {figure}{\numberline {12.2}{\ignorespaces Knitting to Microsoft Word from R Markdown. Before (A) and after (B) adjustment.\relax }}{278}{figure.caption.128}
-\contentsline {figure}{\numberline {12.3}{\ignorespaces Knitting to Microsoft Word from R Markdown. Before (A) and after (B) adjustment.\relax }}{280}{figure.caption.129}
-\contentsline {figure}{\numberline {12.4}{\ignorespaces Writing a final report in a Markdown document.\relax }}{283}{figure.caption.130}
+\contentsline {figure}{\numberline {12.1}{\ignorespaces Odds ratio plot.\relax }}{278}{figure.caption.127}
+\contentsline {figure}{\numberline {12.2}{\ignorespaces Knitting to Microsoft Word from R Markdown. Before (A) and after (B) adjustment.\relax }}{280}{figure.caption.128}
+\contentsline {figure}{\numberline {12.3}{\ignorespaces Knitting to Microsoft Word from R Markdown. Before (A) and after (B) adjustment.\relax }}{282}{figure.caption.129}
+\contentsline {figure}{\numberline {12.4}{\ignorespaces Writing a final report in a Markdown document.\relax }}{285}{figure.caption.130}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {13.1}{\ignorespaces Create an SSH key\relax }}{286}{figure.caption.131}
-\contentsline {figure}{\numberline {13.2}{\ignorespaces Create a GitHub account and add your SSH key.\relax }}{287}{figure.caption.132}
-\contentsline {figure}{\numberline {13.3}{\ignorespaces Configure Git global settings via RStudio and create a new project.\relax }}{288}{figure.caption.133}
-\contentsline {figure}{\numberline {13.4}{\ignorespaces Create a new repository (repo) on GitHub.\relax }}{289}{figure.caption.134}
-\contentsline {figure}{\numberline {13.5}{\ignorespaces Link RStudio project to GitHub repository.\relax }}{290}{figure.caption.135}
-\contentsline {figure}{\numberline {13.6}{\ignorespaces Clone a GitHub repository to an RStudio project.\relax }}{291}{figure.caption.136}
+\contentsline {figure}{\numberline {13.1}{\ignorespaces Create an SSH key\relax }}{288}{figure.caption.131}
+\contentsline {figure}{\numberline {13.2}{\ignorespaces Create a GitHub account and add your SSH key.\relax }}{289}{figure.caption.132}
+\contentsline {figure}{\numberline {13.3}{\ignorespaces Configure Git global settings via RStudio and create a new project.\relax }}{290}{figure.caption.133}
+\contentsline {figure}{\numberline {13.4}{\ignorespaces Create a new repository (repo) on GitHub.\relax }}{291}{figure.caption.134}
+\contentsline {figure}{\numberline {13.5}{\ignorespaces Link RStudio project to GitHub repository.\relax }}{292}{figure.caption.135}
+\contentsline {figure}{\numberline {13.6}{\ignorespaces Clone a GitHub repository to an RStudio project.\relax }}{293}{figure.caption.136}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {14.1}{\ignorespaces Missing data matrix with \texttt {missing\_pairs()}.\relax }}{301}{figure.caption.138}
-\contentsline {figure}{\numberline {14.2}{\ignorespaces Missing data matrix with \texttt {missing\_pairs(position\ =\ \textquotesingle {}fill\textquotesingle {})} .\relax }}{302}{figure.caption.139}
+\contentsline {figure}{\numberline {14.1}{\ignorespaces Missing data matrix with \texttt {missing\_pairs()}.\relax }}{303}{figure.caption.138}
+\contentsline {figure}{\numberline {14.2}{\ignorespaces Missing data matrix with \texttt {missing\_pairs(position\ =\ \textquotesingle {}fill\textquotesingle {})} .\relax }}{304}{figure.caption.139}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

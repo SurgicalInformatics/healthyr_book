@@ -1,80 +1,80 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces Deaths per year from three broad disease categories (short version of the Global Burden of Disease example dataset).\relax }}{15}{table.caption.13}
-\contentsline {table}{\numberline {2.3}{\ignorespaces Example of data in columns and rows, including missing values denoted `NA` (Not applicable/Not available). Once this dataset has been read into R it gets called dataframe/tibble.\relax }}{25}{table.caption.15}
-\contentsline {table}{\numberline {2.4}{\ignorespaces Filtering operators.\relax }}{35}{table.caption.17}
+\contentsline {table}{\numberline {2.1}{\ignorespaces Deaths per year from three broad disease categories (short version of the Global Burden of Disease example dataset).\relax }}{17}{table.caption.13}
+\contentsline {table}{\numberline {2.3}{\ignorespaces Example of data in columns and rows, including missing values denoted `NA` (Not applicable/Not available). Once this dataset has been read into R it gets called dataframe/tibble.\relax }}{27}{table.caption.15}
+\contentsline {table}{\numberline {2.4}{\ignorespaces Filtering operators.\relax }}{37}{table.caption.17}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Deaths per year (2017) from three broad disease categories, sex, and World Bank county-level income groups.\relax }}{52}{table.caption.18}
-\contentsline {table}{\numberline {3.2}{\ignorespaces Global Burden of Disease data in human-readable wide format. This is not tidy data.\relax }}{62}{table.caption.20}
-\contentsline {table}{\numberline {3.3}{\ignorespaces Global Burden of Disease data in analysis-friendly long format. This is tidy data.\relax }}{62}{table.caption.21}
-\contentsline {table}{\numberline {3.4}{\ignorespaces Exercise: putting the cause variable into the wide format using spread.\relax }}{72}{table.caption.23}
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {6.1}{\ignorespaces Gapminder dataset, ff\_glimpse: continuous\relax }}{123}{table.caption.35}
-\contentsline {table}{\numberline {6.2}{\ignorespaces Gapminder dataset, ff\_glimpse: categorical\relax }}{123}{table.caption.36}
-\contentsline {table}{\numberline {6.3}{\ignorespaces Results of a t-test wrangled into a table using library(broom).\relax }}{130}{table.caption.42}
-\contentsline {table}{\numberline {6.4}{\ignorespaces Transformations that can be applied to skewed data. For left skewed data, subtract all values from a constant greater than the maximum value.\relax }}{140}{table.caption.46}
-\contentsline {table}{\numberline {6.5}{\ignorespaces Life expectancy, population and GDPperCap in Africa 1982 vs 2007\relax }}{144}{table.caption.49}
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {7.1}{\ignorespaces WCGS data, ff\_glimpse: continuous\relax }}{175}{table.caption.63}
-\contentsline {table}{\numberline {7.2}{\ignorespaces WCGS data, ff\_glimpse: categorical\relax }}{175}{table.caption.64}
-\contentsline {table}{\numberline {7.3}{\ignorespaces Linear regression: Systolic blood pressure by personality type.\relax }}{177}{table.caption.66}
-\contentsline {table}{\numberline {7.4}{\ignorespaces Model metrics: Systolic blood pressure by personality type.\relax }}{177}{table.caption.67}
-\contentsline {table}{\numberline {7.5}{\ignorespaces Multivariable linear regression: Systolic blood pressure by personality type and weight.\relax }}{178}{table.caption.68}
-\contentsline {table}{\numberline {7.6}{\ignorespaces Multivariable linear regression metrics: Systolic blood pressure by personality type and weight.\relax }}{178}{table.caption.69}
-\contentsline {table}{\numberline {7.7}{\ignorespaces Multivariable linear regression: Systolic blood pressure by available explanatory variables.\relax }}{179}{table.caption.70}
-\contentsline {table}{\numberline {7.8}{\ignorespaces Model metrics: Systolic blood pressure by available explanatory variables.\relax }}{179}{table.caption.71}
-\contentsline {table}{\numberline {7.9}{\ignorespaces Multivariable linear regression: Systolic blood pressure using BMI.\relax }}{180}{table.caption.72}
-\contentsline {table}{\numberline {7.10}{\ignorespaces Model metrics: Systolic blood pressure using BMI.\relax }}{180}{table.caption.73}
-\contentsline {table}{\numberline {7.11}{\ignorespaces Multivariable linear regression: Systolic blood pressure by available explanatory variables and reduced model.\relax }}{181}{table.caption.74}
-\contentsline {table}{\numberline {7.12}{\ignorespaces Model metrics: Systolic blood pressure by available explanatory variables (top) with reduced model (bottom).\relax }}{181}{table.caption.75}
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {8.1}{\ignorespaces Two-by-two table with finalfit: Died with melanoma by tumour ulceration status.\relax }}{194}{table.caption.81}
-\contentsline {table}{\numberline {8.2}{\ignorespaces Multiple variables by outcome: Outcome after surgery for melanoma by patient and disease factors.\relax }}{194}{table.caption.82}
-\contentsline {table}{\numberline {8.3}{\ignorespaces Two-by-two table with chi-squared test using final fit: Outcome after surgery for melanoma by tumour ulceration status.\relax }}{198}{table.caption.83}
-\contentsline {table}{\numberline {8.4}{\ignorespaces Multiple variables by outcome with hypothesis tests: Outcome after surgery for melanoma by patient and disease factors (chi-squared test).\relax }}{198}{table.caption.84}
-\contentsline {table}{\numberline {8.5}{\ignorespaces Multiple variables by outcome with hypothesis tests: Outcome after surgery for melanoma by patient and disease factors (Fisher's exact test).\relax }}{199}{table.caption.85}
-\contentsline {table}{\numberline {8.6}{\ignorespaces Multiple variables by outcome with hypothesis tests: options including missing data, rounding, and labels.\relax }}{200}{table.caption.86}
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {9.1}{\ignorespaces Multiple variables by explanatory variable of interest: Malignant melanoma ulceration by patient and disease variables.\relax }}{215}{table.caption.93}
-\contentsline {table}{\numberline {9.2}{\ignorespaces Univariable logistic regression: 5-year survival from malignant melanoma by tumour ulceration (fit 1).\relax }}{223}{table.caption.94}
-\contentsline {table}{\numberline {9.3}{\ignorespaces Model metrics: 5-year survival from malignant melanoma by tumour ulceration (fit 1).\relax }}{223}{table.caption.95}
-\contentsline {table}{\numberline {9.4}{\ignorespaces Multivariable logistic regression: 5-year survival from malignant melanoma (fit 2).\relax }}{225}{table.caption.96}
-\contentsline {table}{\numberline {9.5}{\ignorespaces Model metrics: 5-year survival from malignant melanoma (fit 2).\relax }}{225}{table.caption.97}
-\contentsline {table}{\numberline {9.6}{\ignorespaces Multivariable logistic regression: using `cut` to convert a continuous variable as a factor (fit 3).\relax }}{225}{table.caption.98}
-\contentsline {table}{\numberline {9.7}{\ignorespaces Model metrics: using `cut` to convert a continuous variable as a factor (fit 3).\relax }}{225}{table.caption.99}
-\contentsline {table}{\numberline {9.8}{\ignorespaces Multivariable logistic regression: including a quadratic term (fit 4).\relax }}{227}{table.caption.100}
-\contentsline {table}{\numberline {9.9}{\ignorespaces Model metrics: including a quadratic term (fit 4).\relax }}{227}{table.caption.101}
-\contentsline {table}{\numberline {9.10}{\ignorespaces Multivariable logistic regression model: comparing a reduced model in one table (fit 5).\relax }}{227}{table.caption.102}
-\contentsline {table}{\numberline {9.11}{\ignorespaces Model metrics: comparing a reduced model in one table (fit 5).\relax }}{227}{table.caption.103}
-\contentsline {table}{\numberline {9.12}{\ignorespaces Multivariable logistic regression: further reducing the model (fit 6).\relax }}{228}{table.caption.104}
-\contentsline {table}{\numberline {9.13}{\ignorespaces Model metrics: further reducing the model (fit 6).\relax }}{228}{table.caption.105}
-\contentsline {table}{\numberline {9.14}{\ignorespaces Multivariable logistic regression: including an interaction term (fit 7).\relax }}{229}{table.caption.106}
-\contentsline {table}{\numberline {9.15}{\ignorespaces Multivariable logistic regression: final model (fit 8).\relax }}{229}{table.caption.107}
-\contentsline {table}{\numberline {9.16}{\ignorespaces Model metrics: final model (fit 8).\relax }}{230}{table.caption.108}
-\contentsline {table}{\numberline {9.17}{\ignorespaces Multilevel (mixed effects) logistic regression.\relax }}{234}{table.caption.110}
-\contentsline {table}{\numberline {9.18}{\ignorespaces Model metrics: multilevel (mixed effects) logistic regression.\relax }}{235}{table.caption.111}
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {10.1}{\ignorespaces Univariable and multivariable Cox Proportional Hazards: Overall survival following surgery for melanoma by patient and tumour variables.\relax }}{243}{table.caption.112}
-\contentsline {table}{\numberline {10.2}{\ignorespaces Univariable and multivariable Cox Proportional Hazards: Overall survival following surgery for melanoma by patient and tumour variables (tidied).\relax }}{244}{table.caption.113}
-\contentsline {table}{\numberline {10.3}{\ignorespaces Cox Proportional Hazards: Overall survival following surgery for melanoma with reduced model.\relax }}{244}{table.caption.114}
-\contentsline {table}{\numberline {10.4}{\ignorespaces Cox Proportional Hazards: Overall survival following surgery for melanoma stratified by year of surgery.\relax }}{246}{table.caption.115}
-\contentsline {table}{\numberline {10.5}{\ignorespaces Cox Proportional Hazards: Overall survival following surgery for melanoma (frailty model)\relax }}{247}{table.caption.116}
-\contentsline {table}{\numberline {10.6}{\ignorespaces Cox Proportional Hazards and competing risks regression combined\relax }}{249}{table.caption.118}
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {11.1}{\ignorespaces Chunk output options when knitting an R Markdown file.\relax }}{265}{table.caption.122}
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {12.1}{\ignorespaces Exporting 'table 1': Tumour differentiation by patient and disease factors.\relax }}{274}{table.caption.124}
-\contentsline {table}{\numberline {12.2}{\ignorespaces Exporting 'table 1': adjusting labels and output.\relax }}{275}{table.caption.125}
-\contentsline {table}{\numberline {12.3}{\ignorespaces Exporting a regression results table.\relax }}{275}{table.caption.126}
+\contentsline {table}{\numberline {3.1}{\ignorespaces Deaths per year (2017) from three broad disease categories, sex, and World Bank county-level income groups.\relax }}{54}{table.caption.18}
+\contentsline {table}{\numberline {3.2}{\ignorespaces Global Burden of Disease data in human-readable wide format. This is not tidy data.\relax }}{64}{table.caption.20}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Global Burden of Disease data in analysis-friendly long format. This is tidy data.\relax }}{64}{table.caption.21}
+\contentsline {table}{\numberline {3.4}{\ignorespaces Exercise: putting the cause variable into the wide format using spread.\relax }}{74}{table.caption.23}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {14.1}{\ignorespaces Simulated missing completely at random (MCAR) and missing at random (MAR) dataset.\relax }}{300}{table.caption.137}
-\contentsline {table}{\numberline {14.2}{\ignorespaces Missing data comparison: Smoking (MCAR).\relax }}{302}{table.caption.140}
-\contentsline {table}{\numberline {14.3}{\ignorespaces Missing data comparison: Smoking (MAR).\relax }}{303}{table.caption.141}
-\contentsline {table}{\numberline {14.4}{\ignorespaces Regression analysis with missing data: listwise deletion.\relax }}{305}{table.caption.142}
-\contentsline {table}{\numberline {14.5}{\ignorespaces Regression analysis with missing data: multiple imputation using `mice()`.\relax }}{308}{table.caption.143}
-\contentsline {table}{\numberline {14.6}{\ignorespaces Regression analysis with missing data: explicitly modelling missing data.\relax }}{309}{table.caption.144}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces Gapminder dataset, ff\_glimpse: continuous\relax }}{125}{table.caption.35}
+\contentsline {table}{\numberline {6.2}{\ignorespaces Gapminder dataset, ff\_glimpse: categorical\relax }}{125}{table.caption.36}
+\contentsline {table}{\numberline {6.3}{\ignorespaces Results of a t-test wrangled into a table using library(broom).\relax }}{132}{table.caption.42}
+\contentsline {table}{\numberline {6.4}{\ignorespaces Transformations that can be applied to skewed data. For left skewed data, subtract all values from a constant greater than the maximum value.\relax }}{142}{table.caption.46}
+\contentsline {table}{\numberline {6.5}{\ignorespaces Life expectancy, population and GDPperCap in Africa 1982 vs 2007\relax }}{146}{table.caption.49}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {7.1}{\ignorespaces WCGS data, ff\_glimpse: continuous\relax }}{177}{table.caption.63}
+\contentsline {table}{\numberline {7.2}{\ignorespaces WCGS data, ff\_glimpse: categorical\relax }}{177}{table.caption.64}
+\contentsline {table}{\numberline {7.3}{\ignorespaces Linear regression: Systolic blood pressure by personality type.\relax }}{179}{table.caption.66}
+\contentsline {table}{\numberline {7.4}{\ignorespaces Model metrics: Systolic blood pressure by personality type.\relax }}{179}{table.caption.67}
+\contentsline {table}{\numberline {7.5}{\ignorespaces Multivariable linear regression: Systolic blood pressure by personality type and weight.\relax }}{180}{table.caption.68}
+\contentsline {table}{\numberline {7.6}{\ignorespaces Multivariable linear regression metrics: Systolic blood pressure by personality type and weight.\relax }}{180}{table.caption.69}
+\contentsline {table}{\numberline {7.7}{\ignorespaces Multivariable linear regression: Systolic blood pressure by available explanatory variables.\relax }}{181}{table.caption.70}
+\contentsline {table}{\numberline {7.8}{\ignorespaces Model metrics: Systolic blood pressure by available explanatory variables.\relax }}{181}{table.caption.71}
+\contentsline {table}{\numberline {7.9}{\ignorespaces Multivariable linear regression: Systolic blood pressure using BMI.\relax }}{182}{table.caption.72}
+\contentsline {table}{\numberline {7.10}{\ignorespaces Model metrics: Systolic blood pressure using BMI.\relax }}{182}{table.caption.73}
+\contentsline {table}{\numberline {7.11}{\ignorespaces Multivariable linear regression: Systolic blood pressure by available explanatory variables and reduced model.\relax }}{183}{table.caption.74}
+\contentsline {table}{\numberline {7.12}{\ignorespaces Model metrics: Systolic blood pressure by available explanatory variables (top) with reduced model (bottom).\relax }}{183}{table.caption.75}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {8.1}{\ignorespaces Two-by-two table with finalfit: Died with melanoma by tumour ulceration status.\relax }}{196}{table.caption.81}
+\contentsline {table}{\numberline {8.2}{\ignorespaces Multiple variables by outcome: Outcome after surgery for melanoma by patient and disease factors.\relax }}{196}{table.caption.82}
+\contentsline {table}{\numberline {8.3}{\ignorespaces Two-by-two table with chi-squared test using final fit: Outcome after surgery for melanoma by tumour ulceration status.\relax }}{200}{table.caption.83}
+\contentsline {table}{\numberline {8.4}{\ignorespaces Multiple variables by outcome with hypothesis tests: Outcome after surgery for melanoma by patient and disease factors (chi-squared test).\relax }}{200}{table.caption.84}
+\contentsline {table}{\numberline {8.5}{\ignorespaces Multiple variables by outcome with hypothesis tests: Outcome after surgery for melanoma by patient and disease factors (Fisher's exact test).\relax }}{201}{table.caption.85}
+\contentsline {table}{\numberline {8.6}{\ignorespaces Multiple variables by outcome with hypothesis tests: options including missing data, rounding, and labels.\relax }}{202}{table.caption.86}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {9.1}{\ignorespaces Multiple variables by explanatory variable of interest: Malignant melanoma ulceration by patient and disease variables.\relax }}{217}{table.caption.93}
+\contentsline {table}{\numberline {9.2}{\ignorespaces Univariable logistic regression: 5-year survival from malignant melanoma by tumour ulceration (fit 1).\relax }}{225}{table.caption.94}
+\contentsline {table}{\numberline {9.3}{\ignorespaces Model metrics: 5-year survival from malignant melanoma by tumour ulceration (fit 1).\relax }}{225}{table.caption.95}
+\contentsline {table}{\numberline {9.4}{\ignorespaces Multivariable logistic regression: 5-year survival from malignant melanoma (fit 2).\relax }}{227}{table.caption.96}
+\contentsline {table}{\numberline {9.5}{\ignorespaces Model metrics: 5-year survival from malignant melanoma (fit 2).\relax }}{227}{table.caption.97}
+\contentsline {table}{\numberline {9.6}{\ignorespaces Multivariable logistic regression: using `cut` to convert a continuous variable as a factor (fit 3).\relax }}{227}{table.caption.98}
+\contentsline {table}{\numberline {9.7}{\ignorespaces Model metrics: using `cut` to convert a continuous variable as a factor (fit 3).\relax }}{227}{table.caption.99}
+\contentsline {table}{\numberline {9.8}{\ignorespaces Multivariable logistic regression: including a quadratic term (fit 4).\relax }}{229}{table.caption.100}
+\contentsline {table}{\numberline {9.9}{\ignorespaces Model metrics: including a quadratic term (fit 4).\relax }}{229}{table.caption.101}
+\contentsline {table}{\numberline {9.10}{\ignorespaces Multivariable logistic regression model: comparing a reduced model in one table (fit 5).\relax }}{229}{table.caption.102}
+\contentsline {table}{\numberline {9.11}{\ignorespaces Model metrics: comparing a reduced model in one table (fit 5).\relax }}{229}{table.caption.103}
+\contentsline {table}{\numberline {9.12}{\ignorespaces Multivariable logistic regression: further reducing the model (fit 6).\relax }}{230}{table.caption.104}
+\contentsline {table}{\numberline {9.13}{\ignorespaces Model metrics: further reducing the model (fit 6).\relax }}{230}{table.caption.105}
+\contentsline {table}{\numberline {9.14}{\ignorespaces Multivariable logistic regression: including an interaction term (fit 7).\relax }}{231}{table.caption.106}
+\contentsline {table}{\numberline {9.15}{\ignorespaces Multivariable logistic regression: final model (fit 8).\relax }}{231}{table.caption.107}
+\contentsline {table}{\numberline {9.16}{\ignorespaces Model metrics: final model (fit 8).\relax }}{232}{table.caption.108}
+\contentsline {table}{\numberline {9.17}{\ignorespaces Multilevel (mixed effects) logistic regression.\relax }}{236}{table.caption.110}
+\contentsline {table}{\numberline {9.18}{\ignorespaces Model metrics: multilevel (mixed effects) logistic regression.\relax }}{237}{table.caption.111}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {10.1}{\ignorespaces Univariable and multivariable Cox Proportional Hazards: Overall survival following surgery for melanoma by patient and tumour variables.\relax }}{245}{table.caption.112}
+\contentsline {table}{\numberline {10.2}{\ignorespaces Univariable and multivariable Cox Proportional Hazards: Overall survival following surgery for melanoma by patient and tumour variables (tidied).\relax }}{246}{table.caption.113}
+\contentsline {table}{\numberline {10.3}{\ignorespaces Cox Proportional Hazards: Overall survival following surgery for melanoma with reduced model.\relax }}{246}{table.caption.114}
+\contentsline {table}{\numberline {10.4}{\ignorespaces Cox Proportional Hazards: Overall survival following surgery for melanoma stratified by year of surgery.\relax }}{248}{table.caption.115}
+\contentsline {table}{\numberline {10.5}{\ignorespaces Cox Proportional Hazards: Overall survival following surgery for melanoma (frailty model)\relax }}{249}{table.caption.116}
+\contentsline {table}{\numberline {10.6}{\ignorespaces Cox Proportional Hazards and competing risks regression combined\relax }}{251}{table.caption.118}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {11.1}{\ignorespaces Chunk output options when knitting an R Markdown file.\relax }}{267}{table.caption.122}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {12.1}{\ignorespaces Exporting 'table 1': Tumour differentiation by patient and disease factors.\relax }}{276}{table.caption.124}
+\contentsline {table}{\numberline {12.2}{\ignorespaces Exporting 'table 1': adjusting labels and output.\relax }}{277}{table.caption.125}
+\contentsline {table}{\numberline {12.3}{\ignorespaces Exporting a regression results table.\relax }}{277}{table.caption.126}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {14.1}{\ignorespaces Simulated missing completely at random (MCAR) and missing at random (MAR) dataset.\relax }}{302}{table.caption.137}
+\contentsline {table}{\numberline {14.2}{\ignorespaces Missing data comparison: Smoking (MCAR).\relax }}{304}{table.caption.140}
+\contentsline {table}{\numberline {14.3}{\ignorespaces Missing data comparison: Smoking (MAR).\relax }}{305}{table.caption.141}
+\contentsline {table}{\numberline {14.4}{\ignorespaces Regression analysis with missing data: listwise deletion.\relax }}{307}{table.caption.142}
+\contentsline {table}{\numberline {14.5}{\ignorespaces Regression analysis with missing data: multiple imputation using `mice()`.\relax }}{310}{table.caption.143}
+\contentsline {table}{\numberline {14.6}{\ignorespaces Regression analysis with missing data: explicitly modelling missing data.\relax }}{311}{table.caption.144}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

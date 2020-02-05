@@ -1,9 +1,9 @@
 This is makeindex, version 2.15 [TeX Live 2015] (kpathsea + Thai support).
 Scanning input file healthyr-book.idx....
-!! Input index error (file = healthyr-book.idx, line = 139):
+!! Input index error (file = healthyr-book.idx, line = 144):
    -- Illegal null field.
-done (297 entries accepted, 1 rejected).
-Sorting entries.....done (2565 comparisons).
-Generating output file healthyr-book.ind....done (351 lines written, 0 warnings).
+done (301 entries accepted, 1 rejected).
+Sorting entries.....done (2663 comparisons).
+Generating output file healthyr-book.ind....done (355 lines written, 0 warnings).
 Output written in healthyr-book.ind.
 Transcript written in healthyr-book.ilg.

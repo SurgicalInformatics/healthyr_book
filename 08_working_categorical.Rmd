@@ -247,7 +247,7 @@ This default order works well for binary variables - the "yes" or "1" is lowest 
 This ordering of this particular variable is unusual - it would be more common to have for instance `alive = 0`, `died = 1`. 
 One quick option is to just reverse the order of the levels in the plot. 
 
-```{r, fig.width=7, fig.height=3, fig.cap="Bar chart: outcome after surgery for patients with ulcerated melanoma, reversed levels."}
+```{r fig.width=7, fig.height=3, fig.cap="Bar chart: outcome after surgery for patients with ulcerated melanoma, reversed levels."}
 p1 = mydata %>% 
   ggplot(aes(x = ulcer.factor, fill = status.factor)) + 
   geom_bar(position = position_stack(reverse = TRUE)) + 
@@ -521,7 +521,7 @@ mydata %>%
                        c("ulcer.factor", "age.factor", 
                          "sex.factor", "thickness"),
                      p = TRUE,
-                     catTest = catTestfisher)
+                     p_cat = "fisher")
 ```
 
 ```{r echo=FALSE}
@@ -531,7 +531,7 @@ mydata %>%
                        c("ulcer.factor", "age.factor", 
                          "sex.factor", "thickness"),
                      p = TRUE,
-                     catTest = catTestfisher) %>% 
+                     p_cat = "fisher") %>% 
   mykable(caption = "Multiple variables by outcome with hypothesis tests: Outcome after surgery for melanoma by patient and disease factors (Fisher's exact test).")
 ```
 
@@ -544,7 +544,7 @@ mydata %>%
                        c("ulcer.factor", "age.factor", 
                          "sex.factor", "thickness"),
                      p = TRUE,
-                     catTest = catTestfisher,
+                     p_cat = "fisher",
                      digits = 
                        c(1, 1, 4, 2), #1: mean/median, 2: SD/IQR 
                                       # 3: p-value, 4: count percentage
@@ -560,7 +560,7 @@ mydata %>%
                        c("ulcer.factor", "age.factor", 
                          "sex.factor", "thickness"),
                      p = TRUE,
-                     catTest = catTestfisher,
+                     p_cat = "fisher",
                      digits = 
                        c(1, 1, 4, 2), #1: mean/median, 2: SD/IQR 
                                       #3: p-value, 4: count percentage

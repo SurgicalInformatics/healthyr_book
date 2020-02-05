@@ -1,6 +1,6 @@
 --- 
 title: "HealthyR: R for health data analysis"
-author: "Ewen Harrison and Riinu Ots"
+author: "Ewen Harrison and Riinu Pius"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook

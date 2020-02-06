@@ -1,10 +1,10 @@
 ---
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 options(pillar.sigfig = 4)
 ```
 
@@ -408,7 +408,7 @@ knitr::include_graphics("images/wide_long.png")
 
 ### Pivot values from rows into columns (wider)
 \index{summarising data@\textbf{summarising data}!convert long to wide}
-\index{functions@\textbf{functions}!pivot_wider}
+\index{functions@\textbf{functions}!pivot\_wider}
 
 If we want to take the long data from \@ref(tab:chap3-tab-gbd-long) and put some of the numbers next to each other for easier visualisation, then `pivot_wider()` from the `tidyr` package is the function to do it. 
 It means we want to send a variable into columns, and it needs just two arguments: the variable we want to become the new columns, and the variable where the values currently are.
@@ -450,7 +450,7 @@ Remember that pressing F1 when your cursor is on a function opens it up in the H
 
 ### Pivot values from columns to rows (longer)
 \index{summarising data@\textbf{summarising data}!convert wide to long}
-\index{functions@\textbf{functions}!pivot_longer}
+\index{functions@\textbf{functions}!pivot\_longer}
 
 The inverse of `pivot_wider()` is `pivot_longer()`. 
 If you're lucky enough, your data comes from a proper database and is already in the long and tidy format. 

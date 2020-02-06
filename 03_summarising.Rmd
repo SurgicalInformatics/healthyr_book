@@ -26,7 +26,7 @@ The exercises at the end of this chapter combine all of the above to give contex
 
 ```{r, include = FALSE}
 source("healthyr_theme.R")
-gbd_short = read_csv("data/global_burden_disease_cause-year.csv")
+gbd_short <- read_csv("data/global_burden_disease_cause-year.csv")
 ```
 
 Dataset: Global Burden of Disease (year, cause, sex, income, deaths)
@@ -37,10 +37,10 @@ This means that we have 24 rows for each year, and that the total number of deat
 
 ```{r, message=F}
 library(tidyverse)
-gbd_full = read_csv("data/global_burden_disease_cause-year-sex-income.csv")
+gbd_full <- read_csv("data/global_burden_disease_cause-year-sex-income.csv")
 
 # Creating a single-year tibble for printing and simple examples:
-gbd2017 = gbd_full %>% 
+gbd2017 <- gbd_full %>% 
   filter(year == 2017)
 
 ```
@@ -92,7 +92,7 @@ Health data analysis is frequently concerned with making comparisons between gro
 Groups of genes, or diseases, or patients, or populations etc.
 An easy approach to the comparison of data by a categorical grouping is therefore essential. 
 
-We will introduce very flexible functions from **tidyverse** that you can apply in any setting. 
+We will introduce very flexible functions from `tidyverse` that you can apply in any setting. 
 The examples intentionally get quite involved to demonstrate the different approaches that can be used. 
 <!-- We finish by showing how to quickly and easily create summary tables that can be used in your work.  -->
 
@@ -205,7 +205,7 @@ We will then sort the rows using `arrange()` based on `sex`, just for easier vie
 The `arrange()` function sorts the rows within a tibble:
 
 ```{r}
-gbd_summarised = gbd2017 %>% 
+gbd_summarised <- gbd2017 %>% 
   group_by(cause, sex) %>% 
   summarise(deaths_pergroups = sum(deaths_millions)) %>% 
   arrange(sex)
@@ -220,7 +220,7 @@ We now want to calculate the percentage of deaths from each cause for each gende
 We could use `summarise()` to calculate the totals:
 
 ```{r}
-gbd_summarised_sex =
+gbd_summarised_sex <- 
   gbd_summarised %>% 
   group_by(sex) %>% 
   summarise(deaths_persex = sum(deaths_pergroups))
@@ -281,7 +281,7 @@ Either deal with your missing values beforehand (recommended) or add the `na.rm 
 More discussion and examples around missing data can be found in Chapters \@ref(r-basics) and \@ref(chap14-h1).
 
 ```{r}
-mynumbers = c(1, 2, NA)
+mynumbers <- c(1, 2, NA)
 sum(mynumbers)
 sum(mynumbers, na.rm = TRUE)
 ```
@@ -303,8 +303,8 @@ Data is 'wide' when *some or all of columns are levels of a factor*.
 An example makes this easier to see. 
 
 ```{r, message = FALSE}
-gbd_wide = read_csv("data/global_burden_disease_wide-format.csv")
-gbd_long = read_csv("data/global_burden_disease_cause-year-sex.csv")
+gbd_wide <- read_csv("data/global_burden_disease_wide-format.csv")
+gbd_long <- read_csv("data/global_burden_disease_cause-year-sex.csv")
 ```
 
 
@@ -466,7 +466,7 @@ The `select()` function can be used to choose, rename or reorder columns of a ti
 For the following `select()` examples, let's create a new tibble called `gbd_2rows` by taking the first 2 rows of `gbd_full` (just for shorter printing):
 
 ```{r}
-gbd_2rows = gbd_full %>% 
+gbd_2rows <- gbd_full %>% 
   slice(1:2)
 
 gbd_2rows
@@ -537,7 +537,7 @@ Furthermore, the select helpers can be used in some of the other tidyverse funct
 
 ```{r}
 # made-up biobank-like tibble:
-gather_helperdata  = tibble(id = "ID-1",
+gather_helperdata  <- tibble(id = "ID-1",
                             already = "Yes",
                             tidy = TRUE,
                             hosp_ep_01 = "Y92.241",
@@ -591,7 +591,7 @@ Let's make the cause column into a factor:
 
 
 ```{r}
-gbd_factored = gbd_long %>% 
+gbd_factored <- gbd_long %>% 
   mutate(cause = factor(cause))
 ```
 
@@ -604,7 +604,7 @@ gbd_factored$cause %>% levels()
 But we can now use `fct_relevel()` inside `mutate()` to change the order of these levels:
 
 ```{r}
-gbd_factored = gbd_factored %>% 
+gbd_factored <- gbd_factored %>% 
   mutate(cause = cause %>% 
            fct_relevel("Injuries"))
 
@@ -626,7 +626,7 @@ However, making a character column into a factor gives us power to give its leve
 Using the GBD dataset with variables `cause`, `year` (1990 and 2017 only), `sex` (as shown in Table \@ref(tab:chap3-tab-gbd-long)):
 
 ```{r, message = FALSE}
-gbd_long = read_csv("data/global_burden_disease_cause-year-sex.csv")
+gbd_long <- read_csv("data/global_burden_disease_cause-year-sex.csv")
 ```
 
 Spread the `cause` variable into columns using the `deaths_millions` as values:
@@ -664,14 +664,14 @@ Year 2017 of this dataset was shown in Table \@ref(tab:chap3-tab-gbd2017), the f
 Investigate these code examples:
 
 ```{r}
-summary_data1 = 
+summary_data1 <- 
   gbd_full %>% 
   group_by(year) %>% 
   summarise(total_per_year = sum(deaths_millions))
 
 summary_data1
 
-summary_data2 = 
+summary_data2 <- 
   gbd_full %>% 
   group_by(year, cause) %>% 
   summarise(total_per_cause = sum(deaths_millions))

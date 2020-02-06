@@ -17,7 +17,7 @@ options(pillar.sigfig = 4)
 In this chapter you will find out how to:
 
 * summarise data using: `group_by()`, `summarise()`, and `mutate()`
-* reshape data between the wide and long formats: `spread()` and `gather()`
+* reshape data between the wide and long formats: `pivot_wider()` and `pivot_longer()`
 * `select()` columns and `arrange()` (sort) rows
 
 The exercises at the end of this chapter combine all of the above to give context and show you more worked examples.
@@ -291,172 +291,6 @@ If you don't know exactly where your missing values are/how many, you might end 
 So the `na.rm = TRUE` is fine to use if quickly exploring and cleaning data, or you've already investigated missing values and are convinced the existing ones are representative.
 But it is rightfully not a default so get used to typing `na.rm = TRUE` when using these functions.
 
-## Reshaping data - long vs wide format
-\index{summarising data@\textbf{summarising data}!long vs wide data}
-
-So far, all of the example we've shown you have been using 'tidy' data. 
-Data is 'long' when *each variable is in its own column*, and *each observation is in its own row*. 
-This long format is efficient to use in data analysis and visualisation and can also be considered "computer readable".
-
-But sometimes when presenting data in tables for humans to read, or when collecting data directly into a spreadsheet, it can be convenient to have data in a wide format. 
-Data is 'wide' when *some or all of columns are levels of a factor*.
-An example makes this easier to see. 
-
-```{r, message = FALSE}
-gbd_wide <- read_csv("data/global_burden_disease_wide-format.csv")
-gbd_long <- read_csv("data/global_burden_disease_cause-year-sex.csv")
-```
-
-
-```{r chap3-tab-gbd-wide, echo = FALSE}
-gbd_wide %>% 
-  knitr::kable(booktabs = TRUE,
-               linesep = c(rep("", 3), "\\addlinespace"),
-               align = c("l", "c", "c", "c", "c"),
-               caption = "Global Burden of Disease data in human-readable wide format. This is not tidy data.") %>% 
-  kableExtra::kable_styling(latex_options = c("scale_down", "hold_position"))
-```
-
-```{r chap3-tab-gbd-long, echo = FALSE}
-gbd_long %>% 
-  knitr::kable(booktabs = TRUE,
-               linesep = c(rep("", 3), "\\addlinespace"),
-               align = c("l", "c", "c", "c", "c"),
-               caption = "Global Burden of Disease data in analysis-friendly long format. This is tidy data.") %>% 
-  kableExtra::kable_styling(latex_options = c("hold_position"),
-                            font_size = 10)
-```
-
-Tables \@ref(tab:chap3-tab-gbd-long) and \@ref(tab:chap3-tab-gbd-wide) contain the exact same information, but in long (tidy) and wide formats, respectively.
-
-
-```{r, echo = FALSE, fig.cap="Same data in the long ('tidy', necessary for efficient analysis) and wide (easier for human-readability/presentation/manual data entry) formats. TODO: replace with updated data."}
-knitr::include_graphics("images/wide_long.png")
-```
-
-\clearpage 
-
-### `spread()` values from rows into columns
-\index{summarising data@\textbf{summarising data}!convert long to wide}
-\index{functions@\textbf{functions}!spread}
-
-If we want to take the long data from \@ref(tab:chap3-tab-gbd-long) and put some of the numbers next to each other for easier visualisation, then `spread()` is the function to do it. 
-It means we want to spread a variable into columns, and it needs just two arguments: the column we want to spread, and the column where the values are.
-
-
-```{r}
-gbd_long %>% 
-  spread(year, deaths_millions)
-```
-
-
-In this example, we are sending `gbd_long` into the `spread(year, deaths_millions)` to put the year variable into different columns. The values to fill the new columns with are `deaths_millions`.
-
-This means we can quickly eyeball how the number of deaths have changed from 1990 to 2017 for each cause category and sex.
-Whereas if we wanted to quickly look at the difference in the number of deaths for Females and Males, we can just the `sex` variable instead, so `spread(sex, deaths_millions)`. Furthermore, we can now add a `mutate()` to show this difference in a new column:
-
-
-```{r}
-gbd_long %>% 
-  spread(sex, deaths_millions) %>% 
-  mutate(Male - Female)
-```
-
-All of these differences are positive which means every year, more men die than women.
-Which make sense, as more boys are born than girls.
-
-And what if we want to spread both `year` and `sex` at the same time, so to create table \@ref(tab:chap3-tab-gbd-wide) from  Table \@ref(tab:chap3-tab-gbd-long)?
-`spread()` can only accept two arguments. 
-First is the variable to be spread to columns. 
-Second is the values to used. 
-Therefore, to spread by two columns we need to combine them beforehand.
-This is what the `unite()` function is for:
-
-```{r}
-gbd_long %>% 
-  unite(sex_year, c(sex, year)) %>% 
-  slice(1:2)
-```
-
-We are using the `slice(1:2)` to select the first two rows - just for efficient printing (`:` in R is a shorthand for creating sequential numbers, e.g. `1:4` is `r 1:4`).
-
-
-We can then `spread()` the united column:
-```{r}
-gbd_long %>% 
-  unite(sex_year, c(sex, year)) %>% 
-  spread(sex_year, deaths_millions)
-```
-
-Both `spread()` and `unite()` have a few optional arguments that you may be useful for you. 
-For example, `spread(..., fill = 0)` is used to fill empty cells (default is `fill = NA`).
-Or `unite(..., sep = " ")` can be used to change the separator that gets put between the values (e.g. you may want "Female-1990" or "Female: 1990" instead of the default "_").
-Remember that pressing F1 when your cursor is on a function opens it up in the Help tab where these extra options are listed.
-
-The `unite()` is a very convenient function for pasting values from multiple columns together, but if you want to do something more special (e.g. also round numbers or add different separators between multiple different columns), then the `paste()` function inside `mutate()` will give you that extra flexibility and control.
-
-For example, this:
-```{r}
-gbd_long %>% 
-  unite(sex_year, c(sex, year)) %>% 
-  slice(1)
-```
-
-is similar to:
-```{r}
-gbd_long %>% 
-  mutate(sex_year = paste(sex, year, sep = "_")) %>% 
-  slice(1)
-```
-
-They're similar but not exactly the same as `unite()` drops the original columns (and only keeps the new united one), whereas `mutate()` creates a new column and keeps all existing ones as well. 
-
-To make them equivalent, you could either add `drop = FALSE` inside `unite()` (keeping all columns) or `%>% select(-sex, -year)` after the `mutate()` (to drop/deselect these).
-
-### `gather()` values from columns to rows
-\index{summarising data@\textbf{summarising data}!convert wide to long}
-\index{functions@\textbf{functions}!gather}
-
-The opposite of `spread()` is `gather()`. 
-If you're lucky enough, your data comes from a proper database and is already in the long and tidy format. 
-But if you do get landed with something that looks like the Table \@ref(tab:chap3-tab-gbd-wide), you'll need to know how to gather and separate the variables currently spread across different columns into the tidy format (each column is a variable, each row is an observation).
-
-We could try and run `gather()` without any extra arguments (again, using slice(1:6) just for shorter printing, the first 6 lines this time):
-```{r}
-gbd_wide %>% 
-  gather() %>% 
-  slice(1:6)
-```
-
-So it gathers all column names into a new variable called `key`, and puts everything in the rows into a column called `value`.
-However, the `cause` variable already was how we wanted it - in a column of its own, so we don't want this gathered together the `deaths_millions` values.
-So we can tell `gather()` to leave it where it is:
-
-
-```{r}
-gbd_wide %>% 
-  gather(sex_year, deaths_millions, -cause) %>% 
-  slice(1:6)
-```
-
-Now there, because selection (or deselection) of columns needs to be the fourth argument to `gather()` (first on is the data that gets piped - %>% in, second and third the names of the new columns), we also need to include the names of the new columns before we can specify that we want `-cause` to stay where it is. 
-
-And finally, we need to use `separate()` to put `sex` and `year` into their own columns:
-```{r}
-gbd_wide %>% 
-  gather(sex_year, deaths_millions, -cause) %>% 
-  separate(sex_year, into = c("sex", "year"), convert = TRUE) %>% 
-  slice(1:6)
-```
-
-It is important to notice the quotes around the new column names: `into = c("sex", "year")`. Most tidyverse functions don't want to use use quotes around column names, so this can be confusing.
-
-We've also added `convert = TRUE` to `separate()` so `year` would get converted into a numeric variable.
-The combination of, e.g., "Female-1990" is a character variable, so after separating them both `sex` and `year` would still be classified as characters. 
-But the `convert = TRUE` recognises that `year` is a number and will appropriately convert it into an integer.
-
-When working with large datasets with a lot of columns that need gathering, then the `select()` helpers are extremely useful.
-
 ## `select()` columns
 \index{summarising data@\textbf{summarising data}!select columns}
 \index{functions@\textbf{functions}!select}
@@ -515,9 +349,7 @@ And this is where the true power of `select()` starts to come out.
 In addition to listing the columns explicitly (e.g., `mydata %>% select(year, cause...)`) there are several special functions that can be used inside `select()`.
 These special functions are called select helpers, and the first select helper we used is `everything()`.
 
-The most common select helpers are `starts_with()`/`ends_with()` and `matches()` (but there are several others that may be useful to you, so press F1 on `select()` for a full list, or search the web for more examples).
-
-<!-- ADD contains() above? -->
+The most common select helpers are `starts_with()`, `ends_with()`, `contains()`, `matches()` (but there are several others that may be useful to you, so press F1 on `select()` for a full list, or search the web for more examples).
 
 Let's say you can remember, whether the deaths column was called `deaths_millions` or just `deaths` or `deaths_mil`, or maybe there are other columns that include the word "deaths" that you want to `select()`:
 
@@ -528,28 +360,141 @@ gbd_2rows %>%
 
 Note how "deaths" needs to be quoted inside `starts_with()` - as it's a word to look for, not the real name of a column/variable.
 
-### Using select helpers in other functions
-\index{summarising data@\textbf{summarising data}!select helpers}
 
-The select helpers may seem a bit extra in the simple example above, but they become invaluable when working with, for example, biobank data - as you'll be landed with hundreds of columns, often named something like `r paste0("hosp_ep_", formatC(1:6, width=2, flag="0"))`..., so `starts_with("hosp_ep")` can really become your new best friend.
+## Reshaping data - long vs wide format
+\index{summarising data@\textbf{summarising data}!long vs wide data}
 
-Furthermore, the select helpers can be used in some of the other tidyverse functions as well, namely `mutate_at()`, `summarise_at()`, and especially `gather()`:
+So far, all of the example we've shown you have been using 'tidy' data. 
+Data is 'tidy' (and therefore also 'long') when *each variable is in its own column*, and *each observation is in its own row*. 
+This long format is efficient to use in data analysis and visualisation and can also be considered "computer readable".
+
+But sometimes when presenting data in tables for humans to read, or when collecting data directly into a spreadsheet, it can be convenient to have data in a wide format. 
+Data is 'wide' when *some or all of columns are levels of a factor*.
+An example makes this easier to see. 
+
+```{r, message = FALSE}
+gbd_wide <- read_csv("data/global_burden_disease_wide-format.csv")
+gbd_long <- read_csv("data/global_burden_disease_cause-year-sex.csv")
+```
+
+
+```{r chap3-tab-gbd-wide, echo = FALSE}
+gbd_wide %>% 
+  knitr::kable(booktabs = TRUE,
+               linesep = c(rep("", 3), "\\addlinespace"),
+               align = c("l", "c", "c", "c", "c"),
+               caption = "Global Burden of Disease data in human-readable wide format. This is not tidy data.") %>% 
+  kableExtra::kable_styling(latex_options = c("scale_down", "hold_position"))
+```
+
+```{r chap3-tab-gbd-long, echo = FALSE}
+gbd_long %>% 
+  knitr::kable(booktabs = TRUE,
+               linesep = c(rep("", 3), "\\addlinespace"),
+               align = c("l", "c", "c", "c", "c"),
+               caption = "Global Burden of Disease data in analysis-friendly long format. This is tidy data.") %>% 
+  kableExtra::kable_styling(latex_options = c("hold_position"),
+                            font_size = 10)
+```
+
+Tables \@ref(tab:chap3-tab-gbd-long) and \@ref(tab:chap3-tab-gbd-wide) contain the exact same information, but in long (tidy) and wide formats, respectively.
+
+
+```{r, echo = FALSE, fig.cap="Same data in the long ('tidy', necessary for efficient analysis) and wide (easier for human-readability/presentation/manual data entry) formats. TODO: replace with updated data."}
+knitr::include_graphics("images/wide_long.png")
+```
+
+\clearpage 
+
+### Pivot values from rows into columns (wider)
+\index{summarising data@\textbf{summarising data}!convert long to wide}
+\index{functions@\textbf{functions}!pivot_wider}
+
+If we want to take the long data from \@ref(tab:chap3-tab-gbd-long) and put some of the numbers next to each other for easier visualisation, then `pivot_wider()` from the `tidyr` package is the function to do it. 
+It means we want to send a variable into columns, and it needs just two arguments: the variable we want to become the new columns, and the variable where the values currently are.
+
 
 ```{r}
-# made-up biobank-like tibble:
-gather_helperdata  <- tibble(id = "ID-1",
-                            already = "Yes",
-                            tidy = TRUE,
-                            hosp_ep_01 = "Y92.241",
-                            hosp_ep_02 = "W61.43",
-                            hosp_ep_03 = "V91.07",
-                            hosp_ep_04 = "V95.43")
-
-gather_helperdata
-
-gather_helperdata %>%
-  gather(episode, diagnosis, starts_with("hosp_ep"))
+gbd_long %>% 
+  pivot_wider(names_from = year, values_from = deaths_millions)
 ```
+
+
+This means we can quickly eyeball how the number of deaths have changed from 1990 to 2017 for each cause category and sex.
+Whereas if we wanted to quickly look at the difference in the number of deaths for Females and Males, we can change the `names_from = ` argument from ` = years` to ` = sex`.
+Furthermore, we can also add a `mutate()` to calculate the difference:
+
+
+```{r}
+gbd_long %>% 
+  pivot_wider(names_from = sex, values_from = deaths_millions) %>% 
+  mutate(Male - Female)
+```
+
+All of these differences are positive which means every year, more men die than women.
+Which make sense, as more boys are born than girls.
+
+And what if we want to look at both `year` and `sex` at the same time, so to create table \@ref(tab:chap3-tab-gbd-wide) from  Table \@ref(tab:chap3-tab-gbd-long)?
+No problem, `pivot_wider()` can deal with multiple variables at the same time, `names_from = c(sex, year)`:
+
+```{r}
+gbd_long %>% 
+  pivot_wider(names_from = c(sex, year), values_from = deaths_millions)
+
+```
+
+`pivot_wider()` has a few optional arguments that you may be useful for you. 
+For example, `pivot_wider(..., values_fill = 0)` can be used to fill empty cases (if you have any) with a value you specified.
+Or `pivot_wider(..., names_sep = ": ")` can be used to change the separator that gets put between the values (e.g. you may want "Female: 1990" instead of the default "Female_1990").
+Remember that pressing F1 when your cursor is on a function opens it up in the Help tab where these extra options are listed.
+
+### Pivot values from columns to rows (longer)
+\index{summarising data@\textbf{summarising data}!convert wide to long}
+\index{functions@\textbf{functions}!pivot_longer}
+
+The inverse of `pivot_wider()` is `pivot_longer()`. 
+If you're lucky enough, your data comes from a proper database and is already in the long and tidy format. 
+But if you do get landed with something that looks like the Table \@ref(tab:chap3-tab-gbd-wide), you'll need to know how to wrangle the variables currently spread across different columns into the tidy format (where each column is a variable, each row is an observation).
+
+`pivot_longer()` can be a little bit more difficult to use as you need to describe all the columns to be collected using a `select_helper`. Run `?select_helpers and click on the first result in the Help tab for a reminder.
+
+For example, here we want to collect all the columns that include the words Female or Male, the select helper for it is `matches("Female|Male")`:
+
+```{r}
+gbd_wide %>% 
+  pivot_longer(matches("Female|Male"), names_to = "sex_year", values_to = "deaths_millions") %>% 
+  slice(1:6)
+```
+
+You're probably looking at the example above and thinking that's is all nice and simple on this miniature example dataset, but how on earth will I figure this out on a real world example.
+And you're right, we won't deny that `pivot_longer()` is one of the most tehnically complicated functions in this book, and it can take a lot of trial and error to get it to work.
+How to get started with your own `pivot_longer()` transformation is to first play with the `select()` function to make sure you are telling R exactly which columns to pivot into the longer format.
+For example, before working out the `pivot_longer()` code for the above example, we would figure this out first:
+
+```{r}
+gbd_wide %>% 
+  select(matches("Female|Male"))
+```
+
+Then, knowing that `matches("Female|Male")` works as expected inside our little `select()` test, we can copy-paste it into `pivot_longer()` and add the `names_to` and `values_to` arguments. Both of these arguments are new column names that you can make up (in the above example, we are using "sex_year" and "deaths_millions").
+
+### `separate()` a column into multiple columns
+
+While `pivot_longer()` did a great job fetching the different observations that were spread across multiple columns into a single one, it's still a combination of two variables - sex and year. 
+We can use the `separate()` function to deal with that
+
+```{r}
+gbd_wide %>% 
+  # same pivot_longer as before
+  pivot_longer(matches("Female|Male"), names_to = "sex_year", values_to = "deaths_millions") %>% 
+  separate(sex_year, into = c("sex", "year"), sep = "_", convert = TRUE)
+```
+
+
+We've also added `convert = TRUE` to `separate()` so `year` would get converted into a numeric variable.
+The combination of, e.g., "Female-1990" is a character variable, so after separating them both `sex` and `year` would still be classified as characters. 
+But the `convert = TRUE` recognises that `year` is a number and will appropriately convert it into an integer.
+
 
 ## `arrange()` rows
 \index{summarising data@\textbf{summarising data}!arrange / order rows}
@@ -621,7 +566,7 @@ This is especially useful in two places:
 
 However, making a character column into a factor gives us power to give its levels a non-alphabetical order, giving us control over plotting order or defining our reference levels for use in statistical tests.
 
-## Exercise - `spread()`
+## Exercise - `pivot_wider()`
 
 Using the GBD dataset with variables `cause`, `year` (1990 and 2017 only), `sex` (as shown in Table \@ref(tab:chap3-tab-gbd-long)):
 
@@ -629,15 +574,15 @@ Using the GBD dataset with variables `cause`, `year` (1990 and 2017 only), `sex`
 gbd_long <- read_csv("data/global_burden_disease_cause-year-sex.csv")
 ```
 
-Spread the `cause` variable into columns using the `deaths_millions` as values:
+Use `pivot_wider()` to put the `cause` variable into columns using the `deaths_millions` as values:
 
 ```{r, echo = FALSE}
 gbd_long %>% 
-  spread(cause, deaths_millions) %>% 
+  pivot_wider(names_from = cause, values_from = deaths_millions) %>% 
   knitr::kable(booktabs = TRUE,
                linesep = c(rep("", 3), "\\addlinespace"),
                align = c("l", "c", "c", "c", "c"),
-               caption = "Exercise: putting the cause variable into the wide format using spread.") %>% 
+               caption = "Exercise: putting the cause variable into the wide format.") %>% 
   kableExtra::kable_styling(latex_options = c("scale_down", "hold_position"))
 ```
 
@@ -646,7 +591,7 @@ gbd_long %>%
 ```{r, message = FALSE, results = 'hide'}
 gbd_long = read_csv("data/global_burden_disease_cause-year-sex.csv")
 gbd_long %>% 
-  spread(cause, deaths_millions) 
+  pivot_wider(names_from = cause, values_from = deaths_millions)
 ```
 
 ## Exercise - `group_by()`, `summarise()`
@@ -736,7 +681,7 @@ Instead of creating the two summarised tibbles and using a `full_join()`, achiev
 
 Hint: you have to do it the either way round, so `group_by(year, cause) %>% summarise(...)` first, then `group_by(year) %>% mutate()`.
 
-Bonus: `select()` columns `year`, `cause`, `percentage`, then `spread()` the `cause` variable using `percentage` as values.
+Bonus: `select()` columns `year`, `cause`, `percentage`, then `pivot_wider()` the `cause` variable using `percentage` as values.
 
 **Solution**
 
@@ -750,9 +695,9 @@ gbd_full %>%
   mutate(total_per_year = sum(total_per_cause)) %>% 
   # add the percentage column
   mutate(percentage = percent(total_per_cause/total_per_year)) %>% 
-  # select the final variables and spread for better vieweing
+  # select the final variables for better vieweing
   select(year, cause, percentage) %>% 
-  spread(cause, percentage)
+  pivot_wider(names_from = cause, values_from = percentage)
 ```
 
 
@@ -763,7 +708,7 @@ Note that your pipelines shouldn't be much longer than this, and we often save i
 Do not feel like you should be able to just bash out these clever pipelines without a lot of trial and error first.
 
 
-## Exercise - `filter()`, `summarise()`, `spread()`
+## Exercise - `filter()`, `summarise()`, `pivot_wider()`
 
 Still working with `gbd_full`:
 
@@ -771,7 +716,7 @@ Still working with `gbd_full`:
 * Calculate the total number of deaths in the different income groups (`r gbd_full$income %>% unique()`). Hint: use `group_by(income)` and `summarise(new_column_name = sum(variable))`.
 * Calculate the total number of deaths within each income group for males and females. Hint: this is as easy as adding `, sex` to `group_by(income)`.
 
-* `spread()` the `income` column.
+* `pivot_wider()` the `income` column.
 
 **Solution**
 
@@ -780,5 +725,5 @@ gbd_full %>%
   filter(year == 1990) %>% 
   group_by(income, sex) %>% 
   summarise(total_deaths = sum(deaths_millions)) %>% 
-  spread(income, total_deaths)
+  pivot_wider(names_from = income, values_from = total_deaths)
 ```

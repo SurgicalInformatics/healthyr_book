@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo=TRUE, message=FALSE, fig.width=8, fig.height=6)
 ## Get the data
 
 We can save a `ggplot()` object into a variable (we usually call it `p` but can be any name). 
-This then appears in the **Environment** tab. 
+This then appears in the Environment tab. 
 To plot it it needs to be recalled on a separate line. 
 Saving a plot into a variable allows us to modify it later (e.g., `p + theme_bw()`).
 
@@ -16,7 +16,7 @@ Saving a plot into a variable allows us to modify it later (e.g., `p + theme_bw(
 library(gapminder)
 library(tidyverse)
 
-p0 = gapminder %>% 
+p0 <- gapminder %>% 
   filter(year == 2007) %>% 
   group_by(continent, year) %>% 
   ggplot(aes(y = lifeExp, x = gdpPercap, colour = continent)) +
@@ -37,7 +37,7 @@ p0
 ### Logarithmic
 
 ```{r}
-p1 = p0 + scale_x_log10()
+p1 <- p0 + scale_x_log10()
 ```
 
 ### Expand limits
@@ -46,35 +46,27 @@ p1 = p0 + scale_x_log10()
 Specify the value you want to be included:
 
 ```{r}
-p2 = p0 + expand_limits(y = 0)
+p2 <- p0 + expand_limits(y = 0)
 ```
 
 Or two:
 
 ```{r}
-p3 = p0 + expand_limits(y = c(0, 100))
+p3 <- p0 + expand_limits(y = c(0, 100))
 ```
 
 By default, `ggplot()` adds some padding around the included area (see how the scale doesn't start from 0, but slightly before). 
 You can remove this padding with the expand option:
 
 ```{r}
-p4 = p0 +
+p4 <- p0 +
   expand_limits(y = c(0, 100)) +
   coord_cartesian(expand = FALSE)
 ```
 
-We are now using a new library - **patchwork** - to print all 4 plots together.
-Installing **patchwork** is slightly different to how we install other packages (neither using the Packages tab or `install.packages("patchwork")` will not work).
-**patchwork** lives in GitHub (more about this in Chapter \@ref(chap13-h1)), not on CRAN like most R packages, so to install it, you'll need to run this (just once):
-
-```{r, eval = FALSE}
-remotes::install_github("thomasp85/patchwork")
-```
-
-You can then start using this package as usual by including `library(patchwork)` in your script.
+We are now using a new library - `patchwork` - to print all 4 plots together.
 Its syntax is very simple - it allows us to add ggplot objects together.
-(Trying to do `p1 + p2` without loading the **patchwork** package will not work, R will say "Error: Don't know how to add p2 to a plot".)
+(Trying to do `p1 + p2` without loading the `patchwork` package will not work, R will say "Error: Don't know how to add p2 to a plot".)
 
 
 ```{r}
@@ -86,7 +78,7 @@ p1 + p2 + p3 + p4 + plot_annotation(tag_levels = "1", tag_prefix = "p")
 \index{plots@\textbf{plots}!zoom}
 
 ```{r}
-p1 = p0 +
+p1 <- p0 +
   coord_cartesian(ylim = c(70, 85), xlim = c(20000, 40000))
 ```
 
@@ -95,7 +87,7 @@ p1 = p0 +
 How is this one different to the previous?
 
 ```{r}
-p2 = p0 +
+p2 <- p0 +
   scale_y_continuous(limits = c(70, 85)) +
   scale_x_continuous(limits = c(20000, 40000))
 ```
@@ -111,7 +103,7 @@ p1 + p2
 \index{plots@\textbf{plots}!axes}
 
 ```{r}
-p1 = p0 +
+p1 <-  p0 +
   coord_cartesian(ylim = c(0, 100), expand = 0) +
   scale_y_continuous(breaks = c(17, 35, 88))
 ```
@@ -119,7 +111,7 @@ p1 = p0 +
 ### Swap the axes
 
 ```{r}
-p2 = p0 +
+p2 <- p0 +
   coord_flip()
 ```
 
@@ -133,7 +125,7 @@ p1 + p2
 ### Using the Brewer palettes:
 
 ```{r fig.height=3, fig.width=4}
-p1 = p0 +
+p1 <- p0 +
   scale_color_brewer(palette = "Paired")
 ```
 
@@ -143,7 +135,7 @@ p1 = p0 +
 `scale_colour_brewer()` is also a convenient place to change the legend title:
 
 ```{r}
-p2 = p0 +
+p2 <- p0 +
   scale_color_brewer("Continent - \n one of 5", palette = "Paired")
 ```
 
@@ -158,7 +150,7 @@ p1 + p2
 Use words:
 
 ```{r}
-p1 = p0 +
+p1 <- p0 +
   scale_color_manual(values = c("red", "green", "blue", "purple", "pink"))
 ```
 
@@ -166,7 +158,7 @@ Or HEX codes (either from http://colorbrewer2.org/ or any other resource):
 
 
 ```{r}
-p2 = p0 +
+p2 <- p0 +
   scale_color_manual(values = c("#8dd3c7", "#ffffb3", "#bebada",
                                 "#fb8072", "#80b1d3"))
 ```
@@ -195,7 +187,7 @@ p0 +
 \index{plots@\textbf{plots}!annotate}
 
 ```{r}
-p1 = p0 +
+p1 <- p0 +
   annotate("text",
            x = 25000,
            y = 50,
@@ -204,7 +196,7 @@ p1 = p0 +
 ```
 
 ```{r}
-p2 = p0 +
+p2 <- p0 +
   annotate("label",
            x = 25000,
            y = 50,
@@ -212,7 +204,7 @@ p2 = p0 +
 ```
 
 ```{r}
-p3 = p0 +
+p3 <- p0 +
   annotate("label",
            x = 25000, 
            y = 50,
@@ -230,10 +222,12 @@ p1 + p2 / p3
 \index{plots@\textbf{plots}!superscript}
 
 ```{r fig.height=3, fig.width=4}
-fit_glance = tibble(r.squared = 0.7693465)
+# a value we made up for this example
+# a real analysis will get it from the linear model object
+fit_glance <- tibble(r.squared = 0.7693465)
 
 
-plot_rsquared = paste0(
+plot_rsquared <- paste0(
   "R^2 == ",
   fit_glance$r.squared %>% round(2))
 
@@ -264,7 +258,7 @@ p0 +
 
 Use the following words: `"right", "left", "top", "bottom"`, or `"none"` to remove the legend.
 ```{r}
-p1 = p0 +
+p1 <- p0 +
   theme(legend.position = "none")
 
 ```
@@ -272,13 +266,13 @@ p1 = p0 +
 Or use relative coordinates (0--1) to give it an -y location:
 
 ```{r}
-p2 = p0 +
+p2 <- p0 +
   theme(legend.position      = c(1,0),
         legend.justification = c(1,0)) #bottom-right corner
 ```
 
 ```{r}
-p3 = p0 +
+p3 <- p0 +
   theme(legend.position = "top") +
   guides(colour = guide_legend(ncol = 2))
 ```
@@ -287,7 +281,7 @@ p3 = p0 +
 p1 + p2
 ```
 
-```{r fig.height=3, fig.width=4}
+```{r fig.height=4, fig.width=4}
 p3
 ```
 

@@ -18,7 +18,7 @@ knitr::opts_chunk$set(fig.width = 2.8, fig.height = 2.8, cache = TRUE)
 > What I cannot create, I do not understand.  
 > Richard Feynman
 
-There are a few different plotting packages in R, but the most elegant and versatile one is **ggplot2**^[The name of the package is **ggplot2**, but the function is called `ggplot()`. For everything you've ever wanted to know about the grammar of graphics in R, see @wickham2016.].
+There are a few different plotting packages in R, but the most elegant and versatile one is `ggplot2`^[The name of the package is `ggplot2`, but the function is called `ggplot()`. For everything you've ever wanted to know about the grammar of graphics in R, see @wickham2016.].
 **gg** stands for **g**rammar of **g**raphics which means that we can make a plot by describing it one component at a time. 
 In other words, we build a plot by adding layers to it.
 
@@ -35,7 +35,7 @@ Figure \@ref(fig:chap04-fig-steps) shows some example steps for building a scatt
 library(tidyverse)
 library(gapminder)
 
-gapminder2007 = gapminder %>% 
+gapminder2007 <- gapminder %>% 
   filter(year == 2007) %>% 
   mutate(gdpPercap_thousands = gdpPercap/1000)
 ```
@@ -45,33 +45,33 @@ gapminder2007 = gapminder %>%
 ```{r chap04-fig-steps, fig.height=10, fig.width=6, echo = FALSE, fig.cap = "Example steps for building and modiyfing a ggplot. (1) initialising the canvas and defining variables, (2) adding points, (3) colouring points by continent, (4) changing point type, (5) faceting, (6) changing the plot theme and the scale of the x variable."}
 library(patchwork)
 
-step1 = gapminder2007 %>% 
+step1 <- gapminder2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp))
 
-step2 = gapminder2007 %>% 
+step2 <- gapminder2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp)) +
   geom_point()
 
-step3 = gapminder2007 %>% 
+step3 <- gapminder2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
   geom_point()   +
   theme(legend.position = "none")
 
-step4 = gapminder2007 %>% 
+step4 <- gapminder2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
   geom_point(shape = 1)
 
-step5 = gapminder2007 %>% 
+step5 <- gapminder2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
   geom_point(shape = 1) +
   facet_wrap(~continent)
 
-step5 = gapminder2007 %>% 
+step5 <- gapminder2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
   geom_point(shape = 1) +
   facet_wrap(~continent)
 
-step6 = gapminder2007 %>% 
+step6 <- gapminder2007 %>% 
   ggplot(aes(x = gdpPercap/1000, y = lifeExp, colour = continent)) +
   geom_point(shape = 1) +
   facet_wrap(~continent) +
@@ -100,7 +100,7 @@ The dataset includes `r nrow(gapminder)` observations (rows) of `r ncol(gapminde
 The years in this dataset span `r range(gapminder$year) %>% paste(collapse = " to ")` with 5-year intervals (so a total of `r gapminder$year %>% n_distinct()` different years).
 It includes `r gapminder$country %>% n_distinct()` countries from `r gapminder$continent %>% n_distinct()` continents (`r gapminder$continent %>% unique()`).
 
-You can check that all of the numbers quoted above are correct by running these lines:
+You can check that all of the numbers quoted above are correct with these lines:
 
 ```{r, results = "hide"}
 library(tidyverse)
@@ -113,7 +113,7 @@ gapminder$continent %>% unique()
 Let's create a new shorter tibble called `gapminder2007` that only includes data for the year 2007.
 
 ```{r}
-gapminder2007 = gapminder %>% 
+gapminder2007 <- gapminder %>% 
   filter(year == 2007)
 
 gapminder2007
@@ -125,7 +125,7 @@ Running `library(gapminder)` makes it available to use (so the funny line below 
 ```{r}
 # loads the gapminder dataset from the package environment
 # into your Global Environment
-gapminder = gapminder
+gapminder <- gapminder
 ```
 
 Both `gapminder` and `gapminder2007` now show up in the **Environment** tab and can be clicked on/quickly viewed as usual.
@@ -215,7 +215,8 @@ It is very important to understand the difference between including `ggplot` arg
 <!-- Graphical example of the following suggested by SK in comments -->
 
 The main aesthetics (things we can see) are: **x**, **y**, **colour**, **fill**, **shape**, **size**, and any of these could appear inside or outside the `aes()` function.
-Press F1 on, e.g., `geom_point()`, to see see the full list of aesthetics that can be used with this geom (this opens the **Help** tab).
+Press F1 on, e.g., `geom_point()`, to see see the full list of aesthetics that can be used with this geom (this opens the Help tab).
+If F1 is hard to summon on your keyboard, type in and run `?geom_point`.
 
 Variables  (so columns of your dataset) have to be defined inside `aes()`. Whereas to apply a modification on everything, we can set an aesthetic to a constant value outside of `aes()`.
 
@@ -223,7 +224,7 @@ For example, Figure \@ref(fig:chap04-fig-shapes) shows a selection of the point 
 
 ```{r chap04-fig-shapes, echo = FALSE, fig.width = 6,  fig.cap="A selection of shapes for plotting. Shapes 0, 1, and 2 are hollow, whereas for shapes 21, 22, and 23 we can define both a colour and a fill (for thes shapes, colour is the border around the fill).", warning = FALSE}
 
-shapes = tibble(shape = c(0, 1, 2, 4, 8, 15, 16, 17, 21, 22, 23), x = 0:10)
+shapes <- tibble(shape = c(0, 1, 2, 4, 8, 15, 16, 17, 21, 22, 23), x = 0:10)
 
 ggplot(shapes, aes(x, y = 1)) + 
   geom_text(aes(label = shape), hjust = 0, nudge_x = -0.55) +
@@ -283,7 +284,7 @@ But a very quick way to change the appearance of a ggplot is to apply a differen
 The signature ggplot theme has a light grey background and white grid lines (Figure \@ref(fig:chap04-fig-themes)). 
 
 ```{r chap04-fig-themes, echo = FALSE, fig.width=5, fig.height=3.5, fig.cap = "Some of the built-in ggplot themes (1) default (2) `theme_bw()`, (3) `theme_dark()`, (4) `theme_classic()`."}
-themeplot = gapminder %>% 
+themeplot <- gapminder %>% 
   ggplot(aes(x = year, y = lifeExp)) +
   facet_wrap(~"LABEL")
 
@@ -356,11 +357,11 @@ The resulting bubble plots are shown in Figure \@ref(fig:chap04-fig-bubble).
 
 theme_set(theme_bw())
 
-p1 = gapminder2007 %>% 
+p1 <- gapminder2007 %>% 
   ggplot(aes(x = gdpPercap/1000, y = lifeExp, size = pop)) +
   geom_point()
 
-p2 = gapminder2007 %>% 
+p2 <- gapminder2007 %>% 
   ggplot(aes(x = gdpPercap/1000, y = lifeExp, size = pop)) +
   geom_point(shape = 1, alpha = 0.5) +
   theme(legend.position = "none")
@@ -419,11 +420,11 @@ gapminder %>%
 
 theme_set(theme_bw())
 
-p1 = gapminder %>% 
+p1 <- gapminder %>% 
   ggplot(aes(x = year, y = lifeExp)) +
   geom_line()
 
-p2 = gapminder %>% 
+p2 <- gapminder %>% 
   ggplot(aes(x = year, y = lifeExp, group = country)) +
   geom_line()
 
@@ -454,15 +455,18 @@ gapminder %>%
 \index{plots@\textbf{plots}!bar}
 \index{plots@\textbf{plots}!column}
 
-<!-- Could the below be clearer- SK -->
 
-There are two geoms for making bar plots - `geom_col()` and `geom_bar()`. 
-In short: `geom_col()` plots values from your data directly (you define the `x` and `y` values), whereas `geom_bar()` will only take `x` values, the height of the bar (`y`) is the subgroups within `x` counted up. 
-`geom_bar()` is basically a histogram for a categorical variable. 
+There are two geoms for making bar plots - `geom_col()` and `geom_bar()` and the examples below will illustrate when to use which one.
+In short: if your data is already summarised or includes a values for `y` (height of the bars), use `geom_col()`.
+If, however, you want `ggplot()` to count up the number of rows in your dataset, use `geom_bar()`.
+For example, with patient-level data (each row is a patient) you'll probably want to use `geom_bar()`, with data that is already somewhat aggregated, you'll use `geom_col()`.
+There is no harm in trying one, and if it doesn't work, trying the other.
 
-**`geom_col()`**:
 
-* requires two variables `aes(x = , y = )`
+
+### Summarised data
+
+* `geom_col()` requires two variables `aes(x = , y = )`
 * `x` is categorical, `y` is continuous (numeric)
 
 Let's plot the life expectancies in 2007 in these three countries:
@@ -481,12 +485,12 @@ We have also created another cheeky one using the same code but changing the sca
 
 theme_set(theme_bw())
 
-p1 = gapminder2007 %>% 
+p1 <- gapminder2007 %>% 
   filter(country %in% c("United Kingdom", "France", "Germany")) %>% 
   ggplot(aes(x = country, y = lifeExp)) +
   geom_col() 
 
-p2 = gapminder2007 %>% 
+p2 <- gapminder2007 %>% 
   filter(country %in% c("United Kingdom", "France", "Germany")) %>% 
   ggplot(aes(x = country, y = lifeExp)) +
   geom_col() +
@@ -497,9 +501,9 @@ p1 + p2 + plot_annotation(tag_levels = "1", tag_prefix = "(", tag_suffix = ")")
 
 \FloatBarrier
 
-**`geom_bar()`**:
+### Countable data
 
-* requires a single variable `aes(x = )`
+* `geom_bar()` requires a single variable `aes(x = )`
 * this `x` should be a categorical variable
 * `geom_bar()` then counts up the number of observations (rows) for this variable and plots them as bars.
 
@@ -558,7 +562,7 @@ We're also removing the fill by setting it to NA (`fill = NA`).
 Note how we defined `colour = country` inside the `aes()` (as it's a variable), but we put the fill inside `geom_bar()` as a constant.
 This was explained in more detail in steps (3) and (4) in the ggplot anatomy Section (\@ref(chap04-gganatomy)).
 
-### colour vs fill
+### `colour` vs `fill`
 \index{plots@\textbf{plots}!colour}
 \index{plots@\textbf{plots}!fill}
 
@@ -567,11 +571,13 @@ Colour is the border around a geom, whereas fill is inside it.
 Both can either be set based on a variable in your dataset (this means `colour = ` or `fill = ` needs to be inside the `aes()` function), or they could be set to a fixed colour.
 
 R has an amazing knowledge of colour.
-In addition to knowing what is "white", "yellow", "red", "green" etc. (meaning we can simply do `geom_bar(fill = "green")`) it also knows what "aquamarine", "blanchedalmond", "coral", "deeppink", "lavender", "deepskyblue" look like (amongst many many others, search the internet for "R colours" for a full list).
+In addition to knowing what is "white", "yellow", "red", "green" etc. (meaning we can simply do `geom_bar(fill = "green")`), it also knows what "aquamarine", "blanchedalmond", "coral", "deeppink", "lavender", "deepskyblue" look like (amongst many many others, search the internet for "R colours" for a full list).
 
 <!-- HEX code website for reference include? -->
 
-We can also use HEX colour codes, for example, `geom_bar(fill = "#FF0099")` is a very pretty pink.
+We can also use Hex colour codes, for example, `geom_bar(fill = "#FF0099")` is a very pretty pink.
+Every single colour in the world can be represented with a Hex code, and the codes are universally known by most plotting or image making programmes.
+Therefore, you can find Hex colour codes from a lot of places on the internet, or https://www.color-hex.com just to name one.
 
 ### Proportions {#chap04-proportions}
 
@@ -652,7 +658,7 @@ gapminder2007 %>%
   geom_boxplot()
 ```
 
-## Multiple geoms, multiple `aes()`?
+## Multiple geoms, multiple `aes()`
 
 One of the coolest things about `ggplot()` is that we can plot multiple geoms on top of each other!
 
@@ -676,23 +682,23 @@ This makes Figure \@ref(fig:chap04-fig-multigeoms):1.
 
 theme_set(theme_bw())
 
-p1 = gapminder2007 %>% 
+p1 <- gapminder2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
   geom_boxplot() +
   geom_point()
 
-p2 = gapminder2007 %>% 
+p2 <- gapminder2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
   geom_boxplot() +
   geom_jitter()
 
-p3 = gapminder2007 %>% 
+p3 <- gapminder2007 %>% 
   ggplot(aes(x = continent, y = lifeExp, colour = continent)) +
   geom_boxplot() +
   geom_jitter(position = position_jitter(seed = 1)) +
   theme(legend.position = "none")
 
-p4 = gapminder2007 %>% 
+p4 <- gapminder2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
   geom_boxplot() +
   geom_jitter(aes(colour = continent), position = position_jitter(seed = 1))
@@ -735,7 +741,7 @@ Let's combine three geoms by including text labels on top of the box plot + poin
 We are creating a new tibble called `label_data` filtering for the maximum life expectancy countries at each continent (`group_by(continent)`):
 
 ```{r}
-label_data = gapminder2007 %>% 
+label_data <- gapminder2007 %>% 
   group_by(continent) %>% 
   filter(lifeExp == max(lifeExp)) %>% 
   select(country, continent, lifeExp)
@@ -788,7 +794,7 @@ All your geoms will "know about" the top-level `aes()` variables, but including 
 
 ## Solutions
 
-**4.4.1**
+**4.5.1**
 
 ```{r, fig.keep = 'none'}
 library(tidyverse)
@@ -806,7 +812,7 @@ gapminder %>%
 
 ```
 
-**4.5.3**
+**4.6.5**
 
 ```{r, eval = FALSE}
 library(tidyverse)

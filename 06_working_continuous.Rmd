@@ -41,7 +41,7 @@ By distribution, we are simply referring to the shape of the data.
 The examples in this chapter all use the data introduced previously from the amazing [Gapminder project](https://www.gapminder.org/). 
 We will start by looking at the life expectancy of populations over time and in different geographical regions. 
 
-## Get the data
+## Get and check the data {#chap06-h2-check}
 
 ```{r, message=F}
 # Load packages
@@ -50,10 +50,8 @@ library(finalfit)
 library(gapminder)
 
 # Create object mydata from object gapminder
-mydata = gapminder
+mydata <- gapminder
 ```
-
-## Check the data {#chap06-h2-check}
 
 It is vital that data is carefully inspected when first read (for help reading data into R see \@ref(chap02-h2-reading-data-into-r)).
 The three functions below provide a clear summary allowing errors or miscoding to be quickly identified. 
@@ -75,11 +73,11 @@ ff_glimpse(mydata) # summary statistics for each variable
 \index{functions@\textbf{functions}!ff\_glimpse}
 
 ```{r include=FALSE}
-sum_mydata = ff_glimpse(mydata) # summary statistics for each variable
+sum_mydata <- ff_glimpse(mydata) # summary statistics for each variable
 ```
 
 ```{r message=FALSE, echo=FALSE}
-sum_mydata = ff_glimpse(mydata) # summary statistics for each variable
+sum_mydata <- ff_glimpse(mydata) # summary statistics for each variable
 library(knitr)
 library(kableExtra)
 sum_mydata[[1]] %>%
@@ -249,11 +247,11 @@ For example, none of the people can be related to each other.
 So in our example of countries and continents, you have to assume that the mean life expectancy of each country does not depend on the life expectancies of other countries in the group. In other words, that each measurement is independent.
 
 ```{r}
-ttest_data = mydata %>%                      # save as object ttest_data
+ttest_data <- mydata %>%                      # save as object ttest_data
   filter(year == 2007) %>%                   # 2007 only
   filter(continent %in% c("Asia", "Europe")) # Asia/Europe only
 
-ttest_result = 
+ttest_result <- 
   t.test(lifeExp ~ continent, data = ttest_data)
 ttest_result
 ```
@@ -266,7 +264,7 @@ The difference in means is provided at the bottom of the output.
 The *t*-value, degrees of freedom (df) and p-value are all provided. 
 The p-value is `r ttest_result$p.value %>% round_tidy(5)`. 
 
-We used the assignent operator to save the results of the t-test into a new object called `ttest_result`.
+We used the assigment arrow to save the results of the t-test into a new object called `ttest_result`.
 If you look at the Environment tab, you should see `ttest_result there`.
 If you click on it - to view it - you'll realise that it's not structured like a table, but a list of different pieces of information.
 The structure of the t-test object is shown in Figure \@ref(fig:chap06-ttest-object).
@@ -321,7 +319,7 @@ The overall difference is not impressive in the boxplot.
 We can plot differences at the country level directly. 
 
 ```{r chap06-fig-line-life-asia, fig.height=3, fig.width=3, fig.cap="Line plot: Change in life expectancy in Asian countries from 2002 to 2007"}
-paired_data = mydata %>%               # save as object paired_data
+paired_data <- mydata %>%               # save as object paired_data
   filter(year %in% c(2002, 2007)) %>%  # 2002 and 2007 only
   filter(continent == "Asia")          # Asia only
 
@@ -337,7 +335,7 @@ What is the difference in life expectancy for each individual country?
 We don't usually have to produce this directly, but here is one method. 
 
 ```{r fig.height=3, fig.width=3}
-paired_table = paired_data %>%        # save object paired_data
+paired_table <- paired_data %>%        # save object paired_data
   select(country, year, lifeExp) %>%  # select vars interest
   pivot_wider(names_from = year,      # put years in columns
               values_from = lifeExp) %>% 
@@ -443,7 +441,7 @@ This so-called omnibus test tells you whether there are any differences in the c
 Again, it is important to plot carefully and be clear what question you are asking.  
 
 ```{r}
-aov_data = mydata %>% 
+aov_data <- mydata %>% 
   filter(year == 2007) %>% 
   filter(continent %in% c("Americas", "Europe", "Asia"))
 
@@ -588,7 +586,7 @@ tibble(
 
 
 ```{r fig.height=3, fig.width=6, fig.cap="Histogram: Log transformation of life expectancy for countries in Africa 2002"}
-africa2002 = mydata %>%                # save as africa2002
+africa2002 <- mydata %>%                # save as africa2002
   filter(year == 2002) %>%             # only 2002
   filter(continent == "Africa") %>%    # only Africa
   select(country, lifeExp) %>%         # only these variables
@@ -618,22 +616,22 @@ We can use it to test for a difference in life expectancies for African countrie
 Let's do a histogram, Q-Q plot and boxplot first. 
 
 ```{r fig.height=4, fig.width=6, fig.cap="Panels plots: histogram, Q-Q, boxplot for life expectancy in Africa 1992 v 2007"}
-africa_data = mydata %>%                          
+africa_data <- mydata %>%                          
   filter(year %in% c(1982, 2007)) %>%      # only 1982 and 2007
   filter(continent %in% c("Africa"))       # only Africa
 
-p1 = africa_data %>%                       # save plot as p1
+p1 <- africa_data %>%                       # save plot as p1
   ggplot(aes(x = lifeExp)) + 
   geom_histogram(bins = 15) +
   facet_wrap(~year)
 
-p2 = africa_data %>%                       # save plot as p2
+p2 <- africa_data %>%                       # save plot as p2
   ggplot(aes(sample = lifeExp)) +          # `sample` for Q-Q plot
   geom_qq() + 
   geom_qq_line(colour = "blue") + 
   facet_wrap(~year)
 
-p3 = africa_data %>%                       # save plot as p3
+p3 <- africa_data %>%                       # save plot as p3
   ggplot(aes(x = factor(year),             # try wihtout factor(year) to
              y = lifeExp)) +               # see the difference
   geom_boxplot(aes(fill = factor(year))) + # colour boxplot
@@ -681,8 +679,8 @@ Any number of explanatory variables can be tested against a so-called dependent 
 In this case, this is equivalent to a typical Table 1 in healthcare study. 
 
 ```{r eval=FALSE}
-dependent = "year"
-explanatory = c("lifeExp", "pop", "gdpPercap")
+dependent <- "year"
+explanatory <- c("lifeExp", "pop", "gdpPercap")
 africa_data %>%         
   mutate(
     year = factor(year)   # necessary for finalfit
@@ -694,8 +692,8 @@ africa_data %>%
 Note that the p-values above have not been corrected for multiple testing.
 
 ```{r echo=FALSE}
-dependent = "year"
-explanatory = c("lifeExp", "pop", "gdpPercap")
+dependent <- "year"
+explanatory <- c("lifeExp", "pop", "gdpPercap")
 africa_data %>%        
   mutate(
     year = factor(year)                     # change year to factor
@@ -748,19 +746,19 @@ In 2007, in which continents did mean life expectancy differ from 70.
 ## for a continent of your choice, but for all years. 
 ## Do the data appear normally distributed?
 
-asia_data = mydata %>%                          
+asia_data <- mydata %>%                          
   filter(continent %in% c("Asia"))              
 
-p1 = asia_data %>%                              
+p1 <- asia_data %>%                              
   ggplot(aes(x = lifeExp)) + 
   geom_histogram(bins = 15)
 
-p2 = asia_data %>%                          
+p2 <- asia_data %>%                          
   ggplot(aes(sample = lifeExp)) +             # sample =  for Q-Q plot
   geom_qq() + 
   geom_qq_line(colour = "blue")
 
-p3 = asia_data %>%                              
+p3 <- asia_data %>%                              
   ggplot(aes(x = year, y = lifeExp)) +  
   geom_boxplot(aes(fill = factor(year))) +  # optional: year as factor
   geom_jitter(alpha = 0.4) +                    
@@ -776,21 +774,21 @@ p1 / p2 | p3
 ## determine whether mean life expectancy is significantly different. 
 ## Remember to plot your data first.
 
-asia_2years = asia_data %>%   
+asia_2years <- asia_data %>%   
   filter(year %in% c(1952, 1972)) 
 
-p1 = asia_2years %>%   
+p1 <- asia_2years %>%   
   ggplot(aes(x = lifeExp)) + 
   geom_histogram(bins = 15) +                 
   facet_wrap(~year)                          
 
-p2 = asia_2years %>%   
+p2 <- asia_2years %>%   
   ggplot(aes(sample = lifeExp)) +              
   geom_qq() + 
   geom_qq_line(colour = "blue") + 
   facet_wrap(~year)                        
 
-p3 = asia_2years %>%         
+p3 <- asia_2years %>%         
   ggplot(aes(x = factor(year), y = lifeExp)) + 
   geom_boxplot(aes(fill = factor(year))) +      
   geom_jitter(alpha = 0.4) +                    

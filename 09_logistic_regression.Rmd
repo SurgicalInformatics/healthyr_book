@@ -14,7 +14,6 @@ mykable = function(x, caption = "CAPTION", ...){
         linesep = c("", "", "\\addlinespace"), ...) %>%
     kable_styling(latex_options = c("scale_down", "hold_position"))
 }
-
 theme_set(theme_bw())
 ```
 
@@ -68,7 +67,7 @@ To understand logistic regression we need to remind ourselves about odds and pro
 Odds and probabilities can get confusing so get them straight with Figure \@ref(fig:chap09-fig-odds).
 
 ```{r chap09-fig-odds, echo = FALSE, fig.cap="Probability vs odds."}
-knitr::include_graphics("images/chapter09/0_odds.pdf")
+knitr::include_graphics("images/chapter09/0_odds.png", auto_pdf = TRUE)
 ```
 
 In many situations, there is no particular reason to prefer one to the other. 
@@ -102,7 +101,7 @@ For a given categorical predictor such as smoking, the difference in chance of t
 For example, if the odds of a smoker have a CV event are 1.5 and the odds of a non smoker are 1.0, then the odds of a smoker having an event are 1.5-times greater than a non-smoker, odds ratio = 1.5. 
 
 ```{r chap09-fig-or, echo = FALSE, fig.cap="Odds ratios."}
-knitr::include_graphics("images/chapter09/1_or.pdf")
+knitr::include_graphics("images/chapter09/1_or.png", auto_pdf = TRUE)
 ```
 
 An alternative is a ratio of probabilities which is called a risk ratio or relative risk. 
@@ -155,7 +154,7 @@ Figure \@ref(fig:chap09-fig-logodds) demonstrates the fitted lines from a logist
 We could conclude, for instance, that on average, non-smokers who drink 2 cups of coffee per day have a 50% chance of a cardiovascular event. 
 
 ```{r chap09-fig-logodds, echo = FALSE, fig.cap="A logistic regression model of life-time cardiovascular event occurence by coffee consumption stratified by smoking (simulated data). Fitted lines plotted on the log-odds scale (A) and probability scale (B). *lines are straight when no polynomials or splines are included in regression. "}
-knitr::include_graphics("images/chapter09/2_prob_logodds.pdf")
+knitr::include_graphics("images/chapter09/2_prob_logodds.png", auto_pdf = TRUE)
 ```
 
 ### The fitted line and the logistic regression equation
@@ -175,7 +174,7 @@ Remember that if the odds ratio for 1 unit of change is 1.5, then the odds ratio
 For a categorical variable such as smoking, the odds ratio is the change in odds of a CV event associated with smoking compared with not smoking (the reference level). 
 
 ```{r chap09-fig-equation, echo = FALSE, fig.cap="Linking the logistic regression fitted line and equation (A) with the R output (B)."}
-knitr::include_graphics("images/chapter09/4_equation.pdf")
+knitr::include_graphics("images/chapter09/4_equation.png", auto_pdf = TRUE)
 ```
 
 ### Effect modification and confounding
@@ -196,7 +195,7 @@ Presented on the probability scale, the effect of the interaction is difficult t
 It is obvious on the log-odds scale that the fitted lines are no longer constrained to be parallel. 
 
 ```{r chap09-fig-types, echo = FALSE, fig.cap="Multivariable logistic regression (A) with additive (B) and multiplicative (C) effect modification."}
-knitr::include_graphics("images/chapter09/6_types.pdf")
+knitr::include_graphics("images/chapter09/6_types.png", auto_pdf = TRUE)
 ```
 
 The interpretation of the interaction term is important. 
@@ -207,7 +206,7 @@ The effect is now different given the inclusion of a significant interaction ter
 Please check back to the linear regression chapter if this is not making sense. 
 
 ```{r chap09-fig-interaction, echo = FALSE, fig.cap="Multivariable logistic regression with interaction term. The exponential of the interaction term is a ratio-of-odds ratios (ROR)."}
-knitr::include_graphics("images/chapter09/7_interactions.pdf")
+knitr::include_graphics("images/chapter09/7_interactions.png", auto_pdf = TRUE)
 ```
 
 ## Data preparation and exploratory analysis
@@ -236,7 +235,7 @@ Using logistic regression, we will investigate factors associated with death fro
 The Help page (F1 on `boot::melanoma`) gives us its data dictionary including the definition of each variable and the coding used.
 
 ```{r, message = F}
-melanoma = boot::melanoma
+melanoma <- boot::melanoma
 ```
 
 ### Check the data
@@ -256,7 +255,7 @@ We have seen some of this already (Section \@ref(chap08-recode): Recode data), b
 ```{r message=FALSE}
 library(tidyverse)
 library(finalfit)
-melanoma = melanoma %>% 
+melanoma <- melanoma %>% 
   mutate(sex.factor = factor(sex) %>%          
            fct_recode("Female" = "0",
                       "Male"   = "1") %>% 
@@ -294,7 +293,7 @@ melanoma$t_stage.factor %>% levels()
 Recode for ease.
 
 ```{r}
-melanoma = melanoma %>% 
+melanoma <- melanoma %>% 
   mutate(
     t_stage.factor = 
       fct_recode(t_stage.factor,
@@ -328,7 +327,7 @@ melanoma %>%
 
 ```{r}
 # 5-year mortality
-melanoma = melanoma %>% 
+melanoma <- melanoma %>% 
   mutate(
     mort_5yr = 
       if_else((time/365) < 5 & 
@@ -345,12 +344,12 @@ melanoma = melanoma %>%
 We are interested in the association between tumour ulceration and outcome.
 
 ```{r fig.height=3, fig.width=5}
-p1 = melanoma %>% 
+p1 <- melanoma %>% 
   ggplot(aes(x = ulcer.factor, fill = mort_5yr)) + 
   geom_bar() + 
   theme(legend.position = "none")
 
-p2 = melanoma %>% 
+p2 <- melanoma %>% 
   ggplot(aes(x = ulcer.factor, fill = mort_5yr)) + 
   geom_bar(position = "fill") + 
   ylab("proportion")
@@ -368,12 +367,12 @@ We can plot out these relationships, or tabulate them instead.
 
 ### Tabulate data
 
-We will use the convenient `Finalfit` function `summary_factorlist()` to look for difference across other variables by tumour ulceration.
+We will use the convenient `summary_factorlist()` function from the `finalfit` package to look for difference across other variables by tumour ulceration.
 
 ```{r, eval=FALSE}
 library(finalfit)
-dependent = "ulcer.factor"
-explanatory = c("age", "sex.factor", "year", "t_stage.factor")
+dependent <- "ulcer.factor"
+explanatory <- c("age", "sex.factor", "year", "t_stage.factor")
 melanoma %>% 
   summary_factorlist(dependent, explanatory, p = TRUE,
                      add_dependent_label = TRUE)
@@ -381,8 +380,8 @@ melanoma %>%
 
 ```{r, echo=FALSE}
 library(finalfit)
-dependent = "ulcer.factor"
-explanatory = c("age", "sex.factor", "year", "t_stage.factor")
+dependent <- "ulcer.factor"
+explanatory <- c("age", "sex.factor", "year", "t_stage.factor")
 melanoma %>% 
   summary_factorlist(dependent, explanatory, p = TRUE,
                      column = TRUE,       # proportions by column
@@ -412,8 +411,7 @@ A graphical check of linearity can be performed using a best fit "loess" line.
 This is on the probability scale, so it is not going to be straight. 
 But it should be monotonic - it should only ever go up or down. 
 
-```{r, warning=FALSE, message = FALSE}
-library(tidyverse)
+```{r fig.height=3, fig.width=5.5, message=FALSE, warning=FALSE}
 melanoma %>% 
   mutate(
     mort_5yr.num = as.numeric(mort_5yr) - 1
@@ -441,7 +439,7 @@ The `ggpairs()` function from `library(GGally)` gives you all the plots you can 
 
 ```{r fig.height=6, fig.width=6, message=FALSE}
 library(GGally)
-explanatory = c("ulcer.factor", "age", "sex.factor", 
+explanatory <- c("ulcer.factor", "age", "sex.factor", 
                 "year", "t_stage.factor")
 melanoma %>% 
   remove_labels() %>%  # ggpairs is older and doesn't like labels
@@ -456,7 +454,7 @@ If you have many variables you want to check you can split them up.
 **Continuous to continuous**
 
 ```{r, fig.width=4, fig.height=4}
-select_explanatory = c("age", "year")
+select_explanatory <- c("age", "year")
 melanoma %>% 
   remove_labels() %>% 
   ggpairs(columns = select_explanatory)
@@ -469,7 +467,7 @@ We want to compare everything against, for example, age so we need to add `-age`
 But because the excluded variable has to be in the third argument of `gather()` we need to type in `key, value` as placeholders:
 
 ```{r fig.height=3, fig.width=5, message=FALSE, warning=FALSE}
-select_explanatory = c("age", "ulcer.factor", 
+select_explanatory <- c("age", "ulcer.factor", 
                        "sex.factor", "t_stage.factor")
 
 melanoma %>% 
@@ -484,7 +482,7 @@ melanoma %>%
 **Categorical to categorical**
 
 ```{r fig.height=3, fig.width=5, warning=FALSE}
-select_explanatory = c("ulcer.factor", "sex.factor", "t_stage.factor")
+select_explanatory <- c("ulcer.factor", "sex.factor", "t_stage.factor")
 
 melanoma %>% 
   select(one_of(select_explanatory)) %>% 
@@ -518,7 +516,7 @@ Other link functions exists, such as the `probit` function, but this makes littl
 Let's start with a simple univariable model using the classical R approach. 
 
 ```{r}
-fit1 = glm(mort_5yr ~ ulcer.factor, data = melanoma, family = binomial)
+fit1 <- glm(mort_5yr ~ ulcer.factor, data = melanoma, family = binomial)
 summary(fit1)
 ```
 
@@ -583,7 +581,7 @@ We will use these principles through the next section.
 
 ## Fitting logistic regression models with Finalfit
 
-Our preference in model fitting is now to use our own **Finalfit** package. 
+Our preference in model fitting is now to use our own `finalfit` package. 
 It gets us to our results quicker and more easily, and produces our final model tables which go directly into manuscripts for publication (we hope). 
 
 The approach is the same as in linear regression. 
@@ -591,17 +589,17 @@ If the outcome variable is correctly specified as a factor, the `finalfit()` fun
 
 ```{r eval=FALSE}
 library(finalfit)
-dependent = "mort_5yr"
-explanatory = "ulcer.factor"
+dependent <- "mort_5yr"
+explanatory <- "ulcer.factor"
 melanoma %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
 ```
 
 ```{r echo=FALSE, message=FALSE}
 library(finalfit)
-dependent = "mort_5yr"
-explanatory = "ulcer.factor"
-fit = melanoma %>% 
+dependent <- "mort_5yr"
+explanatory <- "ulcer.factor"
+fit <- melanoma %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
 fit[[1]] %>% mykable(caption = "Univariable logistic regression: 5-year survival from malignant melanoma by tumour ulceration (fit 1).") %>% 
   column_spec(1, width = "3.5cm")
@@ -668,17 +666,17 @@ We're going to start by including the variables from above which we think are re
 
 ```{r eval=FALSE}
 library(finalfit)
-dependent = "mort_5yr"
-explanatory = c("ulcer.factor", "age", "sex.factor", "t_stage.factor")
+dependent <- "mort_5yr"
+explanatory <- c("ulcer.factor", "age", "sex.factor", "t_stage.factor")
 fit2 = melanoma %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
 ```
 
 ```{r echo=FALSE, message=FALSE}
 library(finalfit)
-dependent = "mort_5yr"
-explanatory = c("ulcer.factor", "age", "sex.factor", "t_stage.factor")
-fit = melanoma %>% 
+dependent <- "mort_5yr"
+explanatory <- c("ulcer.factor", "age", "sex.factor", "t_stage.factor")
+fit <- melanoma %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
 fit[[1]] %>% mykable(caption = "Multivariable logistic regression: 5-year survival from malignant melanoma (fit 2).") %>% 
   column_spec(1, width = "3.5cm")
@@ -696,7 +694,7 @@ We have shown above that the relationship of age to the outcome is not linear, t
 We can either convert age to a cateogorical variable or include it with a quadratic term ($x^2 + x$, remember parabolas from school?). 
 
 ```{r eval=FALSE}
-melanoma = melanoma %>% 
+melanoma <- melanoma %>% 
   mutate(
     age.factor = cut(age,
                      breaks = c(0, 25, 50, 75, 100)) %>% 
@@ -710,7 +708,7 @@ melanoma %>%
 ```
 
 ```{r echo=FALSE, message=FALSE}
-melanoma = melanoma %>% 
+melanoma <- melanoma %>% 
   mutate(
     age.factor = cut(age,
                      breaks = c(0, 25, 50, 75, 100)) %>% 
@@ -719,7 +717,7 @@ melanoma = melanoma %>%
 # Add this to relevel:
 # fct_relevel("(50,75]")
 
-fit = melanoma %>% 
+fit <- melanoma %>% 
   finalfit(dependent, c("ulcer.factor", "age.factor"), metrics = TRUE)
 fit[[1]] %>% mykable(caption = "Multivariable logistic regression: using `cut` to convert a continuous variable as a factor (fit 3).") %>% 
   column_spec(1, width = "3.5cm")
@@ -745,17 +743,17 @@ Note with default univariable model settings, the quadratic and linear term are 
 
 ```{r eval=FALSE}
 library(finalfit)
-dependent = "mort_5yr"
-explanatory = c("ulcer.factor", "I(age^2)", "age")
+dependent <- "mort_5yr"
+explanatory <- c("ulcer.factor", "I(age^2)", "age")
 melanoma %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
 ```
 
 ```{r echo=FALSE, message=FALSE}
 library(finalfit)
-dependent = "mort_5yr"
-explanatory = c("ulcer.factor", "I(age^2)", "age")
-fit = melanoma %>% 
+dependent <- "mort_5yr"
+explanatory <- c("ulcer.factor", "I(age^2)", "age")
+fit <- melanoma %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
 
 fit[[1]] %>% mykable(caption = "Multivariable logistic regression: including a quadratic term (fit 4).") %>% 
@@ -771,9 +769,9 @@ This is convenient in `Finalfit`.
 
 ```{r eval=FALSE}
 library(finalfit)
-dependent = "mort_5yr"
-explanatory = c("ulcer.factor", "age.factor", "sex.factor", "t_stage.factor")
-explanatory_multi = c("ulcer.factor", "sex.factor", "t_stage.factor")
+dependent <- "mort_5yr"
+explanatory <- c("ulcer.factor", "age.factor", "sex.factor", "t_stage.factor")
+explanatory_multi <- c("ulcer.factor", "sex.factor", "t_stage.factor")
 
 melanoma %>% 
   finalfit(dependent, explanatory, explanatory_multi, 
@@ -782,10 +780,10 @@ melanoma %>%
 
 ```{r echo=FALSE, message=FALSE}
 library(finalfit)
-dependent = "mort_5yr"
-explanatory = c("ulcer.factor", "age.factor", "sex.factor", "t_stage.factor")
-explanatory_multi = c("ulcer.factor", "sex.factor", "t_stage.factor")
-fit = melanoma %>% 
+dependent <- "mort_5yr"
+explanatory <- c("ulcer.factor", "age.factor", "sex.factor", "t_stage.factor")
+explanatory_multi <- c("ulcer.factor", "sex.factor", "t_stage.factor")
+fit <- melanoma %>% 
   finalfit(dependent, explanatory, explanatory_multi, 
            keep_models = TRUE, metrics = TRUE)
 fit[[1]] %>% mykable(caption = "Multivariable logistic regression model: comparing a reduced model in one table (fit 5).") %>% 
@@ -805,9 +803,9 @@ Is it contributing much to the model?
 
 ```{r eval=FALSE}
 library(finalfit)
-dependent = "mort_5yr"
-explanatory = c("ulcer.factor", "sex.factor", "t_stage.factor")
-explanatory_multi = c("ulcer.factor", "t_stage.factor")
+dependent <- "mort_5yr"
+explanatory <- c("ulcer.factor", "sex.factor", "t_stage.factor")
+explanatory_multi <- c("ulcer.factor", "t_stage.factor")
 
 melanoma %>% 
   finalfit(dependent, explanatory, explanatory_multi, 
@@ -816,10 +814,10 @@ melanoma %>%
 
 ```{r echo=FALSE, message=FALSE}
 library(finalfit)
-dependent = "mort_5yr"
-explanatory = c("ulcer.factor", "sex.factor", "t_stage.factor")
-explanatory_multi = c("ulcer.factor", "t_stage.factor")
-fit = melanoma %>% 
+dependent <- "mort_5yr"
+explanatory <- c("ulcer.factor", "sex.factor", "t_stage.factor")
+explanatory_multi <- c("ulcer.factor", "t_stage.factor")
+fit <- melanoma %>% 
   finalfit(dependent, explanatory, explanatory_multi, 
            keep_models = TRUE, metrics = TRUE)
 fit[[1]] %>% mykable(caption = "Multivariable logistic regression: further reducing the model (fit 6).") %>% 
@@ -840,9 +838,9 @@ For instance, perhaps the presence of ulceration confers a much greater risk of 
 
 ```{r eval=FALSE}
 library(finalfit)
-dependent = "mort_5yr"
-explanatory = c("ulcer.factor", "t_stage.factor")
-explanatory_multi = c("ulcer.factor*t_stage.factor")
+dependent <- "mort_5yr"
+explanatory <- c("ulcer.factor", "t_stage.factor")
+explanatory_multi <- c("ulcer.factor*t_stage.factor")
 melanoma %>% 
   finalfit(dependent, explanatory, explanatory_multi, 
            keep_models = TRUE, metrics = TRUE)
@@ -850,9 +848,9 @@ melanoma %>%
 
 ```{r echo=FALSE, message=FALSE}
 library(finalfit)
-dependent = "mort_5yr"
-explanatory = c("ulcer.factor", "t_stage.factor")
-explanatory_multi = c("ulcer.factor*t_stage.factor")
+dependent <- "mort_5yr"
+explanatory <- c("ulcer.factor", "t_stage.factor")
+explanatory_multi <- c("ulcer.factor*t_stage.factor")
 melanoma %>% 
   finalfit(dependent, explanatory, explanatory_multi, 
            keep_models = TRUE, add_dependent_label = FALSE) %>% 
@@ -884,20 +882,20 @@ Our final model table is therefore:
 
 ```{r eval=FALSE}
 library(finalfit)
-dependent = "mort_5yr"
-explanatory = c("ulcer.factor", "age.factor", 
+dependent <- "mort_5yr"
+explanatory <- c("ulcer.factor", "age.factor", 
                 "sex.factor", "t_stage.factor")
-explanatory_multi = c("ulcer.factor", "t_stage.factor")
+explanatory_multi <- c("ulcer.factor", "t_stage.factor")
 melanoma %>% 
   finalfit(dependent, explanatory, explanatory_multi, metrics = TRUE)
 ```
 
 ```{r echo=FALSE, message=FALSE}
 library(finalfit)
-dependent = "mort_5yr"
-explanatory = c("ulcer.factor", "age.factor", "sex.factor", "t_stage.factor")
-explanatory_multi = c("ulcer.factor", "t_stage.factor")
-fit = melanoma %>% 
+dependent <- "mort_5yr"
+explanatory <- c("ulcer.factor", "age.factor", "sex.factor", "t_stage.factor")
+explanatory_multi <- c("ulcer.factor", "t_stage.factor")
+fit <- melanoma %>% 
   finalfit(dependent, explanatory, explanatory_multi, metrics = TRUE)
 
 fit[[1]] %>% mykable(caption = "Multivariable logistic regression: final model (fit 8).") %>% 
@@ -911,8 +909,8 @@ fit[[2]] %>% mykable(caption = "Model metrics: final model (fit 8).", col.names 
 \index{plotting@\textbf{plotting}!odds ratio}
 
 ```{r fig.height=3, fig.width=7, message=FALSE, warnings=FALSE, fig.cap="Odds ratio plot"}
-dependent = "mort_5yr"
-explanatory_multi = c("ulcer.factor", "t_stage.factor")
+dependent <- "mort_5yr"
+explanatory_multi <- c("ulcer.factor", "t_stage.factor")
 melanoma %>% 
   or_plot(dependent, explanatory_multi,
           breaks = c(0.5, 1, 2, 5, 10, 25),
@@ -960,10 +958,10 @@ We have just randomly allocated 1 of 4 identifiers to each patient below.
 ```{r}
 # Simulate random hospital identifier
 set.seed(1)
-melanoma = melanoma %>% 
+melanoma <- melanoma %>% 
 	mutate(hospital_id = sample(1:4, 205, replace = TRUE))
 
-melanoma = melanoma %>%
+melanoma <- melanoma %>%
 	mutate(hospital_id = c(rep(1:3, 50), rep(4, 55)))
 
 ```
@@ -1020,10 +1018,10 @@ The output can be examined using `tidy()` and `glance()` functions as above.
 We find it more straightforward to use finalfit. 
 
 ```{r eval=FALSE}
-dependent = "mort_5yr"
-explanatory = "t_stage.factor"
-random_effect = "hospital_id" # Is the same as ->
-random_effect = "(1 | hospital_id)"
+dependent <- "mort_5yr"
+explanatory <- "t_stage.factor"
+random_effect <- "hospital_id" # Is the same as:
+random_effect <- "(1 | hospital_id)"
 melanoma %>% 
   finalfit(dependent, explanatory, 
            random_effect = random_effect,
@@ -1035,11 +1033,11 @@ Using `keep_models = TRUE`, we can compare univariable, multivariable and mixed 
 
 ```{r eval=FALSE}
 library(finalfit)
-dependent = "mort_5yr"
-explanatory = c("ulcer.factor", "age.factor", 
+dependent <- "mort_5yr"
+explanatory <- c("ulcer.factor", "age.factor", 
                 "sex.factor", "t_stage.factor")
-explanatory_multi = c("ulcer.factor", "t_stage.factor")
-random_effect = "hospital_id"
+explanatory_multi <- c("ulcer.factor", "t_stage.factor")
+random_effect <- "hospital_id"
 melanoma %>% 
   finalfit(dependent, explanatory, explanatory_multi, random_effect, 
            keep_models = TRUE,
@@ -1048,11 +1046,11 @@ melanoma %>%
 
 ```{r echo=FALSE, message=FALSE}
 library(finalfit)
-dependent = "mort_5yr"
-explanatory = c("ulcer.factor", "age.factor", "sex.factor", "t_stage.factor")
-explanatory_multi = c("ulcer.factor", "t_stage.factor")
-random_effect = "hospital_id"
-fit = melanoma %>% 
+dependent <- "mort_5yr"
+explanatory <- c("ulcer.factor", "age.factor", "sex.factor", "t_stage.factor")
+explanatory_multi <- c("ulcer.factor", "t_stage.factor")
+random_effect <- "hospital_id"
+fit <- melanoma %>% 
   finalfit(dependent, explanatory, explanatory_multi, random_effect, 
            keep_models = TRUE,
            metrics = TRUE)
@@ -1080,8 +1078,8 @@ Clearly much is written else where for those who are enthusiastic to learn more.
 
 ```{r eval=FALSE}
 library(ggfortify)
-dependent = "mort_5yr"
-explanatory_multi = c("ulcer.factor", "t_stage.factor")
+dependent <- "mort_5yr"
+explanatory_multi <- c("ulcer.factor", "t_stage.factor")
 melanoma %>% 
   glmmulti(dependent, explanatory) %>%
   autoplot(which=1:6)

@@ -98,37 +98,36 @@
 \contentsline {chapter}{\numberline {6}Working with continuous outcome variables}{123}{chapter.6}
 \contentsline {section}{\numberline {6.1}Continuous data}{123}{section.6.1}
 \contentsline {section}{\numberline {6.2}The Question}{124}{section.6.2}
-\contentsline {section}{\numberline {6.3}Get the data}{124}{section.6.3}
-\contentsline {section}{\numberline {6.4}Check the data}{124}{section.6.4}
-\contentsline {section}{\numberline {6.5}Plot the data}{126}{section.6.5}
-\contentsline {subsection}{\numberline {6.5.1}Histogram}{126}{subsection.6.5.1}
-\contentsline {subsection}{\numberline {6.5.2}Q-Q plot}{126}{subsection.6.5.2}
-\contentsline {subsection}{\numberline {6.5.3}Boxplot}{128}{subsection.6.5.3}
-\contentsline {section}{\numberline {6.6}Compare the means of two groups}{129}{section.6.6}
-\contentsline {subsection}{\numberline {6.6.1}\emph {t}-test}{129}{subsection.6.6.1}
-\contentsline {subsection}{\numberline {6.6.2}Two-sample \emph {t}-tests}{130}{subsection.6.6.2}
-\contentsline {subsection}{\numberline {6.6.3}Paired \emph {t}-tests}{132}{subsection.6.6.3}
-\contentsline {subsection}{\numberline {6.6.4}What if I run the wrong one?}{134}{subsection.6.6.4}
-\contentsline {section}{\numberline {6.7}Compare the mean of one group: one sample \emph {t}-tests}{135}{section.6.7}
-\contentsline {subsection}{\numberline {6.7.1}Interchangeability of t-tests}{135}{subsection.6.7.1}
-\contentsline {section}{\numberline {6.8}Compare the means of more than two groups}{136}{section.6.8}
-\contentsline {subsection}{\numberline {6.8.1}Plot the data}{136}{subsection.6.8.1}
-\contentsline {subsection}{\numberline {6.8.2}ANOVA}{136}{subsection.6.8.2}
-\contentsline {subsection}{\numberline {6.8.3}Assumptions}{138}{subsection.6.8.3}
-\contentsline {section}{\numberline {6.9}Multiple testing}{139}{section.6.9}
-\contentsline {subsection}{\numberline {6.9.1}Pairwise testing and multiple comparisons}{139}{subsection.6.9.1}
-\contentsline {section}{\numberline {6.10}Non-parametric tests}{141}{section.6.10}
-\contentsline {subsection}{\numberline {6.10.1}Transforming data}{142}{subsection.6.10.1}
-\contentsline {subsection}{\numberline {6.10.2}Non-parametric test for comparing two groups}{143}{subsection.6.10.2}
-\contentsline {subsection}{\numberline {6.10.3}Non-parametric test for comparing more than two groups}{145}{subsection.6.10.3}
-\contentsline {section}{\numberline {6.11}Finalfit approach}{145}{section.6.11}
-\contentsline {section}{\numberline {6.12}Conclusions}{146}{section.6.12}
-\contentsline {section}{\numberline {6.13}Exercises}{146}{section.6.13}
-\contentsline {subsection}{\numberline {6.13.1}Exercise 1}{146}{subsection.6.13.1}
-\contentsline {subsection}{\numberline {6.13.2}Exercise 2}{146}{subsection.6.13.2}
-\contentsline {subsection}{\numberline {6.13.3}Exercise 3}{146}{subsection.6.13.3}
-\contentsline {subsection}{\numberline {6.13.4}Exercise 4}{147}{subsection.6.13.4}
-\contentsline {section}{\numberline {6.14}Exercise solutions}{147}{section.6.14}
+\contentsline {section}{\numberline {6.3}Get and check the data}{124}{section.6.3}
+\contentsline {section}{\numberline {6.4}Plot the data}{126}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Histogram}{126}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}Q-Q plot}{127}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.3}Boxplot}{128}{subsection.6.4.3}
+\contentsline {section}{\numberline {6.5}Compare the means of two groups}{130}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}\emph {t}-test}{130}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}Two-sample \emph {t}-tests}{130}{subsection.6.5.2}
+\contentsline {subsection}{\numberline {6.5.3}Paired \emph {t}-tests}{132}{subsection.6.5.3}
+\contentsline {subsection}{\numberline {6.5.4}What if I run the wrong one?}{134}{subsection.6.5.4}
+\contentsline {section}{\numberline {6.6}Compare the mean of one group: one sample \emph {t}-tests}{135}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}Interchangeability of t-tests}{135}{subsection.6.6.1}
+\contentsline {section}{\numberline {6.7}Compare the means of more than two groups}{136}{section.6.7}
+\contentsline {subsection}{\numberline {6.7.1}Plot the data}{136}{subsection.6.7.1}
+\contentsline {subsection}{\numberline {6.7.2}ANOVA}{136}{subsection.6.7.2}
+\contentsline {subsection}{\numberline {6.7.3}Assumptions}{138}{subsection.6.7.3}
+\contentsline {section}{\numberline {6.8}Multiple testing}{139}{section.6.8}
+\contentsline {subsection}{\numberline {6.8.1}Pairwise testing and multiple comparisons}{139}{subsection.6.8.1}
+\contentsline {section}{\numberline {6.9}Non-parametric tests}{141}{section.6.9}
+\contentsline {subsection}{\numberline {6.9.1}Transforming data}{142}{subsection.6.9.1}
+\contentsline {subsection}{\numberline {6.9.2}Non-parametric test for comparing two groups}{143}{subsection.6.9.2}
+\contentsline {subsection}{\numberline {6.9.3}Non-parametric test for comparing more than two groups}{145}{subsection.6.9.3}
+\contentsline {section}{\numberline {6.10}Finalfit approach}{145}{section.6.10}
+\contentsline {section}{\numberline {6.11}Conclusions}{146}{section.6.11}
+\contentsline {section}{\numberline {6.12}Exercises}{146}{section.6.12}
+\contentsline {subsection}{\numberline {6.12.1}Exercise 1}{146}{subsection.6.12.1}
+\contentsline {subsection}{\numberline {6.12.2}Exercise 2}{146}{subsection.6.12.2}
+\contentsline {subsection}{\numberline {6.12.3}Exercise 3}{146}{subsection.6.12.3}
+\contentsline {subsection}{\numberline {6.12.4}Exercise 4}{147}{subsection.6.12.4}
+\contentsline {section}{\numberline {6.13}Exercise solutions}{147}{section.6.13}
 \contentsline {chapter}{\numberline {7}Linear regression}{151}{chapter.7}
 \contentsline {section}{\numberline {7.1}Regression}{151}{section.7.1}
 \contentsline {subsection}{\numberline {7.1.1}The Question (1)}{152}{subsection.7.1.1}
@@ -207,7 +206,7 @@
 \contentsline {subsection}{\numberline {9.9.4}Exercise}{237}{subsection.9.9.4}
 \contentsline {chapter}{\numberline {10}Time-to-event data and survival}{239}{chapter.10}
 \contentsline {section}{\numberline {10.1}The Question}{239}{section.10.1}
-\contentsline {section}{\numberline {10.2}Get and check data}{240}{section.10.2}
+\contentsline {section}{\numberline {10.2}Get and check the data}{240}{section.10.2}
 \contentsline {section}{\numberline {10.3}Death status}{240}{section.10.3}
 \contentsline {section}{\numberline {10.4}Time and censoring}{240}{section.10.4}
 \contentsline {section}{\numberline {10.5}Recode the data}{241}{section.10.5}
@@ -227,10 +226,10 @@
 \contentsline {section}{\numberline {10.9}Competing risks regression}{250}{section.10.9}
 \contentsline {section}{\numberline {10.10}Summary}{251}{section.10.10}
 \contentsline {section}{\numberline {10.11}Exercise}{252}{section.10.11}
-\contentsline {subsection}{\numberline {10.11.1}Exercise}{253}{subsection.10.11.1}
-\contentsline {section}{\numberline {10.12}Dates in R}{254}{section.10.12}
-\contentsline {subsection}{\numberline {10.12.1}Converting dates to survival time}{254}{subsection.10.12.1}
-\contentsline {section}{\numberline {10.13}Solutions}{255}{section.10.13}
+\contentsline {section}{\numberline {10.12}Exercise}{253}{section.10.12}
+\contentsline {section}{\numberline {10.13}Dates in R}{254}{section.10.13}
+\contentsline {subsection}{\numberline {10.13.1}Converting dates to survival time}{254}{subsection.10.13.1}
+\contentsline {section}{\numberline {10.14}Solutions}{255}{section.10.14}
 \contentsline {part}{III\hspace {1em}Workflow}{257}{part.3}
 \contentsline {chapter}{\numberline {11}Notebooks and Markdown}{261}{chapter.11}
 \contentsline {section}{\numberline {11.1}What is a Notebook?}{261}{section.11.1}

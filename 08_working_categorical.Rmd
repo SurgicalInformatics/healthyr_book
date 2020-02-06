@@ -48,7 +48,7 @@ We are interested in the association between tumour ulceration and death from me
 The Help page (F1 on `boot::melanoma`) gives us its data dictionary including the definition of each variable and the coding used.
 
 ```{r, message = F}
-mydata = boot::melanoma
+mydata <- boot::melanoma
 ```
 
 ## Check the data
@@ -75,7 +75,7 @@ This means you don't always have to recode your factors from numbers to names ma
 But you will always be recoding variables during the exploration and analysis stages too, so it is important to follow what is happening here.
 
 ```{r}
-mydata = mydata %>% 
+mydata <- mydata %>% 
   mutate(sex.factor =             # Make new variable  
            sex %>%                # from existing variable
            factor() %>%           # convert to factor
@@ -157,7 +157,7 @@ Note the requirement for `include.lowest = TRUE` when you specify breaks yoursel
 This should be clear in Figure \@ref(fig:chap08-fig-cut).
 
 ```{r chap08-fig-cut, echo = FALSE, fig.cap="`Cut` a continuous variable into a categorical variable."}
-knitr::include_graphics("images/chapter08/1_cut.pdf")
+knitr::include_graphics("images/chapter08/1_cut.png", auto_pdf = TRUE)
 ```
 
 ### Equal intervals vs quantiles
@@ -168,7 +168,7 @@ Or whether you wish to cut the data so there are equal proportions of cases (pat
 
 Equal intervals:
 ```{r}
-mydata = mydata %>% 
+mydata <- mydata %>% 
   mutate(
     age.factor = 
       age %>%
@@ -182,7 +182,7 @@ mydata$age.factor %>%
 
 Quantiles:
 ```{r}
-mydata = mydata %>% 
+mydata <- mydata %>% 
   mutate(
     age.factor = 
       age %>%
@@ -202,7 +202,7 @@ mydata$age.factor %>%
 Using the cut function, a continuous variable can be converted to a categorical one:
 
 ```{r}
-mydata = mydata %>% 
+mydata <- mydata %>% 
   mutate(
     age.factor = 
       age %>%
@@ -226,12 +226,12 @@ It is useful to plot this as counts but also as proportions.
 It is proportions you are comparing, but you really want to know the absolute numbers as well. 
 
 ```{r, fig.width=7, fig.height=3, fig.cap="Bar chart: outcome after surgery for patients with ulcerated melanoma."}
-p1 = mydata %>% 
+p1 <- mydata %>% 
   ggplot(aes(x = ulcer.factor, fill = status.factor)) + 
   geom_bar() + 
   theme(legend.position = "none")
 
-p2 = mydata %>% 
+p2 <- mydata %>% 
   ggplot(aes(x = ulcer.factor, fill = status.factor)) + 
   geom_bar(position = "fill") + 
   ylab("proportion")
@@ -248,12 +248,12 @@ This ordering of this particular variable is unusual - it would be more common t
 One quick option is to just reverse the order of the levels in the plot. 
 
 ```{r fig.width=7, fig.height=3, fig.cap="Bar chart: outcome after surgery for patients with ulcerated melanoma, reversed levels."}
-p1 = mydata %>% 
+p1 <- mydata %>% 
   ggplot(aes(x = ulcer.factor, fill = status.factor)) + 
   geom_bar(position = position_stack(reverse = TRUE)) + 
   theme(legend.position = "none")
 
-p2 = mydata %>% 
+p2 <- mydata %>% 
   ggplot(aes(x = ulcer.factor, fill = status.factor)) + 
   geom_bar(position = position_fill(reverse = TRUE)) + 
   ylab("proportion")
@@ -269,13 +269,13 @@ We may also be interested in exploring potential effect modification, interactio
 Again, we urge you to first visualise these, rather than going straight to a model. 
 
 ```{r, fig.width=6, fig.height=6, fig.cap="Facetted bar plot: outcome after surgery for patients with ulcerated melanoma aggregated by sex and age."}
-p1 = mydata %>% 
+p1 <- mydata %>% 
   ggplot(aes(x = ulcer.factor, fill=status.factor)) + 
   geom_bar(position = position_stack(reverse = TRUE)) +
   facet_grid(sex.factor ~ age.factor) + 
   theme(legend.position = "none")
 
-p2 = mydata %>% 
+p2 <- mydata %>% 
   ggplot(aes(x = ulcer.factor, fill=status.factor)) + 
   geom_bar(position = position_fill(reverse = TRUE)) +
   facet_grid(sex.factor ~ age.factor)+ 
@@ -292,7 +292,7 @@ The outcome measure has three levels as can be seen.
 For our purposes here, we will generate a disease-specific mortality variable (`status_dss`), by combining "Died - other causes" and "Alive". 
 
 ```{r}
-mydata = mydata %>%
+mydata <- mydata %>%
   mutate(
     status_dss = fct_collapse(
       status.factor,
@@ -317,7 +317,7 @@ The reason "Alive" is second, rather than alphabetical, is it was recoded from "
 If, however, we want to make comparisons relative to "Alive", we need to move it to the front by using `fct_relevel()`.
 
 ```{r}
-mydata = mydata %>% 
+mydata <- mydata %>% 
   mutate(status_dss = status_dss %>%
            fct_relevel("Alive")
          )
@@ -329,7 +329,7 @@ Any number of factor levels can be specified in `fct_relevel()`.
 \index{categorical data@\textbf{categorical data}!finalfit}
 \index{categorical data@\textbf{categorical data}!summarising}
 
-Our own **finalfit** package provides convenient functions to summarise and compare factors, producing final tables for publication. 
+Our own `finalfit` package provides convenient functions to summarise and compare factors, producing final tables for publication. 
 
 ```{r eval=FALSE}
 library(finalfit)
@@ -347,7 +347,7 @@ mydata %>%
 ```
 
 
-**finalfit** is useful for summarising multiple variables. 
+`finalfit` is useful for summarising multiple variables. 
 We often want to summarise more than one factor or continuous variable against our `dependent` variable of interest. 
 Think of Table 1 in a journal article. 
 
@@ -409,7 +409,7 @@ It's easier to see in action by making a table of counts.
 ```{r message=FALSE}
 library(magrittr)
 mydata %$%        # note $ sign here
-  table(ulcer.factor, status_dss) # No dollar, no data = .
+  table(ulcer.factor, status_dss)
 ```
 
 The counts table can be passed to `prop.table()` for a proportions. 
@@ -594,4 +594,4 @@ mydata %>%
 ```
 
 ## Exercise
-Now produce these tables using the `summary_factorlist()` function from the **finalfit** package. 
+Now produce these tables using the `summary_factorlist()` function from the `finalfit` package. 

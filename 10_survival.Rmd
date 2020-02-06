@@ -30,12 +30,12 @@ mykable = function(x, caption = "CAPTION", ...){
 }
 ```
 
-## Get and check data
+## Get and check the data
 
 ```{r message=FALSE}
 library(tidyverse)
 library(finalfit)
-melanoma = boot::melanoma #F1 here for help page with data dictionary
+melanoma <- boot::melanoma #F1 here for help page with data dictionary
 ```
 
 ```{r eval=FALSE}
@@ -70,7 +70,7 @@ This patient is censored from the analysis at day 30, an important feature of ti
 ```{r}
 library(dplyr)
 library(forcats)
-melanoma = melanoma %>%
+melanoma <- melanoma %>%
   mutate(
     # Overall survival
     status_os = if_else(status == 2, 0, # "still alive"
@@ -112,14 +112,14 @@ This is a non-parametric statistic used to estimate the survival function from t
 ```{r}
 library(survival)
 
-survival_object = melanoma %$% 
+survival_object <- melanoma %$% 
 	Surv(time, status_os)
 
 # Explore:
 head(survival_object) # + marks censoring, in this case "Alive"
 
 # Expressing time in years
-survival_object = melanoma %$% 
+survival_object <- melanoma %$% 
 	Surv(time/365, status_os)
 ```
 
@@ -135,7 +135,7 @@ If you want to plot survival stratified by a single grouping variable, you can s
 
 ```{r}
 # Overall survival in whole cohort
-my_survfit = survfit(survival_object ~ 1, data = melanoma)
+my_survfit <- survfit(survival_object ~ 1, data = melanoma)
 my_survfit # 205 patients, 71 events
 ```
 
@@ -163,8 +163,8 @@ You should always include a number-at-risk table under these plots as it is esse
 As can be seen, the probability of dying is much greater if the tumour was ulcerated, compared to those that were not ulcerated. 
 
 ```{r, fig.width = 4, fig.height = 4}
-dependent_os = "Surv(time/365, status_os)"
-explanatory = c("ulcer")
+dependent_os <- "Surv(time/365, status_os)"
+explanatory  <- c("ulcer")
 
 melanoma %>% 
 	surv_plot(dependent_os, explanatory, pval = TRUE)
@@ -216,20 +216,20 @@ Alternatively, the a CPH regression can be run with **finalfit** functions.
 This is convenient for model fitting, exploration and the export of results. 
 
 ```{r eval=FALSE}
-dependent_os = "Surv(time, status_os)"
-dependent_dss = "Surv(time, status_dss)"
-dependent_crr = "Surv(time, status_crr)"
-explanatory = c("age", "sex", "thickness", "ulcer")
+dependent_os  <- "Surv(time, status_os)"
+dependent_dss <- "Surv(time, status_dss)"
+dependent_crr <- "Surv(time, status_crr)"
+explanatory   <- c("age", "sex", "thickness", "ulcer")
 
 melanoma %>% 
 	finalfit(dependent_os, explanatory)
 ```
 
 ```{r echo=FALSE}
-dependent_os = "Surv(time, status_os)"
-dependent_dss = "Surv(time, status_dss)"
-dependent_crr = "Surv(time, status_crr)"
-explanatory = c("age", "sex", "thickness", "ulcer")
+dependent_os  <- "Surv(time, status_os)"
+dependent_dss <- "Surv(time, status_dss)"
+dependent_crr <- "Surv(time, status_crr)"
+explanatory   <- c("age", "sex", "thickness", "ulcer")
 
 melanoma %>% 
 	finalfit(dependent_os, explanatory) %>% 
@@ -261,14 +261,14 @@ If you are using a backwards selection approach or similar, a reduced model can 
 The full model can be kept or dropped. 
 
 ```{r eval=FALSE}
-explanatory_multi = c("age", "thickness", "ulcer")
+explanatory_multi <- c("age", "thickness", "ulcer")
 melanoma %>% 
 	finalfit(dependent_os, explanatory, 
 	         explanatory_multi, keep_models = TRUE)
 ```
 
 ```{r echo=FALSE}
-explanatory_multi = c("age", "thickness", "ulcer")
+explanatory_multi <- c("age", "thickness", "ulcer")
 melanoma %>% 
 	finalfit(dependent_os, explanatory, 
 	         explanatory_multi, keep_models = TRUE) %>% 
@@ -286,7 +286,7 @@ The `cox.zph()` function from the **survival** package allows us to test this as
 The plot of scaled Schoenfeld residuals should be a horizontal line. The included hypothesis test identifies whether the gradient differs from zero for each variable. No variable significantly differs from zero at the 5% significance level.  
 
 ```{r, fig.width = 4, fig.height = 4}
-explanatory = c("age", "sex", "thickness", "ulcer", "year")
+explanatory <- c("age", "sex", "thickness", "ulcer", "year")
 melanoma %>% 
 	coxphmulti(dependent_os, explanatory) %>% 
 	cox.zph() %>% 
@@ -306,14 +306,14 @@ Including a `strata()` term will result in a separate baseline hazard function b
 This can be incorporated directly into the explanatory variable list. 
 
 ```{r eval=FALSE}
-explanatory= c("age", "sex", "ulcer", "thickness", 
+explanatory <- c("age", "sex", "ulcer", "thickness", 
                "strata(year)")
 melanoma %>% 
 	finalfit(dependent_os, explanatory)
 ```
 
 ```{r echo=FALSE}
-explanatory= c("age", "sex", "ulcer", "thickness", 
+explanatory <- c("age", "sex", "ulcer", "thickness", 
                "strata(year)")
 melanoma %>% 
 	finalfit(dependent_os, explanatory) %>% 
@@ -347,11 +347,11 @@ Note `cluster()` and `frailty()` terms cannot be combined in the same model.
 
 ```{r eval=FALSE}
 # Simulate random hospital identifier
-melanoma = melanoma %>% 
+melanoma <- melanoma %>% 
 	mutate(hospital_id = c(rep(1:10, 20), rep(11, 5)))
 
 # Cluster model
-explanatory = c("age", "sex", "thickness", "ulcer", 
+explanatory <- c("age", "sex", "thickness", "ulcer", 
                 "cluster(hospital_id)")
 melanoma %>% 
 	finalfit(dependent_os, explanatory) %>% 
@@ -360,11 +360,11 @@ melanoma %>%
 
 ```{r echo=FALSE}
 # Simulate random hospital identifier
-melanoma = melanoma %>% 
+melanoma <- melanoma %>% 
 	mutate(hospital_id = c(rep(1:10, 20), rep(11, 5)))
 
 # Cluster model
-explanatory = c("age", "sex", "thickness", "ulcer", 
+explanatory <- c("age", "sex", "thickness", "ulcer", 
                 "cluster(hospital_id)")
 melanoma %>% 
 	finalfit(dependent_os, explanatory)
@@ -372,7 +372,7 @@ melanoma %>%
 
 ```{r eval=FALSE}
 # Frailty model
-explanatory = c("age", "sex", "thickness", "ulcer", 
+explanatory <- c("age", "sex", "thickness", "ulcer", 
                 "frailty(hospital_id)")
 melanoma %>% 
 	finalfit(dependent_os, explanatory)
@@ -380,7 +380,7 @@ melanoma %>%
 
 ```{r echo=FALSE}
 # Frailty model
-explanatory = c("age", "sex", "thickness", "ulcer", 
+explanatory <- c("age", "sex", "thickness", "ulcer", 
                 "frailty(hospital_id)")
 melanoma %>% 
 	finalfit(dependent_os, explanatory) %>% 
@@ -422,9 +422,9 @@ It is implemented in the package `cmprsk`. The `crr()` syntax differs from `surv
 It uses the `finalfit::ff_merge()` function, which can join any number of models together. 
 
 ```{r eval=FALSE}
-explanatory = c("age", "sex", "thickness", "ulcer")
-dependent_dss = "Surv(time, status_dss)"
-dependent_crr = "Surv(time, status_crr)"
+explanatory   <- c("age", "sex", "thickness", "ulcer")
+dependent_dss <- "Surv(time, status_dss)"
+dependent_crr <- "Surv(time, status_crr)"
 
 melanoma %>%
 	
@@ -459,9 +459,9 @@ melanoma %>%
 ```
 
 ```{r echo=FALSE}
-explanatory = c("age", "sex", "thickness", "ulcer")
-dependent_dss = "Surv(time, status_dss)"
-dependent_crr = "Surv(time, status_crr)"
+explanatory   <- c("age", "sex", "thickness", "ulcer")
+dependent_dss <- "Surv(time, status_dss)"
+dependent_crr <- "Surv(time, status_crr)"
 
 melanoma %>%
 	
@@ -517,10 +517,10 @@ Try modifying the plot produced (see Help for ggsurvplot). For example:
 *  Display follow-up up to 10 years, and change the scale to 1 year: `xlim = c(0,10), break.time.by = 1)`
 
 
-```{r, echo=F, fig.width=6, fig.height=6}
+```{r, echo=F, fig.width=6, fig.height=6, message = FALSE}
 
 # Fit survival model
-my_survfit.solution = survfit(survival_object ~ ulcer, data = melanoma)
+my_survfit.solution <- survfit(survival_object ~ ulcer, data = melanoma)
 
 #summary(my_survfit.solution, times=c(0,1,2,3,4,5))
 
@@ -555,7 +555,7 @@ my_survplot.solution
 
 ```
 
-### Exercise
+## Exercise
 
 Create a new CPH model, but now include the variable `thickness` as a variable. 
 How would you interpret the output? 
@@ -573,11 +573,11 @@ First we will generate a dummy operation date and censoring date based on the me
 ```{r, message = FALSE}
 
 library(lubridate)
-first_date = ymd("1966-01-01")           # let's create made-up dates for the operations
-last_date = first_date + days(nrow(melanoma)-1) # assume tone every day from 1-Jan 1966
+first_date <- ymd("1966-01-01")           # let's create made-up dates for the operations
+last_date  <- first_date + days(nrow(melanoma)-1) # assume tone every day from 1-Jan 1966
 operation_date = seq(from = first_date, to = last_date, by = "1 day") # create dates
 
-melanoma$operation_date = operation_date # add the created sequence to melanoma dataset
+melanoma$operation_date <- operation_date # add the created sequence to melanoma dataset
 
 
 
@@ -590,18 +590,18 @@ Now we will to create a 'censoring' date by adding `time` from the melanoma data
 Remember the censoring date is either when an event occurred (e.g. death) or the last known alive status of the patient. 
 
 ```{r}
-melanoma = melanoma %>% 
+melanoma <- melanoma %>% 
   mutate(censoring_date = operation_date + days(time))
 
 # (Same as doing:):
-melanoma$censoring_date = melanoma$operation_date + days(melanoma$time)
+melanoma$censoring_date <- melanoma$operation_date + days(melanoma$time)
 ```
 
 Now consider if we only had the `operation date` and `censoring date`. 
 We want to create the `time` variable. 
 
 ```{r}
-melanoma = melanoma %>% 
+melanoma <- melanoma %>% 
   mutate(time_days = censoring_date - operation_date)
 ```
 The `Surv()` function expects a number (`numeric` variable), rather than a `date` object, so we'll convert it:
@@ -618,12 +618,12 @@ melanoma %>%
 
 ## Solutions
 
-**9.2.2**
+**10.11**
 
 ```{r, eval=F, fig.width=6, fig.height=6}
 
 # Fit survival model
-my_survfit.solution = survfit(survival_object ~ ulcer, data = melanoma)
+my_survfit.solution <- survfit(survival_object ~ ulcer, data = melanoma)
 
 # Show results
 my_survfit.solution
@@ -660,7 +660,10 @@ my_survplot.solution
 
 ```
 
-**9.3.3**
+**10.12**
+
+<!-- Why is this solution commented out? Should we remove the Exercise? -->
+
 
 ```{r, eval=F}
 

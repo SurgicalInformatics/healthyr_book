@@ -25,11 +25,11 @@
 \contentsline {figure}{\numberline {4.11}{\ignorespaces Multiple geoms together. (1) \texttt {geom\_boxplot()\ +\ geom\_point()}, (2) \texttt {geom\_boxplot()\ +\ geom\_jitter()}, (3) colour aesthetic inside \texttt {ggplot(aes())}, (4) colour aesthetic inside \texttt {geom\_jitter(aes())}.\relax }}{100}{figure.caption.34}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Histogram: country life expectancy by continent and year\relax }}{127}{figure.caption.37}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Q-Q plot: country life expectancy by continent and year\relax }}{128}{figure.caption.38}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Histogram: country life expectancy by continent and year\relax }}{126}{figure.caption.37}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Q-Q plot: country life expectancy by continent and year\relax }}{127}{figure.caption.38}
 \contentsline {figure}{\numberline {6.3}{\ignorespaces Boxplot: country life expectancy by continent and year\relax }}{129}{figure.caption.39}
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Boxplot with jitter points: country life expectancy by continent and year\relax }}{130}{figure.caption.40}
-\contentsline {figure}{\numberline {6.5}{\ignorespaces A list object that is the result of a t-test in R. We will show you ways to access these numbers and how to wrangle them more familiar tables/tibbles.\relax }}{132}{figure.caption.41}
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Boxplot with jitter points: country life expectancy by continent and year\relax }}{129}{figure.caption.40}
+\contentsline {figure}{\numberline {6.5}{\ignorespaces A list object that is the result of a t-test in R. We will show you ways to access these numbers and how to wrangle them more familiar tables/tibbles.\relax }}{131}{figure.caption.41}
 \contentsline {figure}{\numberline {6.6}{\ignorespaces Line plot: Change in life expectancy in Asian countries from 2002 to 2007\relax }}{133}{figure.caption.43}
 \contentsline {figure}{\numberline {6.7}{\ignorespaces Boxplot: Life expectancy in selected continents for 2007\relax }}{137}{figure.caption.44}
 \contentsline {figure}{\numberline {6.8}{\ignorespaces Diagnostic plots: ANOVA model of life expectancy by continent for 2007\relax }}{139}{figure.caption.45}

@@ -46,7 +46,7 @@ lapply(healthyr_notebooks, function(pkg) {
 
 # Preface {-}
 
-**DRAFT**
+**For draft version**
 
 This is the electronic version of the HealthyR book to be published by CRC Press/Chapman & Hall in summer 2020.
 The electronic version will always be freely available.
@@ -63,28 +63,28 @@ This work is licensed under the Creative Commons Attribution-NonCommercial-NoDer
 > We are drowning in information but starved for knowledge.  
 > John Naisbitt
 
-In this age of information, the manipulation, analysis and interpretation of data has become paramount. 
+In this age of information, the manipulation, analysis and interpretation of data has become a fundamental part of professional life. 
 Nowhere more so than in the delivery of healthcare. 
 From the understanding of disease and the development of new treatments, to the diagnosis and management of individual patients, the use of data and technology is now an integral part of the business of healthcare. 
 
 Those working in healthcare interact daily with data, often without realising it. 
 The conversion of this avalanche of information to useful knowledge is essential for high quality patient care. 
 An important part of this information revolution is the opportunity for everybody to become involved in data analysis. 
-This democratisation of data analysis is driven in part by the open source software movement – no longer do we require expensive specialised software to do this. 
+This democratisation is driven in part by the open source software movement – no longer do we require expensive specialised software to do this. 
 
-The statistical programming language, R, is firmly at the heart of this! 
+The statistical programming language, R, is firmly at the heart of this. 
 
-This book will take an individual with little or no experience in data analysis all the way through to performing sophisticated analyses. 
-We emphasise the importance of understanding the underlying data with liberal use of plotting, rather than relying on opaque and possibly poorly understand statistical tests. 
+This book will take an individual with little or no experience in data science, all the way through to the execution of sophisticated analyses. 
+We emphasise the importance of truly understanding the underlying data with liberal use of plotting, rather than relying on opaque and possibly poorly understood statistical tests. 
 There are numerous examples included that can be adapted for your own data, together with our own R packages with easy-to-use functions. 
 
 We have a lot of fun teaching this course and focus on making the material as accessible as possible. 
-We banish equations in favour of code and use examples rather than lengthy explanations. 
-We are grateful to the many individuals and students who have helped refine these and welcome suggestions and bug reports via https://github.com/SurgicalInformatics. 
+We equations to a minimum in favour of code, and use examples rather than lengthy explanations. 
+We are grateful to the many individuals and students who have helped refine this book and welcome suggestions and bug reports via https://github.com/SurgicalInformatics. 
 
-Ewen Harrison and Riinu Ots
+Ewen Harrison and Riinu Pius
 
-August 2019
+March 2020
 
 <!-- ## Structure of the book {-} -->
 
@@ -93,7 +93,7 @@ August 2019
 
 ## Acknowledgments {-}
 
-A lot of people helped us when we were writing the book.
+Katie Connor, Tom Drake, Cameron Fairfield, Peter Hall, Stephen Knight, Kenneth McLean, Lisa Norman, Katie Shaw, Michael Ramage, Einar Pius, Olivia Swann.
 
 <!-- ```{block2, type='flushright', html.tag='p'} -->
 <!-- This is how to  -->
@@ -107,10 +107,10 @@ Ewen is a surgeon and Riinu is a physicist.
 And they're both data scientists too. 
 They dabble with a few programming languages and are generally all over technology. 
 They are most enthusiastic about the R statistical programming language and have a combined experience of 25 years using it.
-They work at The University of Edinburgh and have taught R to hundreds of healthcare professionals and researchers.
+They work at the University of Edinburgh and have taught R to hundreds of healthcare professionals and researchers.
 
 They believe a first introduction to R and statistical programming should be relatively jargon-free and outcome-oriented (get those pretty plots out). 
-The understanding of complicated concepts will come over time with practise and experience, not through a re-telling of the history of computing bit-by-byte, or with the inclusion of the equations of every statistical test (although Ewen has sneaked a few equations in).
+The understanding of complicated concepts will come over time with practice and experience, not through a re-telling of the history of computing bit-by-byte, or with the inclusion of the underlying equations for each statistical test (although Ewen has sneaked a few equations in).
 
 Overall, they hope to make the text fun and accessible. 
 Just like them. 

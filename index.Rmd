@@ -79,7 +79,7 @@ We emphasise the importance of truly understanding the underlying data with libe
 There are numerous examples included that can be adapted for your own data, together with our own R packages with easy-to-use functions. 
 
 We have a lot of fun teaching this course and focus on making the material as accessible as possible. 
-We equations to a minimum in favour of code, and use examples rather than lengthy explanations. 
+We limit equations to a minimum in favour of code, and use examples rather than lengthy explanations. 
 We are grateful to the many individuals and students who have helped refine this book and welcome suggestions and bug reports via https://github.com/SurgicalInformatics. 
 
 Ewen Harrison and Riinu Pius

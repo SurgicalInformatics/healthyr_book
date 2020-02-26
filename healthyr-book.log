@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  23 FEB 2020 22:31
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  26 FEB 2020 19:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2511,7 +2511,7 @@ File: 03_summarising_files/figure-latex/chap03-fig-gbd-1.pdf Graphic file (type
 <use  "03_summarising_files/figure-latex/chap03-fig-gbd-1.pdf" > [55
 
 ] [56] [57] [58] [59] [60] [61] [62] [63]
-Underfull \hbox (badness 1596) in paragraph at lines 3523--3524
+Underfull \hbox (badness 1596) in paragraph at lines 3522--3523
 []\EU1/lmr/m/n/12 Let’s say you can remember, whether the deaths column was cal
 led
  []
@@ -2519,14 +2519,14 @@ led
 [64]
 File: images/wide_long.png Graphic file (type QTm)
 <use  "images/wide_long.png" >
-Overfull \hbox (446.08545pt too wide) in paragraph at lines 3608--3608
+Overfull \hbox (446.08545pt too wide) in paragraph at lines 3607--3607
 [][] 
  []
 
 [65] [66] [67
 
 ] [68] [69] [70] [71]
-Underfull \hbox (badness 1838) in paragraph at lines 3957--3958
+Underfull \hbox (badness 1838) in paragraph at lines 3956--3957
 \EU1/lmr/m/n/12 Read in the full GBD dataset with variables \EU1/SourceCodePro(
 0)/m/n/12 cause\EU1/lmr/m/n/12 , \EU1/SourceCodePro(0)/m/n/12 year\EU1/lmr/m/n/
 12 , \EU1/SourceCodePro(0)/m/n/12 sex\EU1/lmr/m/n/12 , \EU1/SourceCodePro(0)/m/
@@ -2534,7 +2534,7 @@ n/12 income\EU1/lmr/m/n/12 ,
  []
 
 [72] [73] [74] [75]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 4170--4170
+Overfull \hbox (30.0pt too wide) in paragraph at lines 4169--4169
 |  
  []
 
@@ -2578,44 +2578,44 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [78
 
 ]
-Underfull \vbox (badness 10000) detected at line 4211
+Underfull \vbox (badness 10000) detected at line 4210
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 4211
+Overfull \hbox (395.75pt too wide) detected at line 4210
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 4211
+Underfull \vbox (badness 10000) detected at line 4210
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 4211
+Overfull \hbox (395.75pt too wide) detected at line 4210
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 4211
+Underfull \vbox (badness 10000) detected at line 4210
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 4211
+Overfull \hbox (395.75pt too wide) detected at line 4210
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 4211
+Underfull \vbox (badness 10000) detected at line 4210
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 4211
+Overfull \hbox (395.75pt too wide) detected at line 4210
 []
  []
 
 Chapter 4.
 
-Overfull \hbox (30.0pt too wide) in paragraph at lines 4219--4219
+Overfull \hbox (30.0pt too wide) in paragraph at lines 4218--4218
 |  
  []
 
@@ -2623,7 +2623,7 @@ File: 04_plotting_files/figure-latex/chap04-fig-steps-1.pdf Graphic file (type
 QTm)
 <use  "04_plotting_files/figure-latex/chap04-fig-steps-1.pdf" >
 
-LaTeX Warning: Float too large for page by 60.57353pt on input line 4245.
+LaTeX Warning: Float too large for page by 60.57353pt on input line 4244.
 
 
 Underfull \hbox (badness 10000) has occurred while \output is active
@@ -4782,7 +4782,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 13912.
 Here is how much of TeX's memory you used:
  32207 strings out of 495579
  560459 string characters out of 6187323
- 789872 words of memory out of 5000000
+ 790872 words of memory out of 5000000
  34943 multiletter control sequences out of 15000+600000
  13568 words of font info for 110 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191

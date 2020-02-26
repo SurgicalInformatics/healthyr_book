@@ -190,7 +190,7 @@ There are three broad types of data:
 * date/time, in R: POSIXct date-time^[Portable Operating System Interface (POSIX) is a set of computing standards. There's nothing more to understand about this other than when R starts shouting "POSIXct this or POSIXlt that" at you, check your date and time variables].
 
 Values within a column all have to be the same type, but a tibble can of course hold columns of different types.
-Generally, R is very good at figuring out what type of data you have (in programming, this 'figuring out' is called 'parsing').
+Generally, R is good at figuring out what type of data you have (in programming, this 'figuring out' is called 'parsing').
 
 For example, when reading in data, it will tell you what was assumed for each column:
 
@@ -204,7 +204,7 @@ typesdata
 This means that a lot of the time you do not have to worry about those little `<chr>` vs `<dbl>` vs `<S3: POSIXct>` labels.
 But in cases of irregular or faulty input data, or when doing a lot of calculations and modifications to your data, we need to be aware of these different types to be able to find and fix mistakes.
 
-For example, consider a very similar file as above but with some data entry issues introduced:
+For example, consider a similar file as above but with some data entry issues introduced:
 
 ```{r}
 typesdata_faulty <- read_csv("data/typesdata_faulty.csv")
@@ -298,7 +298,7 @@ This means you get the expected result without having to round the numbers off.
 **Characters** (sometimes referred to as *strings* or *character strings*) in R are letters, words, or even whole sentences (an example of this may be free text comments). 
 Characters are displayed in-between `""` (or `''`).
 
-A very useful function for quickly investigating categorical variables is the `count()` function:
+A useful function for quickly investigating categorical variables is the `count()` function:
 
 ```{r}
 library(tidyverse)
@@ -366,7 +366,7 @@ A lot more about factor handling will be covered later (\@ref(chap08-h1)).
 \index{functions@\textbf{functions}!dmy}
 \index{functions@\textbf{functions}!ymd}
 
-R is very good for working with dates. 
+R is good for working with dates. 
 For example, it can calculate the number of days/weeks/months between two dates, or it can be used to find a future date is (e.g., "what's the date exactly 60 days from now?").
 It also knows about time zones and is happy to parse dates in pretty much any format - as long as you tell R how your date is formatted (e.g., day before month, month name abbreviated, year in 2 or 4 digits, etc.).
 Since R displays dates and times between quotes (""), they look similar to characters. 
@@ -497,7 +497,7 @@ mydata %>%
 
 \FloatBarrier
 
-To get the very small and made-up "dataset" into your Environment, copy and run this code^[`c()` stands for combine and will be introduced in more detail later in this chapter]:
+To get the small and made-up "dataset" into your Environment, copy and run this code^[`c()` stands for combine and will be introduced in more detail later in this chapter]:
 
 ```{r}
 library(tidyverse)
@@ -619,7 +619,7 @@ Help pages are built into R, so an internet connection is not required for this.
 
 Finally, some functions do not need any arguments to work.
 A good example is the `Sys.time()` which returns the current time and date. 
-This is very useful when using R to generate and update reports automatically.
+This is useful when using R to generate and update reports automatically.
 Including this means you can always be clear on when the results were last updated.
 
 \index{functions@\textbf{functions}!Sys.time}
@@ -827,7 +827,7 @@ gbd_short %>%
 
 This reads, take the GBD dataset, send if to the filter and keep rows where year is equal to 1995.
 
-Accidentally using the single equals `=` when double equals is necessary `==` is a very common mistake and still happens to the best of us. 
+Accidentally using the single equals `=` when double equals is necessary `==` is a common mistake and still happens to the best of us. 
 It happens so often that the error the `filter()` function gives when using the wrong one also reminds us what the correct one was:
 
 ```{r, error = TRUE}
@@ -837,7 +837,7 @@ gbd_short %>%
 
 > The answer to 'do you need ==?" is almost always, "Yes R, I do, thank you".
 
-But that's just because `filter()` is a clever cookie and is used to this very common mistake. 
+But that's just because `filter()` is a clever cookie and is used to this common mistake. 
 There are other useful functions we use these operators in, but they don't always know to tell us that we've just confused `=` for `==`.
 So if you get an error when checking for an equality between variables, always check your `==` operators first.
 
@@ -987,7 +987,7 @@ mydata %>%
   filter(var2 != 5 | is.na(var2))
 ```
 
-Being caught out by missing values, either in filters or other functions is very common (remember mydata$var2 %>% mean() returns NA unless you add `na.rm = TRUE`). 
+Being caught out by missing values, either in filters or other functions is common (remember mydata$var2 %>% mean() returns NA unless you add `na.rm = TRUE`). 
 This is also why we insist that you always plot your data first - outliers will reveal themselves and NA values usually become obvious too.
 
 Another thing we do to stay safe around filters and missing values is saving the results and making sure the number of rows still add up:
@@ -1051,14 +1051,14 @@ typesdata
 ```
 
 Let's say we decide to divide the column `measurement` by 2.
-A very quick way to see these values would be to pull them out using the `$` operator and then divide by 2:
+A quick way to see these values would be to pull them out using the `$` operator and then divide by 2:
 
 ```{r}
 typesdata$measurement
 typesdata$measurement/2
 ```
 
-But this becomes very cumbersome once we want to combine multiple variables from the same tibble in a calculation. So the `mutate()` is the way to go here:
+But this becomes cumbersome once we want to combine multiple variables from the same tibble in a calculation. So the `mutate()` is the way to go here:
 
 ```{r}
 typesdata %>% 
@@ -1290,7 +1290,7 @@ When we now do a `left_join()` with our main `tibble` - `patientdata`:
 left_join(patientdata, labsdata_updated)
 ```
 
-We get 7 rows, instead of 6 - as patient id 5 now appears twice with the two different measurements. So it is important to keep either know your datasets very well or keep an eye on the number of rows to make sure any increases/decreases in the tibble sizes are as you expect them to be.
+We get 7 rows, instead of 6 - as patient id 5 now appears twice with the two different measurements. So it is important to keep either know your datasets well or keep an eye on the number of rows to make sure any increases/decreases in the tibble sizes are as you expect them to be.
 
 
 

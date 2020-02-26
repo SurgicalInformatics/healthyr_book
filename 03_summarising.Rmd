@@ -16,9 +16,9 @@ options(pillar.sigfig = 4)
 
 In this chapter you will find out how to:
 
-* summarise data using: `group_by()`, `summarise()`, and `mutate()`
-* reshape data between the wide and long formats: `pivot_wider()` and `pivot_longer()`
-* `select()` columns and `arrange()` (sort) rows
+* summarise data using: `group_by()`, `summarise()`, and `mutate()`;
+* reshape data between the wide and long formats: `pivot_wider()` and `pivot_longer()`;
+* `select()` columns and `arrange()` (sort) rows.
 
 The exercises at the end of this chapter combine all of the above to give context and show you more worked examples.
 
@@ -62,7 +62,7 @@ gbd2017 %>%
 
 The best way to investigate a dataset is of course to plot it. 
 We have added a couple of notes as comments (the lines starting with a `#`) for those who can't wait to get to the next chapter where the code for plotting will be introduced and explained in detail. 
-Overall, you shouldn't waste time trying to understand this code here but to look at the different groups within this new dataset.
+Overall, you shouldn't waste time trying to understand this code, but do look at the different groups within this new dataset.
 
 ```{r  chap03-fig-gbd, fig.height=3, fig.width=6, fig.cap="Global Burden of Disease data with subgroups: cause, sex, World Bank income group."}
 gbd2017 %>% 
@@ -92,7 +92,7 @@ Health data analysis is frequently concerned with making comparisons between gro
 Groups of genes, or diseases, or patients, or populations etc.
 An easy approach to the comparison of data by a categorical grouping is therefore essential. 
 
-We will introduce very flexible functions from `tidyverse` that you can apply in any setting. 
+We will introduce flexible functions from `tidyverse` that you can apply in any setting. 
 The examples intentionally get quite involved to demonstrate the different approaches that can be used. 
 <!-- We finish by showing how to quickly and easily create summary tables that can be used in your work.  -->
 
@@ -111,7 +111,7 @@ gbd2017 %>%
 
 This is indeed equal to the number of deaths per year we saw in the previous chapter using the shorter version of this data (Deaths from the three causes were `r gbd_short %>%filter(year == 2017) %>% pull(deaths_millions)` which adds to `r gbd_short %>%filter(year == 2017) %>% pull(deaths_millions) %>% sum()`).
 
-`sum()` is a function that adds numbers together, whereas `summarise()` is a clever and efficient way of creating summarised tibbles. 
+`sum()` is a function that adds numbers together, whereas `summarise()` is an efficient way of creating summarised tibbles. 
 The main strength of `summarise()` is how it works with the `group_by()` function. 
 `group_by()` and `summarise()` are like cheese and wine, a perfect complement for each other, seldom seen apart. 
 
@@ -140,7 +140,7 @@ gbd2017 %>%
 \index{functions@\textbf{functions}!mutate}
 
 We met `mutate()` in the last chapter. 
-Let's first give the summarised column a better name, e.g. `deaths_pergroup`. 
+Let's first give the summarised column a better name, e.g. `deaths_per_group`. 
 We can remove groupings by using `ungroup()`. 
 This is important to remember if you want to manipulate the dataset in its original format.
 We can combine `ungroup()` with `mutate()` to add a total deaths column, which will be used below to calculate a percentage:
@@ -148,9 +148,9 @@ We can combine `ungroup()` with `mutate()` to add a total deaths column, which w
 ```{r}
 gbd2017 %>% 
   group_by(cause, sex) %>% 
-  summarise(deaths_pergroups = sum(deaths_millions)) %>% 
+  summarise(deaths_per_group = sum(deaths_millions)) %>% 
   ungroup() %>% 
-  mutate(deaths_total = sum(deaths_pergroups))
+  mutate(deaths_total = sum(deaths_per_group))
 ```
 
 ### Percentages formatting: `percent()`
@@ -164,13 +164,13 @@ We can also further lines to `mutate()` to calculate the percentage of each grou
 library(scales)
 gbd2017 %>% 
   group_by(cause, sex) %>% 
-  summarise(deaths_pergroups = sum(deaths_millions)) %>% 
+  summarise(deaths_per_group = sum(deaths_millions)) %>% 
   ungroup() %>% 
-  mutate(deaths_total    = sum(deaths_pergroups),
-         deaths_relative = percent(deaths_pergroups/deaths_total))
+  mutate(deaths_total    = sum(deaths_per_group),
+         deaths_relative = percent(deaths_per_group/deaths_total))
 ```
 
-The `percent()` function comes from `library(scales)` and is a very handy way of formatting percentages
+The `percent()` function comes from `library(scales)` and is a handy way of formatting percentages
 You must keep in mind that it changes the column from a number (denoted `<dbl>`) to a character (`<chr>`). 
 The `percent()` function is equivalent to:
 
@@ -179,23 +179,23 @@ The `percent()` function is equivalent to:
 round(100*4.91/55.74, 1) %>% paste0("%")
 ```
 
-This is very convenient for final presentation of number, but if you intend to do further calculations/plot/sort the percentages just calculate them as fractions with:
+This is convenient for final presentation of number, but if you intend to do further calculations/plot/sort the percentages just calculate them as fractions with:
 
 ```{r, eval = FALSE}
-mydata %>% 
-  mutate(deaths_relative = deaths_pergroups/deaths_total)
+gbd2017 %>% 
+  mutate(deaths_relative = deaths_per_group/deaths_total)
 ```
 
 and convert to nicely formatted percentages later:
 
 ```{r, eval = FALSE}
-mydata %>% 
+gbd2017 %>% 
   mutate(deaths_percentage = percent(deaths_relative))
 ```
 
 ## `summarise()` vs `mutate()`
 
-So far we've shown you examples of using `summarise()` on grouped data (so following `group_by()`) and `mutate()` on the whole dataset (either without using `group_by()` at all, or resetting the grouping information with `ungroup()`).
+So far we've shown you examples of using `summarise()` on grouped data (following `group_by()`) and `mutate()` on the whole dataset (without using `group_by()`).
 
 But here's the thing: `mutate()` is also happy to work on grouped data.
 
@@ -207,7 +207,7 @@ The `arrange()` function sorts the rows within a tibble:
 ```{r}
 gbd_summarised <- gbd2017 %>% 
   group_by(cause, sex) %>% 
-  summarise(deaths_pergroups = sum(deaths_millions)) %>% 
+  summarise(deaths_per_group = sum(deaths_millions)) %>% 
   arrange(sex)
 
 gbd_summarised
@@ -220,15 +220,14 @@ We now want to calculate the percentage of deaths from each cause for each gende
 We could use `summarise()` to calculate the totals:
 
 ```{r}
-gbd_summarised_sex <- 
-  gbd_summarised %>% 
+gbd_summarised_sex <- gbd_summarised %>% 
   group_by(sex) %>% 
-  summarise(deaths_persex = sum(deaths_pergroups))
+  summarise(deaths_per_sex = sum(deaths_per_group))
 
 gbd_summarised_sex
 ```
 
-But that drops the `cause` and `deaths_pergroups` columns. 
+But that drops the `cause` and `deaths_per_group` columns. 
 One way would be to now use a join on `gbd_summarised` and `gbd_summarised_sex`:
 
 ```{r}
@@ -243,7 +242,7 @@ An alternative is to use `mutate()` with `group_by()` to achieve the same result
 ```{r}
 gbd_summarised %>% 
   group_by(sex) %>% 
-  mutate(deaths_persex = sum(deaths_pergroups))
+  mutate(deaths_per_sex = sum(deaths_per_group))
 ```
 
 So `mutate()` calculates the sums within each grouping variable (in this example just `group_by(sex)`) and puts the results in a new column without condensing the tibble down or removing any of the existing columns.
@@ -253,18 +252,18 @@ Let's combine all of this together into a single pipeline and calculate the perc
 ```{r}
 gbd2017 %>% 
   group_by(cause, sex) %>% 
-  summarise(deaths_pergroups = sum(deaths_millions)) %>% 
+  summarise(deaths_per_group = sum(deaths_millions)) %>% 
   group_by(sex) %>% 
-  mutate(deaths_persex  = sum(deaths_pergroups),
-         sex_cause_perc = percent(deaths_pergroups/deaths_persex)) %>% 
-  arrange(sex, deaths_pergroups)
+  mutate(deaths_per_sex  = sum(deaths_per_group),
+         sex_cause_perc = percent(deaths_per_group/deaths_per_sex)) %>% 
+  arrange(sex, deaths_per_group)
 ```
 
 ## Common arithmetic functions - `sum()`, `mean()`, `median()`, etc.
 \index{functions@\textbf{functions}!arithmetic}
 \index{summarising data@\textbf{summarising data}!arithmetic functions}
 
-Statistics is what R does, so if there is a statistical function you can think of, it will exist in R.
+Statistics is an R strength, so if there is a arithmetic function you can think of, it probably exists in R.
 
 The most common ones are:
 
@@ -273,11 +272,11 @@ The most common ones are:
 * `median()`
 * `min()`, `max()`
 * `sd()` - standard deviation
-* `IQR()` - inter-quartile range
+* `IQR()` - interquartile range
 
 
-The import thing to remember about all of these is that if any of the values is NA (not applicable/not available), these functions will return an NA. 
-Either deal with your missing values beforehand (recommended) or add the `na.rm = TRUE` argument into any of the above functions to ask R to ignore missing values. 
+An import thing to remember relates to missing data: if any of your values is NA (not available; missing), these functions will return an NA. 
+Either deal with your missing values beforehand (recommended) or add the `na.rm = TRUE` argument into any of the functions to ask R to ignore missing values. 
 More discussion and examples around missing data can be found in Chapters \@ref(r-basics) and \@ref(chap14-h1).
 
 ```{r}
@@ -287,15 +286,15 @@ sum(mynumbers, na.rm = TRUE)
 ```
 
 Overall, R's unwillingness to implicitly average over observations with missing values should be considered helpful, not an unnecessary pain. 
-If you don't know exactly where your missing values are/how many, you might end up comparing the averages of very different groups (if the values are not missing and random or the sample size is small). 
-So the `na.rm = TRUE` is fine to use if quickly exploring and cleaning data, or you've already investigated missing values and are convinced the existing ones are representative.
+If you don't know exactly where your missing values are, you might end up comparing the averages of different groups. 
+So the `na.rm = TRUE` is fine to use if quickly exploring and cleaning data, or if you've already investigated missing values and are convinced the existing ones are representative.
 But it is rightfully not a default so get used to typing `na.rm = TRUE` when using these functions.
 
 ## `select()` columns
 \index{summarising data@\textbf{summarising data}!select columns}
 \index{functions@\textbf{functions}!select}
 
-The `select()` function can be used to choose, rename or reorder columns of a tibble.
+The `select()` function can be used to choose, rename, or reorder columns of a tibble.
 
 For the following `select()` examples, let's create a new tibble called `gbd_2rows` by taking the first 2 rows of `gbd_full` (just for shorter printing):
 
@@ -365,7 +364,7 @@ Note how "deaths" needs to be quoted inside `starts_with()` - as it's a word to 
 \index{summarising data@\textbf{summarising data}!long vs wide data}
 
 So far, all of the example we've shown you have been using 'tidy' data. 
-Data is 'tidy' (and therefore also 'long') when *each variable is in its own column*, and *each observation is in its own row*. 
+Data is 'tidy' when it is in long format: *each variable is in its own column*, and *each observation is in its own row*. 
 This long format is efficient to use in data analysis and visualisation and can also be considered "computer readable".
 
 But sometimes when presenting data in tables for humans to read, or when collecting data directly into a spreadsheet, it can be convenient to have data in a wide format. 
@@ -421,7 +420,7 @@ gbd_long %>%
 
 
 This means we can quickly eyeball how the number of deaths have changed from 1990 to 2017 for each cause category and sex.
-Whereas if we wanted to quickly look at the difference in the number of deaths for Females and Males, we can change the `names_from = ` argument from ` = years` to ` = sex`.
+Whereas if we wanted to quickly look at the difference in the number of deaths for females and males, we can change the `names_from = ` argument from ` = years` to ` = sex`.
 Furthermore, we can also add a `mutate()` to calculate the difference:
 
 
@@ -467,7 +466,7 @@ gbd_wide %>%
 ```
 
 You're probably looking at the example above and thinking that's is all nice and simple on this miniature example dataset, but how on earth will I figure this out on a real world example.
-And you're right, we won't deny that `pivot_longer()` is one of the most tehnically complicated functions in this book, and it can take a lot of trial and error to get it to work.
+And you're right, we won't deny that `pivot_longer()` is one of the most technically complicated functions in this book, and it can take a lot of trial and error to get it to work.
 How to get started with your own `pivot_longer()` transformation is to first play with the `select()` function to make sure you are telling R exactly which columns to pivot into the longer format.
 For example, before working out the `pivot_longer()` code for the above example, we would figure this out first:
 
@@ -490,11 +489,9 @@ gbd_wide %>%
   separate(sex_year, into = c("sex", "year"), sep = "_", convert = TRUE)
 ```
 
-
 We've also added `convert = TRUE` to `separate()` so `year` would get converted into a numeric variable.
 The combination of, e.g., "Female-1990" is a character variable, so after separating them both `sex` and `year` would still be classified as characters. 
 But the `convert = TRUE` recognises that `year` is a number and will appropriately convert it into an integer.
-
 
 ## `arrange()` rows
 \index{summarising data@\textbf{summarising data}!arrange / order rows}
@@ -533,7 +530,6 @@ gbd_long %>%
 
 `arrange()` sorts characters alphabetically, whereas factors will be sorted by the order of their levels. 
 Let's make the cause column into a factor:
-
 
 ```{r}
 gbd_factored <- gbd_long %>% 
@@ -633,7 +629,7 @@ You should recognise that:
 * `group_by()` tells `summarise()` that we want aggregated results for each year.
 * `summarise()` then creates a new variable called `total_per_year` that sums the deaths from each different observation (subcategory) together.
 * Calling `summary_data1` on a separate line gets it printed.
-* We then do something very similar in `summary_data2`.
+* We then do something similar in `summary_data2`.
 
 Compare the number of rows (observations) and number of columns (variables) of `gbd_full`, `summary_data1`, and `summary_data2`.
 

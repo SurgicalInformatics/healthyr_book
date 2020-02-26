@@ -119,8 +119,8 @@ gapminder2007 <- gapminder %>%
 gapminder2007
 ```
 
-The new tibble - `gapminder2007` - now shows up in your **Environment** tab, whereas `gapminder` does not. 
-Running `library(gapminder)` makes it available to use (so the funny line below is not necessary for any of the code in this chapter to work), but to have it appear in your normal **Environment** tab you'll need to run this funny looking line:
+The new tibble - `gapminder2007` - now shows up in your Environment tab, whereas `gapminder` does not. 
+Running `library(gapminder)` makes it available to use (so the funny line below is not necessary for any of the code in this chapter to work), but to have it appear in your normal Environment tab you'll need to run this funny looking line:
 
 ```{r}
 # loads the gapminder dataset from the package environment
@@ -128,7 +128,7 @@ Running `library(gapminder)` makes it available to use (so the funny line below 
 gapminder <- gapminder
 ```
 
-Both `gapminder` and `gapminder2007` now show up in the **Environment** tab and can be clicked on/quickly viewed as usual.
+Both `gapminder` and `gapminder2007` now show up in the Environment tab and can be clicked on/quickly viewed as usual.
 
 ## Anatomy of ggplot explained {#chap04-gganatomy}
 \index{plots@\textbf{plots}!anatomy of a plot}
@@ -218,7 +218,8 @@ The main aesthetics (things we can see) are: **x**, **y**, **colour**, **fill**,
 Press F1 on, e.g., `geom_point()`, to see see the full list of aesthetics that can be used with this geom (this opens the Help tab).
 If F1 is hard to summon on your keyboard, type in and run `?geom_point`.
 
-Variables  (so columns of your dataset) have to be defined inside `aes()`. Whereas to apply a modification on everything, we can set an aesthetic to a constant value outside of `aes()`.
+Variables  (so columns of your dataset) have to be defined inside `aes()`. 
+Whereas to apply a modification on everything, we can set an aesthetic to a constant value outside of `aes()`.
 
 For example, Figure \@ref(fig:chap04-fig-shapes) shows a selection of the point shapes built into R. The default shape used by `geom_point()` is number 16.
 

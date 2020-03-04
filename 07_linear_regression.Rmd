@@ -4,6 +4,11 @@
 > Smoking is one of the leading causes of statistics.  
 > Fletcher Knebel
 
+```{r, include = FALSE}
+library(kableExtra)
+```
+
+
 ## Regression
 
 Regression is a method by which we can determine the existence and strength of the relationship between two or more variables. 

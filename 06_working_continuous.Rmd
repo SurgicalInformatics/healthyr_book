@@ -3,6 +3,7 @@
 ```{r include=FALSE}
 library(ggplot2)
 theme_set(theme_bw())
+library(kableExtra)
 ```
 
 In the second part of this book, we focus specifically on the business of data analysis.

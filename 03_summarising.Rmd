@@ -6,6 +6,7 @@ output:
 
 ```{r setup, include = FALSE}
 options(pillar.sigfig = 4)
+library(kableExtra)
 ```
 
 # Summarising data
@@ -562,7 +563,9 @@ This is especially useful in two places:
 
 However, making a character column into a factor gives us power to give its levels a non-alphabetical order, giving us control over plotting order or defining our reference levels for use in statistical tests.
 
-## Exercise - `pivot_wider()`
+## Exercises
+
+### Exercise - `pivot_wider()`
 
 Using the GBD dataset with variables `cause`, `year` (1990 and 2017 only), `sex` (as shown in Table \@ref(tab:chap3-tab-gbd-long)):
 
@@ -590,7 +593,7 @@ gbd_long %>%
   pivot_wider(names_from = cause, values_from = deaths_millions)
 ```
 
-## Exercise - `group_by()`, `summarise()`
+### Exercise - `group_by()`, `summarise()`
 
 Read in the full GBD dataset with variables `cause`, `year`, `sex`, `income`, `deaths_millions`.
 
@@ -648,7 +651,7 @@ You should notice that:
 
 The columns a `summarise()` function returns are: variables listed in `group_by()` + variables created inside `summarise()` (e.g., in this case `deaths_peryear`). All others get aggregated.
 
-## Exercise - `full_join()`, `percent()`
+### Exercise - `full_join()`, `percent()`
 
 For each cause, calculate its percentage to total deaths in each year.
 
@@ -665,13 +668,13 @@ full_join(summary_data1, summary_data2) %>%
 
 **Solution**
 
-```{r, echo = FALSE}
+```{r message=FALSE, results='hide'}
 library(scales)
 full_join(summary_data1, summary_data2) %>% 
   mutate(percentage = percent(total_per_cause/total_per_year)) 
 ```
 
-## Exercise - `mutate()`, `summarise()`
+### Exercise - `mutate()`, `summarise()`
 
 Instead of creating the two summarised tibbles and using a `full_join()`, achieve the same result as in the previous Exercise by with a single pipeline using `summarise()` and then `mutate()`.
 
@@ -704,7 +707,7 @@ Note that your pipelines shouldn't be much longer than this, and we often save i
 Do not feel like you should be able to just bash out these clever pipelines without a lot of trial and error first.
 
 
-## Exercise - `filter()`, `summarise()`, `pivot_wider()`
+### Exercise - `filter()`, `summarise()`, `pivot_wider()`
 
 Still working with `gbd_full`:
 

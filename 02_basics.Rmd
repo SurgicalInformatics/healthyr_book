@@ -8,6 +8,8 @@ editor_options:
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(fig.align = 'center')
 library(tidyverse)
+library(kableExtra)
+
 ```
 
 Throughout this book, we are conscious of the balance between theory and practice.
@@ -90,11 +92,11 @@ However, if your file uses semicolons instead of commas, or commas instead of do
 
 RStudio's **Import Dataset** interface (Figure \@ref(fig:chap2-fig-examplecsv)) can handle all of these and more.
 
-```{r chap02-fig-import-tool, echo = FALSE, fig.cap="Import: Some of the special settings your data file might have.", out.width="13cm"}
+```{r chap02-fig-import-tool, echo = FALSE, fig.cap="Import: Some of the special settings your data file might have.", out.width="70%"}
 knitr::include_graphics("images/chapter02/import_options.png")
 ```
 
-```{r chap02-fig-import-code, echo = FALSE, fig.cap="After using the Import Dataset window, copy-paste the resulting code into your script.", out.width="10cm"}
+```{r chap02-fig-import-code, echo = FALSE, fig.cap="After using the Import Dataset window, copy-paste the resulting code into your script.", out.width="50%"}
 knitr::include_graphics("images/chapter02/code_preview.png")
 ```
 
@@ -987,7 +989,7 @@ mydata %>%
   filter(var2 != 5 | is.na(var2))
 ```
 
-Being caught out by missing values, either in filters or other functions is common (remember mydata$var2 %>% mean() returns NA unless you add `na.rm = TRUE`). 
+Being caught out by missing values, either in filters or other functions is common (remember `mydata$var2 %>% mean()` returns NA unless you add `na.rm = TRUE`). 
 This is also why we insist that you always plot your data first - outliers will reveal themselves and NA values usually become obvious too.
 
 Another thing we do to stay safe around filters and missing values is saving the results and making sure the number of rows still add up:

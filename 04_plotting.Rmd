@@ -7,6 +7,7 @@ editor_options:
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(gapminder)
+library(kableExtra)
 # text width is 4.6 inch, but markdown scales down nicely even if we include widths and heights greater than 4.6
 knitr::opts_chunk$set(fig.width = 2.8, fig.height = 2.8, cache = TRUE)
 ```

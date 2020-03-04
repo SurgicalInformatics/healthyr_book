@@ -7,7 +7,7 @@ In this chapter we will demonstrate how tables and figures can be easily exporte
 To save space, we will not reproduce the whole analysis, but will demonstrate how a report document can be assembled. 
 
 Our report will contain two tables - a demographics table and a regression table - and a plot. 
-We will use the `colon_s` data from the **finalfit** package. 
+We will use the `colon_s` data from the `finalfit package. 
 What follows is for demonstration purposes and is not meant to illustrate model building. 
 We will ask, does a particular characteristic of a colon cancer (differentiation) predict 5-year survival?
 
@@ -204,7 +204,7 @@ colon_s %>%
 The result is ok, but not great (Figure \@ref(fig:chap12-fig-word)A). 
 
 ```{r chap12-fig-word, echo = FALSE, fig.cap="Knitting to Microsoft Word from R Markdown. Before (A) and after (B) adjustment."}
-knitr::include_graphics("images/chapter12/1_word_knit.pdf")
+knitr::include_graphics("images/chapter12/1_word_knit.png", auto_pdf = TRUE)
 ```
 
 ## Create Word template file
@@ -271,8 +271,8 @@ This is now looking good, and further tweaks can be made if you wish (Figure \@r
 
 Using the default settings and the unmodified Markdown file above gets us close. 
 
-```{r chap12-fig-pdf, echo = FALSE, fig.cap="Knitting to Microsoft Word from R Markdown. Before (A) and after (B) adjustment."}
-knitr::include_graphics("images/chapter12/1_pdf_knit.pdf")
+```{r chap12-fig-pdf, echo = FALSE, fig.cap="Knitting to Microsoft Word from R Markdown. Before (A) and after (B) adjustment.", out.width="70%"}
+knitr::include_graphics("images/chapter12/1_pdf_knit.png", auto_pdf = TRUE)
 ```
 
 Again, this is not bad, but has issues (Figure \@ref(fig:chap12-fig-pdf)A).
@@ -340,5 +340,6 @@ Figure \@ref(fig:chap12-fig-report) demonstrates a report-type document rendered
 All the code is run within the document, but not included in the output (`echo=FALSE`). 
 
 ```{r chap12-fig-report, echo = FALSE, fig.cap="Writing a final report in a Markdown document."}
-knitr::include_graphics("images/chapter12/4_colon_report.pdf")
+knitr::include_graphics("images/chapter12/4_colon_report.png", auto_pdf = TRUE)
 ```
+

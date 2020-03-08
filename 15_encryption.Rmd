@@ -52,7 +52,7 @@ Full documentation is maintained separately at [encrypt-r.org](https://encrypt-r
 install.packages("encryptr")
 
 # Or the development version from Github
-devtools::install_github("SurgicalInformatics/encryptr")
+remotes::install_github("SurgicalInformatics/encryptr")
 ```
 
 ## Get the data

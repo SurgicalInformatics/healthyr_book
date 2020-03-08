@@ -141,7 +141,7 @@ It is particularly helpful that Python can also be run in this way.
 
 When doing an analysis in a Notebook you will almost always want to see the code and the output.
 When you are creating a final document you may wish to hide code.
-Chunk behaviour can be controlled via the `Chunk Cog` on the right of the chunk (Figure \@ref(fig:chap11-fig-anatomy)) which makes this very easy. 
+Chunk behaviour can be controlled via the `Chunk Cog` on the right of the chunk (Figure \@ref(fig:chap11-fig-anatomy)).
 
 Table \@ref(tab:chap11-tab-chunk-output) shows the various permutations of code and output options that are available. 
 The code is placed in the chunk header but the options fly-out now does this automatically, e.g. 
@@ -305,7 +305,7 @@ For instance, `01_read_data.R` may look like this.
 
 # Get data
 library(readr)
-melanoma = read_csv(
+melanoma <- read_csv(
   here::here("data_raw", "melanoma.csv")
 )
 
@@ -338,7 +338,7 @@ load(
 )
 
 ## Recode variables
-melanoma = melanoma %>%
+melanoma <- melanoma %>%
   mutate(
     sex = factor(sex) %>% 
       fct_recode("Male" = "1", 

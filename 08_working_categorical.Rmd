@@ -325,7 +325,7 @@ mydata <- mydata %>%
 
 Any number of factor levels can be specified in `fct_relevel()`. 
 
-## Summarising factors with **finalfit**
+## Summarising factors with `finalfit`
 \index{categorical data@\textbf{categorical data}!finalfit}
 \index{categorical data@\textbf{categorical data}!summarising}
 

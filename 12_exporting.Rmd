@@ -7,9 +7,9 @@ In this chapter we will demonstrate how tables and figures can be easily exporte
 To save space, we will not reproduce the whole analysis, but will demonstrate how a report document can be assembled. 
 
 Our report will contain two tables - a demographics table and a regression table - and a plot. 
-We will use the `colon_s` data from the `finalfit package. 
+We will use the `colon_s` data from the `finalfit` package. 
 What follows is for demonstration purposes and is not meant to illustrate model building. 
-We will ask, does a particular characteristic of a colon cancer (differentiation) predict 5-year survival?
+We will ask, does a particular characteristic of a colon cancer (e.g., differentiation) predict 5-year survival?
 
 ## Working in a `.R` file
 
@@ -23,7 +23,7 @@ We presume that the data have been cleaned carefully and the `Get the data`, `Ch
 ```{r echo=FALSE, message=FALSE}
 library(knitr)
 library(kableExtra)
-mykable = function(x, caption = "CAPTION", ...){
+mykable <- function(x, caption = "CAPTION", ...){
   kable(x, row.names = FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r", "r"), 
         booktabs = TRUE, caption = caption, 
         linesep = c("", "", "\\addlinespace"), ...) %>%
@@ -40,7 +40,7 @@ library(tidyverse)
 library(finalfit)
 
 # Specify explanatory variables of interest
-explanatory = c("age", "sex.factor", 
+explanatory <- c("age", "sex.factor", 
                 "extent.factor", "obstruct.factor", 
                 "nodes")
 
@@ -54,7 +54,7 @@ library(tidyverse)
 library(finalfit)
 
 # Specify explanatory variables of interest
-explanatory = c("age", "sex.factor", 
+explanatory <- c("age", "sex.factor", 
                 "extent.factor", "obstruct.factor", 
                 "nodes")
 
@@ -70,15 +70,15 @@ Also note that `nodes` has not been labelled properly.
 
 In addition, there are small numbers in some variables generating `chisq.test()` warnings (expected fewer than 5 in any cell). 
 
-Now generate a final table.
-
+Now generate a final table.^[The `finalfit` functions used here - `summary_factorlist()` and `finalfit()` were introduced in Part II - Data Analysis. We will therefore not describe the different arguments here, we use them to demonstrate R's powers of exporting to fully formatted output documents.
+]
 ```{r, eval=FALSE}
-colon_s = colon_s %>% 
+colon_s <- colon_s %>% 
   mutate(
     nodes = ff_label(nodes, "Lymph nodes involved")
     )
 
-table1 = colon_s %>%  
+table1 <- colon_s %>%  
   summary_factorlist("differ.factor", explanatory, 
                      p=TRUE, na_include=TRUE, 
                      add_dependent_label=TRUE,
@@ -88,12 +88,12 @@ table1
 ```
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
-colon_s = colon_s %>% 
+colon_s <- colon_s %>% 
   mutate(
     nodes = ff_label(nodes, "Lymph nodes involved")
     )
 
-table1 = colon_s %>%  
+table1 <- colon_s %>%  
   summary_factorlist("differ.factor", explanatory, 
                      p=TRUE, na_include=TRUE, 
                      add_dependent_label=TRUE,
@@ -106,25 +106,25 @@ table1 %>%
 
 ## Logistic regression table
 
-Now examine explanatory variables against outcome and check the plots run ok.
+After investigating the relationships between our explanatory variables, we will use logistic regression to include the outcome variable.
 
 ```{r, eval=FALSE}
-explanatory = c( "differ.factor", "age", "sex.factor", 
+explanatory <- c( "differ.factor", "age", "sex.factor", 
                 "extent.factor", "obstruct.factor", 
                 "nodes")
-dependent = "mort_5yr"
-table2 = colon_s %>% 
+dependent <- "mort_5yr"
+table2 <- colon_s %>% 
   finalfit(dependent, explanatory, 
            dependent_label_prefix = "")
 table2
 ```
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
-explanatory = c( "differ.factor", "age", "sex.factor", 
+explanatory <- c( "differ.factor", "age", "sex.factor", 
                 "extent.factor", "obstruct.factor", 
                 "nodes")
-dependent = "mort_5yr"
-table2 = colon_s %>% 
+dependent <- "mort_5yr"
+table2 <- colon_s %>% 
   finalfit(dependent, explanatory, 
            dependent_label_prefix = "")
 table2 %>% 
@@ -133,7 +133,7 @@ table2 %>%
 
 ## Odds ratio plot
 It is often preferable to express the coefficients from a regression model as a forest plot. 
-For instance, a plot of odds ratios can be produced thus:
+For instance, a plot of odds ratios can be produced using the `or_plot()` function also from the `finalfit` package:
 
 ```{r fig.height=3.5, fig.width=7, message=FALSE, warning=FALSE, fig.cap="Odds ratio plot."}
 colon_s %>% 
@@ -158,10 +158,10 @@ save(table1, table2, dependent, explanatory,
 In RStudio, select:  
 File > New File > R Markdown
 
-A useful template file is produced by default. Try hitting knit to Word on the knitr button at the top of the .Rmd script window.
+A useful template file is produced by default. Try hitting knit to Word on the Knit button at the top of the `.Rmd` script window.
 If you have difficulties at this stage, refer to chapter \@ref(chap11-h1).
 
-Now paste this into the file:
+Now paste this into the file (we'll call it Example 1):
 
 ```` markdown
 ---
@@ -201,29 +201,43 @@ colon_s %>%
 ```
 ````
 
-The result is ok, but not great (Figure \@ref(fig:chap12-fig-word)A). 
 
 ```{r chap12-fig-word, echo = FALSE, fig.cap="Knitting to Microsoft Word from R Markdown. Before (A) and after (B) adjustment."}
 knitr::include_graphics("images/chapter12/1_word_knit.png", auto_pdf = TRUE)
 ```
 
+
+Knitting this into a Word document results in Figure \@ref(fig:chap12-fig-word)A), which looks pretty decent but the some of the columns need some formatting and the plot needs resized.
+Do not be tempted to do this by hand directly in the Word document.
+
+Yes, before Markdown, we would have to move and format each table and figure directly in Word, and we would repeat this every time something changed.
+Turns out some patient records were duplicated and you have to remove them before repeating the analysis over again?
+Or your colleague forgot to attach an extra file with 10 more patients?
+No problem, you update the dataset, re-run the script that created the tables and hit Knit in the R Markdown document.
+No more mindless re-doing for you.
+We think this is pretty amazing.
+
+
 ## Create Word template file
 
-Now, edit your Word file to create a new template. 
-Click on a table. 
+To make sure tables always export with a suitable font size, you may edit your Word file but only to create a new template. 
+You will then use this template to Knit the R Markdown document again.
+
+In the Word document the first example outputted, click on a table. 
 The style should be `compact`:
 Right click > Modify... > font size = 9
 
 Alter heading and text styles in the same way as desired. 
-Save this as `colonTemplate.docx` (avoid underscores in the name). 
-Upload the file to your project folder. 
-Add this reference to the `.Rmd` YAML heading, as below. 
-Make sure you get the spacing correct.
+Save this as `colonTemplate.docx` (avoid underscores in the name of this file). 
+Move the file to your project folder and refernce it in your `.Rmd` YAML header, as shown below. 
+Make sure you get the spacing correct, unlike R code, the YAML header is sensitive to formatting and the number of spaces at the beginning of the argument lines.
 
-Also, ensure the plot looks correct and the warning messages is printed. 
-Experiment with `fig.width` to get it looking right.
+Finally, to get the figure printed in a size where the labels don't overlap each other, you will have to specify a width for it.
+The Chunk cog introduced in the previos chapter is a convenient way to change the figure size (it is in the top-right corner of each grey code chunk in an R Markdown document).
+It usually takes some experimentation to find the best size for each plot/output document, in this case we are going with `fig.width = 10`.
 
-Now paste this into your `.Rmd` file and run:
+Knitting Example 2 here gives us Figure \@ref(fig:chap12-fig-word)B).
+For something that is generated automatically, it looks awesome.
 
 ```` markdown
 ---
@@ -265,22 +279,24 @@ colon_s %>%
 ```
 ````
 
-This is now looking good, and further tweaks can be made if you wish (Figure \@ref(fig:chap12-fig-word)B).
 
 ## PDF via knitr/R Markdown
 
-Using the default settings and the unmodified Markdown file above gets us close. 
+Without changing anything in Example 1 and Knitting it into a PDF, we get \@ref(fig:chap12-fig-pdf)A.
+
+Again, most of it already looks pretty good, but some parts over-run the page and the plot is not a good size.
+
+We can fix the plot in exactly the same way we did for the Word version (`fig.width`), but the second table that is too wide needs some special handling.
+For this we use `kable_styling(font_size=8)` from the `kableExtra` package.
+Remember to install it when using for the first time, and include `library(knitExtra)` alongside the other library lines at the setup chunk.
+
+We will also alter the margins of your page using the geometry option in the preamble as the default margins of a PDF document coming out of R Markdown are a bit wide for us.
+
 
 ```{r chap12-fig-pdf, echo = FALSE, fig.cap="Knitting to Microsoft Word from R Markdown. Before (A) and after (B) adjustment.", out.width="70%"}
 knitr::include_graphics("images/chapter12/1_pdf_knit.png", auto_pdf = TRUE)
 ```
 
-Again, this is not bad, but has issues (Figure \@ref(fig:chap12-fig-pdf)A).
-
-We can fix the plot in exactly the same way, but the table is off the side of the page. 
-For this we use the **kableExtra** package. 
-Install this in the normal manner. 
-You may also want to alter the margins of your page using geometry in the preamble.
 
 ```` markdown
 ---
@@ -315,7 +331,7 @@ kable_styling(font_size=8)
 ```
 
 ## Figure 1 - Association between tumour factors and 5 year mortality
-`r ''````{r figure1, echo=FALSE, fig.width=10, message=FALSE, warning=FALSE}
+`r ''````{r figure1, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10}
 explanatory = c( "differ.factor", "age", "sex.factor", 
                 "extent.factor", "obstruct.factor", 
                 "nodes")
@@ -326,7 +342,7 @@ colon_s %>%
 ```
 ````
 
-This now looks better (Figure \@ref(fig:chap12-fig-pdf)B).
+The result is shown in Figure \@ref(fig:chap12-fig-pdf)B.
 
 ## Working in a `.Rmd` file
 

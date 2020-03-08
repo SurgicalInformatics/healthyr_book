@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  4 MAR 2020 17:40
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  8 MAR 2020 22:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -4098,18 +4098,26 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [271
 
-]
+] [272]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[272] [273]
+[273]
 File: 12_exporting_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type 
 QTm)
 <use  "12_exporting_files/figure-latex/unnamed-chunk-8-1.pdf" > [274]
 File: images/chapter12/1_word_knit.pdf Graphic file (type QTm)
-<use  "images/chapter12/1_word_knit.pdf" > [275] [276]
+<use  "images/chapter12/1_word_knit.pdf" > [275] [276] [277]
 File: images/chapter12/1_pdf_knit.pdf Graphic file (type QTm)
-<use  "images/chapter12/1_pdf_knit.pdf" > [277] [278] [279]
+<use  "images/chapter12/1_pdf_knit.pdf" > [278]
+Underfull \vbox (badness 10000) detected at line 12499
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 12499
+ []
+
+[279]
 File: images/chapter12/4_colon_report.pdf Graphic file (type QTm)
 <use  "images/chapter12/4_colon_report.pdf" > [280] [281]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -4151,38 +4159,38 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [282
 
 ]
-Underfull \vbox (badness 10000) detected at line 12512
+Underfull \vbox (badness 10000) detected at line 12522
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 12512
+Overfull \hbox (395.75pt too wide) detected at line 12522
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12512
+Underfull \vbox (badness 10000) detected at line 12522
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 12512
+Overfull \hbox (395.75pt too wide) detected at line 12522
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12512
+Underfull \vbox (badness 10000) detected at line 12522
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 12512
+Overfull \hbox (395.75pt too wide) detected at line 12522
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12512
+Underfull \vbox (badness 10000) detected at line 12522
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 12512
+Overfull \hbox (395.75pt too wide) detected at line 12522
 []
  []
 
@@ -4198,7 +4206,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [283
 
 ] [284]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 12584--12584
+Overfull \hbox (30.0pt too wide) in paragraph at lines 12594--12594
 |  
  []
 
@@ -4249,89 +4257,89 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [290
 
 ]
-Underfull \vbox (badness 10000) detected at line 12655
+Underfull \vbox (badness 10000) detected at line 12665
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 12655
+Overfull \hbox (395.75pt too wide) detected at line 12665
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12655
+Underfull \vbox (badness 10000) detected at line 12665
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 12655
+Overfull \hbox (395.75pt too wide) detected at line 12665
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12655
+Underfull \vbox (badness 10000) detected at line 12665
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 12655
+Overfull \hbox (395.75pt too wide) detected at line 12665
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 12655
+Underfull \vbox (badness 10000) detected at line 12665
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 12655
+Overfull \hbox (395.75pt too wide) detected at line 12665
 []
  []
 
 Chapter 14.
 
-Underfull \hbox (badness 10000) detected at line 12674
+Underfull \hbox (badness 10000) detected at line 12684
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 12674
+Underfull \hbox (badness 10000) detected at line 12684
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 12676
+Underfull \hbox (badness 10000) detected at line 12686
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 12676
+Underfull \hbox (badness 10000) detected at line 12686
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 12678
+Underfull \hbox (badness 10000) detected at line 12688
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 12678
+Underfull \hbox (badness 10000) detected at line 12688
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 12680
+Underfull \hbox (badness 10000) detected at line 12690
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 12680
+Underfull \hbox (badness 10000) detected at line 12690
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 12682
+Underfull \hbox (badness 10000) detected at line 12692
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 12682
+Underfull \hbox (badness 10000) detected at line 12692
 [][][]
  []
 
@@ -4343,32 +4351,32 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [291
 
 ] [292]
-Underfull \hbox (badness 10000) detected at line 12743
+Underfull \hbox (badness 10000) detected at line 12753
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 12743
+Underfull \hbox (badness 10000) detected at line 12753
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 12745
+Underfull \hbox (badness 10000) detected at line 12755
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 12745
+Underfull \hbox (badness 10000) detected at line 12755
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 12747
+Underfull \hbox (badness 10000) detected at line 12757
  [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 12747
+Underfull \hbox (badness 10000) detected at line 12757
 [][][]
  []
 
@@ -4405,11 +4413,11 @@ bserved data: missing_pairs | missing_compare  \EU1/lmr/m/n/10 299
  []
 
 [299]
-Underfull \vbox (badness 10000) detected at line 13055
+Underfull \vbox (badness 10000) detected at line 13065
  []
 
 
-Underfull \vbox (badness 10000) detected at line 13055
+Underfull \vbox (badness 10000) detected at line 13065
  []
 
 [300]
@@ -4419,7 +4427,7 @@ bserved data: missing_pairs | missing_compare  \EU1/lmr/m/n/10 301
  []
 
 [301]
-Overfull \hbox (4.9164pt too wide) in paragraph at lines 13143--13143
+Overfull \hbox (4.9164pt too wide) in paragraph at lines 13153--13153
 []\EU1/SourceCodePro(0)/m/n/12 ##     Either the test of multivariate normality
  or homoscedasticity (or both) is rejected.[] 
  []
@@ -4464,38 +4472,38 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [308
 
 ]
-Underfull \vbox (badness 10000) detected at line 13473
+Underfull \vbox (badness 10000) detected at line 13483
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 13473
+Overfull \hbox (395.75pt too wide) detected at line 13483
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 13473
+Underfull \vbox (badness 10000) detected at line 13483
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 13473
+Overfull \hbox (395.75pt too wide) detected at line 13483
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 13473
+Underfull \vbox (badness 10000) detected at line 13483
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 13473
+Overfull \hbox (395.75pt too wide) detected at line 13483
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 13473
+Underfull \vbox (badness 10000) detected at line 13483
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 13473
+Overfull \hbox (395.75pt too wide) detected at line 13483
 []
  []
 
@@ -4547,38 +4555,38 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [316
 
 ]
-Underfull \vbox (badness 10000) detected at line 13793
+Underfull \vbox (badness 10000) detected at line 13803
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 13793
+Overfull \hbox (395.75pt too wide) detected at line 13803
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 13793
+Underfull \vbox (badness 10000) detected at line 13803
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 13793
+Overfull \hbox (395.75pt too wide) detected at line 13803
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 13793
+Underfull \vbox (badness 10000) detected at line 13803
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 13793
+Overfull \hbox (395.75pt too wide) detected at line 13803
 []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 13793
+Underfull \vbox (badness 10000) detected at line 13803
  []
 
 
-Overfull \hbox (395.75pt too wide) detected at line 13793
+Overfull \hbox (395.75pt too wide) detected at line 13803
 []
  []
 
@@ -4591,7 +4599,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [317
 
 ] [318]
-Underfull \hbox (badness 10000) in paragraph at lines 13897--13898
+Underfull \hbox (badness 10000) in paragraph at lines 13907--13908
 []\EU1/lmr/m/n/12 If you already have LaTex installed on your computer, the
  []
 
@@ -4739,18 +4747,18 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 
 ] [324] [325] [326])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 13904.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 13904.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 13914.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 13914.
 (./healthyr-book.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 13904.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 13904.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 13914.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 13914.
 
 LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 13904.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 13914.
  ) 
 Here is how much of TeX's memory you used:
  32203 strings out of 495579

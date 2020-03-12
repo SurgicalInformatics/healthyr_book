@@ -2,15 +2,17 @@
 \index{version control@\textbf{version control}}
 
 Version control is essential for keeping track of data analysis projects, as well as collaborating. 
-It allows backup of scripts and easy collaboration on complex projects. 
-RStudio works really well with Git, an open source open source distributed version control system, and GitHub, a web-based Git repository hosting service. 
+It allows backup of scripts and collaboration on complex projects. 
+RStudio works really well with Git, an open source distributed version control system, and GitHub, a web-based Git repository hosting service. 
 
-\index{version control@\textbf{version control}!Git and Github}
+
+\index{version control@\textbf{version control}!Git and GitHub}
 
 Git is piece of software which runs locally. 
 It may need to be installed first. 
 
 It is important to highlight the difference between Git (local version control software) and GitHub (a web-based repository store). 
+
 
 ## Setup Git on RStudio and associate with GitHub
 
@@ -31,11 +33,11 @@ If you haven’t already, create a GitHub account.
 On the GitHub website, open the account settings tab and click the SSH keys tab (Figure \@ref(fig:chap13-fig-github)A). 
 Click *Add SSH key* and paste in the public key you have copied from RStudio Figure \@ref(fig:chap13-fig-github)B).
 
-```{r chap13-fig-ssh, echo = FALSE, fig.cap="Create an SSH key"}
+```{r chap13-fig-ssh, echo = FALSE, fig.cap="Creating an SSH key in RStudio's Global Options."}
 knitr::include_graphics("images/chapter13/1.png", auto_pdf = TRUE)
 ```
 
-```{r chap13-fig-github, echo = FALSE, fig.cap="Create a GitHub account and add your SSH key."}
+```{r chap13-fig-github, echo = FALSE, fig.cap="Adding your RStudio SSH key to your GitHub account."}
 knitr::include_graphics("images/chapter13/2.png", auto_pdf = TRUE)
 ```
 
@@ -57,57 +59,59 @@ After saving your new script (e.g. test.R), it should appear in the **Git** tab 
 
 Tick the file you wish to add, and the status should turn to a green ‘A’ (Figure \@ref(fig:chap13-fig-globalsettings)C). 
 Now click *Commit* and enter an identifying message in Commit message (Figure \@ref(fig:chap13-fig-globalsettings)D).
+It makes sense to do this prior to linking the project and the GitHub repository, otherwise you'll have nothing to push to GitHub.
 
-> It is important to commit prior to linking the project and the GitHub repository. 
+You have now committed the current version of this file to a Git repository on your computer/server. 
 
-You have now committed the current version of this file to your repository on your computer/server. 
-In the future you may wish to create branches to organise your work and help when collaborating.
-
-```{r chap13-fig-globalsettings, echo = FALSE, fig.cap="Configure Git global settings via RStudio and create a new project."}
+```{r chap13-fig-globalsettings, echo = FALSE, fig.cap="Configuring your GitHub account via RStudio, creating a new project, commiting a script and pushing it to GitHub."}
 knitr::include_graphics("images/chapter13/4.png", auto_pdf = TRUE)
 ```
 
 ## Create a new repository on GitHub and link to RStudio project
 \index{version control@\textbf{version control}!repository}
 
-Now you want to push the contents of this commit to GitHub, so it is also backed-up off site and available to collaborators. 
-In GitHub, create a *New repository*, called here myproject (Figure \@ref(fig:chap13-fig-newrepo)A).
+Now you may want to push the contents of this commit to GitHub, so it is also backed-up off site and available to collaborators.
+As always, you must exercise caution when working with sensitive data. 
+Take steps to stop yourself from accidentally pushing whole datasets to GitHub.^[It's fine to push some data to GitHub, especially if you want to make it publicly available, but you should do so consciously, not accidentally.]
+You only want to push R code to GitHub, not the (sensitive) data.
+When you see a dataset appear in the Git tab of your RStudio, select it, then click on More, and then Ignore.
+This means the file does not get included in your Git repository, and it does not get pushed to GitHub.
+GitHub is not for backing up sensitive datasets, it's for backing up R code.
+And make sure your R code does not include passwords or access tokens.
 
+In GitHub, create a *New repository*, called here myproject (Figure \@ref(fig:chap13-fig-newrepo)A).
 You will now see the *Quick setup* page on GitHub. 
 Copy the code below *push an existing repository from the command line* (Figure \@ref(fig:chap13-fig-newrepo)B).
-
+                                                                                 
 ```{r chap13-fig-newrepo, echo = FALSE, fig.cap="Create a new repository (repo) on GitHub."}
 knitr::include_graphics("images/chapter13/5.png", auto_pdf = TRUE)
 ```
-
+                                                                                 
 Back in RStudio, paste the code into the **Terminal**. 
 Add your GitHub username and password (important!) (Figure \@ref(fig:chap13-fig-link)A). 
-
 You have now pushed your commit to GitHub, and should be able to see your files in your GitHub account.
 
 \index{version control@\textbf{version control}!pull and push}
-
+                                                                                 
 The **Pull** and **Push** buttons in RStudio will now also work (Figure \@ref(fig:chap13-fig-link)B).
-
-To avoid always having to enter your password, copy the SSH address from GitHub and enter the code shown in Figure \@ref(fig:chap13-fig-link)c and D).
+                                                                                 
+To avoid always having to enter your password, copy the SSH address from GitHub and enter the code shown in Figure \@ref(fig:chap13-fig-link)C and D.
 
 Check that the **Pull** and **Push** buttons work as expected (Figure \@ref(fig:chap13-fig-link)E).
-
 Remember, after each Commit, you have to Push to GitHub, this doesn't happen automatically.
-You are now done!
 
-```{r chap13-fig-link, echo = FALSE, fig.cap="Link RStudio project to GitHub repository."}
+```{r chap13-fig-link, echo = FALSE, fig.cap="Linking an RStudio project with a GitHub repository."}
 knitr::include_graphics("images/chapter13/6.png", auto_pdf = TRUE)
 ```
 
 ## Clone an existing GitHub project to new RStudio project
 \index{version control@\textbf{version control}!clone}
 
-An alternative situation is where a project already exists on GitHub and you want to copy it (*clone*) to an RStudio project. 
+An alternative situation is where a project already exists on GitHub and you want to copy it to an RStudio project. In version control world, this is called  **cloning**.
 
 In RStudio, click *New project* as normal. Click *Version Control* and select *Git*.
 
-In *Clone Git Repository*, enter the GitHub repository URL as per Figure \@ref(fig:chap13-fig-clone)C). 
+In *Clone Git Repository*, enter the GitHub repository URL as per Figure \@ref(fig:chap13-fig-clone)C. 
 Change the project directory name if necessary.
 
 As above, avoid repeatedly having to enter passwords follow the steps in Figure \@ref(fig:chap13-fig-clone)D and E. 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  12 MAR 2020 10:25
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2019.7.9)  12 MAR 2020 14:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -4164,57 +4164,14 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 
 ] [284]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 12610--12610
-|  
- []
-
 File: images/chapter13/4.pdf Graphic file (type QTm)
 <use  "images/chapter13/4.pdf" > [285] [286]
 File: images/chapter13/5.pdf Graphic file (type QTm)
-<use  "images/chapter13/5.pdf" > [287]
+<use  "images/chapter13/5.pdf" >
 File: images/chapter13/6.pdf Graphic file (type QTm)
-<use  "images/chapter13/6.pdf" > [288]
+<use  "images/chapter13/6.pdf" > [287]
 File: images/chapter13/7.pdf Graphic file (type QTm)
-<use  "images/chapter13/7.pdf" > [289]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (395.75pt too wide) has occurred while \output is active
-[]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (395.75pt too wide) has occurred while \output is active
-[]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (395.75pt too wide) has occurred while \output is active
-[]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (395.75pt too wide) has occurred while \output is active
-[]
- []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
- [][][][] 
- []
-
-[290
-
-]
+<use  "images/chapter13/7.pdf" > [288] [289] [290]
 Underfull \vbox (badness 10000) detected at line 12681
  []
 
@@ -4307,6 +4264,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [291
+
 
 ] [292]
 Underfull \hbox (badness 10000) detected at line 12769
@@ -4721,7 +4679,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 13930.
 Here is how much of TeX's memory you used:
  32203 strings out of 495579
  560417 string characters out of 6187323
- 791014 words of memory out of 5000000
+ 790107 words of memory out of 5000000
  34941 multiletter control sequences out of 15000+600000
  13568 words of font info for 110 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191

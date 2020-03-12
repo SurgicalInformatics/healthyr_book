@@ -3,9 +3,19 @@
 
 In chapter \@ref(chap11-h1) we emphasised one of the less well known strengths of R  - the ease with which reports can be written in HTML (web page), PDF, or Word documents. 
 
-In this chapter we will demonstrate how tables and figures can be easily exported to PDF and Word documents.
-To save space, we will not reproduce the whole analysis, but will demonstrate how a report document can be assembled. 
+Important to realise: while the `kable()` function from `library(knitr)` is excellent for exporting tables to the three output formats: HTML, PDF, Word; it is limited in customisations that you may need to apply on your table.
+For instance, if you use the package `kableExtra()` to customise your tables, you can only export to HTML and PDF. 
+Knitting to Work will just not work with advanced `kableExtra` functions in your R Markdown document.
+Similarly, `flextable` and `officer` are exellent packages for a love story between R Markdown and Word/MS Office, but they do not work for HTML or PDF.
 
+A few points of advice on the issue of highly customised tables and different output formats:
+
+* HTML is least fussy to work with and can resize itself and its content automatically. For rapid exploration and prototyping, we recommend knitting to HTML. HTML documents can be attached to emails and viewed using any browser, even with no internet access (as long as it is a self-contained HTML document, which R Markdown exports usually are).
+* PDF looks most professional once printed. This is because R Markdown uses LaTeX to typeset PDF documents. LaTeX PDFs are our preferred method of producing printable reports or dissertations, but they come with their own bag of issues. Mainly that LaTeX figures and tables **float** and may therefore appear much later down the document than the original text describing it was.
+* Word is used when working with non-R people who need to edit your output.
+
+In this chapter we will demonstrate how tables and figures can be exported to PDF and Word documents.
+We will not go into detailed customisisations, because that's much more than a chapter can carry as advanced customisations become format-dependent.
 Our report will contain two tables - a demographics table and a regression table - and a plot. 
 We will use the `colon_s` data from the `finalfit` package. 
 What follows is for demonstration purposes and is not meant to illustrate model building. 
@@ -70,8 +80,8 @@ Also note that `nodes` has not been labelled properly.
 
 In addition, there are small numbers in some variables generating `chisq.test()` warnings (expected fewer than 5 in any cell). 
 
-Now generate a final table.^[The `finalfit` functions used here - `summary_factorlist()` and `finalfit()` were introduced in Part II - Data Analysis. We will therefore not describe the different arguments here, we use them to demonstrate R's powers of exporting to fully formatted output documents.
-]
+Now generate a final table.^[The `finalfit` functions used here - `summary_factorlist()` and `finalfit()` were introduced in Part II - Data Analysis. We will therefore not describe the different arguments here, we use them to demonstrate R's powers of exporting to fully formatted output documents.]
+
 ```{r, eval=FALSE}
 colon_s <- colon_s %>% 
   mutate(

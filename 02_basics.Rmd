@@ -179,7 +179,7 @@ p2 <- gbd_short %>%
 p1/p2 + plot_annotation(tag_levels = "A")
 ```
 
-## Variable types and why we care
+## Variable types and why we care{#chap02-vartypes}
 \index{variable types@\textbf{variable types}}
 \index{continuous data@\textbf{continuous data}!variable types}
 \index{categorical data@\textbf{categorical data}!variable types}

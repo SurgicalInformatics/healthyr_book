@@ -1,5 +1,8 @@
-# Missing data{#chap14-h1}
+# The problem of missing data{#chap14-h1}
 \index{missing data@\textbf{missing data}}
+
+>"People say nothing is impossible, but I do nothing every day."  
+>A.A.Milne, Winnie-the-Pooh
 
 ```{r echo=FALSE, message=FALSE}
 library(knitr)
@@ -12,7 +15,6 @@ mykable = function(x, caption = "CAPTION", ...){
 }
 ```
 
-## The problem of missing data
 As journal editors, we often receive studies in which the investigators fail to describe, analyse, or even acknowledge missing data. 
 This is frustrating, as it is often of the utmost importance. 
 Conclusions may (and do) change when missing data is accounted for. 
@@ -28,9 +30,7 @@ These are the five steps to ensuring missing data are correctly identified and a
 5. Decide how to handle missing data.
 
 We will work through a number of functions that will help with each of these. 
-
-## Some confusing terminology
-But first there are some terms which easy to mix up. 
+But first, here are some terms which are easy to mix up. 
 These are important as they describe the mechanism of missingness and this determines how you can handle the missing data.
 
 ### Missing completely at random (MCAR)
@@ -47,38 +47,43 @@ This is confusing and would be better stated as missing conditionally at random.
 Here, missing data do have a relationship with other variables in the dataset. 
 However, the actual values that are missing are random.
 
-For example, smoking status is not documented in female patients because the doctor was too shy to ask. 
-Yes ok, not that realistic!
+For example, if smoking status is not documented in female patients because the doctor didn't think to ask them about it (but she did ask all men whether they smoke). 
+However, in this scenario, women are as likely to smoke as men, therefore smoking status itself is missing at random - MAR (but not missing completely at random - MCAR).
+This means that reporting the proportion of smokers calculated from men's data, may be representative of the whole population.
 
 ### Missing not at random (MNAR)
 \index{missing data@\textbf{missing data}!missing not at random}
 The pattern of missingness is related to other variables in the dataset, but in addition, the values of the missing data are not random.
 
-For example, when smoking status is not recorded in patients admitted as an emergency, who are also more likely to have worse outcomes from surgery.
+For example, smoking status is less likely to get recorded for women, and women are less likely to smoke than men.
+Therefore, the smoking status itself is not missing at random, and the proportion of smokers estimated from this dataset is an overestimate.
 
 Missing not at random data are important, can alter your conclusions, and are the most difficult to diagnose and handle. 
 They can only be detected by collecting and examining some of the missing data. 
 This is often difficult or impossible to do.
 
 How you deal with missing data is dependent on the type of missingness. 
-Once you know this, then you can sort it.
-
+Once you know the type, you can start addressing it. 
 More on this below.
 
-## 1. Ensure your data are coded correctly: `ff_glimpse()`
-While clearly obvious, this step is often ignored in the rush to get results. 
+## Ensure your data are coded correctly: `ff_glimpse()`
+\index{variable types@\textbf{variable types}}
+
+While it sounds obvious, this step is often ignored in the rush to get results. 
 The first step in any analysis is robust data cleaning and coding. 
-Lots of packages have a glimpse-type function and our own Finalfit is no different. 
+Lots of packages have a glimpse-type function and our own `finalfit` is no different. 
 This function has three specific goals:
 
-1. Ensure all factors and numerics are correctly assigned. That is the commonest reason to get an error with a Finalfit function. You think you’re using a factor variable, but in fact it is incorrectly coded as a continuous numeric.
+1. Ensure all variables are of the type you expect them to be. That is the commonest reason to get an error with a `finalfit` function. Numbers should be numeric, categorical variables should be characters or factors, and dates should be dates (for a reminder on these, see Section \ref(chap02-vartypes).
 2. Ensure you know which variables have missing data. This presumes missing values are correctly assigned `NA`. 
 3. Ensure factor levels and variable labels are assigned correctly.
 
 ### The Question
 Using the `colon_s` colon cancer dataset, we are interested in exploring the association between a cancer obstructing the bowel and 5-year survival, accounting for other patient and disease characteristics.
 
-For demonstration purposes, we will create random MCAR and MAR smoking variables to the dataset.
+For demonstration purposes, we will make up MCAR and MAR smoking variables (`smoking_mcar` and `smoking_mar`).
+Do not worry about understanding the long cascading mutate and `sample()` functions below, this is merely for creating the example variables.
+You would not be 'creating' your data, we hope.
 
 ```{r message=FALSE}
 # Create some extra missing data
@@ -90,7 +95,7 @@ colon_s = colon_s %>%
   mutate(
     ## Smoking missing completely at random
     smoking_mcar = sample(c("Smoker", "Non-smoker", NA), 
-                          dim(colon_s)[1], replace=TRUE, 
+                          n(), replace=TRUE, 
                           prob = c(0.2, 0.7, 0.1)) %>% 
       factor() %>% 
       ff_label("Smoking (MCAR)"),
@@ -109,8 +114,12 @@ colon_s = colon_s %>%
       factor() %>% 
       ff_label("Smoking (MAR)")
   )
+```
 
-# Examine with ff_glimpse
+We will then examine our variables of interest using `ff_glimpse()`:
+
+```{r}
+
 explanatory = c("age", "sex.factor", 
                 "nodes", "obstruct.factor",  
                 "smoking_mcar", "smoking_mar")
@@ -120,16 +129,16 @@ colon_s %>%
   ff_glimpse(dependent, explanatory)
 ```
 
-The function summarises a data frame or tibble by numeric (continuous) variables and factor (discrete) variables. The dependent and explanatory are for convenience. Pass either or neither e.g. to summarise data frame or tibble:
+You don't need to specify the variables, and if you don't, `gg_glimpse()` will summarise all variables:
 
 ```{r include=FALSE}
 colon_s %>%
   ff_glimpse()
 ```
 
-Use this to check that the variables are all assigned and behaving as expected. The proportion of missing data can be seen, e.g. smoking_mar has `r round(sum(100*is.na(colon_s$smoking_mar))/dim(colon_s)[1], 0)`% missing data.
+Use this to check that the variables are all assigned and behaving as expected. The proportion of missing data can be seen, e.g. `smoking_mar` has `r round(sum(100*is.na(colon_s$smoking_mar))/dim(colon_s)[1], 0)`% missing data.
 
-## 2. Identify missing values in each variable: missing_plot
+## Identify missing values in each variable: `missing_plot()`
 \index{missing data@\textbf{missing data}!missingness plot}
 
 In detecting patterns of missingness, this plot is useful. 
@@ -138,12 +147,12 @@ Associations between missingness and observations can be easily seen, as can rel
 
 ```{r}
 colon_s %>%
-  missing_plot()
+  missing_plot(dependent, explanatory)
 ```
 
 Further visualisations of missingness are available via the [naniar](http://naniar.njtierney.com) package. 
 
-## 3. Look for patterns of missingness: missing_pattern
+## Look for patterns of missingness: missing_pattern
 \index{missing data@\textbf{missing data}!missingness pattern}
 
 Using `finalfit`, `missing_pattern()` wraps a function from the `mice` package, `md.pattern()`. 
@@ -194,7 +203,7 @@ table1 %>%
   mykable(caption = "Simulated missing completely at random (MCAR) and missing at random (MAR) dataset.")
 ```
 
-## 4. Check for associations between missing and observed data: missing_pairs | missing_compare
+## Check for associations between missing and observed data: missing_pairs | missing_compare
 \index{missing data@\textbf{missing data}!associations}
 
 In deciding whether data is MCAR or MAR, one approach is to explore patterns of missingness between levels of included variables. 
@@ -278,7 +287,7 @@ colon_s %>%
   MissMech::TestMCARNormality()
 ```
 
-## 5. Decide how to handle missing data
+## Decide how to handle missing data
 \index{missing data@\textbf{missing data}!handling}
 
 Prior to a standard regression analysis, we can either:

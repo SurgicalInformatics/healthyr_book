@@ -1,6 +1,9 @@
 # Version control{#chap13-h1}
 \index{version control@\textbf{version control}}
 
+>"Always be a first rate version of yourself and not a second rate version of someone else."  
+>Judy Garland
+
 Version control is essential for keeping track of data analysis projects, as well as collaborating. 
 It allows backup of scripts and collaboration on complex projects. 
 RStudio works really well with Git, an open source distributed version control system, and GitHub, a web-based Git repository hosting service. 

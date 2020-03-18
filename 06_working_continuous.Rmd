@@ -240,14 +240,14 @@ For reasons known only to you, you want to know whether the average (mean) heigh
 
 You measure the height of each person in the room, check them for glasses, and run a two-sample *t*-test. 
 
-In statistical terms, your room represents a sample from an underlying popultion. 
+In statistical terms, your room represents a sample from an underlying population. 
 You ability to answer the question accurately relies on a number of factors.
 For instance, how many people are in the room? 
-The more there are, the more certain you can be about the mean meaurement in your groups being close to the mean measurement in the overall population. 
+The more there are, the more certain you can be about the mean measurement in your groups being close to the mean measurement in the overall population. 
 
 What is also crucial is that your room is a representative sample of the population.
 Are the observations independent, i.e., is each observation unrelated to the others.  
-If you have inadvertantly included a family of bespectacled nerdy giants, not typical of those in the country as a whole, your estimate will be wrong and your conclusion incorrect. 
+If you have inadvertently included a family of bespectacled nerdy giants, not typical of those in the country as a whole, your estimate will be wrong and your conclusion incorrect. 
 
 So in our example of countries and continents, you have to assume that the mean life expectancy of each country does not depend on the life expectancies of other countries in the group. In other words, that each measurement is independent.
 
@@ -268,7 +268,7 @@ The difference in means is provided at the bottom of the output.
 The *t*-value, degrees of freedom (df) and *p*-value are all provided. 
 The *p*-value is `r ttest_result$p.value %>% round_tidy(5)`. 
 
-We used the assigment arrow to save the results of the *t*-test into a new object called `ttest_result`.
+We used the assignment arrow to save the results of the *t*-test into a new object called `ttest_result`.
 If you look at the Environment tab, you should see `ttest_result` there.
 If you click on it - to view it - you'll realise that it's not structured like a table, but a list of different pieces of information.
 The structure of the *t*-test object is shown in Figure \@ref(fig:chap06-ttest-object).
@@ -405,7 +405,7 @@ It doesn't make sense to report the results of a statistical test - whether the 
 
 ### Interchangeability of *t*-tests
 
-Furthermore, rember how we calculated the table of differences in the paired *t*-test section?
+Furthermore, remember how we calculated the table of differences in the paired *t*-test section?
 We can use these differences for each pair of observations (country's life expectancy in 2002 and 2007) to run a simple one-sample *t*-test instead:
 
 ```{r}
@@ -470,7 +470,7 @@ mydata %>%
 As with the normality assumption of the *t*-test (for example, Sections \@ref(chap06-h3-hist-plot) and \@ref(chap06-h3-qq-plot)), there are assumptions of the ANOVA model. 
 These assumptions are shared with linear regression and are covered in the next chapter, as linear regression lends itself to illustrate and explain these concepts well. 
 Suffice to say that diagnostic plots can be produced to check that the assumptions are fulfilled. 
-`library(ggfortify)` incldues a function called `autoplot()` that can be used to quickly create diagnostic plots, including the Q-Q plot that we showed before:
+`library(ggfortify)` includes a function called `autoplot()` that can be used to quickly create diagnostic plots, including the Q-Q plot that we showed before:
 
 ```{r fig.height=6, fig.width=6, fig.cap="Diagnostic plots: ANOVA model of life expectancy by continent for 2007"}
 library(ggfortify)

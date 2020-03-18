@@ -56,7 +56,7 @@ mydata <- gapminder
 
 It is vital that datasets carefully inspected when first read (for help reading data into R see \@ref(chap02-h2-reading-data-into-r)).
 The three functions below provide a clear summary, allowing errors or miscoding to be quickly identified. 
-It is particularity important to ensure that any missing data is identified (see Chapter \@ref(chap14-h1)). 
+It is particularity important to ensure that any missing data is identified (see Chapter \@ref(chap11-h1)). 
 If you don't do this you will regret it! 
 There are many times when an analysis has got to a relatively advanced stage before the researcher was hit by the realisation that the dataset was far from complete. 
 

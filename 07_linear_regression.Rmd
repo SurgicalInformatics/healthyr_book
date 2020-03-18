@@ -4,10 +4,18 @@
 > Smoking is one of the leading causes of statistics.  
 > Fletcher Knebel
 
-```{r, include = FALSE}
+```{r echo=FALSE, message=FALSE}
+library(knitr)
 library(kableExtra)
+library(ggplot2)
+mykable = function(x, caption = "CAPTION", ...){
+  kable(x, row.names = FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r", "r"), 
+        booktabs = TRUE, caption = caption, 
+        linesep = c("", "", "\\addlinespace"), ...) %>%
+    kable_styling(latex_options = c("scale_down", "hold_position"))
+}
+theme_set(theme_bw())
 ```
-
 
 ## Regression
 
@@ -17,7 +25,7 @@ This can be thought of as drawing lines, ideally straight lines, through data po
 Linear regression is our method of choice for examining continuous outcome variables. 
 Broadly, there are often two separate goals in regression:
 
-* Prediction: fitting a predictive model to an observed dataset. Using that model to make predictions about an outcome from a new set of explanatory variables;
+* Prediction: fitting a predictive model to an observed dataset, then using that model to make predictions about an outcome from a new set of explanatory variables;
 * Explanation: fit a model to explain the inter-relationships between a set of variables.
 
 Figure \@ref(fig:chap07-fig-regression) unifies the terms we will use throughout. 
@@ -36,6 +44,7 @@ The explanatory variables can be either continuous or categorical.
 We will illustrate our examples of linear regression using a classical question which is important to many of us!
 This is the relationship between coffee consumption and blood pressure (and therefore cardiovascular events, such as myocardial infarction and stroke).
 There has been a lot of backwards and forwards over the decades about whether coffee is harmful, has no effect, or is in fact beneficial. 
+
 Figure \@ref(fig:chap07-fig-regression) shows a linear regression example. 
 Each point is a person.
 The explanatory variable is average number of cups of coffee per day $(x)$ and systolic blood pressure is the dependent variable $(y)$. 
@@ -67,7 +76,7 @@ We can square each residual (to get rid of minuses and make the algebra more con
 If this number is as small as possible, the line is fitting as best it can. 
 Or in more formal language, we want to minimise the sum of squared residuals.
 
-The regression apps and example figures in this chapter have been adapted from https://github.com/mwaskom/ShinyApps and https://github.com/ShinyEd/intro-stats with permission from Michael Waskom and Mine Çetinkaya-Rundel, respectively.
+The regression apps and example figures in this chapter have been adapted from https://github.com/mwaskom/ShinyApps and https://github.com/ShinyEd/intro-stats with permission from Michael Waskom and Mine Çetinkaya-Rundel, thank you to them.
 
 ```{r chap07-fig-residuals, echo = FALSE, fig.cap="How a regression line is fitted. A - residuals are the green lines: the distance between each data point and the fitted line. B - the green circle indicates the minimum for these data, its absolute value is not meaningful or comparable with other datasets. Follow the \"simple regression Shiny app\" link to interact with the fitted line. A new sum of squares of residuals (the black cross) is calculated every time you move the line. C - Distribution of the residuals. App and plots adapted from https://github.com/mwaskom/ShinyApps with permission." }
 knitr::include_graphics("images/chapter07/2_residuals.png", auto_pdf = TRUE)
@@ -93,7 +102,7 @@ Figure \@ref(fig:chap07-fig-diags) shows diagnostic plots from the app, which we
 
 A simple scatter plot should show a linear relationship between the explanatory and the dependent variable, as in figure \@ref(fig:chap07-fig-diags)A. 
 If the data describe a non-linear pattern (figure \@ref(fig:chap07-fig-diags)B), then a straight line is not going to fit it well. 
-In this situation, an alternative model should be considered, such as including a quadratic ($x^2$) term. 
+In this situation, an alternative model should be considered, such as including a quadratic (squared, $x^2$) term. 
 
 *Independence of residuals*
 
@@ -122,7 +131,8 @@ knitr::include_graphics("images/chapter07/3_diags.png", auto_pdf = TRUE)
 
 ### The fitted line and the linear equation
 
-We promised to keep the equations to a minimum, but this one is so important it needs to be included. But it is easy to understand, so fear not. 
+We promised to keep the equations to a minimum, but this one is so important it needs to be included. 
+But it is easy to understand, so fear not. 
 
 Figure \@ref(fig:chap07-fig-equation) links the fitted line, the linear equation, and the output from R. Some of this will likely be already familiar to you. 
 
@@ -131,11 +141,15 @@ The plot is taken from the [multivariable regression Shiny app](https://argoshar
 Remember, these data are simulated and are not real. 
 This app will really help you understand different regression models, more on this below. 
 The app allows us to specify "the truth" with the sliders on the left hand side. 
-For instance, we can set the $intercept=1$, meaning that when all $x=0$, the value of the dependent variable, $y=1$.  
+For instance, we can set the $intercept=1$, meaning that when $x=0$, the value of the dependent variable, $y=1$.  
 
 Our model has a continuous explanatory variable of interest (average coffee consumption) and a further categorical variable (smoking). 
 In the example the truth is set as $intercept=1$, $\beta_1=1$ (true effect of coffee on blood pressure, slope of line), and $\beta_2=2$ (true effect of smoking on blood pressure).
 The points on the plot are simulated and include random noise. 
+
+What does $\beta_1=1$ mean? 
+This is the slope of the line. 
+So for each unit on the x-axis, there is a corresponding increase of one unit on the y-axis. 
 
 Figure \@ref(fig:chap07-fig-equation)B shows the default output in R for this linear regression model. 
 Look carefully and make sure you are clear how the fitted lines, the linear equation, and the R output fit together. 
@@ -152,7 +166,6 @@ knitr::include_graphics("images/chapter07/4_equation.png", auto_pdf = TRUE)
 
 Effect modification occurs when the size of the effect of the explanatory variable of interest (exposure) on the outcome (dependent variable) differs depending on the level of a third variable. 
 Said another way, this is a situation in which an explanatory variable differentially (positively or negatively) modifies the observed effect of another explanatory variable on the outcome.
-
 
 Figure \@ref(fig:chap07-fig-dags) shows three potential causal pathways using examples from the [multivariable regression Shiny app](https://argoshare.is.ed.ac.uk/multi_regression/). 
 
@@ -172,9 +185,9 @@ knitr::include_graphics("images/chapter07/5_dags.png", auto_pdf = TRUE)
 \index{linear regression@\textbf{linear regression}!interactions}
 \index{interaction terms}
 
-Which set of terms you use can depend on the field you work in. 
+The name for these concepts differs depending on the field you work in. 
 Effect modification can be additive or multiplicative. 
-We refer to multiplicative effect modification as "including a statistical interaction". 
+We can refer to multiplicative effect modification as "a statistical interaction". 
 
 Figure \@ref(fig:chap07-fig-types) should make it clear exactly how these work. 
 The data have been set up to include an interaction between the two explanatory variables. 
@@ -187,7 +200,7 @@ What does this mean?
 
 You may have to read that a couple of times in combination with looking at Figure \@ref(fig:chap07-fig-types).
 
-With the additive model, the fitted lines for non-smoking vs smoking are constrained to be parallel. 
+With the additive model, the fitted lines for non-smoking vs smoking must always be parallel (the statistical term is 'constrained').
 Look at the equation in Figure \@ref(fig:chap07-fig-types)B and convince yourself that the lines can never be anything other than parallel. 
 
 A statistical interaction (or multiplicative effect modification) is a situation where the effect of an explanatory variable on the outcome is modified in non-additive manner. 
@@ -211,7 +224,7 @@ knitr::include_graphics("images/chapter07/6_types.png", auto_pdf = TRUE)
 Figure \@ref(fig:chap07-fig-types) includes a further metric from the R output: `Adjusted R-squared`. 
 
 R-squared is another measure of how close the data are to the fitted line. 
-It is also known as the coefficient of determination and represents the proportion of the dependent variable which is explained by the explanatory variable(s). 
+It is also known as the *coefficient of determination* and represents the proportion of the dependent variable which is explained by the explanatory variable(s). 
 So 0.0 indicates that none of the variability in the dependent is explained by the explanatory (no relationship between data points and fitted line) and 1.0 indicates that the model explains all of the variability in the dependent (fitted line follows data points exactly).
 
 R provides the `R-squared` and the `Adjusted R-squared`. 
@@ -268,16 +281,16 @@ library(finalfit)
 library(broom)
 
 theme_set(theme_bw())
-mydata <- gapminder
+gapdata <- gapminder
 ```
 
 ### Check the data
 Always check a new dataset, as described in Section \@ref(chap06-h2-check).
 
 ```{r eval=FALSE}
-glimpse(mydata) # each variable as line, variable type, first values
-missing_glimpse(mydata) # missing data for each variable
-ff_glimpse(mydata) # summary statistics for each variable
+glimpse(gapdata) # each variable as line, variable type, first values
+missing_glimpse(gapdata) # missing data for each variable
+ff_glimpse(gapdata) # summary statistics for each variable
 ```
 
 ### Plot the data
@@ -286,7 +299,7 @@ Let's plot the life expectancies in European countries over the past 60 years, f
 We can add in simple best fit lines using `geom_smooth()`.
 
 ```{r, fig.height=5, fig.width=7, fig.cap="Scatterplots with linear regression lines: Life expectancy by year in European countries"}
-mydata %>%                        
+gapdata %>%                        
   filter(continent == "Europe") %>%    # Europe only
   ggplot(aes(x = year, y = lifeExp)) + # lifeExp~year  
   geom_point() +                       # plot points
@@ -307,7 +320,7 @@ We can then investigate the intercepts and the slope coefficients (linear increa
 First let's plot two countries to compare, Turkey and United Kingdom:
 
 ```{r fig.height=3, fig.width=4.5, fig.cap="Scatterplot: Life expectancy by year: Turkey and United Kingdom"}
-mydata %>% 
+gapdata %>% 
   filter(country %in% c("Turkey", "United Kingdom")) %>% 
   ggplot(aes(x = year, y = lifeExp, colour = country)) + 
   geom_point()
@@ -319,7 +332,7 @@ First, let's model the two countries separately.
 
 ```{r}
 # United Kingdom
-fit_uk <- mydata %>%
+fit_uk <- gapdata %>%
   filter(country == "United Kingdom") %>% 
   lm(lifeExp~year, data = .)
 
@@ -330,7 +343,7 @@ fit_uk %>%
 
 ```{r}
 # Turkey
-fit_turkey <- mydata %>%
+fit_turkey <- gapdata %>%
   filter(country == "Turkey") %>% 
   lm(lifeExp~year, data = .)
 
@@ -354,7 +367,8 @@ fit_turkey$coefficients
 ```
 
 The slopes make sense - the results of the linear regression say that in the UK, life expectancy increases by `r fit_uk$coefficients[2] %>% round(3)` every year, whereas in Turkey the change is `r fit_turkey$coefficients[2] %>% round(3)` per year.
-The negative intercepts, however, are less obvious to think about.
+The reason the intercepts are negative, however, may be less obvious.
+
 In this example, the intercept is telling us that life expectancy at year 0 in the United Kingdom (some 2000 years ago) was `r fit_uk$coefficients[1] %>% round(0)` years.
 While this is mathematically correct (based on the data we have), it obviously makes no sense in practice.
 It is important to think about the range over which you can extend your model predictions, and where they just become unrealistic. 
@@ -362,14 +376,14 @@ It is important to think about the range over which you can extend your model pr
 To make the intercepts meaningful, we will add in a new column called `year_from1952` and re-run `fit_uk` and `fit_turkey` using `year_from1952` instead of `year`.
 
 ```{r}
-mydata <- mydata %>% 
+gapdata <- gapdata %>% 
   mutate(year_from1952 = year - 1952)
 
-fit_uk <- mydata %>%
+fit_uk <- gapdata %>%
   filter(country == "United Kingdom") %>% 
   lm(lifeExp ~ year_from1952, data = .)
 
-fit_turkey <- mydata %>%
+fit_turkey <- gapdata %>%
   filter(country == "Turkey") %>% 
   lm(lifeExp ~ year_from1952, data = .)
 ```
@@ -386,7 +400,7 @@ fit_turkey$coefficients
 
 Now, the updated results tell us that in year 1952, the life expectancy in the United Kingdom was `r fit_uk$coefficients[1] %>% round(0)` years. 
 Note that the slopes do not change.
-There was nothing wrong with the original model and the results were correct, the intercept was just not very meaningful.
+There was nothing wrong with the original model and the results were correct, the intercept was just not meaningful.
 
 *Accessing all model information `tidy()` and `glance()`*
 \index{functions@\textbf{functions}!tidy}
@@ -416,18 +430,18 @@ There are a few ways to include more variables, depending on whether they should
 
 Simple linear regression (exactly one predictor variable):
 
-`myfit = lm(lifeExp ~ year, data = mydata)`
+`myfit = lm(lifeExp ~ year, data = gapdata)`
 
 Multivariable linear regression (additive):
 
-`myfit = lm(lifeExp ~ year + country, data = mydata)`
+`myfit = lm(lifeExp ~ year + country, data = gapdata)`
 
 Multivariable linear regression (interaction):
 
-`myfit = lm(lifeExp ~ year * country, data = mydata)`
+`myfit = lm(lifeExp ~ year * country, data = gapdata)`
 
 This equivalent to:
-`myfit = lm(lifeExp ~ year + country + year:country, data = mydata)`
+`myfit = lm(lifeExp ~ year + country + year:country, data = gapdata)`
 
 These examples of multivariable regression include two variables: `year` and `country`, but we could include more by adding them with `+`, it does not just have to be two.
 
@@ -437,14 +451,14 @@ We will now create three different linear regression models to further illustrat
 
 ```{r fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Life expectancy in Turkey and the UK - univariable fit."}
 # UK and Turkey dataset
-mydata_UK_T <- mydata %>% 
+gapdata_UK_T <- gapdata %>% 
   filter(country %in% c("Turkey", "United Kingdom"))
 
-fit_both1 <- mydata_UK_T %>% 
+fit_both1 <- gapdata_UK_T %>% 
   lm(lifeExp ~ year_from1952, data = .)
 fit_both1
 
-mydata_UK_T %>% 
+gapdata_UK_T %>% 
   mutate(pred_lifeExp = predict(fit_both1)) %>% 
   ggplot() + 
   geom_point(aes(x = year, y = lifeExp, colour = country)) +
@@ -464,7 +478,7 @@ That is great, and almost always exactly what we want.
 Here, however, to illustrate the difference between the different models, we will have to use the `predict()` model and `geom_line()` to have full control over the plotted regression lines.
 
 ```{r}
-mydata_UK_T %>% 
+gapdata_UK_T %>% 
   mutate(pred_lifeExp = predict(fit_both1)) %>% 
   select(country, year, lifeExp, pred_lifeExp) %>% 
   group_by(country) %>%
@@ -477,11 +491,11 @@ Note how the `slice()` function recognises group_by() and in this case shows us 
 
 *Model 2: year + country*
 ```{r fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Life expectancy in Turkey and the UK - multivariable additive fit."}
-fit_both2 <- mydata_UK_T %>% 
+fit_both2 <- gapdata_UK_T %>% 
   lm(lifeExp ~ year_from1952 + country, data = .)
 fit_both2
 
-mydata_UK_T %>% 
+gapdata_UK_T %>% 
   mutate(pred_lifeExp = predict(fit_both2)) %>% 
   ggplot() + 
   geom_point(aes(x = year, y = lifeExp, colour = country)) +
@@ -496,12 +510,12 @@ We need to include an interaction term to allow the effect of year on life expec
 *Model 3: year &ast; country*
 
 ```{r fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Life expectancy in Turkey and the UK - multivariable multiplicative fit."}
-fit_both3 <- mydata_UK_T %>% 
+fit_both3 <- gapdata_UK_T %>% 
   lm(lifeExp ~ year_from1952 * country, data = .)
 fit_both3
 
-mydata_UK_T %>% 
-  mutate(pred_lifeExp = predict(fit_both2)) %>% 
+gapdata_UK_T %>% 
+  mutate(pred_lifeExp = predict(fit_both3)) %>% 
   ggplot() + 
   geom_point(aes(x = year, y = lifeExp, colour = country)) +
   geom_line(aes(x = year, y = pred_lifeExp, colour = country))
@@ -551,6 +565,7 @@ It aimed to capture the occurrence of coronary heart disease over the following 
 
 We will use it, however, to explore the relationship between systolic blood pressure (`sbp`) and personality type (`personality_2L`), accounting for potential confounders such as weight (`weight`). 
 Now this is just for fun - don't write in!
+
 The study was designed to look at cardiovascular events as the outcome, not blood pressure. 
 But it is a convenient to use blood pressure as a continuous outcome from this dataset, even if that was not the intention of the study.
 
@@ -590,7 +605,8 @@ But perhaps you think that previous studies were incorrect, or that the variable
 All this is fair, but it will be expected that this new knowledge is clearly demonstrated by you, so do not omit these variables before you start.
 
 There are some variables that are so commonly associated with particular outcomes in healthcare that they should almost always be included at the start. 
-Age, sex, social class, and co-morbidity for instance are commonly associated with  survival. These need to be assessed before you start looking at your explanatory variable of interest.
+Age, sex, social class, and co-morbidity for instance are commonly associated with  survival. 
+These need to be assessed before you start looking at your explanatory variable of interest.
 
 Furthermore, patients are often clustered by a particular grouping variable, such as treating hospital. 
 There will be commonalities between these patients that may not be fully explained by your observed variables. 
@@ -610,13 +626,14 @@ Measures of goodness-of-fit such as the `AIC`, can also be of great use when dec
 The Akaike Information Criterion (AIC) is an alternative goodness-of-fit measure. 
 In that sense, it is similar to the R-squared, but it has a different statistical basis. 
 It is useful because it can be used to help guide the best fit in generalised linear models such as logistic regression (see chapter \@ref(chap09-h1)). 
-It is based on the likelihood but is also penalised for the number of variables present in the model. We aim to have as small an AIC as possible. 
+It is based on the likelihood but is also penalised for the number of variables present in the model. 
+We aim to have as small an AIC as possible. 
 The value of the number itself has no inherent meaning, but it is used to compare different models of the same data. 
 
 ### Get the data
 
 ```{r}
-mydata <- finalfit::wcgs #press F1 here for details
+wcgsdata <- finalfit::wcgs #press F1 here for details
 ```
 
 ### Check the data
@@ -626,26 +643,20 @@ As always, when you receive a new dataset, carefully check that it does not cont
 ```{r message=FALSE, include=FALSE}
 library(dplyr)
 library(finalfit)
-glimpse(mydata) # each variable as line, variable type, first values
-missing_glimpse(mydata) # missing data for each variable
-sum_wcgs <- ff_glimpse(mydata) # summary statistics for each variable
+glimpse(wcgsdata) # each variable as line, variable type, first values
+missing_glimpse(wcgsdata) # missing data for each variable
+sum_wcgs <- ff_glimpse(wcgsdata) # summary statistics for each variable
 ```
 
 ```{r echo=FALSE, message=FALSE}
 library(knitr)
-library(kableExtra)
 sum_wcgs[[1]] %>%
   select(-c(5, 8, 9, 11, 12)) %>% 
-  kable(row.names = FALSE, align = c("l", "l", "l", "r", "r", "r", "r", "r", "r", "r"), 
-        booktabs = TRUE, caption = "WCGS data, ff\\_glimpse: continuous", 
-        linesep = c("", "", "\\addlinespace")) %>%
-  kable_styling(latex_options = c("scale_down", "hold_position")) %>% 
+  mykable(caption = "WCGS data, ff\\_glimpse: continuous") %>%  
   column_spec(1, width = "4cm")
 sum_wcgs[[2]] %>% 
   select(-c(5, 9)) %>% 
-  kable(row.names = FALSE, align = c("l", "l", "l", "r", "r", "r", "r", "r", "r", "r"), 
-        booktabs = TRUE, caption = "WCGS data, ff\\_glimpse: categorical", 
-        linesep = c("", "", "\\addlinespace")) %>%
+  mykable(caption = "WCGS data, ff\\_glimpse: categorical") %>%
   kable_styling(latex_options = c("scale_down", "hold_position")) %>%  
   column_spec(6, width = "3cm") %>% 
   column_spec(7, width = "3cm")
@@ -653,17 +664,8 @@ sum_wcgs[[2]] %>%
 
 ### Plot the data
 
-```{r echo=FALSE, message=FALSE}
-mykable <- function(x, caption = "CAPTION", ...){
-  kable(x, row.names = FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r", "r"), 
-        booktabs = TRUE, caption = caption, 
-        linesep = c("", "", "\\addlinespace"), ...) %>%
-    kable_styling(latex_options = c("scale_down", "hold_position"))
-}
-```
-
 ```{r chap07-fig-bp-personality_type, fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Systolic blood pressure by weight and personality type."}
-mydata %>%
+wcgsdata %>%
   ggplot(aes(y = sbp, x = weight,
              colour = personality_2L)) +   # Personality type
   geom_point(alpha = 0.2) +                # Add transparency
@@ -688,7 +690,7 @@ Summary statistics, together with a univariable and a multivariable regression a
 ```{r message=FALSE}
 dependent <- "sbp"
 explanatory <- "personality_2L"
-fit_sbp1 <- mydata %>% 
+fit_sbp1 <- wcgsdata %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
 ```
 \index{functions@\textbf{functions}!finalfit}
@@ -711,7 +713,7 @@ As there is only one variable, the univariable and multivariable analyses are th
 
 Although the difference is numerically quite small (2.3 mmHg), it is statistically significant partly because of the large number of patients in the study. 
 The optional `metrics = TRUE` output gives us the number of rows (in this case, subjects) included in the model. 
-This is important as frequently people forget that in standard regression models, missing data from any variable results in the that entire row being excluded from the analysis (see chapter \@ref(chap13-h1)). 
+This is important as frequently people forget that in standard regression models, missing data from any variable results in the that entire row being excluded from the analysis (see chapter \@ref(chap11-h1)). 
 
 Note the `AIC` and `Adjusted R-squared` results. 
 The adjusted R-squared is very low - the model only explains only 0.6% of the variation in systolic blood pressure. 
@@ -722,7 +724,7 @@ Let's now include subject weight, which we have hypothesised may influence blood
 ```{r message=FALSE}
 dependent <- "sbp"
 explanatory <- c("weight", "personality_2L")
-fit_sbp2 <- mydata %>% 
+fit_sbp2 <- wcgsdata %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
 ```
 
@@ -753,7 +755,7 @@ Let's now add in other variables that may influence systolic blood pressure.
 dependent <- "sbp"
 explanatory <- c("personality_2L", "weight", "age", 
                 "height", "chol", "smoking") 
-fit_sbp3 <- mydata %>% 
+fit_sbp3 <- wcgsdata %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
 ```
 
@@ -783,7 +785,7 @@ Let's create a new variable called `bmi`, note the conversion from pounds and in
 
 
 ```{r}
-mydata <- mydata %>% 
+wcgsdata <- wcgsdata %>% 
   mutate(
     bmi = ((weight*0.4536) / (height*0.0254)^2) %>% 
       ff_label("BMI")
@@ -796,7 +798,7 @@ Weight and height can now be replaced in the model with BMI.
 explanatory <- c("personality_2L", "bmi", "age", 
                 "chol", "smoking") 
 
-fit_sbp4 <- mydata %>% 
+fit_sbp4 <- wcgsdata %>% 
   finalfit(dependent, explanatory, metrics = TRUE)
 ```
 
@@ -817,7 +819,7 @@ explanatory       <- c("personality_2L", "bmi", "age",
                       "chol", "smoking") 
 explanatory_multi <- c("bmi", "personality_2L", "age", 
                       "chol") 
-fit_sbp5 <- mydata %>% 
+fit_sbp5 <- wcgsdata %>% 
   finalfit(dependent, explanatory, 
            explanatory_multi, 
            keep_models = TRUE, metrics = TRUE)
@@ -829,12 +831,36 @@ fit_sbp5[[1]] %>% mykable(caption = "Multivariable linear regression: Systolic b
   column_spec(4, width = "4cm") %>% 
   column_spec(5, width = "4cm") %>% 
   column_spec(6, width = "4cm")
-fit_sbp5[[2]] %>% mykable(caption = "Model metrics: Systolic blood pressure by available explanatory variables (top) with reduced model (bottom).", col.names = "") %>% 
+fit_sbp5[[2]] %>% unlist() %>% mykable(caption = "Model metrics: Systolic blood pressure by available explanatory variables (top) with reduced model (bottom).", col.names = "") %>% 
   column_spec(1, width = "18cm")
 ```
 
 This results in little change in the other coefficients and very little change in the AIC. 
 We will consider the reduced model the final model. 
+
+We can also visualise models using plotting. 
+This is useful for communicating a model in a restricted space, e.g. in a presentation. 
+
+```{r eval=FALSE}
+dependent <- "sbp"
+explanatory       <- c("personality_2L", "bmi", "age", 
+                      "chol", "smoking") 
+explanatory_multi <- c("bmi", "personality_2L", "age", 
+                      "chol") 
+fit_sbp5 <- wcgsdata %>% 
+  ff_plot(dependent, explanatory_multi)
+```
+
+```{r fig.height=3, fig.width=12, message=FALSE, include = FALSE}
+dependent <- "sbp"
+explanatory       <- c("personality_2L", "bmi", "age", 
+                      "chol", "smoking") 
+explanatory_multi <- c("bmi", "personality_2L", "age", 
+                      "chol") 
+wcgsdata %>% 
+  coefficient_plot(dependent, explanatory_multi, column_space = c(-0.5, -0.1,
+  0.2))
+```
 
 We can check the assumptions as above.
 
@@ -842,23 +868,21 @@ We can check the assumptions as above.
 dependent <- "sbp"
 explanatory_multi <- c("bmi", "personality_2L", "age", 
                       "chol") 
-mydata %>%
+wcgsdata %>%
   lmmulti(dependent, explanatory_multi) %>% 
   autoplot()
 ```
 
-
 An important message in the results relates to the highly significant *p*-values in the table above. 
 Should we conclude that in a "multivariable regression model controlling for BMI, age, and serum cholesterol, blood pressure was significantly elevated in those with a Type A personality (1.56 (0.57 to 2.56, p=0.002) compared with Type B?
 The *p*-value looks impressive, but the actual difference in blood pressure is only 1.6 mmHg. 
-Even at a population level, that seems unlikely to be clinically significant, fitting with our first thoughts when we saw the scatter plot. 
+Even at a population level, that may not be clinically significant, fitting with our first thoughts when we saw the scatter plot. 
 
 This serves to emphasise our most important point.
 Our focus should be on understanding the underlying data itself, rather than relying on complex multidimensional modelling procedures. 
 By making liberal use of upfront plotting, together with further visualisation as you understand the data, you will likely be able to draw most of the important conclusions that the data has to offer. 
 Use modelling to quantify and confirm this, rather than as the primary method of data exploration. 
 
-<!-- Coefficient plot -->
 <!-- Consider lmer / random effects -->
 
 ### Summary
@@ -872,93 +896,177 @@ This great post demonstrates beautifully how the statistical tests we are most f
 Regression is fitting lines, preferably straight, through data points. 
 Make $\hat{y} = \beta_0 + \beta_1 x_1$ a close friend.
 
-<!-- ## Exercise 5 -->
 
-<!-- 1. Copy the multivariable linear regression model (where "Turkey" and the "United Kingdom" are in the same `lm()` model) from Exercise 4. -->
+## Exercises
 
-<!-- 2. Include a third country (e.g. "Portugal") in the `filter(country %in% c("Turkey", "United Kingdom", "Portugal"))` to your multivariable linear regression model. -->
+### Exercise 1
 
-<!-- 3. Do the results change? How, and why? -->
+Using the [multivariable regression Shiny app](https://argoshare.is.ed.ac.uk/multi_regression/), hack some p-values to prove to yourself the principle of multiple testing. 
 
-<!-- ```{r} -->
-<!-- # Exercise 5 - your R code -->
-<!-- ``` -->
+From the default position, select "additive model" then set "Error standard deviation" to 2. Leave all true effects at 0. How many clicks of "New Sample" did you need before you got a statistically significant result?
 
 
-<!-- ## Exercise 2 -->
+### Exercise 2
 
-<!-- Open the first Shiny app ("Simple regression"). Move the sliders until the red lines (residuals*) turn green - this means you've made the line fit the points as well as possible. Look at the intercept and slope - discuss with your neighbour or a tutor what these numbers mean/how they affect the straight line on the plot. -->
-
-<!-- *Residual is how far away each point (observation) is from the linear regression line. (In this example it's the linear regression line, but residuals are relevant in many other contexts as well.) -->
-
-
-
-<!-- ## Solutions -->
-
-<!-- ## Exercise 1 solution -->
-
-<!-- ```{r} -->
-<!-- mydata %>%  -->
-<!--   filter(country %in% c("United Kingdom", "Turkey")) %>%  -->
-<!--   ggplot(aes(x = year, y = lifeExp)) + -->
-<!--   geom_point() + -->
-<!--   facet_wrap(~country) + -->
-<!--   theme_bw() + -->
-<!--   scale_x_continuous(breaks = c(1960, 1980, 2000)) + -->
-<!--   geom_smooth(method = "lm") -->
-<!-- ``` -->
-
-<!-- ## Exercise 5 solution -->
+Plot the GDP per capita by year for countries in Europe. 
+Add a best fit straight line to the plot.
+In which countries is the relationship not linear?
+Advanced: make the line curved by adding a quadratic/squared term, e.g. $y~x^2+x$. Hint: check geom_smooth() help page under `formula`. 
 
 
-<!-- ```{r} -->
+### Exercise 3
 
-<!-- mydata %>%  -->
-<!--   filter(country %in% c("Turkey", "United Kingdom", "Portugal")) %>%  -->
-<!--   lm(lifeExp ~ year_from1952*country, data = .)   %>%  -->
-<!--   tidy() %>% -->
-<!--   mutate(estimate = round(estimate, 2)) %>%  -->
-<!--   select(term, estimate) -->
+Compare the relationship between GDP per capita and year for two countries of your choice.
+If you can't choose, make it Albania and Austria.
 
-<!-- ``` -->
+Fit and plot a regression model that simply averages the values across the two countries. 
 
-<!-- Overall, the estimates for Turkey and the UK do not change, but Portugal becomes the reference (alphabetically first) and you need to subtract or add the relevant lines for Turkey and UK to get their intercept values. -->
+Fit and plot a best fit regression model. 
+
+Use your model to determine the difference in GDP per capita for your countries in 1980. 
 
 
+### Exercise 4
+
+Use the the Western Collaborative Group Study data to determine if there is a relationship between age and cholesterol level.
+
+Remember to plot the data first. 
+
+Make a simple regression model. Add other variables to adjust for potential confounding. 
 
 
+## Exercise solutions
 
+```{r fig.height=8, fig.width=12, results='hide'}
+# Exercise 2
+gapdata %>% 
+  filter(continent == "Europe") %>% 
+  ggplot(aes(x = year, y = gdpPercap)) + 
+  geom_point() +
+  geom_smooth(method = "lm") +
+  facet_wrap(country ~ .)
 
+# Countries not linear: Ireland, Montenegro, Serbia.
 
-<!-- ## Exercise 4 -->
+# Add quadratic term
+gapdata %>% 
+  filter(continent == "Europe") %>% 
+  ggplot(aes(x = year, y = gdpPercap)) + 
+  geom_point() +
+  geom_smooth(method = "lm", formula = "y ~ poly(x, 2)") +
+  facet_wrap(country ~ .)
+```
 
-<!-- Convince yourself that using an fully interactive multivariable model is the same as running several separate simple linear regression models. Remember that we calculate the life expectancy in 1952 (intercept) and improvement per year (slope) for Turkey and the United Kingdom: -->
+```{r fig.height=3, fig.width=4.5, results='hide'}
+# Exercise 3
 
-<!-- ```{r} -->
-<!-- fit_uk %>% -->
-<!--   tidy() %>% -->
-<!--   mutate(estimate = round(estimate, 2)) %>%  -->
-<!--   select(term, estimate) -->
-<!-- ``` -->
+# Plot first
+gapdata %>% 
+  filter(country %in% c("Albania", "Austria")) %>% 
+  ggplot() + 
+  geom_point(aes(x = year, y = gdpPercap, colour= country))
 
+# Fit average line between two countries. 
+fit_both1 = gapdata %>% 
+  filter(country %in% c("Albania", "Austria")) %>% 
+  lm(gdpPercap ~ year, data = .)
 
-<!-- ```{r} -->
-<!-- fit_turkey %>% -->
-<!--   tidy() %>% -->
-<!--   mutate(estimate = round(estimate, 2)) %>%  -->
-<!--   select(term, estimate) -->
-<!-- ``` -->
+gapdata %>% 
+  filter(country %in% c("Albania", "Austria")) %>% 
+  ggplot() + 
+  geom_point(aes(x = year, y = gdpPercap, colour = country)) +
+  geom_line(aes(x = year, y = predict(fit_both1)))
 
-<!-- These were the two separate models from above (now using `tidy() %>%  mutate() %>%  select()` instead of `summary()`). And this is how we can get to the same coefficients using a single multivariable linear regression model (note the `year_from1952*country`): -->
+# Fit average line between two countries. 
+fit_both3 = gapdata %>% 
+  filter(country %in% c("Albania", "Austria")) %>% 
+  lm(gdpPercap ~ year * country, data = .)
 
-<!-- ```{r} -->
-<!-- mydata %>%  -->
-<!--   filter(country %in% c("Turkey", "United Kingdom")) %>%  -->
-<!--   lm(lifeExp ~ year_from1952 * country, data = .)   %>%  -->
-<!--   tidy() %>% -->
-<!--   mutate(estimate = round(estimate, 2)) %>%  -->
-<!--   select(term, estimate) -->
-<!-- ``` -->
+gapdata %>% 
+  filter(country %in% c("Albania", "Austria")) %>% 
+  ggplot() + 
+  geom_point(aes(x = year, y = gdpPercap, colour = country)) +
+  geom_line(aes(x = year, y = predict(fit_both3), group = country))
 
-<!-- Now. It may seem like R has omitted Turkey but the values for Turkey are actually in the Intercept = 46.02 and in year_from1952 = 0.50. Can you make out the intercept and slope for the UK? Are they the same as in the simple linear regression model? -->
+# You can use the regression equation by hand to work out the difference
+summary(fit_both3)
 
+# Or pass newdata to predict to estimate the two points of interest
+gdp_1980 <- predict(fit_both3, newdata = data.frame(
+  country = c("Albania", "Austria"),
+  year = c(1980, 1980))
+)
+gdp_1980
+gdp_1980[2] - gdp_1980[1]
+```
+
+```{r results='hide'}
+# Exercise 4
+
+# Plot data first
+wcgsdata %>% 
+  ggplot(aes(x = age, y = chol))+
+  geom_point() + 
+  geom_smooth(method = "lm", formula = "y~x")
+# Weak positive relationship
+
+# Simple linear regression
+dependent <- "chol"
+explanatory <- "age" 
+wcgsdata %>% 
+  finalfit(dependent, explanatory, metrics = TRUE)
+# For each year of age, cholesterol increases by 0.7 mg/100 ml. 
+# This gradient differs from zero. 
+
+# Is this effect independent of other available variables?
+
+# Make BMI as above
+dependent <- "chol"
+explanatory <- c( "age", "bmi", "sbp", "smoking", "personality_2L") 
+wcgsdata %>% 
+  mutate(
+    bmi = ((weight*0.4536) / (height*0.0254)^2) %>% 
+      ff_label("BMI")
+  ) %>% 
+  finalfit(dependent, explanatory, metrics = TRUE)
+# Effect size is reduced, but still present. 
+# Model poorly describes data, R2=0.033.
+```
+
+```{r fig.height=3, fig.width=4.5, include=FALSE, results='hide'}
+# If want to include results set this to go. 
+# Exercise 4
+
+# Plot data first
+wcgsdata %>% 
+  ggplot(aes(x = age, y = chol))+
+  geom_point() + 
+  geom_smooth(method = "lm", formula = "y~x")
+# Weak positive relationship
+
+# Simple linear regression
+dependent <- "chol"
+explanatory <- "age" 
+wcgsdata %>% 
+  finalfit(dependent, explanatory, metrics = TRUE) %>% 
+  mykable()
+# For each year of age, cholesterol increases by 0.7 mg/100 ml. 
+# This gradient differs from zero. 
+
+# Is this effect independent of other available variables?
+
+# Make BMI as above
+dependent <- "chol"
+explanatory <- c( "age", "bmi", "sbp", "smoking", "personality_2L") 
+t = wcgsdata %>% 
+  mutate(
+    bmi = ((weight*0.4536) / (height*0.0254)^2) %>% 
+      ff_label("BMI")
+  ) %>% 
+  finalfit(dependent, explanatory, metrics = TRUE)
+t[[1]] %>% mykable(caption = "Exercise 4 solution (A)")
+t[[2]] %>% mykable(caption = "Exercise 4 solution (B)")
+
+# Effect size is reduced, but still present. 
+# Model poorly describes data, R2=0.033.
+```

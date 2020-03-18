@@ -12,7 +12,7 @@ library(kableExtra)
 knitr::opts_chunk$set(fig.width = 2.8, fig.height = 2.8, cache = TRUE)
 ```
 
-# Different types of plots
+# Different types of plots {#chap04-h1}
 \index{plots@\textbf{plots}}
 \index{plots@\textbf{plots}!ggplot2}
 

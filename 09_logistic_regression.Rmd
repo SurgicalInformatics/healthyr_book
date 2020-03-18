@@ -34,13 +34,15 @@ For instance, we may try to predict blood pressure in a group of patients based 
 As blood pressure and coffee consumption can be considered on a continuous scale, this is an example of simple linear regression. 
 
 Logistic regression is an extension of this, where the variable being predicted is *categorical*. 
-We will focus on binary logistic regression, where the variable being predicted has two levels, e.g. yes or no, 0 or 1, dead or alive.
+We will focus on binary logistic regression, where the dependent variable has two levels, e.g. yes or no, 0 or 1, dead or alive.
 Other types of logistic regression include 'ordinal', when the outcome variable has >2 ordered levels, and 'multinomial', where the outcome variable has >2 levels with no inherent order. 
-We will only deal with binary logistic regression, and and when we use the 'logistic regression' that is what we are referring to. 
+
+We will only deal with binary logistic regression.
+When we use the term 'logistic regression', that is what we are referring to. 
 
 We have good reason. 
 In healthcare we are often interested in an event (like death) occurring or not occurring. 
-Binary logistic regression can tell us the probability of this outcome occurring in a patient with a particularly set of characteristics.
+Binary logistic regression can tell us the probability of this outcome occurring in a patient with a particular set of characteristics.
 
 Although in binary logistic regression the outcome must have two levels, remember that the predictors (explanatory variables) can be either continuous or categorical.
 
@@ -56,9 +58,9 @@ Our outcome variable was previously blood pressure.
 We will now consider our outcome as the occurrence of a cardiovascular (CV) event over a 10-year period. 
 A cardiovascular event includes the diagnosis of ischemic heart disease, a heart attack (myocardial infarction), or a stroke (cerebrovascular accident). 
 The diagnosis of a cardiovascular event is clearly a binary condition, it either happens or it does not. 
-This is ideal therefore for modelling using binary logistic regression. 
+This is ideal for modelling using binary logistic regression. 
 But remember, the data are completely simulated and not based on anything in the real world. 
-It's just for fun!
+This bit is just for fun!
 
 ### Odds and probabilities
 \index{logistic regression@\textbf{logistic regression}!odds and probabilities}
@@ -71,7 +73,7 @@ knitr::include_graphics("images/chapter09/0_odds.png", auto_pdf = TRUE)
 ```
 
 In many situations, there is no particular reason to prefer one to the other. 
-However, humans seem to have a preference for expressing chance in terms of probabilities, while odds have particular mathematical properties which makes them useful in regression.
+However, humans seem to have a preference for expressing chance in terms of probabilities, while odds have particular mathematical properties that make them useful in regression.
 
 When a probability is 0, the odds are 0. 
 When a probability is between 0 and 0.5, the odds are less than 1.0 (i.e., less than "1 to 1"). 
@@ -112,17 +114,17 @@ We will continue to work with odds ratios given they are an important expression
 \index{logistic regression@\textbf{logistic regression}!fitted line}
 
 Let's return to the task at hand. 
-The difficulty in moving from a continuous to a binary outcome variable becomes obvious quickly. 
+The difficulty in moving from a continuous to a binary outcome variable quickly becomes obvious. 
 If our $y$-axis only has two values, say 0 and 1, then how can be fit line through our data points?
 
-An assumption of linear regression is that dependent variable is continuous, unbounded and measured on an interval or ratio scale.
+An assumption of linear regression is that the dependent variable is continuous, unbounded, and measured on an interval or ratio scale.
 Unfortunately, binary dependent variables fulfil none of these requirements. 
 
 The answer is what makes logistic regression so useful. 
 Rather than estimating $y=0$ or $y=1$ from the $x$-axis, we estimate the *probability* of $y=1$. 
 
 There is one more difficulty in this though.
-Probabilities can only exist between values of 0 and 1. 
+Probabilities can only exist for values of 0 to 1. 
 The probability scale is therefore not linear - straight lines do not make sense on it. 
 
 As we saw above, the odds scale runs from 0 to $+\infty$. 
@@ -130,7 +132,7 @@ But here, probabilities from 0 to 0.5 are squashed into odds of 0 to 1, and prob
 
 This is why we fit binary data on a *log-odds scale*. 
 
-A log-odds scale sounds incredibly off-putting to non-mathematicians, but it is the perfect solution! 
+A log-odds scale sounds incredibly off-putting to non-mathematicians, but it is the perfect solution.
 
 * Log-odds run from $-\infty$ to $+\infty$;
 * odds of 1 become log-odds of 0;
@@ -150,7 +152,7 @@ This can be skipped with no loss of understanding, but for those who just-gots-t
 
 $\log_e (\frac{p}{1-p})$, where $p$ is the probability of the outcome occuring. 
 
-Figure \@ref(fig:chap09-fig-logodds) demonstrates the fitted lines from a logistic regression model of CV event by coffee consumption stratified by smoking on the log-odds scale (A) and the probability scale (B). 
+Figure \@ref(fig:chap09-fig-logodds) demonstrates the fitted lines from a logistic regression model of cardiovvascular event by coffee consumption, stratified by smoking on the log-odds scale (A) and the probability scale (B). 
 We could conclude, for instance, that on average, non-smokers who drink 2 cups of coffee per day have a 50% chance of a cardiovascular event. 
 
 ```{r chap09-fig-logodds, echo = FALSE, fig.cap="A logistic regression model of life-time cardiovascular event occurence by coffee consumption stratified by smoking (simulated data). Fitted lines plotted on the log-odds scale (A) and probability scale (B). *lines are straight when no polynomials or splines are included in regression. "}
@@ -396,13 +398,13 @@ It is important therefore to consider inclusion of these variables in a regressi
 ## Model assumptions
 \index{logistic regression@\textbf{logistic regression}!assumptions}
 
-Binary logistic regression is robust many assumptions which can cause problems in other statistical analyses. 
+Binary logistic regression is robust to many of the assumptions which cause problems in other statistical analyses. 
 The main assumptions are:
 
 1. Binary dependent variable - this is obvious, but as above we need to check (alive, death from disease, death from other causes doesn't work);
 2. Independence of observations - the observations should not be repeated measurements or matched data;
-3. Linearity of continuous explanatory variables and the log-odds outcome - take age as an example. If the outcome, say death, gets more frequent or less frequent as age rises, the model will work well. However, say children and the elderly are at high risk of death, but those in middle years are not, then the relationship is not linear. Or more correctly, is not monotonic, meaning that the response does not only go in one direction. 
-4. No multicollinearity - explanatory variables should not be highly correlated with each other;
+3. Linearity of continuous explanatory variables and the log-odds outcome - take age as an example. If the outcome, say death, gets more frequent or less frequent as age rises, the model will work well. However, say children and the elderly are at high risk of death, but those in middle years are not, then the relationship is not linear. Or more correctly, is not monotonic, meaning that the response does not only go in one direction;
+4. No multicollinearity - explanatory variables should not be highly correlated with each other.
 
 ### Linearity of continuous variables to the response
 \index{logistic regression@\textbf{logistic regression}!loess}
@@ -526,7 +528,7 @@ This is the standard R output which you should become familiar with.
 It what is included in the previous figures. 
 The estimates of the coefficients (slopes) in this output are on the log-odds scale and always will be. 
 
-Easier approaches to use in practice are shown below, but for completeness here is how to extract these results. 
+Easier approaches for doing this in practice are shown below, but for completeness here we will show how to extract the results. 
 `str()` shows all the information included in the model object, which is useful for experts but a bit off-putting if you are starting out. 
 
 The coefficients and their 95% confidence intervals can be extracted and exponentiated like this. 
@@ -631,15 +633,14 @@ It is penalised for each additional variable, so should be somewhat robust again
 
 The c-statistic or area under the reciever operator curve (ROC) provides a measure of model 'discrimination'. 
 It runs from 0.5 to 1.0, with 0.5 being no better than chance, and 1.0 being perfect fit. 
-What the number is can be thought of as this. 
+What the number actually represents can be thought of like this. 
 Take our example of death from melanoma. 
-If you take a random patient who died and a random patient who did not die, then the c-statistic is the probbaility that the model predicts that patient 1 is more liekly to die than patient 2. 
-In our example above, the should get that correct 72% of the time.  
+If you take a random patient who died and a random patient who did not die, then the c-statistic is the probbaility that the model predicts that patient 1 is more likely to die than patient 2. 
+In our example above, the model should get that correct 72% of the time.  
 
 **Hosmer-Lemeshow test**
 \index{logistic regression@\textbf{logistic regression}!Hosmer-Lemeshow test}
 \index{Hosmer-Lemeshow test}
-
 
 If you are interested in using your model for prediction, it is important that it is calibrated correctly. 
 Using our example, callibration means that the model accurately predicts death from melanoma when the risk to the patient is low and also accurately predicts death when the risk is high. 
@@ -660,7 +661,7 @@ Three things are important to keep looking at:
 
 * what is the assocication between a particular variable and the outcome (OR and 95%CI);
 * how much information is a variable bringing to the model (change in AIC and c-statistic); 
-* how much influence does adding a variable have on the effect size of another variable, and in particular my variable of interest (a rule of thumb is a greater than 10% change in the OR of the variable of interest is important). 
+* how much influence does adding a variable have on the effect size of another variable, and in particular my variable of interest (a rule of thumb is seeing a greater than 10% change in the OR of the variable of interest when a new variable is added to the model, suggests the new variable is important). 
 
 We're going to start by including the variables from above which we think are relevant. 
 
@@ -788,7 +789,8 @@ fit <- melanoma %>%
            keep_models = TRUE, metrics = TRUE)
 fit[[1]] %>% mykable(caption = "Multivariable logistic regression model: comparing a reduced model in one table (fit 5).") %>% 
   column_spec(1, width = "3.5cm")
-fit[[2]] %>% mykable(caption = "Model metrics: comparing a reduced model in one table (fit 5).", col.names = "") %>% 
+fit[[2]] %>% unlist() %>% 
+  mykable(caption = "Model metrics: comparing a reduced model in one table (fit 5).", col.names = "") %>% 
   column_spec(1, width = "18cm")
 ```  
   
@@ -822,7 +824,7 @@ fit <- melanoma %>%
            keep_models = TRUE, metrics = TRUE)
 fit[[1]] %>% mykable(caption = "Multivariable logistic regression: further reducing the model (fit 6).") %>% 
   column_spec(1, width = "3.5cm")
-fit[[2]] %>% mykable(caption = "Model metrics: further reducing the model (fit 6).", col.names = "") %>% 
+fit[[2]] %>% unlist() %>% mykable(caption = "Model metrics: further reducing the model (fit 6).", col.names = "") %>% 
   column_spec(1, width = "18cm")
 ```  
   
@@ -931,16 +933,17 @@ We can conclude that there is evidence of an association between tumour ulcerati
 \index{logistic regression@\textbf{logistic regression}!hierarchical}
 
 In our modelling stratgey above, we mentioned the incorporation of population stratification if available.
-What does this mean. 
+What does this mean?
+
 Our regression is seeking to capture the characteristics of particular patients.
-These characterisitcs are made manifest through the slopes of fitted lines, the estimated coefficients of particular variables. 
+These characterisitcs are made manifest through the slopes of fitted lines - the estimated coefficients of particular variables. 
 A goal is to estimate these characteristics as precisely as possible. 
 Bias can be introduced when correlations between patients are not accounted for. 
 Correlations may be as simple as being treated within the same hospital. 
 By virtue of this fact, these patients may have commonalities not be captured by the observed variables. 
 
 Population characteristics can be incorporated into our models. 
-We may not be intersted in capturing and measuring the effects themselves, but ensuring they are accounted for in the analysis. 
+We may not be interested in capturing and measuring the effects themselves, but want to ensure they are accounted for in the analysis. 
 
 One approach is to include grouping variables as `random effects`. 
 These may be nested with each other, for example patients within hospitals within countries. 
@@ -969,14 +972,13 @@ melanoma <- melanoma %>%
 
 ### Plot the data 
 
-**This all might be better in linear regression. Bit difficult to demonstrate with binomial data**
 We will speak in terms of 'hospitals' now, but the grouping variable(s) could clearly be anything. 
 
 The simplest random effects approach is a 'random intercept model'. 
 This allows the intercept of fitted lines to vary by hospital. 
 The random intercept model constrains lines to be parallel, in a similar way to the additive models discussed above and in chapter 7. 
 
-It is harder to demonstrate with binomial data, but we can stratify the 5 year mortality by T-stage (considered as a continuous variable for this purpose).
+It is harder to demonstrate with binomial data, but we can stratify the 5-year mortality by T-stage (considered as a continuous variable for this purpose).
 Note there were no deaths in 'hospital 4'.
 We can model this accounting for interhospital variation below. 
 
@@ -985,7 +987,7 @@ melanoma %>%
     mutate(
     mort_5yr.num = as.numeric(mort_5yr) - 1
   ) %>% 
-  ggplot(aes(x = as.numeric(t_stage.factor), y = mort_5yr.num)) + #, group = hospital_id
+  ggplot(aes(x = as.numeric(t_stage.factor), y = mort_5yr.num)) +
   geom_smooth(method = 'loess', se = FALSE) + 
   facet_wrap(~hospital_id)
 
@@ -1057,7 +1059,7 @@ fit <- melanoma %>%
 
 fit[[1]] %>% mykable(caption = "Multilevel (mixed effects) logistic regression.") %>% 
   column_spec(1, width = "3.5cm")
-fit[[2]] %>% mykable(caption = "Model metrics: multilevel (mixed effects) logistic regression.", col.names = "") %>% 
+fit[[2]] %>% unlist() %>% mykable(caption = "Model metrics: multilevel (mixed effects) logistic regression.", col.names = "") %>% 
   column_spec(1, width = "18cm")
 ```
 
@@ -1073,8 +1075,6 @@ As models get more complex, care has to be taken to ensure the underlying data i
 
 Mixed effects modelling is a book in itself and the purpose here is to introduce the concept and provide some approaches its incorporation. 
 Clearly much is written else where for those who are enthusiastic to learn more. 
-
-
 
 ```{r eval=FALSE}
 library(ggfortify)

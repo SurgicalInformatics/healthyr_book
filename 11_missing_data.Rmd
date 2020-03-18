@@ -1,4 +1,11 @@
-# The problem of missing data{#chap14-h1}
+# (PART) Workflow {-}
+
+Throughout this book we have tried to provide the most efficient approaches data analysis using R. 
+In this section, we will provide workflows, or ways-of-working, which maximise efficiency, incorporate reporting of results within analyses, make exporting of tables and plots easy, and keep data safe, secured and backed up. 
+
+We also include a section on dealing with missing data in R. Something that we both feel strongly about and which is often poorly described and dealt with in academic publishing. 
+
+# The problem of missing data{#chap11-h1}
 \index{missing data@\textbf{missing data}}
 
 >"People say nothing is impossible, but I do nothing every day."  

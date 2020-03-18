@@ -1,11 +1,4 @@
-# (PART) Workflow {-}
-
-Throughout this book we have tried to provide the most efficient approaches data analysis using R. 
-In this section, we will provide workflows, or ways-of-working, which maximise efficiency, incorporate reporting of results within analyses, make exporting of tables and plots easy, and keep data safe, secured and backed up. 
-
-We also include a section on dealing with missing data in R. Something that we both feel strongly about and which is often poorly described and dealt with in academic publishing. 
-
-# Notebooks and Markdown{#chap11-h1}
+# Notebooks and Markdown{#chap12-h1}
 \index{notebooks@\textbf{notebooks}}
 \index{markdown@\textbf{markdown}}
 
@@ -21,11 +14,11 @@ This idea can be extended to a workflow in which all analyses are performed prim
 
 Enter "Data Notebooks"!
 Notebooks are documents which combine code and rich text elements, such as headings, paragraphs and links, in one document. 
-They combine analysis and reporting in one human-readable document to provide an intuitive interface between the researcher and their analysis (Figure \@ref(fig:chap11-fig-literate)). 
+They combine analysis and reporting in one human-readable document to provide an intuitive interface between the researcher and their analysis (Figure \@ref(fig:chap12-fig-literate)). 
 This is sometimes called "literate programming", given the resulting logical structure of information can be easily read in the manner a human would read a book.  
 
-```{r chap11-fig-literate, echo = FALSE, fig.cap="Traditional versus literate programming using Notebooks."}
-knitr::include_graphics("images/chapter11/1_literate_programming.png", auto_pdf = TRUE)
+```{r chap12-fig-literate, echo = FALSE, fig.cap="Traditional versus literate programming using Notebooks."}
+knitr::include_graphics("images/chapter12/1_literate_programming.png", auto_pdf = TRUE)
 ```
 
 In our own work, we have now moved to doing most of our analyses in a Notebook file, rather than using a "script" file. You may not have guessed, but this whole book is written in this way. 
@@ -49,10 +42,10 @@ Markdown is a lightweight language that can be used to write fully-formatted doc
 It is plain-text and uses a simple set of rules to produce rather sophisticated output - we love it!
 
 It is easy to format headings, bold text, italics etc. 
-Within RStudio there is a Quick Reference guide (Figure \@ref(fig:chap11-fig-help)) and links to the [RStudio cheatsheets](https://www.rstudio.com/resources/cheatsheets) can be found in the Help drop-down menu.
+Within RStudio there is a Quick Reference guide (Figure \@ref(fig:chap12-fig-help)) and links to the [RStudio cheatsheets](https://www.rstudio.com/resources/cheatsheets) can be found in the Help drop-down menu.
 
-```{r chap11-fig-help, echo = FALSE, fig.cap="RStudio Markdown quick reference guide."}
-knitr::include_graphics("images/chapter11/3_help.png", auto_pdf = TRUE)
+```{r chap12-fig-help, echo = FALSE, fig.cap="RStudio Markdown quick reference guide."}
+knitr::include_graphics("images/chapter12/3_help.png", auto_pdf = TRUE)
 ```
 
 Markdown exists independent of R and is used by a range of techies and alike.
@@ -95,7 +88,7 @@ If you are primarily doing analysis in the Notebook environment, choose Notebook
 ## The anatomy of a Notebook / R Markdown file
 
 When you create a file, a helpful template is provided to get you started. 
-Figure \@ref(fig:chap11-fig-anatomy) shows the essential elements of a Notebook file and how these translate to the `HTML` preview. 
+Figure \@ref(fig:chap12-fig-anatomy) shows the essential elements of a Notebook file and how these translate to the `HTML` preview. 
 
 ### YAML header
 \index{YAML header}
@@ -108,8 +101,8 @@ It was later repurposed as YAML Ain't Markup Language, a recursive acronym, to d
 This is simply where many of the settings/options for file creation are placed.
 In RStudio, these often update automatically as different settings are invoked in the Options menu. 
 
-```{r chap11-fig-anatomy, echo = FALSE, fig.cap="The Anatomy of a Notebook/Markdown file. Input (left) and output (right)"}
-knitr::include_graphics("images/chapter11/2_anatomy_rotated.png", auto_pdf = TRUE)
+```{r chap12-fig-anatomy, echo = FALSE, fig.cap="The Anatomy of a Notebook/Markdown file. Input (left) and output (right)"}
+knitr::include_graphics("images/chapter12/2_anatomy_rotated.png", auto_pdf = TRUE)
 ```
 
 ### R code chunks
@@ -122,7 +115,7 @@ R code within a Notebook or Markdown file can included in two ways:
 
 R chunks are flexible, come with lots of options, and you will soon get into the way of using them. 
 
-Figure \@ref(fig:chap11-fig-anatomy) shows how a chunk fits into the document. 
+Figure \@ref(fig:chap12-fig-anatomy) shows how a chunk fits into the document. 
 
 ```` markdown
 `r ''````{r}
@@ -141,9 +134,9 @@ It is particularly helpful that Python can also be run in this way.
 
 When doing an analysis in a Notebook you will almost always want to see the code and the output.
 When you are creating a final document you may wish to hide code.
-Chunk behaviour can be controlled via the `Chunk Cog` on the right of the chunk (Figure \@ref(fig:chap11-fig-anatomy)).
+Chunk behaviour can be controlled via the `Chunk Cog` on the right of the chunk (Figure \@ref(fig:chap12-fig-anatomy)).
 
-Table \@ref(tab:chap11-tab-chunk-output) shows the various permutations of code and output options that are available. 
+Table \@ref(tab:chap12-tab-chunk-output) shows the various permutations of code and output options that are available. 
 The code is placed in the chunk header but the options fly-out now does this automatically, e.g. 
 
 ```` markdown
@@ -151,7 +144,7 @@ The code is placed in the chunk header but the options fly-out now does this aut
 ```
 ````
 
-```{r chap11-tab-chunk-output, echo=FALSE, message=FALSE}
+```{r chap12-tab-chunk-output, echo=FALSE, message=FALSE}
 library(dplyr)
 data.frame(
   Option = c(
@@ -213,7 +206,7 @@ The YAML header is very sensitive to the spaces/tabs, so make sure these are cor
 ### Markdown elements
 
 Markdown text can be included as you wish around your chunks. 
-Figure \@ref(fig:chap11-fig-anatomy) shows an example of how this can be done.  
+Figure \@ref(fig:chap12-fig-anatomy) shows an example of how this can be done.  
 This is a great way of getting into the habit of explicitly documenting your analysis. 
 When you come back to a file in 6 months time, all of your thinking is there in front of you, rather than having to work out what on Earth you were on about from a collection of random code!
 
@@ -222,13 +215,13 @@ When you come back to a file in 6 months time, all of your thinking is there in 
 ### Running code and chunks, knitting
 \index{knitr}
 
-Figure \@ref(fig:chap11-fig-options) shows the various controls for running chunks and producing an output document. 
+Figure \@ref(fig:chap12-fig-options) shows the various controls for running chunks and producing an output document. 
 Code can be run line line-by-line using `Ctrl+Enter` as you are used to. 
 There are options for running all the chunks above the current chunk you are working on. 
 This is useful as a chunk you are working on will  often rely on objects created in preceding chunks. 
 
-```{r chap11-fig-options, echo = FALSE, fig.cap="Chunk and document options in Notebook/Markdown files."}
-knitr::include_graphics("images/chapter11/4_notebook_options_rotated.png", auto_pdf = TRUE)
+```{r chap12-fig-options, echo = FALSE, fig.cap="Chunk and document options in Notebook/Markdown files."}
+knitr::include_graphics("images/chapter12/4_notebook_options_rotated.png", auto_pdf = TRUE)
 ```
 
 It is good practice to use the `Restart R and Run All Chunks` option in the `Run` menu every so often. 
@@ -239,7 +232,7 @@ Probably the most important engine behind the RStudio Notebooks functionality is
 
 Not knitting like your Granny does, but rendering a Markdown document into an output file, such as HTML, PDF or Word.
 There are many options which can be applied inorder to acheive the desired output. 
-Some of these have been specifically coded into RStudio (Figure \@ref(fig:chap11-fig-options)).
+Some of these have been specifically coded into RStudio (Figure \@ref(fig:chap12-fig-options)).
 
 PDF document creation require a `LaTeX` distribution to be installed on your computer. 
 Depending on what system you are using, this may be set-up already. 

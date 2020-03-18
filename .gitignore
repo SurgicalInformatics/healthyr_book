@@ -11,3 +11,4 @@ healthyr-book.rds
 my_saved_plot.png
 render*.rds
 tmp-pdfcrop*
+*.log

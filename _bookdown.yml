@@ -24,7 +24,7 @@ output_dir: "docs"
 #rmd_files: ["index.Rmd", "12_exporting.Rmd"]
 # 13 won't Build on its own.
 #rmd_files: ["index.Rmd", "12_exporting.Rmd", "13_version_control.Rmd"]
-rmd_files: ["index.Rmd", "13_version_control.Rmd", "14_missing_data.Rmd", "15_encryption.Rmd", "16_rstudio_settings.Rmd"]
+#rmd_files: ["index.Rmd", "13_version_control.Rmd", "14_missing_data.Rmd", "15_encryption.Rmd", "16_rstudio_settings.Rmd"]
 #rmd_files: ["index.Rmd", "15_version_control.Rmd"]
 #rmd_files: ["index.Rmd", "16_rstudio_settings.Rmd"]
 #

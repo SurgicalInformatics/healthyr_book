@@ -10,8 +10,8 @@ These still require great care, as the data is usually only 'pseudoanonymised'.
 This may mean that the data of an individual patient is disclosive when considered as a whole - perhaps the patient had a particularly rare diagnosis. 
 Or it may mean that the data can be combined with other datasets and in combination, individual patients can be identified. 
 
-The governance around safe data handling is one of the greatest issues facing health data scientists today.
-It needs to be taken very seriously and robust practices developed to ensure public confidence. 
+The governance around safe data handling is one of the greatest challenges facing health data scientists today.
+It needs to be taken very seriously and robust practices must be developed to ensure public confidence. 
 
 ## Safe practice
 
@@ -25,9 +25,11 @@ This might not be a good idea if the data might, one day, need to be linked back
 This may be a problem if, for example, auditors of a clinical trial need to re-identify an individual from the trial data.
 A study ID can be used, but that still requires the confidential data to be stored and available in a lookup table in another file. 
 
-* A formal short section on data governance best practice here?* 
+The can not/nor will it try to cover the concept of good information governance, the reader should attend separate training courses or follow their institution's guidelines on this.
+The chapter does introduce a useful R package and encryption functions that you may need to incoporate into your data analysis workflow.
 
-## `Encryptr` package
+
+## `encryptr` package
 \index{encryption@\textbf{encryption}!encryptr}
 
 The `encryptr` package allows users to store confidential data in a pseudoanonymised form, which is far less likely to result in re-identification.
@@ -52,12 +54,12 @@ Full documentation is maintained separately at [encrypt-r.org](https://encrypt-r
 install.packages("encryptr")
 
 # Or the development version from Github
-remotes::install_github("SurgicalInformatics/encryptr")
+remotes::install_github("surgicalinformatics/encryptr")
 ```
 
 ## Get the data
 
-An example dataset containing the addresses general practitioners (family doctors) in Scotland is included in the package.
+An example dataset containing the addresses of general practitioners (family doctors) in Scotland is included in the package.
 
 ```{r eval=FALSE}
 library(encryptr)
@@ -106,7 +108,8 @@ These outputs are also secure from decryption without the private key.
 This may allow sharing of data within or between research teams without sharing confidential data.
 
 Encrypting columns to a ciphertext is straightforward. 
-As stated above, an important principle is dropping sensitive data which is never going to be required. 
+However, as stated above, an important principle is dropping sensitive data which is never going to be required. 
+Do not hoard more data than you need to answer your question.
 
 ```{r eval=FALSE}
 library(dplyr)
@@ -198,7 +201,7 @@ Files can be encrypted and decrypted using the same set of keys.
 To demonstrate, the included dataset is written as a .csv file. 
 
 ```{r eval=FALSE}
-write.csv(gp, "gp.csv")
+write_csv(gp, "gp.csv")
 
 encrypt_file("gp.csv")
 #> Encrypted file written with name 'gp.csv.encryptr.bin'
@@ -206,7 +209,7 @@ encrypt_file("gp.csv")
 
 Check that the file can be decrypted prior to removing the original file from your system. 
 
-Warning: it is strongly suggested that the original unencrypted data file is stored as a back-up in case de-encryption is not possible, e.g., the private key file or password is lost.
+Warning: it is strongly suggested that the original unencrypted data file backed up in a secure system in case de-encryption is not possible, e.g., the private key file or password is lost.
 
 ## Decrypting a file
 \index{encryption@\textbf{encryption}!file, decrypt}
@@ -238,6 +241,7 @@ gp_encrypt = gp %>%
   encrypt(postcode, telephone, public_key_path = 
             "https://argonaut.is.ed.ac.uk/public/id_rsa.pub")
 ```
+
 
 ## Use in clinical trials
 \index{encryption@\textbf{encryption}!clinical trials}

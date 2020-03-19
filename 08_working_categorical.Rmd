@@ -37,7 +37,7 @@ It is essential therefore to be comfortable manipulating factors and dealing wit
 
 ## The Question
 
-We will use the classic “Survival from Malignant Melanoma” dataset which is included in the `boot` package. 
+We will use the classic “Survival from Malignant Melanoma” dataset which is included in the **boot** package. 
 The data consist of measurements made on patients with malignant melanoma, a type of skin cancer. 
 Each patient had their tumour removed by surgery at the Department of Plastic Surgery, University Hospital of Odense, Denmark between 1962 and 1977.
 
@@ -69,7 +69,7 @@ The `<dbl>` stands for 'double', meaning numeric which comes from 'double-precis
 It is really important that variables are correctly coded for all plotting and analysis functions. 
 Using the data dictionary, we will convert the categorical variables to factors. 
 
-In the section below, we convert the continuous variables to `factors` (e.g., `sex %>% factor() %>% `), then use the `forcats` package to recode the factor levels. 
+In the section below, we convert the continuous variables to `factors` (e.g., `sex %>% factor() %>% `), then use the **forcats** package to recode the factor levels. 
 Modern databases (such as REDCap) can give you an R script to recode your specific dataset.
 This means you don't always have to recode your factors from numbers to names manually.
 But you will always be recoding variables during the exploration and analysis stages too, so it is important to follow what is happening here.
@@ -329,7 +329,7 @@ Any number of factor levels can be specified in `fct_relevel()`.
 \index{categorical data@\textbf{categorical data}!finalfit}
 \index{categorical data@\textbf{categorical data}!summarising}
 
-Our own `finalfit` package provides convenient functions to summarise and compare factors, producing final tables for publication. 
+Our own **finalfit** package provides convenient functions to summarise and compare factors, producing final tables for publication. 
 
 ```{r eval=FALSE}
 library(finalfit)
@@ -401,7 +401,7 @@ with(meldata, table(ulcer.factor, status_dss))
 table(meldata$ulcer.factor, meldata$status_dss)
 ```
 
-When working with older R functions, a useful shortcut is the `exposition pipe-operator` (`%$%`) from the `magrittr` package, home of the standard forward pipe-operator (`%>%`). 
+When working with older R functions, a useful shortcut is the `exposition pipe-operator` (`%$%`) from the **magrittr** package, home of the standard forward pipe-operator (`%>%`). 
 The exposition pipe-operator exposes data frame/tibble columns on the left to the function which follows on the right.
 It's easier to see in action by making a table of counts. 
 
@@ -428,7 +428,7 @@ meldata %$%        # note $ sign here
 
 \index{functions@\textbf{functions}!chisq.test}
 
-The result can be extracted into a tibble using the `tidy()` function from the `broom` package. 
+The result can be extracted into a tibble using the `tidy()` function from the **broom** package. 
 ```{r}
 library(broom)
 meldata %$%        # note $ sign here
@@ -596,4 +596,4 @@ meldata %>%
 ```
 
 ### Exercise 3
-Now produce these tables using the `summary_factorlist()` function from the `finalfit` package. 
+Now produce these tables using the `summary_factorlist()` function from the **finalfit** package. 

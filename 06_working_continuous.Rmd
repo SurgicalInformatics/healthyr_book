@@ -290,7 +290,7 @@ The confidence interval of the difference in mean life expectancy between the tw
 ttest_result$conf.int # Extracted element of result object
 ```
 
-The `broom` package provides useful methods for 'tidying' common model outputs into a `tibble`. 
+The **broom** package provides useful methods for 'tidying' common model outputs into a `tibble`. 
 So instead of accessing the various bits of information by checking the `names()` and then using the `$` operator, we can use functions called `tidy()` and `glance()` to wrangle the statistical output into a table:
 
 ```{r include=FALSE}
@@ -660,7 +660,7 @@ africa_data %>%
 \index{non-parametric tests@\textbf{non-parametric tests}!!Kruskal-Wallis}
 
 The non-parametric equivalent to ANOVA, is the Kruskal-Wallis test. 
-It can be used in base R, or via the finalfit package below. 
+It can be used in base R, or via the **finalfit** package below. 
 
 ```{r}
 library(broom)
@@ -675,7 +675,7 @@ mydata %>%
 
 ## Finalfit approach
 
-The finalfit package provides an easy to use interface for performing non-parametric hypothesis tests.
+The **finalfit** package provides an easy to use interface for performing non-parametric hypothesis tests.
 Any number of explanatory variables can be tested against a so-called dependent variable. 
 In this case, this is equivalent to a typical Table 1 in healthcare study. 
 

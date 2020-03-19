@@ -524,7 +524,7 @@ gapdata_UK_T %>%
 This fits the data much better than the previous two models.
 You can check the R-squared using `summary(fit_both3)`.
 
-**Advanced tip:** we can apply a function on multiple objects at once by putting them in a `list()` and using a `map_()` function from the `purrr` package. `library(purrr)` gets installed and loaded with `library(tidyverse)`, but it is outwith the scope of this book. Do look it up once you get a little more comfortable with using R, and realise that you are starting to do similar things over and over again. For example, this code:
+**Advanced tip:** we can apply a function on multiple objects at once by putting them in a `list()` and using a `map_()` function from the **purrr** package. `library(purrr)` gets installed and loaded with `library(tidyverse)`, but it is outwith the scope of this book. Do look it up once you get a little more comfortable with using R, and realise that you are starting to do similar things over and over again. For example, this code:
 
 ```{r results = 'hide'}
 mod_stats1 <- glance(fit_both1)

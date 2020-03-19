@@ -369,7 +369,7 @@ We can plot out these relationships, or tabulate them instead.
 
 ### Tabulate data
 
-We will use the convenient `summary_factorlist()` function from the `finalfit` package to look for difference across other variables by tumour ulceration.
+We will use the convenient `summary_factorlist()` function from the **finalfit** package to look for difference across other variables by tumour ulceration.
 
 ```{r, eval=FALSE}
 library(finalfit)
@@ -580,7 +580,7 @@ confint(fit1) %>% exp()
 
 Note that the 95% confidence interval is between the 2.5% and 97.5% quantiles of the distribution, hence why the results appear in this way. 
 
-A good alternative is the `tidy()` function from the `broom` package. 
+A good alternative is the `tidy()` function from the **broom** package. 
 
 ```{r}
 library(broom)
@@ -619,7 +619,7 @@ We will use these principles through the next section.
 
 ## Fitting logistic regression models with Finalfit
 
-Our preference in model fitting is now to use our own `finalfit` package. 
+Our preference in model fitting is now to use our own **finalfit** package. 
 It gets us to our results quicker and more easily, and produces our final model tables which go directly into manuscripts for publication (we hope). 
 
 The approach is the same as in linear regression. 
@@ -1033,7 +1033,7 @@ melanoma %>%
 
 ### Mixed effects models in base R
 
-There are a number of different packages offering mixed effects modelling in R, our preferred is `lme4`. 
+There are a number of different packages offering mixed effects modelling in R, our preferred is **lme4**. 
 
 ```{r}
 library(lme4)

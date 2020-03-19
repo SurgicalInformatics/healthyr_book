@@ -407,15 +407,10 @@ colon_s %>%
   mice(m = 4, predictorMatrix = predM) %>% 
   # Run logistic regression on each imputed set
   with(glm(formula(ff_formula(dependent, explanatory)), 
-    family="binomial")) %>%
+           family="binomial")) %>%
   # Pool and summarise results
-  pool() %>%                                            
-  summary(conf.int = TRUE, exponentiate = TRUE) %>%
-  # Jiggle into finalfit format
-  mutate(explanatory_name = rownames(.)) %>%            
-  select(explanatory_name, estimate, `2.5 %`, `97.5 %`, p.value) %>% 
-  condense_fit(estimate_name = "OR (multiple imputation)") %>% 
-  remove_intercept() -> fit_imputed
+  pool()  %>%                                  
+  fit2df(estimate_name = "OR (multiple imputation)", exp = TRUE) -> fit_imputed
 
 # Use finalfit merge methods to create and compare results
 colon_s %>% 

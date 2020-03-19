@@ -42,7 +42,7 @@ These are the lines that start with a # and they are called "comments".
 We can (and should) include these comments in everything we do.
 These are notes of what we were doing, both for colleagues as well as our future selves.
 
-```{r chap01-fig-rscript, echo = FALSE, fig.cap="An example R script from RStudio."}
+```{r chap01-fig-rscript, echo = FALSE, fig.cap="An example R script from RStudio.", out.width="90%"}
 knitr::include_graphics("images/chapter01/example_script.png")
 ```
 
@@ -82,7 +82,7 @@ RStudio is a free program that makes working with R easier.
 An example screenshot of RStudio is shown in Figure \@ref(fig:chap01-fig-rstudio).
 We have already introduced what is in the top-left pane - the **Script**.
 
-```{r chap01-fig-rstudio, echo = FALSE, fig.cap = "We use RStudio to work with R."}
+```{r chap01-fig-rstudio, echo = FALSE, fig.cap = "We use RStudio to work with R.", out.width="100%"}
 knitr::include_graphics("images/chapter01/rstudio_interface.png")
 ```
 

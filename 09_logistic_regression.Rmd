@@ -150,9 +150,9 @@ That is good!
 This is wrapped up in a transformation (a bit like the transformations shown in Section \@ref(chap06-transform)) using the so-called logit function. 
 This can be skipped with no loss of understanding, but for those who just-gots-to-see, the logit function is, 
 
-$\log_e (\frac{p}{1-p})$, where $p$ is the probability of the outcome occuring. 
+$\log_e (\frac{p}{1-p})$, where $p$ is the probability of the outcome occurring. 
 
-Figure \@ref(fig:chap09-fig-logodds) demonstrates the fitted lines from a logistic regression model of cardiovvascular event by coffee consumption, stratified by smoking on the log-odds scale (A) and the probability scale (B). 
+Figure \@ref(fig:chap09-fig-logodds) demonstrates the fitted lines from a logistic regression model of cardiovascular event by coffee consumption, stratified by smoking on the log-odds scale (A) and the probability scale (B). 
 We could conclude, for instance, that on average, non-smokers who drink 2 cups of coffee per day have a 50% chance of a cardiovascular event. 
 
 ```{r chap09-fig-logodds, echo = FALSE, fig.cap="A logistic regression model of life-time cardiovascular event occurence by coffee consumption stratified by smoking (simulated data). Fitted lines plotted on the log-odds scale (A) and probability scale (B). *lines are straight when no polynomials or splines are included in regression. "}
@@ -184,11 +184,11 @@ knitr::include_graphics("images/chapter09/4_equation.png", auto_pdf = TRUE)
 \index{logistic regression@\textbf{logistic regression}!confounding}
 \index{logistic regression@\textbf{logistic regression}!interactions}
 
-As with all multivariable regression models, logistic regression allows the incorporation of multiple variables which all may have direct effects on outcome or may confound the effect of another varaible. 
+As with all multivariable regression models, logistic regression allows the incorporation of multiple variables which all may have direct effects on outcome or may confound the effect of another variable. 
 This was explored in detail in Section \@ref(chap07-confound), all of the same principles apply.
 
-Adjusting for effect modifciation and confounding allows us to isolate the direct effect of an explanatory variable of interest upon an outcome. 
-In our example, we are interested in direct effect of coffee drinking on the occurence of cardiovascular disease, independent of any association between coffee drinking and smoking. 
+Adjusting for effect modification and confounding allows us to isolate the direct effect of an explanatory variable of interest upon an outcome. 
+In our example, we are interested in direct effect of coffee drinking on the occurrence of cardiovascular disease, independent of any association between coffee drinking and smoking. 
 
 Figure \@ref(fig:chap09-fig-types) demonstrates simple, additive and multiplicative models. 
 Think back to Figure \@ref(fig:chap07-fig-types) and the discussion around it as these terms are easier to think about when looking at the linear regression example, but essentially they work the same way in logistic regression.
@@ -432,12 +432,30 @@ This will need to be accounted for in any model including age as a predictor.
 
 ### Multicollinearity{#chap09-h2-multicollinearity}
 \index{logistic regression@\textbf{logistic regression}!multicollinearity}
+\index{collinearity}
+\index{multicollinearity}
 
-Multicollinearity occurs when two highly correlated exlanatory variables are included in a model. 
-If both variables desribe the same thing, then their coefficients (ORs) can become unstable potentially leading to erroneous conclusions. 
-Think about your variables before you start - would any be expected to be highly correlated?
+The presence of two or more highly correlated variables in a regression analysis can cause problems in the results which are generated.
+The slopes of lines (coefficients, ORs) can become unstable, which means big shifts in their size with minimal changes to the model or the underlying data. 
+The confidence intervals around these coefficients may also be large. 
+Definitions of the specifics differ between sources, but there are broadly two situations. 
 
-The `ggpairs()` function from `library(GGally)` gives you all the plots you can dream of and more, but it is a lot:
+The first is when two highly correlated variables have been included in a model, sometimes referred to simply as collinearity. 
+This can be detected by thinking about which variables may be correlated, and then checking using plotting. 
+
+The second situation is more devious. 
+It is where collinearity exists between three or more variables, even when no pair of variables is particularly highly correlated. 
+To detect this, we can use a specific metric called the *variance inflation factor*. 
+
+As always though, think clearly about your data and whether there may be duplication of information. 
+Have you included a variable which is calculated from other variables already included in the model?
+Including body mass index (BMI), weight and height would be problematic, given the first is calculated from the latter two. 
+
+Are you describing a similar piece of information in two different ways?
+For instance, all perforated colon cancers are staged T4, so do you include T-stage and the perforation factor?
+(Note, not all T4 cancers have perforated).
+
+The `ggpairs()` function from `library(GGally)` is a good way of visualising all two-way associations. 
 
 ```{r fig.height=6, fig.width=6, message=FALSE}
 library(GGally)
@@ -449,7 +467,6 @@ melanoma %>%
 ```
 
 \index{functions@\textbf{functions}!ggpairs}
-
 
 If you have many variables you want to check you can split them up. 
 
@@ -498,10 +515,29 @@ melanoma %>%
 
 None of the explanatory variables are highly correlated with one another. 
 
+**Variance inflation factor**
+\index{functions@\textbf{functions}!vif}
+
+Finally, as a final check for the presence of higher order correlations, the variance inflation factor can be calculated for each of the terms in a final model. 
+In simple language, this is a measure of how much the variance of a particular regression coefficient is increased due to the presence of multicollinearit in the model. 
+ 
+Here is an example. 
+*GVIF* stands for generalised variance inflation factor. 
+A common rule of thumb is that if this is greater than 5-10 for any variable, then multicollinearity may exist. 
+The model should be further explored and the terms removed or reduced. 
+
+```{r}
+dependent <- "mort_5yr"
+explanatory <- c("ulcer.factor", "age", "sex.factor", 
+                "year", "t_stage.factor")
+melanoma %>% 
+  glmmulti(dependent, explanatory) %>%
+  car::vif()
+```
+
 We are not trying to over-egg this, but multicollinearity can be important. 
 The message as always is the same. 
 Understand the underlying data using plotting and tables, and you are unlikely to come unstuck.
-<!-- We include the popular `variance inflation factor` test below.  -->
 
 ## Fitting logistic regression models in base R
 \index{logistic regression@\textbf{logistic regression}!model fitting}
@@ -631,11 +667,11 @@ It is penalised for each additional variable, so should be somewhat robust again
 \index{logistic regression@\textbf{logistic regression}!C-statistic}
 \index{C-statistic}
 
-The c-statistic or area under the reciever operator curve (ROC) provides a measure of model 'discrimination'. 
+The c-statistic or area under the receiver operator curve (ROC) provides a measure of model 'discrimination'. 
 It runs from 0.5 to 1.0, with 0.5 being no better than chance, and 1.0 being perfect fit. 
 What the number actually represents can be thought of like this. 
 Take our example of death from melanoma. 
-If you take a random patient who died and a random patient who did not die, then the c-statistic is the probbaility that the model predicts that patient 1 is more likely to die than patient 2. 
+If you take a random patient who died and a random patient who did not die, then the c-statistic is the probability that the model predicts that patient 1 is more likely to die than patient 2. 
 In our example above, the model should get that correct 72% of the time.  
 
 **Hosmer-Lemeshow test**
@@ -643,11 +679,11 @@ In our example above, the model should get that correct 72% of the time.
 \index{Hosmer-Lemeshow test}
 
 If you are interested in using your model for prediction, it is important that it is calibrated correctly. 
-Using our example, callibration means that the model accurately predicts death from melanoma when the risk to the patient is low and also accurately predicts death when the risk is high. 
+Using our example, calibration means that the model accurately predicts death from melanoma when the risk to the patient is low and also accurately predicts death when the risk is high. 
 The model should work well across the range of probabilities of death. 
 The Hosmer-Lemeshow test assesses this. 
 By default, it assesses the predictive accuracy for death in deciles of risk. 
-If the model predcits equally well (or badly) at low probabilites compared with high probabilites, the null hypothesis of a difference will be rejected (meaning you get a non-significant p-value).
+If the model predicts equally well (or badly) at low probabilities compared with high probabilities, the null hypothesis of a difference will be rejected (meaning you get a non-significant p-value).
 
 
 ## Model fitting{#chap09-model-fitting}
@@ -659,7 +695,7 @@ Do not use automated processes - you have to keep thinking.
 
 Three things are important to keep looking at:
 
-* what is the assocication between a particular variable and the outcome (OR and 95%CI);
+* what is the association between a particular variable and the outcome (OR and 95%CI);
 * how much information is a variable bringing to the model (change in AIC and c-statistic); 
 * how much influence does adding a variable have on the effect size of another variable, and in particular my variable of interest (a rule of thumb is seeing a greater than 10% change in the OR of the variable of interest when a new variable is added to the model, suggests the new variable is important). 
 
@@ -692,7 +728,7 @@ We may expect age to be associated with the outcome become is so commonly is.
 But there is weak evidence of an association in the univariable analysis. 
 We have shown above that the relationship of age to the outcome is not linear, therefore we need to act on this. 
 
-We can either convert age to a cateogorical variable or include it with a quadratic term ($x^2 + x$, remember parabolas from school?). 
+We can either convert age to a categorical variable or include it with a quadratic term ($x^2 + x$, remember parabolas from school?). 
 
 ```{r eval=FALSE}
 melanoma <- melanoma %>% 
@@ -729,7 +765,7 @@ fit[[2]] %>% mykable(caption = "Model metrics: using `cut` to convert a continuo
 There is no strong relationship between the categorical representation of age and the outcome. 
 Let's try a quadratic term. 
 
-In base R, a quadartic term is added like this. 
+In base R, a quadratic term is added like this. 
 
 ```{r}
 glm(mort_5yr ~ ulcer.factor  +I(age^2) + age, 
@@ -800,7 +836,7 @@ This is to be expected, given the association (albeit weak) that we saw earlier 
 Given all this, we will decide not to include age in the model. 
 
 Now what about the variable sex. 
-It has a significant association with the outcome in the univariable analysis, but much of this is explained by other variables in multivaribale anlysis. 
+It has a significant association with the outcome in the univariable analysis, but much of this is explained by other variables in multivariable analysis. 
 Is it contributing much to the model?
 
 ```{r eval=FALSE}
@@ -932,11 +968,11 @@ We can conclude that there is evidence of an association between tumour ulcerati
 \index{logistic regression@\textbf{logistic regression}!multilevel}
 \index{logistic regression@\textbf{logistic regression}!hierarchical}
 
-In our modelling stratgey above, we mentioned the incorporation of population stratification if available.
+In our modelling strategy above, we mentioned the incorporation of population stratification if available.
 What does this mean?
 
 Our regression is seeking to capture the characteristics of particular patients.
-These characterisitcs are made manifest through the slopes of fitted lines - the estimated coefficients of particular variables. 
+These characteristics are made manifest through the slopes of fitted lines - the estimated coefficients (ORs) of particular variables. 
 A goal is to estimate these characteristics as precisely as possible. 
 Bias can be introduced when correlations between patients are not accounted for. 
 Correlations may be as simple as being treated within the same hospital. 
@@ -947,7 +983,7 @@ We may not be interested in capturing and measuring the effects themselves, but 
 
 One approach is to include grouping variables as `random effects`. 
 These may be nested with each other, for example patients within hospitals within countries. 
-These are added in additon to the `fixed effects` we have been dealing with up until now. 
+These are added in addition to the `fixed effects` we have been dealing with up until now. 
 
 These models go under different names including mixed effects model, multilevel model, or hierarchical model. 
 
@@ -980,21 +1016,19 @@ The random intercept model constrains lines to be parallel, in a similar way to 
 
 It is harder to demonstrate with binomial data, but we can stratify the 5-year mortality by T-stage (considered as a continuous variable for this purpose).
 Note there were no deaths in 'hospital 4'.
-We can model this accounting for interhospital variation below. 
+We can model this accounting for inter-hospital variation below. 
 
 ```{r warning=FALSE}
 melanoma %>% 
     mutate(
-    mort_5yr.num = as.numeric(mort_5yr) - 1
+    mort_5yr.num = as.numeric(mort_5yr) - 1 # Convert factor to 0 and 1
   ) %>% 
   ggplot(aes(x = as.numeric(t_stage.factor), y = mort_5yr.num)) +
+  geom_jitter(width = 0.1, height = 0.1) +
   geom_smooth(method = 'loess', se = FALSE) + 
-  facet_wrap(~hospital_id)
+  facet_wrap(~hospital_id) + 
+  labs(x= "T-stage", y = "Mortality (5 y)")
 
-# melanoma %>%
-#   group_by(hospital_id) %>%
-#   count(mort_5yr) %>%
-#   spread(mort_5yr, n)
 ```
 
 ### Mixed effects models in base R
@@ -1064,7 +1098,7 @@ fit[[2]] %>% unlist() %>% mykable(caption = "Model metrics: multilevel (mixed ef
 ```
 
 As can be seen, incorporating the (made-up) hospital identifier has altered our coefficients. 
-It has also improved the model discrminiation with a c-statistic of 0.830 from 0.802. 
+It has also improved the model discrimination with a c-statistic of 0.830 from 0.802. 
 Note that the AIC should not be used to compare mixed effects models estimated in this way with `glm()` models (the former uses a restricted maximum likelihood [REML] approach by default, while `glm()` uses maximum likelihood).
 
 Random slope models are an extension of the random intercept model. 
@@ -1076,6 +1110,127 @@ As models get more complex, care has to be taken to ensure the underlying data i
 Mixed effects modelling is a book in itself and the purpose here is to introduce the concept and provide some approaches its incorporation. 
 Clearly much is written else where for those who are enthusiastic to learn more. 
 
+## Exercises
+
+### Exercise 1
+
+Investigate the association between sex and 5-year mortality for patients who have undergone surgery for melanoma. 
+
+First recode the variables as shown in the text, then plot the counts and proportions for 5-year disease-specific mortality in women and men. Is there an association between sex and mortality?
+
+### Exercise 2
+
+Make a table showing the relationship between sex and the variables age, T-stage and ulceration. Hint: `summary_factorlist()`. 
+Express age in terms of median and interquartile range. Include a statistical comparison. 
+
+What associations do you see?
+
+### Exercise 3
+
+Run a logistic regression model for 5-year disease-specific mortality including sex, age, T-stage and ulceration. 
+
+What is the c-statistic for this model?
+
+Is there a relationship between sex and mortality, after adjustment for the other explanatory variables?
+
+### Exercise 4
+
+Make an odds ratio plot for this model. 
+
+
+## Exercise solutions
+
+```{r eval=FALSE, fig.height=3, fig.width=5}
+# Exercise 1
+## Recode
+melanoma <- melanoma %>% 
+  mutate(sex.factor = factor(sex) %>%          
+           fct_recode("Female" = "0",
+                      "Male"   = "1") %>% 
+           ff_label("Sex"),   
+         
+         ulcer.factor = factor(ulcer) %>% 
+           fct_recode("Present" = "1",
+                      "Absent"  = "0") %>% 
+           ff_label("Ulcerated tumour"),
+         
+         age  = ff_label(age,  "Age (years)"),
+         year = ff_label(year, "Year"),
+         
+         status.factor = factor(status) %>% 
+           fct_recode("Died melanoma"  = "1",
+                      "Alive" = "2",
+                      "Died - other" = "3") %>% 
+           fct_relevel("Alive") %>% 
+           ff_label("Status"),
+         
+         t_stage.factor = 
+           thickness %>% 
+           cut(breaks = c(0, 1.0, 2.0, 4.0, 
+                          max(thickness, na.rm=TRUE)),
+               include.lowest = TRUE)
+  )
+
+# Plot
+p1 <- melanoma %>% 
+  ggplot(aes(x = sex.factor, fill = mort_5yr)) + 
+  geom_bar() + 
+  theme(legend.position = "none")
+
+p2 <- melanoma %>% 
+  ggplot(aes(x = sex.factor, fill = mort_5yr)) + 
+  geom_bar(position = "fill") + 
+  ylab("proportion")
+
+p1 + p2
+```
+
+```{r eval=FALSE}
+# Exercise 2
+## Recode T-stage first
+melanoma <- melanoma %>% 
+  mutate(
+    t_stage.factor = 
+      fct_recode(t_stage.factor,
+                 T1 = "[0,1]",
+                 T2 = "(1,2]",
+                 T3 = "(2,4]",
+                 T4 = "(4,17.4]") %>% 
+      ff_label("T-stage")
+  )
+
+dependent = "sex.factor"
+explanatory = c("age", "t_stage.factor", "ulcer.factor")
+melanoma %>% 
+  summary_factorlist(dependent, explanatory, p = TRUE, na_include = TRUE,
+                     cont = "median")
+
+# Men have more T4 tumours and they are more likely to be ulcerated. 
+```
+
+```{r eval=FALSE}
+# Exercise 3
+dependent = "mort_5yr"
+explanatory = c("sex.factor", "age", "t_stage.factor", "ulcer.factor")
+melanoma %>% 
+  finalfit(dependent, explanatory, metrics = TRUE)
+
+# c-statistic = 0.798
+# In multivariable model, male vs female OR 1.26 (0.57-2.76, p=0.558).
+# No relationship after accouting for T-stage and tumour ulceration. 
+# Sex is confounded by these two variables. 
+```
+
+```{r eval=FALSE}
+# Exercise 4
+dependent = "mort_5yr"
+explanatory = c("sex.factor", "age", "t_stage.factor", "ulcer.factor")
+melanoma %>% 
+  or_plot(dependent, explanatory)
+```
+
+<!-- Haven't included diagnostic plots -->
+
 ```{r eval=FALSE}
 library(ggfortify)
 dependent <- "mort_5yr"
@@ -1083,17 +1238,4 @@ explanatory_multi <- c("ulcer.factor", "t_stage.factor")
 melanoma %>% 
   glmmulti(dependent, explanatory) %>%
   autoplot(which=1:6)
-
-melanoma %>% 
-  glmmulti(dependent, explanatory) %>%
-  car::vif()
 ```
-
-
-### Exercise
-
-Repeat this for all the variables contained within the data, particular:
-
-`t_stage.factor`, `age`, `ulcer.factor`, `thickness` and `age.factor`.
-
-Write their odds ratios and 95% confidence intervals down for the next section!

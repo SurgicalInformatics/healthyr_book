@@ -243,12 +243,33 @@ gp_encrypt = gp %>%
 ```
 
 
-## Use in clinical trials
-\index{encryption@\textbf{encryption}!clinical trials}
+## Use cases
+\index{encryption@\textbf{encryption}!use cases}
 
-Another potential application is maintaining blinding / allocation concealment in randomised controlled clinical trials. 
+### Blinding in trials
+
+Another potential application is maintaining blinding / allocation concealment in randomised controlled clinical trials.
 Using the same method of encryption, it is possible to encrypt the participant allocation group, allowing the sharing of data without compromising blinding. 
 If other members of the trial team are permitted to see treatment allocation (unblinded), then the decryption process can be followed to reveal the group allocation.
+
+The benefit of the encryptr approach is that each ciphertext is unique.
+This prevents researchers identifying patterns of outcomes or adverse events within a named group such as "Group A".
+Instead, each participant appears to have a truly unique allocation group which can only be revealed by the decryption process. 
+In situations such as block randomisation, where the trial enrolment personnel are blinded to the allocation, this unique ciphertext further limits the impact of selection bias. 
+
+### Re-contacting Participants
+
+Clinical research often requires further contact of participants for either planned follow-up or sometimes in cases of early cessation of trials due to harm. 
+`encryptr` allows the storage of contact details in pseudonymised format that can be decrypted only when necessary.
+
+For example, a randomised clinical trial of a novel therapeutic agent may decide that all enrolled participants taking another medication should no longer take part in the trial due to a major interaction.
+Using a basic filter, patients taking this medication could be identified and the encryptr package use to decrypt telephone numbers for these participants. 
+The remaining telephone numbers would remain encrypted preventing unnecessary reidentification of participants.
+
+### Long-term follow-up of Participants
+
+Researchers with approved projects may one day receive approval to carry out additional follow-up through tracking of outcomes through electronic healthcare records or re-contact of patients. 
+Should a follow-up study be approved, patient identifiers stored as ciphertexts could then be decrypted to allow matching of the participant to their own health records.
 
 ## Caution
 

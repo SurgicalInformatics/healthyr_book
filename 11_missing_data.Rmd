@@ -24,7 +24,7 @@ mykable = function(x, caption = "CAPTION", ...){
 }
 ```
 
-## Identifcation of missing data
+## Identification of missing data
 
 As journal editors, we often receive studies in which the investigators fail to describe, analyse, or even acknowledge missing data. 
 This is frustrating, as it is often of the utmost importance. 
@@ -300,11 +300,11 @@ missing_mar %>%
 
 It takes dependent and explanatory variables, and in this context "dependent" refers to the variable being tested for missingness against the explanatory variables.
 ^[By default, `missing_compare()` uses an F-test test for continuous variables and chi-squared for categorical variables, you can change these the same way you change tests in `summary_factorlist()`.
-Check the Help tab or either's online documentation for a reminder.]
+Check the Help tab or  online documentation for a reminder.]
 As expected, a relationship is seen between sex and smoking (MAR) but not smoking (MCAR).
 
 ### For those who like an omnibus test
-If you work predominately with continous rather than categorical data, you may find these tests from the `MissMech` package useful. 
+If you work predominately with continuous rather than categorical data, you may find these tests from the `MissMech` package useful. 
 It provides two tests which can be used to determine whether data are MCAR, the package and its output are well documented.
 
 ```{r}
@@ -332,7 +332,7 @@ Using the examples, we identify that smoking (MCAR) is missing completely at ran
 We know nothing about the missing values themselves, but we know of no plausible reason that the values of the missing data, for say, people who died should be different to the values of the missing data for those who survived. 
 The pattern of missingness is therefore not felt to be MNAR.
 
-### Common solution: rowwise deletion
+### Common solution: row-wise deletion
 Depending on the number of data points that are missing, we may have sufficient power with complete cases to examine the relationships of interest.
 
 We therefore elect to omit the patients in whom smoking is missing.
@@ -361,7 +361,7 @@ fit %>%
 
 If the variable in question is thought to be particularly important, you may wish to perform a sensitivity analysis.
 A sensitivity analysis in this context aims to capture the effect of uncertainty on the conclusions drawn from the model.
-Thus, you may choose to re-label all missing smoking values as “smoker”, and see if that changes the conclusions of your analysis. The same procedure can be performed labeling with “non-smoker”.
+Thus, you may choose to re-label all missing smoking values as “smoker”, and see if that changes the conclusions of your analysis. The same procedure can be performed labelling with “non-smoker”.
 
 If smoking is not associated with the explanatory variable of interest or the outcome, it may be considered not to be a confounder and so could be omitted.
 That deals with the missing data issue, but of course may not always be appropriate.
@@ -391,14 +391,14 @@ When first encountered, this may not sound like a good idea.
 
 However, taking our simple example, if missingness in smoking is predicted strongly by sex (and other observed variables), and the values of the missing data are random, then we can impute (best-guess) the missing smoking values using sex and other variables in the dataset.
 
-Imputation is not usually appropriate for the explanatory variable of interest or the outcome variable, althought these can be used to impute other variables. 
+Imputation is not usually appropriate for the explanatory variable of interest or the outcome variable, although these can be used to impute other variables. 
 In both cases, the hypothesis is that there is an meaningful association with other variables in the dataset, therefore it doesn’t make sense to use these variables to impute them.
 
 The process of multiple imputation involves: 
 
 * **Impute** missing data *m* times, which results in *m* complete data sets
 * **Diagnose** the quality of the imputed values
-* **Analyze** each completed data set
+* **Analyse** each completed data set
 * **Pool** the results of the repeated analyses
 
 We will present a `mice()` example here. 
@@ -420,7 +420,7 @@ explanatory <- c("age", "sex.factor",
 dependent <- "mort_5yr"
 ```
 
-Choose which varible to imput missing values for and which variables to use for the imputation process. 
+Choose which variable to input missing values for and which variables to use for the imputation process. 
 
 ```{r message=FALSE, warning=FALSE}
 colon_s %>% 

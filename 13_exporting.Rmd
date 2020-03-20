@@ -1,34 +1,38 @@
 # Exporting and reporting{#chap13-h1}
 \index{exporting@\textbf{exporting}}
 
-In chapter \@ref(chap13-h1) we emphasised one of the less well known strengths of R  - the ease with which reports can be written in HTML (web page), PDF, or Word documents. 
+> Without data, you are just another person with an opinion.  
+> W. Edwards Deming
 
-Important to realise: while the `kable()` function from `library(knitr)` is excellent for exporting tables to the three output formats: HTML, PDF, Word; it is limited in customisations that you may need to apply on your table.
-For instance, if you use the package `kableExtra()` to customise your tables, you can only export to HTML and PDF. 
-Knitting to Work will just not work with advanced `kableExtra` functions in your R Markdown document.
-Similarly, `flextable` and `officer` are exellent packages for a love story between R Markdown and Word/MS Office, but they do not work for HTML or PDF.
+The results of any data analysis are meaningless if they are not effectively communicated. 
 
-A few points of advice on the issue of highly customised tables and different output formats:
+This may be as journal article or presentation, or perhaps a regular report or webpage. In chapter \@ref(chap13-h1) we emphasised another of the major strengths of R - the ease with which HTML (a web page), PDF, or Word documents can be generated.
 
-* HTML is least fussy to work with and can resize itself and its content automatically. For rapid exploration and prototyping, we recommend knitting to HTML. HTML documents can be attached to emails and viewed using any browser, even with no internet access (as long as it is a self-contained HTML document, which R Markdown exports usually are).
-* PDF looks most professional once printed. This is because R Markdown uses LaTeX to typeset PDF documents. LaTeX PDFs are our preferred method of producing printable reports or dissertations, but they come with their own bag of issues. Mainly that LaTeX figures and tables **float** and may therefore appear much later down the document than the original text describing it was.
-* Word is used when working with non-R people who need to edit your output.
+The purpose of this chapter is to focus on the details of how to get your exported tables, plots and documents looking exactly the way you want them. There are many customisations that can be used, and we will only touch on a few of these. 
 
-In this chapter we will demonstrate how tables and figures can be exported to PDF and Word documents.
-We will not go into detailed customisisations, because that's much more than a chapter can carry as advanced customisations become format-dependent.
-Our report will contain two tables - a demographics table and a regression table - and a plot. 
-We will use the `colon_s` data from the `finalfit` package. 
+We will generate a report using data already familiar to you from this book. 
+It will contain two tables - a demographics table and a regression table - and a plot. 
+We will use the `colon_s` data from the **finalfit** package. 
 What follows is for demonstration purposes and is not meant to illustrate model building. 
-We will ask, does a particular characteristic of a colon cancer (e.g., differentiation) predict 5-year survival?
+For the purposes of the demonstration, we will ask, does a particular characteristic of a colon cancer (e.g., cancer differentiation) predict 5-year survival?
+
+## Which format should I use?
+
+The three common formats for exporting reports have different pros and cons: 
+
+* HTML is the least fussy to work with and can resize itself and its content automatically. For rapid exploration and prototyping, we recommend knitting to HTML. HTML documents can be attached to emails and viewed using any browser, even with no internet access (as long as it is a self-contained HTML document, which R Markdown exports usually are).
+* PDF looks most professional when printed. This is because R Markdown uses LaTeX to typeset PDF documents. LaTeX PDFs are our preferred method of producing printable reports or dissertations, but they come with their own bag of issues. Mainly that LaTeX figures and tables **float** and may therefore appear much later down the document than the original text describing it was.
+* Word is useful when working with non-R people who need to edit your output.
 
 ## Working in a `.R` file
 
-We will demonstrate this in two ways. 
+We will demonstrate how you might put together a report in two ways. 
+
 First, we will show what you might do if you were working in standard R script file, then exporting certain objects only. 
 
 Second, we will talk about the approach if you were primarily working in a Notebook, which makes things easier. 
 
-We presume that the data have been cleaned carefully and the `Get the data`, `Check the data`, `Data exploration` and `Model building` steps have already been completed. 
+We presume that the data have been cleaned carefully and the 'Get the data', 'Check the data', 'Data exploration' and 'Model building' steps have already been completed. 
 
 ```{r echo=FALSE, message=FALSE}
 library(knitr)
@@ -74,7 +78,7 @@ colon_s %>%
   mykable(caption = "Exporting 'table 1': Tumour differentiation by patient and disease factors.")
 ```
 
-Note that we include missing data in this table (see Chapter \@ref(chap13-h1)).
+Note that we include missing data in this table (see Chapter \@ref(chap11-h1)).
 
 Also note that `nodes` has not been labelled properly. 
 
@@ -101,14 +105,13 @@ table1
 colon_s <- colon_s %>% 
   mutate(
     nodes = ff_label(nodes, "Lymph nodes involved")
-    )
+  )
 
 table1 <- colon_s %>%  
   summary_factorlist("differ.factor", explanatory, 
                      p=TRUE, na_include=TRUE, 
                      add_dependent_label=TRUE,
-                     dependent_label_prefix = "Exposure: "
-                     )
+                     dependent_label_prefix = "Exposure: ")
 table1 %>% 
   mykable(caption = "Exporting 'table 1': adjusting labels and output.") %>% 
   column_spec(1, width = "3.5cm")
@@ -211,11 +214,9 @@ colon_s %>%
 ```
 ````
 
-
 ```{r chap13-fig-word, echo = FALSE, fig.cap="Knitting to Microsoft Word from R Markdown. Before (A) and after (B) adjustment."}
 knitr::include_graphics("images/chapter13/1_word_knit.png", auto_pdf = TRUE)
 ```
-
 
 Knitting this into a Word document results in Figure \@ref(fig:chap13-fig-word)A), which looks pretty decent but the some of the columns need some formatting and the plot needs resized.
 Do not be tempted to do this by hand directly in the Word document.
@@ -223,10 +224,10 @@ Do not be tempted to do this by hand directly in the Word document.
 Yes, before Markdown, we would have to move and format each table and figure directly in Word, and we would repeat this every time something changed.
 Turns out some patient records were duplicated and you have to remove them before repeating the analysis over again?
 Or your colleague forgot to attach an extra file with 10 more patients?
+
 No problem, you update the dataset, re-run the script that created the tables and hit Knit in the R Markdown document.
 No more mindless re-doing for you.
 We think this is pretty amazing.
-
 
 ## Create Word template file
 
@@ -235,15 +236,15 @@ You will then use this template to Knit the R Markdown document again.
 
 In the Word document the first example outputted, click on a table. 
 The style should be `compact`:
-Right click > Modify... > font size = 9
+Right-click > Modify... > font size = 9
 
 Alter heading and text styles in the same way as desired. 
 Save this as `colonTemplate.docx` (avoid underscores in the name of this file). 
-Move the file to your project folder and refernce it in your `.Rmd` YAML header, as shown below. 
+Move the file to your project folder and reference it in your `.Rmd` YAML header, as shown below. 
 Make sure you get the spacing correct, unlike R code, the YAML header is sensitive to formatting and the number of spaces at the beginning of the argument lines.
 
 Finally, to get the figure printed in a size where the labels don't overlap each other, you will have to specify a width for it.
-The Chunk cog introduced in the previos chapter is a convenient way to change the figure size (it is in the top-right corner of each grey code chunk in an R Markdown document).
+The Chunk cog introduced in the previous chapter is a convenient way to change the figure size (it is in the top-right corner of each grey code chunk in an R Markdown document).
 It usually takes some experimentation to find the best size for each plot/output document, in this case we are going with `fig.width = 10`.
 
 Knitting Example 2 here gives us Figure \@ref(fig:chap13-fig-word)B).
@@ -369,3 +370,18 @@ All the code is run within the document, but not included in the output (`echo=F
 knitr::include_graphics("images/chapter13/4_colon_report.png", auto_pdf = TRUE)
 ```
 
+## Moving between formats
+
+As we have shown, it is relatively straightforward to move between HTML, Word and PDF when documents are simple. 
+This becomes more difficult if you have a complicated document which includes lots of formatting. 
+
+For instance, if you use the package `kableExtra()` to customise your tables, you can only export to HTML and PDF.
+Knitting to Word will not currently work with advanced **kableExtra** functions in your R Markdown document.
+Similarly, **flextable** and **officer** are exellent packages for a love story between R Markdown and Word/MS Office, but they do not work for HTML or PDF.
+
+## Summary
+
+The combination of R, RStudio, and Markdown is a powerful triumvirate which produce beautiful results quickly and be greatly labour saving. 
+We use this combination for all academic work, but also in the production of real-time reports as webpages and downloadable PDFs for on-going projects. 
+This is a fast-moving area with new applications and features appearing every month. 
+We would highly recommend you spend some time getting familiar with this area, as it will become an ever more important skill in the future. 

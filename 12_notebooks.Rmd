@@ -2,6 +2,8 @@
 \index{notebooks@\textbf{notebooks}}
 \index{markdown@\textbf{markdown}}
 
+> You ask me if I keep a notebook to record my great ideas. I've only ever had one.  
+> Albert Einstein
 
 ## What is a Notebook?
 
@@ -26,7 +28,7 @@ In our own work, we have now moved to doing most of our analyses in a Notebook f
 Some of the advantages of the Notebook interface are:
 
 * code and output are adjacent to each other, so you are not constantly switching between "panes";
-* easier to work on smaller screen, i.e., laptop;
+* easier to work on smaller screen, e.g., laptop;
 * documentation and reporting can be done beside the code, text elements can be fully formatted;
 * the code itself can be outputted or hidden;
 * the code is not limited to R - you can use Python, SQL etc.;
@@ -63,8 +65,9 @@ All R Notebooks can be 'knitted' to R Markdown outputs, and all R Markdown docum
 An important difference is in the execution of code. 
 In R Markdown, when the file is `Knit`, all the elements (chunks) are also run. 
 Knit is to R Markdown what Source is to an R script (Source was introduced in Chapter 1, essentially it means 'Run all lines').
-In a Notebook, when the file rendered with the `Preview` button, no code is re-run, only that which has already been run in and is present in the document is included in the output. 
-Also, in the Notebook behind-the-scenes file (`.nb`) all the code is always included. 
+
+In a Notebook, when the file is rendered with the `Preview` button, no code is re-run, only that which has already been run and is present in the document is included in the output. 
+Also, in the Notebook behind-the-scenes file (`.nb`), all the code is always included. 
 Something to watch out for if your code contains sensitive information, such as a password (which it never should!).
 
 ## Notebook vs HTML vs PDF vs Word
@@ -82,7 +85,8 @@ Don't worry which you choose.
 As mentioned above, they are essentially the same thing but just come with different options. 
 It is easy to switch from a Notebook to a Markdown file if you wish to create a PDF or Word document for instance. 
 
-If you are primarily doing analysis in the Notebook environment, choose Notebook. If you are primarily creating a PDF or Word document, choose R Markdown file. 
+If you are primarily doing analysis in the Notebook environment, choose Notebook. 
+If you are primarily creating a PDF or Word document, choose R Markdown file. 
 
 
 ## The anatomy of a Notebook / R Markdown file
@@ -206,7 +210,7 @@ The YAML header is very sensitive to the spaces/tabs, so make sure these are cor
 ### Markdown elements
 
 Markdown text can be included as you wish around your chunks. 
-Figure \@ref(fig:chap12-fig-anatomy) shows an example of how this can be done.  
+Figure \@ref(fig:chap12-fig-anatomy) shows an example of how this can be done.
 This is a great way of getting into the habit of explicitly documenting your analysis. 
 When you come back to a file in 6 months time, all of your thinking is there in front of you, rather than having to work out what on Earth you were on about from a collection of random code!
 
@@ -228,15 +232,15 @@ It is good practice to use the `Restart R and Run All Chunks` option in the `Run
 This ensures that all the code in your document is self-contained and is not relying on an object in the environment which you have created elsewhere.
 If this was the case, it will fail when rendering a Markdown document.
 
-Probably the most important engine behind the RStudio Notebooks functionality is the `knitr` package by Yihui Xie.
+Probably the most important engine behind the RStudio Notebooks functionality is the **knitr** package by Yihui Xie.
 
 Not knitting like your Granny does, but rendering a Markdown document into an output file, such as HTML, PDF or Word.
-There are many options which can be applied inorder to acheive the desired output. 
+There are many options which can be applied in order to acheive the desired output. 
 Some of these have been specifically coded into RStudio (Figure \@ref(fig:chap12-fig-options)).
 
 PDF document creation require a `LaTeX` distribution to be installed on your computer. 
 Depending on what system you are using, this may be set-up already. 
-An easy way to do this is using the `tinytex` package. 
+An easy way to do this is using the **tinytex** package. 
 
 ```` markdown
 `r ''````{r}

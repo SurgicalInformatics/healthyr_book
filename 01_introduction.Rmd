@@ -133,7 +133,7 @@ You can do this in the **Packages** tab (next to the Plots tab in the bottom-rig
 A Package is just a collection of functions (commands) that are not included in the standard R installation, called base-R. 
 
 A lot of the functionality introduced in this book comes from the `tidyverse` family of R packages (http://tidyverse.org).
-So when you go to Packages, click **Install**, type in `tidyverse`, and a whole collection of useful and modern packages will be installed. 
+So when you go to Packages, click **Install**, type in `tidyverse`, and a whole collection of useful and modern packages will be installed.
 
 Even though you've installed the `tidyverse` packages, you'll still need to tell R when you're about to use them.
 We include `library(tidyverse)` at the top of every script we write:
@@ -154,7 +154,7 @@ The "Conflicts" message is expected and can safely be ignored.
 We've never needed to use `filter` and `lag` from `stats`, but if you do, then use the double colon, i.e., `stats::filter()` or `stats::lag()`, as just `filter()` will use the `dplyr` one.]
 
 There are a few other R packages that we use and are not part of the tidyverse, but we will introduce them as we go along. 
-If you are incredibly curious, take a peak at Chapter \@ref(install) for a full list.
+If you're incredibly curious, head to the Resources section of the HealthyR website - up-to-date links and installation instructions are listed there.
 
 ## Getting help
 \index{help}
@@ -190,6 +190,51 @@ RStudio also has a Help drop-down menu at the very top (same row where you find 
 The most notable thing in the Help drop-down menu are the Cheatsheets. 
 These tightly packed two-pagers include many of the most useful functions from `tidyverse` packages. 
 They are not particularly easy to learn from, but invaluable as an *aide-mémoire*. 
+
+## Work in a Project
+
+The files on your computer are organised into folders. 
+RStudio Projects live in your computer's normal folders - they placemark the working directory of each analysis project.
+These project folders can be viewed or moved around the same way you normally work with files and folders on your computer.
+
+The top-right corner of your RStudio should never say **"Project: (None)"**.
+If it does, click on it and create a New Project.
+After clicking on New Project, you can decide whether to let RStudio create a New Directory (folder) on your computer. Alternatively, if your data files are already  organised into an "Existing folder", use the latter option.
+
+Every set of analysis you are working on must have its own folder and RStudio project. 
+This enables you to switch between different projects without getting the data, scripts, or output files all mixed up.
+Everything gets read in or saved to the correct place.
+No more exporting a plot and then going through the various Documents etc. folders on your computer tyring to figure out where your plot might have been saved to.
+It got saved to the project folder.
+
+## Restart R regularly
+
+Have you tried turning it off and on again? It is vital to restart R regularly.
+Restarting R helps to avoid accidentally using the wrong data or functions stored in the environment.
+Restarting R only takes a second and we do it several times per day!
+Once you get used to saving everything in a script, you'll always be happy to restart R.
+This will help you develop robust and reproducible data analysis skills 
+
+> You can restart R by clicking on `Session -> Restart R` (top menu).
+
+<!-- There's also a Keyboard shortcut for it: `Ctrl+Shift+F10`, but considering how hard it is to use function keys on laptops, that's hardly a shortcut. -->
+
+<!-- > We recommend changing your "Restart R" keyboard shortcut to `Control+R `or `Cmd+R` (`Cmd+Shift+R `if using RStudio Server or Cloud).  -->
+<!-- This can be done in `Tools -> Modify Keyboard Shortcuts`. -->
+
+Furthermore, RStudio has a default setting that is no longer considered best practice.
+After installing RStudio, you should go change two small but important things in `Tools -> Global Options`:
+
+1. **Uncheck** "Restore .RData into Workspace on Exit"
+2. Set "Save .RData on exit" to **Never**
+
+```{r chap01-fig-settings, echo = FALSE, fig.cap = "Configuring your RStudio Tools -> Global Options:  Untick \"Restore .RData into Workspace on Exit\" and Set \"Save .RData on exit\" to Never", out.width="100%"}
+knitr::include_graphics("images/chapter01/rstudio_settings.png")
+```
+
+This does not mean you can't or shouldn't save your work in `.RData/.rda` files. 
+But it is best to do it consciously and load exactly what you want to load. 
+Letting R silently save and load everything for you may also include broken data or objects.
 
 
 ## Notation throughout this book

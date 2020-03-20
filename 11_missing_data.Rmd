@@ -8,8 +8,10 @@ We also include a section on dealing with missing data in R. Something that we b
 # The problem of missing data{#chap11-h1}
 \index{missing data@\textbf{missing data}}
 
->"People say nothing is impossible, but I do nothing every day."  
->A.A.Milne, Winnie-the-Pooh
+>In heaven, all the interesting people are missing.  
+>Friedrich Nietzsche
+<!-- >People say nothing is impossible, but I do nothing every day.   -->
+<!-- >A.A.Milne, Winnie-the-Pooh -->
 
 ```{r echo=FALSE, message=FALSE}
 library(knitr)
@@ -22,10 +24,12 @@ mykable = function(x, caption = "CAPTION", ...){
 }
 ```
 
+## Identifcation of missing data
+
 As journal editors, we often receive studies in which the investigators fail to describe, analyse, or even acknowledge missing data. 
 This is frustrating, as it is often of the utmost importance. 
-Conclusions may (and do) change when missing data is accounted for. 
-Some folk seem to not even appreciate that in conventional regression, only rows with complete data are included.
+Conclusions may (and do) change when missing data are accounted for. 
+Some folk seem to not even appreciate that in a conventional regression, only rows with complete data are included.
 By reading this, you will not be one of them!
 
 These are the five steps to ensuring missing data are correctly identified and appropriately dealt with:
@@ -40,30 +44,39 @@ We will work through a number of functions that will help with each of these.
 But first, here are some terms which are easy to mix up. 
 These are important as they describe the mechanism of missingness and this determines how you can handle the missing data.
 
+For each of the following examples we will imagine that we are collecting data on the relationship between gender, smoking and the outcome of cancer treatment. 
+The ground truth in this imagined scenario is that both gender and smoking influence the outcome from cancer treatment.  
+
 ### Missing completely at random (MCAR)
 \index{missing data@\textbf{missing data}!missing completely at random}
-As it says, values are randomly missing from your dataset. Missing data values do not relate to any other data in the dataset and there is no pattern to the actual values of the missing data themselves.
+As it says, values are randomly missing from your dataset. 
+Missing data values do not relate to any other data in the dataset and there is no pattern to the actual values of the missing data themselves.
 
-For instance, when smoking status is not recorded in a random subset of patients.
+In our example, smoking status is missing from a random subset of male and female patients.
 
+This may have the effect of making our population smaller, but the complete case population has the same characteristics as the missing data population. 
 This is easy to handle, but unfortunately, data are almost never missing completely at random.
 
 ### Missing at random (MAR)
 \index{missing data@\textbf{missing data}!missing at random}
 This is confusing and would be better stated as missing conditionally at random. 
-Here, missing data do have a relationship with other variables in the dataset. 
-However, the actual values that are missing are random.
+Here, missingness in particular variable has an association with one or more other variables in the dataset. 
+However, the *actual values of the missing data random*.
 
-For example, if smoking status is not documented in female patients because the doctor didn't think to ask them about it (but she did ask all men whether they smoke). 
-However, in this scenario, women are as likely to smoke as men, therefore smoking status itself is missing at random - MAR (but not missing completely at random - MCAR).
-This means that reporting the proportion of smokers calculated from men's data, may be representative of the whole population.
+In our example, smoking status is missing for some female patients but not for male patients. 
+
+But data is missing from the same number of female smokers as female non-smokers. 
+So the complete case female patients have the same characteristics as the missing data female patients.  
 
 ### Missing not at random (MNAR)
 \index{missing data@\textbf{missing data}!missing not at random}
-The pattern of missingness is related to other variables in the dataset, but in addition, the values of the missing data are not random.
+The pattern of missingness is related to other variables in the dataset, but in addition, the *actual values of the missing data are not random*.
 
-For example, smoking status is less likely to get recorded for women, and women are less likely to smoke than men.
-Therefore, the smoking status itself is not missing at random, and the proportion of smokers estimated from this dataset is an overestimate.
+In our example, smoking status is missing in female patients who are more likely to smoke, but not for male patients. 
+
+Thus, the complete case female patients have different characteristics to the missing data female patients. 
+For instance, the missing data female patients may be more likely to die after cancer treatment. 
+Looking at our available population, we therefore under estimate the likelihood of a female dying from cancer treatment. 
 
 Missing not at random data are important, can alter your conclusions, and are the most difficult to diagnose and handle. 
 They can only be detected by collecting and examining some of the missing data. 
@@ -78,10 +91,10 @@ More on this below.
 
 While it sounds obvious, this step is often ignored in the rush to get results. 
 The first step in any analysis is robust data cleaning and coding. 
-Lots of packages have a glimpse-type function and our own `finalfit` is no different. 
+Lots of packages have a glimpse-type function and our own **finalfit** is no different. 
 This function has three specific goals:
 
-1. Ensure all variables are of the type you expect them to be. That is the commonest reason to get an error with a `finalfit` function. Numbers should be numeric, categorical variables should be characters or factors, and dates should be dates (for a reminder on these, see Section \ref(chap02-vartypes).
+1. Ensure all variables are of the type you expect them to be. That is the commonest reason to get an error with a **finalfit** function. Numbers should be numeric, categorical variables should be characters or factors, and dates should be dates (for a reminder on these, see Section \ref(chap02-vartypes).
 2. Ensure you know which variables have missing data. This presumes missing values are correctly assigned `NA`. 
 3. Ensure factor levels and variable labels are assigned correctly.
 
@@ -92,13 +105,12 @@ For demonstration purposes, we will make up MCAR and MAR smoking variables (`smo
 Do not worry about understanding the long cascading mutate and `sample()` functions below, this is merely for creating the example variables.
 You would not be 'creating' your data, we hope.
 
-```{r message=FALSE}
+```{r message=FALSE, warning=FALSE}
 # Create some extra missing data
 library(finalfit)
 library(dplyr)
-data(colon_s)
 set.seed(1)
-colon_s = colon_s %>% 
+colon_s <- colon_s %>% 
   mutate(
     ## Smoking missing completely at random
     smoking_mcar = sample(c("Smoker", "Non-smoker", NA), 
@@ -106,17 +118,17 @@ colon_s = colon_s %>%
                           prob = c(0.2, 0.7, 0.1)) %>% 
       factor() %>% 
       ff_label("Smoking (MCAR)"),
-
+    
     ## Smoking missing conditional on patient sex
     smoking_mar = ifelse(sex.factor == "Female",
-                          sample(c("Smoker", "Non-smoker", NA), 
-                                 sum(sex.factor == "Female"), 
-                                 replace = TRUE,
-                                 prob = c(0.1, 0.5, 0.4)),
-                          
-                          sample(c("Smoker", "Non-smoker", NA), 
-                                 sum(sex.factor == "Male"), 
-                                 replace=TRUE, prob = c(0.15, 0.75, 0.1))
+                         sample(c("Smoker", "Non-smoker", NA), 
+                                sum(sex.factor == "Female"), 
+                                replace = TRUE,
+                                prob = c(0.1, 0.5, 0.4)),
+                         
+                         sample(c("Smoker", "Non-smoker", NA), 
+                                sum(sex.factor == "Male"), 
+                                replace=TRUE, prob = c(0.15, 0.75, 0.1))
     ) %>% 
       factor() %>% 
       ff_label("Smoking (MAR)")
@@ -127,29 +139,30 @@ We will then examine our variables of interest using `ff_glimpse()`:
 
 ```{r}
 
-explanatory = c("age", "sex.factor", 
-                "nodes", "obstruct.factor",  
-                "smoking_mcar", "smoking_mar")
-dependent = "mort_5yr"
+explanatory <- c("age", "sex.factor", 
+                 "nodes", "obstruct.factor",  
+                 "smoking_mcar", "smoking_mar")
+dependent <- "mort_5yr"
 
 colon_s %>% 
   ff_glimpse(dependent, explanatory)
 ```
 
-You don't need to specify the variables, and if you don't, `gg_glimpse()` will summarise all variables:
+You don't need to specify the variables, and if you don't, `ff_glimpse()` will summarise all variables:
 
-```{r include=FALSE}
+```{r results="hide"}
 colon_s %>%
   ff_glimpse()
 ```
 
-Use this to check that the variables are all assigned and behaving as expected. The proportion of missing data can be seen, e.g. `smoking_mar` has `r round(sum(100*is.na(colon_s$smoking_mar))/dim(colon_s)[1], 0)`% missing data.
+Use this to check that the variables are all assigned and behaving as expected. 
+The proportion of missing data can be seen, e.g. `smoking_mar` has `r round(sum(100*is.na(colon_s$smoking_mar))/dim(colon_s)[1], 0)`% missing data.
 
 ## Identify missing values in each variable: `missing_plot()`
 \index{missing data@\textbf{missing data}!missingness plot}
 
 Visualising data is essential to help understand it, and missing data is no exception. 
-`missing_plot()` function also from `finalfit` is useful for grasping the amount of missing data in each variable.
+`missing_plot()` function also from **finalfit** is useful for grasping the amount of missing data in each variable.
 Row number is on the x-axis and all included variables are on the y-axis. 
 
 ```{r}
@@ -162,14 +175,14 @@ Further visualisations of missingness can be done using the [naniar](http://nani
 ## Look for patterns of missingness: `missing_pattern()`
 \index{missing data@\textbf{missing data}!missingness pattern}
 
-Using `finalfit`, `missing_pattern()` wraps a function from the `mice` package, `md.pattern()`. 
+Using **finalfit**, `missing_pattern()` wraps a function from the **mice** package, `md.pattern()`. 
 This produces a table and a plot showing the pattern of missingness between variables.
 
 ```{r fig.height=4, fig.width=10}
-explanatory = c("age", "sex.factor", 
-  "obstruct.factor",  
-  "smoking_mcar", "smoking_mar")
-dependent = "mort_5yr"
+explanatory <- c("age", "sex.factor", 
+                 "obstruct.factor",  
+                 "smoking_mcar", "smoking_mar")
+dependent <- "mort_5yr"
 
 colon_s %>% 
   missing_pattern(dependent, explanatory)
@@ -179,7 +192,7 @@ This allows us to look for patterns of missingness between variables.
 There are 11 patterns in these data. 
 The number and pattern of missingness help us to determine the likelihood of it being random rather than systematic.
 
-### Make sure you include missing data in demographics tables
+## Including missing data in demographics tables
 \index{missing data@\textbf{missing data}!demographics table}
 
 "Table 1" in a healthcare study is often a demographics table of an “explanatory variable of interest” against other explanatory variables/confounders. 
@@ -189,20 +202,27 @@ This function provides a useful summary of a dependent variable against explanat
 Despite its name, continuous variables are handled nicely.
 
 `na_include=TRUE` ensures missing data from the explanatory variables (but not dependent) are included. 
-Note that any *p*-values are generated across missing groups as well, so run a second time with `na_include=FALSE` if you wish a hypothesis test only over observed data.
+To include missing values from the dependent, add `na_include_dependent = TRUE`. 
+Including a total column (`total_col = TRUE`) is also useful, as well as column totals (`add_col_totals = TRUE`). 
+
+If you are using a lot of continuous explanatory variables with missing values, then these can be seen easily using `add_row_totals = TRUE`. 
+
+Note that missing data is not included when *p*-values are generated. 
+If you wish missing data to be passed to statistical tests, then include `na_to_p = TRUE`. 
 
 ```{r}
 # Explanatory or confounding variables
-explanatory = c("age", "sex.factor", 
-  "nodes",  
-  "smoking_mcar", "smoking_mar")
+explanatory <- c("age", "sex.factor", 
+                 "nodes",  
+                 "smoking_mcar", "smoking_mar")
 
 # Explanatory variable of interest
-dependent = "obstruct.factor" # Bowel obstruction
+dependent <- "obstruct.factor" # Bowel obstruction
 
-table1 = colon_s %>% 
+table1 <- colon_s %>% 
   summary_factorlist(dependent, explanatory, 
-  na_include=TRUE, p=TRUE)
+                     na_include=TRUE, na_include_dependent = TRUE, 
+                     total_col = TRUE, add_col_totals = TRUE, p=TRUE)
 ```
 
 ```{r echo=FALSE}
@@ -221,14 +241,14 @@ When that outcome is missing it is often for a particular reason.
 For example, perhaps patients undergoing emergency surgery were less likely to have complete records compared with those undergoing planned surgery. 
 And of course, death is more likely after emergency surgery.
 
-`missing_pairs()` uses functions from the excellent `GGally` package. 
+`missing_pairs()` uses functions from the **GGally** package. 
 It produces pairs plots to show relationships between missing values and observed values in all variables.
 
 ```{r fig.height=7.5, fig.width=7.5, message=FALSE, warning=FALSE, fig.cap="Missing data matrix with `missing_pairs()`."}
-explanatory = c("age", "sex.factor", 
-  "nodes", "obstruct.factor",  
-  "smoking_mcar", "smoking_mar")
-dependent = "mort_5yr"
+explanatory <- c("age", "sex.factor", 
+                 "nodes", "obstruct.factor",  
+                 "smoking_mcar", "smoking_mar")
+dependent <- "mort_5yr"
 colon_s %>% 
   missing_pairs(dependent, explanatory)
 ```
@@ -245,20 +265,19 @@ colon_s %>%
   missing_pairs(dependent, explanatory, position = "fill")
 ```
 
-Fine the two sets of bar plots that show the proportion of missing smoking data for sex (bottom of Column 3).
-Missingness in Smoking (MCAR) does not relate to sex - Females and Males have the same proportion of missing data.
-Missingness in Smoking (MAR), however, does differ by sex as Females have more missing data than Men here. 
+Find the two sets of bar plots that show the proportion of missing smoking data for sex (bottom of Column 3).
+Missingness in Smoking (MCAR) does not relate to sex - females and males have the same proportion of missing data.
+Missingness in Smoking (MAR), however, does differ by sex as females have more missing data than men here. 
 This is how we designed the example at the top of this chapter, so it all makes sense.
-
 
 We can also confirm this by using `missing_compare()`:
 
-```{r}
-explanatory = c("age", "sex.factor", 
-  "nodes", "obstruct.factor")
-dependent = "smoking_mcar"
+```{r message=FALSE, warning=FALSE}
+explanatory <- c("age", "sex.factor", 
+                 "nodes", "obstruct.factor")
+dependent <- "smoking_mcar"
 
-missing_mcar = colon_s %>% 
+missing_mcar <- colon_s %>% 
   missing_compare(dependent, explanatory)
 ```
 
@@ -267,10 +286,10 @@ missing_mcar %>%
   mykable(caption = "Missing data comparison: Smoking (MCAR).")
 ```
 
-```{r}
-dependent = "smoking_mar"
+```{r message=FALSE, warning=FALSE}
+dependent <- "smoking_mar"
 
-missing_mar = colon_s %>% 
+missing_mar <- colon_s %>% 
   missing_compare(dependent, explanatory)
 ```
 
@@ -280,9 +299,9 @@ missing_mar %>%
 ```
 
 It takes dependent and explanatory variables, and in this context "dependent" refers to the variable being tested for missingness against the explanatory variables.
-^[By default, `missing_compare()` uses the Kruskal Wallis test for continuous variables and chi-squared for categorical variables, you can change these the same way you change tests in `summary_factorlist()`.
+^[By default, `missing_compare()` uses an F-test test for continuous variables and chi-squared for categorical variables, you can change these the same way you change tests in `summary_factorlist()`.
 Check the Help tab or either's online documentation for a reminder.]
-As expected, a relationship is seen between Sex and Smoking (MAR) but not Smoking (MCAR).
+As expected, a relationship is seen between sex and smoking (MAR) but not smoking (MCAR).
 
 ### For those who like an omnibus test
 If you work predominately with continous rather than categorical data, you may find these tests from the `MissMech` package useful. 
@@ -290,15 +309,15 @@ It provides two tests which can be used to determine whether data are MCAR, the 
 
 ```{r}
 library(MissMech)
-explanatory = c("age", "nodes")
-dependent = "mort_5yr" 
+explanatory <- c("age", "nodes")
+dependent <- "mort_5yr" 
 
 colon_s %>% 
   select(all_of(explanatory)) %>% 
   MissMech::TestMCARNormality()
 ```
 
-## Decide how to handle missing data
+## Handling missing data: MCAR
 \index{missing data@\textbf{missing data}!handling}
 
 Prior to a standard regression analysis, we can either:
@@ -308,25 +327,24 @@ Prior to a standard regression analysis, we can either:
 * Impute (fill in) the missing data
 * Model the missing data
 
-### **MCAR** vs MAR
-Using the examples, we identify that Smoking (MCAR) is missing completely at random.
+Using the examples, we identify that smoking (MCAR) is missing completely at random.
 
 We know nothing about the missing values themselves, but we know of no plausible reason that the values of the missing data, for say, people who died should be different to the values of the missing data for those who survived. 
 The pattern of missingness is therefore not felt to be MNAR.
 
-**Common solution**
+### Common solution: rowwise deletion
 Depending on the number of data points that are missing, we may have sufficient power with complete cases to examine the relationships of interest.
 
 We therefore elect to omit the patients in whom smoking is missing.
 This is known as list-wise deletion and will be performed by default and usually silently by any standard regression function.
 
-```{r message=FALSE}
-explanatory = c("age", "sex.factor", 
-  "nodes", "obstruct.factor",  
-  "smoking_mcar")
-dependent = "mort_5yr"
+```{r message=FALSE, warning=FALSE}
+explanatory <- c("age", "sex.factor", 
+                 "nodes", "obstruct.factor",  
+                 "smoking_mcar")
+dependent <- "mort_5yr"
 fit = colon_s %>% 
-    finalfit(dependent, explanatory)
+  finalfit(dependent, explanatory)
 ```
 
 ```{r echo=FALSE}
@@ -334,7 +352,7 @@ fit %>%
   mykable(caption = "Regression analysis with missing data: list-wise deletion.")
 ```
 
-**Other considerations**
+### Other considerations
 
 * Sensitivity analysis
 * Omit the variable
@@ -350,7 +368,8 @@ That deals with the missing data issue, but of course may not always be appropri
 
 Imputation and modelling are considered below.
 
-### MCAR vs **MAR**
+## Handling missing data: MAR
+
 But life is rarely that simple.
 
 Considering that the smoking variable is more likely to be missing if the patient is female (missing_compare shows a relationship).
@@ -360,96 +379,136 @@ Missingness is then MAR.
 If we simply drop all the patients for whom smoking is missing (list-wise deletion), then we drop relatively more females than men. 
 This may have consequences for our conclusions if sex is associated with our explanatory variable of interest or outcome.
 
-**Common solution**
+### Common solution: Multivariate Imputation by Chained Equations (mice)
 \index{missing data@\textbf{missing data}!imputation}
 \index{missing data@\textbf{missing data}!multiple imputation}
 \index{imputation}
 \index{multiple imputation}
 
-`mice` is our go to package for multiple imputation. 
+**mice** is our go to package for multiple imputation. 
 That’s the process of filling in missing data using a best-estimate from all the other data that exists. 
 When first encountered, this may not sound like a good idea.
 
 However, taking our simple example, if missingness in smoking is predicted strongly by sex (and other observed variables), and the values of the missing data are random, then we can impute (best-guess) the missing smoking values using sex and other variables in the dataset.
 
-Imputation is not usually appropriate for the explanatory variable of interest or the outcome variable. 
+Imputation is not usually appropriate for the explanatory variable of interest or the outcome variable, althought these can be used to impute other variables. 
 In both cases, the hypothesis is that there is an meaningful association with other variables in the dataset, therefore it doesn’t make sense to use these variables to impute them.
 
-Here is some code to run `mice`.
+The process of multiple imputation involves: 
+
+* **Impute** missing data *m* times, which results in *m* complete data sets
+* **Diagnose** the quality of the imputed values
+* **Analyze** each completed data set
+* **Pool** the results of the repeated analyses
+
+We will present a `mice()` example here. 
 The package is well documented, and there are a number of checks and considerations that should be made to inform the imputation process.
 Read the documentation carefully prior to doing this yourself.
 
-Note also `missing_predictorMatrix()` from `finalfit`.
+Note also `missing_predictorMatrix()` from **finalfit**.
 This provides a straightforward way to include or exclude variables to be imputed or to be used for imputation.
 
-```{r message=FALSE}
+**Impute**
+
+```{r message=FALSE, warning=FALSE}
 # Multivariate Imputation by Chained Equations (mice)
 library(finalfit)
 library(dplyr)
 library(mice)
-explanatory = c("age", "sex.factor", 
-  "nodes", "obstruct.factor", "smoking_mar")
-dependent = "mort_5yr"
+explanatory <- c("age", "sex.factor", 
+                 "nodes", "obstruct.factor", "smoking_mar")
+dependent <- "mort_5yr"
+```
 
-# Choose not to impute missing values
-# for explanatory variable of interest and
-# outcome variable. 
-# But include in algorithm for imputation.
-colon_s %>% 
-    select(dependent, explanatory) %>% 
-    missing_predictorMatrix(
-        drop_from_imputed = c("obstruct.factor", "mort_5yr")
-        ) -> predM
+Choose which varible to imput missing values for and which variables to use for the imputation process. 
 
+```{r message=FALSE, warning=FALSE}
 colon_s %>% 
   select(dependent, explanatory) %>% 
+  missing_predictorMatrix(
+    drop_from_imputed = c("obstruct.factor", "mort_5yr")
+  ) -> predM
+```
+
+Make 10 imputed datasets and run our logistic regression analysis on each set. 
+
+```{r}
+fits <- colon_s %>% 
+  select(dependent, explanatory) %>% 
+  
   # Usually run imputation with 10 imputed sets, 4 here for demonstration
   mice(m = 4, predictorMatrix = predM) %>% 
+  
   # Run logistic regression on each imputed set
   with(glm(formula(ff_formula(dependent, explanatory)), 
-           family="binomial")) %>%
-  # Pool and summarise results
-  pool()  %>%                                  
-  fit2df(estimate_name = "OR (multiple imputation)", exp = TRUE) -> fit_imputed
+           family="binomial"))
+```
+
+**Extract metrics from each model** 
+
+```{r message=FALSE, warning=FALSE}
+# Examples of extracting metrics from fits and taking the mean
+## AICs
+fits %>% 
+  getfit() %>% 
+  purrr::map(AIC) %>%
+  unlist() %>% 
+  mean()
+
+# C-statistic
+fits %>% 
+  getfit() %>% 
+  purrr::map(~ pROC::roc(.x$y, .x$fitted)$auc) %>% 
+  unlist() %>% 
+  mean()
+```
+
+**Pool models together**
+
+```{r fig.height=4, fig.width=10, message=FALSE, warning=FALSE}
+# Pool  results
+fits_pool <- fits %>% 
+  pool()
+
+## Can be passed to or_plot
+colon_s %>% 
+  or_plot(dependent, explanatory, glmfit = fits_pool, table_text_size=4)
+
+# Summarise and put in table
+fit_imputed <- fits_pool %>%                                  
+  fit2df(estimate_name = "OR (multiple imputation)", exp = TRUE)
 
 # Use finalfit merge methods to create and compare results
-colon_s %>% 
-  summary_factorlist(dependent, explanatory, fit_id = TRUE) -> summary1
+explanatory <- c("age", "sex.factor", 
+                 "nodes", "obstruct.factor", "smoking_mar")
 
-colon_s %>% 
-  glmuni(dependent, explanatory) %>% 
-  fit2df(estimate_suffix = " (univariable)") -> fit_uni
-
-colon_s %>% 
-  glmmulti(dependent, explanatory) %>% 
-  fit2df(estimate_suffix = " (multivariable inc. smoking)") -> fit_multi
+table_uni_multi <- colon_s %>% 
+  finalfit(dependent, explanatory, keep_fit_id = TRUE) 
 
 explanatory = c("age", "sex.factor", 
-  "nodes", "obstruct.factor")
-colon_s %>% 
+                "nodes", "obstruct.factor")
+
+fit_multi_no_smoking <- colon_s %>% 
   glmmulti(dependent, explanatory) %>% 
-  fit2df(estimate_suffix = " (multivariable)") -> fit_multi_r
+  fit2df(estimate_suffix = " (multivariable without smoking)") 
 
 # Combine to final table
-fit_impute = summary1 %>% 
-  ff_merge(fit_uni) %>% 
-  ff_merge(fit_multi_r) %>% 
-  ff_merge(fit_multi) %>% 
-  ff_merge(fit_imputed) %>% 
-  select(-fit_id, -index)
+table_imputed <- 
+  table_uni_multi %>% 
+  ff_merge(fit_multi_no_smoking) %>% 
+  ff_merge(fit_imputed, last_merge = TRUE)
 ```
 
 ```{r echo=FALSE}
-fit_impute %>% 
+table_imputed  %>% 
   mykable(caption = "Regression analysis with missing data: multiple imputation using `mice()`.")
 ```
 
-By examining the coefficients, the effect of the imputation compared with the complete case analysis can be clearly seen.
+By examining the coefficients, the effect of the imputation compared with the complete case analysis can be seen.
 
 **Other considerations**
 
 * Omit the variable
-* Imputing factors with new level for missing data
 * Model the missing data
 
 As above, if the variable does not appear to be important, it may be omitted from the analysis.
@@ -457,12 +516,13 @@ A sensitivity analysis in this context is another form of imputation.
 But rather than using all other available information to best-guess the missing data, we simply assign the value as above.
 Imputation is therefore likely to be more appropriate.
 
-There is an alternative method to model the missing data for the categorical in this setting – just consider the missing data as a factor level. This has the advantage of simplicity, with the disadvantage of increasing the number of terms in the model.
+There is an alternative method to model the missing data for the categorical in this setting – just consider the missing data as a factor level. 
+This has the advantage of simplicity, with the disadvantage of increasing the number of terms in the model.
 
-```{r message=FALSE}
+```{r message=FALSE, warning=FALSE}
 library(dplyr)
 explanatory = c("age", "sex.factor", 
-  "nodes", "obstruct.factor", "smoking_mar")
+                "nodes", "obstruct.factor", "smoking_mar")
 fit_explicit_na = colon_s %>% 
   mutate(
     smoking_mar = forcats::fct_explicit_na(smoking_mar)
@@ -475,11 +535,12 @@ fit_explicit_na %>%
   mykable(caption = "Regression analysis with missing data: explicitly modelling missing data.")
 ```
 
-### **MNAR** vs MAR
+## Handling missing data: MNAR
+
 Missing not at random data is tough in healthcare.
 To determine if data are MNAR for definite, we need to know their value in a subset of observations (patients).
 
-Imagine that smoking status is poorly recorded in patients admitted to hospital as an emergency with an obstructing cancer.
+Imagine that smoking status is poorly recorded in patients admitted to hospital as an emergency with an obstructing bowel cancer.
 Obstructing bowel cancers may be larger or their position may make the prognosis worse.
 Smoking may relate to the aggressiveness of the cancer and may be an independent predictor of prognosis. 
 The missing values for smoking may therefore not be random. 
@@ -489,7 +550,12 @@ There is no easy way to handle this.
 If at all possible, try to get the missing data. 
 Otherwise, be careful when drawing conclusions from analyses where data are thought to be missing not at random.
 
-<!-- Where to next -->
-<!-- We are now doing more in Stan. Missing data can be imputed directly within a Stan model which feels neat. Stan doesn’t yet have the equivalent of NA which makes passing the data block into Stan a bit of a faff. -->
+## Summary
 
-<!-- Alternatively, the missing data can be directly modelled in Stan. Examples are provided in the manual. Again, I haven’t found this that easy to do, but there are a number of Stan developments that will hopefully make this more straightforward in the future. -->
+The more data analysis you do, the more you realise just how important missing data is. 
+It is imperative that you understand where missing values exist in your own data. 
+By following the simple steps in this chapter, you will be able to determine whether the cases (commonly patients) with missing values are a different population to those with complete data. 
+This is the basis for understanding the impact of missing data on your analyses. 
+
+Whether you remove cases, remove variables, impute data, or model missing values, always check how each approach alters the conclusions of your analysis.
+Be transparent when you report your results and include the alternative approaches in appendices of published work. 

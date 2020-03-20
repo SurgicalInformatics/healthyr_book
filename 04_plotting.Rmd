@@ -36,7 +36,7 @@ Figure \@ref(fig:chap04-fig-steps) shows some example steps for building a scatt
 library(tidyverse)
 library(gapminder)
 
-gapminder2007 <- gapminder %>% 
+gapdata2007 <- gapminder %>% 
   filter(year == 2007) %>% 
   mutate(gdpPercap_thousands = gdpPercap/1000)
 ```
@@ -46,33 +46,33 @@ gapminder2007 <- gapminder %>%
 ```{r chap04-fig-steps, fig.height=10, fig.width=6, echo = FALSE, fig.cap = "Example steps for building and modiyfing a ggplot. (1) initialising the canvas and defining variables, (2) adding points, (3) colouring points by continent, (4) changing point type, (5) faceting, (6) changing the plot theme and the scale of the x variable."}
 library(patchwork)
 
-step1 <- gapminder2007 %>% 
+step1 <- gapdata2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp))
 
-step2 <- gapminder2007 %>% 
+step2 <- gapdata2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp)) +
   geom_point()
 
-step3 <- gapminder2007 %>% 
+step3 <- gapdata2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
   geom_point()   +
   theme(legend.position = "none")
 
-step4 <- gapminder2007 %>% 
+step4 <- gapdata2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
   geom_point(shape = 1)
 
-step5 <- gapminder2007 %>% 
+step5 <- gapdata2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
   geom_point(shape = 1) +
   facet_wrap(~continent)
 
-step5 <- gapminder2007 %>% 
+step5 <- gapdata2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
   geom_point(shape = 1) +
   facet_wrap(~continent)
 
-step6 <- gapminder2007 %>% 
+step6 <- gapdata2007 %>% 
   ggplot(aes(x = gdpPercap/1000, y = lifeExp, colour = continent)) +
   geom_point(shape = 1) +
   facet_wrap(~continent) +
@@ -111,25 +111,25 @@ gapminder$country %>% n_distinct()
 gapminder$continent %>% unique()
 ```
 
-Let's create a new shorter tibble called `gapminder2007` that only includes data for the year 2007.
+Let's create a new shorter tibble called `gapdata2007` that only includes data for the year 2007.
 
 ```{r}
-gapminder2007 <- gapminder %>% 
+gapdata2007 <- gapminder %>% 
   filter(year == 2007)
 
-gapminder2007
+gapdata2007
 ```
 
-The new tibble - `gapminder2007` - now shows up in your Environment tab, whereas `gapminder` does not. 
+The new tibble - `gapdata2007` - now shows up in your Environment tab, whereas `gapminder` does not. 
 Running `library(gapminder)` makes it available to use (so the funny line below is not necessary for any of the code in this chapter to work), but to have it appear in your normal Environment tab you'll need to run this funny looking line:
 
 ```{r}
 # loads the gapminder dataset from the package environment
 # into your Global Environment
-gapminder <- gapminder
+gapdata <- gapminder
 ```
 
-Both `gapminder` and `gapminder2007` now show up in the Environment tab and can be clicked on/quickly viewed as usual.
+Both `gapdata` and `gapdata2007` now show up in the Environment tab and can be clicked on/quickly viewed as usual.
 
 ## Anatomy of ggplot explained {#chap04-gganatomy}
 \index{plots@\textbf{plots}!anatomy of a plot}
@@ -141,7 +141,7 @@ Note that you only need the first two to make a plot, the rest are just to show 
 **(1)** Start by defining the variables, e.g., `ggplot(aes(x = var1, y = var2))`:
 
 ```{r, fig.keep = 'none'}
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp))
 ```
 
@@ -150,7 +150,7 @@ This creates the first plot in Figure \@ref(fig:chap04-fig-steps).
 Although the above code is equivalent to:
 
 ```{r, fig.keep = 'none'}
-ggplot(gapminder2007, aes(x = gdpPercap, y = lifeExp))
+ggplot(gapdata2007, aes(x = gdpPercap, y = lifeExp))
 ```
 
 We tend to put the data first and then use the pipe (`%>%`) to send it to the `ggplot()` function.
@@ -177,7 +177,7 @@ Take a moment to appreciate the double closing brackets `))` - the first one bel
 Let's ask `ggplot()` to draw a point for each observation by adding `geom_point()`:
 
 ```{r, fig.keep = 'none'}
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp)) +
   geom_point()
 ```
@@ -190,7 +190,7 @@ But the thing to note is that the rest of the code stays exactly the same, all w
 
 
 ```{r chap04-fig-stripplot, fig.width=3, fig.cap = "A stip plot using `geom_point()`."}
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
   geom_point()
 ```
@@ -201,7 +201,7 @@ Going back to the scatter plot (`lifeExp` vs `gdpPercap`), let's use `continent`
 We can do this by adding `colour = continent` inside the `aes()`:
 
 ```{r, fig.width=4, fig.keep = 'none'}
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
   geom_point()
 ```
@@ -239,7 +239,7 @@ To make all of the points in our figure hollow, let's set their shape to 1.
 We do this by adding `shape = 1` inside the `geom_point()`:
 
 ```{r, fig.keep = 'none'}
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
   geom_point(shape = 1)
 ```
@@ -254,7 +254,7 @@ Faceting is a way to efficiently create the same plot for subgroups within the d
 For example, we can separate each continent into its own facet by adding `facet_wrap(~continent)` to our plot:
 
 ```{r fig.height=3.5, fig.width=7, fig.keep = 'none'}
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
   geom_point(shape = 1) +
   facet_wrap(~continent)
@@ -266,7 +266,7 @@ There is a similar function called `facet_grid()` that will create a grid of plo
 Furthermore, facets are happy to quickly separate data based on a condition (so something you would usually use in a filter).
 
 ```{r chap04-fig-facetcond, fig.width=6, fig.cap = "Using a filtering condition (e.g., population > 50 million) directly inside a `facet_wrap()`."}
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
   geom_point(shape = 1) +
   facet_wrap(~pop > 50000000)
@@ -299,7 +299,7 @@ We have also divided the gdpPercap by 1000 (making the units "thousands of dolla
 Note that you can apply calculations directly on ggplot variables (so how we've done `x = gdpPercap/1000` here).
 
 ```{r fig.height=3.5, fig.width=7, fig.keep = 'none'}
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = gdpPercap/1000, y = lifeExp, colour = continent)) +
   geom_point(shape = 1) +
   facet_wrap(~continent) +
@@ -340,7 +340,7 @@ For example, let's size the points by population.
 As you would expect from a "grammar of graphics plot", this is as simple as adding `size = pop` as an aesthetic:
 
 ```{r, fig.keep = 'none'}
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = gdpPercap/1000, y = lifeExp, size = pop)) +
   geom_point()
 ```
@@ -348,7 +348,7 @@ gapminder2007 %>%
 With increased bubble sizes, there is some overplotting, so let's make the points hollow (`shape = 1`) and slightly transparent (`alpha = 0.5`):
 
 ```{r, fig.keep = 'none'}
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = gdpPercap/1000, y = lifeExp, size = pop)) +
   geom_point(shape = 1, alpha = 0.5)
 ```
@@ -359,11 +359,11 @@ The resulting bubble plots are shown in Figure \@ref(fig:chap04-fig-bubble).
 
 theme_set(theme_bw())
 
-p1 <- gapminder2007 %>% 
+p1 <- gapdata2007 %>% 
   ggplot(aes(x = gdpPercap/1000, y = lifeExp, size = pop)) +
   geom_point()
 
-p2 <- gapminder2007 %>% 
+p2 <- gapdata2007 %>% 
   ggplot(aes(x = gdpPercap/1000, y = lifeExp, size = pop)) +
   geom_point(shape = 1, alpha = 0.5) +
   theme(legend.position = "none")
@@ -381,7 +381,7 @@ Alpha is an aesthetic to make geoms transparent, its values can range from 0 (in
 Let's plot the life expectancy in the United Kingdom over time:
 
 ```{r, fig.width = 4, fig.height = 1.5}
-gapminder %>% 
+gapdata %>% 
   filter(country == "United Kingdom") %>% 
   ggplot(aes(x = year, y = lifeExp)) +
   geom_line()
@@ -389,7 +389,7 @@ gapminder %>%
 
 As a recap, the steps in the code above are:
 
-* Using the `gapminder` data send into a `filter()`;
+* Send `gapdata` into a `filter()`;
 * inside the `filter()`, our condition is `country == "United Kingdom"`;
 * We initialise `ggplot()` and define our main variables: `aes(x = year, y = lifeExp)`;
 * we are using a new geom - `geom_line()`.
@@ -401,7 +401,7 @@ But what if we want to draw multiple lines, e.g., for each country in the datase
 Let's send the whole dataset to `ggplot()` and `geom_line()`:
 
 ```{r, fig.keep = 'none'}
-gapminder %>% 
+gapdata %>% 
   ggplot(aes(x = year, y = lifeExp)) +
   geom_line()
 ```
@@ -413,7 +413,7 @@ Yes, you know you want a line for each country, but you haven't told it that.
 So for drawing multiple lines, we need to add a `group` aesthetic, in this case `group = country`:
 
 ```{r, fig.keep = 'none'}
-gapminder %>% 
+gapdata %>% 
   ggplot(aes(x = year, y = lifeExp, group = country)) +
   geom_line()
 ```
@@ -422,11 +422,11 @@ gapminder %>%
 
 theme_set(theme_bw())
 
-p1 <- gapminder %>% 
+p1 <- gapdata %>% 
   ggplot(aes(x = year, y = lifeExp)) +
   geom_line()
 
-p2 <- gapminder %>% 
+p2 <- gapdata %>% 
   ggplot(aes(x = year, y = lifeExp, group = country)) +
   geom_line()
 
@@ -434,14 +434,14 @@ p1 + p2 + plot_annotation(tag_levels = "1", tag_prefix = "(", tag_suffix = ")")
 
 ```
 
-This code works as expected (Figure \@ref(fig:chap04-fig-zigzag) (2)) - yes there is a lot of overplotting but that's just because we've included `r gapminder$country %>% n_distinct()` lines on a single plot.
+This code works as expected (Figure \@ref(fig:chap04-fig-zigzag) (2)) - yes there is a lot of overplotting but that's just because we've included `r gapdata$country %>% n_distinct()` lines on a single plot.
 
-### Exercise
+### Exercise {#chap04-ex-lineplot}
 
 Follow the step-by-step instructions to transform (Figure \@ref(fig:chap04-fig-zigzag):2) into this:
 
 ```{r, fig.width=0.8*10, echo = FALSE, fig.height=0.8*4}
-gapminder %>% 
+gapdata %>% 
   ggplot(aes(x = year, y = lifeExp, group = country, colour=continent)) +
   geom_line() +
   facet_wrap(~continent) + 
@@ -474,7 +474,7 @@ There is no harm in trying one, and if it doesn't work, trying the other.
 Let's plot the life expectancies in 2007 in these three countries:
 
 ```{r, fig.keep = 'none'}
-gapminder2007 %>% 
+gapdata2007 %>% 
   filter(country %in% c("United Kingdom", "France", "Germany")) %>% 
   ggplot(aes(x = country, y = lifeExp)) +
   geom_col() 
@@ -487,12 +487,12 @@ We have also created another cheeky one using the same code but changing the sca
 
 theme_set(theme_bw())
 
-p1 <- gapminder2007 %>% 
+p1 <- gapdata2007 %>% 
   filter(country %in% c("United Kingdom", "France", "Germany")) %>% 
   ggplot(aes(x = country, y = lifeExp)) +
   geom_col() 
 
-p2 <- gapminder2007 %>% 
+p2 <- gapdata2007 %>% 
   filter(country %in% c("United Kingdom", "France", "Germany")) %>% 
   ggplot(aes(x = country, y = lifeExp)) +
   geom_col() +
@@ -509,25 +509,25 @@ p1 + p2 + plot_annotation(tag_levels = "1", tag_prefix = "(", tag_suffix = ")")
 * this `x` should be a categorical variable
 * `geom_bar()` then counts up the number of observations (rows) for this variable and plots them as bars.
 
-Our `gapminder2007` tibble has a row for each country (see end of Section \@ref(chap04-data) to remind yourself). 
+Our `gapdata2007` tibble has a row for each country (see end of Section \@ref(chap04-data) to remind yourself). 
 Therefore, if we use the `count()` function on the `continent` variable, we are counting up the number of countries on each continent (in this dataset^[The number of countries in this dataset is 142, whereas the United Nations have 193 member states]):
 
 ```{r}
-gapminder2007 %>% 
+gapdata2007 %>% 
   count(continent)
 ```
 
 So `geom_bar()` basically runs the `count()` function and plots it (see how the bars on Figure \@ref(fig:chap04-fig-bar) are the same height as the values from `count(continent)`).
 
-```{r chap04-fig-bar, fig.width=6.4, echo = FALSE, fig.cap = "`geom_bar()` counts up the number of observations for each group. (1) `gapminder2007 %>% ggplot(aes(x = continent)) + geom_bar()`, (2) same + a little bit of magic to reveal the underlying data."}
+```{r chap04-fig-bar, fig.width=6.4, echo = FALSE, fig.cap = "`geom_bar()` counts up the number of observations for each group. (1) `gapdata2007 %>% ggplot(aes(x = continent)) + geom_bar()`, (2) same + a little bit of magic to reveal the underlying data."}
 
 theme_set(theme_bw())
 
-p1 = gapminder2007 %>% 
+p1 = gapdata2007 %>% 
   ggplot(aes(x = continent)) +
   geom_bar()
 
-p2 = gapminder2007 %>% 
+p2 = gapdata2007 %>% 
   ggplot(aes(x = continent, colour = country)) +
   geom_bar(fill = NA) +
   theme(legend.position = "none")
@@ -540,7 +540,7 @@ The first barplot in Figure \@ref(fig:chap04-fig-bar) is produced with just this
 
 ```{r, fig.keep = 'none'}
 
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = continent)) +
   geom_bar()
 
@@ -550,7 +550,7 @@ Whereas on the second one, we've asked `geom_bar()` to reveal the components (co
 
 ```{r, fig.keep = 'none'}
 
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = continent, colour = country)) +
   geom_bar(fill = NA) +
   theme(legend.position = "none")
@@ -588,19 +588,19 @@ Furthermore, sometimes it's useful to set the x value to a constant - to get eve
 So we are using `aes(x = "Global", fill = continent)`, note that "Global" could be any word - since it's quoted `ggplot()` won't go looking for it in the dataset:
 
 ```{r}
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = "Global", fill = continent)) + 
   geom_bar()
 ```
 
 There are more examples of bar plots in Chapter \@ref(chap08-h1).
 
-### Exercise
+### Exercise {#chap04-ex-barplot}
 
 Create Figure \@ref(fig:chap04-fig-bar-exercise) of life expectancies in European countries (year 2007).
 
 ```{r chap04-fig-bar-exercise, fig.width = 4.5, echo = FALSE, fig.height=5, fig.cap = "Barplot Exercise. Life expectancies in European countries in year 2007 from the Gapmminder dataset."}
-gapminder %>% 
+gapdata %>% 
   filter(year == 2007) %>%
   filter(continent == "Europe") %>% 
   ggplot(aes(x = fct_reorder(country, lifeExp), y = lifeExp)) +
@@ -632,7 +632,7 @@ theme_set(theme_bw())
 
 
 ```{r fig.width=4}
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = lifeExp)) +
   geom_histogram(binwidth = 10)
 ```
@@ -655,7 +655,7 @@ Box plots include:
 * outliers (any observations out with the whiskers)
 
 ```{r, fig.width=3, fig.height=2.75}
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
   geom_boxplot()
 ```
@@ -672,7 +672,7 @@ theme_set(theme_bw())
 ```
 
 ```{r, fig.keep = 'none'}
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
   geom_boxplot() +
   geom_point()
@@ -684,23 +684,23 @@ This makes Figure \@ref(fig:chap04-fig-multigeoms):1.
 
 theme_set(theme_bw())
 
-p1 <- gapminder2007 %>% 
+p1 <- gapdata2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
   geom_boxplot() +
   geom_point()
 
-p2 <- gapminder2007 %>% 
+p2 <- gapdata2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
   geom_boxplot() +
   geom_jitter()
 
-p3 <- gapminder2007 %>% 
+p3 <- gapdata2007 %>% 
   ggplot(aes(x = continent, y = lifeExp, colour = continent)) +
   geom_boxplot() +
   geom_jitter(position = position_jitter(seed = 1)) +
   theme(legend.position = "none")
 
-p4 <- gapminder2007 %>% 
+p4 <- gapdata2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
   geom_boxplot() +
   geom_jitter(aes(colour = continent), position = position_jitter(seed = 1))
@@ -717,13 +717,13 @@ But what's really exciting is the difference between (3) and (4) in Figure \@ref
 
 ```{r, fig.keep = 'none'}
 # (3)
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = continent, y = lifeExp, colour = continent)) +
   geom_boxplot() +
   geom_jitter()
 
 # (4)
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
   geom_boxplot() +
   geom_jitter(aes(colour = continent))
@@ -743,7 +743,7 @@ Let's combine three geoms by including text labels on top of the box plot + poin
 We are creating a new tibble called `label_data` filtering for the maximum life expectancy countries at each continent (`group_by(continent)`):
 
 ```{r}
-label_data <- gapminder2007 %>% 
+label_data <- gapdata2007 %>% 
   group_by(continent) %>% 
   filter(lifeExp == max(lifeExp)) %>% 
   select(country, continent, lifeExp)
@@ -763,7 +763,7 @@ theme_set(theme_bw())
 ```
 
 ```{r, fig.width=5, fig.height=4}
-gapminder2007 %>% 
+gapdata2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
   # First geom - boxplot
   geom_boxplot() +
@@ -775,7 +775,7 @@ gapminder2007 %>%
 
 A few suggested experiments to try with the 3-geom plot code above:
 
-* remove `data = label_data, ` from `geom_label()` and you'll get all 142 labels (so it will plot a label for the whole `gapminder2007` dataset);
+* remove `data = label_data, ` from `geom_label()` and you'll get all 142 labels (so it will plot a label for the whole `gapdata2007` dataset);
 * change from `geom_label()` to `geom_text()` - it works similarly but doesn't have the border and background behind the country name;
 * change `label = country` to `label = lifeExp`, this plots the maximum value, rather than the country name.
 
@@ -796,7 +796,7 @@ All your geoms will "know about" the top-level `aes()` variables, but including 
 
 ## Solutions
 
-**4.5.1**
+Solution to Exercise \@ref(chap04-ex-lineplot):
 
 ```{r, fig.keep = 'none'}
 library(tidyverse)
@@ -814,7 +814,7 @@ gapminder %>%
 
 ```
 
-**4.6.5**
+Solution to Exercise \@ref(chap04-ex-barplot):
 
 ```{r, eval = FALSE}
 library(tidyverse)
@@ -839,7 +839,7 @@ The first one shows how the life expectancies in European countries have increas
 <!-- Explain `fun=max` below? -->
 
 ```{r, fig.width=7, fig.height=5}
-gapminder %>% 
+gapdata %>% 
   filter(continent == "Europe") %>% 
   ggplot(aes(y      = fct_reorder(country, lifeExp, .fun=max),
              x      = lifeExp,
@@ -853,7 +853,7 @@ In the second example, we're using `group_by(continent)` followed by `mutate(cou
 We are then using these as `y` coordinates for the text labels (`geom_text(aes(y = country_number...`).
 
 ```{r, fig.height=10, fig.width=8}
-gapminder2007 %>% 
+gapdata2007 %>% 
   group_by(continent) %>% 
   mutate(country_number = seq_along(country)) %>% 
   ggplot(aes(x = continent)) +

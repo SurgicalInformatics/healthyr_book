@@ -899,14 +899,14 @@ Make $\hat{y} = \beta_0 + \beta_1 x_1$ a close friend.
 
 ## Exercises
 
-### Exercise 1
+### Exercise {#chap07-ex1}
 
 Using the [multivariable regression Shiny app](https://argoshare.is.ed.ac.uk/multi_regression/), hack some p-values to prove to yourself the principle of multiple testing. 
 
 From the default position, select "additive model" then set "Error standard deviation" to 2. Leave all true effects at 0. How many clicks of "New Sample" did you need before you got a statistically significant result?
 
 
-### Exercise 2
+### Exercise {#chap07-ex2}
 
 Plot the GDP per capita by year for countries in Europe. 
 Add a best fit straight line to the plot.
@@ -914,7 +914,7 @@ In which countries is the relationship not linear?
 Advanced: make the line curved by adding a quadratic/squared term, e.g. $y~x^2+x$. Hint: check geom_smooth() help page under `formula`. 
 
 
-### Exercise 3
+### Exercise {#chap07-ex3}
 
 Compare the relationship between GDP per capita and year for two countries of your choice.
 If you can't choose, make it Albania and Austria.
@@ -926,7 +926,7 @@ Fit and plot a best fit regression model.
 Use your model to determine the difference in GDP per capita for your countries in 1980. 
 
 
-### Exercise 4
+### Exercise {#chap07-ex4}
 
 Use the the Western Collaborative Group Study data to determine if there is a relationship between age and cholesterol level.
 
@@ -935,10 +935,11 @@ Remember to plot the data first.
 Make a simple regression model. Add other variables to adjust for potential confounding. 
 
 
-## Exercise solutions
+## Solutions
+
+Solution to Exercise \@ref(chap07-ex2):
 
 ```{r fig.height=8, fig.width=12, results='hide'}
-# Exercise 2
 gapdata %>% 
   filter(continent == "Europe") %>% 
   ggplot(aes(x = year, y = gdpPercap)) + 
@@ -957,9 +958,10 @@ gapdata %>%
   facet_wrap(country ~ .)
 ```
 
-```{r fig.height=3, fig.width=4.5, results='hide'}
-# Exercise 3
 
+Solution to Exercise \@ref(chap07-ex3):
+
+```{r fig.height=3, fig.width=4.5, results='hide'}
 # Plot first
 gapdata %>% 
   filter(country %in% c("Albania", "Austria")) %>% 
@@ -1000,9 +1002,10 @@ gdp_1980
 gdp_1980[2] - gdp_1980[1]
 ```
 
-```{r results='hide'}
-# Exercise 4
 
+Solution to Exercise \@ref(chap07-ex4):
+
+```{r results='hide'}
 # Plot data first
 wcgsdata %>% 
   ggplot(aes(x = age, y = chol))+
@@ -1035,7 +1038,6 @@ wcgsdata %>%
 
 ```{r fig.height=3, fig.width=4.5, include=FALSE, results='hide'}
 # If want to include results set this to go. 
-# Exercise 4
 
 # Plot data first
 wcgsdata %>% 

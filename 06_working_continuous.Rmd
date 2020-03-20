@@ -50,8 +50,8 @@ library(tidyverse)
 library(finalfit)
 library(gapminder)
 
-# Create object mydata from object gapminder
-mydata <- gapminder
+# Create object gapdata from object gapminder
+gapdata <- gapminder
 ```
 
 It is vital that datasets carefully inspected when first read (for help reading data into R see \@ref(chap02-h2-reading-data-into-r)).
@@ -61,12 +61,12 @@ If you don't do this you will regret it!
 There are many times when an analysis has got to a relatively advanced stage before the researcher was hit by the realisation that the dataset was far from complete. 
 
 ```{r}
-glimpse(mydata) # each variable as line, variable type, first values
-missing_glimpse(mydata) # missing data for each variable
+glimpse(gapdata) # each variable as line, variable type, first values
+missing_glimpse(gapdata) # missing data for each variable
 ```
 
 ```{r eval = FALSE}
-ff_glimpse(mydata) # summary statistics for each variable
+ff_glimpse(gapdata) # summary statistics for each variable
 ```
 
 \index{functions@\textbf{functions}!glimpse}
@@ -74,17 +74,17 @@ ff_glimpse(mydata) # summary statistics for each variable
 \index{functions@\textbf{functions}!ff\_glimpse}
 
 ```{r message=FALSE, echo=FALSE}
-sum_mydata <- ff_glimpse(mydata) # summary statistics for each variable
+sum_gapdata <- ff_glimpse(gapdata) # summary statistics for each variable
 library(knitr)
 library(kableExtra)
-sum_mydata[[1]] %>%
+sum_gapdata[[1]] %>%
   select(-c(5, 8, 9, 11, 12)) %>% 
   kable(row.names = FALSE, align = c("l", "l", "l", "r", "r", "r", "r", "r", "r", "r"), 
         booktabs = TRUE, caption = "Gapminder dataset, ff\\_glimpse: continuous", 
         linesep = c("", "", "\\addlinespace")) %>%
   kable_styling(latex_options = c("scale_down", "hold_position")) %>% 
   column_spec(1, width = "4cm")
-sum_mydata[[2]] %>% 
+sum_gapdata[[2]] %>% 
   select(-c(5, 9)) %>% 
   kable(row.names = FALSE, align = c("l", "l", "l", "r", "r", "r", "r", "r", "r", "r"), 
         booktabs = TRUE, caption = "Gapminder dataset, ff\\_glimpse: categorical", 
@@ -117,7 +117,7 @@ There are three useful plots which can help here:
 ### Histogram{#chap06-h3-hist-plot}
 
 ```{r chap06-fig-hist-life-year, fig.width=7, fig.height=3.5, fig.cap="Histogram: country life expectancy by continent and year"}
-mydata %>% 
+gapdata %>% 
   filter(year %in% c(2002, 2007)) %>%
   ggplot(aes(x = lifeExp)) +       # remember aes()
   geom_histogram(bins = 20) +      # histogram with 20 bars
@@ -140,7 +140,7 @@ A Q-Q plot simply plots the quantiles for our data against the theoretical quant
 If our data follow that distribution (e.g. normal), then our data points fall on the theoretical straight line.
 
 ```{r chap06-fig-qq-life-year, fig.width=7, fig.height=3.5, fig.cap="Q-Q plot: country life expectancy by continent and year"}
-mydata %>% 
+gapdata %>% 
   filter(year %in% c(2002, 2007)) %>%
   ggplot(aes(sample = lifeExp)) +      # Q-Q plot requires 'sample'
   geom_qq() +                          # defaults to normal distribution
@@ -179,7 +179,7 @@ Outliers (anything outwith the whiskers) are represented as points.
 The beautiful boxplot thus contains information not only on central tendency (median), but on the variation in the data and the distribution of the data, for instance a skew should be obvious. 
 
 ```{r chap06-fig-boxplot-life-year, fig.width=7, fig.height=3, fig.cap="Boxplot: country life expectancy by continent and year"}
-mydata %>% 
+gapdata %>% 
   filter(year %in% c(2002, 2007)) %>%
   ggplot(aes(x = continent, y = lifeExp)) +
   geom_boxplot() +
@@ -198,7 +198,7 @@ We can add further arguments to adjust the plot to our liking.
 We particularly encourage the inclusion of the actual data points, here using `geom_jitter()`. 
 
 ```{r chap06-fig-boxplot-jitter, fig.width=7, fig.height=3, fig.cap="Boxplot with jitter points: country life expectancy by continent and year"}
-mydata %>%  
+gapdata %>%  
   filter(year %in% c(2002, 2007)) %>%
   ggplot(aes(x = factor(year), y = lifeExp)) +
   geom_boxplot(aes(fill = continent)) +     # add colour to boxplots
@@ -252,7 +252,7 @@ If you have inadvertently included a family of bespectacled nerdy giants, not ty
 So in our example of countries and continents, you have to assume that the mean life expectancy of each country does not depend on the life expectancies of other countries in the group. In other words, that each measurement is independent.
 
 ```{r}
-ttest_data <- mydata %>%                     # save as object ttest_data
+ttest_data <- gapdata %>%                     # save as object ttest_data
   filter(year == 2007) %>%                   # 2007 only
   filter(continent %in% c("Asia", "Europe")) # Asia/Europe only
 
@@ -308,7 +308,7 @@ tidy(ttest_result) %>%
 **Reminder: When pipe sends data to the wrong place: use `data = .` to direct it**
 
 In the code above, the `, data = .` bit is necessary because the pipe usually sends data to the beginning of function brackets. 
-So `mydata %>% t.test(lifeExp ~ continent)` would be equivalent to `t.test(mydata, lifeExp ~ continent)`. 
+So `gapdata %>% t.test(lifeExp ~ continent)` would be equivalent to `t.test(gapdata, lifeExp ~ continent)`. 
 However, this is not an order that `t.test()` will accept. 
 `t.test()` wants us to specify the formula first, and then wants the data these variables are present in. 
 So we have to use the `.` to tell the pipe to send the data to the second argument of `t.test()`, not the first.
@@ -322,7 +322,7 @@ The overall difference is not impressive in the boxplot.
 We can plot differences at the country level directly. 
 
 ```{r chap06-fig-line-life-asia, fig.height=3, fig.width=3, fig.cap="Line plot: Change in life expectancy in Asian countries from 2002 to 2007"}
-paired_data <- mydata %>%              # save as object paired_data
+paired_data <- gapdata %>%              # save as object paired_data
   filter(year %in% c(2002, 2007)) %>%  # 2002 and 2007 only
   filter(continent == "Asia")          # Asia only
 
@@ -387,7 +387,7 @@ For instance, we can test whether the mean life expectancy in each continent was
 We have included some extra code here to demonstrate how to run multiple tests in one pipe function. 
 
 ```{r}
-mydata %>% 
+gapdata %>% 
   filter(year == 2007) %>%          # 2007 only
   group_by(continent) %>%           # split by continent
   do(                               # dplyr function
@@ -424,7 +424,7 @@ For example, we may be interested in comparing life expectancy across 3 continen
 ### Plot the data
 
 ```{r, fig.width=3, fig.height=3, fig.cap="Boxplot: Life expectancy in selected continents for 2007"}
-mydata %>% 
+gapdata %>% 
   filter(year == 2007) %>% 
   filter(continent %in% 
            c("Americas", "Europe", "Asia")) %>% 
@@ -442,7 +442,7 @@ This so-called omnibus test tells you whether there are any differences in the c
 Again, it is important to plot carefully and be clear what question you are asking.  
 
 ```{r}
-aov_data <- mydata %>% 
+aov_data <- gapdata %>% 
   filter(year == 2007) %>% 
   filter(continent %in% c("Americas", "Europe", "Asia"))
 
@@ -458,7 +458,7 @@ As above, the output can be neatened up using the `tidy` function.
 
 ```{r}
 library(broom)
-mydata %>% 
+gapdata %>% 
   filter(year == 2007) %>% 
   filter(continent %in% c("Americas", "Europe", "Asia")) %>% 
   aov(lifeExp~continent, data = .) %>% 
@@ -585,7 +585,7 @@ tibble(
 
 
 ```{r fig.height=3, fig.width=6, fig.cap="Histogram: Log transformation of life expectancy for countries in Africa 2002"}
-africa2002 <- mydata %>%               # save as africa2002
+africa2002 <- gapdata %>%               # save as africa2002
   filter(year == 2002) %>%             # only 2002
   filter(continent == "Africa") %>%    # only Africa
   select(country, lifeExp) %>%         # only these variables
@@ -617,7 +617,7 @@ We can use it to test for a difference in life expectancies for African countrie
 Let's do a histogram, Q-Q plot and boxplot first. 
 
 ```{r fig.height=4, fig.width=6, fig.cap="Panels plots: histogram, Q-Q, boxplot for life expectancy in Africa 1992 v 2007"}
-africa_data <- mydata %>%                          
+africa_data <- gapdata %>%                          
   filter(year %in% c(1982, 2007)) %>%      # only 1982 and 2007
   filter(continent %in% c("Africa"))       # only Africa
 
@@ -664,7 +664,7 @@ It can be used in base R, or via the **finalfit** package below.
 
 ```{r}
 library(broom)
-mydata %>% 
+gapdata %>% 
   filter(year == 2007) %>% 
   filter(continent %in% c("Americas", "Europe", "Asia")) %>% 
   kruskal.test(lifeExp~continent, data = .) %>% 
@@ -718,36 +718,37 @@ In the next chapter, we will explore the comparison of two continuous variables 
 
 ## Exercises
 
-### Exercise 1
+### Exercise {#chap06-ex1}
 
 Make a histogram, Q-Q plot, and a box-plot for the life expectancy for a continent of your choice, but for all years. 
 Do the data appear normally distributed?
 
-### Exercise 2
+### Exercise {#chap06-ex2}
 
 1. Select any 2 years in any continent and perform a *t*-test to determine whether mean life expectancy is significantly different. 
 Remember to plot your data first.
 
 2. Extract only the *p*-value from your `t.test()` output.
 
-### Exercise 3
+### Exercise {#chap06-ex3}
 
 In 2007, in which continents did mean life expectancy differ from 70.
 
-### Exercise 4
+### Exercise {#chap06-ex4}
 
 1. Use ANOVA to determine if the population changed significantly through the 1990s/2000s in individual continents. 
 
 
-## Exercise solutions
+## Solutions
+
+Solution to Exercise \@ref(chap06-ex1):
 
 ```{r fig.height=3, fig.width=5.5}
-# Exerise 1 
 ## Make a histogram, Q-Q plot, and a box-plot for the life expectancy
 ## for a continent of your choice, but for all years. 
 ## Do the data appear normally distributed?
 
-asia_data <- mydata %>%                          
+asia_data <- gapdata %>%                          
   filter(continent %in% c("Asia"))              
 
 p1 <- asia_data %>%                              
@@ -769,8 +770,9 @@ library(patchwork)
 p1 / p2 | p3
 ```
 
+Solution to Exercise \@ref(chap06-ex2):
+
 ```{r fig.height=3, fig.width=4.4}
-# Exercise 2
 ## Select any 2 years in any continent and perform a *t*-test to 
 ## determine whether mean life expectancy is significantly different. 
 ## Remember to plot your data first.
@@ -802,11 +804,11 @@ asia_2years %>%
   t.test(lifeExp ~ year, data = .)
 ```
 
+Solution to Exercise \@ref(chap06-ex3):
 
 ```{r}
-# Exercise 3
 ## In 2007, in which continents did mean life expectancy differ from 70
-mydata %>% 
+gapdata %>% 
   filter(year == 2007) %>% 
   group_by(continent) %>%
   do(
@@ -815,18 +817,20 @@ mydata %>%
   )
 ```
 
+
+Solution to Exercise \@ref(chap06-ex4):
+
 ```{r}
-# Exercise 4
 ## Use Kruskal-Wallis to determine if the mean population changed 
 ## significantly through the 1990s/2000s in individual continents. 
 
-mydata %>% 
+gapdata %>% 
   filter(year >= 1990) %>% 
   ggplot(aes(x = factor(year), y = pop)) + 
   geom_boxplot() + 
   facet_wrap(~continent)
 
-mydata %>% 
+gapdata %>% 
   filter(year >= 1990) %>% 
   group_by(continent) %>% 
   do(

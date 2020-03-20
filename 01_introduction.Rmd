@@ -132,10 +132,10 @@ You can do this in the **Packages** tab (next to the Plots tab in the bottom-rig
 
 A Package is just a collection of functions (commands) that are not included in the standard R installation, called base-R. 
 
-A lot of the functionality introduced in this book comes from the `tidyverse` family of R packages (http://tidyverse.org).
-So when you go to Packages, click **Install**, type in `tidyverse`, and a whole collection of useful and modern packages will be installed.
+A lot of the functionality introduced in this book comes from the __tidyverse__ family of R packages (http://tidyverse.org).
+So when you go to Packages, click **Install**, type in __tidyverse__, and a whole collection of useful and modern packages will be installed.
 
-Even though you've installed the `tidyverse` packages, you'll still need to tell R when you're about to use them.
+Even though you've installed the __tidyverse__ packages, you'll still need to tell R when you're about to use them.
 We include `library(tidyverse)` at the top of every script we write:
 
 ```{r message=FALSE, warning=FALSE}
@@ -147,11 +147,11 @@ library(tidyverse)
 knitr::include_graphics("images/chapter01/tidyverse_loading_messages.png")
 ```
 
-We can see that it has loaded 8 packages (`ggplot2`, `tibble`, `tidyr`, `readr`, `purrr`, `dplyr`, `stringr`, `forcats`), the number behind a package name is its version.
+We can see that it has loaded 8 packages (__ggplot2__, __tibble__, __tidyr__, __readr__, __purrr__, __dplyr__, __stringr__, __forcats__), the number behind a package name is its version.
 
 The "Conflicts" message is expected and can safely be ignored.
-^[It just means that when we use `filter` or `lag`, they will come from the `dplyr` package, rather than the `stats` package.
-We've never needed to use `filter` and `lag` from `stats`, but if you do, then use the double colon, i.e., `stats::filter()` or `stats::lag()`, as just `filter()` will use the `dplyr` one.]
+^[It just means that when we use `filter` or `lag`, they will come from the __dplyr__ package, rather than the __stats__ package.
+We've never needed to use `filter` and `lag` from __stats__, but if you do, then use the double colon, i.e., `stats::filter()` or `stats::lag()`, as just `filter()` will use the __dplyr__ one.]
 
 There are a few other R packages that we use and are not part of the tidyverse, but we will introduce them as we go along. 
 If you're incredibly curious, head to the Resources section of the HealthyR website - up-to-date links and installation instructions are listed there.
@@ -160,14 +160,14 @@ If you're incredibly curious, head to the Resources section of the HealthyR webs
 \index{help}
 \index{errors}
 
-The best way to troubleshoot R Errors is to copy-paste them into a search engine (e.g., Google).
+The best way to troubleshoot R errors is to copy-paste them into a search engine (e.g., Google).
 Searching online is also a great way to learn how to do new specific things or to find code examples.
 You should copy-paste solutions into your R script to then modify to match what you're trying to do.
 We are constantly copying code from online forums and our own existing scripts.
 
 However, there a many different ways to achieve the same thing in R.
 Sometimes you'll search for help and come across R code that looks nothing like what you've seen in this book. 
-The `tidyverse` packages are relatively new and use the pipe (` %>%`), something we'll come on to. 
+The __tidyverse__ packages are relatively new and use the pipe (` %>%`), something we'll come on to. 
 But search engines will often prioritise older results that use a more traditional approach. 
 
 So older solutions may come up at the top. 
@@ -239,7 +239,7 @@ Letting R silently save and load everything for you may also include broken data
 
 ## Notation throughout this book
 
-When mentioned in the text, the names of R packages, functions, and variable names are printed with mono-spaced font, e.g `tidyverse`, `mean()`, `lifeExp`.
+When mentioned in the text, the names of R packages are in bold font, e.g. __ggplot2__, whereas functions, objects, and variables are printed with mono-spaced font, e.g `filter()`, `mean()`, `lifeExp`. Functions are always followed by brackets: `()`, whereas data objects or variables are not.
 
 Otherwise, R code lives in the grey areas known as 'code chunks'.
 Lines of R *output* start with a double ## - this will be the numbers or text that R gives us after executing code. 
@@ -288,6 +288,3 @@ You could of course delete the line altogether, but commenting out is useful as 
 > Keyboard Shortcut for commenting out/commenting in multiple lines at a time:
 > Control+Shift+C  
 > (On a Mac, both Control or Command work)
-
-Finally, we use **bold** to highlight a new term we are introducing for the first time. The same term will not be bold in future occurrences.
-**Bold** is also used when you need to click on a specific menu item, e.g. click **Install**. 

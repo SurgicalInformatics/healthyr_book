@@ -93,7 +93,7 @@ Health data analysis is frequently concerned with making comparisons between gro
 Groups of genes, or diseases, or patients, or populations etc.
 An easy approach to the comparison of data by a categorical grouping is therefore essential. 
 
-We will introduce flexible functions from `tidyverse` that you can apply in any setting. 
+We will introduce flexible functions from __tidyverse__ that you can apply in any setting. 
 The examples intentionally get quite involved to demonstrate the different approaches that can be used. 
 <!-- We finish by showing how to quickly and easily create summary tables that can be used in your work.  -->
 
@@ -410,7 +410,7 @@ knitr::include_graphics("images/wide_long.png")
 \index{summarising data@\textbf{summarising data}!convert long to wide}
 \index{functions@\textbf{functions}!pivot\_wider}
 
-If we want to take the long data from \@ref(tab:chap3-tab-gbd-long) and put some of the numbers next to each other for easier visualisation, then `pivot_wider()` from the `tidyr` package is the function to do it. 
+If we want to take the long data from \@ref(tab:chap3-tab-gbd-long) and put some of the numbers next to each other for easier visualisation, then `pivot_wider()` from the __tidyr__ package is the function to do it. 
 It means we want to send a variable into columns, and it needs just two arguments: the variable we want to become the new columns, and the variable where the values currently are.
 
 

@@ -19,7 +19,7 @@ knitr::opts_chunk$set(fig.width = 2.8, fig.height = 2.8, cache = TRUE)
 > What I cannot create, I do not understand.  
 > Richard Feynman
 
-There are a few different plotting packages in R, but the most elegant and versatile one is `ggplot2`^[The name of the package is `ggplot2`, but the function is called `ggplot()`. For everything you've ever wanted to know about the grammar of graphics in R, see @wickham2016.].
+There are a few different plotting packages in R, but the most elegant and versatile one is __ggplot2__^[The name of the package is __ggplot2__, but the function is called `ggplot()`. For everything you've ever wanted to know about the grammar of graphics in R, see @wickham2016.].
 **gg** stands for **g**rammar of **g**raphics which means that we can make a plot by describing it one component at a time. 
 In other words, we build a plot by adding layers to it.
 
@@ -28,7 +28,7 @@ This does not have to be many layers, the simplest `ggplot()` consists of just t
 * the variables to be plotted;
 * a geometrical object (e.g., point, line, bar, box, etc.).
 
-`ggplot()` calls geometrical objects **geoms**.
+`ggplot()` calls geometrical objects *geoms*.
 
 Figure \@ref(fig:chap04-fig-steps) shows some example steps for building a scatter plot, including changing its appearance ('theme') and faceting - an efficient way of creating separate plots for subgroups.
 

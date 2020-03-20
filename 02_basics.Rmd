@@ -3,7 +3,7 @@ output: html_document
 editor_options: 
   chunk_output_type: inline
 ---
-# R Basics
+# R basics
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(fig.align = 'center')
@@ -42,7 +42,7 @@ We will read in data and start basic manipulations. You may want to skip parts o
 \index{reading data}
 
 Data usually comes in the form of a table, such as a spreadsheet or database. 
-In the world of the `tidyverse`, a table read into R gets called a `tibble`. 
+In the world of the __tidyverse__, a table read into R gets called a `tibble`. 
 
 A common format in which to receive data is CSV (comma separated values). 
 CSV is an uncomplicated spreadsheet with no formatting.
@@ -76,7 +76,7 @@ You can have a look and scroll through the same way you would in Excel or simila
 
 So what's actually going on in the R code above:
 
-* We load the `tidyverse` packages (as covered in the first chapter of this book).
+* We load the __tidyverse__ packages (as covered in the first chapter of this book).
 * We have a CSV file called "example_data.csv" and are using `read_csv()` to read it into R.
 * We are using the assignment arrow `<-` to save it into our Environment using the same name: `example_data`.
 * The `View(example_data)` line makes it pop up for us to view it. Alternatively, click on `example_data` in the Environment to achieve the exact same thing.
@@ -219,7 +219,7 @@ Measurement has been parsed as a character because of a data entry issue: the pe
 
 A numeric variable will also get parsed as a categorical variable if it contains certain typos, e.g., if entered as "3..7" instead of "3.7". 
 
-The reason R didn't automatically make sense of the date column is that it couldn't tell which is the date and which is the year: __02-Jan-17__ could stand for _02-Jan-2017_ as well as _2002-Jan-17_.
+The reason R didn't automatically make sense of the date column is that it couldn't tell which is the date and which is the year: `02-Jan-17` could stand for `02-Jan-2017` as well as `2002-Jan-17`.
 
 Therefore, while a lot of the time you do not have to worry about variable types and can just get on with your analysis, it is important to understand what the different types are to be ready to deal with them when issues arise. 
 
@@ -236,7 +236,7 @@ Integers are numbers without decimal places (e.g., `1, 2, 3`), whereas `double` 
 
 It doesn't usually matter whether R is classifying your continuous data `numeric/num/double/int`, but it is good to be aware of these different terms as you will see them in R messages.
 
-> FRIENDLY WARNING: What's about to follow is a bit dry. Furthermore, it is not essential for complete beginners - you might want to continue reading from __Characters variables__.
+> FRIENDLY WARNING: What's about to follow is a bit dry. Furthermore, it is not essential for complete beginners - you might want to continue reading from __Character variables__.
 Before you leave, take a mental note that sometimes numbers in R have more decimal places than it seems, and that can cause funny behaviour when using the double equals operator (`==`).
 
 Something to note about numbers is that R doesn't usually print more than 6 decimal places, but that doesn't mean they don't exist.
@@ -297,7 +297,7 @@ This means you get the expected result without having to round the numbers off.
 
 <!-- May need reference to factors / strings / regex etc. -->
 
-**Characters** (sometimes referred to as *strings* or *character strings*) in R are letters, words, or even whole sentences (an example of this may be free text comments). 
+*Characters* (sometimes referred to as *strings* or *character strings*) in R are letters, words, or even whole sentences (an example of this may be free text comments). 
 Characters are displayed in-between `""` (or `''`).
 
 A useful function for quickly investigating categorical variables is the `count()` function:
@@ -344,8 +344,8 @@ typesdata %>%
 ### Factor variables (categorical)
 \index{variable types@\textbf{variable types}!categorical / factor}
 
-**Factors** are fussy characters. 
-Factors are fussy because they include something called **levels**. 
+*Factors* are fussy characters. 
+Factors are fussy because they include something called *levels*. 
 Levels are all the unique values a factor variable could take, e.g. like when we looked at `typesdata %>% count(group)`.
 Using factors rather than just characters can be useful because:
 
@@ -521,7 +521,7 @@ This can be the case if you are working on a supercomputer that can only serve t
 So, regularly shaped data in rows and columns is called a table when it lives outside R, but once you read/import it into R it gets called a tibble.
 If you've used R before, or get given a piece of code that uses `read.csv()` instead of `read_csv()`, you'll have come across the term `data frame`.^[`read.csv()` comes with base R, whereas `read_csv()` comes from the `readr` package within the `tidyverse`. We recommend using `read_csv()`.]
 
-A `tibble` is the modern/`tidyverse` version of a data frame in R. 
+A `tibble` is the modern/__tidyverse__ version of a data frame in R. 
 In most cases, `data frames` and `tibbles` work interchangeably, but `tibbles` often work better. 
 Another great alternative to base R `data frames` are `data tables`. 
 In this book, and for most of our day-to-day work these days, we will use `tibbles`.
@@ -554,7 +554,7 @@ A simple function that can be applied to numeric data is `mean()`.
 R functions always have round brackets after their name. 
 This is for two reasons. 
 First, it easily differentiates them as functions - you will get used to reading them like this.  
-Second, and more importantly, we can put **arguments** in these brackets. 
+Second, and more importantly, we can put *arguments* in these brackets. 
 
 Arguments can also be thought of as input.
 In data analysis, the most common input for a function is data. 
@@ -750,7 +750,7 @@ A good way to read and think of the pipe is "and then".
 
 
 This piping business is not standard R functionality and before using it in a script, you need to tell R this is what you will be doing.
-The pipe comes from the `magrittr` package (Figure \@ref(fig:chap2-fig-pipe)), but loading the `tidyverse` will also load the pipe.
+The pipe comes from the `magrittr` package (Figure \@ref(fig:chap2-fig-pipe)), but loading the __tidyverse__ will also load the pipe.
 So `library(tidyverse)` initialises everything you need.
 
 >To insert a pipe `%>%`, use the keyboard shortcut `Ctrl+Shift+M`.

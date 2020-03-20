@@ -64,9 +64,9 @@ p4 <- p0 +
   coord_cartesian(expand = FALSE)
 ```
 
-We are now using a new library - `patchwork` - to print all 4 plots together.
+We are now using a new library - __patchwork__ - to print all 4 plots together.
 Its syntax is very simple - it allows us to add ggplot objects together.
-(Trying to do `p1 + p2` without loading the `patchwork` package will not work, R will say "Error: Don't know how to add p2 to a plot".)
+(Trying to do `p1 + p2` without loading the __patchwork__ package will not work, R will say "Error: Don't know how to add p2 to a plot".)
 
 
 ```{r}

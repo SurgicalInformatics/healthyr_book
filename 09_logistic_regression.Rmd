@@ -1112,20 +1112,20 @@ Clearly much is written else where for those who are enthusiastic to learn more.
 
 ## Exercises
 
-### Exercise 1
+### Exercise {#chap09-ex1}
 
 Investigate the association between sex and 5-year mortality for patients who have undergone surgery for melanoma. 
 
 First recode the variables as shown in the text, then plot the counts and proportions for 5-year disease-specific mortality in women and men. Is there an association between sex and mortality?
 
-### Exercise 2
+### Exercise {#chap09-ex2}
 
 Make a table showing the relationship between sex and the variables age, T-stage and ulceration. Hint: `summary_factorlist()`. 
 Express age in terms of median and interquartile range. Include a statistical comparison. 
 
 What associations do you see?
 
-### Exercise 3
+### Exercise {#chap09-ex3}
 
 Run a logistic regression model for 5-year disease-specific mortality including sex, age, T-stage and ulceration. 
 
@@ -1133,15 +1133,16 @@ What is the c-statistic for this model?
 
 Is there a relationship between sex and mortality, after adjustment for the other explanatory variables?
 
-### Exercise 4
+### Exercise {#chap09-ex4}
 
 Make an odds ratio plot for this model. 
 
 
-## Exercise solutions
+## Solutions
+
+Solution to Exercise \@ref(chap09-ex1):
 
 ```{r eval=FALSE, fig.height=3, fig.width=5}
-# Exercise 1
 ## Recode
 melanoma <- melanoma %>% 
   mutate(sex.factor = factor(sex) %>%          
@@ -1185,8 +1186,9 @@ p2 <- melanoma %>%
 p1 + p2
 ```
 
+Solution to Exercise \@ref(chap09-ex2):
+
 ```{r eval=FALSE}
-# Exercise 2
 ## Recode T-stage first
 melanoma <- melanoma %>% 
   mutate(
@@ -1208,8 +1210,9 @@ melanoma %>%
 # Men have more T4 tumours and they are more likely to be ulcerated. 
 ```
 
+Solution to Exercise \@ref(chap09-ex3):
+
 ```{r eval=FALSE}
-# Exercise 3
 dependent = "mort_5yr"
 explanatory = c("sex.factor", "age", "t_stage.factor", "ulcer.factor")
 melanoma %>% 
@@ -1221,8 +1224,10 @@ melanoma %>%
 # Sex is confounded by these two variables. 
 ```
 
+
+Solution to Exercise \@ref(chap09-ex4):
+
 ```{r eval=FALSE}
-# Exercise 4
 dependent = "mort_5yr"
 explanatory = c("sex.factor", "age", "t_stage.factor", "ulcer.factor")
 melanoma %>% 
@@ -1231,7 +1236,7 @@ melanoma %>%
 
 <!-- Haven't included diagnostic plots -->
 
-```{r eval=FALSE}
+```{r include=FALSE, eval = FALSE}
 library(ggfortify)
 dependent <- "mort_5yr"
 explanatory_multi <- c("ulcer.factor", "t_stage.factor")

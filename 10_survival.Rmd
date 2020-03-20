@@ -556,7 +556,7 @@ Surv(melanoma$time_days_numeric, melanoma$status.factor == "Died")
 
 ## Exercises
 
-### Exercise 1
+### Exercise {#chap10-ex1}
 
 Using the above scripts, perform a univariable Kaplan Meier analysis to determine if `ulcer` influences overall survival. Hint: `survival_object ~ ulcer`. 
 
@@ -567,7 +567,7 @@ Try modifying the plot produced (see Help for ggsurvplot). For example:
 *  Change the y-axis to a percentage: `ylab = "Probability of survival (%)", surv.scale = "percent"`
 *  Display follow-up up to 10 years, and change the scale to 1 year: `xlim = c(0,10), break.time.by = 1)`
 
-### Exercise 2
+### Exercise {#chap10-ex2}
 
 Create a new CPH model, but now include the variable `thickness` as a variable. 
 
@@ -575,10 +575,12 @@ Create a new CPH model, but now include the variable `thickness` as a variable.
 * Is it an independent predictor of overall survival in this model? 
 * Are CPH assumptions maintained?
 
-## Exercise solutions
+## Solutions
+
+
+Solution to Exercise \@ref(chap10-ex1):
 
 ```{r, echo=F, fig.width=6, fig.height=6, message = FALSE}
-# Exercise 1
 # Fit survival model
 my_survfit.solution <- survfit(survival_object ~ ulcer, data = melanoma)
 summary(my_survfit.solution, times=c(0,1,2,3,4,5))
@@ -613,8 +615,9 @@ my_survplot.solution = ggsurvplot(my_survfit.solution,
 my_survplot.solution
 ```
 
+Solution to Exercise \@ref(chap10-ex2):
+
 ```{r, eval=F}
-# Exercise 2
 # Fit model
 my_hazard = coxph(survival_object ~ sex + ulcer + age + thickness, data=melanoma)
 summary(my_hazard)

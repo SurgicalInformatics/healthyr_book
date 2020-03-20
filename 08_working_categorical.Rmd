@@ -574,13 +574,13 @@ meldata %>%
 
 ## Exercises
 
-### Exercise 1
+### Exercise {#chap08-ex1}
 
 Using `finalfit`, create a summary table with "status.factor" as the dependent variable and the following as explanatory variables: `sex.factor, ulcer.factor, age.factor, thickness`.
 
 Change the continuous variable summary statsics to `median` and `interquartile range` instead of `mean` and `sd`.  
 
-### Exercise 2
+### Exercise {#chap08-ex2}
 
 By changing one and only one line in the following block create firstly a new table showing the breakdown of `status.factor` by age and secondly the breakdown of `status.factor` by sex:
 
@@ -595,5 +595,5 @@ meldata %>%
   spread(status.factor, count_perc)
 ```
 
-### Exercise 3
+### Exercise {#chap08-ex3}
 Now produce these tables using the `summary_factorlist()` function from the **finalfit** package. 

@@ -1,13 +1,12 @@
 # Version control{#chap14-h1}
 \index{version control@\textbf{version control}}
 
->"Always be a first rate version of yourself and not a second rate version of someone else."  
->Judy Garland
+> Always be a first rate version of yourself and not a second rate version of someone else.  
+> Judy Garland
 
 Version control is essential for keeping track of data analysis projects, as well as collaborating. 
 It allows backup of scripts and collaboration on complex projects. 
 RStudio works really well with Git, an open source distributed version control system, and GitHub, a web-based Git repository hosting service. 
-
 
 \index{version control@\textbf{version control}!Git and GitHub}
 
@@ -15,7 +14,6 @@ Git is piece of software which runs locally.
 It may need to be installed first. 
 
 It is important to highlight the difference between Git (local version control software) and GitHub (a web-based repository store). 
-
 
 ## Setup Git on RStudio and associate with GitHub
 
@@ -77,6 +75,7 @@ Now you may want to push the contents of this commit to GitHub, so it is also ba
 As always, you must exercise caution when working with sensitive data. 
 Take steps to stop yourself from accidentally pushing whole datasets to GitHub.^[It's fine to push some data to GitHub, especially if you want to make it publicly available, but you should do so consciously, not accidentally.]
 You only want to push R code to GitHub, not the (sensitive) data.
+
 When you see a dataset appear in the Git tab of your RStudio, select it, then click on More, and then Ignore.
 This means the file does not get included in your Git repository, and it does not get pushed to GitHub.
 GitHub is not for backing up sensitive datasets, it's for backing up R code.
@@ -123,4 +122,12 @@ As above, avoid repeatedly having to enter passwords follow the steps in Figure 
 knitr::include_graphics("images/chapter14/7.png", auto_pdf = TRUE)
 ```
 
+## Summary
 
+If your project is worth doing, then it is worth backing up!
+This means you should use version control for every single project you are involved in. 
+You will quickly be surprised at how many times you wish to go back and rescue some deleted code, or to restore an accidentally deleted file. 
+
+It becomes even more important when collaborating and many individuals may be editing the same file.
+As with the previous chapter, this is an area which data scientists have discovered much later than computer scientists. 
+Get it up and running in your own workflow and you will reap the rewards in the future. 

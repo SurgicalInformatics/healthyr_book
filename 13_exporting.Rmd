@@ -12,7 +12,7 @@ The purpose of this chapter is to focus on the details of how to get your export
 
 We will generate a report using data already familiar to you from this book. 
 It will contain two tables - a demographics table and a regression table - and a plot. 
-We will use the `colon_s` data from the **finalfit** package. 
+We will use the `colon_s` data from the `finalfit` package. 
 What follows is for demonstration purposes and is not meant to illustrate model building. 
 For the purposes of the demonstration, we will ask, does a particular characteristic of a colon cancer (e.g., cancer differentiation) predict 5-year survival?
 
@@ -21,7 +21,7 @@ For the purposes of the demonstration, we will ask, does a particular characteri
 The three common formats for exporting reports have different pros and cons: 
 
 * HTML is the least fussy to work with and can resize itself and its content automatically. For rapid exploration and prototyping, we recommend knitting to HTML. HTML documents can be attached to emails and viewed using any browser, even with no internet access (as long as it is a self-contained HTML document, which R Markdown exports usually are).
-* PDF looks most professional when printed. This is because R Markdown uses LaTeX to typeset PDF documents. LaTeX PDFs are our preferred method of producing printable reports or dissertations, but they come with their own bag of issues. Mainly that LaTeX figures and tables **float** and may therefore appear much later down the document than the original text describing it was.
+* PDF looks most professional when printed. This is because R Markdown uses LaTeX to typeset PDF documents. LaTeX PDFs are our preferred method of producing printable reports or dissertations, but they come with their own bag of issues. Mainly that LaTeX figures and tables *float* and may therefore appear much later down the document than the original text describing it was.
 * Word is useful when working with non-R people who need to edit your output.
 
 ## Working in a `.R` file
@@ -376,8 +376,8 @@ As we have shown, it is relatively straightforward to move between HTML, Word an
 This becomes more difficult if you have a complicated document which includes lots of formatting. 
 
 For instance, if you use the package `kableExtra()` to customise your tables, you can only export to HTML and PDF.
-Knitting to Word will not currently work with advanced **kableExtra** functions in your R Markdown document.
-Similarly, **flextable** and **officer** are exellent packages for a love story between R Markdown and Word/MS Office, but they do not work for HTML or PDF.
+Knitting to Word will not currently work with advanced `kableExtra` functions in your R Markdown document.
+Similarly, `flextable` and `officer` are exellent packages for a love story between R Markdown and Word/MS Office, but they do not work for HTML or PDF.
 
 ## Summary
 

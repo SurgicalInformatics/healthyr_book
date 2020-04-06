@@ -9,8 +9,13 @@ editor_options:
 knitr::opts_chunk$set(fig.align = 'center')
 library(tidyverse)
 library(kableExtra)
-
+mykable = function(x, caption = "CAPTION", ...){
+  kable(x, row.names = FALSE, align = c("l", "l", "r", "r", "r", "r", "r", "r", "r"), 
+        booktabs = TRUE, caption = caption, 
+        linesep = "", ...)
+}
 ```
+
 
 Throughout this book, we are conscious of the balance between theory and practice.
 Some learners may prefer to see all definitions laid out before being shown an example of a new concept.
@@ -437,22 +442,27 @@ We need to convert `my_datesdiff` (which is a difftime value) into a numeric val
 560/as.numeric(my_datesdiff)
 ```
 
-The lubridate package comes with several convenient functions for parsing dates, e.g., `ymd()`, `mdy()`, `ymd_hm()`, etc. - for a full list see [lubridate.tidyverse.org](lubridate.tidyverse.org).
+The __lubridate__ package comes with several convenient functions for parsing dates, e.g., `ymd()`, `mdy()`, `ymd_hm()`, etc. - for a full list see [lubridate.tidyverse.org](lubridate.tidyverse.org).
 
-However, if your date/time variable comes in an extra special format, then use the `parse_date_time()` function where the second argument specifies the format using these helpers:
+However, if your date/time variable comes in an extra special format, then use the `parse_date_time()` function where the second argument specifies the format using the specifiers given in Table \@ref(tab:chap2-tab-timehelpers).
 
-| Notation | Meaning             | Example |
-|----------|---------            |---------|
-|`%d`        |day as number        |01-31|
-|`%m`        |month as number      |01-12|
-|`%B`        |month name           |January-December|
-|`%b`        |abbreviated month    |Jan-Dec|
-|`%Y`        |4-digit year         |2019|
-|`%y`        |2-digit year         |19|
-|`%H`        |hours                |12|
-|`%M`        |minutes              |01|
-|`%A`        |weekday              |Monday-Sunday|
-|`%a`        |abbreviated weekday  |Mon-Sun|
+```{r chap2-tab-timehelpers, echo = FALSE}
+tribble(
+  ~Notation, ~Meaning,         ~Example,
+  "%d", "day as number"        ,"01-31",
+  "%m", "month as number"      ,"01-12",
+  "%B", "month name"           ,"January-December",
+  "%b", "abbreviated month"    ,"Jan-Dec",
+  "%Y", "4-digit year"         ,"2019",
+  "%y", "2-digit year"         ,"19",
+  "%H", "hours"                ,"12",
+  "%M", "minutes"              ,"01",
+  "%S", "seconds"              ,"59",
+  "%A", "weekday"              ,"Monday-Sunday",
+  "%a", "abbreviated weekday"  ,"Mon-Sun") %>% 
+  mykable(caption = "Date/time format specifiers.") %>% 
+  kableExtra::kable_styling(font_size=9, latex_options = "hold_position")
+```
 
 
 For example:
@@ -461,7 +471,7 @@ For example:
 parse_date_time("12:34 07/Jan'20", "%H:%M %d/%b'%y")
 ```
 
-Furthermore, the same date/time helpers can be used to rearrange your date and time for printing:
+Furthermore, the same date/time specifiers can be used to rearrange your date and time for printing:
 
 ```{r}
 Sys.time()
@@ -470,6 +480,7 @@ Sys.time() %>% format("%H:%M on %B-%d (%Y)")
 You can even add plain text into the `format()` function, R will know to put the right date/time values where the `%` are:
 
 ```{r}
+Sys.time() %>% format("Happy days, the current time is %H:%M %B-%d (%Y)!")
 Sys.time() %>% format("Happy days, the current time is %H:%M %B-%d (%Y)!")
 ```
 
@@ -494,7 +505,7 @@ mydata <- tibble(
 
 mydata %>% 
   knitr::kable(booktabs = TRUE, caption = "Example of data in columns and rows, including missing values denoted `NA` (Not applicable/Not available). Once this dataset has been read into R it gets called dataframe/tibble.") %>% 
-  kableExtra::kable_styling(font_size=8)
+  kableExtra::kable_styling(font_size=9)
 ```
 
 \FloatBarrier

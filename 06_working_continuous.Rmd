@@ -13,7 +13,7 @@ Again, we emphasise the importance of understanding the underlying data through 
 
 There are five chapters. 
 Testing for continuous outcome variables (6) leads naturally into Linear regression (7). 
-We would expect the majority of actual analysis done by readers to be using the methods in chapter 7 rather than 6. 
+We would expect the majority of actual analysis done by readers to be using the methods in Chapter 7 rather than 6. 
 Similarly, Testing for categorical outcome variables (8) leads naturally to Logistic regression (9), where we would expect the majority of work to focus. 
 Chapters 6 and 8 however do provide helpful reminders of how to prepare data for these analyses and shouldn't be skipped.
 Time-to-event data introduces survival analysis and includes sections on the manipulation of dates. 

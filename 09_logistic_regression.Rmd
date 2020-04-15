@@ -299,10 +299,10 @@ melanoma <- melanoma %>%
   mutate(
     t_stage.factor = 
       fct_recode(t_stage.factor,
-                 T1 = "[0,1]",
-                 T2 = "(1,2]",
-                 T3 = "(2,4]",
-                 T4 = "(4,17.4]") %>% 
+                 "T1" = "[0,1]",
+                 "T2" = "(1,2]",
+                 "T3" = "(2,4]",
+                 "T4" = "(4,17.4]") %>% 
       ff_label("T-stage")
   )
 ```
@@ -314,18 +314,21 @@ In the next chapter we will look at survival analysis where this requirement if 
 Our outcome on interest is death from melanoma, but we need to decide when to define this. 
 
 A quick histogram of `time` stratified by `status.factor` helps. 
-We can see that most people who died from melanoma did so before 5 years. 
+We can see that most people who died from melanoma did so before 5 years (Figure \@ref(fig:chap09-fig-morthist)). 
 We can also see that the status most of those who did not die is known beyond 5 years. 
-Let's decide then to look at 5-year mortality from melanoma. 
-The definition of this will be at 5 years after surgery, who had died from melanoma and who had not. 
 
-```{r fig.height=3.5, fig.width=6, message=TRUE}
+
+```{r chap09-fig-morthist, fig.height=3.5, fig.width=6, message=TRUE, fig.cap = "Time to outcome/follow-up times for patients in the melanoma dataset."}
 library(ggplot2)
 melanoma %>% 
   ggplot(aes(x = time/365)) + 
   geom_histogram() + 
   facet_grid(. ~ status.factor)
 ```
+
+Let's decide then to look at 5-year mortality from melanoma. 
+The definition of this will be at 5 years after surgery, who had died from melanoma and who had not. 
+
 
 ```{r}
 # 5-year mortality
@@ -343,9 +346,9 @@ melanoma <- melanoma %>%
 
 ### Plot the data
 
-We are interested in the association between tumour ulceration and outcome.
+We are interested in the association between tumour ulceration and outcome (Figure \@ref(fig:chap09-fig-ulceration)).
 
-```{r fig.height=3, fig.width=5}
+```{r chap09-fig-ulceration, fig.height=3, fig.width=5, fig.cap = "Exploration ulceration and outcome (5-year mortality)."}
 p1 <- melanoma %>% 
   ggplot(aes(x = ulcer.factor, fill = mort_5yr)) + 
   geom_bar() + 
@@ -360,7 +363,7 @@ library(patchwork)
 p1 + p2
 ```
 
-As we might have anticipated from our work in chapter 8, 5-year mortality is higher in patients with ulcerated tumours compared with those with non-ulcerated tumours. 
+As we might have anticipated from our work in the previous chapter, 5-year mortality is higher in patients with ulcerated tumours compared with those with non-ulcerated tumours. 
 
 We are also interested in other variables that may be associated with tumour ulceration. 
 If they are also associated with our outcome, then they will confound the estimate of the direct effect of tumour ulceration. 
@@ -369,7 +372,7 @@ We can plot out these relationships, or tabulate them instead.
 
 ### Tabulate data
 
-We will use the convenient `summary_factorlist()` function from the **finalfit** package to look for difference across other variables by tumour ulceration.
+We will use the convenient `summary_factorlist()` function from the `finalfit` package to look for difference across other variables by tumour ulceration.
 
 ```{r, eval=FALSE}
 library(finalfit)
@@ -413,7 +416,7 @@ A graphical check of linearity can be performed using a best fit "loess" line.
 This is on the probability scale, so it is not going to be straight. 
 But it should be monotonic - it should only ever go up or down. 
 
-```{r fig.height=3, fig.width=5.5, message=FALSE, warning=FALSE}
+```{r chap09-fig-loess, fig.height=3, fig.width=5.5, message=FALSE, warning=FALSE, fig.cap = "Linearity of our continuous explanatory variables to the outcome (5-year mortality)."}
 melanoma %>% 
   mutate(
     mort_5yr.num = as.numeric(mort_5yr) - 1
@@ -426,7 +429,7 @@ melanoma %>%
   facet_wrap(~predictors, scales = "free_x")
 ```
 
-Age is interesting here, the relationship is u-shaped. 
+Figure (Figure \@ref(fig:chap09-fig-loess)) shows that age is interesting as the relationship is u-shaped. 
 The chance of death is higher in the young and the old compared with the middle-aged. 
 This will need to be accounted for in any model including age as a predictor. 
 
@@ -455,14 +458,14 @@ Are you describing a similar piece of information in two different ways?
 For instance, all perforated colon cancers are staged T4, so do you include T-stage and the perforation factor?
 (Note, not all T4 cancers have perforated).
 
-The `ggpairs()` function from `library(GGally)` is a good way of visualising all two-way associations. 
+The `ggpairs()` function from `library(GGally)` is a good way of visualising all two-way associations (Figure \@ref(fig:chap09-fig-ggpairs)). 
 
-```{r fig.height=6, fig.width=6, message=FALSE}
+```{r chap09-fig-ggpairs, fig.height=6, fig.width=6, message=FALSE, fig.cap = "Exploring two-way associations within our explanatory variables."}
 library(GGally)
 explanatory <- c("ulcer.factor", "age", "sex.factor", 
                 "year", "t_stage.factor")
 melanoma %>% 
-  remove_labels() %>%  # ggpairs is older and doesn't like labels
+  remove_labels() %>%  # ggpairs doesn't work well with labels
   ggpairs(columns = explanatory)
 ```
 
@@ -472,7 +475,9 @@ If you have many variables you want to check you can split them up.
 
 **Continuous to continuous**
 
-```{r, fig.width=4, fig.height=4}
+Here we're using the same `library(GGally)` code as above, but shortlisting the two categorical variables: age and year (Figure \@ref(fig:chap09-fig-contcont)):
+
+```{r chap09-fig-contcont, fig.width=4, fig.height=4, fig.cap = "Exploring relationships between continuous variables."}
 select_explanatory <- c("age", "year")
 melanoma %>% 
   remove_labels() %>% 
@@ -481,20 +486,19 @@ melanoma %>%
 
 **Continuous to categorical**
 
-Let's split that up a bit and use a clever `gather()` and `facet_wrap()` combination. 
-We want to compare everything against, for example, age so we need to add `-age` to the gather call so it doesn't get lumped up with everything else. 
-But because the excluded variable has to be in the third argument of `gather()` we need to type in `key, value` as placeholders:
+Let's use a clever `pivot_longer()` and `facet_wrap()` combination to effiently plot multiple variables against each other without using `ggpairs()`.
+We want to compare everything against, for example, age so we need to include `-age` in the `pivot_longer()` call so it doesn't get lumped up with everything else (Figure \@ref(fig:chap09-fig-contcat)):
 
-```{r fig.height=3, fig.width=5, message=FALSE, warning=FALSE}
+```{r chap09-fig-contcat, fig.height=3, fig.width=5, message=FALSE, warning=FALSE, fig.cap = "Exploring associations between continuous and catecorical explanatory variables."}
 select_explanatory <- c("age", "ulcer.factor", 
                        "sex.factor", "t_stage.factor")
 
 melanoma %>% 
-  select(one_of(select_explanatory)) %>% 
-  gather(key, value, -age) %>% 
+  select(all_of(select_explanatory)) %>% 
+  pivot_longer(-age) %>% # pivots all but age into two columns: name and value
   ggplot(aes(value, age)) + 
   geom_boxplot() +
-  facet_wrap(~key, scale = "free", ncol = 3) +
+  facet_wrap(~name, scale = "free", ncol = 3) +
   coord_flip()
 ```
 
@@ -946,7 +950,7 @@ fit[[2]] %>% mykable(caption = "Model metrics: final model (fit 8).", col.names 
 \index{logistic regression@\textbf{logistic regression}!odds ratio plot}
 \index{plotting@\textbf{plotting}!odds ratio}
 
-```{r fig.height=3, fig.width=7, message=FALSE, warnings=FALSE, fig.cap="Odds ratio plot"}
+```{r fig.height=3, fig.width=7, message=FALSE, warnings=FALSE, fig.cap="Odds ratio plot."}
 dependent <- "mort_5yr"
 explanatory_multi <- c("ulcer.factor", "t_stage.factor")
 melanoma %>% 
@@ -1012,13 +1016,13 @@ We will speak in terms of 'hospitals' now, but the grouping variable(s) could cl
 
 The simplest random effects approach is a 'random intercept model'. 
 This allows the intercept of fitted lines to vary by hospital. 
-The random intercept model constrains lines to be parallel, in a similar way to the additive models discussed above and in chapter 7. 
+The random intercept model constrains lines to be parallel, in a similar way to the additive models discussed above and in Chapter 7. 
 
 It is harder to demonstrate with binomial data, but we can stratify the 5-year mortality by T-stage (considered as a continuous variable for this purpose).
-Note there were no deaths in 'hospital 4'.
+Note there were no deaths in 'hospital 4' (Figure \@ref(fig:chap09-fig-randeffects)).
 We can model this accounting for inter-hospital variation below. 
 
-```{r warning=FALSE}
+```{r chap09-fig-randeffects, warning=FALSE, fig.cap = "Investigating random effects by looking at the relationship between the outcome variable (5-year mortality) and T-stage at each hospital."}
 melanoma %>% 
     mutate(
     mort_5yr.num = as.numeric(mort_5yr) - 1 # Convert factor to 0 and 1
@@ -1033,7 +1037,7 @@ melanoma %>%
 
 ### Mixed effects models in base R
 
-There are a number of different packages offering mixed effects modelling in R, our preferred is **lme4**. 
+There are a number of different packages offering mixed effects modelling in R, our preferred is `lme4`. 
 
 ```{r}
 library(lme4)

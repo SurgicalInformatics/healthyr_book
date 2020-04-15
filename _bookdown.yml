@@ -20,10 +20,10 @@ output_dir: "docs"
 #rmd_files: ["index.Rmd", "08_working_categorical.Rmd"]
 #rmd_files: ["index.Rmd", "09_logistic_regression.Rmd"]
 #rmd_files: ["index.Rmd", "10_survival.Rmd"]
-#rmd_files: ["index.Rmd", "11_notebooks.Rmd"]
-#rmd_files: ["index.Rmd", "12_exporting.Rmd"]
-# 13 won't Build on its own.
-#rmd_files: ["index.Rmd", "12_exporting.Rmd", "13_version_control.Rmd"]
+#rmd_files: ["index.Rmd", "11_missing_data.Rmd"]
+#rmd_files: ["index.Rmd", "12_notebooks.Rmd"]
+# 14 won't Build on its own.
+#rmd_files: ["index.Rmd", "13_exporting.Rmd", "14_version_control.Rmd"]
 #rmd_files: ["index.Rmd", "13_version_control.Rmd", "14_missing_data.Rmd", "15_encryption.Rmd", "16_rstudio_settings.Rmd"]
 #rmd_files: ["index.Rmd", "15_version_control.Rmd"]
 #rmd_files: ["index.Rmd", "16_rstudio_settings.Rmd"]

@@ -370,7 +370,7 @@ ggsave(p0, file = "my_saved_plot_larger.pdf", width = 10, height = 8)
 ```
 
 
-```{r chap05-fig-ggsave, echo = FALSE, out.width="100%", fig.cap = "Experimenting with `ggsave()`'s width and height options can be used to quickly change how big or small some of the text on your plot looks like."}
+```{r chap05-fig-ggsave, echo = FALSE, out.width="100%", fig.cap = "Experimenting with the width and height options within `ggsave()` can be used to quickly change how big or small some of the text on your plot looks like."}
 # these get put together into a single figure by hand - then to images/chapter05/
 ggsave(p0 + labs(title = "ggsave(..., width = 5, height = 4)"), file = "my_saved_plot.pdf", width = 5, height = 4)
 ggsave(p0 + labs(title = "ggsave(..., width = 10, height = 8)") + theme(title = element_text(size = 24)), file = "my_saved_plot_larger.pdf", width = 10, height = 8)

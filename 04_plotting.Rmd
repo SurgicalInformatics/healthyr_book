@@ -378,9 +378,9 @@ Alpha is an aesthetic to make geoms transparent, its values can range from 0 (in
 \index{plots@\textbf{plots}!path}
 \index{plots@\textbf{plots}!time-series}
 
-Let's plot the life expectancy in the United Kingdom over time:
+Let's plot the life expectancy in the United Kingdom over time (Figure \@ref(fig:chap04-fig-lineplot)):
 
-```{r, fig.width = 4, fig.height = 1.5}
+```{r chap04-fig-lineplot, fig.width = 4, fig.height = 1.5, fig.cap="`geom_line()`- Life expectancy in the United Kingdom over time."}
 gapdata %>% 
   filter(country == "United Kingdom") %>% 
   ggplot(aes(x = year, y = lifeExp)) +
@@ -438,9 +438,9 @@ This code works as expected (Figure \@ref(fig:chap04-fig-zigzag) (2)) - yes ther
 
 ### Exercise {#chap04-ex-lineplot}
 
-Follow the step-by-step instructions to transform (Figure \@ref(fig:chap04-fig-zigzag):2) into this:
+Follow the step-by-step instructions to transform Figure \@ref(fig:chap04-fig-zigzag)(2) into \@ref(fig:chap04-fig-lineplot2).
 
-```{r, fig.width=0.8*10, echo = FALSE, fig.height=0.8*4}
+```{r chap04-fig-lineplot2, fig.width=0.8*10, echo = FALSE, fig.height=0.8*4, fig.cap = "Lineplot exercise."}
 gapdata %>% 
   ggplot(aes(x = year, y = lifeExp, group = country, colour=continent)) +
   geom_line() +
@@ -585,9 +585,10 @@ Therefore, you can find Hex colour codes from a lot of places on the internet, o
 
 Whether using `geom_bar()` or `geom_col()`, we can use fill to display proportions within bars.
 Furthermore, sometimes it's useful to set the x value to a constant - to get everything plotted together rather than separated by a variable.
-So we are using `aes(x = "Global", fill = continent)`, note that "Global" could be any word - since it's quoted `ggplot()` won't go looking for it in the dataset:
+So we are using `aes(x = "Global", fill = continent)`. 
+Note that "Global" could be any word - since it's quoted `ggplot()` won't go looking for it in the dataset (FIgure \@ref(fig:chap04-fig-proportions)):
 
-```{r}
+```{r chap04-fig-proportions, fig.cap = "Number of countries in the gapminder datatset with proportions using the `fill = continent` aesthetic."}
 gapdata2007 %>% 
   ggplot(aes(x = "Global", fill = continent)) + 
   geom_bar()
@@ -623,7 +624,7 @@ Hints:
 \index{plots@\textbf{plots}!histogram}
 
 A histogram displays the distribution of values within a continuous variable. 
-In the example below, we are taking the life expectancy (`aes(x = lifeExp)`) and telling the histogram to count the observations up in "bins" of 10 years (`geom_histogram(binwidth = 10)`): 
+In the example below, we are taking the life expectancy (`aes(x = lifeExp)`) and telling the histogram to count the observations up in "bins" of 10 years (`geom_histogram(binwidth = 10)`, Figure \@ref(fig:chap04-fig-hist)): 
 
 ```{r include=FALSE}
 # don't understand what keeps resetting it! patchwork?
@@ -631,21 +632,21 @@ theme_set(theme_bw())
 ```
 
 
-```{r fig.width=4}
+```{r chap04-fig-hist, fig.width=4, fig.cap = "`geom_histogram()` - The distribution of life expectancies in different countries around the world in year 2007."}
 gapdata2007 %>% 
   ggplot(aes(x = lifeExp)) +
   geom_histogram(binwidth = 10)
 ```
 
 We can see that most countries in the world have a life expectancy of ~70-80 years (in 2007), and that the distribution of life expectancies globally is not normally distributed.
-Setting the binwidth is optional, using just `geom_histogram()` works well too -by default, it will divide your data into 30 bins.
+Setting the binwidth is optional, using just `geom_histogram()` works well too - by default, it will divide your data into 30 bins.
 
 There are more examples of histograms in Chapter \@ref(chap06-h1). There are two other geoms that are useful for plotting distributions: `geom_density()` and `geom_freqpoly()`.
 
 ## Box plots
 \index{plots@\textbf{plots}!boxplot}
 
-Box plots are our go to method for quickly visualising summary statistics of a continuous outcome variable (such as life expectancy in the gapminder dataset).
+Box plots are our go to method for quickly visualising summary statistics of a continuous outcome variable (such as life expectancy in the gapminder dataset, Figure \@ref(fig:chap04-fig-boxplot)).
 
 Box plots include:
 
@@ -654,7 +655,7 @@ Box plots include:
 * whiskers (the black lines extending to the lowest and highest values that are still within 1.5*IQR)
 * outliers (any observations out with the whiskers)
 
-```{r, fig.width=3, fig.height=2.75}
+```{r chap04-fig-boxplot, fig.width=3, fig.height=2.75, fig.cap = "`geom_boxplot()` - Boxplots of life expectancies within each continent in year 2007."}
 gapdata2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
   geom_boxplot()
@@ -664,7 +665,7 @@ gapdata2007 %>%
 
 One of the coolest things about `ggplot()` is that we can plot multiple geoms on top of each other!
 
-Let' add individual data points on top of the box plots:
+Let's add individual data points on top of the box plots:
 
 ```{r include=FALSE}
 # don't understand what keeps resetting it! patchwork?
@@ -678,7 +679,7 @@ gapdata2007 %>%
   geom_point()
 ```
 
-This makes Figure \@ref(fig:chap04-fig-multigeoms):1.
+This makes Figure \@ref(fig:chap04-fig-multigeoms)(1).
 
 ```{r chap04-fig-multigeoms, echo=FALSE, fig.width=0.8*10, fig.height=0.8*8, fig.cap = "Multiple geoms together. (1) `geom_boxplot() + geom_point()`, (2) `geom_boxplot() + geom_jitter()`, (3) colour aesthetic inside `ggplot(aes())`, (4) colour aesthetic inside `geom_jitter(aes())`."}
 
@@ -733,8 +734,9 @@ This is new: `aes()` inside a geom, not just at the top!
 In the code for (4) you can see `aes()` in two places - at the top and inside the `geom_jitter()`.
 And `colour = continent` was only included in the second `aes()`.
 This means that the jittered points get a colour, but the box plots will be drawn without (so just black).
+This is exactly* what we see on \@ref(fig:chap04-fig-multigeoms).
 
-This is exactly what we see on \@ref(fig:chap04-fig-multigeoms)^[Nerd alert: the variation added by `geom_jitter()` is random, which means that when you recreate the same plots the points will appear in slightly different locations to ours. To make identical ones, add `position = position_jitter(seed = 1)` inside `geom_jitter()`.].
+*Nerd alert: the variation added by `geom_jitter()` is random, which means that when you recreate the same plots the points will appear in slightly different locations to ours. To make identical ones, add `position = position_jitter(seed = 1)` inside `geom_jitter()`.
 
 ### Worked example - three geoms together
 
@@ -753,16 +755,19 @@ label_data <- gapdata2007 %>%
 label_data
 ```
 
+
+
+
 The first two geoms are from the previous example (`geom_boxplot()` and `geom_jitter()`).
 Note that `ggplot()` plots them in the order they are in the code  - so box plots at the bottom, jittered points on the top.
-We are then adding `geom_label()` with its own data option (`data = label_data`) as well as a new aesthetic (`aes(label = country)`):
+We are then adding `geom_label()` with its own data option (`data = label_data`) as well as a new aesthetic (`aes(label = country)`, Figure \@ref(fig:chap04-fig-labels)):
 
-```{r include=FALSE}
+```{r  include=FALSE}
 # don't understand what keeps resetting it! patchwork?
 theme_set(theme_bw())
 ```
 
-```{r, fig.width=5, fig.height=4}
+```{r chap04-fig-labels, fig.width=5, fig.height=4, fig.cap = "Three geoms together on a single plot: `geom_boxplot()`, `geom_jitter()`, and `geom_label()`."}
 gapdata2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
   # First geom - boxplot
@@ -834,11 +839,11 @@ gapminder %>%
 There are two examples of how just a few lines of `ggplot()` code and the basic geoms introduced in this chapter can be used to make very different things.
 Let your imagination fly free when using `ggplot()`!
 
-The first one shows how the life expectancies in European countries have increased by plotting a square (`geom_point(shape = 15)`) for each observation (year) in the dataset. 
+Figure \@ref(fig:chap04-fig-adv1) shows how the life expectancies in European countries have increased by plotting a square (`geom_point(shape = 15)`) for each observation (year) in the dataset. 
 
 <!-- Explain `fun=max` below? -->
 
-```{r, fig.width=7, fig.height=5}
+```{r chap04-fig-adv1, fig.width=7, fig.height=5, fig.cap = "Increase in European life expectencies over time. Using `fct_reorder()` to order the countries on the y-axis by life expectancy (rather than alphabetically which is the default)."}
 gapdata %>% 
   filter(continent == "Europe") %>% 
   ggplot(aes(y      = fct_reorder(country, lifeExp, .fun=max),
@@ -849,10 +854,10 @@ gapdata %>%
   theme_bw()
 ```
 
-In the second example, we're using `group_by(continent)` followed by `mutate(country_number = seq_along(country))` to create a new column with numbers 1, 2, 3, etc for countries within continents. 
+In Figure \@ref(fig:chap04-fig-adv2), we're using `group_by(continent)` followed by `mutate(country_number = seq_along(country))` to create a new column with numbers 1, 2, 3, etc for countries within continents. 
 We are then using these as `y` coordinates for the text labels (`geom_text(aes(y = country_number...`).
 
-```{r, fig.height=10, fig.width=8}
+```{r chap04-fig-adv2, fig.height=10, fig.width=8, fig.cap = "List of countries on each continent as in the gapminder dataset."}
 gapdata2007 %>% 
   group_by(continent) %>% 
   mutate(country_number = seq_along(country)) %>% 

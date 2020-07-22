@@ -132,7 +132,7 @@ You can do this in the **Packages** tab (next to the Plots tab in the bottom-rig
 
 A Package is just a collection of functions (commands) that are not included in the standard R installation, called base-R. 
 
-A lot of the functionality introduced in this book comes from the __tidyverse__ family of R packages (http://tidyverse.org).
+A lot of the functionality introduced in this book comes from the __tidyverse__ family of R packages (http://tidyverse.org @tidyverse2019).
 So when you go to Packages, click **Install**, type in __tidyverse__, and a whole collection of useful and modern packages will be installed.
 
 Even though you've installed the __tidyverse__ packages, you'll still need to tell R when you're about to use them.

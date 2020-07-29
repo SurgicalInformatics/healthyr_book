@@ -18,7 +18,6 @@ library(tidyverse)
 
 p0 <- gapminder %>% 
   filter(year == 2007) %>% 
-  group_by(continent, year) %>% 
   ggplot(aes(y = lifeExp, x = gdpPercap, colour = continent)) +
   geom_point(alpha = 0.3) +
   theme_bw() +

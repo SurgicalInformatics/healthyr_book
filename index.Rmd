@@ -1,5 +1,5 @@
 --- 
-title: "HealthyR: R for health data analysis"
+title: "HealthyR: R for Health Data Science"
 author: "Ewen Harrison and Riinu Pius"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -18,7 +18,7 @@ fontsize: 12pt
 monofont: "Source Code Pro"
 monofontoptions: "Scale=0.65"
 github-repo: SurgicalInformatics/healthyr_book/
-description: "An introductory book for health data analysis using R."
+description: "An introductory book for health data science using R."
 cover-image: images/healthyr_book_cover.png
 ---
 
@@ -48,7 +48,7 @@ lapply(healthyr_notebooks, function(pkg) {
 
 **For draft version**
 
-This is the electronic version of the HealthyR book to be published by CRC Press/Chapman & Hall in summer 2020.
+This is the electronic version of the HealthyR book to be published by CRC Press/Chapman & Hall in November 2020.
 The electronic version will always be freely available.
 
 HealthyR resources: [healthyr.surgicalinformatics.org](https://healthyr.surgicalinformatics.org/)

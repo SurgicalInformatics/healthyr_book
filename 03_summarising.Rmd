@@ -51,7 +51,7 @@ gbd2017 %>%
   knitr::kable(booktabs = TRUE,
                linesep = c(rep("", 3), "\\addlinespace"),
                align = c("l", "c", "r", "l", "c", "r"),
-               caption = "Deaths per year (2017) from three broad disease categories, sex, and World Bank county-level income groups.") %>% 
+               caption = "Deaths per year (2017) from three broad disease categories, sex, and World Bank country-level income groups.") %>% 
   kableExtra::kable_styling(latex_options = c("hold_position"),
                             font_size = 10)
 
@@ -90,7 +90,7 @@ gbd2017 %>%
 \index{functions@\textbf{functions}!summarise}
 
 Health data analysis is frequently concerned with making comparisons between groups. 
-Groups of genes, or diseases, or patients, or populations etc.
+Groups of genes, or diseases, or patients, or populations, etc.
 An easy approach to the comparison of data by a categorical grouping is therefore essential. 
 
 We will introduce flexible functions from __tidyverse__ that you can apply in any setting. 
@@ -110,7 +110,7 @@ gbd2017 %>%
   summarise(sum(deaths_millions))
 ```
 
-This is indeed equal to the number of deaths per year we saw in the previous chapter using the shorter version of this data (Deaths from the three causes were `r gbd_short %>%filter(year == 2017) %>% pull(deaths_millions)` which adds to `r gbd_short %>%filter(year == 2017) %>% pull(deaths_millions) %>% sum()`).
+This is indeed equal to the number of deaths per year we saw in the previous chapter using the shorter version of this data (deaths from the three causes were `r gbd_short %>%filter(year == 2017) %>% pull(deaths_millions)` which adds to `r gbd_short %>%filter(year == 2017) %>% pull(deaths_millions) %>% sum()`).
 
 `sum()` is a function that adds numbers together, whereas `summarise()` is an efficient way of creating summarised tibbles. 
 The main strength of `summarise()` is how it works with the `group_by()` function. 
@@ -127,7 +127,7 @@ gbd2017 %>%
   summarise(sum(deaths_millions))
 ```
 
-Furthermore, `group_by()` is happy accept multiple grouping variables. 
+Furthermore, `group_by()` is happy to accept multiple grouping variables. 
 So by just copying and editing the above code, we can quickly get summarised totals across multiple grouping variables (by just adding `sex` inside the `group_by()` after `cause`):
 
 ```{r}
@@ -141,7 +141,7 @@ gbd2017 %>%
 \index{functions@\textbf{functions}!mutate}
 
 We met `mutate()` in the last chapter. 
-Let's first give the summarised column a better name, e.g. `deaths_per_group`. 
+Let's first give the summarised column a better name, e.g., `deaths_per_group`. 
 We can remove groupings by using `ungroup()`. 
 This is important to remember if you want to manipulate the dataset in its original format.
 We can combine `ungroup()` with `mutate()` to add a total deaths column, which will be used below to calculate a percentage:
@@ -157,7 +157,7 @@ gbd2017 %>%
 ### Percentages formatting: `percent()`
 \index{functions@\textbf{functions}!percent}
 
-So `summarise()` condenses a tibble, whereas `mutate()` retains it's current size and adds columns. 
+So `summarise()` condenses a tibble, whereas `mutate()` retains its current size and adds columns. 
 We can also further lines to `mutate()` to calculate the percentage of each group:
 
 ```{r, message = FALSE}
@@ -264,7 +264,7 @@ gbd2017 %>%
 \index{functions@\textbf{functions}!arithmetic}
 \index{summarising data@\textbf{summarising data}!arithmetic functions}
 
-Statistics is an R strength, so if there is a arithmetic function you can think of, it probably exists in R.
+Statistics is an R strength, so if there is an arithmetic function you can think of, it probably exists in R.
 
 The most common ones are:
 
@@ -338,7 +338,7 @@ gbd_2rows %>%
 
 The columns are reordered.
 
-If you want to move specific column(s) to the front to the tibble, do:
+If you want to move specific column(s) to the front of the tibble, do:
 
 ```{r}
 gbd_2rows %>% 
@@ -364,12 +364,12 @@ Note how "deaths" needs to be quoted inside `starts_with()` - as it's a word to 
 ## Reshaping data - long vs wide format
 \index{summarising data@\textbf{summarising data}!long vs wide data}
 
-So far, all of the example we've shown you have been using 'tidy' data. 
+So far, all of the examples we've shown you have been using 'tidy' data. 
 Data is 'tidy' when it is in long format: *each variable is in its own column*, and *each observation is in its own row*. 
 This long format is efficient to use in data analysis and visualisation and can also be considered "computer readable".
 
 But sometimes when presenting data in tables for humans to read, or when collecting data directly into a spreadsheet, it can be convenient to have data in a wide format. 
-Data is 'wide' when *some or all of columns are levels of a factor*.
+Data is 'wide' when *some or all of the columns are levels of a factor*.
 An example makes this easier to see. 
 
 ```{r, message = FALSE}
@@ -420,7 +420,7 @@ gbd_long %>%
 ```
 
 
-This means we can quickly eyeball how the number of deaths have changed from 1990 to 2017 for each cause category and sex.
+This means we can quickly eyeball how the number of deaths has changed from 1990 to 2017 for each cause category and sex.
 Whereas if we wanted to quickly look at the difference in the number of deaths for females and males, we can change the `names_from = ` argument from ` = years` to ` = sex`.
 Furthermore, we can also add a `mutate()` to calculate the difference:
 
@@ -434,7 +434,7 @@ gbd_long %>%
 All of these differences are positive which means every year, more men die than women.
 Which make sense, as more boys are born than girls.
 
-And what if we want to look at both `year` and `sex` at the same time, so to create table \@ref(tab:chap3-tab-gbd-wide) from  Table \@ref(tab:chap3-tab-gbd-long)?
+And what if we want to look at both `year` and `sex` at the same time, so to create Table \@ref(tab:chap3-tab-gbd-wide) from  Table \@ref(tab:chap3-tab-gbd-long)?
 No problem, `pivot_wider()` can deal with multiple variables at the same time, `names_from = c(sex, year)`:
 
 ```{r}
@@ -443,9 +443,9 @@ gbd_long %>%
 
 ```
 
-`pivot_wider()` has a few optional arguments that you may be useful for you. 
+`pivot_wider()` has a few optional arguments that may be useful for you. 
 For example, `pivot_wider(..., values_fill = 0)` can be used to fill empty cases (if you have any) with a value you specified.
-Or `pivot_wider(..., names_sep = ": ")` can be used to change the separator that gets put between the values (e.g. you may want "Female: 1990" instead of the default "Female_1990").
+Or `pivot_wider(..., names_sep = ": ")` can be used to change the separator that gets put between the values (e.g., you may want "Female: 1990" instead of the default "Female_1990").
 Remember that pressing F1 when your cursor is on a function opens it up in the Help tab where these extra options are listed.
 
 ### Pivot values from columns to rows (longer)
@@ -454,7 +454,7 @@ Remember that pressing F1 when your cursor is on a function opens it up in the H
 
 The inverse of `pivot_wider()` is `pivot_longer()`. 
 If you're lucky enough, your data comes from a proper database and is already in the long and tidy format. 
-But if you do get landed with something that looks like the Table \@ref(tab:chap3-tab-gbd-wide), you'll need to know how to wrangle the variables currently spread across different columns into the tidy format (where each column is a variable, each row is an observation).
+But if you do get landed with something that looks like Table \@ref(tab:chap3-tab-gbd-wide), you'll need to know how to wrangle the variables currently spread across different columns into the tidy format (where each column is a variable, each row is an observation).
 
 `pivot_longer()` can be a little bit more difficult to use as you need to describe all the columns to be collected using a `select_helper`. Run `?select_helpers and click on the first result in the Help tab for a reminder.
 
@@ -466,7 +466,7 @@ gbd_wide %>%
   slice(1:6)
 ```
 
-You're probably looking at the example above and thinking that's is all nice and simple on this miniature example dataset, but how on earth will I figure this out on a real world example.
+You're probably looking at the example above and thinking that's all nice and simple on this miniature example dataset, but how on earth will I figure this out on a real-world example.
 And you're right, we won't deny that `pivot_longer()` is one of the most technically complicated functions in this book, and it can take a lot of trial and error to get it to work.
 How to get started with your own `pivot_longer()` transformation is to first play with the `select()` function to make sure you are telling R exactly which columns to pivot into the longer format.
 For example, before working out the `pivot_longer()` code for the above example, we would figure this out first:
@@ -481,7 +481,7 @@ Then, knowing that `matches("Female|Male")` works as expected inside our little 
 ### `separate()` a column into multiple columns
 
 While `pivot_longer()` did a great job fetching the different observations that were spread across multiple columns into a single one, it's still a combination of two variables - sex and year. 
-We can use the `separate()` function to deal with that
+We can use the `separate()` function to deal with that.
 
 ```{r}
 gbd_wide %>% 
@@ -498,7 +498,7 @@ But the `convert = TRUE` recognises that `year` is a number and will appropriate
 \index{summarising data@\textbf{summarising data}!arrange / order rows}
 \index{functions@\textbf{functions}!arrange}
 
-The `arrange()` functions sorts rows based on the column(s) you want. By default, it arranges the tibble ascending order:
+The `arrange()` function sorts rows based on the column(s) you want. By default, it arranges the tibble in ascending order:
 
 ```{r}
 gbd_long %>% 
@@ -515,7 +515,7 @@ gbd_long %>%
   slice(1:3)
 ```
 
-Whereas the `-` doesn't work for categorical variables, they need to be put in `desc()` for arranging in descending order:
+The `-` doesn't work for categorical variables, they need to be put in `desc()` for arranging in descending order:
 
 ```{r}
 gbd_long %>% 
@@ -524,7 +524,7 @@ gbd_long %>%
   slice(1,2, 11, 12)
 ```
 
-### factor levels
+### Factor levels
 \index{summarising data@\textbf{summarising data}!factor levels}
 \index{functions@\textbf{functions}!fct\_relevel}
 \index{functions@\textbf{functions}!levels}
@@ -676,9 +676,9 @@ full_join(summary_data1, summary_data2) %>%
 
 ### Exercise - `mutate()`, `summarise()`
 
-Instead of creating the two summarised tibbles and using a `full_join()`, achieve the same result as in the previous Exercise by with a single pipeline using `summarise()` and then `mutate()`.
+Instead of creating the two summarised tibbles and using a `full_join()`, achieve the same result as in the previous exercise with a single pipeline using `summarise()` and then `mutate()`.
 
-Hint: you have to do it the either way round, so `group_by(year, cause) %>% summarise(...)` first, then `group_by(year) %>% mutate()`.
+Hint: you have to do it the other way round, so `group_by(year, cause) %>% summarise(...)` first, then `group_by(year) %>% mutate()`.
 
 Bonus: `select()` columns `year`, `cause`, `percentage`, then `pivot_wider()` the `cause` variable using `percentage` as values.
 

@@ -19,7 +19,7 @@ mykable = function(x, caption = "CAPTION", ...){
 
 Throughout this book, we are conscious of the balance between theory and practice.
 Some learners may prefer to see all definitions laid out before being shown an example of a new concept.
-Others, would rather see practical examples and explanations build up to a full understanding over time.
+Others would rather see practical examples and explanations build up to a full understanding over time.
 We strike a balance between these two approaches that works well for most people in the audience.
 
 Sometimes we will show you an example that may use words that have not been formally introduced yet.
@@ -105,7 +105,7 @@ knitr::include_graphics("images/chapter02/import_options.png")
 knitr::include_graphics("images/chapter02/code_preview.png")
 ```
 
-After selecting the specific options to import a particular file, a friendly preview window will show whether R properly understands the format of the your data.
+After selecting the specific options to import a particular file, a friendly preview window will show whether R properly understands the format of your data.
 
 DO NOT BE tempted to press the **Import** button.
 
@@ -235,13 +235,13 @@ So here we go.
 ### Numeric variables (continuous)
 \index{variable types@\textbf{variable types}!continuous / numeric}
 
-Number are straightforward to handle and don't usually cause trouble. 
+Numbers are straightforward to handle and don't usually cause trouble. 
 R usually refers to numbers as `numeric` (or `num`), but sometimes it really gets its nerd on and calls numbers `integer` or `double`.
 Integers are numbers without decimal places (e.g., `1, 2, 3`), whereas `double` stands for "Double-precision floating-point" format (e.g., `1.234, 5.67890`).
 
 It doesn't usually matter whether R is classifying your continuous data `numeric/num/double/int`, but it is good to be aware of these different terms as you will see them in R messages.
 
-> FRIENDLY WARNING: What's about to follow is a bit dry. Furthermore, it is not essential for complete beginners - you might want to continue reading from __Character variables__.
+> FRIENDLY WARNING: What's about to follow is a bit dry. Furthermore, it is not essential for beginners or those who do not deal with decimal places - you might want to continue reading from __Character variables__.
 Before you leave, take a mental note that sometimes numbers in R have more decimal places than it seems, and that can cause funny behaviour when using the double equals operator (`==`).
 
 Something to note about numbers is that R doesn't usually print more than 6 decimal places, but that doesn't mean they don't exist.
@@ -252,7 +252,7 @@ R then calculates the mean and tells us what it is with 6 decimal places:
 ```{r}
 typesdata$measurement %>% mean()
 ```
-Let' save that in a new object:
+Let's save that in a new object:
 
 ```{r}
 measurement_mean <- typesdata$measurement %>% mean()
@@ -267,24 +267,7 @@ measurement_mean == 3.333333
 
 Now this doesn't seem right, does it - R clearly told us just above that the mean of this variable is 3.333333 (reminder: the actual values in the measurement column are `r typesdata$measurement`). 
 The reason the above statement is `FALSE` is because `measurement_mean` is quietly holding more than 6 decimal places.
- 
-One way to go about this is to round the mean to a reasonable number of decimal places:
 
-\index{functions@\textbf{functions}!round}
-
-```{r}
-round(measurement_mean, 3)
-```
-
-The second argument of `round()` specifies the number of decimal places you want your number(s) rounded to.
-So when using `round()` in the equality statement like this, we get the expected `TRUE`:
-
-```{r}
-round(measurement_mean, 3) == 3.333
-```
-
-Which is usually fine, especially if you've finished applying calculations on that number. 
-But when you indent to use it if further calculations, then rounding should be left to the very end - to minimise rounding errors. 
 This is where the `near()` function comes in handy:
 
 \index{functions@\textbf{functions}!near}
@@ -294,7 +277,7 @@ library(tidyverse)
 near(measurement_mean, 3.333, 0.001)
 ```
 
-The first two arguments for `near()` are the numbers you are comparing, the third argument is the precision you are interested in. So if the numbers are equal within that precision, it returns `TRUE`. 
+The first two arguments for `near()` are the numbers you are comparing; the third argument is the precision you are interested in. So if the numbers are equal within that precision, it returns `TRUE`. 
 This means you get the expected result without having to round the numbers off.
 
 ### Character variables
@@ -351,10 +334,10 @@ typesdata %>%
 
 *Factors* are fussy characters. 
 Factors are fussy because they include something called *levels*. 
-Levels are all the unique values a factor variable could take, e.g. like when we looked at `typesdata %>% count(group)`.
+Levels are all the unique values a factor variable could take, e.g., like when we looked at `typesdata %>% count(group)`.
 Using factors rather than just characters can be useful because:
 
-* The values factor levels can take is fixed. 
+* The values factor levels can take are fixed. 
 For example, once you tell R that `typesdata$group` is a factor with two levels: Control and Treatment, combining it with other datasets with different spellings or abbreviations for the same variable will generate a warning.
 This can be helpful but can also be a nuisance when you really do want to add in another level to a `factor` variable.
 * Levels have an order. 
@@ -374,10 +357,10 @@ A lot more about factor handling will be covered later (\@ref(chap08-h1)).
 \index{functions@\textbf{functions}!ymd}
 
 R is good for working with dates. 
-For example, it can calculate the number of days/weeks/months between two dates, or it can be used to find a future date is (e.g., "what's the date exactly 60 days from now?").
+For example, it can calculate the number of days/weeks/months between two dates, or it can be used to find what future date is (e.g., "what's the date exactly 60 days from now?").
 It also knows about time zones and is happy to parse dates in pretty much any format - as long as you tell R how your date is formatted (e.g., day before month, month name abbreviated, year in 2 or 4 digits, etc.).
 Since R displays dates and times between quotes (""), they look similar to characters. 
-However, it is important to know whether R has understood which of your columns contain date/time information, as which are just normal characters.
+However, it is important to know whether R has understood which of your columns contain date/time information, and which are just normal characters.
 
 ```{r, message = FALSE}
 library(lubridate) # lubridate makes working with dates easier
@@ -388,7 +371,7 @@ my_datetime <- "2020-12-01 12:00"
 my_datetime
 ```
 
-When printed, the two objects - `current_datetime` and `my_datetime` seem to have the a similar format.
+When printed, the two objects - `current_datetime` and `my_datetime` seem to have a similar format.
 But if we try to calculate the difference between these two dates, we get an error:
 
 ```{r, error = TRUE}
@@ -415,8 +398,8 @@ Calculating the difference will now work:
 my_datetime_converted - current_datetime
 ```
 
-Since R knows this is a difference between two date/time objects, it prints the in a nicely readable way.
-Furthermore, the result has its own type, it is a "difftime".
+Since R knows this is a difference between two date/time objects, it prints them in a nicely readable way.
+Furthermore, the result has its own type; it is a "difftime".
 ```{r}
 my_datesdiff <- my_datetime_converted - current_datetime
 my_datesdiff %>% class()
@@ -550,7 +533,7 @@ In a real analysis, you should give your tibbles meaningful names, e.g., `patien
 Object names can't have spaces in it, which is why we use the underscore (`_`) to separate words.
 Object names can include numbers, but they can't start with a number: so `labdata2019` works, `2019labdata` does not.
 
-So, the tibble named `mydata` is example of an object that can be in the Environment of your R Session:
+So, the tibble named `mydata` is an example of an object that can be in the Environment of your R Session:
 
 ```{r}
 mydata
@@ -708,7 +691,7 @@ Notice how we then include the variable on a new line to get it printed as well 
 Note that many people use `=` instead of `<-`.
 Both `<-` and `=` can save what is on the right into an object with named on the left. 
 Although `<-` and `=` are interchangeable when saving an object into your Environment, they are not interchangeable when used as function argument.
-For example, remember how we used the `na.rm` argument in the `mean()` function, and the result got printed immediately.
+For example, remember how we used the `na.rm` argument in the `mean()` function, and the result got printed immediately?
 If we want to save the result into an object, we'll do this, where `mean_result` could be any name you choose:
 
 ```{r}
@@ -723,7 +706,7 @@ Note how the example above uses both operators: the assignment arrow for saving 
 * To summarise, objects and functions work hand in hand. 
 Objects are both an input as well as the output of a function (what the function returns). 
 
-* When passing data to a function, is is usually the first argument, with further arguments used to specify behaviour. 
+* When passing data to a function, it is usually the first argument, with further arguments used to specify behaviour. 
 
 * When we say "the function returns", we are referring to its output (or an Error if it's one of those days).
 
@@ -738,7 +721,7 @@ If you use the assignment arrow, an object holding the results will get saved in
 \index{pipe@\textbf{pipe}}
 
 The pipe - denoted `%>%` - is probably the oddest looking thing you'll see in this book. 
-But please bear with, it is not as scary as it looks! 
+But please bear with; it is not as scary as it looks! 
 Furthermore, it is super useful. 
 We use the pipe to send objects into functions.
 
@@ -812,7 +795,7 @@ Other common operators are the ones we use for filtering data - these are arithm
 This may be for creating subgroups, or for excluding outliers or incomplete cases.
 
 The comparison operators that work with numeric data are relatively straightforward: `>, <, >=, <=`.
-The first two check whether your values are greater or less than another value, the last two check for "greater than or equal to" and "less than or equal to. 
+The first two check whether your values are greater or less than another value, the last two check for "greater than or equal to" and "less than or equal to". 
 These operators are most commonly spotted inside the `filter()` function:
 
 ```{r}
@@ -838,7 +821,7 @@ gbd_short %>%
   filter(year == 1995)
 ```
 
-This reads, take the GBD dataset, send if to the filter and keep rows where year is equal to 1995.
+This reads, take the GBD dataset, send it to the filter and keep rows where year is equal to 1995.
 
 Accidentally using the single equals `=` when double equals is necessary `==` is a common mistake and still happens to the best of us. 
 It happens so often that the error the `filter()` function gives when using the wrong one also reminds us what the correct one was:
@@ -922,7 +905,7 @@ Comments are an essential part of any programming code and these are "Dear Diary
 ## The combine function: `c()`
 \index{functions@\textbf{functions}!c() combine}
 
-The combine function as it's name implies is used to combine several values. 
+The combine function as its name implies is used to combine several values. 
 It is especially useful when used with the `%in%` operator to filter for multiple values. 
 Remember how the gbd_short cause column had three different causes in it:
 
@@ -973,7 +956,7 @@ We send `mydata` to the filter and keep rows where `var2` is `NA`.
 Note the double brackets at the end: that's because the inner one belongs to `is.na()`, and the outer one to `filter()`.
 Missing out a closing bracket is also a common source of errors, and still happens to the best of us.
 
-If filtering for rows where `var2` is not missing, we do this^[In this simple example, `mydata %>% filter(! is.na(var2))` could be replace by a shorthand: `mydata %>% drop_na(var2)`, but it is important to understand how the ! and `is.na()` work as there will be more complex situations where using these is necessary.]
+If filtering for rows where `var2` is not missing, we do this^[In this simple example, `mydata %>% filter(! is.na(var2))` could be replaced by a shorthand: `mydata %>% drop_na(var2)`, but it is important to understand how the ! and `is.na()` work as there will be more complex situations where using these is necessary.]
 
 ```{r}
 mydata %>% 
@@ -1016,7 +999,7 @@ subset1
 subset2
 ```
 
-If the numbers are small, you can now quickly look at RStudio's Environment tab and figure out whether the number of observations (rows) in `subset1` and `subset2` add up to the whole dataset (`mydata`). Or use the `nrow()` function to as R to tell you what the number of rows is in each dataset:
+If the numbers are small, you can now quickly look at RStudio's Environment tab and figure out whether the number of observations (rows) in `subset1` and `subset2` add up to the whole dataset (`mydata`). Or use the `nrow()` function to check the number of rows in each dataset:
 
 Rows in `mydata`:
 
@@ -1110,7 +1093,7 @@ typesdata_modified <- typesdata %>%
 typesdata_modified
 ```
 
-The `mutate()` function can also be used to create a new column with a single constant value, which in return can be used to calculate a difference for each of the existing dates:
+The `mutate()` function can also be used to create a new column with a single constant value; which in return can be used to calculate a difference for each of the existing dates:
 
 ```{r}
 library(lubridate)
@@ -1158,7 +1141,7 @@ You can shorten this by adding the `round()` function directly around the subtra
 But sometimes writing calculations out longer than the absolute minimum can make them easier to understand when you return to an old script months later.
 
 Furthermore, we didn't have to save the `reference_date` as a new column, the calculation could have used the value directly: `mutate(dates_difference = ymd_hm("2020-01-01 12:00") - date) %>%`.
-But again, defining it makes it clearer for future self what was done. And it makes `reference_date` available for reuse in more complicated calculations within the tibble.
+But again, defining it makes it clearer for your future self to see what was done. And it makes `reference_date` available for reuse in more complicated calculations within the tibble.
 
 ## Conditional calculations - `if_else()`
 And finally, we combine the filtering operators (`==`, `>`, `<`, etc) with the `if_else()` function to create new columns based on a condition.
@@ -1216,7 +1199,7 @@ pastedata %>%
   mutate(date = paste(day, month, year, sep = "-"))
 ```
 
-By default, `paste()` adds a space between the each value, but we can use the `sep = ` argument to specify a different separator. 
+By default, `paste()` adds a space between each value, but we can use the `sep = ` argument to specify a different separator. 
 Sometimes it is useful to use `paste0()` which does not add anything between the values (no space, no dash, etc.).
 
 We can now tell R that the date column should be parsed as such:
@@ -1253,7 +1236,7 @@ labsdata <- read_csv("data/labs_data.csv")
 labsdata
 ```
 
-Notice how these datasets are not only different size (`r nrow(patientdata)` rows in `patientdata`, `r nrow(labsdata)` rows in `labsdata`), but include information on different patients: `patiendata` has ids `r patientdata$id`, `labsdata` has ids `r labsdata$id`.
+Notice how these datasets are not only different sizes (`r nrow(patientdata)` rows in `patientdata`, `r nrow(labsdata)` rows in `labsdata`), but include information on different patients: `patiendata` has ids `r patientdata$id`, `labsdata` has ids `r labsdata$id`.
 
 A comprehensive way to join these is to use `full_join()` retaining all information from both tibbles (and matching up rows by shared columns, in this case `id`):
 
@@ -1303,7 +1286,7 @@ When we now do a `left_join()` with our main `tibble` - `patientdata`:
 left_join(patientdata, labsdata_updated)
 ```
 
-We get 7 rows, instead of 6 - as patient id 5 now appears twice with the two different measurements. So it is important to keep either know your datasets well or keep an eye on the number of rows to make sure any increases/decreases in the tibble sizes are as you expect them to be.
+We get 7 rows, instead of 6 - as patient id 5 now appears twice with the two different measurements. So it is important to either know your datasets well or keep an eye on the number of rows to make sure any increases/decreases in the tibble sizes are as you expect them to be.
 
 
 

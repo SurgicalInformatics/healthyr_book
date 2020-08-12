@@ -1,6 +1,8 @@
 ---
-output: html_document
-editor_options: 
+output:
+  pdf_document: default
+  html_document: default
+editor_options:
   chunk_output_type: inline
 ---
 
@@ -43,7 +45,7 @@ gapdata2007 <- gapminder %>%
 
 \index{functions@\textbf{functions}!ggplot}
 
-```{r chap04-fig-steps, fig.height=10, fig.width=6, echo = FALSE, fig.cap = "Example steps for building and modiyfing a ggplot. (1) initialising the canvas and defining variables, (2) adding points, (3) colouring points by continent, (4) changing point type, (5) faceting, (6) changing the plot theme and the scale of the x variable."}
+```{r chap04-fig-steps, fig.height=12, fig.width=8, echo = FALSE, fig.cap = "Example steps for building and modifying a ggplot. (1) Initialising the canvas and defining variables, (2) adding points, (3) colouring points by continent, (4) changing point type, (5) faceting, (6) changing the plot theme and the scale of the x variable."}
 library(patchwork)
 
 step1 <- gapdata2007 %>% 
@@ -189,7 +191,7 @@ This means we are now plotting a continuous variable (`lifeExp`) against a categ
 But the thing to note is that the rest of the code stays exactly the same, all we did was change the `x = `.
 
 
-```{r chap04-fig-stripplot, fig.width=3, fig.cap = "A stip plot using `geom_point()`."}
+```{r chap04-fig-stripplot, fig.width=3, fig.cap = "A strip plot using `geom_point()`."}
 gapdata2007 %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
   geom_point()
@@ -216,7 +218,7 @@ It is very important to understand the difference between including `ggplot` arg
 <!-- Graphical example of the following suggested by SK in comments -->
 
 The main aesthetics (things we can see) are: **x**, **y**, **colour**, **fill**, **shape**, **size**, and any of these could appear inside or outside the `aes()` function.
-Press F1 on, e.g., `geom_point()`, to see see the full list of aesthetics that can be used with this geom (this opens the Help tab).
+Press F1 on, e.g., `geom_point()`, to see the full list of aesthetics that can be used with this geom (this opens the Help tab).
 If F1 is hard to summon on your keyboard, type in and run `?geom_point`.
 
 Variables  (so columns of your dataset) have to be defined inside `aes()`. 
@@ -224,7 +226,7 @@ Whereas to apply a modification on everything, we can set an aesthetic to a cons
 
 For example, Figure \@ref(fig:chap04-fig-shapes) shows a selection of the point shapes built into R. The default shape used by `geom_point()` is number 16.
 
-```{r chap04-fig-shapes, echo = FALSE, fig.width = 6,  fig.cap="A selection of shapes for plotting. Shapes 0, 1, and 2 are hollow, whereas for shapes 21, 22, and 23 we can define both a colour and a fill (for thes shapes, colour is the border around the fill).", warning = FALSE}
+```{r chap04-fig-shapes, echo = FALSE, fig.width = 6,  fig.cap="A selection of shapes for plotting. Shapes 0, 1, and 2 are hollow, whereas for shapes 21, 22, and 23 we can define both a colour and a fill (for the shapes, colour is the border around the fill).", warning = FALSE}
 
 shapes <- tibble(shape = c(0, 1, 2, 4, 8, 15, 16, 17, 21, 22, 23), x = 0:10)
 
@@ -262,7 +264,7 @@ gapdata2007 %>%
 
 This creates the fifth plot in Figure \@ref(fig:chap04-fig-steps).
 Note that we have to use the tilde (~) in `facet_wrap()`.
-There is a similar function called `facet_grid()` that will create a grid of plots based on two grouping variables, e.g, `facet_grid(var1~var2)`.
+There is a similar function called `facet_grid()` that will create a grid of plots based on two grouping variables, e.g., `facet_grid(var1~var2)`.
 Furthermore, facets are happy to quickly separate data based on a condition (so something you would usually use in a filter).
 
 ```{r chap04-fig-facetcond, fig.width=6, fig.cap = "Using a filtering condition (e.g., population > 50 million) directly inside a `facet_wrap()`."}
@@ -312,7 +314,7 @@ This is how `ggplot()` works - you can build a plot by adding or modifying thing
 
 ## Set your theme - grey vs white
 
-If you find yourself always adding the same theme to your plot (i.e. we really like the `+ theme_bw()`), you can use `theme_set()` so your chosen theme is applied to every plot you draw:
+If you find yourself always adding the same theme to your plot (i.e., we really like the `+ theme_bw()`), you can use `theme_set()` so your chosen theme is applied to every plot you draw:
 
 ```{r}
 theme_set(theme_bw())
@@ -326,7 +328,7 @@ theme_set(theme_bw())
 ```
 
 Furthermore, we can customise anything that appears in a `ggplot()` from axis fonts to the exact grid lines, and much more. 
-That's what Chapter \@ref(finetuning): Fine tuning plots is all about, but in here we are focussing on the basic functionality and how different geoms work. 
+That's what Chapter \@ref(finetuning): Fine tuning plots is all about, but here we are focussing on the basic functionality and how different geoms work. 
 But from now on,`+ theme_bw()` is automatically applied on everything we make.
 
 ## Scatter plots/bubble plots
@@ -397,7 +399,7 @@ As a recap, the steps in the code above are:
 This is identical to how we used `geom_point()`.
 In fact, by just changing `line` to `point` in the code above works - and instead of a continuous line you'll get a point at every 5 years as in the dataset.
 
-But what if we want to draw multiple lines, e.g., for each country in the dataset. 
+But what if we want to draw multiple lines, e.g., for each country in the dataset? 
 Let's send the whole dataset to `ggplot()` and `geom_line()`:
 
 ```{r, fig.keep = 'none'}
@@ -418,7 +420,7 @@ gapdata %>%
   geom_line()
 ```
 
-```{r chap04-fig-zigzag, echo = FALSE, fig.width = 7, fig.height=3, fig.cap = "The 'zig-zag plot' is a common mistake: using `geom_line()` (1) without a `group` specified, (2) after adding `group = country`."}
+```{r chap04-fig-zigzag, echo = FALSE, fig.width = 7, fig.height=3, fig.cap = "The 'zig-zag plot' is a common mistake: Using `geom_line()` (1) without a `group` specified, (2) after adding `group = country`."}
 
 theme_set(theme_bw())
 
@@ -459,7 +461,7 @@ gapdata %>%
 
 
 There are two geoms for making bar plots - `geom_col()` and `geom_bar()` and the examples below will illustrate when to use which one.
-In short: if your data is already summarised or includes a values for `y` (height of the bars), use `geom_col()`.
+In short: if your data is already summarised or includes values for `y` (height of the bars), use `geom_col()`.
 If, however, you want `ggplot()` to count up the number of rows in your dataset, use `geom_bar()`.
 For example, with patient-level data (each row is a patient) you'll probably want to use `geom_bar()`, with data that is already somewhat aggregated, you'll use `geom_col()`.
 There is no harm in trying one, and if it doesn't work, trying the other.
@@ -510,7 +512,7 @@ p1 + p2 + plot_annotation(tag_levels = "1", tag_prefix = "(", tag_suffix = ")")
 * `geom_bar()` then counts up the number of observations (rows) for this variable and plots them as bars.
 
 Our `gapdata2007` tibble has a row for each country (see end of Section \@ref(chap04-data) to remind yourself). 
-Therefore, if we use the `count()` function on the `continent` variable, we are counting up the number of countries on each continent (in this dataset^[The number of countries in this dataset is 142, whereas the United Nations have 193 member states]):
+Therefore, if we use the `count()` function on the `continent` variable, we are counting up the number of countries on each continent (in this dataset^[The number of countries in this dataset is 142, whereas the United Nations have 193 member states.]):
 
 ```{r}
 gapdata2007 %>% 
@@ -573,7 +575,7 @@ Colour is the border around a geom, whereas fill is inside it.
 Both can either be set based on a variable in your dataset (this means `colour = ` or `fill = ` needs to be inside the `aes()` function), or they could be set to a fixed colour.
 
 R has an amazing knowledge of colour.
-In addition to knowing what is "white", "yellow", "red", "green" etc. (meaning we can simply do `geom_bar(fill = "green")`), it also knows what "aquamarine", "blanchedalmond", "coral", "deeppink", "lavender", "deepskyblue" look like (amongst many many others, search the internet for "R colours" for a full list).
+In addition to knowing what is "white", "yellow", "red", "green" etc. (meaning we can simply do `geom_bar(fill = "green")`), it also knows what "aquamarine", "blanchedalmond", "coral", "deeppink", "lavender", "deepskyblue" look like (amongst many many others; search the internet for "R colours" for a full list).
 
 <!-- HEX code website for reference include? -->
 
@@ -586,7 +588,7 @@ Therefore, you can find Hex colour codes from a lot of places on the internet, o
 Whether using `geom_bar()` or `geom_col()`, we can use fill to display proportions within bars.
 Furthermore, sometimes it's useful to set the x value to a constant - to get everything plotted together rather than separated by a variable.
 So we are using `aes(x = "Global", fill = continent)`. 
-Note that "Global" could be any word - since it's quoted `ggplot()` won't go looking for it in the dataset (FIgure \@ref(fig:chap04-fig-proportions)):
+Note that "Global" could be any word - since it's quoted `ggplot()` won't go looking for it in the dataset (Figure \@ref(fig:chap04-fig-proportions)):
 
 ```{r chap04-fig-proportions, fig.cap = "Number of countries in the gapminder datatset with proportions using the `fill = continent` aesthetic."}
 gapdata2007 %>% 
@@ -600,7 +602,7 @@ There are more examples of bar plots in Chapter \@ref(chap08-h1).
 
 Create Figure \@ref(fig:chap04-fig-bar-exercise) of life expectancies in European countries (year 2007).
 
-```{r chap04-fig-bar-exercise, fig.width = 4.5, echo = FALSE, fig.height=5, fig.cap = "Barplot Exercise. Life expectancies in European countries in year 2007 from the Gapmminder dataset."}
+```{r chap04-fig-bar-exercise, fig.width = 4.5, echo = FALSE, fig.height=5, fig.cap = "Barplot exercise. Life expectancies in European countries in year 2007 from the gapminder dataset."}
 gapdata %>% 
   filter(year == 2007) %>%
   filter(continent == "Europe") %>% 
@@ -615,8 +617,8 @@ Hints:
 
 * If `geom_bar()` doesn't work try `geom_col()` or vice versa.
 * `coord_flip()` to make the bars horizontal (it flips the `x` and `y` axes).
-* `x = country` gets the country bars plotted in the alphabetical order, use `x = fct_reorder(country, lifeExp)` still inside the `aes()` to order the bars by their `lifeExp` values. Or try one of the other variables (`pop`, `gdpPercap`) as the second argument to `fct_reorder()`.
-* when using `fill = NA`, you also need to include a colour, we're using `colour = "deepskyblue"` inside the `geom_col()`.
+* `x = country` gets the country bars plotted in alphabetical order, use `x = fct_reorder(country, lifeExp)` still inside the `aes()` to order the bars by their `lifeExp` values. Or try one of the other variables (`pop`, `gdpPercap`) as the second argument to `fct_reorder()`.
+* when using `fill = NA`, you also need to include a colour; we're using `colour = "deepskyblue"` inside the `geom_col()`.
 
 \FloatBarrier
 
@@ -787,7 +789,7 @@ A few suggested experiments to try with the 3-geom plot code above:
 ## All other types of plots
 
 In this chapter we have introduced some of the most common geoms, as well as explained how `ggplot()` works.
-In fact, ggplot has 52 different geoms for you to use, see its documentation for a full list: https://ggplot2.tidyverse.org.
+In fact, ggplot has 56 different geoms for you to use; see its documentation for a full list: https://ggplot2.tidyverse.org.
 
 With the ability of combining multiple geoms together on the same plot, the possibilities really are endless.
 Furthermore, the plotly Graphic Library (https://plot.ly/ggplot2/) can make some of your ggplots interactive, meaning you can use your mouse to hover over the point or zoom and subset interactively.
@@ -843,7 +845,7 @@ Figure \@ref(fig:chap04-fig-adv1) shows how the life expectancies in European co
 
 <!-- Explain `fun=max` below? -->
 
-```{r chap04-fig-adv1, fig.width=7, fig.height=5, fig.cap = "Increase in European life expectencies over time. Using `fct_reorder()` to order the countries on the y-axis by life expectancy (rather than alphabetically which is the default)."}
+```{r chap04-fig-adv1, fig.width=7, fig.height=5, fig.cap = "Increase in European life expectancies over time. Using `fct_reorder()` to order the countries on the y-axis by life expectancy (rather than alphabetically which is the default)."}
 gapdata %>% 
   filter(continent == "Europe") %>% 
   ggplot(aes(y      = fct_reorder(country, lifeExp, .fun=max),
@@ -854,10 +856,10 @@ gapdata %>%
   theme_bw()
 ```
 
-In Figure \@ref(fig:chap04-fig-adv2), we're using `group_by(continent)` followed by `mutate(country_number = seq_along(country))` to create a new column with numbers 1, 2, 3, etc for countries within continents. 
+In Figure \@ref(fig:chap04-fig-adv2), we're using `group_by(continent)` followed by `mutate(country_number = seq_along(country))` to create a new column with numbers 1, 2, 3, etc., for countries within continents. 
 We are then using these as `y` coordinates for the text labels (`geom_text(aes(y = country_number...`).
 
-```{r chap04-fig-adv2, fig.height=10, fig.width=8, fig.cap = "List of countries on each continent as in the gapminder dataset."}
+```{r chap04-fig-adv2, fig.height=11, fig.width=10, fig.cap = "List of countries on each continent as in the gapminder dataset."}
 gapdata2007 %>% 
   group_by(continent) %>% 
   mutate(country_number = seq_along(country)) %>% 

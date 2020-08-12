@@ -1,5 +1,5 @@
 --- 
-title: "HealthyR: R for Health Data Science"
+title: "R for Health Data Science"
 author: "Ewen Harrison and Riinu Pius"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site

@@ -7,7 +7,7 @@ knitr::opts_chunk$set(echo=TRUE, message=FALSE, fig.width=8, fig.height=6)
 
 ## Get the data
 
-We can save a `ggplot()` object into a variable (we usually call it `p` but can be any name). 
+We can save a `ggplot()` object into a variable (we usually call it `p` but it can be any name). 
 This then appears in the Environment tab. 
 To plot it it needs to be recalled on a separate line to get drawn (Figure \@ref(fig:chap05-fig-p0)). 
 Saving a plot into a variable allows us to modify it later (e.g., `p + theme_bw()`).
@@ -76,7 +76,7 @@ Its syntax is very simple - it allows us to add ggplot objects together.
 (Trying to do `p1 + p2` without loading the __patchwork__ package will not work, R will say "Error: Don't know how to add p2 to a plot".)
 
 
-```{r chap05-fig-p1234, fig.cap = "p1: using a logarithmic scale for the x axis. p2: expanding the limits of the y axis to include 0. p3: expanding the limits of the y axis to include 0 and 100. p4: removing extra padding around the limits."}
+```{r chap05-fig-p1234, fig.cap = "p1: Using a logarithmic scale for the x axis. p2: Expanding the limits of the y axis to include 0. p3: Expanding the limits of the y axis to include 0 and 100. p4: Removing extra padding around the limits."}
 library(patchwork)
 p1 + p2 + p3 + p4 + plot_annotation(tag_levels = "1", tag_prefix = "p")
 ```
@@ -102,7 +102,7 @@ p6 <- p0 +
 Answer: the first one zooms in, still retaining information about the excluded points when calculating the linear regression lines. 
 The second one removes the data (as the warnings say), calculating the linear regression lines only for the visible points.
 
-```{r chap05-fig-p56, fig.height=3, fig.cap="p5: using `coord_cartesian()` vs p6: using `scale_x_continuous()` and `scale_y_continuous()` for setting the limits of plot axes."}
+```{r chap05-fig-p56, fig.height=3, fig.cap="p5: Using `coord_cartesian()` vs p6: Using `scale_x_continuous()` and `scale_y_continuous()` for setting the limits of plot axes."}
 p5 + labs(tag = "p5") + p6 + labs(tag = "p6")
 ```
 
@@ -118,7 +118,7 @@ The `labs()` function iwill be covered in more detail later in this chapter.
 But sometimes you'll want to specify these, for example,  to indicate threshold values or a maximum (Figure \@ref(fig:chap05-fig-p78)).
 We can do so by using the `breaks` argument:
 
-```{r chap05-fig-p78, fig.height=3, fig.cap = "p7: specifiying y axis breaks. p8: adding custom labels for our breaks."}
+```{r chap05-fig-p78, fig.height=3, fig.cap = "p7: Specifiying y axis breaks. p8: Adding custom labels for our breaks."}
 # calculating the maximum value to be included in the axis breaks:
 max_value = gapminder %>% 
   filter(year == 2007) %>%
@@ -166,7 +166,7 @@ p10 <- p0 +
 
 Note the `\n` inside the new legend title - new line.
 
-```{r chap05-fig-p910, fig.height=3, fig.cap = "p9: choosing a Brewer palette for your colours. p10: changing the legend title."}
+```{r chap05-fig-p910, fig.height=3, fig.cap = "p9: Choosing a Brewer palette for your colours. p10: Changing the legend title."}
 p9 + labs(tag = "p9") + p10 + labs(tag = "p10")
 ```
 
@@ -200,7 +200,7 @@ We've been using the `labs(tag = )` function to add tags to plots.
 But the `labs()` function can also be used to modify axis labels, or to add a title, subtitle, or a caption to your plot (Figure \@ref(fig:chap05-fig-p13)):
 
 
-```{r chap05-fig-p13, fig.height=3, fig.width=4, fig.cap = "p13: adding on a title, subtitle, caption using `labs()`."}
+```{r chap05-fig-p13, fig.height=3, fig.width=4, fig.cap = "p13: Adding on a title, subtitle, caption using `labs()`."}
 p13 <- p0 +
   labs(x = "Gross domestic product per capita",
        y = "Life expectancy",
@@ -247,16 +247,16 @@ p16 <- p0 +
            hjust = 0)
 ```
 
-```{r chap05-fig-p141516, fig.height=4, fig.cap = "p14: `annotate(\"text\", ...)` to quickly add a text on your plot. p15: `annotate(\"label\")` is similar but draws a box around your text (making it a label). p16: using `hjust` to control the horizontal justification of the annotation."}
+```{r chap05-fig-p141516, fig.height=4, fig.cap = "p14: `annotate(\"text\", ...)` to quickly add a text on your plot. p15: `annotate(\"label\")` is similar but draws a box around your text (making it a label). p16: Using `hjust` to control the horizontal justification of the annotation."}
 p14 + labs(tag = "p14") + (p15 + labs(tag = "p15"))/ (p16 + labs(tag = "p16"))
 ```
 
-`hjust` stands for horizontal justification. It's default value is 0.5 (see how the label was centred at 25,000 - our chosen x location), 0 means the label goes to the right from 25,000, 1 would make it end at 25,000.
+`hjust` stands for horizontal justification. Its default value is 0.5 (see how the label was centred at 25,000 - our chosen x location), 0 means the label goes to the right from 25,000, 1 would make it end at 25,000.
 
 ### Annotation with a superscript and a variable
 \index{plots@\textbf{plots}!superscript}
 
-This is an adcvanced example on how to annotate your plot with something that has a superscipt and is based on a single value read in from a variable (Figure \@ref(fig:chap05-fig-p17)):
+This is an advanced example on how to annotate your plot with something that has a superscipt and is based on a single value read in from a variable (Figure \@ref(fig:chap05-fig-p17)):
 
 ```{r chap05-fig-p17, fig.height=3, fig.width=4, fig.cap = "p17: Using a superscript in your plot annotation."}
 # a value we made up for this example
@@ -295,7 +295,7 @@ But not specifying these, applies the change on both.
 Both the `angle` and `vjust` (vertical justification) options can be useful if your axis text doesn't fit well and overlaps.
 It doesn't usually make sense to change the colour of the font to anything other than `"black"`, we are using green and red here to indicate which parts of the plot get changed with each line (Figure \@ref(fig:chap05-fig-p18)).
 
-```{r chap05-fig-p18, fig.height=3, fig.width=4, fig.cap = "p18: using `axis.text` and `axis.title` within `theme()` to tweak the appearance of your plot, including font size and angle. Coloured font is used to indicate which part of the code was used to change each element."}
+```{r chap05-fig-p18, fig.height=3, fig.width=4, fig.cap = "p18: Using `axis.text` and `axis.title` within `theme()` to tweak the appearance of your plot, including font size and angle. Coloured font is used to indicate which part of the code was used to change each element."}
 p18 <-  p0 +
   theme(axis.text.y = element_text(colour = "green", size = 14),
         axis.text.x = element_text(colour = "red",  angle = 45, vjust = 0.5),
@@ -319,7 +319,7 @@ p19 <- p0 +
   theme(legend.position = "none")
 ```
 
-Alternatively, we can use relative coordinates (0--1) to give the legend a realtive x-y location (Figure \@ref(fig:chap05-fig-p1920)):
+Alternatively, we can use relative coordinates (0--1) to give the legend a relative x-y location (Figure \@ref(fig:chap05-fig-p1920)):
 
 ```{r}
 p20 <- p0 +
@@ -328,19 +328,19 @@ p20 <- p0 +
 ```
 
 
-```{r chap05-fig-p1920, fig.height=3, fig.cap = "p19: setting `theme(legend.position = \"none\") removes it. p20: relative coordinates such as `theme(legend.position = c(1,0)` can by used to place the legend within the plot area."}
+```{r chap05-fig-p1920, fig.height=4, fig.width=8, fig.cap = "p19: Setting `theme(legend.position = \"none\")` removes it. p20: Relative coordinates such as `theme(legend.position = c(1,0)` can by used to place the legend within the plot area."}
 p19 + labs(tag = "p19") + p20 + labs(tag = "p20")
 ```
 
 
-Further `theme(legend.)` options can be used to change the size, background, spacing, etc. of the legend. 
+Further `theme(legend.)` options can be used to change the size, background, spacing, etc., of the legend. 
 However, for modifying the content of the legend, you'll have to use the `guides()` function. 
 Again, `ggplot()`'s defaults are very good, and we rarely need to go into this much tweaking using both the `theme()` and `guides()` functions. But it is good to know what is possible.
 
 For example, this is how to change the number of columns within the legend (Figure \@ref(fig:chap05-fig-p21)):
 
 
-```{r chap05-fig-p21, fig.height=4, fig.width=4}
+```{r chap05-fig-p21, fig.height=4, fig.width=4, fig.cap = "p21: Changing the number of columns within a legend."}
 p21 <- p0 +
   guides(colour = guide_legend(ncol = 2)) +
   theme(legend.position = "top") # moving to the top optional
@@ -361,7 +361,7 @@ ggsave(p0, file = "my_saved_plot.pdf", width = 5, height = 4)
 
 If you omit the first argument - the plot object - and call, e.g., `ggsave(file = "plot.png)` it will just save the last plot that got printed.
 
-Text size tip: playing around with the width and height options (they're in inches) can be a convienient way to increase or decrease the relative size of the text size on the plot.
+Text size tip: playing around with the width and height options (they're in inches) can be a convenient way to increase or decrease the relative size of the text on the plot.
 Look at the relative font sizes of the two versions of the `ggsave()` call, one 5x4, the other one 10x8 (Figure \@ref(fig:chap05-fig-ggsave)):
 
 ```{r}
@@ -369,7 +369,7 @@ ggsave(p0, file = "my_saved_plot_larger.pdf", width = 10, height = 8)
 ```
 
 
-```{r chap05-fig-ggsave, echo = FALSE, out.width="100%", fig.cap = "Experimenting with the width and height options within `ggsave()` can be used to quickly change how big or small some of the text on your plot looks like."}
+```{r chap05-fig-ggsave, echo = FALSE, out.width="100%", fig.cap = "Experimenting with the width and height options within `ggsave()` can be used to quickly change how big or small some of the text on your plot looks."}
 # these get put together into a single figure by hand - then to images/chapter05/
 ggsave(p0 + labs(title = "ggsave(..., width = 5, height = 4)"), file = "my_saved_plot.pdf", width = 5, height = 4)
 ggsave(p0 + labs(title = "ggsave(..., width = 10, height = 8)") + theme(title = element_text(size = 24)), file = "my_saved_plot_larger.pdf", width = 10, height = 8)

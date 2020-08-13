@@ -6,7 +6,7 @@
 
 The results of any data analysis are meaningless if they are not effectively communicated. 
 
-This may be as journal article or presentation, or perhaps a regular report or webpage. In chapter \@ref(chap13-h1) we emphasised another of the major strengths of R - the ease with which HTML (a web page), PDF, or Word documents can be generated.
+This may be as a journal article or presentation, or perhaps a regular report or webpage. In Chapter \@ref(chap13-h1) we emphasise another of the major strengths of R - the ease with which HTML (a web page), PDF, or Word documents can be generated.
 
 The purpose of this chapter is to focus on the details of how to get your exported tables, plots and documents looking exactly the way you want them. There are many customisations that can be used, and we will only touch on a few of these. 
 
@@ -82,7 +82,7 @@ Note that we include missing data in this table (see Chapter \@ref(chap11-h1)).
 
 Also note that `nodes` has not been labelled properly. 
 
-In addition, there are small numbers in some variables generating `chisq.test()` warnings (expected fewer than 5 in any cell). 
+In addition, there are small numbers in some variables generating `chisq.test()` warnings (expect fewer than 5 in any cell). 
 
 Now generate a final table.^[The `finalfit` functions used here - `summary_factorlist()` and `finalfit()` were introduced in Part II - Data Analysis. We will therefore not describe the different arguments here, we use them to demonstrate R's powers of exporting to fully formatted output documents.]
 
@@ -113,7 +113,7 @@ table1 <- colon_s %>%
                      add_dependent_label=TRUE,
                      dependent_label_prefix = "Exposure: ")
 table1 %>% 
-  mykable(caption = "Exporting 'table 1': adjusting labels and output.") %>% 
+  mykable(caption = "Exporting 'table 1': Adjusting labels and output.") %>% 
   column_spec(1, width = "3.5cm")
 ```
 
@@ -172,7 +172,7 @@ In RStudio, select:
 File > New File > R Markdown
 
 A useful template file is produced by default. Try hitting knit to Word on the Knit button at the top of the `.Rmd` script window.
-If you have difficulties at this stage, refer to chapter \@ref(chap13-h1).
+If you have difficulties at this stage, refer to Chapter \@ref(chap12-h1).
 
 Now paste this into the file (we'll call it Example 1):
 
@@ -218,12 +218,12 @@ colon_s %>%
 knitr::include_graphics("images/chapter13/1_word_knit.png", auto_pdf = TRUE)
 ```
 
-Knitting this into a Word document results in Figure \@ref(fig:chap13-fig-word)A), which looks pretty decent but the some of the columns need some formatting and the plot needs resized.
+Knitting this into a Word document results in Figure \@ref(fig:chap13-fig-word)A), which looks pretty decent but some of the columns need some formatting and the plot needs resized.
 Do not be tempted to do this by hand directly in the Word document.
 
 Yes, before Markdown, we would have to move and format each table and figure directly in Word, and we would repeat this every time something changed.
-Turns out some patient records were duplicated and you have to remove them before repeating the analysis over again?
-Or your colleague forgot to attach an extra file with 10 more patients?
+Turns out some patient records were duplicated and you have to remove them before repeating the analysis over again.
+Or your colleague forgot to attach an extra file with 10 more patients.
 
 No problem, you update the dataset, re-run the script that created the tables and hit Knit in the R Markdown document.
 No more mindless re-doing for you.
@@ -245,7 +245,7 @@ Make sure you get the spacing correct, unlike R code, the YAML header is sensiti
 
 Finally, to get the figure printed in a size where the labels don't overlap each other, you will have to specify a width for it.
 The Chunk cog introduced in the previous chapter is a convenient way to change the figure size (it is in the top-right corner of each grey code chunk in an R Markdown document).
-It usually takes some experimentation to find the best size for each plot/output document, in this case we are going with `fig.width = 10`.
+It usually takes some experimentation to find the best size for each plot/output document; in this case we are going with `fig.width = 10`.
 
 Knitting Example 2 here gives us Figure \@ref(fig:chap13-fig-word)B).
 For something that is generated automatically, it looks awesome.
@@ -357,7 +357,7 @@ The result is shown in Figure \@ref(fig:chap13-fig-pdf)B.
 
 ## Working in a `.Rmd` file
 
-We now perform almost all our anlyses in a Notebook / Markdown file as described in the previous chapter. 
+We now perform almost all our analyses in a Notebook / Markdown file as described in the previous chapter. 
 This means running all analyses within the document, without the requirement to save and reload table or plot objects. 
 
 As mentioned earlier, a Notebook document can be rendered as a PDF or a Word document. 
@@ -381,7 +381,7 @@ Similarly, `flextable` and `officer` are exellent packages for a love story betw
 
 ## Summary
 
-The combination of R, RStudio, and Markdown is a powerful triumvirate which produce beautiful results quickly and be greatly labour saving. 
-We use this combination for all academic work, but also in the production of real-time reports as webpages and downloadable PDFs for on-going projects. 
+The combination of R, RStudio, and Markdown is a powerful triumvirate which produces beautiful results quickly and will be greatly labour saving. 
+We use this combination for all academic work, but also in the production of real-time reports such as webpages and downloadable PDFs for ongoing projects. 
 This is a fast-moving area with new applications and features appearing every month. 
 We would highly recommend you spend some time getting familiar with this area, as it will become an ever more important skill in the future. 

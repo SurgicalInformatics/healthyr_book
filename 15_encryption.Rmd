@@ -266,7 +266,7 @@ In situations such as block randomisation, where the trial enrolment personnel a
 ### Re-contacting participants
 
 Clinical research often requires further contact of participants for either planned follow-up or sometimes in cases of early cessation of trials due to harm. 
-**encryptr** allows the storage of contact details in pseudonymised format that can be decrypted only when necessary.
+**encryptr** allows the storage of contact details in pseudoanonymised format that can be decrypted only when necessary.
 
 For example, investigators running a randomised clinical trial of a novel therapeutic agent may decide that all enrolled participants taking another medication should withdraw due to a major drug interaction.
 Using a basic filter, patients taking this medication could be identified and the telephone numbers decrypted for these participants. 
@@ -283,5 +283,5 @@ All confidential information must be treated with the utmost care.
 Data should never be carried on removable devices or portable computers. 
 Data should never be sent by open email. 
 Encrypting data provides some protection against disclosure. 
-But particularly in healthcare, data often remains potentially disclosive (or only pseudonymised) even after encryption of identifiable variables.
+But particularly in healthcare, data often remains potentially disclosive (or only pseudoanonymised) even after encryption of identifiable variables.
 Treat it with great care and respect. 

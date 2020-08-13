@@ -41,7 +41,7 @@ These are the five steps to ensuring missing data are correctly identified and a
 5. Decide how to handle missing data.
 
 We will work through a number of functions that will help with each of these. 
-But first, here are some terms which are easy to mix up. 
+But first, here are some terms that are easy to mix up. 
 These are important as they describe the mechanism of missingness and this determines how you can handle the missing data.
 
 For each of the following examples we will imagine that we are collecting data on the relationship between gender, smoking and the outcome of cancer treatment. 
@@ -59,9 +59,9 @@ This is easy to handle, but unfortunately, data are almost never missing complet
 
 ### Missing at random (MAR)
 \index{missing data@\textbf{missing data}!missing at random}
-This is confusing and would be better stated as missing conditionally at random. 
+This is confusing and would be better named *missing conditionally at random*. 
 Here, missingness in particular variable has an association with one or more other variables in the dataset. 
-However, the *actual values of the missing data random*.
+However, the *actual values of the missing data are random*.
 
 In our example, smoking status is missing for some female patients but not for male patients. 
 
@@ -94,7 +94,7 @@ The first step in any analysis is robust data cleaning and coding.
 Lots of packages have a glimpse-type function and our own **finalfit** is no different. 
 This function has three specific goals:
 
-1. Ensure all variables are of the type you expect them to be. That is the commonest reason to get an error with a **finalfit** function. Numbers should be numeric, categorical variables should be characters or factors, and dates should be dates (for a reminder on these, see Section \ref(chap02-vartypes).
+1. Ensure all variables are of the type you expect them to be. That is the commonest reason to get an error with a **finalfit** function. Numbers should be numeric, categorical variables should be characters or factors, and dates should be dates (for a reminder on these, see Section \@ref(chap02-vartypes).
 2. Ensure you know which variables have missing data. This presumes missing values are correctly assigned `NA`. 
 3. Ensure factor levels and variable labels are assigned correctly.
 
@@ -156,7 +156,7 @@ colon_s %>%
 ```
 
 Use this to check that the variables are all assigned and behaving as expected. 
-The proportion of missing data can be seen, e.g. `smoking_mar` has `r round(sum(100*is.na(colon_s$smoking_mar))/dim(colon_s)[1], 0)`% missing data.
+The proportion of missing data can be seen, e.g., `smoking_mar` has `r round(sum(100*is.na(colon_s$smoking_mar))/dim(colon_s)[1], 0)`% missing data.
 
 ## Identify missing values in each variable: `missing_plot()`
 \index{missing data@\textbf{missing data}!missingness plot}
@@ -230,7 +230,7 @@ table1 %>%
   mykable(caption = "Simulated missing completely at random (MCAR) and missing at random (MAR) dataset.")
 ```
 
-## Check for associations between missing and observed data: `missing_pairs()` | `missing_compare()`
+## Check for associations between missing and observed data`
 \index{missing data@\textbf{missing data}!associations}
 
 In deciding whether data is MCAR or MAR, one approach is to explore patterns of missingness between levels of included variables. 
@@ -244,7 +244,7 @@ And of course, death is more likely after emergency surgery.
 `missing_pairs()` uses functions from the **GGally** package. 
 It produces pairs plots to show relationships between missing values and observed values in all variables.
 
-```{r fig.height=7.5, fig.width=7.5, message=FALSE, warning=FALSE, fig.cap="Missing data matrix with `missing_pairs()`."}
+```{r fig.height=13.5, fig.width=13.5, message=FALSE, warning=FALSE, fig.cap="Missing data matrix with `missing_pairs()`."}
 explanatory <- c("age", "sex.factor", 
                  "nodes", "obstruct.factor",  
                  "smoking_mcar", "smoking_mar")
@@ -260,7 +260,7 @@ The age of patients who's mortality data is known is the blue box plot, and the 
 For categorical data, the comparisons are presented as counts (remember `geom_bar()` from Chapter \@ref(chap04-h1)).
 To be able to compare proportions, we can add the `position = "fill"` argument:
 
-```{r fig.height=7.5, fig.width=7.5, message=FALSE, warning=FALSE, fig.cap="Missing data matrix with `missing_pairs(position = 'fill')` ."}
+```{r fig.height=13.5, fig.width=13.5, message=FALSE, warning=FALSE, fig.cap="Missing data matrix with `missing_pairs(position = 'fill')` ."}
 colon_s %>% 
   missing_pairs(dependent, explanatory, position = "fill")
 ```
@@ -299,13 +299,13 @@ missing_mar %>%
 ```
 
 It takes dependent and explanatory variables, and in this context "dependent" refers to the variable being tested for missingness against the explanatory variables.
-^[By default, `missing_compare()` uses an F-test test for continuous variables and chi-squared for categorical variables, you can change these the same way you change tests in `summary_factorlist()`.
+^[By default, `missing_compare()` uses an F-test test for continuous variables and chi-squared for categorical variables; you can change these the same way you change tests in `summary_factorlist()`.
 Check the Help tab or  online documentation for a reminder.]
 As expected, a relationship is seen between sex and smoking (MAR) but not smoking (MCAR).
 
 ### For those who like an omnibus test
 If you work predominately with continuous rather than categorical data, you may find these tests from the `MissMech` package useful. 
-It provides two tests which can be used to determine whether data are MCAR, the package and its output are well documented.
+It provides two tests which can be used to determine whether data are MCAR; the package and its output are well documented.
 
 ```{r}
 library(MissMech)
@@ -349,7 +349,7 @@ fit = colon_s %>%
 
 ```{r echo=FALSE}
 fit %>% 
-  mykable(caption = "Regression analysis with missing data: list-wise deletion.")
+  mykable(caption = "Regression analysis with missing data: List-wise deletion.")
 ```
 
 ### Other considerations
@@ -392,13 +392,13 @@ When first encountered, this may not sound like a good idea.
 However, taking our simple example, if missingness in smoking is predicted strongly by sex (and other observed variables), and the values of the missing data are random, then we can impute (best-guess) the missing smoking values using sex and other variables in the dataset.
 
 Imputation is not usually appropriate for the explanatory variable of interest or the outcome variable, although these can be used to impute other variables. 
-In both cases, the hypothesis is that there is an meaningful association with other variables in the dataset, therefore it doesn’t make sense to use these variables to impute them.
+In both cases, the hypothesis is that there is a meaningful association with other variables in the dataset, therefore it doesn’t make sense to use these variables to impute them.
 
 The process of multiple imputation involves: 
 
-* **Impute** missing data *m* times, which results in *m* complete data sets
+* **Impute** missing data *m* times, which results in *m* complete datasets
 * **Diagnose** the quality of the imputed values
-* **Analyse** each completed data set
+* **Analyse** each completed dataset
 * **Pool** the results of the repeated analyses
 
 We will present a `mice()` example here. 
@@ -501,7 +501,7 @@ table_imputed <-
 
 ```{r echo=FALSE}
 table_imputed  %>% 
-  mykable(caption = "Regression analysis with missing data: multiple imputation using `mice()`.")
+  mykable(caption = "Regression analysis with missing data: Multiple imputation using `mice()`.")
 ```
 
 By examining the coefficients, the effect of the imputation compared with the complete case analysis can be seen.
@@ -532,7 +532,7 @@ fit_explicit_na = colon_s %>%
 
 ```{r echo=FALSE}
 fit_explicit_na %>% 
-  mykable(caption = "Regression analysis with missing data: explicitly modelling missing data.")
+  mykable(caption = "Regression analysis with missing data: Explicitly modelling missing data.")
 ```
 
 ## Handling missing data: MNAR

@@ -8,7 +8,7 @@
 ## What is a Notebook?
 
 R is all-powerful for the manipulation, visualisation and analysis of data. 
-What is often be under-appreciated is the flexibility with which analyses can be exported or reported.
+What is often under-appreciated is the flexibility with which analyses can be exported or reported.
 
 For instance, a full scientific paper, industry report, or monthly update can be easily written to accommodate a varying underlying dataset, and all tables and plots will be updated automatically. 
 
@@ -35,7 +35,7 @@ Some of the advantages of the Notebook interface are:
 * facilitate collaboration by easily sharing human-readable analysis documents;
 * can be outputted in a number of formats including HTML (web page), PDF, and Microsoft Word;
 * output can be extended to other formats such as presentations;
-* training/learning may be easier as course materials, examples, and student notes are all in same document.
+* training/learning may be easier as course materials, examples, and student notes are all in the same document.
 
 
 ## What is Markdown?
@@ -43,7 +43,7 @@ Some of the advantages of the Notebook interface are:
 Markdown is a lightweight language that can be used to write fully-formatted documents. 
 It is plain-text and uses a simple set of rules to produce rather sophisticated output - we love it!
 
-It is easy to format headings, bold text, italics etc. 
+It is easy to format headings, bold text, italics, etc. 
 Within RStudio there is a Quick Reference guide (Figure \@ref(fig:chap12-fig-help)) and links to the [RStudio cheatsheets](https://www.rstudio.com/resources/cheatsheets) can be found in the Help drop-down menu.
 
 ```{r chap12-fig-help, echo = FALSE, fig.cap="RStudio Markdown quick reference guide."}
@@ -58,7 +58,7 @@ R scripts have the file extension `.R`, Markdown documents have a file extension
 ## What is the difference between a Notebook and an R Markdown file?
 
 Most people use the terms R Notebook and R Markdown interchangeably and that is fine.
-Technically, R Markdown is a file, whereas R Notebook a way to work with R Markdown files.
+Technically, R Markdown is a file, whereas R Notebook is a way to work with R Markdown files.
 R Notebooks do not have their own file format, they all use `.Rmd`.
 All R Notebooks can be 'knitted' to R Markdown outputs, and all R Markdown documents can be interfaced as a Notebook.
 
@@ -97,7 +97,7 @@ Figure \@ref(fig:chap12-fig-anatomy) shows the essential elements of a Notebook 
 ### YAML header
 \index{YAML header}
 
-Every Notebook and Markdown files requires a "YAML header".
+Every Notebook and Markdown file requires a "YAML header".
 Where do they get these terms you ask?
 Originally YAML was said to mean Yet Another Markup Language, referencing its purpose as a markup language.
 It was later repurposed as YAML Ain't Markup Language, a recursive acronym, to distinguish its purpose as data-oriented rather than document markup (thank you Wikipedia).
@@ -105,16 +105,16 @@ It was later repurposed as YAML Ain't Markup Language, a recursive acronym, to d
 This is simply where many of the settings/options for file creation are placed.
 In RStudio, these often update automatically as different settings are invoked in the Options menu. 
 
-```{r chap12-fig-anatomy, echo = FALSE, fig.cap="The Anatomy of a Notebook/Markdown file. Input (left) and output (right)"}
+```{r chap12-fig-anatomy, echo = FALSE, fig.cap="The Anatomy of a Notebook/Markdown file. Input (left) and output (right)."}
 knitr::include_graphics("images/chapter12/2_anatomy_rotated.png", auto_pdf = TRUE)
 ```
 
 ### R code chunks
 \index{chunks}
 
-R code within a Notebook or Markdown file can included in two ways:
+R code within a Notebook or Markdown file can be included in two ways:
 
-* in-line: e.g. The total number of oranges was `` `r `` `` sum(fruit$oranges)` ``;
+* in-line: e.g., the total number of oranges was `` `r `` `` sum(fruit$oranges)` ``;
 * as a "chunk".
 
 R chunks are flexible, come with lots of options, and you will soon get into the way of using them. 
@@ -141,7 +141,7 @@ When you are creating a final document you may wish to hide code.
 Chunk behaviour can be controlled via the `Chunk Cog` on the right of the chunk (Figure \@ref(fig:chap12-fig-anatomy)).
 
 Table \@ref(tab:chap12-tab-chunk-output) shows the various permutations of code and output options that are available. 
-The code is placed in the chunk header but the options fly-out now does this automatically, e.g. 
+The code is placed in the chunk header but the options fly-out now does this automatically, e.g., 
 
 ```` markdown
 `r ''````{r, echo=FALSE}
@@ -172,13 +172,13 @@ data.frame(
    "messages=FALSE"
 	)
 ) %>% 
-  knitr::kable(caption = "Chunk output options when knitting an R Markdown file. When using the Chunk Cog, RStudio will add these options appropriately, there is no need to memorise them.",
+  knitr::kable(caption = "Chunk output options when knitting an R Markdown file. When using the Chunk Cog, RStudio will add these options appropriately; there is no need to memorise them.",
                booktabs = TRUE)
 ```
 
 ### Setting default chunk options
 
-We can set default options for all our chunks at the top of our document. by adding and editing `knitr::opts_chunk$set(echo = TRUE)` at the top of the document. 
+We can set default options for all our chunks at the top of our document by adding and editing `knitr::opts_chunk$set(echo = TRUE)` at the top of the document. 
 
 
 ```` markdown
@@ -212,7 +212,7 @@ The YAML header is very sensitive to the spaces/tabs, so make sure these are cor
 Markdown text can be included as you wish around your chunks. 
 Figure \@ref(fig:chap12-fig-anatomy) shows an example of how this can be done.
 This is a great way of getting into the habit of explicitly documenting your analysis. 
-When you come back to a file in 6 months time, all of your thinking is there in front of you, rather than having to work out what on Earth you were on about from a collection of random code!
+When you come back to a file in 6 months' time, all of your thinking is there in front of you, rather than having to work out what on Earth you were on about from a collection of random code!
 
 ## Interface and outputting
 
@@ -220,7 +220,7 @@ When you come back to a file in 6 months time, all of your thinking is there in 
 \index{knitr}
 
 Figure \@ref(fig:chap12-fig-options) shows the various controls for running chunks and producing an output document. 
-Code can be run line line-by-line using `Ctrl+Enter` as you are used to. 
+Code can be run line-by-line using `Ctrl+Enter` as you are used to. 
 There are options for running all the chunks above the current chunk you are working on. 
 This is useful as a chunk you are working on will  often rely on objects created in preceding chunks. 
 
@@ -234,12 +234,12 @@ If this was the case, it will fail when rendering a Markdown document.
 
 Probably the most important engine behind the RStudio Notebooks functionality is the **knitr** package by Yihui Xie.
 
-Not knitting like your Granny does, but rendering a Markdown document into an output file, such as HTML, PDF or Word.
-There are many options which can be applied in order to acheive the desired output. 
+Not knitting like your granny does, but rendering a Markdown document into an output file, such as HTML, PDF or Word.
+There are many options which can be applied in order to achieve the desired output. 
 Some of these have been specifically coded into RStudio (Figure \@ref(fig:chap12-fig-options)).
 
-PDF document creation require a `LaTeX` distribution to be installed on your computer. 
-Depending on what system you are using, this may be set-up already. 
+PDF document creation requires a `LaTeX` distribution to be installed on your computer. 
+Depending on what system you are using, this may be setup already. 
 An easy way to do this is using the **tinytex** package. 
 
 ```` markdown
@@ -375,7 +375,7 @@ You have two options in bringing in the data.
     + this is useful if the data is changing
     + may take a long time if it is a large dataset with lots of manipulations
 2. `load("melanoma_final.rda")` from the `data_processed/` folder
-    + usually quicker, but loads the dataset which was created the last time your ran `00_source_all.R`
+    + usually quicker, but loads the dataset which was created the last time you ran `00_source_all.R`
 
 > Remember: For `.R` files use `source()`, for `.rda` files use `load()`.
 

@@ -10,7 +10,7 @@ RStudio works really well with Git, an open source distributed version control s
 
 \index{version control@\textbf{version control}!Git and GitHub}
 
-Git is piece of software which runs locally. 
+Git is a piece of software which runs locally. 
 It may need to be installed first. 
 
 It is important to highlight the difference between Git (local version control software) and GitHub (a web-based repository store). 
@@ -19,7 +19,7 @@ It is important to highlight the difference between Git (local version control s
 
 In RStudio, go to Tools -> Global Options and select the **Git/SVN** tab. 
 Ensure the path to the Git executable is correct. 
-This is particularly important in Windows where it may not default correctly (e.g. `C:/Program Files (x86)/Git/bin/git.exe`).
+This is particularly important in Windows where it may not default correctly (e.g., `C:/Program Files (x86)/Git/bin/git.exe`).
 
 ## Create an SSH RSA key and add to your GitHub account
 \index{version control@\textbf{version control}!SSH RSA key}
@@ -49,14 +49,14 @@ Next, return to RStudio and configure Git via the **Terminal** (Figure \@ref(fig
 Remember Git is a piece of software running on your own computer. 
 This is distinct to GitHub, which is the repository website. 
 
-We will now create a new project which we want to back-up to GitHub. 
+We will now create a new project which we want to backup to GitHub. 
 
 In RStudio, click *New project* as normal (Figure \@ref(fig:chap14-fig-globalsettings)B).
 Click *New Directory*.
 Name the project and check *Create a git repository*.
 Now in RStudio, create a new script which you will add to your repository.
 
-After saving your new script (e.g. test.R), it should appear in the **Git** tab beside **Environment**.
+After saving your new script (e.g., test.R), it should appear in the **Git** tab beside **Environment**.
 
 Tick the file you wish to add, and the status should turn to a green ‘A’ (Figure \@ref(fig:chap14-fig-globalsettings)C). 
 Now click *Commit* and enter an identifying message in Commit message (Figure \@ref(fig:chap14-fig-globalsettings)D).
@@ -116,7 +116,7 @@ In RStudio, click *New project* as normal. Click *Version Control* and select *G
 In *Clone Git Repository*, enter the GitHub repository URL as per Figure \@ref(fig:chap14-fig-clone)C. 
 Change the project directory name if necessary.
 
-As above, avoid repeatedly having to enter passwords follow the steps in Figure \@ref(fig:chap14-fig-clone)D and E. 
+As above, to avoid repeatedly having to enter passwords, follow the steps in Figure \@ref(fig:chap14-fig-clone)D and E. 
 
 ```{r chap14-fig-clone, echo = FALSE, fig.cap="Clone a GitHub repository to an RStudio project."}
 knitr::include_graphics("images/chapter14/7.png", auto_pdf = TRUE)

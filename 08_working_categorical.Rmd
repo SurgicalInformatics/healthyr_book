@@ -39,7 +39,7 @@ It is essential therefore to be comfortable manipulating factors and dealing wit
 
 We will use the classic “Survival from Malignant Melanoma” dataset which is included in the **boot** package. 
 The data consist of measurements made on patients with malignant melanoma, a type of skin cancer. 
-Each patient had their tumour removed by surgery at the Department of Plastic Surgery, University Hospital of Odense, Denmark between 1962 and 1977.
+Each patient had their tumour removed by surgery at the Department of Plastic Surgery, University Hospital of Odense, Denmark, between 1962 and 1977.
 
 For the purposes of this discussion, we are interested in the association between tumour ulceration and death from melanoma. 
 
@@ -109,7 +109,7 @@ We have condensed for the other recodes (e.g., `ulcer.factor = factor(ulcer) %>%
 
 This is a common question and something which is frequently done. 
 Take for instance the variable age. 
-Is it better to leave it as a continuous variable, or to chop it into categories, e.g. 30 to 39 etc.?
+Is it better to leave it as a continuous variable, or to chop it into categories, e.g., 30 to 39 etc.?
 
 The clear disadvantage in doing this is that information is being thrown away. 
 Which feels like a bad thing to be doing. 
@@ -122,10 +122,10 @@ This is most commonly done in tests of diagnostic accuracy, where a threshold fo
 
 But there are also advantages to converting a continuous variable to categorical. 
 Say the relationship between age and an outcome is not linear, but rather u-shaped, then fitting a regression line is more difficult.
-If age is cut into 10 year bands and entered into a regression as a factor, then this non-linearity is already accounted for. 
+If age is cut into 10-year bands and entered into a regression as a factor, then this non-linearity is already accounted for. 
 
 Secondly, when communicating the results of an analysis to a lay audience, it may be easier to use a categorical representation. 
-For instance, an odds of death 1.8 times greater in 70 year-olds compared with 40 year-olds may be easier to grasp than a 1.02 times increase per year. 
+For instance, an odds of death 1.8 times greater in 70-year-olds compared with 40-year-olds may be easier to grasp than a 1.02 times increase per year. 
 
 So what is the answer? 
 Do not do it unless you have to. 
@@ -154,7 +154,7 @@ A better practice is to recode the levels using `fct_recode` as above.
 The intervals in the output are standard mathematical notation. 
 A square bracket indicates the value is included in the interval and a round bracket that the value is excluded.
 
-Note the requirement for `include.lowest = TRUE` when you specify breaks yourself and the the lowest cut-point is also the lowest data value. 
+Note the requirement for `include.lowest = TRUE` when you specify breaks yourself and the lowest cut-point is also the lowest data value. 
 This should be clear in Figure \@ref(fig:chap08-fig-cut).
 
 ```{r chap08-fig-cut, echo = FALSE, fig.cap="`Cut` a continuous variable into a categorical variable."}
@@ -225,7 +225,7 @@ To start then, we simply count the number of patients with ulcerated tumours who
 It is useful to plot this as counts but also as proportions. 
 It is proportions you are comparing, but you really want to know the absolute numbers as well. 
 
-```{r, fig.width=7, fig.height=3, fig.cap="Bar chart: outcome after surgery for patients with ulcerated melanoma."}
+```{r, fig.width=7, fig.height=3, fig.cap="Bar chart: Outcome after surgery for patients with ulcerated melanoma."}
 p1 <- meldata %>% 
   ggplot(aes(x = ulcer.factor, fill = status.factor)) + 
   geom_bar() + 
@@ -247,7 +247,7 @@ This default order works well for binary variables - the "yes" or "1" is lowest 
 This ordering of this particular variable is unusual - it would be more common to have for instance `alive = 0`, `died = 1`. 
 One quick option is to just reverse the order of the levels in the plot. 
 
-```{r fig.width=7, fig.height=3, fig.cap="Bar chart: outcome after surgery for patients with ulcerated melanoma, reversed levels."}
+```{r fig.width=7, fig.height=3, fig.cap="Bar chart: Outcome after surgery for patients with ulcerated melanoma, reversed levels."}
 p1 <- meldata %>% 
   ggplot(aes(x = ulcer.factor, fill = status.factor)) + 
   geom_bar(position = position_stack(reverse = TRUE)) + 
@@ -268,7 +268,7 @@ The number of patients included in the study is not huge, however, this still lo
 We may also be interested in exploring potential effect modification, interactions and confounders.
 Again, we urge you to first visualise these, rather than going straight to a model. 
 
-```{r, fig.width=6, fig.height=6, fig.cap="Facetted bar plot: outcome after surgery for patients with ulcerated melanoma aggregated by sex and age."}
+```{r, fig.width=6, fig.height=6, fig.cap="Facetted bar plot: Outcome after surgery for patients with ulcerated melanoma aggregated by sex and age."}
 p1 <- meldata %>% 
   ggplot(aes(x = ulcer.factor, fill=status.factor)) + 
   geom_bar(position = position_stack(reverse = TRUE)) +
@@ -304,7 +304,7 @@ meldata <- meldata %>%
 \index{functions@\textbf{functions}!fct\_relevel}
 
 The default order for levels with `factor()` is alphabetical. 
-We often want to reorder the levels in a factor when plotting, or when performing an regression analysis and we want to specify the reference level.  
+We often want to reorder the levels in a factor when plotting, or when performing a regression analysis and we want to specify the reference level.  
 
 The order can be checked using `levels()`.
 
@@ -411,7 +411,7 @@ meldata %$%        # note $ sign here
   table(ulcer.factor, status_dss)
 ```
 
-The counts table can be passed to `prop.table()` for a proportions. 
+The counts table can be passed to `prop.table()` for proportions. 
 
 ```{r}
 meldata %$%
@@ -448,7 +448,7 @@ This is particularly helpful when counts are low, but can be removed if desired 
 A commonly stated assumption of the chi-squared test is the requirement to have an expected count of at least 5 in each cell of the 2x2 table. 
 For larger tables, all expected counts should be $>1$ and no more than 20% of all cells should have expected counts $<5$.
 If this assumption is not fulfilled, an alternative test is Fisher's exact test. 
-For instance, if were are testing across a 2x4 table created from our `age.factor` variable and `status_dss`, then we receive a warning.  
+For instance, if we are testing across a 2x4 table created from our `age.factor` variable and `status_dss`, then we receive a warning.  
 
 ```{r}
 meldata %$%        # note $ sign here
@@ -465,7 +465,7 @@ meldata %$%        # note $ sign here
 
 \index{functions@\textbf{functions}!fisher.test}
 
-## Chi-squared / Fisher's exact test using Finalfit
+## Chi-squared / Fisher's exact test using finalfit
 
 It is easier using the `summary_factorlist()` function from the **finalfit** package. 
 Including `p = TRUE` in `summary_factorlist()` adds a hypothesis test to each included comparison. 
@@ -569,7 +569,7 @@ meldata %>%
                      na_include = TRUE, # include missing in table and tests
                      add_dependent_label = TRUE
   ) %>% 
-  mykable(caption = "Multiple variables by outcome with hypothesis tests: options including missing data, rounding, and labels.")
+  mykable(caption = "Multiple variables by outcome with hypothesis tests: Options including missing data, rounding, and labels.")
 ```
 
 ## Exercises
@@ -578,7 +578,7 @@ meldata %>%
 
 Using `finalfit`, create a summary table with "status.factor" as the dependent variable and the following as explanatory variables: `sex.factor, ulcer.factor, age.factor, thickness`.
 
-Change the continuous variable summary statsics to `median` and `interquartile range` instead of `mean` and `sd`.  
+Change the continuous variable summary statistic to `median` and `interquartile range` instead of `mean` and `sd`.  
 
 ### Exercise {#chap08-ex2}
 

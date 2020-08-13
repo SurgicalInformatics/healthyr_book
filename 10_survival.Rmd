@@ -15,7 +15,7 @@ For instance, in patients with cancer, the time taken until recurrence of the ca
 
 We will again use the classic "Survival from Malignant Melanoma" dataset included in the **boot** package which we have used previously. 
 The data consist of measurements made on patients with malignant melanoma. 
-Each patient had their tumour removed by surgery at the Department of Plastic Surgery, University Hospital of Odense, Denmark during the period 1962 to 1977.
+Each patient had their tumour removed by surgery at the Department of Plastic Surgery, University Hospital of Odense, Denmark, during the period 1962 to 1977.
 
 We are interested in the association between tumour ulceration and survival after surgery. 
 
@@ -45,10 +45,10 @@ ff_glimpse(melanoma)
 ```
 
 As was seen before, all variables are coded as numeric and some need recoding to factors. 
-This is done below for for those we are interested in. 
+This is done below for those we are interested in. 
 
 ## Death status
-`status` is the the patients status at the end of the study. 
+`status` is the patient's status at the end of the study. 
 
 * 1 indicates that they had died from melanoma;
 * 2 indicates that they were still alive and;
@@ -202,15 +202,15 @@ A hazard is the term given to the rate at which events happen.
 The probability that an event will happen over a period of time is the hazard multiplied by the time interval. 
 An assumption of CPH is that hazards are constant over time (see below).
 
-For a given predictor then, the hazard in one group (say males) would be expected to be a constant proportion of the hazard in another group (say female). 
-The ratio of these hazards is unsurprisingly, the hazard ratio. 
+For a given predictor then, the hazard in one group (say males) would be expected to be a constant proportion of the hazard in another group (say females). 
+The ratio of these hazards is, unsurprisingly, the hazard ratio. 
 
 The hazard ratio differs from the relative risk and odds ratio. 
-The hazard ratio represents the difference in the risk of an event at any given time, whereas the relative risk or odds ratio usually represent the cumulative risk over a period of time. 
+The hazard ratio represents the difference in the risk of an event at any given time, whereas the relative risk or odds ratio usually represents the cumulative risk over a period of time. 
 
 ### `finalfit()`
 
-Alternatively, the a CPH regression can be run with **finalfit** functions. 
+Alternatively, a CPH regression can be run with **finalfit** functions. 
 This is convenient for model fitting, exploration and the export of results. 
 
 ```{r eval=FALSE}
@@ -355,7 +355,7 @@ explanatory <- c("age", "sex", "thickness", "ulcer",
                 "cluster(hospital_id)")
 melanoma %>% 
 	finalfit(dependent_os, explanatory) %>% 
-	mykable(caption = "Cox Proportional Hazards: Overall survival following surgery for melanoma with robust standard errors (cluster model)")
+	mykable(caption = "Cox Proportional Hazards: Overall survival following surgery for melanoma with robust standard errors (cluster model).")
 ```
 
 ```{r echo=FALSE}
@@ -384,7 +384,7 @@ explanatory <- c("age", "sex", "thickness", "ulcer",
                 "frailty(hospital_id)")
 melanoma %>% 
 	finalfit(dependent_os, explanatory) %>% 
-	mykable(caption = "Cox Proportional Hazards: Overall survival following surgery for melanoma (frailty model)")
+	mykable(caption = "Cox Proportional Hazards: Overall survival following surgery for melanoma (frailty model).")
 ```
 
 The `frailty()` method here is being superseded by the **coxme** package, and we look forward to incorporating this in the future. 
@@ -487,12 +487,12 @@ melanoma %>%
 
   select(-fit_id, -index) %>%
   dependent_label(melanoma, "Survival") %>% 
-	mykable(caption = "Cox Proportional Hazards and competing risks regression combined")
+	mykable(caption = "Cox Proportional Hazards and competing risks regression combined.")
 ```
 
 ## Summary
 So here we have presented the various aspects of time-to-event analysis which are commonly used when looking at survival. 
-There are many other applications, some which may not be obvious: for instance we use CPH for modelling length of stay in in hospital. 
+There are many other applications, some of which may not be obvious: for instance we use CPH for modelling length of stay in hospital. 
 
 Stratification can be used to deal with non-proportional hazards in a particular variable.
 
@@ -521,9 +521,9 @@ operation_date <-
 melanoma$operation_date <- operation_date # add sequence to melanoma dataset
 ```
 
-Now we will to create a 'censoring' date by adding `time` from the melanoma dataset to our made up operation date. 
+Now we will create a 'censoring' date by adding `time` from the melanoma dataset to our made up operation date. 
 
-Remember the censoring date is either when an event occurred (e.g. death) or the last known alive status of the patient. 
+Remember the censoring date is either when an event occurred (e.g., death) or the last known alive status of the patient. 
 
 ```{r}
 melanoma <- melanoma %>% 
@@ -562,7 +562,7 @@ Using the above scripts, perform a univariable Kaplan Meier analysis to determin
 
 Try modifying the plot produced (see Help for ggsurvplot). For example:
 
-*  Add in a medial survival lines: `surv.median.line="hv"`
+*  Add in a median survival line: `surv.median.line="hv"`
 *  Alter the plot legend: `legend.title = "Ulcer Present", legend.labs = c("No", "Yes")`
 *  Change the y-axis to a percentage: `ylab = "Probability of survival (%)", surv.scale = "percent"`
 *  Display follow-up up to 10 years, and change the scale to 1 year: `xlim = c(0,10), break.time.by = 1)`

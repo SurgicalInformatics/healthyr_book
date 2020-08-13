@@ -30,11 +30,11 @@ It allows the principles of linear regression to be applied when outcomes are no
 \index{binary data}
 
 A regression analysis is a statistical approach to estimating the relationships between variables, often by drawing straight lines through data points. 
-For instance, we may try to predict blood pressure in a group of patients based on their coffee consumption (Figure \@ref(fig:chap07-fig-regression) from Chapter\@ref(chap07-h1)) . 
+For instance, we may try to predict blood pressure in a group of patients based on their coffee consumption (Figure \@ref(fig:chap07-fig-regression) from Chapter\@ref(chap07-h1)). 
 As blood pressure and coffee consumption can be considered on a continuous scale, this is an example of simple linear regression. 
 
 Logistic regression is an extension of this, where the variable being predicted is *categorical*. 
-We will focus on binary logistic regression, where the dependent variable has two levels, e.g. yes or no, 0 or 1, dead or alive.
+We will focus on binary logistic regression, where the dependent variable has two levels, e.g., yes or no, 0 or 1, dead or alive.
 Other types of logistic regression include 'ordinal', when the outcome variable has >2 ordered levels, and 'multinomial', where the outcome variable has >2 levels with no inherent order. 
 
 We will only deal with binary logistic regression.
@@ -99,7 +99,7 @@ Why?
 Because in a logistic regression the slopes of fitted lines (coefficients) can be interpreted as odds ratios. 
 This is very useful when interpreting the association of a particular predictor with an outcome. 
 
-For a given categorical predictor such as smoking, the difference in chance of the outcome occurring for smokers vs. non-smokers can be expressed as a ratio of odds or odds ratio Figure \@ref(fig:chap09-fig-or).
+For a given categorical predictor such as smoking, the difference in chance of the outcome occurring for smokers vs non-smokers can be expressed as a ratio of odds or odds ratio Figure \@ref(fig:chap09-fig-or).
 For example, if the odds of a smoker have a CV event are 1.5 and the odds of a non smoker are 1.0, then the odds of a smoker having an event are 1.5-times greater than a non-smoker, odds ratio = 1.5. 
 
 ```{r chap09-fig-or, echo = FALSE, fig.cap="Odds ratios."}
@@ -115,7 +115,7 @@ We will continue to work with odds ratios given they are an important expression
 
 Let's return to the task at hand. 
 The difficulty in moving from a continuous to a binary outcome variable quickly becomes obvious. 
-If our $y$-axis only has two values, say 0 and 1, then how can be fit line through our data points?
+If our $y$-axis only has two values, say 0 and 1, then how can we fit a line through our data points?
 
 An assumption of linear regression is that the dependent variable is continuous, unbounded, and measured on an interval or ratio scale.
 Unfortunately, binary dependent variables fulfil none of these requirements. 
@@ -155,7 +155,7 @@ $\log_e (\frac{p}{1-p})$, where $p$ is the probability of the outcome occurring.
 Figure \@ref(fig:chap09-fig-logodds) demonstrates the fitted lines from a logistic regression model of cardiovascular event by coffee consumption, stratified by smoking on the log-odds scale (A) and the probability scale (B). 
 We could conclude, for instance, that on average, non-smokers who drink 2 cups of coffee per day have a 50% chance of a cardiovascular event. 
 
-```{r chap09-fig-logodds, echo = FALSE, fig.cap="A logistic regression model of life-time cardiovascular event occurence by coffee consumption stratified by smoking (simulated data). Fitted lines plotted on the log-odds scale (A) and probability scale (B). *lines are straight when no polynomials or splines are included in regression. "}
+```{r chap09-fig-logodds, echo = FALSE, fig.cap="A logistic regression model of life-time cardiovascular event occurrence by coffee consumption stratified by smoking (simulated data). Fitted lines plotted on the log-odds scale (A) and probability scale (B). *lines are straight when no polynomials or splines are included in regression. "}
 knitr::include_graphics("images/chapter09/2_prob_logodds.png", auto_pdf = TRUE)
 ```
 
@@ -185,7 +185,7 @@ knitr::include_graphics("images/chapter09/4_equation.png", auto_pdf = TRUE)
 \index{logistic regression@\textbf{logistic regression}!interactions}
 
 As with all multivariable regression models, logistic regression allows the incorporation of multiple variables which all may have direct effects on outcome or may confound the effect of another variable. 
-This was explored in detail in Section \@ref(chap07-confound), all of the same principles apply.
+This was explored in detail in Section \@ref(chap07-confound); all of the same principles apply.
 
 Adjusting for effect modification and confounding allows us to isolate the direct effect of an explanatory variable of interest upon an outcome. 
 In our example, we are interested in direct effect of coffee drinking on the occurrence of cardiovascular disease, independent of any association between coffee drinking and smoking. 
@@ -216,7 +216,7 @@ knitr::include_graphics("images/chapter09/7_interactions.png", auto_pdf = TRUE)
 ### The Question (2)
 
 We will go on to explore the `boot::melanoma` dataset introduced in Chapter \@ref(chap08-h1). 
-The data consist of measurements made on patients after surgery to remove the melanoma skin cancer in the University Hospital of Odense, Denmark between 1962 and 1977.
+The data consist of measurements made on patients after surgery to remove the melanoma skin cancer in the University Hospital of Odense, Denmark, between 1962 and 1977.
 
 Malignant melanoma is an aggressive and highly invasive cancer, making it difficult to treat.
 
@@ -309,9 +309,9 @@ melanoma <- melanoma %>%
 
 We will now consider our outcome variable. 
 With a binary outcome and health data, we often have to make a decision as to *when* to determine if that variable has occurred or not. 
-In the next chapter we will look at survival analysis where this requirement if not needed. 
+In the next chapter we will look at survival analysis where this requirement is not needed. 
 
-Our outcome on interest is death from melanoma, but we need to decide when to define this. 
+Our outcome of interest is death from melanoma, but we need to decide when to define this. 
 
 A quick histogram of `time` stratified by `status.factor` helps. 
 We can see that most people who died from melanoma did so before 5 years (Figure \@ref(fig:chap09-fig-morthist)). 
@@ -372,7 +372,7 @@ We can plot out these relationships, or tabulate them instead.
 
 ### Tabulate data
 
-We will use the convenient `summary_factorlist()` function from the `finalfit` package to look for difference across other variables by tumour ulceration.
+We will use the convenient `summary_factorlist()` function from the `finalfit` package to look for differences across other variables by tumour ulceration.
 
 ```{r, eval=FALSE}
 library(finalfit)
@@ -406,7 +406,7 @@ The main assumptions are:
 
 1. Binary dependent variable - this is obvious, but as above we need to check (alive, death from disease, death from other causes doesn't work);
 2. Independence of observations - the observations should not be repeated measurements or matched data;
-3. Linearity of continuous explanatory variables and the log-odds outcome - take age as an example. If the outcome, say death, gets more frequent or less frequent as age rises, the model will work well. However, say children and the elderly are at high risk of death, but those in middle years are not, then the relationship is not linear. Or more correctly, is not monotonic, meaning that the response does not only go in one direction;
+3. Linearity of continuous explanatory variables and the log-odds outcome - take age as an example. If the outcome, say death, gets more frequent or less frequent as age rises, the model will work well. However, say children and the elderly are at high risk of death, but those in middle years are not, then the relationship is not linear. Or more correctly, it is not monotonic, meaning that the response does not only go in one direction;
 4. No multicollinearity - explanatory variables should not be highly correlated with each other.
 
 ### Linearity of continuous variables to the response
@@ -429,7 +429,7 @@ melanoma %>%
   facet_wrap(~predictors, scales = "free_x")
 ```
 
-Figure (Figure \@ref(fig:chap09-fig-loess)) shows that age is interesting as the relationship is u-shaped. 
+Figure \@ref(fig:chap09-fig-loess) shows that age is interesting as the relationship is u-shaped. 
 The chance of death is higher in the young and the old compared with the middle-aged. 
 This will need to be accounted for in any model including age as a predictor. 
 
@@ -456,7 +456,7 @@ Including body mass index (BMI), weight and height would be problematic, given t
 
 Are you describing a similar piece of information in two different ways?
 For instance, all perforated colon cancers are staged T4, so do you include T-stage and the perforation factor?
-(Note, not all T4 cancers have perforated).
+(Note, not all T4 cancers have perforated.)
 
 The `ggpairs()` function from `library(GGally)` is a good way of visualising all two-way associations (Figure \@ref(fig:chap09-fig-ggpairs)). 
 
@@ -486,10 +486,10 @@ melanoma %>%
 
 **Continuous to categorical**
 
-Let's use a clever `pivot_longer()` and `facet_wrap()` combination to effiently plot multiple variables against each other without using `ggpairs()`.
+Let's use a clever `pivot_longer()` and `facet_wrap()` combination to efficiently plot multiple variables against each other without using `ggpairs()`.
 We want to compare everything against, for example, age so we need to include `-age` in the `pivot_longer()` call so it doesn't get lumped up with everything else (Figure \@ref(fig:chap09-fig-contcat)):
 
-```{r chap09-fig-contcat, fig.height=3, fig.width=5, message=FALSE, warning=FALSE, fig.cap = "Exploring associations between continuous and catecorical explanatory variables."}
+```{r chap09-fig-contcat, fig.height=3, fig.width=5, message=FALSE, warning=FALSE, fig.cap = "Exploring associations between continuous and categorical explanatory variables."}
 select_explanatory <- c("age", "ulcer.factor", 
                        "sex.factor", "t_stage.factor")
 
@@ -522,8 +522,8 @@ None of the explanatory variables are highly correlated with one another.
 **Variance inflation factor**
 \index{functions@\textbf{functions}!vif}
 
-Finally, as a final check for the presence of higher order correlations, the variance inflation factor can be calculated for each of the terms in a final model. 
-In simple language, this is a measure of how much the variance of a particular regression coefficient is increased due to the presence of multicollinearit in the model. 
+Finally, as a final check for the presence of higher-order correlations, the variance inflation factor can be calculated for each of the terms in a final model. 
+In simple language, this is a measure of how much the variance of a particular regression coefficient is increased due to the presence of multicollinearity in the model. 
  
 Here is an example. 
 *GVIF* stands for generalised variance inflation factor. 
@@ -553,7 +553,7 @@ For instance, 'Poisson regression' for count data.
 
 To run binary logistic regression use `family = binomial`. 
 This defaults to `family = binomial(link = 'logit')`. 
-Other link functions exists, such as the `probit` function, but this makes little difference to final conclusions. 
+Other link functions exist, such as the `probit` function, but this makes little difference to final conclusions. 
 
 Let's start with a simple univariable model using the classical R approach. 
 
@@ -565,7 +565,7 @@ summary(fit1)
 \index{functions@\textbf{functions}!glm}
 
 This is the standard R output which you should become familiar with. 
-It what is included in the previous figures. 
+It is included in the previous figures. 
 The estimates of the coefficients (slopes) in this output are on the log-odds scale and always will be. 
 
 Easier approaches for doing this in practice are shown below, but for completeness here we will show how to extract the results. 
@@ -621,7 +621,7 @@ Our advice regarding variable selection follows the same lines as in the linear 
 
 We will use these principles through the next section.
 
-## Fitting logistic regression models with Finalfit
+## Fitting logistic regression models with finalfit
 
 Our preference in model fitting is now to use our own **finalfit** package. 
 It gets us to our results quicker and more easily, and produces our final model tables which go directly into manuscripts for publication (we hope). 
@@ -663,7 +663,7 @@ We recommend looking at three metrics:
 \index{logistic regression@\textbf{logistic regression}!AIC}
 \index{AIC}
 
-The AIC has been previous described (Section \@ref(chap07-aic)). 
+The AIC has been previously described (Section \@ref(chap07-aic)). 
 It provides a measure of model goodness-of-fit - or how well the model fits the available data. 
 It is penalised for each additional variable, so should be somewhat robust against over-fitting (when the model starts to describe noise).
 
@@ -728,7 +728,7 @@ fit[[2]] %>% mykable(caption = "Model metrics: 5-year survival from malignant me
 The model metrics have improved with the AIC decreasing from 192 to 188 and the c-statistic increasing from 0.717 to 0.798. 
 
 Let's consider `age`. 
-We may expect age to be associated with the outcome become is so commonly is. 
+We may expect age to be associated with the outcome because it so commonly is. 
 But there is weak evidence of an association in the univariable analysis. 
 We have shown above that the relationship of age to the outcome is not linear, therefore we need to act on this. 
 
@@ -780,7 +780,7 @@ glm(mort_5yr ~ ulcer.factor  +I(age^2) + age,
 \index{functions@\textbf{functions}!glm}
 
 It can be done in `Finalfit` in a similar manner. 
-Note with default univariable model settings, the quadratic and linear term are considered in separate models, which doesn't make much sense. 
+Note with default univariable model settings, the quadratic and linear terms are considered in separate models, which doesn't make much sense. 
 
 ```{r eval=FALSE}
 library(finalfit)
@@ -874,7 +874,7 @@ Looking at the model table, the variation has been taken up mostly by stage 4 di
 But there has been little change overall. 
 We will exclude sex from our final model as well. 
 
-As a final we can check for a first order interaction between ulceration and T-stage. 
+As a final we can check for a first-order interaction between ulceration and T-stage. 
 Just to remind us what this means, a significant interaction would mean the effect of, say, ulceration on 5-year mortality would differ by T-stage. 
 For instance, perhaps the presence of ulceration confers a much greater risk of death in advanced deep tumours compared with earlier superficial tumours. 
 
@@ -980,7 +980,7 @@ These characteristics are made manifest through the slopes of fitted lines - the
 A goal is to estimate these characteristics as precisely as possible. 
 Bias can be introduced when correlations between patients are not accounted for. 
 Correlations may be as simple as being treated within the same hospital. 
-By virtue of this fact, these patients may have commonalities not be captured by the observed variables. 
+By virtue of this fact, these patients may have commonalities that have not been captured by the observed variables. 
 
 Population characteristics can be incorporated into our models. 
 We may not be interested in capturing and measuring the effects themselves, but want to ensure they are accounted for in the analysis. 
@@ -1111,8 +1111,8 @@ For example, this can be included using `random_effect = "(thickness | hospital_
 
 As models get more complex, care has to be taken to ensure the underlying data is understood and assumptions are checked. 
 
-Mixed effects modelling is a book in itself and the purpose here is to introduce the concept and provide some approaches its incorporation. 
-Clearly much is written else where for those who are enthusiastic to learn more. 
+Mixed effects modelling is a book in itself and the purpose here is to introduce the concept and provide some approaches for its incorporation. 
+Clearly much is written elsewhere for those who are enthusiastic to learn more. 
 
 ## Exercises
 

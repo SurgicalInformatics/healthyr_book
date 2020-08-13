@@ -36,7 +36,7 @@ When there is more than one explanatory variable, we will call this *multivariab
 Avoid the term *multivariate regression*, which means more than one dependent variable. 
 We don't use this method and we suggest you don't either!
 
-Note that in linear regression, the dependent variable is always continuous, it cannot be a categorical variable. 
+Note that in linear regression, the dependent variable is always continuous; it cannot be a categorical variable. 
 The explanatory variables can be either continuous or categorical. 
 
 ### The Question (1)
@@ -78,7 +78,7 @@ Or in more formal language, we want to minimise the sum of squared residuals.
 
 The regression apps and example figures in this chapter have been adapted from https://github.com/mwaskom/ShinyApps and https://github.com/ShinyEd/intro-stats with permission from Michael Waskom and Mine Çetinkaya-Rundel, thank you to them.
 
-```{r chap07-fig-residuals, echo = FALSE, fig.cap="How a regression line is fitted. A - residuals are the green lines: the distance between each data point and the fitted line. B - the green circle indicates the minimum for these data, its absolute value is not meaningful or comparable with other datasets. Follow the \"simple regression Shiny app\" link to interact with the fitted line. A new sum of squares of residuals (the black cross) is calculated every time you move the line. C - Distribution of the residuals. App and plots adapted from https://github.com/mwaskom/ShinyApps with permission." }
+```{r chap07-fig-residuals, echo = FALSE, fig.cap="How a regression line is fitted. A - residuals are the green lines: the distance between each data point and the fitted line. B - the green circle indicates the minimum for these data; its absolute value is not meaningful or comparable with other datasets. Follow the \"simple regression Shiny app\" link to interact with the fitted line. A new sum of squares of residuals (the black cross) is calculated every time you move the line. C - Distribution of the residuals. App and plots adapted from https://github.com/mwaskom/ShinyApps with permission." }
 knitr::include_graphics("images/chapter07/2_residuals.png", auto_pdf = TRUE)
 ```
 
@@ -100,8 +100,8 @@ Figure \@ref(fig:chap07-fig-diags) shows diagnostic plots from the app, which we
 
 *Linear relationship*
 
-A simple scatter plot should show a linear relationship between the explanatory and the dependent variable, as in figure \@ref(fig:chap07-fig-diags)A. 
-If the data describe a non-linear pattern (figure \@ref(fig:chap07-fig-diags)B), then a straight line is not going to fit it well. 
+A simple scatter plot should show a linear relationship between the explanatory and the dependent variable, as in Figure \@ref(fig:chap07-fig-diags)A. 
+If the data describe a non-linear pattern (Figure \@ref(fig:chap07-fig-diags)B), then a straight line is not going to fit it well. 
 In this situation, an alternative model should be considered, such as including a quadratic (squared, $x^2$) term. 
 
 *Independence of residuals*
@@ -112,8 +112,8 @@ This is more commonly a problem in time series data, where observations may be c
 *Normal distribution of residuals*
 
 The observations should be normally distributed around the fitted line. 
-This means that the residuals should show a normal distribution with a mean of zero (figure \@ref(fig:chap07-fig-diags)A).
-If the observations are not equally distributed around the line, the histogram of residuals will be skewed and a normal Q-Q plot will show residuals diverging from the straight line (figure \@ref(fig:chap07-fig-diags)B) (see Section \@ref(chap06-h3-qq-plot)).
+This means that the residuals should show a normal distribution with a mean of zero (Figure \@ref(fig:chap07-fig-diags)A).
+If the observations are not equally distributed around the line, the histogram of residuals will be skewed and a normal Q-Q plot will show residuals diverging from the straight line (Figure \@ref(fig:chap07-fig-diags)B) (see Section \@ref(chap06-h3-qq-plot)).
 
 *Equal variance of residuals*
 
@@ -125,7 +125,7 @@ Everything we talk about in this chapter is really about making sure that the li
 It is about ensuring that the regression line is appropriate across the range of the explanatory variable and dependent variable.
 It is about understanding the underlying data, rather than relying on a fancy statistical test that gives you a *p*-value. 
 
-```{r chap07-fig-diags, echo = FALSE, fig.cap="Regression diagnostics. A - this is what a linear fit should look like. B - this is not approriate, a non-linear model should be used instead. App and plots adapted from adapted from https://github.com/ShinyEd/intro-stats with permission."}
+```{r chap07-fig-diags, echo = FALSE, fig.cap="Regression diagnostics. A - this is what a linear fit should look like. B - this is not approriate; a non-linear model should be used instead. App and plots adapted from https://github.com/ShinyEd/intro-stats with permission."}
 knitr::include_graphics("images/chapter07/3_diags.png", auto_pdf = TRUE)
 ```
 
@@ -139,8 +139,8 @@ Figure \@ref(fig:chap07-fig-equation) links the fitted line, the linear equation
 Figure \@ref(fig:chap07-fig-equation)A shows a scatter plot with fitted lines from a multivariable linear regression model. 
 The plot is taken from the [multivariable regression Shiny app](https://argoshare.is.ed.ac.uk/multi_regression/). 
 Remember, these data are simulated and are not real. 
-This app will really help you understand different regression models, more on this below. 
-The app allows us to specify "the truth" with the sliders on the left hand side. 
+This app will really help you understand different regression models; more on this below. 
+The app allows us to specify "the truth" with the sliders on the left-hand side. 
 For instance, we can set the $intercept=1$, meaning that when $x=0$, the value of the dependent variable, $y=1$.  
 
 Our model has a continuous explanatory variable of interest (average coffee consumption) and a further categorical variable (smoking). 
@@ -298,7 +298,7 @@ ff_glimpse(gapdata) # summary statistics for each variable
 Let's plot the life expectancies in European countries over the past 60 years, focussing on the UK and Turkey. 
 We can add in simple best fit lines using `geom_smooth()`.
 
-```{r, fig.height=5, fig.width=7, fig.cap="Scatterplots with linear regression lines: Life expectancy by year in European countries"}
+```{r, fig.height=5, fig.width=7, fig.cap="Scatter plots with linear regression lines: Life expectancy by year in European countries."}
 gapdata %>%                        
   filter(continent == "Europe") %>%    # Europe only
   ggplot(aes(x = year, y = lifeExp)) + # lifeExp~year  
@@ -319,14 +319,14 @@ We can then investigate the intercepts and the slope coefficients (linear increa
 
 First let's plot two countries to compare, Turkey and United Kingdom:
 
-```{r fig.height=3, fig.width=4.5, fig.cap="Scatterplot: Life expectancy by year: Turkey and United Kingdom"}
+```{r fig.height=3, fig.width=4.5, fig.cap="Scatter plot: Life expectancy by year: Turkey and United Kingdom"}
 gapdata %>% 
   filter(country %in% c("Turkey", "United Kingdom")) %>% 
   ggplot(aes(x = year, y = lifeExp, colour = country)) + 
   geom_point()
 ```
 
-The two non-parallel lines may make you think of what has been discussed above (Figure \@ref(chap07-fig-types)). 
+The two non-parallel lines may make you think of what has been discussed above (Figure \@ref(fig:chap07-fig-types)). 
 
 First, let's model the two countries separately. 
 
@@ -472,8 +472,8 @@ But here we want to best describe the data.
 
 
 **How we made the plot and what does `predict()` do?**
-Previously, we were using `geom_smooth(method = "lm")` to conveniently add linear regression lines on a scatterplot.
-When a scatterplot includes categorical value (e.g., the points are coloured by a variable), the regression lines `geom_smooth()` draws are multiplicative.
+Previously, we were using `geom_smooth(method = "lm")` to conveniently add linear regression lines on a scatter plot.
+When a scatter plot includes categorical value (e.g., the points are coloured by a variable), the regression lines `geom_smooth()` draws are multiplicative.
 That is great, and almost always exactly what we want. 
 Here, however, to illustrate the difference between the different models, we will have to use the `predict()` model and `geom_line()` to have full control over the plotted regression lines.
 
@@ -524,7 +524,7 @@ gapdata_UK_T %>%
 This fits the data much better than the previous two models.
 You can check the R-squared using `summary(fit_both3)`.
 
-**Advanced tip:** we can apply a function on multiple objects at once by putting them in a `list()` and using a `map_()` function from the **purrr** package. `library(purrr)` gets installed and loaded with `library(tidyverse)`, but it is outwith the scope of this book. Do look it up once you get a little more comfortable with using R, and realise that you are starting to do similar things over and over again. For example, this code:
+**Advanced tip:** we can apply a function on multiple objects at once by putting them in a `list()` and using a `map_()` function from the **purrr** package. `library(purrr)` gets installed and loaded with `library(tidyverse)`, but it is outside the scope of this book. Do look it up once you get a little more comfortable with using R, and realise that you are starting to do similar things over and over again. For example, this code:
 
 ```{r results = 'hide'}
 mod_stats1 <- glance(fit_both1)
@@ -567,7 +567,7 @@ We will use it, however, to explore the relationship between systolic blood pres
 Now this is just for fun - don't write in!
 
 The study was designed to look at cardiovascular events as the outcome, not blood pressure. 
-But it is a convenient to use blood pressure as a continuous outcome from this dataset, even if that was not the intention of the study.
+But it is convenient to use blood pressure as a continuous outcome from this dataset, even if that was not the intention of the study.
 
 The included personality types are A: aggressive and B: passive. 
 
@@ -613,7 +613,7 @@ There will be commonalities between these patients that may not be fully explain
 To estimate the coefficients of your variables of interest most accurately, clustering should be accounted for in the analysis. 
 
 As demonstrated above, the purpose of the model is to provide a best fit approximation of the underlying data. 
-Effect modification and interactions commonly exist in heath datasets, and should be incorporated if present. 
+Effect modification and interactions commonly exist in health datasets, and should be incorporated if present. 
 
 Finally, we want to assess how well our models fit the data with 'model checking'. 
 The effect of adding or removing one variable to the coefficients of the other variables in the model is very important, and will be discussed later. 
@@ -625,7 +625,7 @@ Measures of goodness-of-fit such as the `AIC`, can also be of great use when dec
 
 The Akaike Information Criterion (AIC) is an alternative goodness-of-fit measure. 
 In that sense, it is similar to the R-squared, but it has a different statistical basis. 
-It is useful because it can be used to help guide the best fit in generalised linear models such as logistic regression (see chapter \@ref(chap09-h1)). 
+It is useful because it can be used to help guide the best fit in generalised linear models such as logistic regression (see Chapter \@ref(chap09-h1)). 
 It is based on the likelihood but is also penalised for the number of variables present in the model. 
 We aim to have as small an AIC as possible. 
 The value of the number itself has no inherent meaning, but it is used to compare different models of the same data. 
@@ -652,11 +652,11 @@ sum_wcgs <- ff_glimpse(wcgsdata) # summary statistics for each variable
 library(knitr)
 sum_wcgs[[1]] %>%
   select(-c(5, 8, 9, 11, 12)) %>% 
-  mykable(caption = "WCGS data, ff\\_glimpse: continuous") %>%  
+  mykable(caption = "WCGS data, ff\\_glimpse: continuous.") %>%  
   column_spec(1, width = "4cm")
 sum_wcgs[[2]] %>% 
   select(-c(5, 9)) %>% 
-  mykable(caption = "WCGS data, ff\\_glimpse: categorical") %>%
+  mykable(caption = "WCGS data, ff\\_glimpse: categorical.") %>%
   kable_styling(latex_options = c("scale_down", "hold_position")) %>%  
   column_spec(6, width = "3cm") %>% 
   column_spec(7, width = "3cm")
@@ -672,7 +672,8 @@ wcgsdata %>%
   geom_smooth(method = "lm", se = FALSE)
 ```
 
-From Figure \@ref(fig:chap07-fig-bp-personality_type)), we can see that there is a weak relationship between weight and blood pressure. 
+From Figure \@ref(fig:chap07-fig-bp-personality_type), we can see that there is a weak relationship between weight and blood pressure. 
+
 In addition, there is really no meaningful effect of personality type on blood pressure. 
 This is really important because, as you will see below, we are about to "find" some highly statistically significant effects in a model.
 
@@ -704,7 +705,7 @@ fit_sbp1[[2]] %>% mykable(caption = "Model metrics: Systolic blood pressure by p
 
 Let's look first at our explanatory variable of interest, personality type.
 When a factor is entered into a regression model, the default is to compare each level of the factor with a "reference level".
-What you choose as the reference level can be easily changed (see section \@ref(chap08-h2-fct-relevel).
+What you choose as the reference level can be easily changed (see Section \@ref(chap08-h2-fct-relevel).
 Alternative methods are available (sometimes called *contrasts*), but the default method is likely to be what you want almost all the time. 
 Note this is sometimes referred to as creating a "dummy variable". 
 
@@ -713,11 +714,11 @@ As there is only one variable, the univariable and multivariable analyses are th
 
 Although the difference is numerically quite small (2.3 mmHg), it is statistically significant partly because of the large number of patients in the study. 
 The optional `metrics = TRUE` output gives us the number of rows (in this case, subjects) included in the model. 
-This is important as frequently people forget that in standard regression models, missing data from any variable results in the that entire row being excluded from the analysis (see chapter \@ref(chap11-h1)). 
+This is important as frequently people forget that in standard regression models, missing data from any variable results in the entire row being excluded from the analysis (see Chapter \@ref(chap11-h1)). 
 
 Note the `AIC` and `Adjusted R-squared` results. 
-The adjusted R-squared is very low - the model only explains only 0.6% of the variation in systolic blood pressure. 
-This is to be expected, given our scatterplot above. 
+The adjusted R-squared is very low - the model only explains only 0.6% of the variation in systolic blood pressure.
+This is to be expected, given our scatter plot above. 
 
 Let's now include subject weight, which we have hypothesised may influence blood pressure. 
 
@@ -742,11 +743,12 @@ This is interpreted as: for each pound increase in weight, there is on average a
 
 Note the difference in the interpretation of continuous and categorical variables in the regression model output (Figure \@ref(tab:chap07-tab-bp-personality-weight)). 
 
-The adjusted R-squared is now higher - the personality and weight together explain 6.8% of the variation in blood pressure.  
+The adjusted R-squared is now higher - the personality and weight together explain 6.8% of the variation in blood pressure. 
+
 The AIC is also slightly lower meaning this new model better fits the data. 
 
 There is little change in the size of the coefficients for each variable in the multivariable analysis, meaning that they are reasonably independent. 
-As an exercise, check the the distribution of weight by personality type using a boxplot. 
+As an exercise, check the distribution of weight by personality type using a boxplot. 
 
 Let's now add in other variables that may influence systolic blood pressure.
 
@@ -779,7 +781,7 @@ For instance, it may be more sensible to work with body mass index ($weight / he
 
 In general, variables that are highly correlated with each other should be treated carefully in regression analysis. 
 This is called collinearity and can lead to unstable estimates of coefficients. 
-For more on this, see section \@ref(chap09-h2-multicollinearity).
+For more on this, see Section \@ref(chap09-h2-multicollinearity).
 
 Let's create a new variable called `bmi`, note the conversion from pounds and inches to kg and m:
 
@@ -839,7 +841,7 @@ This results in little change in the other coefficients and very little change i
 We will consider the reduced model the final model. 
 
 We can also visualise models using plotting. 
-This is useful for communicating a model in a restricted space, e.g. in a presentation. 
+This is useful for communicating a model in a restricted space, e.g., in a presentation. 
 
 ```{r eval=FALSE}
 dependent <- "sbp"
@@ -864,7 +866,7 @@ wcgsdata %>%
 
 We can check the assumptions as above.
 
-```{r fig.height=5, fig.width=5, message=FALSE, fig.cap="Diagnostic plots: linear regression model of systolic blood pressure."}
+```{r fig.height=5, fig.width=5, message=FALSE, fig.cap="Diagnostic plots: Linear regression model of systolic blood pressure."}
 dependent <- "sbp"
 explanatory_multi <- c("bmi", "personality_2L", "age", 
                       "chol") 
@@ -911,7 +913,7 @@ From the default position, select "additive model" then set "Error standard devi
 Plot the GDP per capita by year for countries in Europe. 
 Add a best fit straight line to the plot.
 In which countries is the relationship not linear?
-Advanced: make the line curved by adding a quadratic/squared term, e.g. $y~x^2+x$. Hint: check geom_smooth() help page under `formula`. 
+Advanced: make the line curved by adding a quadratic/squared term, e.g., $y~x^2+x$. Hint: check geom_smooth() help page under `formula`. 
 
 
 ### Exercise {#chap07-ex3}
@@ -928,7 +930,7 @@ Use your model to determine the difference in GDP per capita for your countries 
 
 ### Exercise {#chap07-ex4}
 
-Use the the Western Collaborative Group Study data to determine if there is a relationship between age and cholesterol level.
+Use the Western Collaborative Group Study data to determine if there is a relationship between age and cholesterol level.
 
 Remember to plot the data first. 
 

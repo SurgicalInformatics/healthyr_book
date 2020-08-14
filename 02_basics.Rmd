@@ -265,12 +265,21 @@ measurement_mean == 3.333333
 Now this doesn't seem right, does it - R clearly told us just above that the mean of this variable is 3.333333 (reminder: the actual values in the measurement column are `r typesdata$measurement`). 
 The reason the above statement is `FALSE` is because `measurement_mean` is quietly holding more than 6 decimal places.
 
+And it gets worse. In this example, you may recognise that repeating decimals (0.333333...) usually mean there's more of them somewhere. And you may think that rounding them down with the `round()` function would make your `==` behave as expected. Except, it's not about rounding, it's about how computers store numbers with decimals. Programming languages have fundamental issues with decimal numbers, and this  simple example illustrates one:
+
+```{r}
+(0.10 + 0.05) == 0.15
+```
+
+This returns FALSE, meaning R does not seem to think that `0.10 + 0.05` is equal to `0.15`. This issue isn't specific to R, but to programming languages in general. For example, python also thinks that the sum of `0.10` and `0.05` does not equal `0.15`.
+
 This is where the `near()` function comes in handy:
 
 \index{functions@\textbf{functions}!near}
 
 ```{r}
 library(tidyverse)
+near(0.10+0.05, 0.15)
 near(measurement_mean, 3.333333, 0.000001)
 ```
 

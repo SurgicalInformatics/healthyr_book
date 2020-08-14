@@ -594,10 +594,11 @@ africa2002 <- gapdata %>%              # save as africa2002
 head(africa2002)                       # inspect
 
 africa2002 %>% 
-  gather(key, lifeExp, -country) %>%   # gather values to same column
-  ggplot(aes(x = lifeExp)) +             
+  # pivot lifeExp and lifeExp_log values to same column (for easy plotting):
+  pivot_longer(contains("lifeExp")) %>% 
+  ggplot(aes(x = value)) +             
   geom_histogram(bins = 15) +          # make histogram
-  facet_wrap(~key, scales = "free")    # facet with axes free to vary
+  facet_wrap(~name, scales = "free")    # facet with axes free to vary
 
 ```
 

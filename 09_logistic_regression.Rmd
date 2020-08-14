@@ -422,7 +422,7 @@ melanoma %>%
     mort_5yr.num = as.numeric(mort_5yr) - 1
   ) %>% 
   select(mort_5yr.num, age, year) %>% 
-  gather(key = "predictors", value = "value", -mort_5yr.num) %>% 
+  pivot_longer(all_of(c("age", "year")), names_to = "predictors") %>% 
   ggplot(aes(x = value, y = mort_5yr.num)) + 
   geom_point(size = 0.5, alpha = 0.5) +
   geom_smooth(method = "loess") + 
@@ -509,11 +509,11 @@ select_explanatory <- c("ulcer.factor", "sex.factor", "t_stage.factor")
 
 melanoma %>% 
   select(one_of(select_explanatory)) %>% 
-  gather(key, value, -sex.factor) %>% 
+  pivot_longer(-sex.factor) %>% 
   ggplot(aes(value, fill = sex.factor)) + 
   geom_bar(position = "fill") +
   ylab("proportion") +
-  facet_wrap(~key, scale = "free", ncol = 2) +
+  facet_wrap(~name, scale = "free", ncol = 2) +
   coord_flip()
 ```
 

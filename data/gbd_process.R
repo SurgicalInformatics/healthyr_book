@@ -28,7 +28,7 @@ gbd_short %>%
 gbd_long %>%
   write_csv(path = "data/global_burden_disease_cause-year-sex-income.csv")
 
-#Chapter 3 - spread() and gather()
+#Chapter 3 - pivot_wider() and pivot_longer()
 gbd_long_example = gbd_long %>%
   filter(year %in% c(1990, 2017)) %>%
   group_by(cause, sex, year) %>%

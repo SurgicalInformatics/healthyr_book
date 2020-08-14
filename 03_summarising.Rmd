@@ -400,12 +400,6 @@ gbd_long %>%
 Tables \@ref(tab:chap3-tab-gbd-long) and \@ref(tab:chap3-tab-gbd-wide) contain the exact same information, but in long (tidy) and wide formats, respectively.
 
 
-```{r, echo = FALSE, fig.cap="Same data in the long ('tidy', necessary for efficient analysis) and wide (easier for human-readability/presentation/manual data entry) formats. TODO: replace with updated data.", out.width="100%"}
-knitr::include_graphics("images/wide_long.png")
-```
-
-\clearpage 
-
 ### Pivot values from rows into columns (wider)
 \index{summarising data@\textbf{summarising data}!convert long to wide}
 \index{functions@\textbf{functions}!pivot\_wider}

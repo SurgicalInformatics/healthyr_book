@@ -898,6 +898,7 @@ This great post demonstrates beautifully how the statistical tests we are most f
 Regression is fitting lines, preferably straight, through data points. 
 Make $\hat{y} = \beta_0 + \beta_1 x_1$ a close friend.
 
+An excellent book for further reading on regression is @harrell2015.
 
 ## Exercises
 

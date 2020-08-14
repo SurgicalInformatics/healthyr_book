@@ -1146,7 +1146,7 @@ Make an odds ratio plot for this model.
 
 Solution to Exercise \@ref(chap09-ex1):
 
-```{r eval=FALSE, fig.height=3, fig.width=5}
+```{r fig.height=3, fig.width=5, fig.keep = 'none'}
 ## Recode
 melanoma <- melanoma %>% 
   mutate(sex.factor = factor(sex) %>%          
@@ -1192,7 +1192,7 @@ p1 + p2
 
 Solution to Exercise \@ref(chap09-ex2):
 
-```{r eval=FALSE}
+```{r message=FALSE, results = "hide"}
 ## Recode T-stage first
 melanoma <- melanoma %>% 
   mutate(
@@ -1216,7 +1216,7 @@ melanoma %>%
 
 Solution to Exercise \@ref(chap09-ex3):
 
-```{r eval=FALSE}
+```{r message=FALSE, warning=FALSE, results = "hide", fig.keep="none"}
 dependent = "mort_5yr"
 explanatory = c("sex.factor", "age", "t_stage.factor", "ulcer.factor")
 melanoma %>% 
@@ -1224,27 +1224,16 @@ melanoma %>%
 
 # c-statistic = 0.798
 # In multivariable model, male vs female OR 1.26 (0.57-2.76, p=0.558).
-# No relationship after accouting for T-stage and tumour ulceration. 
+# No relationship after accounting for T-stage and tumour ulceration. 
 # Sex is confounded by these two variables. 
 ```
 
 
 Solution to Exercise \@ref(chap09-ex4):
 
-```{r eval=FALSE}
+```{r fig.keep="none", message=FALSE, warning=FALSE}
 dependent = "mort_5yr"
 explanatory = c("sex.factor", "age", "t_stage.factor", "ulcer.factor")
 melanoma %>% 
   or_plot(dependent, explanatory)
-```
-
-<!-- Haven't included diagnostic plots -->
-
-```{r include=FALSE, eval = FALSE}
-library(ggfortify)
-dependent <- "mort_5yr"
-explanatory_multi <- c("ulcer.factor", "t_stage.factor")
-melanoma %>% 
-  glmmulti(dependent, explanatory) %>%
-  autoplot(which=1:6)
 ```

@@ -823,7 +823,7 @@ gapminder %>%
 
 Solution to Exercise \@ref(chap04-ex-barplot):
 
-```{r, eval = FALSE}
+```{r, fig.keep = 'none'}
 library(tidyverse)
 library(gapminder)
 

@@ -65,7 +65,7 @@ glimpse(gapdata) # each variable as line, variable type, first values
 missing_glimpse(gapdata) # missing data for each variable
 ```
 
-```{r eval = FALSE}
+```{r results = "hide"}
 ff_glimpse(gapdata) # summary statistics for each variable
 ```
 
@@ -84,6 +84,10 @@ sum_gapdata[[1]] %>%
         linesep = c("", "", "\\addlinespace")) %>%
   kable_styling(latex_options = c("scale_down", "hold_position")) %>% 
   column_spec(1, width = "4cm")
+```
+
+
+```{r message=FALSE, echo=FALSE}
 sum_gapdata[[2]] %>% 
   select(-c(5, 9)) %>% 
   kable(row.names = FALSE, align = c("l", "l", "l", "r", "r", "r", "r", "r", "r", "r"), 

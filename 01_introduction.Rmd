@@ -152,7 +152,7 @@ The "Conflicts" message is expected and can safely be ignored.^[It just means th
 We've never needed to use `filter` and `lag` from __stats__, but if you do, then use the double colon, i.e., `stats::filter()` or `stats::lag()`, as just `filter()` will use the __dplyr__ one.]
 
 There are a few other R packages that we use and are not part of the tidyverse, but we will introduce them as we go along. 
-If you're incredibly curious, head to the Resources section of the HealthyR website - up-to-date links and installation instructions are listed there.
+If you're incredibly curious, head to the Resources section of the HealthyR website which is the best place to find up-to-date links and installation instructions. Our R and package versions are also listed in the Appendix.
 
 ## Getting help
 \index{help}

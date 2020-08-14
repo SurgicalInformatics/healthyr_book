@@ -229,6 +229,16 @@ No problem, you update the dataset, re-run the script that created the tables an
 No more mindless re-doing for you.
 We think this is pretty amazing.
 
+### Figure quality in Word output
+
+If your plots are looking a bit grainy in Word, include this in your setup chunk for high quality:
+
+```{r}
+knitr::opts_chunk$set(dpi = 300) 
+```
+
+The setup chunk is the one that starts with ```` ```{r setup, include = FALSE} ```` and is generated automatically when you create a new R Markdown document in RStudio.
+
 ## Create Word template file
 
 To make sure tables always export with a suitable font size, you may edit your Word file but only to create a new template. 

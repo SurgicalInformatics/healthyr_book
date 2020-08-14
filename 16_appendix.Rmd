@@ -1,0 +1,43 @@
+# Appendix {-}
+
+```{r message=FALSE, warning=FALSE, echo = FALSE}
+library(tidyverse)
+library(knitr)
+# all used packages:
+system("grep '^library(' *Rmd > library_calls.txt")
+used_packages_orig = read_table("library_calls.txt", col_names = "packages")
+
+used_packages = used_packages_orig %>% 
+  separate(packages, into = c(NA, "packages"), sep = ":") %>% 
+  separate(packages, into = c("packages", "comment"), sep = "#") %>% 
+  mutate(packages = str_trim(packages)) %>% 
+  distinct(packages) %>% 
+  bind_rows(tibble(packages = c("tibble", "tidyr", "purrr", "stringr", "bookdown", "rmarkdown"))) %>% 
+  mutate(packages = str_remove(packages, "library\\(") %>% str_remove("\\)") %>% 
+           fct_relevel("tidyverse",
+                       "ggplot2", 
+                       "tibble", 
+                       "tidyr",
+                       "readr",
+                       "purrr",
+                       "dplyr", 
+                       "stringr",
+                       "forcats",
+                       "finalfit")) %>% 
+  arrange(packages) %>% 
+  pull(packages)
+
+
+```
+
+
+This book was written in **bookdown**, which is an R package built on top of R Markdown (@xie2016).
+
+The main packages used in this book were: **`r combine_words(used_packages)`**.
+
+R and package versions, `sessionInfo()`:
+
+```{r, echo = FALSE}
+xfun::session_info(used_packages, dependencies = FALSE)
+```
+

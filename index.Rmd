@@ -68,7 +68,7 @@ Nowhere more so than in the delivery of healthcare.
 From the understanding of disease and the development of new treatments, to the diagnosis and management of individual patients, the use of data and technology is now an integral part of the business of healthcare. 
 
 Those working in healthcare interact daily with data, often without realising it. 
-The conversion of this avalanche of information to useful knowledge is essential for high quality patient care. 
+The conversion of this avalanche of information to useful knowledge is essential for high-quality patient care. 
 An important part of this information revolution is the opportunity for everybody to become involved in data analysis. 
 This democratisation is driven in part by the open source software movement – no longer do we require expensive specialised software to do this. 
 
@@ -83,8 +83,6 @@ We limit equations to a minimum in favour of code, and use examples rather than 
 We are grateful to the many individuals and students who have helped refine this book and welcome suggestions and bug reports via https://github.com/SurgicalInformatics. 
 
 Ewen Harrison and Riinu Pius
-
-March 2020
 
 <!-- ## Structure of the book {-} -->
 

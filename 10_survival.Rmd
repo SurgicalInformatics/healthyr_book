@@ -106,7 +106,7 @@ melanoma <- melanoma %>%
 \index{time-to-event / survival@\textbf{time-to-event / survival}!log-rank test}
 \index{log-rank test}
 
-We will use the excellent **survival** package to produce the Kaplan Meier (KM) survival estimator. 
+We will use the excellent **survival** package to produce the Kaplan Meier (KM) survival estimator (@therneau2000, @therneau2020). 
 This is a non-parametric statistic used to estimate the survival function from time-to-event data.
 
 ```{r}

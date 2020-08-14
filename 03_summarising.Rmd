@@ -163,12 +163,13 @@ We can also further lines to `mutate()` to calculate the percentage of each grou
 ```{r, message = FALSE}
 # percent() function for formatting percentages come from library(scales)
 library(scales)
-gbd2017 %>% 
+gbd2017_summarised <- gbd2017 %>% 
   group_by(cause, sex) %>% 
   summarise(deaths_per_group = sum(deaths_millions)) %>% 
   ungroup() %>% 
   mutate(deaths_total    = sum(deaths_per_group),
          deaths_relative = percent(deaths_per_group/deaths_total))
+gbd2017_summarised
 ```
 
 The `percent()` function comes from `library(scales)` and is a handy way of formatting percentages
@@ -182,17 +183,13 @@ round(100*4.91/55.74, 1) %>% paste0("%")
 
 This is convenient for final presentation of number, but if you intend to do further calculations/plot/sort the percentages just calculate them as fractions with:
 
-```{r, eval = FALSE}
-gbd2017 %>% 
+```{r}
+gbd2017_summarised %>% 
   mutate(deaths_relative = deaths_per_group/deaths_total)
 ```
 
-and convert to nicely formatted percentages later:
+and convert to nicely formatted percentages later with `mutate(deaths_percentage = percent(deaths_relative))`. 
 
-```{r, eval = FALSE}
-gbd2017 %>% 
-  mutate(deaths_percentage = percent(deaths_relative))
-```
 
 ## `summarise()` vs `mutate()`
 

@@ -6,6 +6,7 @@ _book
 _bookdown_files
 docs/*
 !docs/healthyr-book.pdf
+!docs/healthyr-book.tex
 rsconnect
 healthyr-book.rds
 my_saved_plot*

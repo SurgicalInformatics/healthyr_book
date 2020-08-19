@@ -344,7 +344,10 @@
      \def\@oddfoot{\reset@font\hfil\thepage
      \hfil}\let\@evenhead\@empty\let\@evenfoot\@oddfoot}
 
-
+\def\ps@partrun{%\let\@mkboth\@gobbletwo
+     \def\@oddhead{\top@cornermarks\hfill\PageNumFont\thepage}%\@empty
+     \let\@oddfoot\@empty%{\reset@font\hfil\thepage\hfil}
+     \let\@evenhead\@empty\let\@evenfoot\@oddfoot}
 
 \def\even@head{%
 \top@cornermarks
@@ -633,7 +636,7 @@
                \if@openright
                 \null
                 \thispagestyle{empty}%
-                \newpage
+                \newpage\pagestyle{partrun}
                \fi
               \fi
               \if@tempswa

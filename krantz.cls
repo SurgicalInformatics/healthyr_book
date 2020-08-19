@@ -1174,7 +1174,7 @@
 \newlength\section@toc@skip
 \section@toc@skip1.5em
 \newlength\SectionTOCWidth
-\SectionTOCWidth2.3em
+\SectionTOCWidth2.8em
 \def\l@section#1#2{%
   \toc@draw
   \gdef\toc@draw{\draw@section{#1}{#2}}}
@@ -1185,7 +1185,7 @@
 \subsection@toc@skip\section@toc@skip
 \advance\subsection@toc@skip\SectionTOCWidth
 \newlength\SubSectionTOCWidth
-\SubSectionTOCWidth3.2em
+\SubSectionTOCWidth3.6em
 \def\l@subsection#1#2{%
   \toc@draw
   \gdef\toc@draw{\draw@subsection{#1}{#2}}}
@@ -1439,33 +1439,33 @@
           \hbox to24\p@{\hfil #5}\fi
       \par}\fi}
 
-\newcommand\listoffigures{%
-    \if@twocolumn
-      \@restonecoltrue\onecolumn
-    \else
-      \@restonecolfalse
-    \fi
-    \chapter*{\listfigurename}%
-      \@mkboth{\MakeUppercase\listfigurename}%
-              {\MakeUppercase\listfigurename}%
-    \@starttoc{lof}%
-    \if@restonecol\twocolumn\fi
-    }
-\newcommand*\l@figure{\@dottedtocline{1}{1.5em}{2.3em}}
-\newcommand\listoftables{%
-    \if@twocolumn
-      \@restonecoltrue\onecolumn
-    \else
-      \@restonecolfalse
-    \fi
-    \chapter*{\listtablename}%
-      \@mkboth{%
-          \MakeUppercase\listtablename}%
-         {\MakeUppercase\listtablename}%
-    \@starttoc{lot}%
-    \if@restonecol\twocolumn\fi
-    }
-\let\l@table\l@figure
+\newcommand\listoffigures{}%
+%    \if@twocolumn
+%      \@restonecoltrue\onecolumn
+%    \else
+%      \@restonecolfalse
+%    \fi
+%    \chapter*{\listfigurename}%
+%      \@mkboth{\MakeUppercase\listfigurename}%
+%              {\MakeUppercase\listfigurename}%
+%    \@starttoc{lof}%
+%    \if@restonecol\twocolumn\fi
+%    }
+%\newcommand*\l@figure{\@dottedtocline{1}{1.5em}{2.3em}}
+\newcommand\listoftables{}%
+%    \if@twocolumn
+%      \@restonecoltrue\onecolumn
+%    \else
+%      \@restonecolfalse
+%    \fi
+%    \chapter*{\listtablename}%
+%      \@mkboth{%
+%          \MakeUppercase\listtablename}%
+%         {\MakeUppercase\listtablename}%
+%    \@starttoc{lot}%
+%    \if@restonecol\twocolumn\fi
+%    }
+%\let\l@table\l@figure
 \newdimen\bibindent
 \setlength\bibindent{1.5em}
 \newenvironment{thebibliography}[1]

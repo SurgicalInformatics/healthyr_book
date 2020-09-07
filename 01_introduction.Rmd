@@ -184,7 +184,7 @@ For finding help on things you have not used before, it is best to Google it.
 
 R has about 2 million users so someone somewhere has probably had the same question or problem.
 
-RStudio also has a Help drop-down menu at the very top (same row where you find "File", "Edit, ...). 
+RStudio also has a Help drop-down menu at the very top (same row where you find "File", "Edit", ...). 
 The most notable things in the Help drop-down menu are the Cheatsheets. 
 These tightly packed two-pagers include many of the most useful functions from `tidyverse` packages. 
 They are not particularly easy to learn from, but invaluable as an *aide-mémoire*. 
@@ -226,7 +226,7 @@ After installing RStudio, you should go change two small but important things in
 1. **Uncheck** "Restore .RData into Workspace on startup"
 2. Set "Save .RData on exit" to **Never**
 
-```{r chap01-fig-settings, echo = FALSE, fig.cap = "Configuring your RStudio Tools -> Global Options:  Untick \"Restore .RData into Workspace on Exit\" and Set \"Save .RData on exit\" to Never.", out.width="100%"}
+```{r chap01-fig-settings, echo = FALSE, fig.cap = "Configuring your RStudio Tools -> Global Options:  Untick \`\`Restore .RData into Workspace on Exit\" and Set \'\'Save .RData on exit\" to Never.", out.width="100%"}
 knitr::include_graphics("images/chapter01/rstudio_settings.png")
 ```
 

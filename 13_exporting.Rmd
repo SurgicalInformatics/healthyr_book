@@ -113,7 +113,7 @@ table1 <- colon_s %>%
                      add_dependent_label=TRUE,
                      dependent_label_prefix = "Exposure: ")
 table1 %>% 
-  mykable(caption = "Exporting 'table 1': Adjusting labels and output.") %>% 
+  mykable(caption = "Exporting table 1: Adjusting labels and output.") %>% 
   column_spec(1, width = "3.5cm")
 ```
 
@@ -387,7 +387,7 @@ This becomes more difficult if you have a complicated document which includes lo
 
 For instance, if you use the package `kableExtra()` to customise your tables, you can only export to HTML and PDF.
 Knitting to Word will not currently work with advanced `kableExtra` functions in your R Markdown document.
-Similarly, `flextable` and `officer` are exellent packages for a love story between R Markdown and Word/MS Office, but they do not work for HTML or PDF.
+Similarly, `flextable` and `officer` are excellent packages for a love story between R Markdown and Word/MS Office, but they do not work for HTML or PDF.
 
 ## Summary
 

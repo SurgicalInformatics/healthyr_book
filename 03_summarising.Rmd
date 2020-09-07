@@ -453,7 +453,9 @@ For example, here we want to collect all the columns that include the words Fema
 
 ```{r}
 gbd_wide %>% 
-  pivot_longer(matches("Female|Male"), names_to = "sex_year", values_to = "deaths_millions") %>% 
+  pivot_longer(matches("Female|Male"), 
+               names_to = "sex_year", 
+               values_to = "deaths_millions") %>% 
   slice(1:6)
 ```
 
@@ -477,7 +479,9 @@ We can use the `separate()` function to deal with that.
 ```{r}
 gbd_wide %>% 
   # same pivot_longer as before
-  pivot_longer(matches("Female|Male"), names_to = "sex_year", values_to = "deaths_millions") %>% 
+  pivot_longer(matches("Female|Male"), 
+               names_to = "sex_year", 
+               values_to = "deaths_millions") %>% 
   separate(sex_year, into = c("sex", "year"), sep = "_", convert = TRUE)
 ```
 
@@ -506,7 +510,7 @@ gbd_long %>%
   slice(1:3)
 ```
 
-The `-` doesn't work for categorical variables, they need to be put in `desc()` for arranging in descending order:
+The `-` doesn't work for categorical variables; they need to be put in `desc()` for arranging in descending order:
 
 ```{r}
 gbd_long %>% 
@@ -669,7 +673,7 @@ full_join(summary_data1, summary_data2) %>%
 
 Instead of creating the two summarised tibbles and using a `full_join()`, achieve the same result as in the previous exercise with a single pipeline using `summarise()` and then `mutate()`.
 
-Hint: you have to do it the other way round, so `group_by(year, cause) %>% summarise(...)` first, then `group_by(year) %>% mutate()`.
+Hint: you have to do it the other way around, so `group_by(year, cause) %>% summarise(...)` first, then `group_by(year) %>% mutate()`.
 
 Bonus: `select()` columns `year`, `cause`, `percentage`, then `pivot_wider()` the `cause` variable using `percentage` as values.
 

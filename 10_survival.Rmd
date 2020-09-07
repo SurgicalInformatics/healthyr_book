@@ -354,8 +354,7 @@ melanoma <- melanoma %>%
 explanatory <- c("age", "sex", "thickness", "ulcer", 
                 "cluster(hospital_id)")
 melanoma %>% 
-	finalfit(dependent_os, explanatory) %>% 
-	mykable(caption = "Cox Proportional Hazards: Overall survival following surgery for melanoma with robust standard errors (cluster model).")
+	finalfit(dependent_os, explanatory)
 ```
 
 ```{r echo=FALSE}
@@ -367,7 +366,8 @@ melanoma <- melanoma %>%
 explanatory <- c("age", "sex", "thickness", "ulcer", 
                 "cluster(hospital_id)")
 melanoma %>% 
-	finalfit(dependent_os, explanatory)
+	finalfit(dependent_os, explanatory) %>% 
+	mykable(caption = "Cox Proportional Hazards: Overall survival following surgery for melanoma with robust standard errors (cluster model).")
 ```
 
 ```{r eval=FALSE}

@@ -214,7 +214,7 @@
 
 \title{R for Health Data Science}
 \author{Ewen Harrison and Riinu Pius}
-\date{2020-08-19}
+\date{2020-09-04}
 
 \begin{document}
 \maketitle
@@ -247,17 +247,6 @@ William Gibson
 \chapter*{Preface}\label{preface}}
 
 
-\textbf{For draft version}
-
-This is the electronic version of the HealthyR book to be published by CRC Press/Chapman \& Hall in November 2020.
-The electronic version will always be freely available.
-
-HealthyR resources: \href{https://healthyr.surgicalinformatics.org/}{healthyr.surgicalinformatics.org}
-
-Version 0.9.7
-
-This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 United States License. To view a copy of this license, visit \url{http://creativecommons.org/licenses/by-nc-nd/3.0/us/}
-
 \hypertarget{why-read-this-book}{%
 \section*{Why read this book}\label{why-read-this-book}}
 
@@ -267,9 +256,9 @@ We are drowning in information but starved for knowledge.\\
 John Naisbitt
 \end{quote}
 
-In this age of information, the manipulation, analysis and interpretation of data has become a fundamental part of professional life.
+In this age of information, the manipulation, analysis and interpretation of data have become a fundamental part of professional life.
 Nowhere more so than in the delivery of healthcare.
-From the understanding of disease and the development of new treatments, to the diagnosis and management of individual patients, the use of data and technology is now an integral part of the business of healthcare.
+From the understanding of disease and the development of new treatments, to the diagnosis and management of individual patients, the use of data and technology are now an integral part of the business of healthcare.
 
 Those working in healthcare interact daily with data, often without realising it.
 The conversion of this avalanche of information to useful knowledge is essential for high-quality patient care.
@@ -278,7 +267,7 @@ This democratisation is driven in part by the open source software movement -- n
 
 The statistical programming language, R, is firmly at the heart of this.
 
-This book will take an individual with little or no experience in data science, all the way through to the execution of sophisticated analyses.
+This book will take an individual with little or no experience in data science all the way through to the execution of sophisticated analyses.
 We emphasise the importance of truly understanding the underlying data with liberal use of plotting, rather than relying on opaque and possibly poorly understood statistical tests.
 There are numerous examples included that can be adapted for your own data, together with our own R packages with easy-to-use functions.
 
@@ -286,21 +275,27 @@ We have a lot of fun teaching this course and focus on making the material as ac
 We limit equations to a minimum in favour of code, and use examples rather than lengthy explanations.
 We are grateful to the many individuals and students who have helped refine this book and welcome suggestions and bug reports via \url{https://github.com/SurgicalInformatics}.
 
+\begin{flushright}
 Ewen Harrison and Riinu Pius
 
-\hypertarget{acknowledgments}{%
-\section*{Acknowledgments}\label{acknowledgments}}
+Usher Institute
+
+University of Edinburgh  
+\end{flushright}
+
+\hypertarget{contributors}{%
+\section*{Contributors}\label{contributors}}
 
 
-Katie Connor, Tom Drake, Cameron Fairfield, Peter Hall, Stephen Knight, Kenneth McLean, Lisa Norman, Katie Shaw, Michael Ramage, Einar Pius, Olivia Swann.
+We are indebted to the following people who have generously contributed time and material to this book: Katie Connor, Tom Drake, Cameron Fairfield, Peter Hall, Stephen Knight, Kenneth McLean, Lisa Norman, Katie Shaw, Michael Ramage, Einar Pius, and Olivia Swann.
 
 \hypertarget{about-the-authors}{%
 \chapter*{About the Authors}\label{about-the-authors}}
 
 
-Ewen is a surgeon and Riinu is a physicist.
-And they're both data scientists too.
-They dabble with a few programming languages and are generally all over technology.
+Ewen Harrison is a surgeon and Riinu Pius is a physicist.
+And they're both data scientists, too.
+They dabble in a few programming languages and are generally all over technology.
 They are most enthusiastic about the R statistical programming language and have a combined experience of 25 years using it.
 They work at the University of Edinburgh and have taught R to hundreds of healthcare professionals and researchers.
 
@@ -533,7 +528,7 @@ For finding help on things you have not used before, it is best to Google it.
 
 R has about 2 million users so someone somewhere has probably had the same question or problem.
 
-RStudio also has a Help drop-down menu at the very top (same row where you find ``File'', "Edit, \ldots).
+RStudio also has a Help drop-down menu at the very top (same row where you find ``File'', ``Edit'', \ldots).
 The most notable things in the Help drop-down menu are the Cheatsheets.
 These tightly packed two-pagers include many of the most useful functions from \texttt{tidyverse} packages.
 They are not particularly easy to learn from, but invaluable as an \emph{aide-mémoire}.
@@ -581,7 +576,7 @@ After installing RStudio, you should go change two small but important things in
 \end{enumerate}
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{images/chapter01/rstudio_settings} \caption{Configuring your RStudio Tools -> Global Options:  Untick "Restore .RData into Workspace on Exit" and Set "Save .RData on exit" to Never.}\label{fig:chap01-fig-settings}
+\includegraphics[width=1\linewidth]{images/chapter01/rstudio_settings} \caption{Configuring your RStudio Tools -> Global Options:  Untick ``Restore .RData into Workspace on Exit" and Set ''Save .RData on exit" to Never.}\label{fig:chap01-fig-settings}
 \end{figure}
 
 This does not mean you can't or shouldn't save your work in \texttt{.RData/.rda} files.
@@ -1223,7 +1218,7 @@ A lot more about factor handling will be covered later (\ref{chap08-h1}).
 R is good for working with dates.
 For example, it can calculate the number of days/weeks/months between two dates, or it can be used to find what future date is (e.g., ``what's the date exactly 60 days from now?'').
 It also knows about time zones and is happy to parse dates in pretty much any format - as long as you tell R how your date is formatted (e.g., day before month, month name abbreviated, year in 2 or 4 digits, etc.).
-Since R displays dates and times between quotes (""), they look similar to characters.
+Since R displays dates and times between quotes (`` ''), they look similar to characters.
 However, it is important to know whether R has understood which of your columns contain date/time information, and which are just normal characters.
 
 \begin{Shaded}
@@ -1235,7 +1230,7 @@ However, it is important to know whether R has understood which of your columns 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "2020-08-19 13:29:40 BST"
+## [1] "2020-09-04 16:34:58 BST"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1259,7 +1254,7 @@ But if we try to calculate the difference between these two dates, we get an err
 \end{Shaded}
 
 \begin{verbatim}
-## Error in `-.POSIXt`(my_datetime, current_datetime): can only subtract from "POSIXt" objects
+## [1] "Error in `-.POSIXt`(my_datetime, current_datetime)"
 \end{verbatim}
 
 That's because when we assigned a value to \texttt{my\_datetime}, R assumed the simpler type for it - so a character.
@@ -1307,7 +1302,7 @@ Calculating the difference will now work:
 \end{Shaded}
 
 \begin{verbatim}
-## Time difference of 103.9794 days
+## Time difference of 87.85071 days
 \end{verbatim}
 
 Since R knows this is a difference between two date/time objects, it prints them in a nicely readable way.
@@ -1333,7 +1328,7 @@ This is useful if we want to apply this time difference on another date, e.g.:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "2021-04-16 11:30:19 UTC"
+## [1] "2021-03-31 08:25:01 UTC"
 \end{verbatim}
 
 But if we want to use the number of days in a normal calculation, e.g., what if a measurement increased by 560 arbitrary units during this time period.
@@ -1346,7 +1341,7 @@ We might want to calculate the increase per day like this:
 \end{Shaded}
 
 \begin{verbatim}
-## Error in `/.difftime`(560, my_datesdiff): second argument of / cannot be a "difftime" object
+## [1] "Error in `/.difftime`(560, my_datesdiff)"
 \end{verbatim}
 
 Doesn't work, does it.
@@ -1359,7 +1354,7 @@ We need to convert \texttt{my\_datesdiff} (which is a difftime value) into a num
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 5.385682
+## [1] 6.37445
 \end{verbatim}
 
 The \textbf{lubridate} package comes with several convenient functions for parsing dates, e.g., \texttt{ymd()}, \texttt{mdy()}, \texttt{ymd\_hm()}, etc. - for a full list see \url{lubridate.tidyverse.org}.
@@ -1411,7 +1406,7 @@ Furthermore, the same date/time specifiers can be used to rearrange your date an
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "2020-08-19 13:29:40 BST"
+## [1] "2020-09-04 16:34:58 BST"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1421,7 +1416,7 @@ Furthermore, the same date/time specifiers can be used to rearrange your date an
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "13:29 on August-19 (2020)"
+## [1] "16:34 on September-04 (2020)"
 \end{verbatim}
 
 You can even add plain text into the \texttt{format()} function, R will know to put the right date/time values where the \texttt{\%} are:
@@ -1433,7 +1428,7 @@ You can even add plain text into the \texttt{format()} function, R will know to 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Happy days, the current time is 13:29 August-19 (2020)!"
+## [1] "Happy days, the current time is 16:34 September-04 (2020)!"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1443,7 +1438,7 @@ You can even add plain text into the \texttt{format()} function, R will know to 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Happy days, the current time is 13:29 August-19 (2020)!"
+## [1] "Happy days, the current time is 16:34 September-04 (2020)!"
 \end{verbatim}
 
 \hypertarget{chap02-objects-functions}{%
@@ -1458,7 +1453,7 @@ This is usually something with rows and columns much like the example in Table \
 
 \begin{table}
 
-\caption{\label{tab:chap2-tab-examp1}Example of data in columns and rows, including missing values denoted `NA` (Not applicable/Not available). Once this dataset has been read into R it gets called dataframe/tibble.}
+\caption{\label{tab:chap2-tab-examp1}Example of data in columns and rows, including missing values denoted NA (Not applicable/Not available). Once this dataset has been read into R it gets called dataframe/tibble.}
 \centering
 \fontsize{9}{11}\selectfont
 \begin{tabular}[t]{rlrrr}
@@ -1664,7 +1659,7 @@ Including this means you can always be clear on when the results were last updat
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "2020-08-19 13:29:40 BST"
+## [1] "2020-09-04 16:34:58 BST"
 \end{verbatim}
 
 \hypertarget{working-with-objects}{%
@@ -1801,7 +1796,7 @@ Note how the example above uses both operators: the assignment arrow for saving 
 \index{pipe@\textbf{pipe}}
 
 The pipe - denoted \texttt{\%\textgreater{}\%} - is probably the oddest looking thing you'll see in this book.
-But please bear with; it is not as scary as it looks!
+But please bear with us; it is not as scary as it looks!
 Furthermore, it is super useful.
 We use the pipe to send objects into functions.
 
@@ -1969,7 +1964,7 @@ It happens so often that the error the \texttt{filter()} function gives when usi
 \end{verbatim}
 
 \begin{quote}
-The answer to 'do you need ==?" is almost always, ``Yes R, I do, thank you''.
+The answer to ``do you need ==?'' is almost always, ``Yes R, I do, thank you''.
 \end{quote}
 
 But that's just because \texttt{filter()} is a clever cookie and is used to this common mistake.
@@ -2514,7 +2509,7 @@ Finally, the mutate function can be used to create a new column with a summarise
 ## 3 ID3   Treatment         3.7 2019-03-04 14:00:00             3.33
 \end{verbatim}
 
-Which in return can be useful for calculating a standardized measurement (i.e.~relative to the mean):
+Which in return can be useful for calculating a standardized measurement (i.e., relative to the mean):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3791,7 +3786,9 @@ For example, here we want to collect all the columns that include the words Fema
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{gbd_wide }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\KeywordTok{matches}\NormalTok{(}\StringTok{"Female|Male"}\NormalTok{), }\DataTypeTok{names_to =} \StringTok{"sex_year"}\NormalTok{, }\DataTypeTok{values_to =} \StringTok{"deaths_millions"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\KeywordTok{matches}\NormalTok{(}\StringTok{"Female|Male"}\NormalTok{), }
+               \DataTypeTok{names_to =} \StringTok{"sex_year"}\NormalTok{, }
+               \DataTypeTok{values_to =} \StringTok{"deaths_millions"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -3841,7 +3838,9 @@ We can use the \texttt{separate()} function to deal with that.
 \begin{Highlighting}[]
 \NormalTok{gbd_wide }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\CommentTok{# same pivot_longer as before}
-\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\KeywordTok{matches}\NormalTok{(}\StringTok{"Female|Male"}\NormalTok{), }\DataTypeTok{names_to =} \StringTok{"sex_year"}\NormalTok{, }\DataTypeTok{values_to =} \StringTok{"deaths_millions"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\KeywordTok{matches}\NormalTok{(}\StringTok{"Female|Male"}\NormalTok{), }
+               \DataTypeTok{names_to =} \StringTok{"sex_year"}\NormalTok{, }
+               \DataTypeTok{values_to =} \StringTok{"deaths_millions"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{separate}\NormalTok{(sex_year, }\DataTypeTok{into =} \KeywordTok{c}\NormalTok{(}\StringTok{"sex"}\NormalTok{, }\StringTok{"year"}\NormalTok{), }\DataTypeTok{sep =} \StringTok{"_"}\NormalTok{, }\DataTypeTok{convert =} \OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -3913,7 +3912,7 @@ For numeric variables, we can just use a \texttt{-} to sort in descending order:
 ## 3 Non-communicable diseases  1990 Male             13.91
 \end{verbatim}
 
-The \texttt{-} doesn't work for categorical variables, they need to be put in \texttt{desc()} for arranging in descending order:
+The \texttt{-} doesn't work for categorical variables; they need to be put in \texttt{desc()} for arranging in descending order:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4217,7 +4216,7 @@ Example result for a single year:
 
 Instead of creating the two summarised tibbles and using a \texttt{full\_join()}, achieve the same result as in the previous exercise with a single pipeline using \texttt{summarise()} and then \texttt{mutate()}.
 
-Hint: you have to do it the other way round, so \texttt{group\_by(year,\ cause)\ \%\textgreater{}\%\ summarise(...)} first, then \texttt{group\_by(year)\ \%\textgreater{}\%\ mutate()}.
+Hint: you have to do it the other way around, so \texttt{group\_by(year,\ cause)\ \%\textgreater{}\%\ summarise(...)} first, then \texttt{group\_by(year)\ \%\textgreater{}\%\ mutate()}.
 
 Bonus: \texttt{select()} columns \texttt{year}, \texttt{cause}, \texttt{percentage}, then \texttt{pivot\_wider()} the \texttt{cause} variable using \texttt{percentage} as values.
 
@@ -4360,8 +4359,8 @@ We are using the gapminder dataset (\url{https://www.gapminder.org/data}) that h
 \end{Shaded}
 
 \begin{verbatim}
-## Rows: 1,704
-## Columns: 6
+## Observations: 1,704
+## Variables: 6
 ## $ country   <fct> Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afgha...
 ## $ continent <fct> Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asi...
 ## $ year      <int> 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 199...
@@ -5783,7 +5782,7 @@ Look at the relative font sizes of the two versions of the \texttt{ggsave()} cal
 \end{Shaded}
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{images/chapter05/healthyr_ggsave} \caption{Experimenting with the width and height options within `ggsave()` can be used to quickly change how big or small some of the text on your plot looks.}\label{fig:chap05-fig-ggsave}
+\includegraphics[width=1\linewidth]{images/chapter05/healthyr_ggsave} \caption{Experimenting with the width and height options within ggsave() can be used to quickly change how big or small some of the text on your plot looks.}\label{fig:chap05-fig-ggsave}
 \end{figure}
 
 \hypertarget{part-data-analysis}{%
@@ -5923,7 +5922,7 @@ gdpPercap & <dbl> & 1704 & 0 & 7215.3 & 9857.5 & 3531.8\\
 label & var\_type & n & missing\_n & levels\_n & levels & levels\_count\\
 \midrule
 country & <fct> & 1704 & 0 & 142 & - & -\\
-continent & <fct> & 1704 & 0 & 5 & "Africa", "Americas", "Asia", "Europe", "Oceania" & 624, 300, 396, 360, 24\\
+continent & <fct> & 1704 & 0 & 5 & ``Africa", ``Americas", ``Asia", ``Europe", ``Oceania" & 624, 300, 396, 360, 24\\
 \bottomrule
 \end{tabular}}
 \end{table}
@@ -5987,7 +5986,7 @@ Quantile-quantile sounds more complicated than it really is.
 It is a graphical method for comparing the distribution (think shape) of our own data to a theoretical distribution, such as the normal distribution.
 In this context, quantiles are just cut points which divide our data into bins each containing the same number of observations.
 For example, if we have the life expectancy for 100 countries, then quartiles (note the quar-) for life expectancy are the three ages which split the observations into 4 groups each containing 25 countries.
-A Q-Q plot simply plots the quantiles for our data against the theoretical quantiles for a particular distributions (the default shown below is the normal distribution).
+A Q-Q plot simply plots the quantiles for our data against the theoretical quantiles for a particular distribution (the default shown below is the normal distribution).
 If our data follow that distribution (e.g., normal), then our data points fall on the theoretical straight line.
 
 \begin{Shaded}
@@ -7236,7 +7235,7 @@ If the observations are not equally distributed around the line, the histogram o
 
 The distance of the observations from the fitted line should be the same on the left side as on the right side.
 Look at the fan-shaped data on the simple regression diagnostics Shiny app.
-This fan shape can be seen on the residuals vs.~fitted values plot.
+This fan shape can be seen on the residuals vs fitted values plot.
 
 Everything we talk about in this chapter is really about making sure that the line you draw through your data points is valid.
 It is about ensuring that the regression line is appropriate across the range of the explanatory variable and dependent variable.
@@ -8071,9 +8070,9 @@ Time to CHD event & <int> & 3154 & 0 & 2683.9 & 666.5 & 2942.0\\
 \end{tabular}}
 \end{table}
 
-\begin{table}[!h][!h]
+\begin{table}[!h]
 
-\caption{\label{tab:unnamed-chunk-23}WCGS data, ff\_glimpse: categorical.}
+\caption{\label{tab:unnamed-chunk-24}WCGS data, ff\_glimpse: categorical.}
 \centering
 \resizebox{\linewidth}{!}{
 \resizebox{\linewidth}{!}{
@@ -8081,13 +8080,13 @@ Time to CHD event & <int> & 3154 & 0 & 2683.9 & 666.5 & 2942.0\\
 \toprule
 label & var\_type & n & missing\_n & levels\_n & levels & levels\_count\\
 \midrule
-Personality type & <fct> & 3154 & 0 & 4 & "A1", "A2", "B3", "B4" & 264, 1325, 1216, 349\\
-Personality type & <fct> & 3154 & 0 & 2 & "B", "A" & 1565, 1589\\
-Smoking & <fct> & 3154 & 0 & 2 & "Non-smoker", "Smoker" & 1652, 1502\\
+Personality type & <fct> & 3154 & 0 & 4 & ``A1" ``A2" ``B3" ``B4`` & 264, 1325, 1216, 349\\
+Personality type & <fct> & 3154 & 0 & 2 & ``B" ``A`` & 1565, 1589\\
+Smoking & <fct> & 3154 & 0 & 2 & ``Non-smoker" ``Smoker`` & 1652, 1502\\
 \addlinespace
-Corneal arcus & <fct> & 3152 & 2 & 2 & "No", "Yes", "(Missing)" & 2211, 941, 2\\
-CHD event & <fct> & 3154 & 0 & 2 & "No", "Yes" & 2897, 257\\
-Type CHD & <fct> & 3154 & 0 & 4 & "No", "MI\_SD", "Silent\_MI", "Angina" & 2897, 135, 71, 51\\
+Corneal arcus & <fct> & 3152 & 2 & 2 & ``No" ``Yes" ``(Missing)`` & 2211, 941, 2\\
+CHD event & <fct> & 3154 & 0 & 2 & ``No" ``Yes`` & 2897, 257\\
+Type CHD & <fct> & 3154 & 0 & 4 & ``No" ``MI\_SD" ``Silent\_MI" ``Angina`` & 2897, 135, 71, 51\\
 \bottomrule
 \end{tabular}}}
 \end{table}
@@ -8111,11 +8110,11 @@ Type CHD & <fct> & 3154 & 0 & 4 & "No", "MI\_SD", "Silent\_MI", "Angina" & 2897,
 
 \begin{figure}
 \centering
-\includegraphics{07_linear_regression_files/figure-latex/chap07-fig-bp-personality_type-1.pdf}
-\caption{(\#fig:chap07-fig-bp-personality\_type)Scatter and line plot. Systolic blood pressure by weight and personality type.}
+\includegraphics{07_linear_regression_files/figure-latex/chap07-fig-bp-personality-type-1.pdf}
+\caption{\label{fig:chap07-fig-bp-personality-type}Scatter and line plot. Systolic blood pressure by weight and personality type.}
 \end{figure}
 
-From Figure @ref(fig:chap07-fig-bp-personality\_type), we can see that there is a weak relationship between weight and blood pressure.
+From Figure \ref{fig:chap07-fig-bp-personality-type}, we can see that there is a weak relationship between weight and blood pressure.
 
 In addition, there is really no meaningful effect of personality type on blood pressure.
 This is really important because, as you will see below, we are about to ``find'' some highly statistically significant effects in a model.
@@ -8146,7 +8145,7 @@ Summary statistics, together with a univariable and a multivariable regression a
 
 \begin{table}[!h]
 
-\caption{\label{tab:unnamed-chunk-25}Linear regression: Systolic blood pressure by personality type.}
+\caption{\label{tab:unnamed-chunk-26}Linear regression: Systolic blood pressure by personality type.}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{>{\raggedright\arraybackslash}p{4cm}lrrrr}
@@ -8161,7 +8160,7 @@ Personality type & B & Mean (sd) & 127.5 (14.4) & - & -\\
 
 \begin{table}[!h]
 
-\caption{\label{tab:unnamed-chunk-25}Model metrics: Systolic blood pressure by personality type.}
+\caption{\label{tab:unnamed-chunk-26}Model metrics: Systolic blood pressure by personality type.}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{>{\raggedright\arraybackslash}p{18cm}}
@@ -8219,7 +8218,7 @@ Personality type & B & Mean (sd) & 127.5 (14.4) & - & -\\
 
 \begin{table}[!h]
 
-\caption{\label{tab:chap07-tab-bp-personality-weight}Multivariable linear regression metrics: Systolic blood pressure by personality type and weight.}
+\caption{\label{tab:chap07-tab-bp-personality-weight2}Multivariable linear regression metrics: Systolic blood pressure by personality type and weight.}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{>{\raggedright\arraybackslash}p{18cm}}
@@ -8236,7 +8235,7 @@ The output shows us the range for weight (78 to 320 pounds) and the mean (standa
 The coefficient with 95\% confidence interval is provided by default.
 This is interpreted as: for each pound increase in weight, there is on average a corresponding increase of 0.18 mmHg in systolic blood pressure.
 
-Note the difference in the interpretation of continuous and categorical variables in the regression model output (Figure \ref{tab:chap07-tab-bp-personality-weight}).
+Note the difference in the interpretation of continuous and categorical variables in the regression model output (Table \ref{tab:chap07-tab-bp-personality-weight}).
 
 The adjusted R-squared is now higher - the personality and weight together explain 6.8\% of the variation in blood pressure.
 
@@ -8259,7 +8258,7 @@ Let's now add in other variables that may influence systolic blood pressure.
 
 \begin{table}[!h]
 
-\caption{\label{tab:unnamed-chunk-28}Multivariable linear regression: Systolic blood pressure by available explanatory variables.}
+\caption{\label{tab:unnamed-chunk-29}Multivariable linear regression: Systolic blood pressure by available explanatory variables.}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{>{\raggedright\arraybackslash}p{4cm}lrrrr}
@@ -8282,7 +8281,7 @@ Smoking & Non-smoker & Mean (sd) & 128.6 (15.6) & - & -\\
 
 \begin{table}[!h]
 
-\caption{\label{tab:unnamed-chunk-28}Model metrics: Systolic blood pressure by available explanatory variables.}
+\caption{\label{tab:unnamed-chunk-29}Model metrics: Systolic blood pressure by available explanatory variables.}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{>{\raggedright\arraybackslash}p{18cm}}
@@ -8335,7 +8334,7 @@ Weight and height can now be replaced in the model with BMI.
 
 \begin{table}[!h]
 
-\caption{\label{tab:unnamed-chunk-31}Multivariable linear regression: Systolic blood pressure using BMI.}
+\caption{\label{tab:unnamed-chunk-32}Multivariable linear regression: Systolic blood pressure using BMI.}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{>{\raggedright\arraybackslash}p{4cm}lrrrr}
@@ -8357,7 +8356,7 @@ Smoking & Non-smoker & Mean (sd) & 128.6 (15.6) & - & -\\
 
 \begin{table}[!h]
 
-\caption{\label{tab:unnamed-chunk-31}Model metrics: Systolic blood pressure using BMI.}
+\caption{\label{tab:unnamed-chunk-32}Model metrics: Systolic blood pressure using BMI.}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{>{\raggedright\arraybackslash}p{18cm}}
@@ -8389,7 +8388,7 @@ This can be easily done using the \texttt{finalfit} \texttt{explanatory\_multi} 
 
 \begin{table}[!h]
 
-\caption{\label{tab:unnamed-chunk-33}Multivariable linear regression: Systolic blood pressure by available explanatory variables and reduced model.}
+\caption{\label{tab:unnamed-chunk-34}Multivariable linear regression: Systolic blood pressure by available explanatory variables and reduced model.}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{>{\raggedright\arraybackslash}p{4cm}lr>{\raggedleft\arraybackslash}p{4cm}>{\raggedleft\arraybackslash}p{4cm}>{\raggedleft\arraybackslash}p{4cm}r}
@@ -8411,7 +8410,7 @@ Smoking & Non-smoker & Mean (sd) & 128.6 (15.6) & - & - & -\\
 
 \begin{table}[!h]
 
-\caption{\label{tab:unnamed-chunk-33}Model metrics: Systolic blood pressure by available explanatory variables (top) with reduced model (bottom).}
+\caption{\label{tab:unnamed-chunk-34}Model metrics: Systolic blood pressure by available explanatory variables (top) with reduced model (bottom).}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{>{\raggedright\arraybackslash}p{18cm}}
@@ -8457,12 +8456,12 @@ We can check the assumptions as above.
 
 \begin{figure}
 \centering
-\includegraphics{07_linear_regression_files/figure-latex/unnamed-chunk-36-1.pdf}
-\caption{\label{fig:unnamed-chunk-36}Diagnostic plots: Linear regression model of systolic blood pressure.}
+\includegraphics{07_linear_regression_files/figure-latex/unnamed-chunk-37-1.pdf}
+\caption{\label{fig:unnamed-chunk-37}Diagnostic plots: Linear regression model of systolic blood pressure.}
 \end{figure}
 
 An important message in the results relates to the highly significant \emph{p}-values in the table above.
-Should we conclude that in a "multivariable regression model controlling for BMI, age, and serum cholesterol, blood pressure was significantly elevated in those with a Type A personality (1.56 (0.57 to 2.56, p=0.002) compared with Type B?
+Should we conclude that in a multivariable regression model controlling for BMI, age, and serum cholesterol, blood pressure was significantly elevated in those with a Type A personality (1.56 (0.57 to 2.56, p=0.002) compared with Type B?
 The \emph{p}-value looks impressive, but the actual difference in blood pressure is only 1.6 mmHg.
 Even at a population level, that may not be clinically significant, fitting with our first thoughts when we saw the scatter plot.
 
@@ -8544,7 +8543,7 @@ Solution to Exercise \ref{chap07-ex2}:
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{07_linear_regression_files/figure-latex/unnamed-chunk-37-1.pdf}
+\includegraphics{07_linear_regression_files/figure-latex/unnamed-chunk-38-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8560,7 +8559,7 @@ Solution to Exercise \ref{chap07-ex2}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{07_linear_regression_files/figure-latex/unnamed-chunk-37-2.pdf}
+\includegraphics{07_linear_regression_files/figure-latex/unnamed-chunk-38-2.pdf}
 
 Solution to Exercise \ref{chap07-ex3}:
 
@@ -8574,7 +8573,7 @@ Solution to Exercise \ref{chap07-ex3}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{07_linear_regression_files/figure-latex/unnamed-chunk-38-1.pdf}
+\includegraphics{07_linear_regression_files/figure-latex/unnamed-chunk-39-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8591,7 +8590,7 @@ Solution to Exercise \ref{chap07-ex3}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{07_linear_regression_files/figure-latex/unnamed-chunk-38-2.pdf}
+\includegraphics{07_linear_regression_files/figure-latex/unnamed-chunk-39-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8608,7 +8607,7 @@ Solution to Exercise \ref{chap07-ex3}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{07_linear_regression_files/figure-latex/unnamed-chunk-38-3.pdf}
+\includegraphics{07_linear_regression_files/figure-latex/unnamed-chunk-39-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8645,7 +8644,7 @@ Solution to Exercise \ref{chap07-ex4}:
 ## Warning: Removed 12 rows containing missing values (geom_point).
 \end{verbatim}
 
-\includegraphics{07_linear_regression_files/figure-latex/unnamed-chunk-39-1.pdf}
+\includegraphics{07_linear_regression_files/figure-latex/unnamed-chunk-40-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9632,7 +9631,7 @@ It allows the principles of linear regression to be applied when outcomes are no
 \index{binary data}
 
 A regression analysis is a statistical approach to estimating the relationships between variables, often by drawing straight lines through data points.
-For instance, we may try to predict blood pressure in a group of patients based on their coffee consumption (Figure \ref{fig:chap07-fig-regression} from Chapter\ref{chap07-h1}).
+For instance, we may try to predict blood pressure in a group of patients based on their coffee consumption (Figure \ref{fig:chap07-fig-regression} from Chapter \ref{chap07-h1}).
 As blood pressure and coffee consumption can be considered on a continuous scale, this is an example of simple linear regression.
 
 Logistic regression is an extension of this, where the variable being predicted is \emph{categorical}.
@@ -9705,8 +9704,8 @@ Why?
 Because in a logistic regression the slopes of fitted lines (coefficients) can be interpreted as odds ratios.
 This is very useful when interpreting the association of a particular predictor with an outcome.
 
-For a given categorical predictor such as smoking, the difference in chance of the outcome occurring for smokers vs non-smokers can be expressed as a ratio of odds or odds ratio Figure \ref{fig:chap09-fig-or}.
-For example, if the odds of a smoker have a CV event are 1.5 and the odds of a non smoker are 1.0, then the odds of a smoker having an event are 1.5-times greater than a non-smoker, odds ratio = 1.5.
+For a given categorical predictor such as smoking, the difference in chance of the outcome occurring for smokers vs non-smokers can be expressed as a ratio of odds or odds ratio (Figure \ref{fig:chap09-fig-or}).
+For example, if the odds of a smoker having a CV event are 1.5 and the odds of a non-smoker are 1.0, then the odds of a smoker having an event are 1.5-times greater than a non-smoker, odds ratio = 1.5.
 
 \begin{figure}
 \centering
@@ -10545,6 +10544,8 @@ We recommend looking at three metrics:
   Hosmer--Lemeshow test, which should be non-significant.
 \end{itemize}
 
+\newpage
+
 \textbf{AIC}
 \index{logistic regression@\textbf{logistic regression}!AIC}
 \index{AIC}
@@ -10673,7 +10674,7 @@ We can either convert age to a categorical variable or include it with a quadrat
 
 \begin{table}[!h]
 
-\caption{\label{tab:unnamed-chunk-22}Multivariable logistic regression: using `cut` to convert a continuous variable as a factor (fit 3).}
+\caption{\label{tab:unnamed-chunk-22}Multivariable logistic regression: using cut to convert a continuous variable as a factor (fit 3).}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{>{\raggedright\arraybackslash}p{3.5cm}lrrrr}
@@ -11973,29 +11974,31 @@ Note \texttt{cluster()} and \texttt{frailty()} terms cannot be combined in the s
 \NormalTok{explanatory <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"age"}\NormalTok{, }\StringTok{"sex"}\NormalTok{, }\StringTok{"thickness"}\NormalTok{, }\StringTok{"ulcer"}\NormalTok{, }
                 \StringTok{"cluster(hospital_id)"}\NormalTok{)}
 \NormalTok{melanoma }\OperatorTok{%>%}\StringTok{ }
-\StringTok{    }\KeywordTok{finalfit}\NormalTok{(dependent_os, explanatory) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{    }\KeywordTok{mykable}\NormalTok{(}\DataTypeTok{caption =} \StringTok{"Cox Proportional Hazards: Overall survival following surgery for melanoma with robust standard errors (cluster model)."}\NormalTok{)}
+\StringTok{    }\KeywordTok{finalfit}\NormalTok{(dependent_os, explanatory)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-##  Dependent: Surv(time, status_os)                   all
-##                       Age (years) Mean (SD) 52.5 (16.7)
-##                               Sex    Female 126 (100.0)
-##                                        Male  79 (100.0)
-##             Tumour thickness (mm) Mean (SD)   2.9 (3.0)
-##                  Ulcerated tumour        No 115 (100.0)
-##                                         Yes  90 (100.0)
-##              cluster(hospital_id)                      
-##           HR (univariable)        HR (multivariable)
-##  1.03 (1.01-1.05, p<0.001) 1.02 (1.00-1.04, p=0.016)
-##                          -                         -
-##  1.93 (1.21-3.07, p=0.006) 1.51 (1.10-2.08, p=0.011)
-##  1.16 (1.10-1.23, p<0.001) 1.10 (1.04-1.17, p<0.001)
-##                          -                         -
-##  3.52 (2.14-5.80, p<0.001) 2.59 (1.61-4.16, p<0.001)
-##                          -                         -
-\end{verbatim}
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-20}Cox Proportional Hazards: Overall survival following surgery for melanoma with robust standard errors (cluster model).}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{llrrr}
+\toprule
+Dependent: Surv(time, status\_os) &   & all & HR (univariable) & HR (multivariable)\\
+\midrule
+Age (years) & Mean (SD) & 52.5 (16.7) & 1.03 (1.01-1.05, p<0.001) & 1.02 (1.00-1.04, p=0.016)\\
+Sex & Female & 126 (100.0) & - & -\\
+ & Male & 79 (100.0) & 1.93 (1.21-3.07, p=0.006) & 1.51 (1.10-2.08, p=0.011)\\
+\addlinespace
+Tumour thickness (mm) & Mean (SD) & 2.9 (3.0) & 1.16 (1.10-1.23, p<0.001) & 1.10 (1.04-1.17, p<0.001)\\
+Ulcerated tumour & No & 115 (100.0) & - & -\\
+ & Yes & 90 (100.0) & 3.52 (2.14-5.80, p<0.001) & 2.59 (1.61-4.16, p<0.001)\\
+\addlinespace
+cluster(hospital\_id) &  &  & - & -\\
+\bottomrule
+\end{tabular}}
+\end{table}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12353,13 +12356,13 @@ This is easy to handle, but unfortunately, data are almost never missing complet
 
 \index{missing data@\textbf{missing data}!missing at random}
 This is confusing and would be better named \emph{missing conditionally at random}.
-Here, missingness in particular variable has an association with one or more other variables in the dataset.
+Here, missingness in a particular variable has an association with one or more other variables in the dataset.
 However, the \emph{actual values of the missing data are random}.
 
 In our example, smoking status is missing for some female patients but not for male patients.
 
 But data is missing from the same number of female smokers as female non-smokers.
-So the complete case female patients have the same characteristics as the missing data female patients.
+So the complete case female patients has the same characteristics as the missing data female patients.
 
 \hypertarget{missing-not-at-random-mnar}{%
 \subsection{Missing not at random (MNAR)}\label{missing-not-at-random-mnar}}
@@ -12626,7 +12629,7 @@ Smoking (MAR) & Non-smoker & 456 (62.3) & 115 (65.3) & 14 (66.7) & 585 (63.0) & 
 \end{table}
 
 \hypertarget{check-for-associations-between-missing-and-observed-data}{%
-\section{Check for associations between missing and observed data`}\label{check-for-associations-between-missing-and-observed-data}}
+\section{Check for associations between missing and observed data}\label{check-for-associations-between-missing-and-observed-data}}
 
 \index{missing data@\textbf{missing data}!associations}
 
@@ -13087,7 +13090,7 @@ Make 10 imputed datasets and run our logistic regression analysis on each set.
 
 \begin{table}[!h]
 
-\caption{\label{tab:unnamed-chunk-23}Regression analysis with missing data: Multiple imputation using `mice()`.}
+\caption{\label{tab:unnamed-chunk-23}Regression analysis with missing data: Multiple imputation using mice().}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{llrrrrrr}
@@ -13804,7 +13807,7 @@ Now generate a final table.\footnote{The \texttt{finalfit} functions used here -
 
 \begin{table}[!h]
 
-\caption{\label{tab:unnamed-chunk-5}Exporting 'table 1': Adjusting labels and output.}
+\caption{\label{tab:unnamed-chunk-5}Exporting table 1: Adjusting labels and output.}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{>{\raggedright\arraybackslash}p{3.5cm}lrrrr}
@@ -14148,7 +14151,7 @@ This becomes more difficult if you have a complicated document which includes lo
 
 For instance, if you use the package \texttt{kableExtra()} to customise your tables, you can only export to HTML and PDF.
 Knitting to Word will not currently work with advanced \texttt{kableExtra} functions in your R Markdown document.
-Similarly, \texttt{flextable} and \texttt{officer} are exellent packages for a love story between R Markdown and Word/MS Office, but they do not work for HTML or PDF.
+Similarly, \texttt{flextable} and \texttt{officer} are excellent packages for a love story between R Markdown and Word/MS Office, but they do not work for HTML or PDF.
 
 \hypertarget{summary-4}{%
 \section{Summary}\label{summary-4}}
@@ -14695,9 +14698,9 @@ R and package versions, \texttt{sessionInfo()}:
 ##   gapminder_0.3.0       GGally_2.0.0          ggfortify_0.4.10     
 ##   ggplot2_3.3.2         kableExtra_1.1.0.9000 knitr_1.29           
 ##   lme4_1.1.23           lubridate_1.7.9       magrittr_1.5         
-##   mice_3.10.0           MissMech_1.0.2        patchwork_1.0.1      
+##   mice_3.10.0           MissMech_1.0.2        patchwork_1.0.0.9000 
 ##   purrr_0.3.4           readr_1.3.1           rmarkdown_2.3        
-##   scales_1.1.1          stringr_1.4.0         survival_3.2.3       
+##   scales_1.1.1          stringr_1.4.0         survival_3.1.11      
 ##   survminer_0.4.7       tibble_3.0.3          tidyr_1.1.0          
 ##   tidyverse_1.3.0
 \end{verbatim}

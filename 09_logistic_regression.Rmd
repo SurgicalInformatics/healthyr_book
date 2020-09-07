@@ -30,7 +30,7 @@ It allows the principles of linear regression to be applied when outcomes are no
 \index{binary data}
 
 A regression analysis is a statistical approach to estimating the relationships between variables, often by drawing straight lines through data points. 
-For instance, we may try to predict blood pressure in a group of patients based on their coffee consumption (Figure \@ref(fig:chap07-fig-regression) from Chapter\@ref(chap07-h1)). 
+For instance, we may try to predict blood pressure in a group of patients based on their coffee consumption (Figure \@ref(fig:chap07-fig-regression) from Chapter \@ref(chap07-h1)). 
 As blood pressure and coffee consumption can be considered on a continuous scale, this is an example of simple linear regression. 
 
 Logistic regression is an extension of this, where the variable being predicted is *categorical*. 
@@ -99,8 +99,8 @@ Why?
 Because in a logistic regression the slopes of fitted lines (coefficients) can be interpreted as odds ratios. 
 This is very useful when interpreting the association of a particular predictor with an outcome. 
 
-For a given categorical predictor such as smoking, the difference in chance of the outcome occurring for smokers vs non-smokers can be expressed as a ratio of odds or odds ratio Figure \@ref(fig:chap09-fig-or).
-For example, if the odds of a smoker have a CV event are 1.5 and the odds of a non smoker are 1.0, then the odds of a smoker having an event are 1.5-times greater than a non-smoker, odds ratio = 1.5. 
+For a given categorical predictor such as smoking, the difference in chance of the outcome occurring for smokers vs non-smokers can be expressed as a ratio of odds or odds ratio (Figure \@ref(fig:chap09-fig-or)).
+For example, if the odds of a smoker having a CV event are 1.5 and the odds of a non-smoker are 1.0, then the odds of a smoker having an event are 1.5-times greater than a non-smoker, odds ratio = 1.5. 
 
 ```{r chap09-fig-or, echo = FALSE, fig.cap="Odds ratios."}
 knitr::include_graphics("images/chapter09/1_or.png", auto_pdf = TRUE)
@@ -659,6 +659,8 @@ We recommend looking at three metrics:
 * C-statistic (area under the receiver operator curve), which should be maximised;
 * Hosmer–Lemeshow test, which should be non-significant. 
 
+\newpage
+
 **AIC**
 \index{logistic regression@\textbf{logistic regression}!AIC}
 \index{AIC}
@@ -760,7 +762,7 @@ melanoma <- melanoma %>%
 
 fit <- melanoma %>% 
   finalfit(dependent, c("ulcer.factor", "age.factor"), metrics = TRUE)
-fit[[1]] %>% mykable(caption = "Multivariable logistic regression: using `cut` to convert a continuous variable as a factor (fit 3).") %>% 
+fit[[1]] %>% mykable(caption = "Multivariable logistic regression: using cut to convert a continuous variable as a factor (fit 3).") %>% 
   column_spec(1, width = "3.5cm")
 fit[[2]] %>% mykable(caption = "Model metrics: using `cut` to convert a continuous variable as a factor (fit 3).", col.names = "") %>% 
   column_spec(1, width = "18cm")

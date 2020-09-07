@@ -88,8 +88,10 @@ sum_gapdata[[1]] %>%
 
 
 ```{r message=FALSE, echo=FALSE}
-sum_gapdata[[2]] %>% 
-  select(-c(5, 9)) %>% 
+t = sum_gapdata[[2]] %>% 
+  select(-c(5, 9))
+t$levels[2] = c("\`\`Africa\", \`\`Americas\", \`\`Asia\", \`\`Europe\", \`\`Oceania\"")
+t %>% 
   kable(row.names = FALSE, align = c("l", "l", "l", "r", "r", "r", "r", "r", "r", "r"), 
         booktabs = TRUE, caption = "Gapminder dataset, ff\\_glimpse: categorical.", 
         linesep = c("", "", "\\addlinespace")) %>%
@@ -140,7 +142,7 @@ Quantile-quantile sounds more complicated than it really is.
 It is a graphical method for comparing the distribution (think shape) of our own data to a theoretical distribution, such as the normal distribution. 
 In this context, quantiles are just cut points which divide our data into bins each containing the same number of observations.
 For example, if we have the life expectancy for 100 countries, then quartiles (note the quar-) for life expectancy are the three ages which split the observations into 4 groups each containing 25 countries. 
-A Q-Q plot simply plots the quantiles for our data against the theoretical quantiles for a particular distributions (the default shown below is the normal distribution). 
+A Q-Q plot simply plots the quantiles for our data against the theoretical quantiles for a particular distribution (the default shown below is the normal distribution). 
 If our data follow that distribution (e.g., normal), then our data points fall on the theoretical straight line.
 
 ```{r chap06-fig-qq-life-year, fig.width=7, fig.height=3.5, fig.cap="Q-Q plot: Country life expectancy by continent and year."}

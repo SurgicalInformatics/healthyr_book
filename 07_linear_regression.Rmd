@@ -119,7 +119,7 @@ If the observations are not equally distributed around the line, the histogram o
 
 The distance of the observations from the fitted line should be the same on the left side as on the right side. 
 Look at the fan-shaped data on the simple regression diagnostics Shiny app. 
-This fan shape can be seen on the residuals vs. fitted values plot. 
+This fan shape can be seen on the residuals vs fitted values plot. 
 
 Everything we talk about in this chapter is really about making sure that the line you draw through your data points is valid.
 It is about ensuring that the regression line is appropriate across the range of the explanatory variable and dependent variable.
@@ -654,17 +654,23 @@ sum_wcgs[[1]] %>%
   select(-c(5, 8, 9, 11, 12)) %>% 
   mykable(caption = "WCGS data, ff\\_glimpse: continuous.") %>%  
   column_spec(1, width = "4cm")
-sum_wcgs[[2]] %>% 
-  select(-c(5, 9)) %>% 
+```
+
+```{r echo=FALSE, message=FALSE}
+t = sum_wcgs[[2]] %>% 
+  select(-c(5, 9))
+t$levels = stringr::str_replace_all(t$levels, "\"", "\\`\\`")
+t$levels = stringr::str_replace_all(t$levels, "``,", "\"")  
+t %>% 
   mykable(caption = "WCGS data, ff\\_glimpse: categorical.") %>%
-  kable_styling(latex_options = c("scale_down", "hold_position")) %>%  
+  kable_styling(latex_options = c("scale_down")) %>%  
   column_spec(6, width = "3cm") %>% 
   column_spec(7, width = "3cm")
 ```
 
 ### Plot the data
 
-```{r chap07-fig-bp-personality_type, fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Systolic blood pressure by weight and personality type."}
+```{r chap07-fig-bp-personality-type, fig.height=3, fig.width=4.5, fig.cap="Scatter and line plot. Systolic blood pressure by weight and personality type."}
 wcgsdata %>%
   ggplot(aes(y = sbp, x = weight,
              colour = personality_2L)) +   # Personality type
@@ -672,7 +678,7 @@ wcgsdata %>%
   geom_smooth(method = "lm", se = FALSE)
 ```
 
-From Figure \@ref(fig:chap07-fig-bp-personality_type), we can see that there is a weak relationship between weight and blood pressure. 
+From Figure \@ref(fig:chap07-fig-bp-personality-type), we can see that there is a weak relationship between weight and blood pressure. 
 
 In addition, there is really no meaningful effect of personality type on blood pressure. 
 This is really important because, as you will see below, we are about to "find" some highly statistically significant effects in a model.
@@ -732,6 +738,10 @@ fit_sbp2 <- wcgsdata %>%
 ```{r chap07-tab-bp-personality-weight, echo=FALSE}
 fit_sbp2[[1]] %>% mykable(caption = "Multivariable linear regression: Systolic blood pressure by personality type and weight.") %>% 
   column_spec(1, width = "4cm")
+```
+
+
+```{r chap07-tab-bp-personality-weight2, echo=FALSE}
 fit_sbp2[[2]] %>% mykable(caption = "Multivariable linear regression metrics: Systolic blood pressure by personality type and weight.", col.names = "") %>% 
   column_spec(1, width = "18cm")
 ```
@@ -741,7 +751,7 @@ The output shows us the range for weight (78 to 320 pounds) and the mean (standa
 The coefficient with 95% confidence interval is provided by default. 
 This is interpreted as: for each pound increase in weight, there is on average a corresponding increase of 0.18 mmHg in systolic blood pressure.
 
-Note the difference in the interpretation of continuous and categorical variables in the regression model output (Figure \@ref(tab:chap07-tab-bp-personality-weight)). 
+Note the difference in the interpretation of continuous and categorical variables in the regression model output (Table \@ref(tab:chap07-tab-bp-personality-weight)). 
 
 The adjusted R-squared is now higher - the personality and weight together explain 6.8% of the variation in blood pressure. 
 
@@ -876,7 +886,7 @@ wcgsdata %>%
 ```
 
 An important message in the results relates to the highly significant *p*-values in the table above. 
-Should we conclude that in a "multivariable regression model controlling for BMI, age, and serum cholesterol, blood pressure was significantly elevated in those with a Type A personality (1.56 (0.57 to 2.56, p=0.002) compared with Type B?
+Should we conclude that in a multivariable regression model controlling for BMI, age, and serum cholesterol, blood pressure was significantly elevated in those with a Type A personality (1.56 (0.57 to 2.56, p=0.002) compared with Type B?
 The *p*-value looks impressive, but the actual difference in blood pressure is only 1.6 mmHg. 
 Even at a population level, that may not be clinically significant, fitting with our first thoughts when we saw the scatter plot. 
 

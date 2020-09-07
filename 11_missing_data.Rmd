@@ -60,13 +60,13 @@ This is easy to handle, but unfortunately, data are almost never missing complet
 ### Missing at random (MAR)
 \index{missing data@\textbf{missing data}!missing at random}
 This is confusing and would be better named *missing conditionally at random*. 
-Here, missingness in particular variable has an association with one or more other variables in the dataset. 
+Here, missingness in a particular variable has an association with one or more other variables in the dataset. 
 However, the *actual values of the missing data are random*.
 
 In our example, smoking status is missing for some female patients but not for male patients. 
 
 But data is missing from the same number of female smokers as female non-smokers. 
-So the complete case female patients have the same characteristics as the missing data female patients.  
+So the complete case female patients has the same characteristics as the missing data female patients.  
 
 ### Missing not at random (MNAR)
 \index{missing data@\textbf{missing data}!missing not at random}
@@ -230,7 +230,7 @@ table1 %>%
   mykable(caption = "Simulated missing completely at random (MCAR) and missing at random (MAR) dataset.")
 ```
 
-## Check for associations between missing and observed data`
+## Check for associations between missing and observed data
 \index{missing data@\textbf{missing data}!associations}
 
 In deciding whether data is MCAR or MAR, one approach is to explore patterns of missingness between levels of included variables. 
@@ -501,7 +501,7 @@ table_imputed <-
 
 ```{r echo=FALSE}
 table_imputed  %>% 
-  mykable(caption = "Regression analysis with missing data: Multiple imputation using `mice()`.")
+  mykable(caption = "Regression analysis with missing data: Multiple imputation using mice().")
 ```
 
 By examining the coefficients, the effect of the imputation compared with the complete case analysis can be seen.

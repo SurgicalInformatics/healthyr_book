@@ -364,7 +364,7 @@ A lot more about factor handling will be covered later (\@ref(chap08-h1)).
 R is good for working with dates. 
 For example, it can calculate the number of days/weeks/months between two dates, or it can be used to find what future date is (e.g., "what's the date exactly 60 days from now?").
 It also knows about time zones and is happy to parse dates in pretty much any format - as long as you tell R how your date is formatted (e.g., day before month, month name abbreviated, year in 2 or 4 digits, etc.).
-Since R displays dates and times between quotes (""), they look similar to characters. 
+Since R displays dates and times between quotes (`` ''), they look similar to characters. 
 However, it is important to know whether R has understood which of your columns contain date/time information, and which are just normal characters.
 
 ```{r, message = FALSE}
@@ -379,9 +379,14 @@ my_datetime
 When printed, the two objects - `current_datetime` and `my_datetime` seem to have a similar format.
 But if we try to calculate the difference between these two dates, we get an error:
 
-```{r, error = TRUE}
+```{r eval=FALSE, include=TRUE}
 my_datetime - current_datetime
 ```
+
+```{r echo=FALSE}
+print("Error in `-.POSIXt`(my_datetime, current_datetime)")
+```
+
 
 That's because when we assigned a value to `my_datetime`, R assumed the simpler type for it - so a character.
 We can check what the type of an object or variable is using the `class()` function:
@@ -419,8 +424,12 @@ ymd_hm("2021-01-02 12:00") + my_datesdiff
 But if we want to use the number of days in a normal calculation, e.g., what if a measurement increased by 560 arbitrary units during this time period.
 We might want to calculate the increase per day like this:
 
-```{r, error = TRUE}
+```{r eval=FALSE, include=TRUE}
 560/my_datesdiff
+```
+
+```{r echo=FALSE}
+print("Error in `/.difftime`(560, my_datesdiff)")
 ```
 
 Doesn't work, does it.
@@ -492,7 +501,7 @@ mydata <- tibble(
 )
 
 mydata %>% 
-  knitr::kable(booktabs = TRUE, caption = "Example of data in columns and rows, including missing values denoted `NA` (Not applicable/Not available). Once this dataset has been read into R it gets called dataframe/tibble.") %>% 
+  knitr::kable(booktabs = TRUE, caption = "Example of data in columns and rows, including missing values denoted NA (Not applicable/Not available). Once this dataset has been read into R it gets called dataframe/tibble.") %>% 
   kableExtra::kable_styling(font_size=9)
 ```
 
@@ -726,7 +735,7 @@ If you use the assignment arrow, an object holding the results will get saved in
 \index{pipe@\textbf{pipe}}
 
 The pipe - denoted `%>%` - is probably the oddest looking thing you'll see in this book. 
-But please bear with; it is not as scary as it looks! 
+But please bear with us; it is not as scary as it looks! 
 Furthermore, it is super useful. 
 We use the pipe to send objects into functions.
 
@@ -836,7 +845,7 @@ gbd_short %>%
   filter(year = 1995)
 ```
 
-> The answer to 'do you need ==?" is almost always, "Yes R, I do, thank you".
+> The answer to "do you need ==?" is almost always, "Yes R, I do, thank you".
 
 But that's just because `filter()` is a clever cookie and is used to this common mistake. 
 There are other useful functions we use these operators in, but they don't always know to tell us that we've just confused `=` for `==`.
@@ -1117,7 +1126,7 @@ typesdata %>%
   mutate(mean_measurement = mean(measurement))
 ```
 
-Which in return can be useful for calculating a standardized measurement (i.e. relative to the mean):
+Which in return can be useful for calculating a standardized measurement (i.e., relative to the mean):
 
 ```{r}
 typesdata %>% 

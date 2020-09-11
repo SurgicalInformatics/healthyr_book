@@ -660,7 +660,8 @@ sum_wcgs[[1]] %>%
 t = sum_wcgs[[2]] %>% 
   select(-c(5, 9))
 t$levels = stringr::str_replace_all(t$levels, "\"", "\\`\\`")
-t$levels = stringr::str_replace_all(t$levels, "``,", "\"")  
+t$levels = stringr::str_replace_all(t$levels, "``,", "\"")
+t$levels = stringr::str_replace_all(t$levels, "``$", "\"")
 t %>% 
   mykable(caption = "WCGS data, ff\\_glimpse: categorical.") %>%
   kable_styling(latex_options = c("scale_down")) %>%  

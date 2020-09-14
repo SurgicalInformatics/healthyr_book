@@ -93,7 +93,7 @@ University of Edinburgh
 
 ## Contributors {-}
 
-We are indebted to the following people who have generously contributed time and material to this book: Katie Connor, Tom Drake, Cameron Fairfield, Peter Hall, Stephen Knight, Kenneth McLean, Lisa Norman, Katie Shaw, Michael Ramage, Einar Pius, and Olivia Swann.
+We are indebted to the following people who have generously contributed time and material to this book: Katie Connor, Tom Drake, Cameron Fairfield, Peter Hall, Stephen Knight, Kenneth McLean, Lisa Norman, Einar Pius, Michael Ramage, Katie Shaw, and Olivia Swann.
 
 
 # About the Authors {-}

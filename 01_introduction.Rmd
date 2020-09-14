@@ -215,20 +215,22 @@ This will help you develop robust and reproducible data analysis skills.
 
 > You can restart R by clicking on `Session -> Restart R` (top menu).
 
+```{r chap01-fig-settings, echo = FALSE, fig.cap = "Configuring your RStudio Tools -> Global Options:  Untick ``Restore .RData into Workspace on Exit\" and Set ``Save .RData on exit\" to Never.", out.width="100%"}
+knitr::include_graphics("images/chapter01/rstudio_settings.png")
+```
+
 <!-- There's also a Keyboard shortcut for it: `Ctrl+Shift+F10`, but considering how hard it is to use function keys on laptops, that's hardly a shortcut. -->
 
 <!-- > We recommend changing your "Restart R" keyboard shortcut to `Control+R `or `Cmd+R` (`Cmd+Shift+R `if using RStudio Server or Cloud).  -->
 <!-- This can be done in `Tools -> Modify Keyboard Shortcuts`. -->
 
-Furthermore, RStudio has a default setting that is no longer considered best practice.
+Furthermore, RStudio has a default setting that is no longer considered best practice (Figure \@ref(fig:chap01-fig-settings)).
 After installing RStudio, you should go change two small but important things in `Tools -> Global Options`:
 
 1. **Uncheck** "Restore .RData into Workspace on startup"
 2. Set "Save .RData on exit" to **Never**
 
-```{r chap01-fig-settings, echo = FALSE, fig.cap = "Configuring your RStudio Tools -> Global Options:  Untick \`\`Restore .RData into Workspace on Exit\" and Set \'\'Save .RData on exit\" to Never.", out.width="100%"}
-knitr::include_graphics("images/chapter01/rstudio_settings.png")
-```
+
 
 This does not mean you can't or shouldn't save your work in `.RData/.rda` files. 
 But it is best to do it consciously and load exactly what you want to load. 

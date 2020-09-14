@@ -1230,7 +1230,7 @@ However, it is important to know whether R has understood which of your columns 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "2020-09-14 20:02:59 BST"
+## [1] "2020-09-14 20:10:12 BST"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1302,7 +1302,7 @@ Calculating the difference will now work:
 \end{Shaded}
 
 \begin{verbatim}
-## Time difference of 77.70626 days
+## Time difference of 77.70124 days
 \end{verbatim}
 
 Since R knows this is a difference between two date/time objects, it prints them in a nicely readable way.
@@ -1328,7 +1328,7 @@ This is useful if we want to apply this time difference on another date, e.g.:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "2021-03-21 04:57:00 UTC"
+## [1] "2021-03-21 04:49:47 UTC"
 \end{verbatim}
 
 But if we want to use the number of days in a normal calculation, e.g., what if a measurement increased by 560 arbitrary units during this time period.
@@ -1354,7 +1354,7 @@ We need to convert \texttt{my\_datesdiff} (which is a difftime value) into a num
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 7.206627
+## [1] 7.207092
 \end{verbatim}
 
 The \textbf{lubridate} package comes with several convenient functions for parsing dates, e.g., \texttt{ymd()}, \texttt{mdy()}, \texttt{ymd\_hm()}, etc. - for a full list see \url{lubridate.tidyverse.org}.
@@ -1406,7 +1406,7 @@ Furthermore, the same date/time specifiers can be used to rearrange your date an
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "2020-09-14 20:02:59 BST"
+## [1] "2020-09-14 20:10:12 BST"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1416,7 +1416,7 @@ Furthermore, the same date/time specifiers can be used to rearrange your date an
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "20:02 on September-14 (2020)"
+## [1] "20:10 on September-14 (2020)"
 \end{verbatim}
 
 You can even add plain text into the \texttt{format()} function, R will know to put the right date/time values where the \texttt{\%} are:
@@ -1428,7 +1428,7 @@ You can even add plain text into the \texttt{format()} function, R will know to 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Happy days, the current time is 20:02 September-14 (2020)!"
+## [1] "Happy days, the current time is 20:10 September-14 (2020)!"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1438,7 +1438,7 @@ You can even add plain text into the \texttt{format()} function, R will know to 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Happy days, the current time is 20:02 September-14 (2020)!"
+## [1] "Happy days, the current time is 20:10 September-14 (2020)!"
 \end{verbatim}
 
 \hypertarget{chap02-objects-functions}{%
@@ -1659,7 +1659,7 @@ Including this means you can always be clear on when the results were last updat
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "2020-09-14 20:02:59 BST"
+## [1] "2020-09-14 20:10:13 BST"
 \end{verbatim}
 
 \hypertarget{working-with-objects}{%

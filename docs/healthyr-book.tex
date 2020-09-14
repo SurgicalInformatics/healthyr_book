@@ -287,7 +287,7 @@ University of Edinburgh
 \section*{Contributors}\label{contributors}}
 
 
-We are indebted to the following people who have generously contributed time and material to this book: Katie Connor, Tom Drake, Cameron Fairfield, Peter Hall, Stephen Knight, Kenneth McLean, Lisa Norman, Katie Shaw, Michael Ramage, Einar Pius, and Olivia Swann.
+We are indebted to the following people who have generously contributed time and material to this book: Katie Connor, Tom Drake, Cameron Fairfield, Peter Hall, Stephen Knight, Kenneth McLean, Lisa Norman, Einar Pius, Michael Ramage, Katie Shaw, and Olivia Swann.
 
 \hypertarget{about-the-authors}{%
 \chapter*{About the Authors}\label{about-the-authors}}
@@ -563,7 +563,11 @@ This will help you develop robust and reproducible data analysis skills.
 You can restart R by clicking on \texttt{Session\ -\textgreater{}\ Restart\ R} (top menu).
 \end{quote}
 
-Furthermore, RStudio has a default setting that is no longer considered best practice.
+\begin{figure}
+\includegraphics[width=1\linewidth]{images/chapter01/rstudio_settings} \caption{Configuring your RStudio Tools -> Global Options:  Untick ``Restore .RData into Workspace on Exit" and Set ``Save .RData on exit" to Never.}\label{fig:chap01-fig-settings}
+\end{figure}
+
+Furthermore, RStudio has a default setting that is no longer considered best practice (Figure \ref{fig:chap01-fig-settings}).
 After installing RStudio, you should go change two small but important things in \texttt{Tools\ -\textgreater{}\ Global\ Options}:
 
 \begin{enumerate}
@@ -574,10 +578,6 @@ After installing RStudio, you should go change two small but important things in
 \item
   Set ``Save .RData on exit'' to \textbf{Never}
 \end{enumerate}
-
-\begin{figure}
-\includegraphics[width=1\linewidth]{images/chapter01/rstudio_settings} \caption{Configuring your RStudio Tools -> Global Options:  Untick ``Restore .RData into Workspace on Exit" and Set ''Save .RData on exit" to Never.}\label{fig:chap01-fig-settings}
-\end{figure}
 
 This does not mean you can't or shouldn't save your work in \texttt{.RData/.rda} files.
 But it is best to do it consciously and load exactly what you want to load.
@@ -1230,7 +1230,7 @@ However, it is important to know whether R has understood which of your columns 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "2020-09-14 19:56:52 BST"
+## [1] "2020-09-14 20:02:59 BST"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1302,7 +1302,7 @@ Calculating the difference will now work:
 \end{Shaded}
 
 \begin{verbatim}
-## Time difference of 77.71051 days
+## Time difference of 77.70626 days
 \end{verbatim}
 
 Since R knows this is a difference between two date/time objects, it prints them in a nicely readable way.
@@ -1328,7 +1328,7 @@ This is useful if we want to apply this time difference on another date, e.g.:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "2021-03-21 05:03:07 UTC"
+## [1] "2021-03-21 04:57:00 UTC"
 \end{verbatim}
 
 But if we want to use the number of days in a normal calculation, e.g., what if a measurement increased by 560 arbitrary units during this time period.
@@ -1354,7 +1354,7 @@ We need to convert \texttt{my\_datesdiff} (which is a difftime value) into a num
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 7.206233
+## [1] 7.206627
 \end{verbatim}
 
 The \textbf{lubridate} package comes with several convenient functions for parsing dates, e.g., \texttt{ymd()}, \texttt{mdy()}, \texttt{ymd\_hm()}, etc. - for a full list see \url{lubridate.tidyverse.org}.
@@ -1406,7 +1406,7 @@ Furthermore, the same date/time specifiers can be used to rearrange your date an
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "2020-09-14 19:56:52 BST"
+## [1] "2020-09-14 20:02:59 BST"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1416,7 +1416,7 @@ Furthermore, the same date/time specifiers can be used to rearrange your date an
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "19:56 on September-14 (2020)"
+## [1] "20:02 on September-14 (2020)"
 \end{verbatim}
 
 You can even add plain text into the \texttt{format()} function, R will know to put the right date/time values where the \texttt{\%} are:
@@ -1428,7 +1428,7 @@ You can even add plain text into the \texttt{format()} function, R will know to 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Happy days, the current time is 19:56 September-14 (2020)!"
+## [1] "Happy days, the current time is 20:02 September-14 (2020)!"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1438,7 +1438,7 @@ You can even add plain text into the \texttt{format()} function, R will know to 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Happy days, the current time is 19:56 September-14 (2020)!"
+## [1] "Happy days, the current time is 20:02 September-14 (2020)!"
 \end{verbatim}
 
 \hypertarget{chap02-objects-functions}{%
@@ -1659,7 +1659,7 @@ Including this means you can always be clear on when the results were last updat
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "2020-09-14 19:56:52 BST"
+## [1] "2020-09-14 20:02:59 BST"
 \end{verbatim}
 
 \hypertarget{working-with-objects}{%
@@ -8080,13 +8080,13 @@ Time to CHD event & <int> & 3154 & 0 & 2683.9 & 666.5 & 2942.0\\
 \toprule
 label & var\_type & n & missing\_n & levels\_n & levels & levels\_count\\
 \midrule
-Personality type & <fct> & 3154 & 0 & 4 & ``A1" ``A2" ``B3" ``B4`` & 264, 1325, 1216, 349\\
-Personality type & <fct> & 3154 & 0 & 2 & ``B" ``A`` & 1565, 1589\\
-Smoking & <fct> & 3154 & 0 & 2 & ``Non-smoker" ``Smoker`` & 1652, 1502\\
+Personality type & <fct> & 3154 & 0 & 4 & ``A1" ``A2" ``B3" ``B4" & 264, 1325, 1216, 349\\
+Personality type & <fct> & 3154 & 0 & 2 & ``B" ``A" & 1565, 1589\\
+Smoking & <fct> & 3154 & 0 & 2 & ``Non-smoker" ``Smoker" & 1652, 1502\\
 \addlinespace
-Corneal arcus & <fct> & 3152 & 2 & 2 & ``No" ``Yes" ``(Missing)`` & 2211, 941, 2\\
-CHD event & <fct> & 3154 & 0 & 2 & ``No" ``Yes`` & 2897, 257\\
-Type CHD & <fct> & 3154 & 0 & 4 & ``No" ``MI\_SD" ``Silent\_MI" ``Angina`` & 2897, 135, 71, 51\\
+Corneal arcus & <fct> & 3152 & 2 & 2 & ``No" ``Yes" ``(Missing)" & 2211, 941, 2\\
+CHD event & <fct> & 3154 & 0 & 2 & ``No" ``Yes" & 2897, 257\\
+Type CHD & <fct> & 3154 & 0 & 4 & ``No" ``MI\_SD" ``Silent\_MI" ``Angina" & 2897, 135, 71, 51\\
 \bottomrule
 \end{tabular}}}
 \end{table}

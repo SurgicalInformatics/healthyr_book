@@ -12,3 +12,8 @@ my_saved_plot*
 render*.rds
 tmp-pdfcrop*
 *.log
+_bookdown_files/*/figure-epub3/*
+_bookdown_files/*/epub3/*
+_bookdown_files/*/html/*
+_bookdown_files/*/figure-html/*
+libs/*

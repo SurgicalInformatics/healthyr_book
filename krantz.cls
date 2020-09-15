@@ -377,8 +377,10 @@
   \else
 \let\@oddfoot\@empty
 \let\@evenfoot\@empty
-    \let\@evenhead\even@head
-    \let\@oddhead\odd@head
+    \def\@evenhead{\thepage\RunningHeadFont\hfill
+\if@mainmatter\thechapter\enspace\fi\leftmark}%\even@head
+    \def\@oddhead{\hfil{\RunningHeadFont\if@mainmatter\thesection\enspace\else\fi\rightmark}
+\hfill\thepage}%\odd@head
   \fi
   }
 \else

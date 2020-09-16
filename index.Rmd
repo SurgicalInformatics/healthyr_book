@@ -46,17 +46,21 @@ lapply(healthyr_notebooks, function(pkg) {
 
 # Preface {-}
 
-<!-- **For draft version** -->
-
-<!-- This is the electronic version of the HealthyR book to be published by CRC Press/Chapman & Hall in November 2020. -->
-<!-- The electronic version will always be freely available. -->
-
-<!-- HealthyR resources: [healthyr.surgicalinformatics.org](https://healthyr.surgicalinformatics.org/) -->
+```{asis, echo=identical(knitr:::pandoc_to(), 'html')}
+This is the electronic version of the HealthyR book to be published by [Chapman & Hall/CRC](https://www.routledge.com/R-for-Health-Data-Science/Harrison-Pius/p/book/9780367428198) in November 2020.
 
 
-<!-- Version 0.9.7 -->
+<p style="text-align: center;"><a href="https://www.routledge.com/R-for-Health-Data-Science/Harrison-Pius/p/book/9780367428198"><img src="images/healthyr_book_cover_20.png" alt="R for Health Data Science book cover" /></a></p>
+  
+HealthyR resources: [healthyr.surgicalinformatics.org](https://healthyr.surgicalinformatics.org/)
 
-<!-- This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 United States License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/us/ -->
+Version 0.9.9.
+
+It is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 3.0 United States License](http://creativecommons.org/licenses/by-nc-nd/3.0/us/).
+
+
+```
+
 
 ## Why read this book {-}
 

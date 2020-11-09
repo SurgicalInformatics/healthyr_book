@@ -908,6 +908,13 @@ new_data_selection <- gbd_short %>%
 new_data_selection <- gbd_short %>% 
   filter(year == 1990 | year == 2013) %>% 
   filter(cause == "Communicable diseases")
+  
+# Or even better, we can include both in one filter() call, as all
+# separate conditions are by default joined with "&":
+
+new_data_selection <- gbd_short %>% 
+  filter(year == 1990 | year == 2013,
+         cause == "Communicable diseases")
 ```
 
 \index{symbols@\textbf{symbols}!comment \texttt{\#}}

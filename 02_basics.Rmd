@@ -478,7 +478,6 @@ You can even add plain text into the `format()` function, R will know to put the
 
 ```{r}
 Sys.time() %>% format("Happy days, the current time is %H:%M %B-%d (%Y)!")
-Sys.time() %>% format("Happy days, the current time is %H:%M %B-%d (%Y)!")
 ```
 
 ## Objects and functions {#chap02-objects-functions}

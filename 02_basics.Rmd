@@ -1082,7 +1082,7 @@ typesdata %>%
 ```
 
 Notice how the `mutate()` above returns the whole tibble with a new column called `measurement/2`. 
-This is quite nice of `mutate()`, but it would be best to give columns names that don't include characters other than underscores (`_`) or dots (`.`). 
+This is quite nice of `mutate()`, but it would be best to give columns names that don't include characters other than letters, numbers, underscores (`_`) or dots (`.`). 
 So let's assign a more standard name for this new column:
 
 ```{r}

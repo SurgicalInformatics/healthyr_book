@@ -158,7 +158,7 @@ gbd2017 %>%
 \index{functions@\textbf{functions}!percent}
 
 So `summarise()` condenses a tibble, whereas `mutate()` retains its current size and adds columns. 
-We can also further lines to `mutate()` to calculate the percentage of each group:
+We can also add further lines to `mutate()` to calculate the percentage of each group:
 
 ```{r, message = FALSE}
 # percent() function for formatting percentages come from library(scales)

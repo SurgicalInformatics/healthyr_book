@@ -317,7 +317,7 @@ gbd_2rows %>%
   select(cause, deaths = deaths_millions)
 ```
 
-There function `rename()` is similar to `select()`, but it keeps all variables whereas `select()` only kept the ones we mentioned:
+The function `rename()` is similar to `select()`, but it keeps all variables whereas `select()` only kept the ones we mentioned:
 
 ```{r}
 gbd_2rows %>% 
@@ -348,7 +348,7 @@ These special functions are called select helpers, and the first select helper w
 
 The most common select helpers are `starts_with()`, `ends_with()`, `contains()`, `matches()` (but there are several others that may be useful to you, so press F1 on `select()` for a full list, or search the web for more examples).
 
-Let's say you can remember, whether the deaths column was called `deaths_millions` or just `deaths` or `deaths_mil`, or maybe there are other columns that include the word "deaths" that you want to `select()`:
+Let's say you can't remember whether the deaths column was called `deaths_millions` or just `deaths` or `deaths_mil`, or maybe there are other columns that include the word "deaths" that you want to `select()`:
 
 ```{r}
 gbd_2rows %>% 

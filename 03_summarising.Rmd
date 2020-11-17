@@ -362,8 +362,9 @@ Note how "deaths" needs to be quoted inside `starts_with()` - as it's a word to 
 \index{summarising data@\textbf{summarising data}!long vs wide data}
 
 So far, all of the examples we've shown you have been using 'tidy' data. 
-Data is 'tidy' when it is in long format: *each variable is in its own column*, and *each observation is in its own row*. 
-This long format is efficient to use in data analysis and visualisation and can also be considered "computer readable".
+Data is 'tidy' when it follows a couple of rules: *each variable is in its own column*, and *each observation is in its own row*. 
+Making data 'tidy' often means transforming the table from a "wide" format into a "long" format.
+Long format is efficient to use in data analysis and visualisation and can also be considered "computer readable".
 
 But sometimes when presenting data in tables for humans to read, or when collecting data directly into a spreadsheet, it can be convenient to have data in a wide format. 
 Data is 'wide' when *some or all of the columns are levels of a factor*.

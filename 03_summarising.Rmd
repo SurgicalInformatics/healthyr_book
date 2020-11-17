@@ -584,7 +584,7 @@ gbd_long %>%
 **Solution**
 
 ```{r, message = FALSE, results = 'hide'}
-gbd_long = read_csv("data/global_burden_disease_cause-year-sex.csv")
+gbd_long <- read_csv("data/global_burden_disease_cause-year-sex.csv")
 gbd_long %>% 
   pivot_wider(names_from = cause, values_from = deaths_millions)
 ```
@@ -594,7 +594,7 @@ gbd_long %>%
 Read in the full GBD dataset with variables `cause`, `year`, `sex`, `income`, `deaths_millions`.
 
 ```{r, message = FALSE}
-gbd_full = read_csv("data/global_burden_disease_cause-year-sex-income.csv")
+gbd_full <- read_csv("data/global_burden_disease_cause-year-sex-income.csv")
 
 glimpse(gbd_full)
 ```
@@ -623,7 +623,7 @@ You should recognise that:
 
 * `summary_data1` includes the total number of deaths per year.
 * `summary_data2` includes the number of deaths per cause per year.
-* `summary_data1 =` means we are creating a new tibble called `summary_data1` and saving (=) results into it. If `summary_data1` was a tibble that already existed, it would get overwritten.
+* `summary_data1 <-` means we are creating a new tibble called `summary_data1` and saving (`<-`) results into it. If `summary_data1` was a tibble that already existed, it would get overwritten.
 * `gbd_full` is the data being sent to the `group_by()` and then `summarise()` functions.
 * `group_by()` tells `summarise()` that we want aggregated results for each year.
 * `summarise()` then creates a new variable called `total_per_year` that sums the deaths from each different observation (subcategory) together.
@@ -633,6 +633,7 @@ You should recognise that:
 Compare the number of rows (observations) and number of columns (variables) of `gbd_full`, `summary_data1`, and `summary_data2`.
 
 You should notice that:
+
 * `summary_data2` has exactly 3 times as many rows (observations) as `summary_data1`. Why?
 * `gbd_full` has 5 variables, whereas the summarised tibbles have 2 and 3. Which variables got dropped? How?
 

@@ -54,7 +54,7 @@ HealthyR resources: [healthyr.surgicalinformatics.org](https://healthyr.surgical
 
 Example datasets used in the book can be downloaded [here](https://github.com/SurgicalInformatics/healthyr_book#datasets-used-in-the-book).
 
-Version 1.0.0
+Version 1.0.1
 
 It is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 3.0 United States License](http://creativecommons.org/licenses/by-nc-nd/3.0/us/).
 

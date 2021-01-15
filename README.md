@@ -32,3 +32,6 @@ All other chapters load data included in R package installs. For example, to get
 
 [Other introductory videos](https://media.ed.ac.uk/tag/tagid/healthyr)
 
+# Changes since the first Edition
+
+See [NEWS.md](NEWS.md)

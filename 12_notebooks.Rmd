@@ -106,6 +106,8 @@ This is simply where many of the settings/options for file creation are placed.
 In RStudio, these often update automatically as different settings are invoked in the Options menu. 
 
 ```{r chap12-fig-anatomy, echo = FALSE, fig.cap="The Anatomy of a Notebook/Markdown file. Input (left) and output (right)."}
+# rotated_png is actuyally upright so that is shows up correct in the HTML
+# needs to have the same file name though so that auto_pdf picks up the right file
 knitr::include_graphics("images/chapter12/2_anatomy_rotated.png", auto_pdf = TRUE)
 ```
 
@@ -225,6 +227,8 @@ There are options for running all the chunks above the current chunk you are wor
 This is useful as a chunk you are working on will  often rely on objects created in preceding chunks. 
 
 ```{r chap12-fig-options, echo = FALSE, fig.cap="Chunk and document options in Notebook/Markdown files."}
+# rotated_png is actuyally upright so that is shows up correct in the HTML
+# needs to have the same file name though so that auto_pdf picks up the right file
 knitr::include_graphics("images/chapter12/4_notebook_options_rotated.png", auto_pdf = TRUE)
 ```
 

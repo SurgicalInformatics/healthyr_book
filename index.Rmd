@@ -40,21 +40,21 @@ healthyr_notebooks = c("tidyverse", "boot", "finalfit", "flexdashboard", "gapmin
 lapply(healthyr_notebooks, function(pkg) {
   if (system.file(package = pkg) == '') install.packages(pkg)
 })
-# might need to restart R for the next one to work (if remotes was just installed)
-#remotes::install_github("thomasp85/patchwork")
 ```
 
 # Preface {-}
 
 ```{asis, echo=identical(knitr:::pandoc_to(), 'html')}
-This is the electronic version of the HealthyR book to be published by [Chapman & Hall/CRC](https://www.routledge.com/R-for-Health-Data-Science/Harrison-Pius/p/book/9780367428198) in November 2020.
+This is the electronic version of the HealthyR book published by [Chapman & Hall/CRC](https://www.routledge.com/R-for-Health-Data-Science/Harrison-Pius/p/book/9780367428198).
 
 
 <p style="text-align: center;"><a href="https://www.routledge.com/R-for-Health-Data-Science/Harrison-Pius/p/book/9780367428198"><img src="images/healthyr_book_cover_20.png" alt="R for Health Data Science book cover" /></a></p>
   
 HealthyR resources: [healthyr.surgicalinformatics.org](https://healthyr.surgicalinformatics.org/)
 
-Version 0.9.9.
+Example datasets used in the book can be downloaded [here](https://github.com/SurgicalInformatics/healthyr_book#datasets-used-in-the-book).
+
+Version 1.0.0
 
 It is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 3.0 United States License](http://creativecommons.org/licenses/by-nc-nd/3.0/us/).
 

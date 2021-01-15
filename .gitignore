@@ -4,7 +4,6 @@
 _publish.R
 _book
 docs/*
-!docs/healthyr-book.pdf
 !docs/healthyr-book.tex
 rsconnect
 healthyr-book.rds

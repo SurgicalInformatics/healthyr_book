@@ -1,0 +1,12 @@
+name: healthyr_book
+title: healthyr_book
+username: rots
+account: rots
+server: argoshare.is.ed.ac.uk
+hostUrl: https://argoshare.is.ed.ac.uk/__api__
+appId: 228
+bundleId: 1954
+url: https://argoshare.is.ed.ac.uk/healthyr_book/
+when: 1600267977.89825
+asMultiple: FALSE
+asStatic: TRUE

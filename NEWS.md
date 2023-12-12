@@ -1,6 +1,7 @@
 # Current changes (v1.0.1)
 
 * Typo fixes in Chapters 2 and 3
+* Typo fix in 8.13
 
 
 # R for Health Data Science v1.0.0

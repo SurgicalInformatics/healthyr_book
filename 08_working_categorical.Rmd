@@ -512,7 +512,7 @@ meldata %>%
 ```
 
 Note that for continuous expanatory variables, an F-test (ANOVA) is performed by default. 
-If variables are considered non-parametric (`cont = "mean"`), then a Kruskal-Wallis test is used. 
+If variables are considered non-parametric (`cont = "median"`), then a Kruskal-Wallis test is used. 
 
 Switch to Fisher's exact test:
 

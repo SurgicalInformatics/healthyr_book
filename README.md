@@ -1,4 +1,4 @@
-# Datasets used in the book
+# Datasets used in "R for Health Data Science"
 
 Chapter 2:
 
